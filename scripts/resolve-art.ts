@@ -12,6 +12,10 @@ const CONCURRENCY = 4;
 const UA = "Mozilla/5.0 (compatible; anyps5-website; +https://github.com/boykopovar/AnyPS5)";
 const SONY_CDN = /^https:\/\/image\.api\.playstation\.com\//;
 const SGDB = "https://www.steamgriddb.com/api/v2";
+// A local .env (not committed) can hold the key; CI passes it as an environment variable instead.
+try {
+  process.loadEnvFile();
+} catch {}
 const SGDB_KEY = process.env.SGDB_API_KEY;
 
 type Roles = Pick<Art, "square" | "cover" | "hero" | "logo">;
