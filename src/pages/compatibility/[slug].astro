@@ -160,7 +160,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
                   {game.timeline.map((e) => (
                     <li style={`--tone:var(--stage-${stageSlug(e.stage)})`}>
                       <time datetime={e.date}>{formatDate(e.date)}</time>
-                      {e.url ? <a href={e.url}>Reached {e.stage}</a> : <span>Reached {e.stage} (checked by a maintainer)</span>}
+                      {e.url ? <a href={e.url}>Reached {e.stage}</a> : <span>Reached {e.stage} ({e.source === "uploads" ? "confirmed by uploaded run reports" : "checked by a maintainer"})</span>}
                     </li>
                   ))}
                 </ol>

@@ -16,6 +16,8 @@ export interface TimelineEvent {
   date: string;
   stage: StageOrNone;
   url: string | null;
+  /** Where the stage came from: a Discussions report (with a url), a maintainer, or confirmed uploads. */
+  source?: "report" | "maintainer" | "uploads";
 }
 
 export interface Game extends Omit<Identity, "overlay"> {
@@ -183,7 +185,9 @@ export function resolveGame(
   const reported = reportWins ? (top?.stage ?? null) : curated.stage;
   // Uploads raise the stage once confirmed: two accounts, or one account and a Discussions report.
   const uploads = community.uploads.filter((u) => identity.titleIds.includes(u.titleId)).sort((a, b) => b.at.localeCompare(a.at));
-  const auto = autoStage(uploads, top?.stage ?? null);
+  // A Discussions report confirms an upload only when it still stands (a maintainer's correction didn't overrule it)
+  // and someone other than the uploaders wrote it.
+  const auto = autoStage(uploads, reportWins && top ? { stage: top.stage, author: top.author } : null);
   const uploadWins = auto.confirmedStage !== null && stageRank(auto.confirmedStage) > stageRank(reported);
   const stage = uploadWins ? auto.confirmedStage : reported;
   const branchTop = best(reports.filter((r) => !QUALIFYING.has(r.buildKind)));
@@ -196,9 +200,14 @@ export function resolveGame(
   Object.assign(platforms, curated?.platforms);
 
   const events = timeline(qualifying);
-  if (uploadWins) events.push({ date: confirmedAt(uploads, auto.confirmedStage!, top), stage: auto.confirmedStage!, url: null });
+  // Confirmed uploads add a rise only above the furthest stage already reached, dated no earlier than that rise.
+  const furthestEvent = events.reduce<TimelineEvent | null>((a, e) => (!a || stageRank(e.stage) > stageRank(a.stage) ? e : a), null);
+  if (uploadWins && stageRank(auto.confirmedStage) > stageRank(furthestEvent?.stage)) {
+    const date = [confirmedAt(uploads, auto.confirmedStage!, top), events.at(-1)?.date ?? ""].sort().at(-1)!;
+    events.push({ date, stage: auto.confirmedStage!, url: null, source: "uploads" });
+  }
   // A curated stage is a rise only when it is above the last one reached; a correction downwards is not an event.
-  if (curated && !reportWins && stageRank(curated.stage) > stageRank(events.at(-1)?.stage)) events.push({ date: curated.date, stage: curated.stage, url: null });
+  if (curated && !reportWins && stageRank(curated.stage) > stageRank(events.at(-1)?.stage)) events.push({ date: curated.date, stage: curated.stage, url: null, source: "maintainer" });
 
   const latestWithBlockers = reports.find((r) => r.blockers.length);
   const blockerNumbers = curated?.blockers ?? latestWithBlockers?.blockers ?? [];

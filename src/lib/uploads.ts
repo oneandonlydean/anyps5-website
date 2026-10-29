@@ -49,10 +49,16 @@ export const CONFIRMATIONS_NEEDED = 2;
  * Discussions report did; the furthest such stage is confirmed. The furthest stage reached at all is shown as
  * pending with its confirmation count.
  */
-export function autoStage(uploads: UploadSummary[], discussionStage: StageOrNone | null): { furthest: AutoStage | null; confirmedStage: StageOrNone | null } {
+export function autoStage(
+  uploads: UploadSummary[],
+  discussion: { stage: StageOrNone | null; author: string | null } | null,
+): { furthest: AutoStage | null; confirmedStage: StageOrNone | null } {
   // A run whose stage is unknown says nothing about how far the game gets.
   const staged = uploads.filter((u): u is UploadSummary & { stage: StageOrNone } => u.stage !== null);
   if (!staged.length) return { furthest: null, confirmedStage: null };
+  // Someone can't confirm their own upload with their own Discussions report.
+  const uploaders = new Set(staged.map((u) => u.login.toLowerCase()));
+  const discussionStage = discussion && !(discussion.author && uploaders.has(discussion.author.toLowerCase())) ? discussion.stage : null;
   const confirmationsAt = (stage: StageOrNone) =>
     new Set(staged.filter((u) => stageRank(u.stage) >= stageRank(stage)).map((u) => u.githubId)).size + (stageRank(discussionStage) >= stageRank(stage) ? 1 : 0);
   const stages = [...new Set(staged.map((u) => u.stage))].sort((a, b) => stageRank(b) - stageRank(a));

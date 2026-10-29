@@ -21,7 +21,7 @@
     { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" }
   ],
   "vars": {
-    "MAINTAINERS": "oneandonlydean",
+    "MAINTAINERS": "158058829",
     "SITE_REPO": "oneandonlydean/anyps5-website"
   },
 
@@ -44,7 +44,7 @@
         { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" }
       ],
       "vars": {
-        "MAINTAINERS": "oneandonlydean",
+        "MAINTAINERS": "158058829",
         "SITE_REPO": "oneandonlydean/anyps5-website",
         "GITHUB_REPO": "boykopovar/AnyPS5",
         "BASE_URL": "",

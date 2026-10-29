@@ -11,4 +11,5 @@ cat > dist/_headers <<'HEADERS'
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 HEADERS
+npx wrangler d1 migrations apply SITE_DB --remote --env=""
 npx wrangler deploy --env=""

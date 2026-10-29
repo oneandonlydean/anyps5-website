@@ -142,13 +142,20 @@ const { games } = Astro.props;
     send.disabled = true;
     result.replaceChildren(el("p", "Uploading…", "muted"));
     // A picked game is sent as its title ID: "Name (PPSA12345)" or a bare ID.
-    const chosen = pick.hidden ? null : (pickInput.value.match(/\b([A-Z]{4}\d{5})\)?\s*$/)?.[1] ?? null);
+    const chosen = pick.hidden ? null : (pickInput.value.toUpperCase().match(/\b([A-Z]{4}\d{5})\)?\s*$/)?.[1] ?? null);
     if (!pick.hidden && !chosen) {
       send.disabled = false;
       result.replaceChildren(el("p", "Choose the game from the list first.", "bad"));
       return;
     }
-    const res = await fetch(`/api/reports${chosen ? `?titleId=${chosen}` : ""}`, { method: "POST", headers: { "content-type": "application/json" }, body });
+    let res: Response;
+    try {
+      res = await fetch(`/api/reports${chosen ? `?titleId=${chosen}` : ""}`, { method: "POST", headers: { "content-type": "application/json" }, body });
+    } catch {
+      send.disabled = false;
+      result.replaceChildren(el("p", "The site couldn't be reached. Check your connection and try again.", "bad"));
+      return;
+    }
     const data = await res.json().catch(() => ({}));
     result.replaceChildren();
     send.disabled = false;
@@ -232,7 +239,7 @@ const { games } = Astro.props;
     border-color: var(--accent);
     background: color-mix(in srgb, var(--accent) 6%, transparent);
   }
-  .drop input {
+  .drop input[type="file"] {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -243,7 +250,7 @@ const { games } = Astro.props;
     gap: 2px;
     cursor: pointer;
   }
-  .drop input:focus-visible + label {
+  .drop input[type="file"]:focus-visible + label {
     outline: 2px solid var(--accent);
     outline-offset: 4px;
   }

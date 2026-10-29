@@ -67,14 +67,19 @@ describe("checkReport", () => {
 });
 
 describe("autoStage", () => {
-  const up = (githubId: number, stage: UploadSummary["stage"]) => ({ githubId, stage }) as UploadSummary;
+  const up = (githubId: number, stage: UploadSummary["stage"]) => ({ githubId, stage, login: `u${githubId}` }) as UploadSummary;
+  const discussion = (stage: UploadSummary["stage"], author = "someone-else") => ({ stage, author });
 
   it("needs two accounts, or one plus a Discussions report", () => {
     expect(autoStage([up(1, "Presents")], null)).toEqual({ furthest: { stage: "Presents", confirmations: 1, confirmed: false }, confirmedStage: null });
     expect(autoStage([up(1, "Presents"), up(1, "Presents")], null).confirmedStage).toBeNull();
     expect(autoStage([up(1, "Presents"), up(2, "First draw")], null)).toEqual({ furthest: { stage: "Presents", confirmations: 1, confirmed: false }, confirmedStage: "First draw" });
-    expect(autoStage([up(1, "Presents")], "Menus").confirmedStage).toBe("Presents");
-    expect(autoStage([], "Menus")).toEqual({ furthest: null, confirmedStage: null });
+    expect(autoStage([up(1, "Presents")], discussion("Menus")).confirmedStage).toBe("Presents");
+    expect(autoStage([], discussion("Menus"))).toEqual({ furthest: null, confirmedStage: null });
     expect(autoStage([up(1, null as never), up(2, null as never)], null)).toEqual({ furthest: null, confirmedStage: null });
+  });
+
+  it("doesn't let someone confirm their own upload with their own Discussions report", () => {
+    expect(autoStage([up(1, "Presents")], discussion("Menus", "U1")).confirmedStage).toBeNull();
   });
 });

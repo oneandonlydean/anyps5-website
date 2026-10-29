@@ -15,6 +15,10 @@ async function main() {
     const res = await fetch(`${API.replace(/\/$/, "")}/api/export`, { headers: { "user-agent": "anyps5-website" }, signal: AbortSignal.timeout(20_000) });
     if (!res.ok) throw new Error(`${res.status}`);
     const data = (await res.json()) as UploadExport;
+    // Only a well-formed export replaces the data the build reads; anything else (an error body, a proxy page) is ignored.
+    const ok =
+      data && Array.isArray(data.uploads) && data.hidden && Array.isArray(data.hidden.screenshots) && Array.isArray(data.hidden.art) && data.uploads.every((u) => typeof u?.titleId === "string" && typeof u?.githubId === "number");
+    if (!ok) throw new Error("the export is not in the expected shape");
     await writeJson(OUT, data);
     console.log(`uploads: ${data.uploads.length} visible, ${data.hidden.screenshots.length} screenshots and ${data.hidden.art.length} art hidden`);
   } catch (error) {

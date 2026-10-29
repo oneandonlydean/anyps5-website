@@ -12,7 +12,7 @@ const updates = all.filter((u) => u.kind !== "merge");
 const days = Object.entries(Object.groupBy(updates, (u) => u.date.slice(0, 10))) as [string, Update[]][];
 const VISIBLE_DAYS = 21;
 // Merge lists are long (around 160 a day), so only the most recent days carry them.
-const LISTED_DAYS = 14;
+const LISTED_DAYS = 7;
 const listed = new Set(days.slice(0, LISTED_DAYS).map(([day]) => day));
 const count = (category: string) => updates.filter((u) => CATEGORY[u.kind] === category).length;
 const merges = all.filter((u) => u.kind === "merge").length;

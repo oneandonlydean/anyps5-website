@@ -9,8 +9,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -54,6 +52,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # Only the job that publishes gets the Pages and OIDC permissions; the build job runs npm install scripts.
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -33,6 +33,8 @@ concurrency:
 env:
   UPSTREAM: boykopovar/AnyPS5
   DAILY: "41 4 * * *"
+  # Where uploads and maintainer actions are read from: the site's own Worker (repository variable SITE_URL).
+  SITE_API: ${{ vars.SITE_URL || 'https://anyps5-demo.deanisa.ninja' }}
 
 jobs:
   update:
@@ -48,12 +50,14 @@ jobs:
           release=$(gh api "repos/$UPSTREAM/releases/latest" --jq .tag_name)
           progress=$(curl -fsSI https://boykopovar.github.io/AnyPS5/progress.json | grep -i '^etag' || true)
           shaders=$(gh api "repos/$UPSTREAM/commits?path=core/shader&per_page=1" --jq '.[0].sha')
-          driver=$(gh api "repos/$UPSTREAM/commits?path=core/libs/prx/libSceAgcDriver&per_page=1" --jq '.[0].sha')
+          libraries=$(gh api "repos/$UPSTREAM/commits?path=core/libs/prx&per_page=1" --jq '.[0].sha')
+          # Uploads and maintainer actions too, so a scheduled check that replaced a queued data rebuild still builds.
+          uploads=$(curl -fsS "$SITE_API/api/export" | jq -cS '{uploads, hidden}' | sha256sum | cut -c1-16 || echo unavailable)
           reports=$(gh api graphql -f query='query { repository(owner: "boykopovar", name: "AnyPS5") {
             discussions(first: 1, orderBy: { field: UPDATED_AT, direction: DESC }) { nodes { updatedAt } } } }' \
             --jq '.data.repository.discussions.nodes[0].updatedAt')
-          echo "release=$release progress=$progress shaders=$shaders driver=$driver reports=$reports site=$GITHUB_SHA"
-          echo "hash=$(printf '%s' "$release $progress $shaders $driver $reports $GITHUB_SHA" | sha256sum | cut -c1-16)" >> "$GITHUB_OUTPUT"
+          echo "release=$release progress=$progress shaders=$shaders libraries=$libraries reports=$reports uploads=$uploads site=$GITHUB_SHA"
+          echo "hash=$(printf '%s' "$release $progress $shaders $libraries $reports $uploads $GITHUB_SHA" | sha256sum | cut -c1-16)" >> "$GITHUB_OUTPUT"
 
       - name: Skip if nothing changed since the last deploy
         id: seen
@@ -72,7 +76,9 @@ jobs:
           node-version: 24
           cache: npm
       - if: steps.seen.outputs.cache-hit != 'true'
-        run: npm ci
+        run: |
+          npm ci
+          npm ci --prefix worker
 
       # Downloads worth keeping between runs: the upstream clone and ISA (coverage), screenshot copies, OG images.
       - if: steps.seen.outputs.cache-hit != 'true'
@@ -96,10 +102,14 @@ jobs:
           npm run fetch:upstream
           npm run fetch:coverage
 
-      - if: steps.seen.outputs.cache-hit != 'true'
+      # Nothing deploys unless the site and the Worker both pass their checks.
+      - name: Test the site and the Worker
+        if: steps.seen.outputs.cache-hit != 'true'
         run: |
           npm test
           npm run validate
+          npm run typecheck --prefix worker
+          npm test --prefix worker
 
       - name: Build and deploy to Cloudflare
         if: steps.seen.outputs.cache-hit != 'true'

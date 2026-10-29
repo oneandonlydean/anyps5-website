@@ -161,7 +161,7 @@ describe("uploads", () => {
     expect(one.autoStage).toEqual({ stage: "Presents", confirmations: 1, confirmed: false });
     const two = resolveWith([upload(1, "Presents", "2026-10-20T00:00:00Z"), upload(2, "Presents", "2026-10-22T00:00:00Z")]);
     expect(two.stage).toBe("Presents");
-    expect(two.timeline.at(-1)).toEqual({ date: "2026-10-22T00:00:00Z", stage: "Presents", url: null });
+    expect(two.timeline.at(-1)).toEqual({ date: "2026-10-22T00:00:00Z", stage: "Presents", url: null, source: "uploads" });
   });
 
   it("drops art a maintainer hid", () => {

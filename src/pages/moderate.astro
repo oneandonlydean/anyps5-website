@@ -47,7 +47,7 @@ import Base from "../layouts/Base.astro";
 </Base>
 
 <script>
-  type Upload = { id: number; titleId: string; stage: string; login: string; at: string; os: string; gpuVendor: string; status: string; flags: string[]; stop: { kind: string; message: string | null } };
+  type Upload = { id: number; titleId: string; stage: string | null; login: string; at: string; os: string | null; gpuVendor: string | null; status: string; flags: string[]; stop?: { kind: string; message: string | null } };
   type Queue = { review: Upload[]; recent: Upload[]; blocked: string[]; hidden: { kind: string; target: string; reason: string | null; by_login: string }[]; log: { action: string; kind: string; target: string; by_login: string; created_at: number }[] };
 
   const root = document.querySelector<HTMLElement>("[data-mod]")!;
@@ -63,7 +63,11 @@ import Base from "../layouts/Base.astro";
   };
 
   async function act(action: string, kind: string, target: string) {
-    const res = await fetch("/api/mod/action", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action, kind, target }) });
+    const res = await fetch("/api/mod/action", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action, kind, target }) }).catch(() => null);
+    if (!res) {
+      document.dispatchEvent(new CustomEvent("toast", { detail: "The site couldn't be reached. Try again." }));
+      return;
+    }
     const data = await res.json().catch(() => ({}));
     document.dispatchEvent(new CustomEvent("toast", { detail: res.ok ? "Done. The site updates after the next rebuild." : (data.error ?? "That didn't work.") }));
     if (res.ok) load();
@@ -81,9 +85,14 @@ import Base from "../layouts/Base.astro";
     const head = el("div", "", "row");
     const game = el("a", u.titleId) as HTMLAnchorElement;
     game.href = `/compatibility/?q=${u.titleId}`;
-    head.append(game, el("span", `${u.stage} · ${u.os} · ${u.gpuVendor}`), el("span", `${u.login} · ${new Date(u.at).toLocaleString()}`, "muted"), el("span", u.status, `status ${u.status}`));
+    head.append(
+      game,
+      el("span", `${u.stage ?? "stage unknown"} · ${u.os ?? "unknown OS"} · ${u.gpuVendor ?? "unknown GPU"}`),
+      el("span", `${u.login} · ${new Date(u.at).toLocaleString()}`, "muted"),
+      el("span", u.status, `status ${u.status}`),
+    );
     item.append(head);
-    if (u.stop.message) item.append(el("p", `${u.stop.kind}: ${u.stop.message}`, "muted small"));
+    if (u.stop?.message) item.append(el("p", `${u.stop.kind}: ${u.stop.message}`, "muted small"));
     for (const flag of u.flags) item.append(el("p", flag, "flag small"));
     const actions = el("div", "", "actions");
     if (u.status === "review") actions.append(button("Approve", () => act("approve", "upload", String(u.id))));
@@ -99,7 +108,11 @@ import Base from "../layouts/Base.astro";
   }
 
   async function load() {
-    const res = await fetch("/api/mod/queue");
+    const res = await fetch("/api/mod/queue").catch(() => null);
+    if (!res) {
+      state.replaceChildren(el("span", "The site couldn't be reached. Reload to try again."));
+      return;
+    }
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
       if (res.status === 401) {
