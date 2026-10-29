@@ -1,0 +1,335 @@
+---
+import { formatDate } from "../../lib/site";
+
+export interface Series {
+  label: string;
+  values: (number | null)[];
+  /** A CSS colour, normally a token. */
+  color: string;
+  dashed?: boolean;
+}
+
+interface Props {
+  title: string;
+  dates: string[];
+  series: Series[];
+  unit: string;
+}
+
+const { title, dates, series, unit } = Astro.props;
+const number = new Intl.NumberFormat("en-GB");
+
+// A y-scale from zero to a round number just above the largest value.
+const peak = Math.max(1, ...series.flatMap((s) => s.values.filter((v): v is number => v !== null)));
+const magnitude = 10 ** Math.floor(Math.log10(peak));
+const step = [1, 2, 2.5, 5, 10].map((m) => (m * magnitude) / 2).find((s) => peak / s <= 4)!;
+const top = Math.ceil(peak / step) * step;
+const ticks = Array.from({ length: Math.round(top / step) + 1 }, (_, i) => i * step);
+
+const W = 1000;
+const H = 300;
+const x = (i: number) => (dates.length > 1 ? (i / (dates.length - 1)) * W : W / 2);
+const y = (v: number) => H - (v / top) * H;
+
+/** An SVG path that breaks where a value is missing. */
+function path(values: (number | null)[]) {
+  let d = "";
+  let pen = false;
+  values.forEach((v, i) => {
+    if (v === null) {
+      pen = false;
+      return;
+    }
+    d += `${pen ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`;
+    pen = true;
+  });
+  return d;
+}
+
+const labels = dates.length > 2 ? [0, Math.floor((dates.length - 1) / 2), dates.length - 1] : dates.map((_, i) => i);
+const data = JSON.stringify({ dates: dates.map((d) => formatDate(d)), series: series.map((s) => ({ label: s.label, values: s.values, color: s.color })) });
+---
+
+<figure class="chart" data-chart={data} data-unit={unit}>
+  <figcaption>
+    <span class="title">{title}</span>
+    {
+      series.length > 1 && (
+        <span class="legend">
+          {series.map((s) => (
+            <span>
+              <i class:list={{ dashed: s.dashed }} style={`--color:${s.color}`} />
+              {s.label}
+            </span>
+          ))}
+        </span>
+      )
+    }
+  </figcaption>
+  <div class="plot">
+    <div class="y" aria-hidden="true">
+      {ticks.map((t) => <span style={`bottom:${(t / top) * 100}%`}>{number.format(t)}</span>)}
+    </div>
+    <div class="area">
+      {ticks.map((t) => <span class="grid" style={`bottom:${(t / top) * 100}%`} />)}
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" role="img" aria-label={`${title}, ${dates.length} days. A table follows.`}>
+        {series.map((s) => <path d={path(s.values)} stroke={s.color} stroke-dasharray={s.dashed ? "6 5" : undefined} />)}
+      </svg>
+      {
+        series.map((s) => {
+          const i = s.values.findLastIndex((v) => v !== null);
+          return i >= 0 && <span class="end" style={`left:${(x(i) / W) * 100}%;bottom:${(1 - y(s.values[i]!) / H) * 100}%;--color:${s.color}`} />;
+        })
+      }
+      <span class="cursor" hidden />
+      <div class="tip" hidden role="status" />
+    </div>
+    <div class="x" aria-hidden="true">
+      {labels.map((i) => <span style={`left:${(x(i) / W) * 100}%`}>{formatDate(dates[i])}</span>)}
+    </div>
+  </div>
+  <details class="table" data-pagefind-ignore>
+    <summary>Show as a table</summary>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            {series.map((s) => <th>{s.label}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            dates.map((d, i) => (
+              <tr>
+                <td>{formatDate(d)}</td>
+                {series.map((s) => (
+                  <td>{s.values[i] === null ? "—" : number.format(s.values[i]!)}</td>
+                ))}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+
+<script>
+  const number = new Intl.NumberFormat("en-GB");
+  for (const chart of document.querySelectorAll<HTMLElement>("[data-chart]")) {
+    const { dates, series } = JSON.parse(chart.dataset.chart!) as { dates: string[]; series: { label: string; values: (number | null)[]; color: string }[] };
+    const area = chart.querySelector<HTMLElement>(".area")!;
+    const cursor = area.querySelector<HTMLElement>(".cursor")!;
+    const tip = area.querySelector<HTMLElement>(".tip")!;
+
+    const show = (clientX: number) => {
+      const box = area.getBoundingClientRect();
+      const ratio = Math.min(1, Math.max(0, (clientX - box.left) / box.width));
+      const i = Math.round(ratio * (dates.length - 1));
+      const left = dates.length > 1 ? (i / (dates.length - 1)) * 100 : 50;
+      cursor.hidden = tip.hidden = false;
+      cursor.style.left = `${left}%`;
+      tip.replaceChildren();
+      const head = document.createElement("b");
+      head.textContent = dates[i];
+      tip.append(head);
+      for (const s of series) {
+        const row = document.createElement("span");
+        const swatch = document.createElement("i");
+        swatch.style.background = s.color;
+        const value = s.values[i];
+        row.append(swatch, `${s.label}: ${value === null ? "not measured" : number.format(value)} ${value === null ? "" : chart.dataset.unit}`);
+        tip.append(row);
+      }
+      tip.style.left = `${left}%`;
+      tip.classList.toggle("flip", left > 60);
+    };
+    area.addEventListener("pointermove", (e) => show(e.clientX));
+    area.addEventListener("pointerleave", () => (cursor.hidden = tip.hidden = true));
+  }
+</script>
+
+<style>
+  .chart {
+    margin: 0;
+  }
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 20px;
+    margin-bottom: 14px;
+  }
+  .title {
+    font-weight: 600;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .legend i {
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color);
+  }
+  .legend i.dashed {
+    background: repeating-linear-gradient(90deg, var(--color) 0 4px, transparent 4px 7px);
+  }
+  .plot {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 200px auto;
+    column-gap: 10px;
+  }
+  .y {
+    position: relative;
+    min-width: 3ch;
+  }
+  .y span {
+    position: absolute;
+    right: 0;
+    translate: 0 50%;
+    color: var(--faint);
+    font: 0.72rem var(--mono);
+    white-space: nowrap;
+  }
+  .area {
+    position: relative;
+    touch-action: pan-y;
+  }
+  .grid {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--line);
+  }
+  svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  path {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .end {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border: 2px solid var(--surface);
+    border-radius: 50%;
+    background: var(--color);
+    translate: -50% 50%;
+  }
+  .cursor {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--faint);
+    pointer-events: none;
+  }
+  .tip {
+    position: absolute;
+    top: 6px;
+    z-index: 2;
+    display: grid;
+    gap: 3px;
+    min-width: 180px;
+    padding: 10px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--raised);
+    box-shadow: var(--shadow);
+    font-size: 0.8rem;
+    translate: 12px 0;
+    pointer-events: none;
+  }
+  .tip.flip {
+    translate: calc(-100% - 12px) 0;
+  }
+  .tip :global(span) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+  }
+  .tip :global(i) {
+    width: 10px;
+    height: 2px;
+    border-radius: 2px;
+  }
+  .x {
+    position: relative;
+    grid-column: 2;
+    height: 26px;
+  }
+  .x span {
+    position: absolute;
+    top: 8px;
+    color: var(--faint);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    translate: -50% 0;
+  }
+  .x span:first-child {
+    translate: 0 0;
+  }
+  .x span:last-child {
+    translate: -100% 0;
+  }
+  .table {
+    margin-top: 10px;
+    font-size: 0.85rem;
+  }
+  summary {
+    width: fit-content;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .scroll {
+    max-height: 260px;
+    overflow: auto;
+    margin-top: 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  th,
+  td {
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+  }
+  th:first-child,
+  td:first-child {
+    text-align: left;
+  }
+  th {
+    position: sticky;
+    top: 0;
+    background: var(--raised);
+    font-weight: 600;
+  }
+</style>

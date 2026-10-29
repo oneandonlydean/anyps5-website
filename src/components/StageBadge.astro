@@ -1,0 +1,42 @@
+---
+import { stageSlug, type StageOrNone } from "../lib/stages";
+
+interface Props {
+  stage: StageOrNone | null;
+  onMain?: boolean;
+}
+const { stage, onMain = true } = Astro.props;
+---
+
+<span class="badge" style={`--tone: var(--stage-${stageSlug(stage)})`}>
+  <b aria-hidden="true"></b>{stage ?? "Untested"}{!onMain && <span class="pr" title="Reached with open pull requests or local patches">PR</span>}
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 10px 4px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--tone) 14%, transparent);
+    color: color-mix(in srgb, var(--tone) 70%, var(--text));
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  b {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: 0 0 10px var(--tone);
+  }
+  .pr {
+    padding: 1px 5px;
+    border: 1px dashed currentColor;
+    border-radius: 4px;
+    font: 600 0.62rem/1.3 var(--mono);
+    opacity: 0.85;
+  }
+</style>

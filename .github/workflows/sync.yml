@@ -1,0 +1,53 @@
+name: Sync compatibility data
+
+# Manual only for now; restore `schedule: [{ cron: "17 */6 * * *" }]` to open a data pull request every six hours.
+on:
+  workflow_dispatch:
+    inputs:
+      full:
+        description: Re-read every bring-up thread instead of only the changed ones
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsx scripts/stages.ts snapshot "$RUNNER_TEMP/before.json"
+      - run: npm run sync:titles
+      - run: npm run sync:reports -- ${{ inputs.full && '--full' || '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run sync:issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run sync:art
+        env:
+          SGDB_API_KEY: ${{ secrets.SGDB_API_KEY }}
+      - name: Summarise changes
+        run: |
+          npx tsx scripts/stages.ts snapshot "$RUNNER_TEMP/after.json"
+          npx tsx scripts/stages.ts compare "$RUNNER_TEMP/before.json" "$RUNNER_TEMP/after.json" > "$RUNNER_TEMP/body.md"
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: bot/sync
+          title: "data: sync bring-up reports"
+          commit-message: "data: sync bring-up reports"
+          body-path: ${{ runner.temp }}/body.md
+          add-paths: data/generated
+          labels: data
+          delete-branch: true

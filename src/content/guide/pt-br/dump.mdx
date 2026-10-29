@@ -1,0 +1,44 @@
+---
+title: Prepare o seu dump
+summary: O que o conversor precisa dos arquivos do jogo, e os problemas a resolver antes.
+step: 2
+---
+
+O AnyPS5 trabalha com os arquivos de um jogo instalado, extraídos do seu próprio console com as suas próprias ferramentas homebrew. O projeto não fornece um dumper e não pode ajudar você a conseguir jogos que não são seus.
+
+## O que um dump utilizável contém
+
+O conversor precisa dos arquivos do jogo **descriptografados**:
+
+```text
+app0/
+    eboot.bin          the game's executable, as a plain ELF file
+    sce_module/        the game's own libraries
+    sce_sys/
+        param.json     the title ID and name
+    ...                everything else the game ships with
+```
+
+- **O executável precisa ser um arquivo ELF simples.** Contêineres SELF criptografados não são aceitos. Se o seu dumper gerou contêineres SELF descriptografados, desempacote-os antes com `tools/unwrap_self.py`, do repositório do AnyPS5.
+- **Mantenha a pasta `sce_sys/`.** Muitos jogos leem o `param.json` ao abrir e falham sem ele.
+- **Mantenha o resto dos arquivos do jogo.** O conversor só reescreve o executável e os módulos, mas o jogo precisa dos arquivos de dados ao lado deles na hora de rodar.
+
+Você pode entregar ao conversor web a pasta `app0` inteira ou um ZIP dela. Arquivos grandes que não são o executável nem módulos podem ficar dentro do arquivo compactado.
+
+## Anote a versão do conteúdo
+
+A **versão do conteúdo** (por exemplo, `01.004.000`) importa na hora de compartilhar resultados. Versões diferentes do mesmo jogo podem se comportar de forma diferente, e os patches de jogos dependem dos bytes exatos. Você encontra essa informação em `sce_sys/param.json`, no campo `contentVersion`.
+
+## Problemas conhecidos em alguns dumps
+
+<Callout title="Dumps reempacotados para o ampr_emu">
+Se a `app0` contém `ampr_assets.index` e `ampr_assets-*.pak`, o dump foi reempacotado para o ampr_emu e há arquivos faltando na `app0`. Desempacote-o com o `tools/ampr_pack.py unpack` do ampr_emu e copie os arquivos que faltam de volta antes. Caso contrário, jogos em Unity param ao abrir.
+</Callout>
+
+<Callout title="Dumps sem metadados de PlayGo">
+Se o dump não tem nem `sce_sys/playgo-chunk.dat` nem `sce_sys/playgo-scenario.json`, alguns jogos param ao abrir com um erro de chunk do PlayGo. Defina `APS5_PLAYGO_UNLISTED_CHUNKS` como `installed` ou `absent` ao rodar o jogo. Qual dos dois funciona depende do jogo; a [referência de uso](/docs/usage#playgo-dumps-without-metadata) lista os casos conhecidos.
+</Callout>
+
+<Callout title="Jogos em Unity">
+Jogos em Unity guardam módulos extras em `Media/Modules` e `Media/Plugins`. O conversor web já lida com a estrutura padrão. Com o relinker de linha de comando, adicione `--module-dir Media/Modules --module-dir Media/Plugins`.
+</Callout>

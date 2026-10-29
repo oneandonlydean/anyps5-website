@@ -1,0 +1,1934 @@
+{
+  "libraries": {
+    "done": 6568,
+    "total": 13463,
+    "percent": 48.79,
+    "groups": [
+      {
+        "name": "libSceAc3Enc",
+        "label": "Ac3Enc",
+        "done": 0,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceAcm",
+        "label": "Acm",
+        "done": 8,
+        "total": 12,
+        "inert": 1
+      },
+      {
+        "name": "libSceAgc",
+        "label": "Agc",
+        "done": 230,
+        "total": 240,
+        "inert": 51
+      },
+      {
+        "name": "libSceAgcDriver",
+        "label": "AgcDriver",
+        "done": 84,
+        "total": 130,
+        "inert": 54
+      },
+      {
+        "name": "libSceAgcVsh",
+        "label": "AgcVsh",
+        "done": 0,
+        "total": 150,
+        "inert": 0
+      },
+      {
+        "name": "libSceAjm.native",
+        "label": "Ajm.native",
+        "done": 30,
+        "total": 44,
+        "inert": 5
+      },
+      {
+        "name": "libSceAjmi",
+        "label": "Ajmi",
+        "done": 0,
+        "total": 2,
+        "inert": 0
+      },
+      {
+        "name": "libSceAmpr",
+        "label": "Ampr",
+        "done": 131,
+        "total": 134,
+        "inert": 4
+      },
+      {
+        "name": "libSceAppChecker",
+        "label": "AppChecker",
+        "done": 0,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "libSceAppContent",
+        "label": "AppContent",
+        "done": 24,
+        "total": 32,
+        "inert": 0
+      },
+      {
+        "name": "libSceAppInstUtil",
+        "label": "AppInstUtil",
+        "done": 0,
+        "total": 117,
+        "inert": 0
+      },
+      {
+        "name": "libSceAt9Enc",
+        "label": "At9Enc",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceAudio3d",
+        "label": "Audio3d",
+        "done": 26,
+        "total": 32,
+        "inert": 0
+      },
+      {
+        "name": "libSceAudioIn",
+        "label": "AudioIn",
+        "done": 14,
+        "total": 42,
+        "inert": 3
+      },
+      {
+        "name": "libSceAudioLatencyEstimation",
+        "label": "AudioLatencyEstimation",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceAudioOut",
+        "label": "AudioOut",
+        "done": 68,
+        "total": 146,
+        "inert": 5
+      },
+      {
+        "name": "libSceAudioPropagation",
+        "label": "AudioPropagation",
+        "done": 23,
+        "total": 33,
+        "inert": 0
+      },
+      {
+        "name": "libSceAudioSystem",
+        "label": "AudioSystem",
+        "done": 0,
+        "total": 2,
+        "inert": 0
+      },
+      {
+        "name": "libSceAudiodec",
+        "label": "Audiodec",
+        "done": 6,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libSceAudiodec.native",
+        "label": "Audiodec.native",
+        "done": 0,
+        "total": 14,
+        "inert": 0
+      },
+      {
+        "name": "libSceAudiodecCpu",
+        "label": "AudiodecCpu",
+        "done": 0,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libSceAutoMounterClient",
+        "label": "AutoMounterClient",
+        "done": 0,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libSceAvPlayer",
+        "label": "AvPlayer",
+        "done": 28,
+        "total": 28,
+        "inert": 1
+      },
+      {
+        "name": "libSceAvPlayer.native",
+        "label": "AvPlayer.native",
+        "done": 0,
+        "total": 2,
+        "inert": 0
+      },
+      {
+        "name": "libSceAvPlayerStreaming",
+        "label": "AvPlayerStreaming",
+        "done": 0,
+        "total": 33,
+        "inert": 0
+      },
+      {
+        "name": "libSceAvSetting",
+        "label": "AvSetting",
+        "done": 0,
+        "total": 128,
+        "inert": 0
+      },
+      {
+        "name": "libSceBackupRestoreUtil",
+        "label": "BackupRestoreUtil",
+        "done": 0,
+        "total": 16,
+        "inert": 0
+      },
+      {
+        "name": "libSceBeisobmf",
+        "label": "Beisobmf",
+        "done": 0,
+        "total": 18,
+        "inert": 0
+      },
+      {
+        "name": "libSceBemp2sys",
+        "label": "Bemp2sys",
+        "done": 0,
+        "total": 31,
+        "inert": 0
+      },
+      {
+        "name": "libSceBgft",
+        "label": "Bgft",
+        "done": 0,
+        "total": 89,
+        "inert": 0
+      },
+      {
+        "name": "libSceBluetoothHid",
+        "label": "BluetoothHid",
+        "done": 7,
+        "total": 17,
+        "inert": 1
+      },
+      {
+        "name": "libSceCamera",
+        "label": "Camera",
+        "done": 48,
+        "total": 117,
+        "inert": 2
+      },
+      {
+        "name": "libSceCdlgG2P",
+        "label": "CdlgG2P",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceCdlgPlayerReview",
+        "label": "CdlgPlayerReview",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceCdlgUtilServer",
+        "label": "CdlgUtilServer",
+        "done": 0,
+        "total": 11,
+        "inert": 0
+      },
+      {
+        "name": "libSceCesCs",
+        "label": "CesCs",
+        "done": 228,
+        "total": 287,
+        "inert": 3
+      },
+      {
+        "name": "libSceCommonDialog",
+        "label": "CommonDialog",
+        "done": 2,
+        "total": 16,
+        "inert": 0
+      },
+      {
+        "name": "libSceCompanionHttpd",
+        "label": "CompanionHttpd",
+        "done": 6,
+        "total": 17,
+        "inert": 0
+      },
+      {
+        "name": "libSceCompanionUtil",
+        "label": "CompanionUtil",
+        "done": 5,
+        "total": 5,
+        "inert": 4
+      },
+      {
+        "name": "libSceComposite",
+        "label": "Composite",
+        "done": 5,
+        "total": 78,
+        "inert": 3
+      },
+      {
+        "name": "libSceContentDelete",
+        "label": "ContentDelete",
+        "done": 2,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libSceContentExport",
+        "label": "ContentExport",
+        "done": 5,
+        "total": 22,
+        "inert": 0
+      },
+      {
+        "name": "libSceContentSearch",
+        "label": "ContentSearch",
+        "done": 15,
+        "total": 23,
+        "inert": 0
+      },
+      {
+        "name": "libSceConvertKeycode",
+        "label": "ConvertKeycode",
+        "done": 3,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceCustomMusicAudioOut",
+        "label": "CustomMusicAudioOut",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceCustomMusicCore",
+        "label": "CustomMusicCore",
+        "done": 0,
+        "total": 18,
+        "inert": 0
+      },
+      {
+        "name": "libSceCustomMusicSysCallWrapper",
+        "label": "CustomMusicSysCallWrapper",
+        "done": 0,
+        "total": 1,
+        "inert": 0
+      },
+      {
+        "name": "libSceDataTransfer",
+        "label": "DataTransfer",
+        "done": 0,
+        "total": 60,
+        "inert": 0
+      },
+      {
+        "name": "libSceDbgThreadSanitizer",
+        "label": "DbgThreadSanitizer",
+        "done": 0,
+        "total": 2,
+        "inert": 0
+      },
+      {
+        "name": "libSceDepth",
+        "label": "Depth",
+        "done": 0,
+        "total": 38,
+        "inert": 0
+      },
+      {
+        "name": "libSceDepth2",
+        "label": "Depth2",
+        "done": 0,
+        "total": 10,
+        "inert": 0
+      },
+      {
+        "name": "libSceDipsw",
+        "label": "Dipsw",
+        "done": 0,
+        "total": 9,
+        "inert": 0
+      },
+      {
+        "name": "libSceDiscId",
+        "label": "DiscId",
+        "done": 0,
+        "total": 2,
+        "inert": 0
+      },
+      {
+        "name": "libSceDiscMap",
+        "label": "DiscMap",
+        "done": 2,
+        "total": 3,
+        "inert": 2
+      },
+      {
+        "name": "libSceDseehx",
+        "label": "Dseehx",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceDtsEnc",
+        "label": "DtsEnc",
+        "done": 0,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceEditMp4",
+        "label": "EditMp4",
+        "done": 0,
+        "total": 9,
+        "inert": 0
+      },
+      {
+        "name": "libSceErrorDialog",
+        "label": "ErrorDialog",
+        "done": 8,
+        "total": 8,
+        "inert": 2
+      },
+      {
+        "name": "libSceEsvm",
+        "label": "Esvm",
+        "done": 0,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "libSceEsvmEngine",
+        "label": "EsvmEngine",
+        "done": 0,
+        "total": 19,
+        "inert": 0
+      },
+      {
+        "name": "libSceFiber",
+        "label": "Fiber",
+        "done": 16,
+        "total": 16,
+        "inert": 0
+      },
+      {
+        "name": "libSceFios2",
+        "label": "Fios2",
+        "done": 0,
+        "total": 168,
+        "inert": 0
+      },
+      {
+        "name": "libSceFont",
+        "label": "Font",
+        "done": 143,
+        "total": 196,
+        "inert": 0
+      },
+      {
+        "name": "libSceFontFt",
+        "label": "FontFt",
+        "done": 38,
+        "total": 45,
+        "inert": 1
+      },
+      {
+        "name": "libSceFreeType",
+        "label": "FreeType",
+        "done": 64,
+        "total": 68,
+        "inert": 0
+      },
+      {
+        "name": "libSceFreeTypeOptOl",
+        "label": "FreeTypeOptOl",
+        "done": 3,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "libSceFreeTypeOt",
+        "label": "FreeTypeOt",
+        "done": 0,
+        "total": 148,
+        "inert": 0
+      },
+      {
+        "name": "libSceFsInternalForVsh",
+        "label": "FsInternalForVsh",
+        "done": 2,
+        "total": 176,
+        "inert": 0
+      },
+      {
+        "name": "libSceGameCustomDataDialog",
+        "label": "GameCustomDataDialog",
+        "done": 7,
+        "total": 9,
+        "inert": 0
+      },
+      {
+        "name": "libSceGameLiveStreaming",
+        "label": "GameLiveStreaming",
+        "done": 5,
+        "total": 47,
+        "inert": 0
+      },
+      {
+        "name": "libSceGameUpdate",
+        "label": "GameUpdate",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceGic",
+        "label": "Gic",
+        "done": 0,
+        "total": 1,
+        "inert": 0
+      },
+      {
+        "name": "libSceGnmDriverForNeoMode",
+        "label": "GnmDriverForNeoMode",
+        "done": 84,
+        "total": 118,
+        "inert": 50
+      },
+      {
+        "name": "libSceGvMp4Parser",
+        "label": "GvMp4Parser",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceHidControl",
+        "label": "HidControl",
+        "done": 0,
+        "total": 63,
+        "inert": 0
+      },
+      {
+        "name": "libSceHmd",
+        "label": "Hmd",
+        "done": 26,
+        "total": 168,
+        "inert": 13
+      },
+      {
+        "name": "libSceHmd2",
+        "label": "Hmd2",
+        "done": 13,
+        "total": 134,
+        "inert": 0
+      },
+      {
+        "name": "libSceHmdSetupDialog",
+        "label": "HmdSetupDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceHttp",
+        "label": "Http",
+        "done": 86,
+        "total": 115,
+        "inert": 30
+      },
+      {
+        "name": "libSceHttp2",
+        "label": "Http2",
+        "done": 16,
+        "total": 62,
+        "inert": 1
+      },
+      {
+        "name": "libSceHttpCache",
+        "label": "HttpCache",
+        "done": 11,
+        "total": 27,
+        "inert": 3
+      },
+      {
+        "name": "libSceHubAppUtil",
+        "label": "HubAppUtil",
+        "done": 0,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "libSceIcu",
+        "label": "Icu",
+        "done": 6,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libSceIdu",
+        "label": "Idu",
+        "done": 0,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libSceIme",
+        "label": "Ime",
+        "done": 16,
+        "total": 62,
+        "inert": 1
+      },
+      {
+        "name": "libSceImeBackend",
+        "label": "ImeBackend",
+        "done": 0,
+        "total": 22,
+        "inert": 0
+      },
+      {
+        "name": "libSceImeDialog",
+        "label": "ImeDialog",
+        "done": 13,
+        "total": 14,
+        "inert": 1
+      },
+      {
+        "name": "libSceInvitationDialog",
+        "label": "InvitationDialog",
+        "done": 6,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libSceIpmi",
+        "label": "Ipmi",
+        "done": 0,
+        "total": 54,
+        "inert": 0
+      },
+      {
+        "name": "libSceJemspace",
+        "label": "Jemspace",
+        "done": 0,
+        "total": 13,
+        "inert": 0
+      },
+      {
+        "name": "libSceJobManager",
+        "label": "JobManager",
+        "done": 13,
+        "total": 13,
+        "inert": 0
+      },
+      {
+        "name": "libSceJpegDec",
+        "label": "JpegDec",
+        "done": 5,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libSceJpegEnc",
+        "label": "JpegEnc",
+        "done": 4,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceJpegParser",
+        "label": "JpegParser",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceJsc",
+        "label": "Jsc",
+        "done": 4,
+        "total": 10,
+        "inert": 0
+      },
+      {
+        "name": "libSceJson2",
+        "label": "Json2",
+        "done": 151,
+        "total": 217,
+        "inert": 4
+      },
+      {
+        "name": "libSceJxr",
+        "label": "Jxr",
+        "done": 2,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceKeyboard",
+        "label": "Keyboard",
+        "done": 8,
+        "total": 26,
+        "inert": 0
+      },
+      {
+        "name": "libSceLibcInternal",
+        "label": "LibcInternal",
+        "done": 72,
+        "total": 76,
+        "inert": 1
+      },
+      {
+        "name": "libSceLibreSsl",
+        "label": "LibreSsl",
+        "done": 79,
+        "total": 399,
+        "inert": 5
+      },
+      {
+        "name": "libSceLibreSsl3",
+        "label": "LibreSsl3",
+        "done": 5,
+        "total": 87,
+        "inert": 0
+      },
+      {
+        "name": "libSceLoginDialog",
+        "label": "LoginDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceLoginMgrServer",
+        "label": "LoginMgrServer",
+        "done": 0,
+        "total": 30,
+        "inert": 0
+      },
+      {
+        "name": "libSceLoginService",
+        "label": "LoginService",
+        "done": 2,
+        "total": 3,
+        "inert": 2
+      },
+      {
+        "name": "libSceM4aacEnc",
+        "label": "M4aacEnc",
+        "done": 0,
+        "total": 17,
+        "inert": 0
+      },
+      {
+        "name": "libSceMbus",
+        "label": "Mbus",
+        "done": 7,
+        "total": 120,
+        "inert": 4
+      },
+      {
+        "name": "libSceMetadataReaderWriter",
+        "label": "MetadataReaderWriter",
+        "done": 0,
+        "total": 39,
+        "inert": 0
+      },
+      {
+        "name": "libSceMouse",
+        "label": "Mouse",
+        "done": 5,
+        "total": 15,
+        "inert": 0
+      },
+      {
+        "name": "libSceMove",
+        "label": "Move",
+        "done": 10,
+        "total": 21,
+        "inert": 0
+      },
+      {
+        "name": "libSceMoveTracker",
+        "label": "MoveTracker",
+        "done": 2,
+        "total": 18,
+        "inert": 2
+      },
+      {
+        "name": "libSceMsgDialog",
+        "label": "MsgDialog",
+        "done": 9,
+        "total": 9,
+        "inert": 0
+      },
+      {
+        "name": "libSceMsgDialog.native",
+        "label": "MsgDialog.native",
+        "done": 10,
+        "total": 10,
+        "inert": 0
+      },
+      {
+        "name": "libSceMusicFrameworkInterface",
+        "label": "MusicFrameworkInterface",
+        "done": 0,
+        "total": 17,
+        "inert": 0
+      },
+      {
+        "name": "libSceNKWeb",
+        "label": "NKWeb",
+        "done": 0,
+        "total": 2,
+        "inert": 0
+      },
+      {
+        "name": "libSceNKWebKit",
+        "label": "NKWebKit",
+        "done": 0,
+        "total": 150,
+        "inert": 0
+      },
+      {
+        "name": "libSceNet",
+        "label": "Net",
+        "done": 79,
+        "total": 224,
+        "inert": 4
+      },
+      {
+        "name": "libSceNetCtl",
+        "label": "NetCtl",
+        "done": 39,
+        "total": 85,
+        "inert": 12
+      },
+      {
+        "name": "libSceNetCtlAp",
+        "label": "NetCtlAp",
+        "done": 11,
+        "total": 11,
+        "inert": 0
+      },
+      {
+        "name": "libSceNetCtlApDialog",
+        "label": "NetCtlApDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceNgs2",
+        "label": "Ngs2",
+        "done": 0,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libSceNgs2.native",
+        "label": "Ngs2.native",
+        "done": 44,
+        "total": 59,
+        "inert": 0
+      },
+      {
+        "name": "libSceNotification",
+        "label": "Notification",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpAuth",
+        "label": "NpAuth",
+        "done": 14,
+        "total": 14,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpAuthAuthorizedAppDialog",
+        "label": "NpAuthAuthorizedAppDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpCommerce",
+        "label": "NpCommerce",
+        "done": 12,
+        "total": 12,
+        "inert": 5
+      },
+      {
+        "name": "libSceNpCommon",
+        "label": "NpCommon",
+        "done": 124,
+        "total": 158,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpCppWebApi",
+        "label": "NpCppWebApi",
+        "done": 484,
+        "total": 751,
+        "inert": 324
+      },
+      {
+        "name": "libSceNpEntitlementAccess",
+        "label": "NpEntitlementAccess",
+        "done": 19,
+        "total": 25,
+        "inert": 12
+      },
+      {
+        "name": "libSceNpEulaDialog",
+        "label": "NpEulaDialog",
+        "done": 0,
+        "total": 9,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpFriendListDialog",
+        "label": "NpFriendListDialog",
+        "done": 7,
+        "total": 9,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpGameIntent",
+        "label": "NpGameIntent",
+        "done": 10,
+        "total": 18,
+        "inert": 2
+      },
+      {
+        "name": "libSceNpManager",
+        "label": "NpManager",
+        "done": 69,
+        "total": 207,
+        "inert": 9
+      },
+      {
+        "name": "libSceNpMatching2",
+        "label": "NpMatching2",
+        "done": 11,
+        "total": 69,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpPartner001",
+        "label": "NpPartner001",
+        "done": 3,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpParty",
+        "label": "NpParty",
+        "done": 15,
+        "total": 26,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpProfileDialog",
+        "label": "NpProfileDialog",
+        "done": 8,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpRemotePlaySessionSignaling",
+        "label": "NpRemotePlaySessionSignaling",
+        "done": 0,
+        "total": 10,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpScoreRanking",
+        "label": "NpScoreRanking",
+        "done": 15,
+        "total": 51,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpSessionSignaling",
+        "label": "NpSessionSignaling",
+        "done": 18,
+        "total": 26,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpSignaling",
+        "label": "NpSignaling",
+        "done": 9,
+        "total": 9,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpSns",
+        "label": "NpSns",
+        "done": 0,
+        "total": 21,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpSnsFacebookDialog",
+        "label": "NpSnsFacebookDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpSnsYouTubeDialog",
+        "label": "NpSnsYouTubeDialog",
+        "done": 0,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpTcs",
+        "label": "NpTcs",
+        "done": 0,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpTrophy",
+        "label": "NpTrophy",
+        "done": 12,
+        "total": 97,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpTrophy2",
+        "label": "NpTrophy2",
+        "done": 18,
+        "total": 41,
+        "inert": 6
+      },
+      {
+        "name": "libSceNpTus",
+        "label": "NpTus",
+        "done": 121,
+        "total": 142,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpUniversalDataSystem",
+        "label": "NpUniversalDataSystem",
+        "done": 41,
+        "total": 84,
+        "inert": 4
+      },
+      {
+        "name": "libSceNpUtility",
+        "label": "NpUtility",
+        "done": 28,
+        "total": 96,
+        "inert": 6
+      },
+      {
+        "name": "libSceNpWebApi",
+        "label": "NpWebApi",
+        "done": 18,
+        "total": 23,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpWebApi2",
+        "label": "NpWebApi2",
+        "done": 34,
+        "total": 39,
+        "inert": 16
+      },
+      {
+        "name": "libSceOpusCeltDec",
+        "label": "OpusCeltDec",
+        "done": 9,
+        "total": 11,
+        "inert": 0
+      },
+      {
+        "name": "libSceOpusCeltEnc",
+        "label": "OpusCeltEnc",
+        "done": 8,
+        "total": 11,
+        "inert": 0
+      },
+      {
+        "name": "libSceOpusDec",
+        "label": "OpusDec",
+        "done": 11,
+        "total": 14,
+        "inert": 0
+      },
+      {
+        "name": "libSceOpusSilkEnc",
+        "label": "OpusSilkEnc",
+        "done": 8,
+        "total": 14,
+        "inert": 0
+      },
+      {
+        "name": "libScePad",
+        "label": "Pad",
+        "done": 34,
+        "total": 192,
+        "inert": 7
+      },
+      {
+        "name": "libScePadTracker",
+        "label": "PadTracker",
+        "done": 0,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libScePatchCheckerClient",
+        "label": "PatchCheckerClient",
+        "done": 0,
+        "total": 12,
+        "inert": 0
+      },
+      {
+        "name": "libScePlayGo",
+        "label": "PlayGo",
+        "done": 19,
+        "total": 21,
+        "inert": 1
+      },
+      {
+        "name": "libScePlayGoDialog",
+        "label": "PlayGoDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libScePlayReady",
+        "label": "PlayReady",
+        "done": 1,
+        "total": 50,
+        "inert": 0
+      },
+      {
+        "name": "libScePlayReady2",
+        "label": "PlayReady2",
+        "done": 0,
+        "total": 16,
+        "inert": 0
+      },
+      {
+        "name": "libScePlayReady4",
+        "label": "PlayReady4",
+        "done": 0,
+        "total": 35,
+        "inert": 0
+      },
+      {
+        "name": "libScePlayerInvitationDialog",
+        "label": "PlayerInvitationDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libScePlayerSelectionDialog",
+        "label": "PlayerSelectionDialog",
+        "done": 7,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libScePngDec",
+        "label": "PngDec",
+        "done": 5,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libScePngEnc",
+        "label": "PngEnc",
+        "done": 4,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libScePosixForWebKit",
+        "label": "PosixForWebKit",
+        "done": 24,
+        "total": 32,
+        "inert": 0
+      },
+      {
+        "name": "libSceProprietaryVoiceChatHelperPrx",
+        "label": "ProprietaryVoiceChatHelperPrx",
+        "done": 3,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libScePs2EmuMenuDialog",
+        "label": "Ps2EmuMenuDialog",
+        "done": 0,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libScePsm",
+        "label": "Psm",
+        "done": 0,
+        "total": 65,
+        "inert": 0
+      },
+      {
+        "name": "libScePsmUtil",
+        "label": "PsmUtil",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libScePsml_debug",
+        "label": "Psml_debug",
+        "done": 19,
+        "total": 30,
+        "inert": 8
+      },
+      {
+        "name": "libSceRandom",
+        "label": "Random",
+        "done": 1,
+        "total": 1,
+        "inert": 0
+      },
+      {
+        "name": "libSceRazorCpu",
+        "label": "RazorCpu",
+        "done": 21,
+        "total": 35,
+        "inert": 21
+      },
+      {
+        "name": "libSceRegMgr",
+        "label": "RegMgr",
+        "done": 3,
+        "total": 65,
+        "inert": 0
+      },
+      {
+        "name": "libSceRemoteplay",
+        "label": "Remoteplay",
+        "done": 3,
+        "total": 42,
+        "inert": 1
+      },
+      {
+        "name": "libSceRnpsAppMgr",
+        "label": "RnpsAppMgr",
+        "done": 0,
+        "total": 27,
+        "inert": 0
+      },
+      {
+        "name": "libSceRtc",
+        "label": "Rtc",
+        "done": 51,
+        "total": 52,
+        "inert": 2
+      },
+      {
+        "name": "libSceRudp",
+        "label": "Rudp",
+        "done": 27,
+        "total": 34,
+        "inert": 0
+      },
+      {
+        "name": "libSceS3da",
+        "label": "S3da",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceSaveData",
+        "label": "SaveData",
+        "done": 9,
+        "total": 75,
+        "inert": 0
+      },
+      {
+        "name": "libSceSaveData.native",
+        "label": "SaveData.native",
+        "done": 42,
+        "total": 45,
+        "inert": 12
+      },
+      {
+        "name": "libSceSaveDataDialog",
+        "label": "SaveDataDialog",
+        "done": 8,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libSceSaveDataDialog.native",
+        "label": "SaveDataDialog.native",
+        "done": 10,
+        "total": 10,
+        "inert": 3
+      },
+      {
+        "name": "libSceScreenShot",
+        "label": "ScreenShot",
+        "done": 7,
+        "total": 13,
+        "inert": 2
+      },
+      {
+        "name": "libSceSdma",
+        "label": "Sdma",
+        "done": 5,
+        "total": 26,
+        "inert": 3
+      },
+      {
+        "name": "libSceShare",
+        "label": "Share",
+        "done": 17,
+        "total": 17,
+        "inert": 10
+      },
+      {
+        "name": "libSceShareFactoryUtil",
+        "label": "ShareFactoryUtil",
+        "done": 0,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libSceSharePlay",
+        "label": "SharePlay",
+        "done": 5,
+        "total": 20,
+        "inert": 0
+      },
+      {
+        "name": "libSceShareUtility",
+        "label": "ShareUtility",
+        "done": 0,
+        "total": 22,
+        "inert": 0
+      },
+      {
+        "name": "libSceShellUIUtil",
+        "label": "ShellUIUtil",
+        "done": 0,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libSceSigninDialog",
+        "label": "SigninDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceSocialScreen",
+        "label": "SocialScreen",
+        "done": 0,
+        "total": 11,
+        "inert": 0
+      },
+      {
+        "name": "libSceSocialScreenDialog",
+        "label": "SocialScreenDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceSpSysCallWrapper",
+        "label": "SpSysCallWrapper",
+        "done": 48,
+        "total": 48,
+        "inert": 0
+      },
+      {
+        "name": "libSceSrcUtl",
+        "label": "SrcUtl",
+        "done": 0,
+        "total": 9,
+        "inert": 0
+      },
+      {
+        "name": "libSceSsl",
+        "label": "Ssl",
+        "done": 35,
+        "total": 55,
+        "inert": 2
+      },
+      {
+        "name": "libSceSulphaDrv",
+        "label": "SulphaDrv",
+        "done": 1,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libSceSysCore",
+        "label": "SysCore",
+        "done": 0,
+        "total": 72,
+        "inert": 0
+      },
+      {
+        "name": "libSceSysUtil",
+        "label": "SysUtil",
+        "done": 0,
+        "total": 24,
+        "inert": 0
+      },
+      {
+        "name": "libSceSysmodule",
+        "label": "Sysmodule",
+        "done": 10,
+        "total": 16,
+        "inert": 0
+      },
+      {
+        "name": "libSceSystemGesture",
+        "label": "SystemGesture",
+        "done": 23,
+        "total": 23,
+        "inert": 1
+      },
+      {
+        "name": "libSceSystemLogger",
+        "label": "SystemLogger",
+        "done": 0,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "libSceSystemLogger2",
+        "label": "SystemLogger2",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceSystemLogger2Delivery",
+        "label": "SystemLogger2Delivery",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceSystemLogger2NativeQueueClient",
+        "label": "SystemLogger2NativeQueueClient",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceSystemService",
+        "label": "SystemService",
+        "done": 53,
+        "total": 584,
+        "inert": 42
+      },
+      {
+        "name": "libSceSystemTts",
+        "label": "SystemTts",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceTEEClient",
+        "label": "TEEClient",
+        "done": 0,
+        "total": 10,
+        "inert": 0
+      },
+      {
+        "name": "libSceTextToSpeech",
+        "label": "TextToSpeech",
+        "done": 0,
+        "total": 10,
+        "inert": 0
+      },
+      {
+        "name": "libSceTextToSpeech2",
+        "label": "TextToSpeech2",
+        "done": 8,
+        "total": 8,
+        "inert": 8
+      },
+      {
+        "name": "libSceUlt",
+        "label": "Ult",
+        "done": 70,
+        "total": 88,
+        "inert": 1
+      },
+      {
+        "name": "libSceUpdateService",
+        "label": "UpdateService",
+        "done": 0,
+        "total": 40,
+        "inert": 0
+      },
+      {
+        "name": "libSceUrlConfigResolver",
+        "label": "UrlConfigResolver",
+        "done": 0,
+        "total": 8,
+        "inert": 0
+      },
+      {
+        "name": "libSceUsbStorage",
+        "label": "UsbStorage",
+        "done": 11,
+        "total": 22,
+        "inert": 0
+      },
+      {
+        "name": "libSceUsbStorageDialog",
+        "label": "UsbStorageDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceUsbd",
+        "label": "Usbd",
+        "done": 52,
+        "total": 61,
+        "inert": 1
+      },
+      {
+        "name": "libSceUserService",
+        "label": "UserService",
+        "done": 24,
+        "total": 26,
+        "inert": 0
+      },
+      {
+        "name": "libSceVdecCore",
+        "label": "VdecCore",
+        "done": 0,
+        "total": 20,
+        "inert": 0
+      },
+      {
+        "name": "libSceVdecCore.native",
+        "label": "VdecCore.native",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceVdecSavc",
+        "label": "VdecSavc",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceVdecSavc2",
+        "label": "VdecSavc2",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceVdecShevc",
+        "label": "VdecShevc",
+        "done": 0,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceVdecsw",
+        "label": "Vdecsw",
+        "done": 17,
+        "total": 18,
+        "inert": 0
+      },
+      {
+        "name": "libSceVdecwrap",
+        "label": "Vdecwrap",
+        "done": 0,
+        "total": 11,
+        "inert": 0
+      },
+      {
+        "name": "libSceVenc",
+        "label": "Venc",
+        "done": 0,
+        "total": 14,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideoArbitration",
+        "label": "VideoArbitration",
+        "done": 0,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideoCoreInterface",
+        "label": "VideoCoreInterface",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideoCoreServerInterface",
+        "label": "VideoCoreServerInterface",
+        "done": 0,
+        "total": 47,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideoDecoderArbitration",
+        "label": "VideoDecoderArbitration",
+        "done": 0,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideoNativeExtEssential",
+        "label": "VideoNativeExtEssential",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideoOut",
+        "label": "VideoOut",
+        "done": 55,
+        "total": 62,
+        "inert": 1
+      },
+      {
+        "name": "libSceVideoRecordingP",
+        "label": "VideoRecordingP",
+        "done": 6,
+        "total": 24,
+        "inert": 4
+      },
+      {
+        "name": "libSceVideoStreamingEngine",
+        "label": "VideoStreamingEngine",
+        "done": 0,
+        "total": 12,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideodec",
+        "label": "Videodec",
+        "done": 6,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideodec2",
+        "label": "Videodec2",
+        "done": 9,
+        "total": 26,
+        "inert": 1
+      },
+      {
+        "name": "libSceVisionManager",
+        "label": "VisionManager",
+        "done": 11,
+        "total": 56,
+        "inert": 1
+      },
+      {
+        "name": "libSceVoice",
+        "label": "Voice",
+        "done": 30,
+        "total": 36,
+        "inert": 0
+      },
+      {
+        "name": "libSceVoiceChat",
+        "label": "VoiceChat",
+        "done": 62,
+        "total": 62,
+        "inert": 32
+      },
+      {
+        "name": "libSceVoiceQoS",
+        "label": "VoiceQoS",
+        "done": 14,
+        "total": 25,
+        "inert": 0
+      },
+      {
+        "name": "libSceVorbisDec",
+        "label": "VorbisDec",
+        "done": 31,
+        "total": 34,
+        "inert": 0
+      },
+      {
+        "name": "libSceVrServiceDialog",
+        "label": "VrServiceDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceVrSetupDialog",
+        "label": "VrSetupDialog",
+        "done": 7,
+        "total": 7,
+        "inert": 0
+      },
+      {
+        "name": "libSceVrTracker",
+        "label": "VrTracker",
+        "done": 9,
+        "total": 30,
+        "inert": 0
+      },
+      {
+        "name": "libSceVrTracker2",
+        "label": "VrTracker2",
+        "done": 81,
+        "total": 89,
+        "inert": 75
+      },
+      {
+        "name": "libSceWebBrowserDialog",
+        "label": "WebBrowserDialog",
+        "done": 10,
+        "total": 13,
+        "inert": 0
+      },
+      {
+        "name": "libSceWkFontConfig",
+        "label": "WkFontConfig",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceZlib",
+        "label": "Zlib",
+        "done": 5,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libc",
+        "label": "libc",
+        "done": 1403,
+        "total": 1412,
+        "inert": 24
+      },
+      {
+        "name": "libkernel",
+        "label": "libkernel",
+        "done": 692,
+        "total": 737,
+        "inert": 17
+      },
+      {
+        "name": "libkernel_sys",
+        "label": "libkernel_sys",
+        "done": 106,
+        "total": 514,
+        "inert": 11
+      },
+      {
+        "name": "libmdbg_syscore",
+        "label": "libmdbg_syscore",
+        "done": 2,
+        "total": 143,
+        "inert": 2
+      },
+      {
+        "name": "ulobjmgr",
+        "label": "ulobjmgr",
+        "done": 4,
+        "total": 4,
+        "inert": 0
+      }
+    ]
+  },
+  "shaders": {
+    "done": 1166,
+    "total": 1166,
+    "percent": 100,
+    "groups": [
+      {
+        "name": "DS",
+        "label": "DS",
+        "done": 123,
+        "total": 123,
+        "inert": 0
+      },
+      {
+        "name": "EXP",
+        "label": "EXP",
+        "done": 1,
+        "total": 1,
+        "inert": 0
+      },
+      {
+        "name": "FLAT",
+        "label": "FLAT",
+        "done": 54,
+        "total": 54,
+        "inert": 0
+      },
+      {
+        "name": "GLOBAL",
+        "label": "GLOBAL",
+        "done": 57,
+        "total": 57,
+        "inert": 0
+      },
+      {
+        "name": "MIMG",
+        "label": "MIMG",
+        "done": 130,
+        "total": 130,
+        "inert": 0
+      },
+      {
+        "name": "MTBUF",
+        "label": "MTBUF",
+        "done": 16,
+        "total": 16,
+        "inert": 0
+      },
+      {
+        "name": "MUBUF",
+        "label": "MUBUF",
+        "done": 75,
+        "total": 75,
+        "inert": 0
+      },
+      {
+        "name": "SCRATCH",
+        "label": "SCRATCH",
+        "done": 22,
+        "total": 22,
+        "inert": 0
+      },
+      {
+        "name": "SMEM",
+        "label": "SMEM",
+        "done": 20,
+        "total": 20,
+        "inert": 0
+      },
+      {
+        "name": "SOP1",
+        "label": "SOP1",
+        "done": 65,
+        "total": 65,
+        "inert": 0
+      },
+      {
+        "name": "SOP2",
+        "label": "SOP2",
+        "done": 51,
+        "total": 51,
+        "inert": 0
+      },
+      {
+        "name": "SOPC",
+        "label": "SOPC",
+        "done": 18,
+        "total": 18,
+        "inert": 0
+      },
+      {
+        "name": "SOPK",
+        "label": "SOPK",
+        "done": 27,
+        "total": 27,
+        "inert": 0
+      },
+      {
+        "name": "SOPP",
+        "label": "SOPP",
+        "done": 37,
+        "total": 37,
+        "inert": 0
+      },
+      {
+        "name": "VINTRP",
+        "label": "VINTRP",
+        "done": 3,
+        "total": 3,
+        "inert": 0
+      },
+      {
+        "name": "VOP1",
+        "label": "VOP1",
+        "done": 81,
+        "total": 81,
+        "inert": 0
+      },
+      {
+        "name": "VOP2",
+        "label": "VOP2",
+        "done": 51,
+        "total": 51,
+        "inert": 0
+      },
+      {
+        "name": "VOP3",
+        "label": "VOP3",
+        "done": 116,
+        "total": 116,
+        "inert": 0
+      },
+      {
+        "name": "VOP3P",
+        "label": "VOP3P",
+        "done": 29,
+        "total": 29,
+        "inert": 0
+      },
+      {
+        "name": "VOPC",
+        "label": "VOPC",
+        "done": 190,
+        "total": 190,
+        "inert": 0
+      }
+    ]
+  }
+}

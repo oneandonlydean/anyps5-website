@@ -1,0 +1,50 @@
+---
+title: Comprueba tu PC
+summary: Una CPU de 64 bits con las extensiones del conjunto de instrucciones de la PS5, una GPU con Vulkan y Linux o Windows.
+step: 1
+---
+
+AnyPS5 convierte un juego en un programa nativo, así que el código del juego se ejecuta directamente en tu CPU. Tu PC tiene que admitir las mismas instrucciones que la PS5.
+
+## Procesador
+
+Necesitas una CPU x86-64 con las extensiones del procesador Zen 2 de la PS5: **AVX2, FMA, F16C, BMI1, BMI2, LZCNT y MOVBE**. La mayoría de los procesadores AMD Ryzen e Intel Core de los últimos años las tienen. Al arrancar, un juego convertido comprueba tu CPU. Si falta alguna extensión, el juego se detiene antes de ejecutar nada de su propio código y el mensaje indica qué extensiones faltan.
+
+<Callout title="Procesadores Intel">
+Algunos juegos usan instrucciones exclusivas de AMD. Si conviertes para una CPU Intel, marca **Convert AMD-specific instructions for Intel CPUs** (convertir las instrucciones específicas de AMD para CPU Intel) en el conversor, o pasa `--to-intel` al relinker de línea de comandos. Unos pocos títulos generan código exclusivo de AMD mientras se ejecutan. Esos siguen necesitando una CPU AMD.
+</Callout>
+
+## Gráficos
+
+Necesitas una GPU con **Vulkan 1.1** que admita gráficos, cómputo y presentación en una ventana. AnyPS5 elige automáticamente una GPU dedicada antes que una integrada. Mantén el driver actualizado, porque muchas correcciones llegan a través de los drivers de la GPU.
+
+## Sistema operativo
+
+Linux y Windows, de 64 bits. El conversor genera un `.elf` nativo para Linux o un `.exe` nativo para Windows. Haz una conversión distinta para cada sistema en el que quieras jugar.
+
+<Tabs>
+<Tab platform="linux">
+
+Con los drivers de Mesa (AMD e Intel), los juegos comparten memoria con la GPU a través de `/dev/udmabuf`, y tu usuario necesita acceso a él. En la mayoría de las distribuciones, añádete al grupo `kvm` y vuelve a iniciar sesión:
+
+```sh
+sudo usermod -aG kvm "$USER"
+```
+
+El driver propietario de NVIDIA no usa `/dev/udmabuf`.
+
+</Tab>
+<Tab platform="windows">
+
+Un juego de PS5 puede reservar hasta 13,5 GiB de memoria, y Windows tiene que poder asignarla. Si un juego se detiene con `replace guest placeholder with resident direct memory`, aumenta el tamaño del archivo de paginación o cierra otros programas.
+
+</Tab>
+</Tabs>
+
+## Un juego que tengas
+
+AnyPS5 no incluye ni descarga ningún juego, firmware ni claves. Necesitas un **volcado descifrado de un juego que tengas**, hecho desde tu propia consola. El siguiente paso explica lo que tiene que contener el volcado.
+
+<Callout tone="warn" title="Convertir no es lo mismo que funcionar">
+La mayoría de los juegos todavía no funcionan de principio a fin. Antes de dedicar tiempo a un volcado, consulta la [lista de compatibilidad](/compatibility) para ver hasta dónde llega tu juego.
+</Callout>

@@ -1,0 +1,44 @@
+---
+title: Prepare your dump
+summary: What the converter needs from your game files, and the problems to fix first.
+step: 2
+---
+
+AnyPS5 works from the files of an installed game, dumped from your own console with your own homebrew tools. The project does not provide a dumper and cannot help you get games you do not own.
+
+## What a usable dump contains
+
+The converter needs the game's files in **decrypted** form:
+
+```text
+app0/
+    eboot.bin          the game's executable, as a plain ELF file
+    sce_module/        the game's own libraries
+    sce_sys/
+        param.json     the title ID and name
+    ...                everything else the game ships with
+```
+
+- **The executable must be a plain ELF file.** Encrypted SELF containers are not accepted. If your dumper produced decrypted SELF containers, unwrap them first with `tools/unwrap_self.py` from the AnyPS5 repository.
+- **Keep `sce_sys/`.** Many games read `param.json` at start-up and fail without it.
+- **Keep the rest of the game files.** The converter only rewrites the executable and modules, but the game needs its data files next to them when it runs.
+
+You can give the web converter the whole `app0` folder, or a ZIP of it. Large files that are not the executable or modules can stay in the archive.
+
+## Write down the content version
+
+The **content version** (for example `01.004.000`) matters when you share results. Different versions of the same game can behave differently, and game patches are tied to exact bytes. You find it in `sce_sys/param.json` as `contentVersion`.
+
+## Known problems with some dumps
+
+<Callout title="Dumps repacked for ampr_emu">
+If `app0` contains `ampr_assets.index` and `ampr_assets-*.pak`, the dump was repacked for ampr_emu and files are missing from `app0`. Unpack it with ampr_emu's `tools/ampr_pack.py unpack` and copy the missing files back first. Otherwise Unity games stop at start-up.
+</Callout>
+
+<Callout title="Dumps without PlayGo metadata">
+If the dump has neither `sce_sys/playgo-chunk.dat` nor `sce_sys/playgo-scenario.json`, some games stop at start-up with a PlayGo chunk error. Set `APS5_PLAYGO_UNLISTED_CHUNKS` to `installed` or `absent` when you run the game. Which one works depends on the game; the [usage reference](/docs/usage#playgo-dumps-without-metadata) lists known cases.
+</Callout>
+
+<Callout title="Unity games">
+Unity games keep extra modules in `Media/Modules` and `Media/Plugins`. The web converter handles the standard layout. With the command-line relinker, add `--module-dir Media/Modules --module-dir Media/Plugins`.
+</Callout>

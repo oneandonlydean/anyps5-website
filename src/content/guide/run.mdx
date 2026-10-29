@@ -1,0 +1,96 @@
+---
+title: Run and play
+summary: Start the game, connect a controller, and set up fonts, language and saves.
+step: 4
+---
+
+## Start the game
+
+<Tabs>
+<Tab platform="linux">
+
+From the game folder:
+
+```sh
+./app.elf
+```
+
+Browser downloads lose the executable flag. If the game does not start, run `chmod +x app.elf` (and the same for any other executable the converter listed).
+
+</Tab>
+<Tab platform="windows">
+
+Double-click `app.exe`, or from PowerShell in the game folder:
+
+```powershell
+.\app.exe
+```
+
+Run it from a normal signed-in desktop session, not over SSH.
+
+</Tab>
+</Tabs>
+
+<Callout title="The first start is slow">
+On the first run, AnyPS5 compiles the game's shaders for your GPU. That can take minutes before the first frame. The results go into `shader_cache/` next to the executable, so later runs start much faster. Deleting the folder is safe.
+</Callout>
+
+## Controls
+
+Controllers recognised by SDL work out of the box: DualSense, DualShock 4, and Xbox-style pads. The sticks and analog triggers are passed through, the DualSense touchpad works, and you can plug a controller in while the game runs.
+
+Without a controller, these keyboard and mouse bindings apply:
+
+| PS5 | Keyboard and mouse |
+|---|---|
+| Cross | Enter, Space |
+| Circle | C |
+| Triangle | I |
+| Square | Left mouse button |
+| L1 / R1 | Q / E |
+| L2 / R2 | R / right mouse button |
+| L3 / R3 | Shift / Ctrl |
+| Options | Esc |
+| D-pad | Arrow keys |
+| Left stick | W A S D |
+| Right stick | T F G H, or the mouse after pressing the middle mouse button or F7 |
+| Touchpad | Backspace (left), Tab (right) |
+
+**F11** switches fullscreen and **F10** shows a performance overlay. To change bindings, create `anyps5-input.ini` next to the executable; see [input mapping](/docs/input-mapping).
+
+## Optional settings
+
+Set these as environment variables before starting the game.
+
+| Variable | What it does |
+|---|---|
+| `ANYPS5_LANGUAGE` | The console language number. `1` is English (US), the default; `18` English (UK), `2` French, `4` German, `3` Spanish, `0` Japanese. [All languages](/docs/usage#console-language) |
+| `ANYPS5_GPU` | Part of a GPU name, to pick a different GPU |
+| `ANYPS5_PRESENT_MODE` | `mailbox` or `immediate` to turn off vertical sync |
+| `ANYPS5_OVERLAY` | `1` shows the performance overlay from the start |
+
+<Tabs>
+<Tab platform="linux">
+
+```sh
+ANYPS5_LANGUAGE=18 ./app.elf
+```
+
+</Tab>
+<Tab platform="windows">
+
+```powershell
+$env:ANYPS5_LANGUAGE = '18'
+.\app.exe
+```
+
+</Tab>
+</Tabs>
+
+## System fonts
+
+Some games use the console's system fonts and show no text, or stop, without them. Put font files in an `anyps5-fonts/` folder next to the executable. Fonts dumped from your console work under their own names. Otherwise, the free [Noto](https://github.com/notofonts/notofonts.github.io) fonts work as substitutes: `NotoSans-Regular.ttf` and its weights, `NotoSansMono`, `NotoSansThai` and `NotoSansCJK`. The [usage reference](/docs/usage#system-fonts) has the exact file names.
+
+## Saves
+
+Saves are kept in the `_sd/` folder next to `app0/`. Copy `_sd/` and `_sd_mem/` to move your progress to another copy of the game.

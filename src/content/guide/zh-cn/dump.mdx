@@ -1,0 +1,44 @@
+---
+title: 准备导出文件
+summary: 转换器需要游戏文件里的哪些内容，以及需要先解决的问题。
+step: 2
+---
+
+AnyPS5 处理的是已安装游戏的文件，由你用自己的自制软件工具从自己的主机上导出。本项目不提供导出工具，也无法帮你获取你并不拥有的游戏。
+
+## 可用的导出文件包含什么
+
+转换器需要**已解密**的游戏文件：
+
+```text
+app0/
+    eboot.bin          the game's executable, as a plain ELF file
+    sce_module/        the game's own libraries
+    sce_sys/
+        param.json     the title ID and name
+    ...                everything else the game ships with
+```
+
+- **可执行文件必须是普通的 ELF 文件。** 不接受加密的 SELF 容器。如果你的导出工具生成的是已解密的 SELF 容器，请先用 AnyPS5 仓库里的 `tools/unwrap_self.py` 把它们解包。
+- **保留 `sce_sys/`。** 很多游戏在启动时会读取 `param.json`，没有它就会失败。
+- **保留其余的游戏文件。** 转换器只改写可执行文件和模块，但游戏运行时需要它们旁边的数据文件。
+
+你可以把整个 `app0` 文件夹或它的 ZIP 压缩包交给网页转换器。不是可执行文件或模块的大文件可以留在压缩包里。
+
+## 记下内容版本
+
+分享测试结果时，**内容版本**（例如 `01.004.000`）很重要。同一款游戏的不同版本表现可能不同，而游戏补丁是针对精确字节的。你可以在 `sce_sys/param.json` 的 `contentVersion` 字段中找到它。
+
+## 部分导出文件的已知问题
+
+<Callout title="为 ampr_emu 重新打包的导出文件">
+如果 `app0` 里有 `ampr_assets.index` 和 `ampr_assets-*.pak`，说明这份导出文件是为 ampr_emu 重新打包的，`app0` 里缺了一些文件。请先用 ampr_emu 的 `tools/ampr_pack.py unpack` 解包，并把缺失的文件复制回去。否则 Unity 游戏会在启动时停止。
+</Callout>
+
+<Callout title="缺少 PlayGo 元数据的导出文件">
+如果导出文件里既没有 `sce_sys/playgo-chunk.dat`，也没有 `sce_sys/playgo-scenario.json`，有些游戏会在启动时因 PlayGo chunk 错误而停止。运行游戏时把 `APS5_PLAYGO_UNLISTED_CHUNKS` 设为 `installed` 或 `absent`。哪个有效取决于具体游戏；[用法参考](/docs/usage#playgo-dumps-without-metadata)列出了已知的情况。
+</Callout>
+
+<Callout title="Unity 游戏">
+Unity 游戏会把额外的模块放在 `Media/Modules` 和 `Media/Plugins` 里。网页转换器能处理标准目录结构。使用命令行重链接器时，请加上 `--module-dir Media/Modules --module-dir Media/Plugins`。
+</Callout>

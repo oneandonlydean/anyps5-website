@@ -1,0 +1,50 @@
+---
+title: 检查你的 PC
+summary: 一颗支持 PS5 指令集扩展的 64 位 CPU、一块支持 Vulkan 的显卡，以及 Linux 或 Windows。
+step: 1
+---
+
+AnyPS5 会把游戏变成原生程序，游戏代码直接在你的 CPU 上运行。所以你的 PC 需要支持和 PS5 相同的指令。
+
+## 处理器
+
+你需要一颗 x86-64 CPU，并支持 PS5 所用 Zen 2 处理器的扩展指令：**AVX2、FMA、F16C、BMI1、BMI2、LZCNT 和 MOVBE**。近几年的 AMD Ryzen 和 Intel Core 处理器大多都支持。转换后的游戏启动时会检查你的 CPU。如果缺少某个扩展，游戏会在运行任何自身代码之前停止，并在提示信息里列出缺少的扩展。
+
+<Callout title="Intel 处理器">
+有些游戏用到了 AMD 独有的指令。为 Intel CPU 转换时，请在转换器里勾选 **Convert AMD-specific instructions for Intel CPUs**（为 Intel CPU 转换 AMD 专有指令），或者给命令行重链接器加上 `--to-intel`。少数游戏会在运行时生成 AMD 独有的代码，这些游戏仍然需要 AMD CPU。
+</Callout>
+
+## 显卡
+
+你需要一块支持 **Vulkan 1.1** 的显卡，并且支持图形、计算以及向窗口输出画面。AnyPS5 会自动优先选择独立显卡而不是集成显卡。记得保持驱动为最新版本，很多修复都是在显卡驱动里完成的。
+
+## 操作系统
+
+64 位的 Linux 和 Windows。转换器会为 Linux 生成原生的 `.elf`，为 Windows 生成原生的 `.exe`。想在哪个系统上玩，就为哪个系统单独转换一次。
+
+<Tabs>
+<Tab platform="linux">
+
+使用 Mesa 驱动（AMD 和 Intel）时，游戏通过 `/dev/udmabuf` 与显卡共享内存，你的用户需要有访问权限。在大多数发行版上，把自己加入 `kvm` 用户组，然后重新登录：
+
+```sh
+sudo usermod -aG kvm "$USER"
+```
+
+NVIDIA 专有驱动不使用 `/dev/udmabuf`。
+
+</Tab>
+<Tab platform="windows">
+
+一款 PS5 游戏最多可占用 13.5 GiB 内存，Windows 必须能提交（commit）这么多内存。如果游戏因 `replace guest placeholder with resident direct memory` 而停止，请调大页面文件（虚拟内存），或者关掉其他程序。
+
+</Tab>
+</Tabs>
+
+## 一款你拥有的游戏
+
+AnyPS5 不包含也不下载任何游戏、固件或密钥。你需要一份**你所拥有游戏的解密导出文件**，用你自己的主机导出。下一步会说明导出文件里必须包含什么。
+
+<Callout tone="warn" title="能转换不等于能运行">
+大多数游戏目前还无法完整运行。在花时间导出之前，先查看[兼容性列表](/compatibility)，了解你的游戏能跑到哪一步。
+</Callout>

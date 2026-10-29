@@ -1,0 +1,97 @@
+---
+title: 转换游戏
+summary: 在浏览器或命令行中，为你的系统重新链接可执行文件。
+step: 3
+---
+
+转换会把游戏的可执行文件和模块改写成原生的 Linux 或 Windows 程序，并把 AnyPS5 的系统库放在它旁边。你的文件始终不会离开你的电脑。
+
+## 在浏览器中转换（推荐）
+
+<Screenshot
+  dark="/guide/converter-dark.webp"
+  light="/guide/converter-light.webp"
+  alt="网页转换器：一个带有 Choose ZIP files 和 Choose folder 按钮的拖放区，Windows 和 Linux 选项，保存方式选项，一个 Intel CPU 复选框，以及一个 Convert & save 按钮。"
+  width={1117}
+  height={627}
+  callouts={[
+    { x: 35, y: 47, label: "选择导出文件所在的文件夹，或一个或多个 ZIP 文件。" },
+    { x: 12.8, y: 63.6, label: "选择你要在哪个系统上玩。" },
+    { x: 64, y: 63.6, label: "选择结果的保存方式。" },
+    { x: 32.6, y: 82, label: "使用 Intel CPU 时勾选此项。" },
+    { x: 82, y: 93.6, label: "转换并保存。" },
+  ]}
+/>
+
+1. 打开[网页转换器](/convert)。
+2. 选择导出文件所在的文件夹，或拖入一个或多个 ZIP 文件。
+3. 选择 **Windows (.exe)** 或 **Linux (.elf)**。
+4. 选择结果的保存方式：
+   - **Download in memory**（在内存中下载）：适合小游戏，最大 256 MiB。
+   - **Save ZIP to disk**（将 ZIP 保存到磁盘）：适合大游戏。需要桌面版 Chrome 或 Edge。
+   - **Save to folder**（保存到文件夹）：写入一个未压缩的文件夹。仅限 Linux 输出，每次一款游戏。
+5. 使用 Intel CPU 时，勾选 **Convert AMD-specific instructions for Intel CPUs**（为 Intel CPU 转换 AMD 专有指令）。
+6. 点击 **Convert & save**（转换并保存）。
+
+结果中已经包含系统库和正确的文件夹结构。启动游戏前请**完整解压整个 ZIP**。
+
+<Callout title="一次转换多款游戏">
+拖入多个 ZIP 文件，就能把它们转换到同一个包里。每款游戏都有自己的编号文件夹。
+</Callout>
+
+## 在命令行中转换
+
+原生重链接器能处理任意大小的游戏，选项也更多。从[下载页面](/download)获取适合你系统的 `relinker` 和系统库压缩包，把下载的重链接器重命名为 `relinker`（或 `relinker.exe`），然后对游戏的可执行文件运行它。游戏的 `sce_module/` 文件夹必须和 `eboot.bin` 放在一起。
+
+<Tabs>
+<Tab platform="linux">
+
+```sh
+chmod +x relinker
+./relinker app0/eboot.bin game/app.elf
+unzip prx-linux-*.zip -d game/
+```
+
+</Tab>
+<Tab platform="windows">
+
+```powershell
+.\relinker.exe --windows app0\eboot.bin game\app.exe
+Expand-Archive prx-windows-*.zip -DestinationPath game
+```
+
+如果不加 `--windows`，即使文件名以 `.exe` 结尾，输出的也是 Linux 文件，Windows 会拒绝启动它。
+
+</Tab>
+</Tabs>
+
+系统库压缩包会解压出一个 `libs/` 文件夹。请使用与游戏同一系统的压缩包。
+
+常用选项：
+
+| 选项 | 适用场景 |
+|---|---|
+| `--to-intel` | 你使用 Intel CPU 玩游戏 |
+| `--module-dir <dir>` | 游戏从其他文件夹加载模块，例如 Unity 的 `Media/Plugins` |
+| `--registry` | 你想在运行之前查看游戏需要哪些系统函数 |
+
+[用法参考](/docs/usage#options)列出了所有选项。
+
+## 整理文件
+
+重链接器会打印它期望的目录结构（`Arrange the files like this`），大致如下：
+
+```text
+game/
+    app.elf  or  app.exe     the converted executable
+    libs/                    AnyPS5 system libraries
+    app0/                    the game's original files
+        eboot.bin            keep the original, games look for it
+        sce_sys/param.json
+        sce_module/          the converted modules (the relinker prints each one
+                             as "Guest module:")
+```
+
+- 把导出文件的其余内容复制到 `app0/`，包括原始的 `eboot.bin`。
+- `libs/` 里只放 AnyPS5 的系统库。如果 `libs/` 里有原始的 PS5 `.prx` 文件，Windows 会报错 193。
+- 在 Linux 上，`app0/` 里不能有符号链接。请使用副本或硬链接。

@@ -1,0 +1,106 @@
+---
+import Base from "../layouts/Base.astro";
+import { localizeLinks, strings, type Locale } from "../i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = strings(locale).faq;
+const strip = (html: string) => html.replace(/<[^>]+>/g, "");
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: t.groups.flatMap((g) => g.questions.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } }))),
+};
+// Anchors keep working across languages because they come from the question's position, not its words.
+const anchor = (group: number, question: number) => `q${group + 1}-${question + 1}`;
+---
+
+<Base title={t.title} description={t.description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="container page-head">
+    <span class="eyebrow">{t.eyebrow}</span>
+    <h1>{t.heading}</h1>
+    <p class="lede" set:html={localizeLinks(t.lede, locale)} />
+  </section>
+
+  <section class="container faq">
+    {
+      t.groups.map((g, gi) => (
+        <section class="group">
+          <h2>{g.title}</h2>
+          <div class="card list">
+            {g.questions.map(({ q, a }, qi) => (
+              <details id={anchor(gi, qi)}>
+                <summary>{q}</summary>
+                <p set:html={localizeLinks(a, locale)} />
+              </details>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </section>
+</Base>
+
+<script>
+  // Open the question a link points to.
+  const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (target instanceof HTMLDetailsElement) target.open = true;
+</script>
+
+<style>
+  .faq {
+    display: grid;
+    gap: 36px;
+    padding-bottom: 96px;
+  }
+  .faq > * {
+    max-width: 860px;
+  }
+  h2 {
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+  }
+  .list {
+    overflow: hidden;
+  }
+  details + details {
+    border-top: 1px solid var(--line);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    font-weight: 600;
+    list-style: none;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::after {
+    content: "+";
+    flex: none;
+    color: var(--faint);
+    font-size: 1.3rem;
+    font-weight: 400;
+    transition: transform 0.2s var(--ease);
+  }
+  details[open] summary::after {
+    transform: rotate(45deg);
+  }
+  summary:hover {
+    background: var(--raised);
+  }
+  details p {
+    margin: 0;
+    padding: 0 22px 20px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+</style>

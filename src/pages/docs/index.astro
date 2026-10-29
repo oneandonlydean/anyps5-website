@@ -1,0 +1,61 @@
+---
+import Article from "../../layouts/Article.astro";
+import { DOCS } from "../../lib/docs";
+import { docsNav } from "../../lib/nav";
+import { REPO_URL } from "../../lib/site";
+
+const more = [
+  { href: `${REPO_URL}/blob/main/docs/dev/BUILD.md`, title: "Build instructions", summary: "Build the relinker and libraries from source." },
+  { href: `${REPO_URL}/blob/main/docs/dev/GAME_TESTING.md`, title: "Game testing", summary: "How to run a title for a thorough test report." },
+  { href: `${REPO_URL}/blob/main/docs/dev/ARCHITECTURE.md`, title: "Architecture", summary: "How the relinker, libraries and shader recompiler fit together." },
+];
+---
+
+<Article title="Documentation" eyebrow="Reference" lede="Reference material for AnyPS5, kept in step with the latest release. New here? Start with the setup guide." nav={docsNav}>
+  <div class="cards">
+    {
+      DOCS.map((d) => (
+        <a class="card" href={`/docs/${d.slug}`}>
+          <strong>{d.title}</strong>
+          <span class="muted">{d.summary}</span>
+        </a>
+      ))
+    }
+  </div>
+  <h2>For contributors</h2>
+  <div class="cards">
+    {
+      more.map((d) => (
+        <a class="card" href={d.href}>
+          <strong>{d.title} ↗</strong>
+          <span class="muted">{d.summary}</span>
+        </a>
+      ))
+    }
+  </div>
+</Article>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+    padding: 20px;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+  .card:hover {
+    border-color: var(--accent);
+  }
+  .card .muted {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+</style>

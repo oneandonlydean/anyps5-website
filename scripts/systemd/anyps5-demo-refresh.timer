@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh the AnyPS5 demo daily
+
+[Timer]
+OnCalendar=*-*-* 06:30
+RandomizedDelaySec=20m
+Persistent=true
+
+[Install]
+WantedBy=timers.target

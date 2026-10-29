@@ -1,0 +1,13 @@
+---
+import GuideStep from "../../components/guide/GuideStep.astro";
+import { getSteps } from "../../lib/guide";
+
+export async function getStaticPaths() {
+  const steps = await getSteps();
+  return steps.map((step) => ({ params: { slug: step.slug }, props: { step, steps } }));
+}
+
+const { step, steps } = Astro.props;
+---
+
+<GuideStep locale="en" step={step} steps={steps} />

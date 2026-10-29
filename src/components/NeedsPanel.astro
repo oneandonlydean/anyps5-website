@@ -1,0 +1,188 @@
+---
+import type { GameNeeds } from "../lib/data";
+import type { FunctionStatus } from "../lib/needs";
+import { formatDate, REPO_URL } from "../lib/site";
+
+interface Props {
+  needs: GameNeeds;
+}
+
+const { needs } = Astro.props;
+const STATUS: Record<FunctionStatus, string> = {
+  missing: "Missing",
+  undeclared: "Not declared yet",
+  implemented: "Implemented",
+};
+const open = needs.functions.filter((f) => f.status !== "implemented").sort((a, b) => a.status.localeCompare(b.status));
+// Functions the report named that have been implemented since; collapsed so the open work stands out.
+const done = needs.functions.filter((f) => f.status === "implemented");
+const source = (file: string, line: number) => `${REPO_URL}/blob/${needs.commit}/${file}#L${line}`;
+const short = (file: string) => file.split("/").slice(-1)[0];
+---
+
+<section class="card panel needs">
+  <h2>What it needs</h2>
+  <p class="from">
+    Read from the blocker in the{" "}
+    <a href={needs.report.url}>report of {formatDate(needs.report.date)}</a>
+    {needs.report.author && <> by {needs.report.author}</>}, checked against today's source.
+  </p>
+
+  {
+    needs.functions.length > 0 && (
+      <>
+        <h3>System functions</h3>
+        {open.length > 0 && (
+          <ul class="functions">
+            {open.map((f) => (
+              <li>
+                <span class:list={["status", f.status]}>{STATUS[f.status]}</span>
+                <code>{f.name}</code>
+                <a class="lib" href={`/progress?library=${encodeURIComponent(f.library)}#libraries`}>
+                  {f.library}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+        {done.length > 0 && (
+          <details class="done">
+            <summary>
+              {open.length ? `${done.length} more named in the report are implemented now` : `All ${done.length} functions named in the report are implemented now`}
+            </summary>
+            <ul class="functions">
+              {done.map((f) => (
+                <li>
+                  <span class="status implemented">{STATUS.implemented}</span>
+                  <code>{f.name}</code>
+                  <span class="lib">{f.library}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+      </>
+    )
+  }
+
+  {
+    needs.errors.length > 0 && (
+      <>
+        <h3>Errors it stops on</h3>
+        <ul class="errors">
+          {needs.errors.map((e) => (
+            <li>
+              <span class="message">{e.message}</span>
+              <span class="where">
+                Still in the source:{" "}
+                {e.sites.slice(0, 3).map((s, i) => (
+                  <>
+                    {i > 0 && ", "}
+                    <a href={source(s.file, s.line)}>
+                      {short(s.file)}:{s.line}
+                    </a>
+                  </>
+                ))}
+                {e.sites.length > 3 && <> and {e.sites.length - 3} more</>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+</section>
+
+<style>
+  .needs {
+    padding: clamp(20px, 3vw, 28px);
+  }
+  h2 {
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  .from {
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  h3 {
+    margin: 18px 0 10px;
+    color: var(--faint);
+    font: 500 0.72rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  ul {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .functions li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+  }
+  .functions code {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .lib {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .status {
+    flex: none;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font: 600 0.7rem/1.5 var(--mono);
+  }
+  .status.missing {
+    background: color-mix(in srgb, var(--warn) 16%, transparent);
+    color: var(--warn);
+  }
+  .status.undeclared {
+    background: color-mix(in srgb, var(--bad) 15%, transparent);
+    color: var(--bad);
+  }
+  .status.implemented {
+    background: color-mix(in srgb, var(--good) 15%, transparent);
+    color: var(--good);
+  }
+  .done {
+    margin-top: 10px;
+    font-size: 0.85rem;
+  }
+  .done summary {
+    width: fit-content;
+    margin-bottom: 8px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .errors li {
+    display: grid;
+    gap: 6px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--warn);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+  }
+  .message {
+    font: 0.85rem/1.5 var(--mono);
+    overflow-wrap: anywhere;
+  }
+  .where {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+</style>

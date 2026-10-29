@@ -1,0 +1,180 @@
+---
+import GameArt from "./GameArt.astro";
+import StageBadge from "./StageBadge.astro";
+import StageBar from "./StageBar.astro";
+import type { Game } from "../lib/resolve";
+import { stageRank, stageSlug } from "../lib/stages";
+import { formatDate } from "../lib/site";
+import { PLATFORM_LABEL, reach, systemTokens } from "../lib/view";
+
+interface Props {
+  game: Game;
+  eager?: boolean;
+  /** Something the game was waiting on has been fixed since its newest report. */
+  ready?: boolean;
+}
+const { game, eager = false, ready = false } = Astro.props;
+const { stage, onMain } = reach(game);
+const search = [game.name, ...game.aliases, ...game.titleIds].join(" ").toLowerCase();
+const tint = game.art?.color ?? `var(--stage-${stageSlug(stage)})`;
+// Shown in list view only: the systems reports came from, and when the game was last tested.
+const systems = [
+  ...new Set(game.reports.map((r) => [r.platform && PLATFORM_LABEL[r.platform], r.gpuVendor].filter(Boolean).join(" · ")).filter(Boolean)),
+];
+const lastTested = game.reports[0]?.date;
+---
+
+<a
+  class="game"
+  href={`/compatibility/${game.slug}`}
+  data-search={search}
+  data-name={game.name.toLowerCase()}
+  data-stage={stageRank(game.stage)}
+  data-reach={stageRank(stage)}
+  data-systems={systemTokens(game, false)}
+  data-systems-main={systemTokens(game, true)}
+  data-updated={game.updated}
+  data-blocked={game.blockers.length ? "" : undefined}
+  data-verified={game.verified ? "" : undefined}
+  data-ready={ready ? "" : undefined}
+  style={`--tint:${tint}`}
+>
+  <GameArt
+    class="cover"
+    name={game.name}
+    src={game.art?.cover ?? game.art?.square ?? null}
+    color={game.art?.color}
+    ratio="2/3"
+    widths={[240, 360, 480]}
+    sizes="(max-width: 600px) 45vw, 200px"
+    eager={eager}
+    transitionName={`cover-${game.slug}`}
+  />
+  {ready && <span class="ready" title="Fixed since the last report: ready to retest">Retest</span>}
+  <div class="body">
+    <div class="title">
+      <h3>{game.name}</h3>
+      <span class="ids mono">{game.titleIds[0]}</span>
+    </div>
+    <div class="stage">
+      <StageBar stage={game.stage} branchStage={game.branchStage} />
+      <StageBadge stage={stage} onMain={onMain} />
+    </div>
+    <span class="systems">
+      {systems.slice(0, 3).map((system) => <span>{system}</span>)}
+      {systems.length > 3 && <span class="more">+{systems.length - 3}</span>}
+      {systems.length === 0 && <span class="none">Not reported</span>}
+    </span>
+    <span class="tested">{lastTested ? formatDate(lastTested) : "—"}</span>
+  </div>
+</a>
+
+<style>
+  .game {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: inset 0 1px 0 var(--highlight);
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.3s var(--ease), border-color 0.3s, box-shadow 0.3s;
+  }
+  /* The cover's colour bleeds into the card body. */
+  .game::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 55%;
+    background: linear-gradient(to top, color-mix(in srgb, var(--tint) 14%, transparent), transparent);
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .game:hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--tint) 55%, var(--line-strong));
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 var(--highlight),
+      0 26px 44px -26px color-mix(in srgb, var(--tint) 80%, black);
+  }
+  .game:hover::before {
+    opacity: 1;
+  }
+  .game :global(.cover img) {
+    transition: transform 0.5s var(--ease);
+  }
+  .game:hover :global(.cover img) {
+    transform: scale(1.04);
+  }
+  .ready {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--good);
+    color: #04140a;
+    font: 700 0.68rem/1.4 var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px -4px rgb(0 0 0 / 0.5);
+  }
+  .body {
+    position: relative;
+    display: grid;
+    gap: 10px;
+    padding: 12px 12px 14px;
+  }
+  h3 {
+    display: -webkit-box;
+    min-height: 2.5em;
+    margin: 0;
+    overflow: hidden;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .stage {
+    display: grid;
+    gap: 10px;
+  }
+  .stage :global(.badge) {
+    justify-self: start;
+  }
+  /* Details that only list view shows. */
+  .ids,
+  .systems,
+  .tested {
+    display: none;
+  }
+  .systems {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .systems span {
+    padding: 2px 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+  .systems .none {
+    border-style: dashed;
+    color: var(--faint);
+  }
+  .tested {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+  }
+</style>

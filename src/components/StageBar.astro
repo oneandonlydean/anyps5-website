@@ -1,0 +1,44 @@
+---
+import { STAGES, stageRank, stageSlug, type StageOrNone } from "../lib/stages";
+
+interface Props {
+  stage: StageOrNone | null;
+  branchStage?: StageOrNone | null;
+  size?: "sm" | "md";
+}
+const { stage, branchStage = null, size = "sm" } = Astro.props;
+const rank = stageRank(stage);
+const branchRank = stageRank(branchStage);
+const tone = stageSlug(rank >= 0 ? stage : branchStage);
+const label = stage ? `Reaches ${stage}${branchStage ? `, ${branchStage} with open pull requests` : ""}` : branchStage ? `${branchStage} with open pull requests` : "Not tested yet";
+---
+
+<span class:list={["bar", size]} role="img" aria-label={label} style={`--tone: var(--stage-${tone})`}>
+  {STAGES.map((_, i) => <i class:list={{ on: i <= rank, branch: i > rank && i <= branchRank }} />)}
+</span>
+
+<style>
+  .bar {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+    width: 100%;
+  }
+  i {
+    height: 5px;
+    border-radius: 2px;
+    background: var(--stage-untested);
+  }
+  .md i {
+    height: 8px;
+    border-radius: 3px;
+  }
+  .on {
+    background: var(--tone);
+  }
+  .branch {
+    background: repeating-linear-gradient(-45deg, var(--tone) 0 2px, transparent 2px 5px);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone) 55%, transparent);
+    opacity: 0.85;
+  }
+</style>

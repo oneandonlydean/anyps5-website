@@ -1,0 +1,1327 @@
+{
+  "CUSA00223": {
+    "name": "inFAMOUS Second Son™",
+    "region": "UP",
+    "concept": "202138"
+  },
+  "CUSA01664": {
+    "name": "LIMBO",
+    "region": "UP",
+    "concept": "202533"
+  },
+  "CUSA03312": {
+    "name": "Hasbro Family Fun Pack",
+    "region": "EP",
+    "concept": "201916"
+  },
+  "CUSA04865": {
+    "name": "Gang Beasts",
+    "region": "EP",
+    "concept": "216234"
+  },
+  "CUSA12435": {
+    "name": "Knowledge is Power: Decades",
+    "region": "UP",
+    "concept": "232856"
+  },
+  "PPSA01289": {
+    "name": "Sackboy™: A Big Adventure",
+    "region": "UP",
+    "concept": "10000177"
+  },
+  "PPSA01317": {
+    "name": "Gran Turismo® 7",
+    "region": "UP",
+    "concept": "10000956"
+  },
+  "PPSA01325": {
+    "name": "ASTRO's PLAYROOM",
+    "region": "IP",
+    "concept": "10000229"
+  },
+  "PPSA01337": {
+    "name": "Ghostwire: Tokyo",
+    "region": "UP",
+    "concept": "10000301"
+  },
+  "PPSA01341": {
+    "name": "Demon's Souls",
+    "region": "EP",
+    "concept": "10000368"
+  },
+  "PPSA01442": {
+    "name": "Devil May Cry 5 Special Edition",
+    "region": "UP",
+    "concept": "227315"
+  },
+  "PPSA01474": {
+    "name": "Ratchet & Clank: Rift Apart",
+    "region": "EP",
+    "concept": "10000669"
+  },
+  "PPSA01503": {
+    "name": "Bugsnax",
+    "region": "EP",
+    "concept": "10000854"
+  },
+  "PPSA01528": {
+    "name": "Overcooked! All You Can Eat",
+    "region": "EP",
+    "concept": "10000899"
+  },
+  "PPSA01530": {
+    "name": "Puyo Puyo™ Tetris® 2",
+    "region": "JP",
+    "concept": "10000431"
+  },
+  "PPSA01546": {
+    "name": "Call of the Sea",
+    "region": "EP",
+    "concept": "10000938"
+  },
+  "PPSA01556": {
+    "name": "Resident Evil Village",
+    "region": "UP",
+    "concept": "235235"
+  },
+  "PPSA01670": {
+    "name": "DEATHLOOP",
+    "region": "EP",
+    "concept": "10000185"
+  },
+  "PPSA01736": {
+    "name": "Planet Coaster",
+    "region": "UP",
+    "concept": "235039"
+  },
+  "PPSA01748": {
+    "name": "Marvel's Guardians of the Galaxy",
+    "region": "UP",
+    "concept": "234665"
+  },
+  "PPSA01826": {
+    "name": "The Pathless",
+    "region": "EP",
+    "concept": "233096"
+  },
+  "PPSA01859": {
+    "name": "MAIDEN",
+    "region": "EP",
+    "concept": "235235"
+  },
+  "PPSA01880": {
+    "name": "Quake",
+    "region": "UP",
+    "concept": "10001441"
+  },
+  "PPSA01886": {
+    "name": "Evergate",
+    "region": "UP",
+    "concept": "10001442"
+  },
+  "PPSA01907": {
+    "name": "Override 2: Super Mech League",
+    "region": "UP",
+    "concept": "10001467"
+  },
+  "PPSA02015": {
+    "name": "DEATH STRANDING 2: ON THE BEACH",
+    "region": "JP",
+    "concept": "10001538"
+  },
+  "PPSA02100": {
+    "name": "Stray",
+    "region": "UP",
+    "concept": "10001114"
+  },
+  "PPSA02101": {
+    "name": "Stray",
+    "region": "EP",
+    "concept": "10001114"
+  },
+  "PPSA02225": {
+    "name": "Ghost of Tsushima",
+    "region": "UP",
+    "concept": "235227"
+  },
+  "PPSA02327": {
+    "name": "OlliOlli World",
+    "region": "EP",
+    "concept": "10001785"
+  },
+  "PPSA02433": {
+    "name": "Crash Bandicoot 4: It's About Time",
+    "region": "EP",
+    "concept": "10000264"
+  },
+  "PPSA02572": {
+    "name": "Alan Wake 2",
+    "region": "EP",
+    "concept": "10002065"
+  },
+  "PPSA02630": {
+    "name": "Destruction AllStars™",
+    "region": "EP",
+    "concept": "10000178"
+  },
+  "PPSA02632": {
+    "name": "Street Fighter 6",
+    "region": "UP",
+    "concept": "10001615"
+  },
+  "PPSA02664": {
+    "name": "Alex Kidd in Miracle World DX",
+    "region": "EP",
+    "concept": "10000812"
+  },
+  "PPSA02688": {
+    "name": "Infliction: Extended Cut",
+    "region": "UP",
+    "concept": "234058"
+  },
+  "PPSA02721": {
+    "name": "Neptunia ReVerse",
+    "region": "UP",
+    "concept": "10002152"
+  },
+  "PPSA02743": {
+    "name": "Can't Drive This",
+    "region": "EP",
+    "concept": "228981"
+  },
+  "PPSA02801": {
+    "name": "New Joe & Mac: Caveman Ninja",
+    "region": "EP",
+    "concept": "10002233"
+  },
+  "PPSA02817": {
+    "name": "Curved Space",
+    "region": "UP",
+    "concept": "10002274"
+  },
+  "PPSA02849": {
+    "name": "Greak - Memories of Azur",
+    "region": "EP",
+    "concept": "10002329"
+  },
+  "PPSA02929": {
+    "name": "Dreaming Sarah",
+    "region": "UP",
+    "concept": "10000999"
+  },
+  "PPSA03001": {
+    "name": "Sifu",
+    "region": "EP",
+    "concept": "10001973"
+  },
+  "PPSA03016": {
+    "name": "Marvel's Spider-Man 2",
+    "region": "UP",
+    "concept": "10002456"
+  },
+  "PPSA03030": {
+    "name": "One Night Stand",
+    "region": "UP",
+    "concept": "234039"
+  },
+  "PPSA03042": {
+    "name": "void tRrLM();++ //Void Terrarium++",
+    "region": "EP",
+    "concept": "10002467"
+  },
+  "PPSA03117": {
+    "name": "Crazy Chicken Shooter Bundle",
+    "region": "UP",
+    "concept": "10002523"
+  },
+  "PPSA03274": {
+    "name": "Unbound: Worlds Apart",
+    "region": "EP",
+    "concept": "10002464"
+  },
+  "PPSA03306": {
+    "name": "Silt",
+    "region": "EP",
+    "concept": "10002629"
+  },
+  "PPSA03355": {
+    "name": "Hades",
+    "region": "UP",
+    "concept": "10002648"
+  },
+  "PPSA03364": {
+    "name": "BloodRayne Betrayal: Fresh Bites",
+    "region": "UP",
+    "concept": "10002331"
+  },
+  "PPSA03396": {
+    "name": "The Last of Us™ Part I",
+    "region": "UP",
+    "concept": "10002694"
+  },
+  "PPSA03446": {
+    "name": "Pumpkin Jack",
+    "region": "UP",
+    "concept": "10001111"
+  },
+  "PPSA03490": {
+    "name": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles",
+    "region": "EP",
+    "concept": "10000991"
+  },
+  "PPSA03527": {
+    "name": "Grand Theft Auto III – The Definitive Edition",
+    "region": "UP",
+    "concept": "10003550"
+  },
+  "PPSA03530": {
+    "name": "Grand Theft Auto: Vice City – The Definitive Edition",
+    "region": "UP",
+    "concept": "10003551"
+  },
+  "PPSA03541": {
+    "name": "EA SPORTS™ UFC® 5",
+    "region": "EP",
+    "concept": "10002788"
+  },
+  "PPSA03647": {
+    "name": "3DMiniGolf",
+    "region": "UP",
+    "concept": "228786"
+  },
+  "PPSA03659": {
+    "name": "art of rally",
+    "region": "EP",
+    "concept": "10002789"
+  },
+  "PPSA03671": {
+    "name": "Marvel's Wolverine",
+    "region": "UP",
+    "concept": "10002861"
+  },
+  "PPSA03685": {
+    "name": "Ghostrunner",
+    "region": "EP",
+    "concept": "10001291"
+  },
+  "PPSA03706": {
+    "name": "My Friend Peppa Pig",
+    "region": "EP",
+    "concept": "10002581"
+  },
+  "PPSA03718": {
+    "name": "The Medium",
+    "region": "EP",
+    "concept": "10002899"
+  },
+  "PPSA03743": {
+    "name": "Soul Hackers 2",
+    "region": "UP",
+    "concept": "10001070"
+  },
+  "PPSA03747": {
+    "name": "Skyrim",
+    "region": "EP",
+    "concept": "230955"
+  },
+  "PPSA03766": {
+    "name": "FAR: Changing Tides",
+    "region": "UP",
+    "concept": "10002934"
+  },
+  "PPSA03912": {
+    "name": "Diablo® II: Resurrected™",
+    "region": "EP",
+    "concept": "10000309"
+  },
+  "PPSA03973": {
+    "name": "JUMANJI: The Video Game",
+    "region": "EP",
+    "concept": "233283"
+  },
+  "PPSA03974": {
+    "name": "Cyberpunk 2077",
+    "region": "UP",
+    "concept": "234567"
+  },
+  "PPSA04029": {
+    "name": "Cyberpunk 2077",
+    "region": "EP",
+    "concept": "234567"
+  },
+  "PPSA04075": {
+    "name": "River City Girls",
+    "region": "UP",
+    "concept": "234070"
+  },
+  "PPSA04132": {
+    "name": "SAMURAI MAIDEN -サムライメイデン-",
+    "region": "JP",
+    "concept": "10001987"
+  },
+  "PPSA04158": {
+    "name": "Goat Simulator 3",
+    "region": "EP",
+    "concept": "10003123"
+  },
+  "PPSA04246": {
+    "name": "Heavenly Bodies",
+    "region": "UP",
+    "concept": "10002096"
+  },
+  "PPSA04264": {
+    "name": "Grand Theft Auto V",
+    "region": "UP",
+    "concept": "201930"
+  },
+  "PPSA04288": {
+    "name": "RESIDENT EVIL 2",
+    "region": "UP",
+    "concept": "229500"
+  },
+  "PPSA04354": {
+    "name": "TOEM",
+    "region": "UP",
+    "concept": "10003267"
+  },
+  "PPSA04433": {
+    "name": "Tourist Bus Simulator",
+    "region": "EP",
+    "concept": "10003309"
+  },
+  "PPSA04540": {
+    "name": "Rise of the Ronin",
+    "region": "EP",
+    "concept": "10003386"
+  },
+  "PPSA05106": {
+    "name": "Severed Steel",
+    "region": "EP",
+    "concept": "10003700"
+  },
+  "PPSA05110": {
+    "name": "Persona 5 Royal",
+    "region": "EP",
+    "concept": "10002771"
+  },
+  "PPSA05324": {
+    "name": "Sonic Origins",
+    "region": "UP",
+    "concept": "10003797"
+  },
+  "PPSA05347": {
+    "name": "Record of Lodoss War -Deedlit in Wonder Labyrinth-",
+    "region": "UP",
+    "concept": "10003396"
+  },
+  "PPSA05496": {
+    "name": "Builder's Journey",
+    "region": "EP",
+    "concept": "10003909"
+  },
+  "PPSA05666": {
+    "name": "Horizon Call of the Mountain",
+    "region": "EP",
+    "concept": "10004029"
+  },
+  "PPSA05684": {
+    "name": "Uncharted™: Legacy of Thieves Collection",
+    "region": "EP",
+    "concept": "205354"
+  },
+  "PPSA05916": {
+    "name": "BloodRayne: ReVamped",
+    "region": "EP",
+    "concept": "10002829"
+  },
+  "PPSA05975": {
+    "name": "BloodRayne 2: ReVamped",
+    "region": "EP",
+    "concept": "10002830"
+  },
+  "PPSA05986": {
+    "name": "Super Crazy Rhythm Castle",
+    "region": "EP",
+    "concept": "10004229"
+  },
+  "PPSA06084": {
+    "name": "Superliminal",
+    "region": "UP",
+    "concept": "10000602"
+  },
+  "PPSA06094": {
+    "name": "GigaBash",
+    "region": "UP",
+    "concept": "10003301"
+  },
+  "PPSA06147": {
+    "name": "Furi",
+    "region": "UP",
+    "concept": "217102"
+  },
+  "PPSA06228": {
+    "name": "Disgaea 6 Complete",
+    "region": "UP",
+    "concept": "10004335"
+  },
+  "PPSA06323": {
+    "name": "Syphon Filter",
+    "region": "EP",
+    "concept": "10004395"
+  },
+  "PPSA06327": {
+    "name": "Arkanoid - Eternal Battle",
+    "region": "EP",
+    "concept": "10004401"
+  },
+  "PPSA06369": {
+    "name": "The Eternal Cylinder",
+    "region": "EP",
+    "concept": "232593"
+  },
+  "PPSA06399": {
+    "name": "PAC-MAN WORLD Re-PAC",
+    "region": "UP",
+    "concept": "10003398"
+  },
+  "PPSA06565": {
+    "name": "Dusk Diver 2",
+    "region": "EP",
+    "concept": "10003721"
+  },
+  "PPSA06652": {
+    "name": "Hamster Playground",
+    "region": "EP",
+    "concept": "10004572"
+  },
+  "PPSA06694": {
+    "name": "Remnant 2",
+    "region": "EP",
+    "concept": "10004544"
+  },
+  "PPSA06699": {
+    "name": "Hot Shots Golf 2",
+    "region": "UP",
+    "concept": "10004604"
+  },
+  "PPSA06888": {
+    "name": "SONIC SUPERSTARS",
+    "region": "UP",
+    "concept": "10004658"
+  },
+  "PPSA06958": {
+    "name": "SWORD ART ONLINE Last Recollection",
+    "region": "EP",
+    "concept": "10004721"
+  },
+  "PPSA06960": {
+    "name": "Mandragora: Whispers of the Witch Tree",
+    "region": "EP",
+    "concept": "10004736"
+  },
+  "PPSA07057": {
+    "name": "CoffeeTalk",
+    "region": "EP",
+    "concept": "234471"
+  },
+  "PPSA07058": {
+    "name": "Final Vendetta",
+    "region": "EP",
+    "concept": "10004778"
+  },
+  "PPSA07247": {
+    "name": "Warhammer 40,000: Boltgun",
+    "region": "EP",
+    "concept": "10004833"
+  },
+  "PPSA07265": {
+    "name": "Layers of Fear",
+    "region": "EP",
+    "concept": "10004877"
+  },
+  "PPSA07286": {
+    "name": "Road of Death",
+    "region": "EP",
+    "concept": "10004891"
+  },
+  "PPSA07412": {
+    "name": "Resident Evil 4",
+    "region": "EP",
+    "concept": "10004473"
+  },
+  "PPSA07582": {
+    "name": "Ship of Fools",
+    "region": "EP",
+    "concept": "10005039"
+  },
+  "PPSA07587": {
+    "name": "Sea of Stars",
+    "region": "EP",
+    "concept": "10004226"
+  },
+  "PPSA07631": {
+    "name": "SAROS",
+    "region": "EP",
+    "concept": "10005069"
+  },
+  "PPSA07645": {
+    "name": "Fallen Legion: Rise to Glory",
+    "region": "HP",
+    "concept": "10005076"
+  },
+  "PPSA07656": {
+    "name": "The Grinch: Christmas Adventures",
+    "region": "EP",
+    "concept": "10005079"
+  },
+  "PPSA07923": {
+    "name": "Tetris® Effect: Connected",
+    "region": "UP",
+    "concept": "232708"
+  },
+  "PPSA08102": {
+    "name": "Outer Wilds",
+    "region": "EP",
+    "concept": "229826"
+  },
+  "PPSA08270": {
+    "name": "Eternights",
+    "region": "UP",
+    "concept": "10004814"
+  },
+  "PPSA08329": {
+    "name": "God of War Ragnarök",
+    "region": "UP",
+    "concept": "10001850"
+  },
+  "PPSA08427": {
+    "name": "Killing Floor 3",
+    "region": "EP",
+    "concept": "10005321"
+  },
+  "PPSA08546": {
+    "name": "Flashback 2",
+    "region": "EP",
+    "concept": "10005443"
+  },
+  "PPSA08576": {
+    "name": "Asterix & Obelix Slap Them All!",
+    "region": "EP",
+    "concept": "10001110"
+  },
+  "PPSA08587": {
+    "name": "DRAGON BALL XENOVERSE 2",
+    "region": "UP",
+    "concept": "217012"
+  },
+  "PPSA08766": {
+    "name": "Cocoon",
+    "region": "EP",
+    "concept": "10005446"
+  },
+  "PPSA09030": {
+    "name": "Phasmophobia",
+    "region": "EP",
+    "concept": "10005673"
+  },
+  "PPSA09076": {
+    "name": "DREDGE",
+    "region": "EP",
+    "concept": "10005693"
+  },
+  "PPSA09346": {
+    "name": "The Last Faith",
+    "region": "EP",
+    "concept": "10005554"
+  },
+  "PPSA09477": {
+    "name": "Quake II",
+    "region": "UP",
+    "concept": "10005715"
+  },
+  "PPSA09614": {
+    "name": "Graven",
+    "region": "EP",
+    "concept": "10001474"
+  },
+  "PPSA09695": {
+    "name": "Daxter",
+    "region": "UP",
+    "concept": "10005947"
+  },
+  "PPSA09804": {
+    "name": "GRIS",
+    "region": "EP",
+    "concept": "234650"
+  },
+  "PPSA09809": {
+    "name": "OCTOPATH TRAVELER II",
+    "region": "EP",
+    "concept": "10005126"
+  },
+  "PPSA09911": {
+    "name": "Ghostrunner 2",
+    "region": "UP",
+    "concept": "10005977"
+  },
+  "PPSA10112": {
+    "name": "SILENT HILL: The Short Message",
+    "region": "HP",
+    "concept": "10003164"
+  },
+  "PPSA10264": {
+    "name": "Jusant",
+    "region": "EP",
+    "concept": "10006168"
+  },
+  "PPSA10737": {
+    "name": "Little Nightmares Enhanced Edition",
+    "region": "EP",
+    "concept": "223059"
+  },
+  "PPSA10872": {
+    "name": "Persona 3 Reload",
+    "region": "UP",
+    "concept": "10001555"
+  },
+  "PPSA11386": {
+    "name": "007 First Light",
+    "region": "EP",
+    "concept": "10006560"
+  },
+  "PPSA12544": {
+    "name": "Hollow Knight: Silksong",
+    "region": "EP",
+    "concept": "10005908"
+  },
+  "PPSA13579": {
+    "name": "Blasphemous 2",
+    "region": "EP",
+    "concept": "10007264"
+  },
+  "PPSA13899": {
+    "name": "Slave Zero X",
+    "region": "EP",
+    "concept": "10005401"
+  },
+  "PPSA13960": {
+    "name": "Assassin's Creed® Mirage",
+    "region": "EP",
+    "concept": "10004865"
+  },
+  "PPSA14053": {
+    "name": "Afterimage",
+    "region": "EP",
+    "concept": "10007477"
+  },
+  "PPSA14299": {
+    "name": "Mafia: The Old Country",
+    "region": "EP",
+    "concept": "10007134"
+  },
+  "PPSA14363": {
+    "name": "METAL GEAR SOLID - Master Collection Version",
+    "region": "UP",
+    "concept": "10007607"
+  },
+  "PPSA14388": {
+    "name": "Indiana Jones and the Staff of Kings",
+    "region": "UP",
+    "concept": "10007635"
+  },
+  "PPSA14408": {
+    "name": "Metal Gear & Metal Gear 2: Solid Snake",
+    "region": "EP",
+    "concept": "10007607"
+  },
+  "PPSA14632": {
+    "name": "LEGO® ホライゾン アドベンチャー",
+    "region": "EP",
+    "concept": "10007722"
+  },
+  "PPSA15065": {
+    "name": "Cat Quest III",
+    "region": "UP",
+    "concept": "10007859"
+  },
+  "PPSA15304": {
+    "name": "METAL GEAR SOLID Δ: SNAKE EATER",
+    "region": "JP",
+    "concept": "10007293"
+  },
+  "PPSA15388": {
+    "name": "High on Life",
+    "region": "UP",
+    "concept": "10007961"
+  },
+  "PPSA15508": {
+    "name": "The Last of Us™ Part II Remastered",
+    "region": "EP",
+    "concept": "230079"
+  },
+  "PPSA15552": {
+    "name": "Dead Cells",
+    "region": "UP",
+    "concept": "231053"
+  },
+  "PPSA15645": {
+    "name": "Castlevania Dominus Collection",
+    "region": "JP",
+    "concept": "10007943"
+  },
+  "PPSA15657": {
+    "name": "Disney Epic Mickey: Rebrushed",
+    "region": "EP",
+    "concept": "10008074"
+  },
+  "PPSA16018": {
+    "name": "ダブルドラゴン外伝　ライズ・オブ・ザ・ドラゴン",
+    "region": "UP",
+    "concept": "10008153"
+  },
+  "PPSA16064": {
+    "name": "Minecraft Dungeons II",
+    "region": "EP",
+    "concept": "10008220"
+  },
+  "PPSA16441": {
+    "name": "Taiko no Tatsujin: Rhythm Festival",
+    "region": "HP",
+    "concept": "10008356"
+  },
+  "PPSA17217": {
+    "name": "Jurassic Park Classic Games Collection",
+    "region": "UP",
+    "concept": "10008710"
+  },
+  "PPSA17221": {
+    "name": "Minecraft",
+    "region": "UP",
+    "concept": "212779"
+  },
+  "PPSA17330": {
+    "name": "RollerCoaster Tycoon Adventures: Deluxe",
+    "region": "EP",
+    "concept": "10008746"
+  },
+  "PPSA17419": {
+    "name": "MONOPOLY®",
+    "region": "EP",
+    "concept": "10008585"
+  },
+  "PPSA17942": {
+    "name": "DRAGON QUEST VII Reimagined",
+    "region": "EP",
+    "concept": "10008842"
+  },
+  "PPSA18026": {
+    "name": "Planet Zoo",
+    "region": "EP",
+    "concept": "10009025"
+  },
+  "PPSA18176": {
+    "name": "Hello Kitty Island Adventure",
+    "region": "UP",
+    "concept": "10008904"
+  },
+  "PPSA18194": {
+    "name": "METAL GEAR SOLID 4: Guns of the Patriots - Master Collection Version",
+    "region": "UP",
+    "concept": "10009075"
+  },
+  "PPSA18216": {
+    "name": "METAL GEAR SOLID: Peace Walker - Master Collection Version",
+    "region": "UP",
+    "concept": "10009075"
+  },
+  "PPSA18391": {
+    "name": "Afterdream",
+    "region": "EP",
+    "concept": "10009147"
+  },
+  "PPSA18605": {
+    "name": "ReadyOrNot",
+    "region": "UP",
+    "concept": "10009213"
+  },
+  "PPSA19015": {
+    "name": "Arcade Game Zone",
+    "region": "UP",
+    "concept": "10009374"
+  },
+  "PPSA19111": {
+    "name": "Mars Base",
+    "region": "EP",
+    "concept": "10007404"
+  },
+  "PPSA19115": {
+    "name": "デイヴ・ザ・ダイバー",
+    "region": "UP",
+    "concept": "10009413"
+  },
+  "PPSA19244": {
+    "name": "The Oregon Trail",
+    "region": "UP",
+    "concept": "10009456"
+  },
+  "PPSA19591": {
+    "name": "Darkest Dungeon II",
+    "region": "EP",
+    "concept": "10009597"
+  },
+  "PPSA19639": {
+    "name": "Minecraft",
+    "region": null,
+    "concept": "212779"
+  },
+  "PPSA19728": {
+    "name": "STAR WARS™: Dark Forces Remaster",
+    "region": "UP",
+    "concept": "10008369"
+  },
+  "PPSA19943": {
+    "name": "Big Helmet Heroes",
+    "region": "UB",
+    "concept": "10009721"
+  },
+  "PPSA20049": {
+    "name": "EA SPORTS FC 25",
+    "region": "UP",
+    "concept": "10009762"
+  },
+  "PPSA20052": {
+    "name": "Worms Armageddon: Anniversary Edition",
+    "region": "EP",
+    "concept": "10009765"
+  },
+  "PPSA20397": {
+    "name": "Assassin's Creed® Shadows",
+    "region": "EP",
+    "concept": "10009909"
+  },
+  "PPSA20423": {
+    "name": "Another Crab's Treasure",
+    "region": "EP",
+    "concept": "10009923"
+  },
+  "PPSA20612": {
+    "name": "DRAGON QUEST III HD-2D Remake",
+    "region": "UP",
+    "concept": "10010018"
+  },
+  "PPSA21112": {
+    "name": "Tevi",
+    "region": "EP",
+    "concept": "10010229"
+  },
+  "PPSA21159": {
+    "name": "SILENT HILL f",
+    "region": "JP",
+    "concept": "10010242"
+  },
+  "PPSA21297": {
+    "name": "Withering Rooms",
+    "region": "EP",
+    "concept": "10010291"
+  },
+  "PPSA21382": {
+    "name": "Tombi! Special Edition",
+    "region": "EP",
+    "concept": "10010307"
+  },
+  "PPSA21402": {
+    "name": "Balatro",
+    "region": "EP",
+    "concept": "10010334"
+  },
+  "PPSA21406": {
+    "name": "ArcRunner",
+    "region": "EP",
+    "concept": "10006894"
+  },
+  "PPSA21444": {
+    "name": "DOOM + DOOM II",
+    "region": "UP",
+    "concept": "10010353"
+  },
+  "PPSA21564": {
+    "name": "ASTRO BOT",
+    "region": "UP",
+    "concept": "10002684"
+  },
+  "PPSA21567": {
+    "name": "ASTRO BOT",
+    "region": "EP",
+    "concept": "10002684"
+  },
+  "PPSA21607": {
+    "name": "The Smurfs – Dreams",
+    "region": "EP",
+    "concept": "10010426"
+  },
+  "PPSA21703": {
+    "name": "Vampire Survivors",
+    "region": "EB",
+    "concept": "10010458"
+  },
+  "PPSA22408": {
+    "name": "HOT WHEELS™️ Infinite Rush",
+    "region": "EP",
+    "concept": "10010731"
+  },
+  "PPSA22520": {
+    "name": "ANIMAL WELL",
+    "region": "JP",
+    "concept": "10004542"
+  },
+  "PPSA22969": {
+    "name": "Echoes of Aincrad",
+    "region": "JP",
+    "concept": "10010956"
+  },
+  "PPSA22999": {
+    "name": "完蛋！我被美女包围了",
+    "region": "HB",
+    "concept": "10010944"
+  },
+  "PPSA23276": {
+    "name": "The Exit 8",
+    "region": "JP",
+    "concept": "10011105"
+  },
+  "PPSA23566": {
+    "name": "EA SPORTS™ UFC® 6",
+    "region": "EP",
+    "concept": "10011247"
+  },
+  "PPSA24003": {
+    "name": "Dying Light: The Beast",
+    "region": "EP",
+    "concept": "10011468"
+  },
+  "PPSA24040": {
+    "name": "METAL GEAR SOLID: MASTER COLLECTION Vol.2 BONUS CONTENT",
+    "region": "JP",
+    "concept": "10009075"
+  },
+  "PPSA24191": {
+    "name": "Monster Hunter Wilds",
+    "region": "HP",
+    "concept": "10005176"
+  },
+  "PPSA24263": {
+    "name": "Call of Duty® Modern Warfare 3",
+    "region": "UP",
+    "concept": "10011645"
+  },
+  "PPSA24589": {
+    "name": "Biped",
+    "region": "HP",
+    "concept": "10000184"
+  },
+  "PPSA24651": {
+    "name": "The Messenger",
+    "region": "EP",
+    "concept": "233517"
+  },
+  "PPSA24781": {
+    "name": "Dreamcore",
+    "region": "UB",
+    "concept": "10011875"
+  },
+  "PPSA25009": {
+    "name": "Blue Prince",
+    "region": "EP",
+    "concept": "10012002"
+  },
+  "PPSA25344": {
+    "name": "Sword Of The Sea",
+    "region": "EP",
+    "concept": "10011227"
+  },
+  "PPSA25872": {
+    "name": "Terminator 2D: NO FATE",
+    "region": "EP",
+    "concept": "10012469"
+  },
+  "PPSA26344": {
+    "name": "Ghost of Yōtei",
+    "region": "UP",
+    "concept": "10003923"
+  },
+  "PPSA26358": {
+    "name": "Lost Soul Aside",
+    "region": "HP",
+    "concept": "10012778"
+  },
+  "PPSA26362": {
+    "name": "TERRIFIER The ArtCade Game",
+    "region": "EP",
+    "concept": "10012787"
+  },
+  "PPSA26525": {
+    "name": "Heretic + Hexen",
+    "region": "UP",
+    "concept": "10012903"
+  },
+  "PPSA26528": {
+    "name": "Code Violet",
+    "region": "UP",
+    "concept": "10012908"
+  },
+  "PPSA26578": {
+    "name": "MOUSE: P.I. For Hire",
+    "region": "UP",
+    "concept": "10012945"
+  },
+  "PPSA26785": {
+    "name": "NHL 26",
+    "region": "UP",
+    "concept": "10012851"
+  },
+  "PPSA27305": {
+    "name": "Goosebumps: Terror in Little Creek",
+    "region": "UP",
+    "concept": "10013351"
+  },
+  "PPSA27616": {
+    "name": "Bendy and the Ink Machine",
+    "region": "EP",
+    "concept": "10013479"
+  },
+  "PPSA27623": {
+    "name": "ASTRONEER",
+    "region": "EP",
+    "concept": "234630"
+  },
+  "PPSA27624": {
+    "name": "Bendy and the Dark Revival",
+    "region": "EP",
+    "concept": "10013480"
+  },
+  "PPSA27836": {
+    "name": "Onimusha: Way of the Sword",
+    "region": "UP",
+    "concept": "10013248"
+  },
+  "PPSA28002": {
+    "name": "NINJA GAIDEN: Ragebound",
+    "region": "EP",
+    "concept": "10013857"
+  },
+  "PPSA28061": {
+    "name": "Earthion",
+    "region": "UP",
+    "concept": "10013897"
+  },
+  "PPSA28101": {
+    "name": "Life is Strange: Reunion",
+    "region": "EP",
+    "concept": "10013938"
+  },
+  "PPSA28311": {
+    "name": "Absolum",
+    "region": "EP",
+    "concept": "10014070"
+  },
+  "PPSA28329": {
+    "name": "RoboCop: Rogue City - Unfinished Business",
+    "region": "EP",
+    "concept": "10014077"
+  },
+  "PPSA28416": {
+    "name": "STAR WARS: Galactic Racer™",
+    "region": "UP",
+    "concept": "10014146"
+  },
+  "PPSA28465": {
+    "name": "Trails in the Sky 1st Chapter",
+    "region": "UP",
+    "concept": "10013078"
+  },
+  "PPSA28495": {
+    "name": "OCTOPATH TRAVELER 0",
+    "region": "HP",
+    "concept": "10014094"
+  },
+  "PPSA28503": {
+    "name": "A.I.L.A",
+    "region": "UP",
+    "concept": "10014194"
+  },
+  "PPSA28542": {
+    "name": "Gex Trilogy",
+    "region": "UP",
+    "concept": "10014230"
+  },
+  "PPSA28795": {
+    "name": "Snoopy & The Great Mystery Club",
+    "region": "UP",
+    "concept": "10014379"
+  },
+  "PPSA28997": {
+    "name": "God of War Sons of Sparta",
+    "region": "UP",
+    "concept": "10012744"
+  },
+  "PPSA29043": {
+    "name": "Anger Foot",
+    "region": "UP",
+    "concept": "10013233"
+  },
+  "PPSA29413": {
+    "name": "Wobbly Life",
+    "region": "UP",
+    "concept": "10014752"
+  },
+  "PPSA29629": {
+    "name": "MARVEL Cosmic Invasion",
+    "region": "EP",
+    "concept": "10012545"
+  },
+  "PPSA29802": {
+    "name": "Plants vs. Zombies™: Replanted",
+    "region": "UP",
+    "concept": "10014976"
+  },
+  "PPSA29866": {
+    "name": "トンバ! ザ・ワイルドアドベンチャー Special Edition",
+    "region": "UP",
+    "concept": "10015010"
+  },
+  "PPSA30528": {
+    "name": "Red Dead Redemption",
+    "region": "UP",
+    "concept": "10006164"
+  },
+  "PPSA30630": {
+    "name": "MLB® The Show™ 26",
+    "region": "UP",
+    "concept": "10015430"
+  },
+  "PPSA30839": {
+    "name": "MXGP 26: The Official Game",
+    "region": "EP",
+    "concept": "10015195"
+  },
+  "PPSA31162": {
+    "name": "Super Meat Boy 3D",
+    "region": "EP",
+    "concept": "10015730"
+  },
+  "PPSA31246": {
+    "name": "RESIDENT EVIL requiem",
+    "region": "EP",
+    "concept": "10015533"
+  },
+  "PPSA31327": {
+    "name": "龍が如く０ 誓いの場所 Director's Cut",
+    "region": "JP",
+    "concept": "10015829"
+  },
+  "PPSA31371": {
+    "name": "TEKKEN™: DARK RESURRECTION",
+    "region": "UP",
+    "concept": "10015859"
+  },
+  "PPSA31372": {
+    "name": "RIDGE RACER™",
+    "region": "UP",
+    "concept": "10015861"
+  },
+  "PPSA31544": {
+    "name": "FINAL FANTASY RESONANCE",
+    "region": "JP",
+    "concept": "10015961"
+  },
+  "PPSA31872": {
+    "name": "Ball X Pit",
+    "region": "UP",
+    "concept": "10016190"
+  },
+  "PPSA31909": {
+    "name": "Love is all around 2",
+    "region": "HP",
+    "concept": "10016209"
+  },
+  "PPSA32793": {
+    "name": "Valor Mortis",
+    "region": "EB",
+    "concept": "10016571"
+  },
+  "PPSA33655": {
+    "name": "BLUE REFLECTION Quartet",
+    "region": "JP",
+    "concept": "10017140"
+  },
+  "PPSA34008": {
+    "name": "Mortal Shell II",
+    "region": "EP",
+    "concept": "10010058"
+  },
+  "PPSA34015": {
+    "name": "EA SPORTS FC 27",
+    "region": "UP",
+    "concept": "10017332"
+  },
+  "PPSA34063": {
+    "name": "NHL® 27",
+    "region": "UP",
+    "concept": "10017367"
+  },
+  "PPSA34501": {
+    "name": "Call of Duty®: Black Ops",
+    "region": "UP",
+    "concept": "10017657"
+  },
+  "PPSA34547": {
+    "name": "CONTROL Resonant",
+    "region": "EP",
+    "concept": "10017682"
+  },
+  "PPSA34959": {
+    "name": "The King is Watching",
+    "region": "UP",
+    "concept": "10017931"
+  },
+  "PPSA34971": {
+    "name": "Hollow Knight: Voidheart Edition",
+    "region": "EP",
+    "concept": "232654"
+  },
+  "PPSA35154": {
+    "name": "Hello Neighbor",
+    "region": "EP",
+    "concept": "231096"
+  },
+  "PPSA35169": {
+    "name": "Trails in the Sky 2nd Chapter",
+    "region": "UP",
+    "concept": "10017650"
+  },
+  "PPSA35399": {
+    "name": "Castlevania: Belmont's Curse",
+    "region": "JP",
+    "concept": "10018186"
+  },
+  "PPSA35943": {
+    "name": "Graveyard Keeper 2",
+    "region": "UP",
+    "concept": "10018528"
+  },
+  "PPSA36082": {
+    "name": "Hades II",
+    "region": "EP",
+    "concept": "10018449"
+  },
+  "PPSA36591": {
+    "name": "STEINS;GATE RE:BOOT",
+    "region": "UP",
+    "concept": "10018909"
+  },
+  "PPSA37911": {
+    "name": "Train Sim World 7",
+    "region": "EP",
+    "concept": "10019606"
+  }
+}

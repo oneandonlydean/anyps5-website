@@ -1,0 +1,227 @@
+---
+// A search dialog over the Pagefind index that `npm run build` writes to dist/pagefind/. Any element with
+// data-search-open opens it, as do Ctrl+K and "/".
+---
+
+<dialog class="search" aria-label="Search the site" data-search>
+  <form method="dialog" class="bar">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+    <input type="search" placeholder="Search games, the guide and docs" aria-label="Search" autocomplete="off" data-search-input />
+    <kbd>Esc</kbd>
+  </form>
+  <ul class="results" role="listbox" data-search-results></ul>
+  <p class="state" data-search-state>Type to search</p>
+</dialog>
+
+<script>
+  interface Result {
+    url: string;
+    excerpt: string;
+    meta: { title?: string; section?: string; image?: string };
+  }
+  interface Pagefind {
+    search(query: string): Promise<{ results: { data(): Promise<Result> }[] }>;
+  }
+
+  const dialog = document.querySelector<HTMLDialogElement>("[data-search]")!;
+  const input = dialog.querySelector<HTMLInputElement>("[data-search-input]")!;
+  const list = dialog.querySelector<HTMLElement>("[data-search-results]")!;
+  const state = dialog.querySelector<HTMLElement>("[data-search-state]")!;
+  let pagefind: Promise<Pagefind | null> | undefined;
+  let active = -1;
+  let latest = 0;
+
+  // The index only exists in a built site, so a failed import means search is unavailable here, not an error.
+  const load = () => (pagefind ??= (import(/* @vite-ignore */ `${location.origin}/pagefind/pagefind.js`) as Promise<Pagefind>).catch(() => null));
+
+  const open = () => {
+    dialog.showModal();
+    input.select();
+    load();
+  };
+  document.querySelectorAll("[data-search-open]").forEach((button) => button.addEventListener("click", open));
+  document.addEventListener("keydown", (e) => {
+    const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
+    if ((e.key === "k" && (e.ctrlKey || e.metaKey)) || (e.key === "/" && !typing)) {
+      e.preventDefault();
+      open();
+    }
+  });
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  // ?search=hades opens the dialog with that query, so searches can be linked.
+  const linked = new URLSearchParams(location.search).get("search");
+  if (linked) {
+    open();
+    input.value = linked;
+    input.dispatchEvent(new Event("input"));
+  }
+
+  const highlight = (i: number) => {
+    const items = [...list.querySelectorAll<HTMLElement>("a")];
+    active = Math.max(-1, Math.min(i, items.length - 1));
+    items.forEach((a, n) => a.setAttribute("aria-selected", String(n === active)));
+    items[active]?.scrollIntoView({ block: "nearest" });
+  };
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      highlight(active + (e.key === "ArrowDown" ? 1 : -1));
+    } else if (e.key === "Enter" && active >= 0) {
+      e.preventDefault();
+      list.querySelectorAll<HTMLAnchorElement>("a")[active]?.click();
+    }
+  });
+
+  input.addEventListener("input", async () => {
+    const query = input.value.trim();
+    const run = ++latest;
+    if (!query) {
+      list.replaceChildren();
+      state.textContent = "Type to search";
+      return;
+    }
+    const engine = await load();
+    if (run !== latest) return;
+    if (!engine) {
+      state.textContent = "Search works on the built site (npm run build && npm run preview).";
+      return;
+    }
+    const search = await engine.search(query);
+    const results = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+    if (run !== latest) return;
+    state.textContent = results.length ? "" : `Nothing found for "${query}".`;
+    list.replaceChildren(
+      ...results.map((r) => {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = r.url.replace(/\.html$/, "").replace(/\/index$/, "/");
+        link.setAttribute("role", "option");
+        const head = document.createElement("span");
+        head.className = "head";
+        const title = document.createElement("b");
+        title.textContent = r.meta.title ?? r.url;
+        head.append(title);
+        if (r.meta.section) {
+          const section = document.createElement("span");
+          section.className = "section";
+          section.textContent = r.meta.section;
+          head.append(section);
+        }
+        // Pagefind's excerpt is escaped text with <mark> around matches.
+        const excerpt = document.createElement("span");
+        excerpt.className = "excerpt";
+        excerpt.innerHTML = r.excerpt;
+        link.append(head, excerpt);
+        link.addEventListener("click", () => dialog.close());
+        item.append(link);
+        return item;
+      }),
+    );
+    highlight(results.length ? 0 : -1);
+  });
+</script>
+
+<style>
+  .search {
+    width: min(640px, calc(100vw - 32px));
+    max-height: min(560px, calc(100dvh - 120px));
+    margin: 80px auto auto;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: 0 40px 80px -20px rgb(0 0 0 / 0.6);
+    color: var(--text);
+  }
+  .search[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .search::backdrop {
+    background: rgb(0 0 0 / 0.5);
+    backdrop-filter: blur(4px);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--line);
+    color: var(--faint);
+  }
+  .bar input {
+    flex: 1;
+    min-width: 0;
+    height: 56px;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    font-size: 1.05rem;
+  }
+  kbd {
+    padding: 2px 6px;
+    border: 1px solid var(--line-strong);
+    border-radius: 5px;
+    font-size: 0.72rem;
+  }
+  .results {
+    overflow: auto;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+  }
+  .results:empty {
+    display: none;
+  }
+  .results :global(a) {
+    display: grid;
+    gap: 4px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .results :global(a[aria-selected="true"]),
+  .results :global(a:hover) {
+    background: var(--raised);
+  }
+  .results :global(.head) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .results :global(.section) {
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent-strong);
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+  .results :global(.excerpt) {
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+  .results :global(mark) {
+    background: color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--text);
+    border-radius: 2px;
+  }
+  .state {
+    margin: 0;
+    padding: 14px 18px;
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+  .state:empty {
+    display: none;
+  }
+</style>

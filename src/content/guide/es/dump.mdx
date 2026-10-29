@@ -1,0 +1,44 @@
+---
+title: Prepara tu volcado
+summary: Lo que necesita el conversor de los archivos de tu juego y los problemas que hay que resolver antes.
+step: 2
+---
+
+AnyPS5 trabaja con los archivos de un juego instalado, volcados desde tu propia consola con tus propias herramientas homebrew. El proyecto no ofrece ningún programa de volcado y no puede ayudarte a conseguir juegos que no tengas.
+
+## Qué contiene un volcado utilizable
+
+El conversor necesita los archivos del juego **descifrados**:
+
+```text
+app0/
+    eboot.bin          the game's executable, as a plain ELF file
+    sce_module/        the game's own libraries
+    sce_sys/
+        param.json     the title ID and name
+    ...                everything else the game ships with
+```
+
+- **El ejecutable debe ser un archivo ELF normal.** No se aceptan contenedores SELF cifrados. Si tu herramienta de volcado generó contenedores SELF descifrados, extráelos primero con `tools/unwrap_self.py` del repositorio de AnyPS5.
+- **Conserva `sce_sys/`.** Muchos juegos leen `param.json` al arrancar y fallan sin él.
+- **Conserva el resto de archivos del juego.** El conversor solo reescribe el ejecutable y los módulos, pero el juego necesita sus archivos de datos junto a ellos cuando se ejecuta.
+
+Puedes darle al conversor web la carpeta `app0` entera o un ZIP de ella. Los archivos grandes que no sean el ejecutable ni los módulos pueden quedarse dentro del archivo comprimido.
+
+## Apunta la versión del contenido
+
+La **versión del contenido** (por ejemplo `01.004.000`) importa cuando compartes resultados. Distintas versiones del mismo juego pueden comportarse de forma diferente, y los parches de juegos dependen de bytes exactos. La encontrarás en `sce_sys/param.json` como `contentVersion`.
+
+## Problemas conocidos con algunos volcados
+
+<Callout title="Volcados reempaquetados para ampr_emu">
+Si `app0` contiene `ampr_assets.index` y `ampr_assets-*.pak`, el volcado se reempaquetó para ampr_emu y faltan archivos en `app0`. Desempaquétalo con `tools/ampr_pack.py unpack` de ampr_emu y vuelve a copiar primero los archivos que faltan. Si no, los juegos de Unity se detienen al arrancar.
+</Callout>
+
+<Callout title="Volcados sin metadatos de PlayGo">
+Si el volcado no tiene ni `sce_sys/playgo-chunk.dat` ni `sce_sys/playgo-scenario.json`, algunos juegos se detienen al arrancar con un error de chunk de PlayGo. Define `APS5_PLAYGO_UNLISTED_CHUNKS` como `installed` o `absent` al ejecutar el juego. Cuál funciona depende del juego; la [referencia de uso](/docs/usage#playgo-dumps-without-metadata) recoge los casos conocidos.
+</Callout>
+
+<Callout title="Juegos de Unity">
+Los juegos de Unity guardan módulos adicionales en `Media/Modules` y `Media/Plugins`. El conversor web maneja la estructura estándar. Con el relinker de línea de comandos, añade `--module-dir Media/Modules --module-dir Media/Plugins`.
+</Callout>

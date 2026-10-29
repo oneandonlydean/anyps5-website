@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run validate
+      - run: npm run fetch:upstream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/cache@v4
+        with:
+          path: |
+            node_modules/.cache/anyps5-upstream
+            node_modules/.cache/anyps5-isa
+          key: upstream-${{ github.run_id }}
+          restore-keys: upstream-
+      - name: Measure shader recompiler coverage from upstream source
+        run: npm run fetch:coverage
+      - run: npm run check
+      - run: npm run build

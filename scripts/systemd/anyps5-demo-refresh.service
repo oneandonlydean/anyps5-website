@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh AnyPS5 data and redeploy the Cloudflare demo
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/dean/Development/anyps5-website
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+ExecStartPre=/bin/mkdir -p %h/.local/state/anyps5-demo
+ExecStart=/bin/sh -c 'scripts/refresh-demo.sh >> %h/.local/state/anyps5-demo/refresh.log 2>&1'
+Nice=10

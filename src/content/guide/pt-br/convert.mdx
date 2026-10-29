@@ -1,0 +1,97 @@
+---
+title: Converta o jogo
+summary: Religue o executável para o seu sistema, no navegador ou na linha de comando.
+step: 3
+---
+
+A conversão reescreve o executável e os módulos do jogo em um programa nativo de Linux ou Windows e coloca as bibliotecas de sistema do AnyPS5 ao lado dele. Seus arquivos nunca saem do seu computador.
+
+## No navegador (recomendado)
+
+<Screenshot
+  dark="/guide/converter-dark.webp"
+  light="/guide/converter-light.webp"
+  alt="O conversor web: uma área para soltar arquivos com os botões Choose ZIP files e Choose folder, as opções Windows e Linux, uma opção de salvamento, uma caixa de seleção para processadores Intel e um botão Convert & save."
+  width={1117}
+  height={627}
+  callouts={[
+    { x: 35, y: 47, label: "Escolha a pasta do seu dump, ou um ou mais arquivos ZIP." },
+    { x: 12.8, y: 63.6, label: "Escolha o sistema em que você vai jogar." },
+    { x: 64, y: 63.6, label: "Escolha como salvar o resultado." },
+    { x: 32.6, y: 82, label: "Em processador Intel, marque esta opção." },
+    { x: 82, y: 93.6, label: "Converta e salve." },
+  ]}
+/>
+
+1. Abra o [conversor web](/convert).
+2. Escolha a pasta do seu dump, ou solte um ou mais arquivos ZIP.
+3. Escolha **Windows (.exe)** ou **Linux (.elf)**.
+4. Escolha como salvar o resultado:
+   - **Download in memory** (baixar pela memória) para jogos pequenos, de até 256 MiB.
+   - **Save ZIP to disk** (salvar ZIP no disco) para jogos grandes. Exige Chrome ou Edge no desktop.
+   - **Save to folder** (salvar em pasta) grava uma pasta sem compactação. Só para saída Linux, um jogo por vez.
+5. Em processador Intel, marque **Convert AMD-specific instructions for Intel CPUs** (converter instruções específicas da AMD para processadores Intel).
+6. Clique em **Convert & save**.
+
+O resultado já traz as bibliotecas de sistema e a estrutura de pastas certa. **Extraia o ZIP inteiro** antes de abrir o jogo.
+
+<Callout title="Vários jogos de uma vez">
+Solte vários arquivos ZIP para convertê-los em um único pacote. Cada jogo ganha a sua própria pasta numerada.
+</Callout>
+
+## Na linha de comando
+
+O relinker nativo lida com jogos de qualquer tamanho e tem mais opções. Baixe o `relinker` e o arquivo de bibliotecas para o seu sistema na [página de download](/download), renomeie o relinker baixado para `relinker` (ou `relinker.exe`) e rode-o no executável do jogo. A pasta `sce_module/` do jogo precisa ficar ao lado do `eboot.bin`.
+
+<Tabs>
+<Tab platform="linux">
+
+```sh
+chmod +x relinker
+./relinker app0/eboot.bin game/app.elf
+unzip prx-linux-*.zip -d game/
+```
+
+</Tab>
+<Tab platform="windows">
+
+```powershell
+.\relinker.exe --windows app0\eboot.bin game\app.exe
+Expand-Archive prx-windows-*.zip -DestinationPath game
+```
+
+Sem `--windows`, a saída é um arquivo de Linux mesmo que o nome termine em `.exe`, e o Windows se recusa a abri-lo.
+
+</Tab>
+</Tabs>
+
+O arquivo de bibliotecas é extraído em uma pasta `libs/`. Use o arquivo compilado para o mesmo sistema do jogo.
+
+Opções úteis:
+
+| Opção | Use quando |
+|---|---|
+| `--to-intel` | Você joga em um processador Intel |
+| `--module-dir <dir>` | O jogo carrega módulos de outras pastas, como a `Media/Plugins` do Unity |
+| `--registry` | Você quer ver quais funções de sistema o jogo precisa antes de rodá-lo |
+
+A [referência de uso](/docs/usage#options) lista todas as opções.
+
+## Organize os arquivos
+
+O relinker mostra a estrutura que espera (`Arrange the files like this`). Ela fica assim:
+
+```text
+game/
+    app.elf  or  app.exe     the converted executable
+    libs/                    AnyPS5 system libraries
+    app0/                    the game's original files
+        eboot.bin            keep the original, games look for it
+        sce_sys/param.json
+        sce_module/          the converted modules (the relinker prints each one
+                             as "Guest module:")
+```
+
+- Copie o resto do seu dump para `app0/`, incluindo o `eboot.bin` original.
+- Coloque em `libs/` apenas as bibliotecas do AnyPS5. Arquivos `.prx` originais do PS5 dentro de `libs/` fazem o Windows falhar com o erro 193.
+- No Linux, a `app0/` não pode conter links simbólicos. Use cópias ou hard links.

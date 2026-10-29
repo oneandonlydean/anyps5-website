@@ -1,0 +1,96 @@
+---
+title: 运行和游玩
+summary: 启动游戏、连接手柄，并设置字体、语言和存档。
+step: 4
+---
+
+## 启动游戏
+
+<Tabs>
+<Tab platform="linux">
+
+在游戏文件夹中运行：
+
+```sh
+./app.elf
+```
+
+通过浏览器下载的文件会丢失可执行权限。如果游戏无法启动，请运行 `chmod +x app.elf`（转换器列出的其他可执行文件也一样）。
+
+</Tab>
+<Tab platform="windows">
+
+双击 `app.exe`，或在游戏文件夹中通过 PowerShell 运行：
+
+```powershell
+.\app.exe
+```
+
+请在正常登录的桌面会话中运行，不要通过 SSH 运行。
+
+</Tab>
+</Tabs>
+
+<Callout title="首次启动会比较慢">
+第一次运行时，AnyPS5 会为你的显卡编译游戏的着色器，出现第一帧画面前可能要等上几分钟。编译结果保存在可执行文件旁边的 `shader_cache/` 里，所以之后启动会快得多。删除这个文件夹是安全的。
+</Callout>
+
+## 操作
+
+SDL 能识别的手柄都可以直接使用：DualSense、DualShock 4 以及 Xbox 风格的手柄。摇杆和模拟扳机都会直接传给游戏，DualSense 触摸板可用，游戏运行中也可以随时插入手柄。
+
+没有手柄时，使用以下键鼠映射：
+
+| PS5 | 键盘和鼠标 |
+|---|---|
+| 叉（Cross） | Enter、空格 |
+| 圆（Circle） | C |
+| 三角（Triangle） | I |
+| 方块（Square） | 鼠标左键 |
+| L1 / R1 | Q / E |
+| L2 / R2 | R / 鼠标右键 |
+| L3 / R3 | Shift / Ctrl |
+| Options | Esc |
+| 方向键 | 方向键 |
+| 左摇杆 | W A S D |
+| 右摇杆 | T F G H，或按下鼠标中键或 F7 后用鼠标 |
+| 触摸板 | Backspace（左）、Tab（右） |
+
+**F11** 切换全屏，**F10** 显示性能浮层。要修改按键绑定，请在可执行文件旁边创建 `anyps5-input.ini`；参见[按键映射](/docs/input-mapping)。
+
+## 可选设置
+
+在启动游戏前，把这些设为环境变量。
+
+| 变量 | 作用 |
+|---|---|
+| `ANYPS5_LANGUAGE` | 主机语言编号。`1` 是英语（美国），为默认值；`18` 英语（英国），`2` 法语，`4` 德语，`3` 西班牙语，`0` 日语。[全部语言](/docs/usage#console-language) |
+| `ANYPS5_GPU` | 显卡名称的一部分，用于选择其他显卡 |
+| `ANYPS5_PRESENT_MODE` | 设为 `mailbox` 或 `immediate` 可关闭垂直同步 |
+| `ANYPS5_OVERLAY` | 设为 `1` 时从一开始就显示性能浮层 |
+
+<Tabs>
+<Tab platform="linux">
+
+```sh
+ANYPS5_LANGUAGE=18 ./app.elf
+```
+
+</Tab>
+<Tab platform="windows">
+
+```powershell
+$env:ANYPS5_LANGUAGE = '18'
+.\app.exe
+```
+
+</Tab>
+</Tabs>
+
+## 系统字体
+
+有些游戏会使用主机的系统字体，缺少这些字体时会不显示文字，甚至直接停止。请把字体文件放到可执行文件旁边的 `anyps5-fonts/` 文件夹里。从你的主机导出的字体保持原文件名即可使用。否则，也可以用免费的 [Noto](https://github.com/notofonts/notofonts.github.io) 字体代替：`NotoSans-Regular.ttf` 及其各字重、`NotoSansMono`、`NotoSansThai` 和 `NotoSansCJK`。[用法参考](/docs/usage#system-fonts)里有确切的文件名。
+
+## 存档
+
+存档保存在 `app0/` 旁边的 `_sd/` 文件夹里。复制 `_sd/` 和 `_sd_mem/`，就能把进度转移到游戏的另一份副本中。

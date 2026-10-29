@@ -1,0 +1,68 @@
+{
+  "tag": "v0.1.3",
+  "name": "v0.1.3",
+  "url": "https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.3",
+  "published": "2026-10-20T09:31:13Z",
+  "assets": [
+    {
+      "name": "INPUT_MAPPING.md",
+      "size": 9315,
+      "sha256": "fba99505aed606d191bbc20a322d2edf440f4e4d8304a243bf5ea1e84f9ef92c",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/INPUT_MAPPING.md"
+    },
+    {
+      "name": "prx-linux-v0.1.3.tar.gz",
+      "size": 101657250,
+      "sha256": "0a4eb4dcfb1321a24faac09d9d8c4a2ba62e58f77764f4b7f7fd9e0f6bdfce3a",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/prx-linux-v0.1.3.tar.gz"
+    },
+    {
+      "name": "prx-linux-v0.1.3.zip",
+      "size": 102052745,
+      "sha256": "017bdb0e931fa0cdb17f0cea805a824180b88205f5c50f4473550c63a4e811f3",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/prx-linux-v0.1.3.zip"
+    },
+    {
+      "name": "prx-windows-v0.1.3.tar.gz",
+      "size": 96619545,
+      "sha256": "e1d6d3dcd0d0f755a6c0d37ec4cdb7483ce8ffece1e64ef30d32dab542e2f734",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/prx-windows-v0.1.3.tar.gz"
+    },
+    {
+      "name": "prx-windows-v0.1.3.zip",
+      "size": 96653447,
+      "sha256": "a0d6ce41859368f7be43bb7ceefda8542f9abaaa80f16d157a1847287d46d0e0",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/prx-windows-v0.1.3.zip"
+    },
+    {
+      "name": "release-notes.md",
+      "size": 233772,
+      "sha256": "7c897054c9500106ef21af27497ecbaf7652f9ba6e8acff131b029bd78fff978",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/release-notes.md"
+    },
+    {
+      "name": "relinker-v0.1.3",
+      "size": 4529672,
+      "sha256": "bd2a959885830e14f091477edf297fc4c3f45b83a29171c47f5719d721fedb45",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/relinker-v0.1.3"
+    },
+    {
+      "name": "relinker-v0.1.3.exe",
+      "size": 5424392,
+      "sha256": "c0de554bd426c35d3a38b67720879a0ec8dbdb06d89b0360442e45c7c268d021",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/relinker-v0.1.3.exe"
+    },
+    {
+      "name": "USAGE.md",
+      "size": 65701,
+      "sha256": "7eae16b20eecc81be457582b4a4632455c52a3f8a8971e4615752287cbc3d8f8",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/USAGE.md"
+    },
+    {
+      "name": "web-v0.1.3.zip",
+      "size": 400889,
+      "sha256": "8e11eebed8f3cf4dce26bcebbca06afe6f377d179ac849b8774830c665b597d8",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/web-v0.1.3.zip"
+    }
+  ]
+}

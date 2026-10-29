@@ -1,0 +1,40 @@
+---
+title: Fix common problems
+summary: What the usual error messages mean and what to do about them.
+step: 5
+---
+
+When something is not supported yet, AnyPS5 stops with an error instead of guessing, and prints the reason. Read the last lines of the output first. If the game was started without a console on Windows, the output is in `anyps5.log` next to the executable.
+
+## Errors and fixes
+
+| You see | What to do |
+|---|---|
+| The game names missing CPU extensions | Your CPU lacks instructions the game needs. See [requirements](/guide/requirements#processor). |
+| Windows says the app is not compatible (exit code 216) | It was converted for Linux. Convert again with **Windows** selected, or with `--windows`. |
+| Error 193 on Windows | An original PS5 `.prx` is in `libs/`. Only AnyPS5's libraries belong there. |
+| Error 126 on Windows | A library is missing. Use the libraries from the release archive, which include the needed DLLs. |
+| `[gpu] open /dev/udmabuf: Permission denied` | Add your user to the `kvm` group and log in again. |
+| A `param.json` error | Copy the game's `sce_sys/param.json` into `app0/sce_sys/`. |
+| A PlayGo chunk error at start-up | Set `APS5_PLAYGO_UNLISTED_CHUNKS`. See [preparing your dump](/guide/dump#known-problems-with-some-dumps). |
+| `sceFontOpenFontSet` with `file=(none)`, or missing text | Add [system fonts](/guide/run#system-fonts). |
+| `replace guest placeholder with resident direct memory` | Windows ran out of commit memory. Increase the page file. |
+| `sceSystemServiceLoadExec: execv failed: Permission denied` | Run `chmod +x` on every executable the converter wrote. |
+| `SDL_GetWindowDisplayIndex failed` | The display was asleep when the game started. Wake it and start again. |
+| A crash in `nvgpucomp64.dll` | A known NVIDIA driver bug. Update the driver. |
+| Windows crashes while looking for GPUs | Mesa Dozen may be installed. Run `$env:VK_LOADER_DRIVERS_DISABLE = '*dzn*'` before starting the game, unless Dozen is your only Vulkan driver. |
+| A long black screen on the first run | Shaders are compiling. Wait, and the next start will be faster. |
+
+## When the game stops on its own
+
+Most games hit something that is not implemented yet. A message with `what()` or `terminate called` names the missing piece. That is not something you can fix on your side, but it is exactly what the developers need.
+
+1. Search the [compatibility list](/compatibility) for your game. If the stop is known, it is listed with the issue that tracks it.
+2. Check whether a newer release is out on the [download page](/download).
+3. If your result is new, [report it](/guide/report).
+
+## Exit codes
+
+The relinker exits with `0` on success, `1` for invalid arguments and `2` when conversion failed (the reason is printed).
+
+On Linux, a game that exits with `134` stopped on an unsupported feature or an error, and `139` means it crashed. On Windows, `0xc0000005` is a crash and `0xc0000409` an unsupported feature.

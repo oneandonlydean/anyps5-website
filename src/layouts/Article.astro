@@ -1,0 +1,175 @@
+---
+import { parsePath, strings } from "../i18n";
+import Base from "./Base.astro";
+
+export interface NavLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  eyebrow: string;
+  lede?: string;
+  nav: { title: string; links: NavLink[] }[];
+  headings?: { depth: number; id: string; text: string }[];
+}
+
+const { title, description, eyebrow, lede, nav, headings = [] } = Astro.props;
+const t = strings(parsePath(Astro.url.pathname).locale);
+const path = Astro.url.pathname.replace(/\/$/, "");
+---
+
+<Base title={title} description={description ?? lede}>
+  <div class="container layout">
+    <nav class="sidebar" aria-label={eyebrow}>
+      {
+        nav.map((group) => (
+          <div class="group">
+            <span class="group-title">{group.title}</span>
+            {group.links.map((link) => (
+              <a href={link.href} aria-current={path === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        ))
+      }
+    </nav>
+
+    <article class="article">
+      <header class="head">
+        <span class="eyebrow">{eyebrow}</span>
+        <h1>{title}</h1>
+        {lede && <p class="lede">{lede}</p>}
+      </header>
+      <div class="prose">
+        <slot />
+      </div>
+      <slot name="after" />
+    </article>
+
+    {
+      headings.length > 1 && (
+        <aside class="toc" aria-label={t.guide.onThisPage}>
+          <span class="group-title">{t.guide.onThisPage}</span>
+          {headings.map((h) => (
+            <a href={`#${h.id}`} class:list={{ sub: h.depth > 2 }}>
+              {h.text}
+            </a>
+          ))}
+        </aside>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) 220px;
+    gap: 48px;
+    align-items: start;
+    padding-block: 48px 96px;
+  }
+  .sidebar,
+  .toc {
+    position: sticky;
+    top: 96px;
+    display: grid;
+    gap: 2px;
+    max-height: calc(100dvh - 120px);
+    overflow-y: auto;
+    font-size: 0.9rem;
+  }
+  .group {
+    display: grid;
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+  .group-title {
+    margin-bottom: 6px;
+    color: var(--faint);
+    font: 500 0.72rem/1 var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .sidebar a {
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .sidebar a:hover {
+    background: var(--raised);
+    color: var(--text);
+  }
+  .sidebar a[aria-current="page"] {
+    background: var(--raised);
+    color: var(--text);
+    font-weight: 600;
+  }
+  .toc a {
+    padding: 3px 0 3px 12px;
+    border-left: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+  .toc a.sub {
+    padding-left: 24px;
+    color: var(--faint);
+  }
+  .toc a:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .head {
+    margin-bottom: 32px;
+  }
+  .head h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+  }
+  .head .lede {
+    margin: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .layout {
+      grid-template-columns: 200px minmax(0, 1fr);
+    }
+    .toc {
+      display: none;
+    }
+  }
+  @media (max-width: 760px) {
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding-top: 24px;
+    }
+    .sidebar {
+      position: static;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      max-height: none;
+      margin-inline: calc(var(--gutter) * -1);
+      padding: 0 var(--gutter) 8px;
+    }
+    .group {
+      display: contents;
+    }
+    .group-title {
+      display: none;
+    }
+    .sidebar a {
+      flex: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+  }
+</style>

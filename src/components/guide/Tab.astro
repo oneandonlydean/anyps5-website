@@ -1,0 +1,7 @@
+---
+interface Props {
+  platform: "linux" | "windows";
+}
+---
+
+<div data-panel={Astro.props.platform} role="tabpanel"><slot /></div>

@@ -1,0 +1,316 @@
+---
+import Base from "../layouts/Base.astro";
+import { formatBytes, formatDate, REPO_URL } from "../lib/site";
+import { getRelease, type ReleaseAsset } from "../lib/upstream";
+
+const release = await getRelease();
+
+const find = (pattern: RegExp) => release?.assets.find((a) => pattern.test(a.name));
+const platforms = [
+  {
+    key: "windows",
+    label: "Windows",
+    relinker: find(/^relinker-v[\d.]+\.exe$/),
+    libraries: find(/^prx-windows-.*\.zip$/),
+    icon: "M3 5.5 10 4.5v7H3zM11 4.4 21 3v8.5H11zM3 12.5h7v7l-7-1zM11 12.5h10V21l-10-1.4z",
+    stroke: false,
+  },
+  {
+    key: "linux",
+    label: "Linux",
+    relinker: find(/^relinker-v[\d.]+$/),
+    libraries: find(/^prx-linux-.*\.zip$/),
+    icon: "M4 17l6-6-6-6M12 19h8",
+    stroke: true,
+  },
+];
+const groups: { title: string; text: string; items: { label: string; asset?: ReleaseAsset }[] }[] = [
+  {
+    title: "Relinker",
+    text: "The command-line converter. Handles any size of game and every option.",
+    items: [
+      { label: "Linux", asset: find(/^relinker-v[\d.]+$/) },
+      { label: "Windows", asset: find(/^relinker-v[\d.]+\.exe$/) },
+    ],
+  },
+  {
+    title: "System libraries",
+    text: "AnyPS5's libraries, unpacked into libs/ next to the converted game. The web converter adds them for you.",
+    items: [
+      { label: "Linux · zip", asset: find(/^prx-linux-.*\.zip$/) },
+      { label: "Linux · tar.gz", asset: find(/^prx-linux-.*\.tar\.gz$/) },
+      { label: "Windows · zip", asset: find(/^prx-windows-.*\.zip$/) },
+      { label: "Windows · tar.gz", asset: find(/^prx-windows-.*\.tar\.gz$/) },
+    ],
+  },
+  {
+    title: "Documentation",
+    text: "The reference documents for this release.",
+    items: [
+      { label: "Usage", asset: find(/^USAGE\.md$/) },
+      { label: "Input mapping", asset: find(/^INPUT_MAPPING\.md$/) },
+      { label: "Release notes", asset: find(/^release-notes\.md$/) },
+    ],
+  },
+];
+---
+
+<Base title="Download" description="Download the latest AnyPS5 relinker and system libraries for Linux and Windows.">
+  <section class="container page-head">
+    <span class="eyebrow">Download</span>
+    <h1>Latest release</h1>
+    {
+      release ? (
+        <p class="lede">
+          <a href={release.url}>{release.tag}</a>, published {formatDate(release.published)}. Most people only need the <a href="/convert">web converter</a>, which already
+          includes everything below.
+        </p>
+      ) : (
+        <p class="lede">Release information is unavailable. Get the files from <a href={`${REPO_URL}/releases/latest`}>GitHub Releases</a>.</p>
+      )
+    }
+  </section>
+
+  {
+    release && (
+      <section class="container pick" data-pick>
+        {platforms.map((p) => (
+          <div class="card platform" data-platform={p.key}>
+            <span class="os" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill={p.stroke ? "none" : "currentColor"} stroke={p.stroke ? "currentColor" : undefined} stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d={p.icon} />
+              </svg>
+            </span>
+            <div class="platform-copy">
+              <span class="eyebrow">Recommended for you</span>
+              <h2>
+                AnyPS5 {release.tag} for {p.label}
+              </h2>
+              <p class="muted">The command-line relinker and the system libraries. For most games the web converter is simpler and needs no download.</p>
+              <div class="platform-actions">
+                {p.relinker && (
+                  <a class="button primary" href={p.relinker.url}>
+                    Download relinker <span class="size">{formatBytes(p.relinker.size)}</span>
+                  </a>
+                )}
+                {p.libraries && (
+                  <a class="button" href={p.libraries.url}>
+                    System libraries <span class="size">{formatBytes(p.libraries.size)}</span>
+                  </a>
+                )}
+                <a class="button ghost" href="/convert">
+                  Use the web converter
+                </a>
+              </div>
+              <button type="button" class="switch" data-switch>
+                Not on {p.label}? Show {p.key === "windows" ? "Linux" : "Windows"}
+              </button>
+            </div>
+          </div>
+        ))}
+      </section>
+    )
+  }
+
+  {
+    release && (
+      <section class="container groups">
+        {groups.map((group) => (
+          <div class="card group">
+            <div class="intro">
+              <h2>{group.title}</h2>
+              <p class="muted">{group.text}</p>
+            </div>
+            <ul>
+              {group.items
+                .filter((item) => item.asset)
+                .map(({ label, asset }) => (
+                  <li>
+                    <div class="name">
+                      <b>{label}</b>
+                      <span class="mono">{asset!.name}</span>
+                    </div>
+                    <span class="size">{formatBytes(asset!.size)}</span>
+                    <a class="button small" href={asset!.url} download>
+                      Download
+                    </a>
+                    {asset!.sha256 && (
+                      <details>
+                        <summary>SHA-256</summary>
+                        <code>{asset!.sha256}</code>
+                      </details>
+                    )}
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ))}
+        <p class="muted more">
+          Older versions and source code are on <a href={`${REPO_URL}/releases`}>GitHub Releases</a>. To build from source, follow the{" "}
+          <a href={`${REPO_URL}/blob/main/docs/dev/BUILD.md`}>build instructions</a>.
+        </p>
+      </section>
+    )
+  }
+</Base>
+
+<script>
+  // Show the card for this system; other systems, or no script, keep both side by side.
+  const pick = document.querySelector<HTMLElement>("[data-pick]");
+  if (pick) {
+    const ua = navigator.userAgent;
+    const detected = /Windows/.test(ua) ? "windows" : /Linux/.test(ua) && !/Android/.test(ua) ? "linux" : null;
+    const show = (key: string) => {
+      pick.dataset.show = key;
+      for (const card of pick.querySelectorAll<HTMLElement>("[data-platform]")) card.hidden = card.dataset.platform !== key;
+    };
+    if (detected) show(detected);
+    else pick.querySelectorAll<HTMLElement>("[data-switch], .platform .eyebrow").forEach((el) => (el.hidden = true));
+    pick.addEventListener("click", (event) => {
+      if (!(event.target as HTMLElement).closest("[data-switch]")) return;
+      show(pick.dataset.show === "windows" ? "linux" : "windows");
+    });
+  }
+</script>
+
+<style>
+  .pick {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .platform {
+    display: flex;
+    gap: 24px;
+    padding: clamp(22px, 4vw, 36px);
+    background:
+      radial-gradient(500px 240px at 0% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+      var(--surface);
+  }
+  .os {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    color: var(--accent-strong);
+  }
+  .platform h2 {
+    margin-bottom: 8px;
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  }
+  .platform-copy p {
+    max-width: 56ch;
+  }
+  .platform-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .size {
+    font-weight: 500;
+  }
+  .size::before {
+    content: "· ";
+  }
+  .switch {
+    margin-top: 16px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.86rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  @media (max-width: 560px) {
+    .platform {
+      flex-direction: column;
+    }
+  }
+  .groups {
+    display: grid;
+    gap: 16px;
+    padding-bottom: 96px;
+  }
+  .group {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
+    padding: 28px;
+  }
+  .intro h2 {
+    font-size: 1.3rem;
+  }
+  .intro p {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+  ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 6px 20px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  li:first-child {
+    padding-top: 0;
+  }
+  li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .name {
+    display: grid;
+    min-width: 0;
+  }
+  .name .mono {
+    overflow: hidden;
+    color: var(--faint);
+    font-size: 0.8rem;
+    text-overflow: ellipsis;
+  }
+  .size {
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+  }
+  details {
+    grid-column: 1 / -1;
+    font-size: 0.8rem;
+  }
+  summary {
+    width: fit-content;
+    color: var(--faint);
+    cursor: pointer;
+  }
+  details code {
+    display: block;
+    margin-top: 6px;
+    overflow-wrap: anywhere;
+  }
+  .more {
+    margin-top: 16px;
+    font-size: 0.92rem;
+  }
+  @media (max-width: 820px) {
+    .group {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 22px;
+    }
+  }
+</style>

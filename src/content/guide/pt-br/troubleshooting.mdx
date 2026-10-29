@@ -1,0 +1,40 @@
+---
+title: Resolva problemas comuns
+summary: O que significam as mensagens de erro mais comuns e o que fazer com elas.
+step: 5
+---
+
+Quando algo ainda não é suportado, o AnyPS5 para com um erro em vez de tentar adivinhar, e mostra o motivo. Leia primeiro as últimas linhas da saída. Se o jogo foi aberto sem console no Windows, a saída fica em `anyps5.log`, ao lado do executável.
+
+## Erros e soluções
+
+| O que aparece | O que fazer |
+|---|---|
+| O jogo informa extensões de CPU faltando | Falta ao seu processador alguma instrução de que o jogo precisa. Veja os [requisitos](/guide/requirements#processor). |
+| O Windows diz que o aplicativo não é compatível (código de saída 216) | Ele foi convertido para Linux. Converta de novo com **Windows** selecionado, ou com `--windows`. |
+| Erro 193 no Windows | Há um `.prx` original do PS5 em `libs/`. Ali só devem ficar as bibliotecas do AnyPS5. |
+| Erro 126 no Windows | Falta uma biblioteca. Use as bibliotecas do arquivo da versão, que já incluem as DLLs necessárias. |
+| `[gpu] open /dev/udmabuf: Permission denied` | Adicione o seu usuário ao grupo `kvm` e faça login de novo. |
+| Um erro de `param.json` | Copie o `sce_sys/param.json` do jogo para `app0/sce_sys/`. |
+| Um erro de chunk do PlayGo ao abrir | Defina `APS5_PLAYGO_UNLISTED_CHUNKS`. Veja [preparando o seu dump](/guide/dump#known-problems-with-some-dumps). |
+| `sceFontOpenFontSet` com `file=(none)`, ou texto faltando | Adicione as [fontes do sistema](/guide/run#system-fonts). |
+| `replace guest placeholder with resident direct memory` | O Windows ficou sem memória para alocar. Aumente o arquivo de paginação. |
+| `sceSystemServiceLoadExec: execv failed: Permission denied` | Rode `chmod +x` em todos os executáveis que o conversor gerou. |
+| `SDL_GetWindowDisplayIndex failed` | O monitor estava em repouso quando o jogo abriu. Acorde-o e abra o jogo de novo. |
+| Um travamento em `nvgpucomp64.dll` | Um bug conhecido do driver da NVIDIA. Atualize o driver. |
+| O Windows trava enquanto procura GPUs | O Mesa Dozen pode estar instalado. Rode `$env:VK_LOADER_DRIVERS_DISABLE = '*dzn*'` antes de abrir o jogo, a menos que o Dozen seja o seu único driver Vulkan. |
+| Uma tela preta demorada na primeira execução | Os shaders estão sendo compilados. Espere; na próxima vez vai abrir mais rápido. |
+
+## Quando o jogo para sozinho
+
+A maioria dos jogos esbarra em algo que ainda não foi implementado. Uma mensagem com `what()` ou `terminate called` diz qual é a peça que falta. Não é algo que você consiga resolver do seu lado, mas é exatamente o que os desenvolvedores precisam saber.
+
+1. Procure o seu jogo na [lista de compatibilidade](/compatibility). Se a parada já é conhecida, ela aparece lá com a issue que a acompanha.
+2. Veja se saiu uma versão mais nova na [página de download](/download).
+3. Se o seu resultado for novo, [relate-o](/guide/report).
+
+## Códigos de saída
+
+O relinker sai com `0` em caso de sucesso, `1` para argumentos inválidos e `2` quando a conversão falha (o motivo é mostrado).
+
+No Linux, um jogo que sai com `134` parou por um recurso sem suporte ou por um erro, e `139` significa que ele travou. No Windows, `0xc0000005` é um travamento e `0xc0000409` é um recurso sem suporte.

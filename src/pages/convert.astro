@@ -1,0 +1,104 @@
+---
+import Base from "../layouts/Base.astro";
+import { getRelease } from "../lib/upstream";
+
+const release = await getRelease();
+const APP = "/convert/app/index.html";
+---
+
+<Base title="Web converter" description="Convert a PS5 game you own into a native Linux or Windows program, right in your browser. Your files never leave your device.">
+  <section class="container head">
+    <div>
+      <span class="eyebrow">Web converter{release && ` · ${release.tag}`}</span>
+      <h1>Convert in your browser</h1>
+      <p class="lede">Choose your dump's folder or ZIP and pick Windows or Linux. Conversion runs on your device, and the result already includes the system libraries.</p>
+    </div>
+    <ul class="facts">
+      <li><b>Private</b>Nothing is uploaded. The relinker runs locally as WebAssembly.</li>
+      <li><b>Complete</b>The output has the executable, libraries and folder layout ready to run.</li>
+      <li><b>Not sure what to drop?</b><a href="/guide/dump">Prepare your dump</a> first.</li>
+    </ul>
+  </section>
+
+  <section class="container">
+    <div class="frame">
+      <iframe src={APP} title="AnyPS5 web converter" data-converter></iframe>
+    </div>
+    <p class="after muted">
+      Converting does not mean a game runs. Check the <a href="/compatibility">compatibility list</a> for known blockers. Prefer a full-page view?{" "}
+      <a href={APP}>Open the converter on its own</a>. Large games or advanced options: use the <a href="/download">command-line relinker</a>.
+    </p>
+  </section>
+</Base>
+
+<script>
+  const frame = document.querySelector<HTMLIFrameElement>("[data-converter]")!;
+  const sync = () => {
+    const root = frame.contentDocument?.documentElement;
+    if (root) root.dataset.theme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  };
+  // Same origin, so the frame can grow with its content instead of scrolling inside the page.
+  frame.addEventListener("load", () => {
+    sync();
+    const body = frame.contentDocument?.body;
+    if (!body) return;
+    new ResizeObserver(() => (frame.style.height = `${body.scrollHeight}px`)).observe(body);
+  });
+  document.addEventListener("themechange", sync);
+</script>
+
+<style>
+  .head {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: end;
+    padding-block: clamp(40px, 6vw, 72px) 32px;
+  }
+  .head h1 {
+    margin-bottom: 0.3em;
+  }
+  .head .lede {
+    margin: 0;
+  }
+  .facts {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .facts li {
+    padding-left: 14px;
+    border-left: 2px solid var(--line-strong);
+  }
+  .facts b {
+    display: block;
+    color: var(--text);
+  }
+  .frame {
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 8px);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+  }
+  iframe {
+    display: block;
+    width: 100%;
+    height: 720px;
+    border: 0;
+    border-radius: var(--radius);
+  }
+  .after {
+    margin: 20px 0 96px;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 860px) {
+    .head {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

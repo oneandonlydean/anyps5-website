@@ -1,0 +1,71 @@
+---
+/** Linux/Windows switcher. Every switcher on the site follows the last choice. */
+const platforms = ["Linux", "Windows"];
+---
+
+<div class="tabs" data-tabs>
+  <div class="tablist" role="tablist" aria-label="Operating system">
+    {platforms.map((p) => <button type="button" role="tab" data-platform={p.toLowerCase()} aria-selected="false">{p}</button>)}
+  </div>
+  <slot />
+</div>
+
+<script>
+  const KEY = "platform";
+  const initial = (() => {
+    try {
+      const saved = localStorage.getItem(KEY);
+      if (saved) return saved;
+    } catch {}
+    return navigator.userAgent.includes("Windows") ? "windows" : "linux";
+  })();
+
+  function show(platform: string) {
+    for (const tab of document.querySelectorAll<HTMLElement>("[data-tabs] [role=tab]")) tab.setAttribute("aria-selected", String(tab.dataset.platform === platform));
+    for (const panel of document.querySelectorAll<HTMLElement>("[data-tabs] [data-panel]")) panel.hidden = panel.dataset.panel !== platform;
+  }
+
+  document.addEventListener("click", (event) => {
+    const tab = (event.target as Element).closest<HTMLElement>("[data-tabs] [role=tab]");
+    if (!tab?.dataset.platform) return;
+    show(tab.dataset.platform);
+    try {
+      localStorage.setItem(KEY, tab.dataset.platform);
+    } catch {}
+  });
+  show(initial);
+</script>
+
+<style>
+  .tabs {
+    margin: 0 0 1.4em;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .tablist {
+    display: flex;
+    gap: 4px;
+    padding: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  [role="tab"] {
+    padding: 6px 14px;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: none;
+    color: var(--muted);
+    font: 600 0.88rem var(--font);
+    cursor: pointer;
+  }
+  [role="tab"]:hover {
+    color: var(--text);
+  }
+  [role="tab"][aria-selected="true"] {
+    background: var(--raised);
+    color: var(--text);
+  }
+  .tabs :global([data-panel]) {
+    padding: 18px 20px 4px;
+  }
+</style>

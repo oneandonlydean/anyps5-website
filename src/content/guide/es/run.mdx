@@ -1,0 +1,96 @@
+---
+title: Ejecuta y juega
+summary: Inicia el juego, conecta un mando y configura las fuentes, el idioma y las partidas guardadas.
+step: 4
+---
+
+## Inicia el juego
+
+<Tabs>
+<Tab platform="linux">
+
+Desde la carpeta del juego:
+
+```sh
+./app.elf
+```
+
+Las descargas del navegador pierden el permiso de ejecución. Si el juego no arranca, ejecuta `chmod +x app.elf` (y lo mismo con cualquier otro ejecutable que haya indicado el conversor).
+
+</Tab>
+<Tab platform="windows">
+
+Haz doble clic en `app.exe`, o desde PowerShell en la carpeta del juego:
+
+```powershell
+.\app.exe
+```
+
+Ejecútalo desde una sesión de escritorio normal con tu usuario, no por SSH.
+
+</Tab>
+</Tabs>
+
+<Callout title="El primer arranque es lento">
+La primera vez, AnyPS5 compila los shaders del juego para tu GPU. Eso puede tardar minutos antes del primer fotograma. El resultado se guarda en `shader_cache/` junto al ejecutable, así que los siguientes arranques son mucho más rápidos. Puedes borrar esa carpeta sin problema.
+</Callout>
+
+## Controles
+
+Los mandos que reconoce SDL funcionan directamente: DualSense, DualShock 4 y mandos de estilo Xbox. Los sticks y los gatillos analógicos funcionan tal cual, el panel táctil del DualSense también, y puedes conectar un mando con el juego en marcha.
+
+Sin mando, se usan estas asignaciones de teclado y ratón:
+
+| PS5 | Teclado y ratón |
+|---|---|
+| Cruz | Enter, Espacio |
+| Círculo | C |
+| Triángulo | I |
+| Cuadrado | Botón izquierdo del ratón |
+| L1 / R1 | Q / E |
+| L2 / R2 | R / botón derecho del ratón |
+| L3 / R3 | Shift / Ctrl |
+| Options | Esc |
+| Cruceta | Teclas de flecha |
+| Stick izquierdo | W A S D |
+| Stick derecho | T F G H, o el ratón tras pulsar el botón central del ratón o F7 |
+| Panel táctil | Retroceso (izquierda), Tab (derecha) |
+
+**F11** cambia a pantalla completa y **F10** muestra una superposición de rendimiento. Para cambiar las asignaciones, crea `anyps5-input.ini` junto al ejecutable; consulta [asignación de controles](/docs/input-mapping).
+
+## Ajustes opcionales
+
+Defínelos como variables de entorno antes de iniciar el juego.
+
+| Variable | Qué hace |
+|---|---|
+| `ANYPS5_LANGUAGE` | El número de idioma de la consola. `1` es inglés (EE. UU.), el predeterminado; `18` inglés (Reino Unido), `2` francés, `4` alemán, `3` español, `0` japonés. [Todos los idiomas](/docs/usage#console-language) |
+| `ANYPS5_GPU` | Parte del nombre de una GPU, para elegir otra GPU |
+| `ANYPS5_PRESENT_MODE` | `mailbox` o `immediate` para desactivar la sincronización vertical |
+| `ANYPS5_OVERLAY` | `1` muestra la superposición de rendimiento desde el inicio |
+
+<Tabs>
+<Tab platform="linux">
+
+```sh
+ANYPS5_LANGUAGE=18 ./app.elf
+```
+
+</Tab>
+<Tab platform="windows">
+
+```powershell
+$env:ANYPS5_LANGUAGE = '18'
+.\app.exe
+```
+
+</Tab>
+</Tabs>
+
+## Fuentes del sistema
+
+Algunos juegos usan las fuentes del sistema de la consola y, sin ellas, no muestran texto o se detienen. Pon los archivos de fuentes en una carpeta `anyps5-fonts/` junto al ejecutable. Las fuentes volcadas desde tu consola funcionan con sus propios nombres. Si no las tienes, las fuentes libres [Noto](https://github.com/notofonts/notofonts.github.io) sirven como sustitutas: `NotoSans-Regular.ttf` y sus variantes de grosor, `NotoSansMono`, `NotoSansThai` y `NotoSansCJK`. La [referencia de uso](/docs/usage#system-fonts) tiene los nombres de archivo exactos.
+
+## Partidas guardadas
+
+Las partidas guardadas se almacenan en la carpeta `_sd/`, junto a `app0/`. Copia `_sd/` y `_sd_mem/` para llevar tu progreso a otra copia del juego.

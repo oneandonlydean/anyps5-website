@@ -1,0 +1,107 @@
+---
+interface Callout {
+  /** Position over the image, in percent of its width and height. */
+  x: number;
+  y: number;
+  label: string;
+}
+
+interface Props {
+  /** Image paths for each theme; the page shows the one that matches. */
+  dark: string;
+  light: string;
+  alt: string;
+  width: number;
+  height: number;
+  callouts?: Callout[];
+}
+
+const { dark, light, alt, width, height, callouts = [] } = Astro.props;
+---
+
+<figure class="shot">
+  <div class="frame">
+    <img class="dark" src={dark} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+    <img class="light" src={light} alt="" width={width} height={height} loading="lazy" decoding="async" />
+    {callouts.map((c, i) => <span class="marker" style={`left:${c.x}%;top:${c.y}%`} aria-hidden="true">{i + 1}</span>)}
+  </div>
+  {
+    callouts.length > 0 && (
+      <ol class="legend">
+        {callouts.map((c) => (
+          <li>{c.label}</li>
+        ))}
+      </ol>
+    )
+  }
+</figure>
+
+<style>
+  .shot {
+    margin: 0 0 1.6em;
+  }
+  .frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 48px -28px rgb(0 0 0 / 0.6);
+  }
+  .frame img {
+    width: 100%;
+    height: auto;
+  }
+  .light {
+    display: none;
+  }
+  :global(:root[data-theme="light"]) .shot .light {
+    display: block;
+  }
+  :global(:root[data-theme="light"]) .shot .dark {
+    display: none;
+  }
+  .marker {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: 2px solid var(--surface);
+    border-radius: 50%;
+    background: var(--warn);
+    color: #1a1204;
+    font: 700 0.78rem/1 var(--mono);
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--warn) 30%, transparent),
+      0 6px 14px rgb(0 0 0 / 0.4);
+    translate: -50% -50%;
+  }
+  .legend {
+    display: grid;
+    gap: 6px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: callout;
+    font-size: 0.9rem;
+  }
+  .legend li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    counter-increment: callout;
+  }
+  .legend li::before {
+    content: counter(callout);
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--warn) 85%, var(--surface));
+    color: #1a1204;
+    font: 700 0.7rem/1 var(--mono);
+    translate: 0 3px;
+  }
+</style>

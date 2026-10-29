@@ -1,0 +1,93 @@
+---
+import { render } from "astro:content";
+import Article from "../../layouts/Article.astro";
+import { localePath, strings, type Locale } from "../../i18n";
+import { guideNav, type Step } from "../../lib/guide";
+import Callout from "./Callout.astro";
+import LocalLink from "./LocalLink.astro";
+import Screenshot from "./Screenshot.astro";
+import Tab from "./Tab.astro";
+import Tabs from "./Tabs.astro";
+
+interface Props {
+  locale: Locale;
+  step: Step;
+  steps: Step[];
+}
+
+const { locale, step, steps } = Astro.props;
+const t = strings(locale).guide;
+const index = steps.findIndex((s) => s.slug === step.slug);
+const prev = steps[index - 1];
+const next = steps[index + 1];
+const { Content, headings } = await render(step.entry);
+const href = (slug?: string) => localePath(locale, slug ? `/guide/${slug}` : "/guide");
+---
+
+<Article
+  title={step.entry.data.title}
+  eyebrow={t.step(step.entry.data.step, steps.length)}
+  lede={step.entry.data.summary}
+  nav={guideNav(steps, locale)}
+  headings={headings.filter((h) => h.depth === 2).map((h) => ({ ...h, id: h.slug }))}
+>
+  <div lang={step.translated ? undefined : "en"}>
+    <Content components={{ a: LocalLink, Callout, Screenshot, Tab, Tabs }} />
+  </div>
+  <nav slot="after" class="pager" aria-label={t.steps}>
+    {
+      prev ? (
+        <a href={href(prev.slug)}>
+          <span>{t.previous}</span>
+          {prev.entry.data.title}
+        </a>
+      ) : (
+        <a href={href()}>
+          <span>{t.backTo}</span>
+          {t.overview}
+        </a>
+      )
+    }
+    {
+      next && (
+        <a class="next" href={href(next.slug)}>
+          <span>{t.next}</span>
+          {next.entry.data.title}
+        </a>
+      )
+    }
+  </nav>
+</Article>
+
+<style>
+  .pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 76ch;
+    margin-top: 56px;
+  }
+  .pager a {
+    display: grid;
+    gap: 4px;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .pager a:hover {
+    border-color: var(--accent);
+  }
+  .pager span {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 400;
+  }
+  .next {
+    grid-column: 2;
+    text-align: right;
+  }
+</style>

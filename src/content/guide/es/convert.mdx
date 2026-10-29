@@ -1,0 +1,97 @@
+---
+title: Convierte el juego
+summary: Reenlaza el ejecutable para tu sistema, en el navegador o en la línea de comandos.
+step: 3
+---
+
+La conversión reescribe el ejecutable y los módulos del juego como un programa nativo de Linux o Windows y añade a su lado las bibliotecas del sistema de AnyPS5. Tus archivos nunca salen de tu ordenador.
+
+## En el navegador (recomendado)
+
+<Screenshot
+  dark="/guide/converter-dark.webp"
+  light="/guide/converter-light.webp"
+  alt="El conversor web: una zona para soltar archivos con los botones Choose ZIP files y Choose folder, opciones de Windows y Linux, una opción de guardado, una casilla para CPU Intel y un botón Convert & save."
+  width={1117}
+  height={627}
+  callouts={[
+    { x: 35, y: 47, label: "Elige la carpeta de tu volcado, o uno o varios archivos ZIP." },
+    { x: 12.8, y: 63.6, label: "Elige el sistema en el que vas a jugar." },
+    { x: 64, y: 63.6, label: "Elige cómo guardar el resultado." },
+    { x: 32.6, y: 82, label: "Con una CPU Intel, marca esta casilla." },
+    { x: 82, y: 93.6, label: "Convierte y guarda." },
+  ]}
+/>
+
+1. Abre el [conversor web](/convert).
+2. Elige la carpeta de tu volcado, o suelta uno o varios archivos ZIP.
+3. Elige **Windows (.exe)** o **Linux (.elf)**.
+4. Elige cómo guardar el resultado:
+   - **Download in memory** (descargar en memoria) para juegos pequeños, de hasta 256 MiB.
+   - **Save ZIP to disk** (guardar ZIP en disco) para juegos grandes. Requiere Chrome o Edge de escritorio.
+   - **Save to folder** (guardar en carpeta) escribe una carpeta sin comprimir. Solo para Linux y con un juego cada vez.
+5. Con una CPU Intel, marca **Convert AMD-specific instructions for Intel CPUs** (convertir las instrucciones específicas de AMD para CPU Intel).
+6. Pulsa **Convert & save** (convertir y guardar).
+
+El resultado ya contiene las bibliotecas del sistema y la estructura de carpetas correcta. **Extrae el ZIP completo** antes de iniciar el juego.
+
+<Callout title="Muchos juegos a la vez">
+Suelta varios archivos ZIP para convertirlos en un solo paquete. Cada juego tendrá su propia carpeta numerada.
+</Callout>
+
+## En la línea de comandos
+
+El relinker nativo admite juegos de cualquier tamaño y tiene más opciones. Descarga `relinker` y el archivo de bibliotecas para tu sistema desde la [página de descargas](/download), cambia el nombre del relinker descargado a `relinker` (o `relinker.exe`) y ejecútalo sobre el ejecutable del juego. La carpeta `sce_module/` del juego tiene que estar junto a `eboot.bin`.
+
+<Tabs>
+<Tab platform="linux">
+
+```sh
+chmod +x relinker
+./relinker app0/eboot.bin game/app.elf
+unzip prx-linux-*.zip -d game/
+```
+
+</Tab>
+<Tab platform="windows">
+
+```powershell
+.\relinker.exe --windows app0\eboot.bin game\app.exe
+Expand-Archive prx-windows-*.zip -DestinationPath game
+```
+
+Sin `--windows`, el resultado es un archivo de Linux aunque su nombre termine en `.exe`, y Windows se niega a iniciarlo.
+
+</Tab>
+</Tabs>
+
+El archivo de bibliotecas se descomprime en una carpeta `libs/`. Usa el archivo compilado para el mismo sistema que el juego.
+
+Opciones útiles:
+
+| Opción | Úsala cuando |
+|---|---|
+| `--to-intel` | Juegas con una CPU Intel |
+| `--module-dir <dir>` | El juego carga módulos de otras carpetas, como `Media/Plugins` en Unity |
+| `--registry` | Quieres comprobar qué funciones del sistema necesita el juego antes de ejecutarlo |
+
+La [referencia de uso](/docs/usage#options) recoge todas las opciones.
+
+## Organiza los archivos
+
+El relinker muestra la estructura que espera (`Arrange the files like this`). Es algo así:
+
+```text
+game/
+    app.elf  or  app.exe     the converted executable
+    libs/                    AnyPS5 system libraries
+    app0/                    the game's original files
+        eboot.bin            keep the original, games look for it
+        sce_sys/param.json
+        sce_module/          the converted modules (the relinker prints each one
+                             as "Guest module:")
+```
+
+- Copia el resto de tu volcado en `app0/`, incluido el `eboot.bin` original.
+- Pon en `libs/` solo las bibliotecas de AnyPS5. Si hay archivos `.prx` originales de PS5 en `libs/`, Windows falla con el error 193.
+- En Linux, `app0/` no debe contener enlaces simbólicos. Usa copias o enlaces duros.

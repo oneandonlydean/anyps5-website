@@ -1,0 +1,54 @@
+/* Applied on top of the upstream converter's own app.css when it is embedded in /convert. */
+:root,
+:root[data-theme="dark"] {
+  --bg: #06080d;
+  --surface: #0c1018;
+  --sunken: #090c13;
+  --line: #1c2333;
+  --text: #e9edf5;
+  --muted: #8e98ab;
+  --accent: #5b9bff;
+  --on-accent: #050912;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f7fa;
+  --surface: #ffffff;
+  --sunken: #eef1f6;
+  --line: #e1e5ec;
+  --text: #0c111d;
+  --muted: #566074;
+  --accent: #1d5fe0;
+  --on-accent: #ffffff;
+  color-scheme: light;
+}
+
+body {
+  background: transparent;
+}
+
+/* /convert supplies the header, intro, footer and compatibility note. */
+header,
+.intro,
+footer,
+.compatibility {
+  display: none;
+}
+
+main {
+  max-width: none;
+  padding: 0 0 4px;
+}
+
+.limits {
+  padding-inline: 16px;
+}
+
+.converter {
+  border-radius: 14px;
+}
+
+.button {
+  border-radius: 999px;
+}

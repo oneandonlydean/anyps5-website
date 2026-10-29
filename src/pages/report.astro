@@ -1,0 +1,449 @@
+---
+import Base from "../layouts/Base.astro";
+import { getGames } from "../lib/data";
+import { DISCUSSIONS_URL, REPO_URL } from "../lib/site";
+import { getRelease } from "../lib/upstream";
+
+const [games, release] = await Promise.all([getGames(), getRelease()]);
+const index = games.map((g) => ({ slug: g.slug, name: g.name, ids: g.titleIds, thread: g.threads[0]?.url ?? null }));
+
+// The options of upstream's Game bring-up form, in its order, with what each one tells the compatibility list.
+const FURTHEST = [
+  { value: "Does not convert", hint: "The relinker refuses the executable." },
+  { value: "Stops before the first frame", hint: "It converts and starts, but nothing is drawn." },
+  { value: "Logos or loading screen", hint: "Frames reach the screen: logos, videos, loading." },
+  { value: "Menu", hint: "A menu or title screen responds to input." },
+  { value: "In game", hint: "Gameplay is reached." },
+];
+---
+
+<Base title="Report a test run" description="Write a Game bring-up report for AnyPS5 in the format the project expects, with your system filled in for you.">
+  <section class="container page-head">
+    <span class="eyebrow">Report a test run</span>
+    <h1>Tell everyone how far it got</h1>
+    <p class="lede">
+      Every run helps, including the ones that crash. Fill this in and you get a report in the exact format of the{" "}
+      <a href={DISCUSSIONS_URL}>Game bring-up</a> discussions, ready to post. Nothing leaves your browser until you post it yourself.
+    </p>
+  </section>
+
+  <section class="container layout" data-report data-games={JSON.stringify(index)} data-repo={REPO_URL}>
+    <form class="card form" novalidate>
+      <fieldset>
+        <legend>1. The game</legend>
+        <label class="field">
+          <span>Game name or title ID</span>
+          <input name="game" list="report-games" placeholder="Hades II or PPSA36082" autocomplete="off" required />
+          <datalist id="report-games">
+            {index.map((g) => <option value={`${g.name} (${g.ids[0]})`} />)}
+          </datalist>
+          <small class="status" data-thread-status>Pick a game from the list, or type a new name with its title ID.</small>
+        </label>
+        <label class="field">
+          <span>Content version</span>
+          <input name="version" placeholder="01.001.001" />
+          <small>From <code>sce_sys/param.json</code>.</small>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Your setup</legend>
+        <label class="field">
+          <span>AnyPS5 build</span>
+          <input name="commit" value={release ? `${release.tag} release` : ""} placeholder="main 1a2b3c4d, or v0.1.3 release" />
+          <small>The release you downloaded, or the <code>main</code> commit you built, plus any pull requests merged on top.</small>
+        </label>
+        <label class="field">
+          <span>System</span>
+          <input name="system" placeholder="Arch Linux, RTX 5080 (NVIDIA 615.78.08)" data-system />
+          <small data-system-note>OS, GPU and driver version. We fill in what your browser can tell; add the driver version.</small>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. What happened</legend>
+        <div class="field">
+          <span>Furthest point</span>
+          <div class="choices">
+            {
+              FURTHEST.map((f) => (
+                <label class="choice">
+                  <input type="radio" name="reached" value={f.value} />
+                  <span>
+                    <b>{f.value}</b>
+                    <small>{f.hint}</small>
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+        </div>
+        <label class="field">
+          <span>What is shown</span>
+          <textarea name="seen" rows="3" placeholder="The last screen you saw, the frame rate there, and whether picture, audio and input work."></textarea>
+        </label>
+        <label class="field">
+          <span>Current blocker <em>optional</em></span>
+          <textarea name="blocker" rows="4" placeholder="The error line where it stops (copy it exactly), and any issue or pull request that tracks it."></textarea>
+          <small>Paste the exact error text: the site matches it against the source to show what each game is waiting on.</small>
+        </label>
+        <label class="field">
+          <span>How it was run <em>optional</em></span>
+          <textarea name="steps" rows="2" placeholder="Commands, environment variables, anything beyond the setup guide."></textarea>
+        </label>
+      </fieldset>
+    </form>
+
+    <aside class="output">
+      <div class="card preview-card">
+        <div class="preview-head">
+          <span class="label">Your report</span>
+          <span class="badge" data-mode>New thread</span>
+        </div>
+        <pre class="preview" data-preview></pre>
+        <p class="missing" data-missing></p>
+        <div class="actions">
+          <button type="button" class="button primary" data-copy>Copy report</button>
+          <a class="button" data-open href={DISCUSSIONS_URL} target="_blank" rel="noopener">Open the discussion</a>
+        </div>
+        <p class="hint" data-hint>Copy the report, then open the discussion and paste it.</p>
+      </div>
+      <button type="button" class="reset" data-reset>Clear the form</button>
+    </aside>
+  </section>
+</Base>
+
+<script>
+  interface GameEntry {
+    slug: string;
+    name: string;
+    ids: string[];
+    thread: string | null;
+  }
+
+  const root = document.querySelector<HTMLElement>("[data-report]")!;
+  const form = root.querySelector("form")!;
+  const games = JSON.parse(root.dataset.games!) as GameEntry[];
+  const repo = root.dataset.repo!;
+  const preview = root.querySelector<HTMLElement>("[data-preview]")!;
+  const open = root.querySelector<HTMLAnchorElement>("[data-open]")!;
+  const DRAFT = "report-draft";
+  const TITLE_ID = /\b(PPSA|CUSA)\d{5}\b/i;
+
+  const value = (name: string) => (form.elements.namedItem(name) as HTMLInputElement | RadioNodeList | null)?.value.trim() ?? "";
+
+  /** The known game a typed value names, by title ID or exact name. */
+  function findGame(text: string): GameEntry | undefined {
+    const id = text.match(TITLE_ID)?.[0].toUpperCase();
+    if (id) return games.find((g) => g.ids.includes(id));
+    const name = text.toLowerCase();
+    return games.find((g) => g.name.toLowerCase() === name);
+  }
+
+  function title(text: string, game: GameEntry | undefined): string {
+    if (game) return `${game.name} (${game.ids[0]})`;
+    return text;
+  }
+
+  /** Sections in the order and wording of upstream's form, so the report parses like a form post. */
+  function sections(): [string, string][] {
+    return [
+      ["Content version tested", value("version")],
+      ["AnyPS5 commit", value("commit")],
+      ["System tested", value("system")],
+      ["Furthest point", value("reached")],
+      ["What is shown", value("seen")],
+      ["Current blocker", value("blocker")],
+      ["How it was run", value("steps")],
+    ];
+  }
+
+  function render() {
+    const typed = value("game");
+    const game = typed ? findGame(typed) : undefined;
+    const heading = title(typed, game);
+    const body = sections()
+      .filter(([, text]) => text)
+      .map(([label, text]) => `### ${label}\n\n${text}`)
+      .join("\n\n");
+    const reply = Boolean(game?.thread);
+
+    // A reply goes under the game's existing thread; a new thread also needs the title field the form asks for.
+    preview.textContent = reply ? body || "Fill in the form to build your report." : [`### Title\n\n${heading || "Game name (PPSA00000)"}`, body].filter(Boolean).join("\n\n");
+
+    const status = root.querySelector<HTMLElement>("[data-thread-status]")!;
+    root.querySelector("[data-mode]")!.textContent = reply ? "Reply" : "New thread";
+    if (reply) {
+      status.textContent = "This game has a thread: your report goes there as a reply.";
+      open.href = game!.thread!;
+      open.textContent = "Open the thread";
+      root.querySelector("[data-hint]")!.textContent = "Copy the report, open the thread and paste it as a reply.";
+    } else {
+      status.textContent =
+        typed && !TITLE_ID.test(typed) ? "Add the title ID, like PPSA36082, so the report reaches the right game." : typed ? "No thread yet: this starts a new one." : "Pick a game from the list, or type a new name with its title ID.";
+      // GitHub may fill the form fields from these; the copied report works either way.
+      const params = new URLSearchParams({ category: "game-bring-up", title: heading });
+      const fields: Record<string, string> = { title: heading, version: value("version"), commit: value("commit"), system: value("system"), seen: value("seen"), blocker: value("blocker"), steps: value("steps") };
+      for (const [key, text] of Object.entries(fields)) if (text) params.set(key, text);
+      open.href = `${repo}/discussions/new?${params}`;
+      open.textContent = "Start a new thread";
+      root.querySelector("[data-hint]")!.textContent = "Copy the report, start the thread, and paste any fields GitHub did not fill in.";
+    }
+
+    const missing = [!typed && "the game", !value("reached") && "the furthest point", !value("system") && "your system", !value("seen") && "what is shown"].filter(Boolean);
+    root.querySelector("[data-missing]")!.textContent = missing.length ? `Still needed: ${missing.join(", ")}.` : "";
+    root.querySelector<HTMLButtonElement>("[data-copy]")!.disabled = missing.length > 0;
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(DRAFT, JSON.stringify(Object.fromEntries(new FormData(form))));
+    } catch {}
+  }
+
+  function restore() {
+    try {
+      const draft = JSON.parse(localStorage.getItem(DRAFT) ?? "null") as Record<string, string> | null;
+      for (const [name, text] of Object.entries(draft ?? {})) {
+        const field = form.elements.namedItem(name);
+        if (field instanceof RadioNodeList) field.value = text;
+        else if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) field.value = text;
+      }
+    } catch {}
+  }
+
+  /** A first guess at the OS and GPU from what the browser exposes. The person corrects it before posting. */
+  async function detectSystem(): Promise<string> {
+    const ua = navigator.userAgent;
+    const os = /Windows NT 10/.test(ua) ? "Windows" : /Linux/.test(ua) && !/Android/.test(ua) ? "Linux" : /Mac OS X/.test(ua) ? "macOS" : "";
+    let gpu = "";
+    try {
+      const gl = document.createElement("canvas").getContext("webgl");
+      const info = gl?.getExtension("WEBGL_debug_renderer_info");
+      const renderer = info ? String(gl!.getParameter(info.UNMASKED_RENDERER_WEBGL)) : "";
+      // Strip the ANGLE wrapper: "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 Direct3D11 vs_5_0 ps_5_0, D3D11)".
+      gpu = (renderer.match(/ANGLE \([^,]+, ([^,]+?)(?: Direct3D| \(0x|,)/)?.[1] ?? renderer).replace(/\s*\/PCIe.*$/, "").replace(/, or similar$/, "").trim();
+    } catch {}
+    return [os, gpu].filter(Boolean).join(", ");
+  }
+
+  const params = new URLSearchParams(location.search);
+  restore();
+  const linked = params.get("game") && games.find((g) => g.slug === params.get("game"));
+  if (linked) (form.elements.namedItem("game") as HTMLInputElement).value = `${linked.name} (${linked.ids[0]})`;
+  const system = root.querySelector<HTMLInputElement>("[data-system]")!;
+  if (!system.value) {
+    detectSystem().then((guess) => {
+      if (guess && !system.value) {
+        system.value = `${guess} (driver ?)`;
+        root.querySelector("[data-system-note]")!.textContent = "Filled in from your browser: check it and replace the ? with your driver version.";
+        render();
+      }
+    });
+  }
+
+  form.addEventListener("input", () => {
+    render();
+    save();
+  });
+  root.querySelector("[data-copy]")!.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(preview.textContent ?? "");
+      document.dispatchEvent(new CustomEvent("toast", { detail: "Report copied: paste it into the discussion" }));
+    } catch {
+      // Clipboard access can be refused; select the text so it can be copied by hand.
+      getSelection()?.selectAllChildren(preview);
+      document.dispatchEvent(new CustomEvent("toast", { detail: "Press Ctrl+C to copy the selected report" }));
+    }
+  });
+  root.querySelector("[data-reset]")!.addEventListener("click", () => {
+    form.reset();
+    try {
+      localStorage.removeItem(DRAFT);
+    } catch {}
+    render();
+  });
+  render();
+</script>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    padding-bottom: 96px;
+  }
+  .form {
+    display: grid;
+    gap: 8px;
+    padding: clamp(20px, 3vw, 32px);
+  }
+  fieldset {
+    display: grid;
+    gap: 18px;
+    margin: 0;
+    padding: 0 0 24px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  fieldset:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  fieldset + fieldset {
+    padding-top: 16px;
+  }
+  legend {
+    margin-bottom: 14px;
+    font-size: 1.05rem;
+    font-weight: 650;
+  }
+  .field {
+    display: grid;
+    gap: 6px;
+  }
+  .field > span {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .field em {
+    color: var(--faint);
+    font-style: normal;
+    font-weight: 400;
+  }
+  .field small {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  input:not([type="radio"]),
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.92rem;
+    resize: vertical;
+  }
+  input:focus,
+  textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .choices {
+    display: grid;
+    gap: 6px;
+  }
+  .choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .choice:has(input:checked) {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+  }
+  .choice input {
+    margin-top: 4px;
+    accent-color: var(--accent);
+  }
+  .choice span {
+    display: grid;
+  }
+  .choice b {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .choice small {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .output {
+    position: sticky;
+    top: 88px;
+    display: grid;
+    gap: 10px;
+  }
+  .preview-card {
+    padding: 20px;
+  }
+  .preview-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .label {
+    color: var(--faint);
+    font: 500 0.72rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .badge {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-2) 15%, transparent);
+    color: var(--accent-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .preview {
+    max-height: 420px;
+    overflow: auto;
+    margin: 0;
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .missing {
+    min-height: 1.2em;
+    margin: 10px 0 0;
+    color: var(--warn);
+    font-size: 0.82rem;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .actions .button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .hint {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .reset {
+    justify-self: start;
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.85rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  @media (max-width: 900px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .output {
+      position: static;
+    }
+  }
+</style>

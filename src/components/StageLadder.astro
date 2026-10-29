@@ -1,0 +1,152 @@
+---
+import type { Platform } from "../lib/schema";
+import { NOT_CONVERTING, STAGES, stageRank, stageSlug, type StageOrNone } from "../lib/stages";
+import { PLATFORM_LABEL } from "../lib/view";
+
+interface Props {
+  stage: StageOrNone | null;
+  branchStage: StageOrNone | null;
+  platforms: Partial<Record<Platform, StageOrNone>>;
+}
+const { stage, branchStage, platforms } = Astro.props;
+const rank = stageRank(stage);
+const branchRank = stageRank(branchStage);
+const tone = stageSlug(rank >= 0 ? stage : branchStage);
+const rows = Object.entries(platforms) as [Platform, StageOrNone][];
+---
+
+<div class="ladder" style={`--tone:var(--stage-${tone})`}>
+  <ol class="steps">
+    {
+      STAGES.map((s, i) => (
+        <li class:list={{ done: i <= rank, branch: i > rank && i <= branchRank, current: i === rank }} title={s.meaning}>
+          <span class="track" />
+          <span class="name">{s.name}</span>
+        </li>
+      ))
+    }
+  </ol>
+  {stage === NOT_CONVERTING && <p class="note">Does not convert yet: the relinker stops before producing an executable.</p>}
+  {
+    rows.length > 0 && (
+      <dl class="platforms">
+        {rows.map(([platform, reached]) => (
+          <div style={`--tone:var(--stage-${stageSlug(reached)})`}>
+            <dt>{PLATFORM_LABEL[platform]}</dt>
+            <dd>
+              <span class="mini" style={`--w:${((stageRank(reached) + 1) / STAGES.length) * 100}%`} />
+              {reached}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+</div>
+
+<style>
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    gap: 10px;
+  }
+  .track {
+    height: 10px;
+    border-radius: 4px;
+    background: var(--stage-untested);
+  }
+  .done .track {
+    background: var(--tone);
+  }
+  .current .track {
+    position: relative;
+    box-shadow: 0 0 18px color-mix(in srgb, var(--tone) 60%, transparent);
+  }
+  /* A marker on the stage the game has reached. */
+  .current .track::after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    border: 3px solid var(--surface);
+    border-radius: 50%;
+    background: var(--tone);
+    translate: 0 -50%;
+    animation: pulse 2.4s var(--ease) infinite;
+  }
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--tone) 60%, transparent);
+    }
+    70%,
+    100% {
+      box-shadow: 0 0 0 12px transparent;
+    }
+  }
+  .branch .track {
+    background: repeating-linear-gradient(-45deg, var(--tone) 0 3px, transparent 3px 7px);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone) 55%, transparent);
+  }
+  .name {
+    color: var(--faint);
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+  .done .name {
+    color: var(--muted);
+  }
+  .current .name {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .note {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin: 22px 0 0;
+  }
+  .platforms div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+  }
+  dt {
+    color: var(--muted);
+  }
+  dd {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-weight: 600;
+  }
+  .mini {
+    width: 64px;
+    height: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--tone) var(--w), var(--stage-untested) var(--w));
+  }
+  @media (max-width: 640px) {
+    .name {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      justify-self: center;
+      height: 72px;
+    }
+  }
+</style>

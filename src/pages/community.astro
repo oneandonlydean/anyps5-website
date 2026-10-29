@@ -1,0 +1,118 @@
+---
+import Base from "../layouts/Base.astro";
+import { DISCORD_URL, DISCUSSIONS_URL, REPO_URL, SITE_REPO_URL } from "../lib/site";
+
+const ways = [
+  {
+    title: "Test games",
+    text: "Run a game you own and share how far it gets. Failed runs with a full log help as much as good ones.",
+    links: [
+      { href: "/guide/report", label: "How to report" },
+      { href: DISCUSSIONS_URL, label: "Game bring-up" },
+    ],
+  },
+  {
+    title: "Write code",
+    text: "Implement system library functions, fix GPU issues, or improve the relinker. Pick a blocker from a game page or the issue tracker.",
+    links: [
+      { href: `${REPO_URL}/blob/main/CONTRIBUTING.md`, label: "Contributing guide" },
+      { href: `${REPO_URL}/issues`, label: "Issues" },
+    ],
+  },
+  {
+    title: "Curate compatibility",
+    text: "Correct a game's stage, add its blockers or fix its art. Each game is one small YAML file in this site's repository.",
+    links: [{ href: SITE_REPO_URL, label: "Website repository" }],
+  },
+  {
+    title: "Help others",
+    text: "Answer setup questions, share tips for particular games, and keep up with development.",
+    links: [{ href: DISCORD_URL, label: "Discord" }],
+  },
+];
+---
+
+<Base title="Community" description="Join the AnyPS5 community on Discord and GitHub. Test games, write code and curate compatibility.">
+  <section class="container page-head">
+    <span class="eyebrow">Community</span>
+    <h1>Built in the open</h1>
+    <p class="lede">AnyPS5 is free, open-source software developed on GitHub and discussed on Discord. There is a way to help whatever your skills.</p>
+    <div class="ctas">
+      <a class="button primary" href={DISCORD_URL}>Join the Discord</a>
+      <a class="button" href={REPO_URL}>GitHub repository</a>
+    </div>
+  </section>
+
+  <section class="container ways">
+    {
+      ways.map((way) => (
+        <div class="card way">
+          <h2>{way.title}</h2>
+          <p class="muted">{way.text}</p>
+          <div class="links">
+            {way.links.map((l) => (
+              <a href={l.href}>{l.label} →</a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="container rules">
+    <h2>Ground rules</h2>
+    <p class="muted">
+      AnyPS5 is for games you own. Do not ask for, share or link game files, firmware or keys in any community space. Keep reports factual, and say when analysis comes from an AI tool rather than from a
+      measurement.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .ways {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .way {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+  }
+  .way h2 {
+    font-size: 1.3rem;
+  }
+  .way p {
+    flex: 1;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .links a {
+    text-decoration: none;
+  }
+  .rules {
+    padding-block: 64px 96px;
+  }
+  .rules p {
+    max-width: 76ch;
+  }
+  .rules h2 {
+    font-size: 1.3rem;
+  }
+  @media (max-width: 760px) {
+    .ways {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

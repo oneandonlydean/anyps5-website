@@ -1,0 +1,14 @@
+---
+import { DEFAULT_LOCALE, isTranslated, localePath, parsePath } from "../../i18n";
+
+// Links in guide text are written with English paths; this points them at the reader's language where it exists.
+// Section anchors come from headings, which are translated too, so a link into a translated page drops its anchor
+// rather than jump to a section that has a different name there.
+const { href, ...rest } = Astro.props as { href?: string; [key: string]: unknown };
+const { locale } = parsePath(Astro.url.pathname);
+const [path, hash] = href?.startsWith("/") ? href.split("#") : [];
+const keepHash = hash && (locale === DEFAULT_LOCALE || !isTranslated(path));
+const target = path === undefined ? href : `${localePath(locale, path)}${keepHash ? `#${hash}` : ""}`;
+---
+
+<a href={target} {...rest}><slot /></a>

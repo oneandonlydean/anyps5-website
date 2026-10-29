@@ -1,0 +1,50 @@
+---
+title: Check your PC
+summary: A 64-bit CPU with the PS5's instruction set extensions, a Vulkan GPU, and Linux or Windows.
+step: 1
+---
+
+AnyPS5 turns a game into a native program, so the game's code runs directly on your CPU. Your PC needs to support the same instructions the PS5 does.
+
+## Processor
+
+You need an x86-64 CPU with the extensions of the PS5's Zen 2 processor: **AVX2, FMA, F16C, BMI1, BMI2, LZCNT and MOVBE**. Most AMD Ryzen and Intel Core processors from the last several years have them. When a converted game starts, it checks your CPU. If an extension is missing, the game stops before running any of its own code and the message names the missing extensions.
+
+<Callout title="Intel processors">
+Some games use AMD-only instructions. When you convert for an Intel CPU, tick **Convert AMD-specific instructions for Intel CPUs** in the converter, or pass `--to-intel` to the command-line relinker. A few titles generate AMD-only code while they run. Those still need an AMD CPU.
+</Callout>
+
+## Graphics
+
+You need a GPU with **Vulkan 1.1** that supports graphics, compute and presenting to a window. AnyPS5 picks a discrete GPU over an integrated one automatically. Keep your driver up to date, because many fixes land in GPU drivers.
+
+## Operating system
+
+Linux and Windows, 64-bit. The converter produces a native `.elf` for Linux or a native `.exe` for Windows. Convert separately for each system you want to play on.
+
+<Tabs>
+<Tab platform="linux">
+
+With Mesa drivers (AMD and Intel), games share memory with the GPU through `/dev/udmabuf`, and your user needs access to it. On most distributions, add yourself to the `kvm` group and log in again:
+
+```sh
+sudo usermod -aG kvm "$USER"
+```
+
+The NVIDIA proprietary driver does not use `/dev/udmabuf`.
+
+</Tab>
+<Tab platform="windows">
+
+A PS5 game can reserve up to 13.5 GiB of memory, and Windows has to be able to commit it. If a game stops with `replace guest placeholder with resident direct memory`, increase the size of your page file or close other programs.
+
+</Tab>
+</Tabs>
+
+## A game you own
+
+AnyPS5 does not include or download any game, firmware or keys. You need a **decrypted dump of a game you own**, made from your own console. The next step explains what the dump has to contain.
+
+<Callout tone="warn" title="Conversion is not compatibility">
+Most games do not run all the way yet. Before spending time on a dump, check the [compatibility list](/compatibility) to see how far your game gets.
+</Callout>

@@ -1,0 +1,40 @@
+---
+title: 解决常见问题
+summary: 常见错误信息的含义，以及应对方法。
+step: 5
+---
+
+遇到尚不支持的东西时，AnyPS5 会报错停止而不是瞎猜，并打印原因。先看输出的最后几行。如果在 Windows 上启动游戏时没有控制台窗口，输出会写入可执行文件旁边的 `anyps5.log`。
+
+## 错误与解决方法
+
+| 你看到的 | 怎么办 |
+|---|---|
+| 游戏列出了缺少的 CPU 扩展 | 你的 CPU 缺少游戏需要的指令。参见[配置要求](/guide/requirements#processor)。 |
+| Windows 提示该应用不兼容（退出代码 216） | 它是为 Linux 转换的。选择 **Windows** 或使用 `--windows` 重新转换。 |
+| Windows 上出现错误 193 | `libs/` 里有原始的 PS5 `.prx` 文件。那里只能放 AnyPS5 的系统库。 |
+| Windows 上出现错误 126 | 缺少某个库。请使用发布压缩包里的系统库，其中包含所需的 DLL。 |
+| `[gpu] open /dev/udmabuf: Permission denied` | 把你的用户加入 `kvm` 用户组，然后重新登录。 |
+| `param.json` 相关错误 | 把游戏的 `sce_sys/param.json` 复制到 `app0/sce_sys/`。 |
+| 启动时出现 PlayGo chunk 错误 | 设置 `APS5_PLAYGO_UNLISTED_CHUNKS`。参见[准备导出文件](/guide/dump#known-problems-with-some-dumps)。 |
+| 出现带 `file=(none)` 的 `sceFontOpenFontSet`，或文字缺失 | 添加[系统字体](/guide/run#system-fonts)。 |
+| `replace guest placeholder with resident direct memory` | Windows 的可提交内存不足。调大页面文件。 |
+| `sceSystemServiceLoadExec: execv failed: Permission denied` | 对转换器写出的每个可执行文件运行 `chmod +x`。 |
+| `SDL_GetWindowDisplayIndex failed` | 游戏启动时显示器处于休眠状态。唤醒显示器后重新启动。 |
+| 在 `nvgpucomp64.dll` 中崩溃 | 已知的 NVIDIA 驱动 bug。请更新驱动。 |
+| Windows 在查找显卡时崩溃 | 可能安装了 Mesa Dozen。启动游戏前运行 `$env:VK_LOADER_DRIVERS_DISABLE = '*dzn*'`，除非 Dozen 是你唯一的 Vulkan 驱动。 |
+| 首次运行时长时间黑屏 | 正在编译着色器。耐心等待，下次启动会更快。 |
+
+## 游戏自己停下来时
+
+大多数游戏都会碰到尚未实现的功能。带有 `what()` 或 `terminate called` 的信息会指出缺少的部分。这不是你这边能解决的问题，但正是开发者需要的信息。
+
+1. 在[兼容性列表](/compatibility)中搜索你的游戏。如果这个问题已知，列表中会附上跟踪它的 issue。
+2. 去[下载页面](/download)看看有没有更新的版本。
+3. 如果你的结果是新的，请[提交报告](/guide/report)。
+
+## 退出代码
+
+重链接器成功时以 `0` 退出，参数无效时为 `1`，转换失败时为 `2`（会打印原因）。
+
+在 Linux 上，游戏以 `134` 退出表示遇到了不支持的功能或错误而停止，`139` 表示崩溃。在 Windows 上，`0xc0000005` 表示崩溃，`0xc0000409` 表示遇到了不支持的功能。

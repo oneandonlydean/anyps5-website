@@ -1,0 +1,683 @@
+---
+import Base from "../../layouts/Base.astro";
+import GameArt from "../../components/GameArt.astro";
+import StageBadge from "../../components/StageBadge.astro";
+import NeedsPanel from "../../components/NeedsPanel.astro";
+import StageHistory from "../../components/StageHistory.astro";
+import StageLadder from "../../components/StageLadder.astro";
+import { getGames, getNeeds, getRetest } from "../../lib/data";
+import type { Game } from "../../lib/resolve";
+import { formatDate, newReportUrl, SITE_REPO_URL } from "../../lib/site";
+import { stageSlug } from "../../lib/stages";
+import { artSrc, artSrcset, PLATFORM_LABEL, reach } from "../../lib/view";
+import { gameTheme } from "../../lib/color";
+
+export async function getStaticPaths() {
+  return (await getGames()).map((game) => ({ params: { slug: game.slug }, props: { game } }));
+}
+
+const { game } = Astro.props as { game: Game };
+const { stage, onMain } = reach(game);
+const needs = (await getNeeds()).get(game.slug);
+const retest = (await getRetest()).get(game.slug)!;
+const freshness = retest.lastTested
+  ? `Last tested ${formatDate(retest.lastTested)} · ${retest.releasesSince === 0 ? "on the current release" : `${retest.releasesSince} release${retest.releasesSince === 1 ? "" : "s"} ago`}`
+  : null;
+const badge = new URL(`/badge/${game.slug}.svg`, Astro.site).href;
+const badgeMarkdown = `[![AnyPS5: ${stage ?? "untested"}](${badge})](${new URL(`/compatibility/${game.slug}`, Astro.site).href})`;
+const art = game.art;
+// The page takes its accent colours from the game's art; near-grey art keeps the site's own.
+const theme = gameTheme(art?.color);
+const themeStyle =
+  theme &&
+  (["dark", "light"] as const)
+    .flatMap((mode) => Object.entries(theme[mode]).map(([key, value]) => `--game-${mode}-${key}:${value}`))
+    .join(";");
+const thread = game.threads[0];
+const BUILD_LABEL = { main: "main", prs: "main + PRs", patched: "patched", unknown: "—" } as const;
+const editUrl = game.overlayFile
+  ? `${SITE_REPO_URL}/edit/main/data/games/${game.overlayFile}`
+  : `${SITE_REPO_URL}/new/main/data/games?filename=${game.slug}.yaml&value=${encodeURIComponent(`title_ids: [${game.titleIds.join(", ")}]\n`)}`;
+const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? "" : " with open pull requests"}. Test reports, blockers and progress.`;
+---
+
+<Base title={game.name} description={description} image={`/og/${game.slug}.jpg`}>
+  <link slot="head" rel="alternate" type="application/atom+xml" title={`${game.name} on AnyPS5`} href={`/compatibility/${game.slug}.xml`} />
+  <div class:list={{ themed: theme }} style={themeStyle}>
+    <section class="hero" style={`--tint:${art?.color ?? "var(--bg-glow)"}`}>
+      {/* The backdrop sits dimmed behind a gradient, so phones get a smaller file than its width would ask for. */}
+      {art?.hero && <img class="backdrop" style={`view-transition-name:hero-${game.slug}`} src={artSrc(art.hero, 1920)} srcset={artSrcset(art.hero, [640, 1280, 1920])} sizes="(max-width: 800px) 60vw, 100vw" alt="" fetchpriority="high" decoding="async" />}
+      <div class="container hero-inner">
+        <GameArt class="cover" name={game.name} src={art?.cover ?? art?.square ?? null} color={art?.color} ratio="2/3" widths={[320, 480, 640]} sizes="240px" eager transitionName={`cover-${game.slug}`} />
+        <div class="headline">
+          <a class="back" href="/compatibility">← All games</a>
+          {
+            art?.logo ? (
+              <h1 class="logo">
+                <img src={artSrc(art.logo, 800)} alt={game.name} decoding="async" />
+              </h1>
+            ) : (
+              <h1>{game.name}</h1>
+            )
+          }
+          <div class="meta">
+            <StageBadge stage={stage} onMain={onMain} />
+            {game.verified && <span class="tag verified">✓ Checked by a maintainer</span>}
+            {game.titleIds.map((id) => <span class="tag mono">{id}</span>)}
+            {game.kind !== "retail" && <span class="tag">{game.kind === "homebrew" ? "Homebrew" : "App"}</span>}
+            {freshness && <span class:list={["tag", { stale: retest.stale }]}>{freshness}</span>}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container layout">
+      <div class="main">
+        {
+          (retest.ready || retest.stale) && (
+            <section class:list={["card panel retest", { ready: retest.ready }]}>
+              <div>
+                <h2>{retest.ready ? "Ready to retest" : "Due a fresh run"}</h2>
+                {retest.ready ? (
+                  <p>
+                    What stopped it last time has been fixed since the report of {formatDate(retest.lastTested!)}:
+                    {retest.fixed.functions.length > 0 && <> {retest.fixed.functions.length} named function{retest.fixed.functions.length === 1 ? " is" : "s are"} implemented now</>}
+                    {retest.fixed.functions.length > 0 && retest.fixed.issues.length > 0 && ","}
+                    {retest.fixed.issues.length > 0 && (
+                      <>
+                        {" "}
+                        {retest.fixed.issues.slice(0, 4).map((i, n) => (
+                          <>
+                            {n > 0 && ", "}
+                            <a href={i.url}>#{i.number}</a> {i.state}
+                          </>
+                        ))}
+                        {retest.fixed.issues.length > 4 && <> and {retest.fixed.issues.length - 4} more</>}
+                      </>
+                    )}
+                    . A new run will show how much further it gets.
+                  </p>
+                ) : (
+                  <p>The newest report is from {formatDate(retest.lastTested!)}, {retest.releasesSince} releases ago. A run on the current build would keep this page accurate.</p>
+                )}
+              </div>
+              <a class="button primary" href={`/report?game=${game.slug}`}>
+                Test it and report
+              </a>
+            </section>
+          )
+        }
+        <section class="card panel">
+          <h2>Progress</h2>
+          <StageLadder stage={game.stage} branchStage={game.branchStage} platforms={game.platforms} />
+          {game.branchStage && <p class="hint">Striped steps are reached only with open pull requests or local patches, not yet on <code>main</code>.</p>}
+        </section>
+
+        {
+          (game.note || game.blockers.length > 0) && (
+            <section class="card panel">
+              <h2>Where it stops</h2>
+              {game.note && <p class="note">{game.note}</p>}
+              {game.blockers.length > 0 && (
+                <ul class="blockers">
+                  {game.blockers.map((b) => (
+                    <li>
+                      <span class:list={["state", b.kind]}>{b.kind === "pr" ? "Open PR" : "Open issue"}</span>
+                      <a href={b.url}>
+                        <span class="num">#{b.number}</span> {b.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          )
+        }
+
+        {needs && <NeedsPanel needs={needs} />}
+
+        {
+          game.reports.filter((r) => r.stage).length > 1 && (
+            <section class="card panel">
+              <h2>History</h2>
+              <StageHistory reports={game.reports} timeline={game.timeline} />
+              {game.timeline.length > 1 && (
+                <ol class="timeline">
+                  {game.timeline.map((e) => (
+                    <li style={`--tone:var(--stage-${stageSlug(e.stage)})`}>
+                      <time datetime={e.date}>{formatDate(e.date)}</time>
+                      {e.url ? <a href={e.url}>Reached {e.stage}</a> : <span>Reached {e.stage} (checked by a maintainer)</span>}
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </section>
+          )
+        }
+
+        <section class="card panel">
+          <h2>Test reports <span class="muted count">{game.reports.length}</span></h2>
+          {
+            game.reports.length ? (
+              <div class="table-wrap" data-pagefind-ignore>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Stage</th>
+                      <th>System</th>
+                      <th>Build</th>
+                      <th>By</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {game.reports.map((r) => (
+                      <tr>
+                        <td class="nowrap">
+                          <a href={r.url}>{formatDate(r.date)}</a>
+                        </td>
+                        <td>
+                          <StageBadge stage={r.stage} />
+                        </td>
+                        <td class="system">
+                          {r.platform && <span class:list={["chip-os", r.platform]}>{PLATFORM_LABEL[r.platform]}</span>}
+                          {r.gpuVendor && <span class:list={["chip-gpu", r.gpuVendor.toLowerCase()]}>{r.gpuVendor}</span>}
+                          {r.gpu && r.gpu !== r.gpuVendor && <span class="gpu-model">{r.gpu.replace(new RegExp(`^${r.gpuVendor ?? ""}\\s*`, "i"), "")}</span>}
+                          {!r.platform && !r.gpuVendor && !r.gpu && "—"}
+                        </td>
+                        <td class="mono small" title={r.build ?? undefined}>
+                          {BUILD_LABEL[r.buildKind]}
+                        </td>
+                        <td class="muted">{r.author ?? "—"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p class="muted">No structured reports yet. The discussion thread may still have notes.</p>
+            )
+          }
+        </section>
+      </div>
+
+      <aside class="side">
+        <div class="card panel actions">
+          <a class="button primary" href={thread ? thread.url : newReportUrl(`${game.name} (${game.titleIds[0]})`)}>
+            {thread ? "Add a test report" : "Report a test run"}
+          </a>
+          {thread && <a class="button" href={thread.url}>Open discussion · {thread.comments} replies</a>}
+          <a class="helper" href={`/report?game=${game.slug}`}>Write it with the report helper</a>
+          <a class="helper follow" href={`/compatibility/${game.slug}.xml`}>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm-2-7a11 11 0 0 1 11 11h-3a8 8 0 0 0-8-8v-3Zm0-7a18 18 0 0 1 18 18h-3A15 15 0 0 0 3 6V3Z"></path></svg>
+            Follow this game (Atom feed)
+          </a>
+          <a class="edit" href={editUrl}>Suggest a correction</a>
+        </div>
+
+        <dl class="card panel facts">
+          <div><dt>Title IDs</dt><dd class="mono">{game.titleIds.join(", ")}</dd></div>
+          {game.region && <div><dt>Region</dt><dd>{game.region}</dd></div>}
+          <div><dt>Reporters</dt><dd>{game.reporters}</dd></div>
+          {game.gpuVendors.length > 0 && <div><dt>GPUs tested</dt><dd>{game.gpuVendors.join(", ")}</dd></div>}
+          {game.updated && <div><dt>Last activity</dt><dd>{formatDate(game.updated)}</dd></div>}
+          {game.aliases.length > 0 && <div><dt>Also known as</dt><dd>{game.aliases.join(", ")}</dd></div>}
+        </dl>
+
+        <div class="card panel embed">
+          <p class="embed-label">Status badge</p>
+          <img src={`/badge/${game.slug}.svg`} alt={`AnyPS5: ${stage ?? "untested"}`} height="20" />
+          <div class="copy-row">
+            <input readonly value={badgeMarkdown} aria-label="Badge Markdown" data-badge />
+            <button type="button" class="button small" data-copy-badge>Copy</button>
+          </div>
+          <p class="embed-hint">Markdown for a README, forum post or Discord. It updates when the game moves up.</p>
+        </div>
+
+        {art?.credits.length ? <p class="credit">Artwork: {art.credits.join(", ")}. Art belongs to its publishers.</p> : null}
+      </aside>
+    </div>
+  </div>
+</Base>
+
+<script>
+  document.querySelector("[data-copy-badge]")?.addEventListener("click", async () => {
+    const field = document.querySelector<HTMLInputElement>("[data-badge]")!;
+    try {
+      await navigator.clipboard.writeText(field.value);
+      document.dispatchEvent(new CustomEvent("toast", { detail: "Badge Markdown copied" }));
+    } catch {
+      field.select();
+      document.dispatchEvent(new CustomEvent("toast", { detail: "Press Ctrl+C to copy the selected Markdown" }));
+    }
+  });
+</script>
+
+<style>
+  /* Game accents from gameTheme(); custom properties resolve where they are declared, so the gradient is redone too. */
+  .themed {
+    --accent: var(--game-dark-accent);
+    --accent-strong: var(--game-dark-strong);
+    --accent-2: var(--game-dark-second);
+    --gradient: linear-gradient(100deg, var(--accent), var(--accent-2));
+  }
+  :global(:root[data-theme="light"]) .themed {
+    --accent: var(--game-light-accent);
+    --accent-strong: var(--game-light-strong);
+    --accent-2: var(--game-light-second);
+  }
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: clamp(360px, 56vh, 600px);
+    overflow: hidden;
+    isolation: isolate;
+    padding-block: clamp(48px, 8vw, 104px) 44px;
+    background: radial-gradient(1000px 520px at 20% 0%, color-mix(in srgb, var(--tint) 55%, transparent), transparent 70%);
+  }
+  .hero > .container {
+    width: 100%;
+  }
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    opacity: 0.7;
+    animation: settle 1.2s var(--ease) both;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(to top, var(--bg) 4%, color-mix(in srgb, var(--bg) 50%, transparent) 50%, color-mix(in srgb, var(--bg) 10%, transparent)),
+      linear-gradient(to right, color-mix(in srgb, var(--bg) 85%, transparent), transparent 65%),
+      radial-gradient(800px 400px at 15% 100%, color-mix(in srgb, var(--tint) 30%, transparent), transparent);
+  }
+  @keyframes settle {
+    from {
+      transform: scale(1.06);
+    }
+  }
+  .hero-inner {
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(20px, 4vw, 44px);
+  }
+  .hero :global(.cover) {
+    flex: 0 0 clamp(120px, 20vw, 248px);
+    border-radius: var(--radius);
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.1),
+      0 40px 80px -24px rgb(0 0 0 / 0.8),
+      0 0 90px -30px var(--tint);
+    animation: lift 0.9s var(--ease) both;
+  }
+  @keyframes lift {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.97);
+    }
+  }
+  .headline {
+    min-width: 0;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    text-decoration: none;
+  }
+  .back:hover {
+    color: var(--text);
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 18px;
+  }
+  /* A fixed-height box, so the hero does not move when the logo arrives. */
+  .logo {
+    height: clamp(72px, 12vw, 170px);
+  }
+  .logo img {
+    height: 100%;
+    width: auto;
+    max-width: min(500px, 100%);
+    object-fit: contain;
+    object-position: left bottom;
+    filter: drop-shadow(0 6px 24px rgb(0 0 0 / 0.5));
+  }
+  :global(:root[data-theme="light"]) .logo img {
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.55)) drop-shadow(0 6px 18px rgb(0 0 0 / 0.35));
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .tag {
+    padding: 4px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .tag.stale {
+    border-color: color-mix(in srgb, var(--warn) 45%, transparent);
+    color: var(--warn);
+  }
+  .retest {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 24px;
+    border-color: color-mix(in srgb, var(--warn) 40%, var(--line));
+    background:
+      radial-gradient(500px 200px at 0% 0%, color-mix(in srgb, var(--warn) 12%, transparent), transparent 70%),
+      var(--surface);
+  }
+  .retest.ready {
+    border-color: color-mix(in srgb, var(--good) 45%, var(--line));
+    background:
+      radial-gradient(500px 200px at 0% 0%, color-mix(in srgb, var(--good) 14%, transparent), transparent 70%),
+      var(--surface);
+  }
+  .retest > div {
+    flex: 1 1 360px;
+  }
+  .retest h2 {
+    margin-bottom: 6px;
+  }
+  .retest p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .tag.verified {
+    border-color: color-mix(in srgb, var(--good) 50%, transparent);
+    color: var(--good);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 24px;
+    align-items: start;
+  }
+  .main,
+  .side {
+    display: grid;
+    gap: 24px;
+  }
+  .side {
+    position: sticky;
+    top: 88px;
+  }
+  .panel {
+    padding: clamp(20px, 3vw, 28px);
+  }
+  .panel h2 {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  .count {
+    font-weight: 500;
+  }
+  .hint {
+    margin: 18px 0 0;
+    color: var(--faint);
+    font-size: 0.85rem;
+  }
+  .note {
+    color: var(--muted);
+  }
+  .blockers {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .blockers li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+  }
+  .blockers a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .blockers a:hover {
+    color: var(--accent);
+  }
+  .num {
+    color: var(--faint);
+    font-family: var(--mono);
+    font-size: 0.85em;
+  }
+  .state {
+    flex: none;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font: 600 0.7rem/1.5 var(--mono);
+    background: color-mix(in srgb, var(--bad) 15%, transparent);
+    color: var(--bad);
+  }
+  .state.pr {
+    background: color-mix(in srgb, var(--good) 15%, transparent);
+    color: var(--good);
+  }
+  .system {
+    min-width: 200px;
+  }
+  .chip-os,
+  .chip-gpu {
+    display: inline-block;
+    margin: 0 4px 2px 0;
+    padding: 1px 8px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  /* GPU vendors in their brand hues, with the name always shown. */
+  .chip-gpu.amd {
+    border-color: color-mix(in srgb, #ed1c24 50%, var(--line));
+    color: color-mix(in srgb, #ff5a5f 70%, var(--text));
+  }
+  .chip-gpu.nvidia {
+    border-color: color-mix(in srgb, #76b900 50%, var(--line));
+    color: color-mix(in srgb, #8fd400 65%, var(--text));
+  }
+  .chip-gpu.intel {
+    border-color: color-mix(in srgb, #0071c5 55%, var(--line));
+    color: color-mix(in srgb, #3aa0ff 65%, var(--text));
+  }
+  .gpu-model {
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .timeline {
+    display: grid;
+    margin: 20px 0 0;
+    padding: 16px 0 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .timeline li {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    padding: 0 0 18px 24px;
+    font-size: 0.92rem;
+  }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--tone) 18%, transparent);
+  }
+  .timeline li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 20px;
+    bottom: 0;
+    width: 1px;
+    background: var(--line-strong);
+  }
+  .timeline time {
+    min-width: 100px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .timeline a {
+    color: var(--text);
+  }
+  .table-wrap {
+    overflow-x: auto;
+    margin-inline: -8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  th {
+    padding: 8px;
+    color: var(--faint);
+    font: 500 0.72rem var(--mono);
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  td {
+    padding: 10px 8px;
+    border-top: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+  .small {
+    font-size: 0.8rem;
+  }
+  .actions {
+    display: grid;
+    gap: 10px;
+  }
+  .helper {
+    font-size: 0.88rem;
+    text-align: center;
+  }
+  .follow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .edit {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .facts {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+  }
+  .facts div {
+    display: grid;
+    gap: 2px;
+  }
+  .facts dt {
+    color: var(--faint);
+    font: 500 0.7rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .facts dd {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+  .embed {
+    display: grid;
+    gap: 10px;
+  }
+  .embed-label {
+    margin: 0;
+    color: var(--faint);
+    font: 500 0.7rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .embed img {
+    width: auto;
+  }
+  .copy-row {
+    display: flex;
+    gap: 6px;
+  }
+  .copy-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--muted);
+    font: 0.72rem var(--mono);
+  }
+  .embed-hint {
+    margin: 0;
+    color: var(--faint);
+    font-size: 0.78rem;
+  }
+  .credit {
+    margin: 0;
+    padding-inline: 4px;
+    color: var(--faint);
+    font-size: 0.78rem;
+  }
+
+  @media (max-width: 920px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .side {
+      position: static;
+      order: -1;
+    }
+  }
+  @media (max-width: 560px) {
+    .hero-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .hero :global(.cover) {
+      flex-basis: auto;
+      width: 132px;
+    }
+  }
+</style>

@@ -1,0 +1,106 @@
+---
+import { artSrc, artSrcset, hue } from "../lib/view";
+
+interface Props {
+  name: string;
+  src: string | null;
+  color?: string | null;
+  ratio: "2/3" | "1/1" | "16/9";
+  widths: number[];
+  sizes: string;
+  eager?: boolean;
+  class?: string;
+  /** A view-transition-name, so the same cover can morph between pages. */
+  transitionName?: string;
+}
+const { name, src, color, ratio, widths, sizes, eager = false, class: className, transitionName } = Astro.props;
+const [w, h] = ratio.split("/").map(Number);
+const width = widths.at(-1)!;
+const tint = color ?? `hsl(${hue(name)} 45% 32%)`;
+const ring = `hsl(${(hue(name) + 40) % 360} 70% 60%)`;
+---
+
+<div class:list={["art", className]} style={`--ratio:${ratio};--tint:${tint};--ring:${ring}${transitionName ? `;view-transition-name:${transitionName}` : ""}`}>
+  {
+    src ? (
+      <img
+        src={artSrc(src, width)}
+        srcset={artSrcset(src, widths)}
+        sizes={sizes}
+        width={width}
+        height={Math.round((width * h) / w)}
+        alt=""
+        loading={eager ? "eager" : "lazy"}
+        fetchpriority={eager ? "high" : undefined}
+        decoding="async"
+      />
+    ) : (
+      <span class="fallback" aria-hidden="true"><span>{name}</span></span>
+    )
+  }
+</div>
+
+<style>
+  .art {
+    position: relative;
+    aspect-ratio: var(--ratio);
+    overflow: hidden;
+    container-type: inline-size;
+    background: radial-gradient(120% 90% at 30% 10%, color-mix(in srgb, var(--tint) 70%, white 8%), color-mix(in srgb, var(--tint) 55%, black));
+  }
+  img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* A light sweep while the image loads; the opaque image covers it once it arrives. */
+  .art:has(img)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.14) 50%, transparent 70%);
+    translate: -100% 0;
+    animation: shimmer 1.6s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    to {
+      translate: 100% 0;
+    }
+  }
+  /* Games without art get their name set large over a textured gradient in a hue picked from the name. */
+  .fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 9cqi;
+    background:
+      radial-gradient(90% 60% at 100% 0%, color-mix(in srgb, var(--ring) 45%, transparent), transparent 70%),
+      repeating-linear-gradient(135deg, rgb(255 255 255 / 0.05) 0 1px, transparent 1px 9px);
+  }
+  .fallback::before {
+    content: "";
+    position: absolute;
+    top: 9cqi;
+    left: 9cqi;
+    width: 22cqi;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--ring);
+  }
+  .fallback span {
+    display: -webkit-box;
+    overflow: hidden;
+    color: rgb(255 255 255 / 0.95);
+    font-size: clamp(0.9rem, 13cqi, 2.4rem);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    overflow-wrap: anywhere;
+    text-shadow: 0 2px 20px rgb(0 0 0 / 0.35);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+  }
+</style>

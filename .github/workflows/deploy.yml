@@ -1,0 +1,62 @@
+name: Deploy
+
+# Manual only for now: the site is deployed to Cloudflare with `npm run deploy:demo`, and GitHub Pages is not set up.
+# For automatic deploys, restore these triggers once Pages (or a Cloudflare deploy job) is configured:
+#   push: { branches: [main] }
+#   schedule: [{ cron: "40 5 * * *" }]   # daily, for new releases, docs, progress and coverage
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Fetch the converter, its libraries, docs and progress
+        run: npm run fetch:upstream -- --libraries
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/cache@v4
+        with:
+          path: |
+            node_modules/.cache/anyps5-upstream
+            node_modules/.cache/anyps5-isa
+          key: upstream-${{ github.run_id }}
+          restore-keys: upstream-
+      - name: Measure shader recompiler coverage from upstream source
+        run: npm run fetch:coverage
+      - uses: actions/cache@v4
+        with:
+          path: node_modules/.cache/anyps5-og
+          key: og-images-${{ github.run_id }}
+          restore-keys: og-images-
+      - run: npm run build
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

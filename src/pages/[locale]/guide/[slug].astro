@@ -1,0 +1,19 @@
+---
+import GuideStep from "../../../components/guide/GuideStep.astro";
+import { TRANSLATED_LOCALES, type Locale } from "../../../i18n";
+import { getSteps } from "../../../lib/guide";
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const locale of TRANSLATED_LOCALES) {
+    const steps = await getSteps(locale);
+    paths.push(...steps.map((step) => ({ params: { locale, slug: step.slug }, props: { step, steps } })));
+  }
+  return paths;
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const { step, steps } = Astro.props;
+---
+
+<GuideStep locale={locale} step={step} steps={steps} />

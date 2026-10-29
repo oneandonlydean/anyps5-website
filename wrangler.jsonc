@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // A demo deployment of the site on Cloudflare: npm run deploy:demo
+  "name": "anyps5-demo",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Everything is a static file except the converter's library downloads, which the Worker streams from upstream.
+    "run_worker_first": ["/convert/app/libraries/*"]
+  },
+  "routes": [{ "pattern": "anyps5-demo.deanisa.ninja", "custom_domain": true }],
+  "observability": { "enabled": true }
+}

@@ -1,0 +1,96 @@
+---
+title: Rode e jogue
+summary: Abra o jogo, conecte um controle e configure fontes, idioma e saves.
+step: 4
+---
+
+## Abra o jogo
+
+<Tabs>
+<Tab platform="linux">
+
+Dentro da pasta do jogo:
+
+```sh
+./app.elf
+```
+
+Downloads pelo navegador perdem a permissão de execução. Se o jogo não abrir, rode `chmod +x app.elf` (e faça o mesmo para qualquer outro executável que o conversor listou).
+
+</Tab>
+<Tab platform="windows">
+
+Dê dois cliques em `app.exe` ou, no PowerShell, dentro da pasta do jogo:
+
+```powershell
+.\app.exe
+```
+
+Rode a partir de uma sessão normal na área de trabalho, com login feito, e não por SSH.
+
+</Tab>
+</Tabs>
+
+<Callout title="A primeira execução é lenta">
+Na primeira vez, o AnyPS5 compila os shaders do jogo para a sua GPU. Isso pode levar alguns minutos antes do primeiro quadro. O resultado vai para a pasta `shader_cache/`, ao lado do executável, então as próximas execuções abrem bem mais rápido. Pode apagar essa pasta sem problema.
+</Callout>
+
+## Controles
+
+Controles reconhecidos pelo SDL funcionam direto: DualSense, DualShock 4 e controles no estilo Xbox. Os analógicos e os gatilhos analógicos são repassados, o touchpad do DualSense funciona, e você pode conectar um controle com o jogo rodando.
+
+Sem controle, valem estes comandos de teclado e mouse:
+
+| PS5 | Teclado e mouse |
+|---|---|
+| Xis | Enter, Espaço |
+| Círculo | C |
+| Triângulo | I |
+| Quadrado | Botão esquerdo do mouse |
+| L1 / R1 | Q / E |
+| L2 / R2 | R / botão direito do mouse |
+| L3 / R3 | Shift / Ctrl |
+| Options | Esc |
+| Direcional | Setas |
+| Analógico esquerdo | W A S D |
+| Analógico direito | T F G H, ou o mouse depois de apertar o botão do meio do mouse ou F7 |
+| Touchpad | Backspace (esquerda), Tab (direita) |
+
+**F11** alterna a tela cheia e **F10** mostra um overlay de desempenho. Para mudar os comandos, crie um `anyps5-input.ini` ao lado do executável; veja [mapeamento de controles](/docs/input-mapping).
+
+## Configurações opcionais
+
+Defina estas variáveis de ambiente antes de abrir o jogo.
+
+| Variável | O que faz |
+|---|---|
+| `ANYPS5_LANGUAGE` | O número do idioma do console. `1` é inglês (EUA), o padrão; `18` inglês (Reino Unido), `2` francês, `4` alemão, `3` espanhol, `0` japonês. [Todos os idiomas](/docs/usage#console-language) |
+| `ANYPS5_GPU` | Parte do nome de uma GPU, para escolher outra GPU |
+| `ANYPS5_PRESENT_MODE` | `mailbox` ou `immediate` para desligar a sincronização vertical |
+| `ANYPS5_OVERLAY` | `1` mostra o overlay de desempenho desde o início |
+
+<Tabs>
+<Tab platform="linux">
+
+```sh
+ANYPS5_LANGUAGE=18 ./app.elf
+```
+
+</Tab>
+<Tab platform="windows">
+
+```powershell
+$env:ANYPS5_LANGUAGE = '18'
+.\app.exe
+```
+
+</Tab>
+</Tabs>
+
+## Fontes do sistema
+
+Alguns jogos usam as fontes de sistema do console e, sem elas, não mostram texto ou param. Coloque os arquivos de fonte em uma pasta `anyps5-fonts/` ao lado do executável. Fontes extraídas do seu console funcionam com os nomes originais. Se não tiver, as fontes gratuitas [Noto](https://github.com/notofonts/notofonts.github.io) servem como substitutas: `NotoSans-Regular.ttf` e seus pesos, `NotoSansMono`, `NotoSansThai` e `NotoSansCJK`. A [referência de uso](/docs/usage#system-fonts) traz os nomes exatos dos arquivos.
+
+## Saves
+
+Os saves ficam na pasta `_sd/`, ao lado de `app0/`. Copie `_sd/` e `_sd_mem/` para levar o seu progresso para outra cópia do jogo.

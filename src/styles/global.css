@@ -1,0 +1,508 @@
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+
+:root {
+  color-scheme: dark;
+  --bg: #06080d;
+  --bg-glow: #0d1a33;
+  --bg-glow-2: #062a2a;
+  --surface: #0c1018;
+  --raised: #121826;
+  --line: #1c2333;
+  --line-strong: #2a3347;
+  --text: #e9edf5;
+  --muted: #8e98ab;
+  --faint: #77819a;
+  --accent: #5b9bff;
+  --accent-strong: #84b4ff;
+  --accent-2: #37e0c8;
+  --on-accent: #050912;
+  --good: #3ddc84;
+  --warn: #f5b84a;
+  --bad: #ff6b81;
+  --scrim: rgb(6 8 13 / 0.72);
+
+  --stage-none: #6b7385;
+  --stage-converts: #f0506e;
+  --stage-loads: #f77b3e;
+  --stage-starts: #f6a23a;
+  --stage-first-draw: #f2cc3d;
+  --stage-presents: #b5e04a;
+  --stage-menus: #5bd977;
+  --stage-ingame: #2fcfa6;
+  --stage-playable: #3cc8f0;
+  --stage-untested: #2a3142;
+
+  --font: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  /* Headings and big numbers; its optical-size axis tightens the letterforms as the size grows. */
+  --display: "Bricolage Grotesque Variable", var(--font);
+  --mono: "Geist Mono Variable", ui-monospace, "Cascadia Mono", monospace;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --width: 1200px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 20px 40px -24px rgb(0 0 0 / 0.6);
+  --highlight: rgb(255 255 255 / 0.06);
+  --grain-opacity: 0.05;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --gradient: linear-gradient(100deg, var(--accent), var(--accent-2));
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f2f4f8;
+  --bg-glow: #d6e2fb;
+  --bg-glow-2: #d3f3ec;
+  --surface: #ffffff;
+  --raised: #edf1f7;
+  --line: #dfe4ec;
+  --line-strong: #c9d1dd;
+  --text: #0c111d;
+  --muted: #566074;
+  --faint: #646c7e;
+  --accent: #1d5fe0;
+  --accent-strong: #134bb8;
+  --accent-2: #0b9b88;
+  --on-accent: #ffffff;
+  --good: #16a35a;
+  --warn: #b7791f;
+  --bad: #d43552;
+  --scrim: rgb(246 247 250 / 0.8);
+
+  --stage-none: #8b93a3;
+  --stage-converts: #d9365a;
+  --stage-loads: #e0612a;
+  --stage-starts: #d98613;
+  --stage-first-draw: #c7a10f;
+  --stage-presents: #84b31f;
+  --stage-menus: #2fae52;
+  --stage-ingame: #11a585;
+  --stage-playable: #129bd0;
+  --stage-untested: #dfe3ea;
+  /* Layered, slightly blue shadows read as depth on light surfaces without greying them. */
+  --shadow:
+    0 1px 1px rgb(16 24 40 / 0.04),
+    0 4px 12px -4px rgb(16 24 40 / 0.06),
+    0 22px 44px -28px rgb(29 64 150 / 0.28);
+  --highlight: rgb(255 255 255 / 0.9);
+  --grain-opacity: 0.025;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-color: var(--line-strong) transparent;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(1200px 600px at 50% -200px, var(--bg-glow), transparent 70%),
+    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, var(--bg-glow-2) 70%, transparent), transparent 70%),
+    var(--bg);
+  background-repeat: no-repeat;
+  color: var(--text);
+  font: 16px/1.6 var(--font);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Film grain over the whole page keeps large dark gradients from banding and gives surfaces some texture. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+main {
+  flex: 1;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.5em;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 650;
+  text-wrap: balance;
+}
+
+h1,
+h2 {
+  font-family: var(--display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 750;
+  line-height: 1.04;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+
+:not(pre) > code {
+  padding: 0.12em 0.4em;
+  border-radius: 5px;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  font-size: 0.85em;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface) !important;
+  line-height: 1.55;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: var(--accent-2);
+  font: 500 0.75rem/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.lede {
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--raised);
+  color: var(--text);
+  font: 600 0.92rem/1 var(--font);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 var(--highlight);
+  transition: transform 0.2s var(--ease), background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+  color: var(--text);
+  border-color: var(--faint);
+  transform: translateY(-1px);
+}
+
+.button.primary {
+  position: relative;
+  overflow: hidden;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--accent-2)));
+  color: var(--on-accent);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.3),
+    0 10px 28px -10px color-mix(in srgb, var(--accent) 80%, transparent);
+}
+
+/* A sheen that sweeps across primary buttons on hover. */
+.button.primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.35) 50%, transparent 70%);
+  translate: -110% 0;
+  transition: translate 0.6s var(--ease);
+}
+
+.button.primary:hover {
+  color: var(--on-accent);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.3),
+    0 14px 36px -10px color-mix(in srgb, var(--accent) 95%, transparent);
+}
+
+.button.primary:hover::after {
+  translate: 110% 0;
+}
+
+.button.ghost {
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.button.small {
+  min-height: 34px;
+  padding: 0 14px;
+  font-size: 0.85rem;
+}
+
+:root[data-theme="light"] .card {
+  background: var(--surface);
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--raised) 45%, var(--surface)), var(--surface) 40%);
+  box-shadow: inset 0 1px 0 var(--highlight), var(--shadow);
+}
+
+.section {
+  padding-block: clamp(56px, 8vw, 96px);
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.section-head .lede {
+  margin-top: 4px;
+}
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Sections fade up as they scroll into view, where the browser supports scroll-driven animations. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Pages cross-fade, and elements that share a view-transition-name (a game's cover, its art) glide between pages. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(*) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after,
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.page-head {
+  padding-block: clamp(48px, 7vw, 88px) clamp(28px, 4vw, 44px);
+}
+
+.page-head h1 {
+  max-width: 18ch;
+}
+
+/* Long-form text: rendered docs and the setup guide. */
+.prose {
+  min-width: 0;
+  max-width: 76ch;
+  line-height: 1.7;
+}
+
+.prose h2 {
+  margin-top: 2.2em;
+  padding-top: 0.4em;
+  font-size: 1.6rem;
+}
+
+.prose h3 {
+  margin-top: 1.8em;
+  font-size: 1.2rem;
+}
+
+.prose h2 + h3 {
+  margin-top: 1em;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+}
+
+.prose li + li {
+  margin-top: 0.3em;
+}
+
+.prose pre {
+  margin: 0 0 1.2em;
+}
+
+.prose .table {
+  overflow-x: auto;
+  margin: 0 0 1.4em;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.prose th,
+.prose td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--raised);
+  font-weight: 600;
+}
+
+.prose tr:last-child td {
+  border-bottom: 0;
+}
+
+.prose td:first-child code {
+  white-space: nowrap;
+}
+
+.astro-code,
+.astro-code span {
+  color: var(--shiki-dark);
+}
+
+:root[data-theme="light"] .astro-code,
+:root[data-theme="light"] .astro-code span {
+  color: var(--shiki-light);
+}

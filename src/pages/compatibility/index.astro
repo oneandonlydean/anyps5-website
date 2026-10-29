@@ -1,0 +1,1117 @@
+---
+import Base from "../../layouts/Base.astro";
+import GameArt from "../../components/GameArt.astro";
+import GameCard from "../../components/GameCard.astro";
+import { getGames, getRetest } from "../../lib/data";
+import { formatDate } from "../../lib/site";
+import { STAGES, stageRank, stageSlug } from "../../lib/stages";
+import { artSrc, PLATFORM_LABEL, reach } from "../../lib/view";
+
+const [games, retest] = await Promise.all([getGames(), getRetest()]);
+// Games whose blockers have been fixed since their newest report, most fixes first.
+const ready = games
+  .filter((g) => retest.get(g.slug)?.ready)
+  .map((g) => ({ game: g, fixed: retest.get(g.slug)!.fixed }))
+  .sort((a, b) => b.fixed.functions.length + b.fixed.issues.length - (a.fixed.functions.length + a.fixed.issues.length));
+const fixedText = ({ functions, issues }: { functions: string[]; issues: unknown[] }) =>
+  [functions.length && `${functions.length} function${functions.length === 1 ? "" : "s"} implemented`, issues.length && `${issues.length} fix${issues.length === 1 ? "" : "es"} merged`]
+    .filter(Boolean)
+    .join(", ");
+const reaches = games.map((g) => reach(g).stage);
+const counts = STAGES.map((s) => ({ ...s, rank: stageRank(s.name), count: reaches.filter((r) => r === s.name).length }));
+// The ladder chart: games with no stage yet (untested, or not converting), then each stage in order.
+const ladder = [
+  { name: "No stage", short: "No stage", meaning: "Not tested yet, or does not convert yet.", rank: -1, count: reaches.filter((r) => stageRank(r) < 0).length, tone: "var(--stage-none)" },
+  ...counts.map((c) => ({ ...c, tone: `var(--stage-${stageSlug(c.name)})` })),
+];
+const tallest = Math.max(...ladder.map((l) => l.count), 1);
+const tested = reaches.filter((r) => stageRank(r) >= 0).length;
+const ingame = reaches.filter((r) => stageRank(r) >= stageRank("Ingame")).length;
+const synced = games.map((g) => g.updated).sort().at(-1);
+const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
+const fan = games
+  .filter((g) => g.art?.cover)
+  .sort((a, b) => stageRank(reach(b).stage) - stageRank(reach(a).stage))
+  .slice(0, 5);
+---
+
+<Base title="Game compatibility" description={`How far ${games.length} PS5 games get on AnyPS5, from converting to fully playable, with per-game blockers and test reports.`}>
+  <section class="container hero">
+    <div class="fan" aria-hidden="true">
+      {fan.map((g, i) => <GameArt name={g.name} src={g.art!.cover} color={g.art!.color} ratio="2/3" widths={[240, 360]} sizes="180px" eager={i === 2} />)}
+    </div>
+    <span class="eyebrow">Game compatibility</span>
+    <h1>How far every game gets</h1>
+    <p class="lede">
+      Each game climbs an eight-stage ladder, from converting to playable. Stages come from community test reports in the Game bring-up discussions and are checked by maintainers.
+    </p>
+    <dl class="stats">
+      <div><dt>Games tracked</dt><dd>{games.length}</dd></div>
+      <div><dt>Tested</dt><dd>{tested}</dd></div>
+      <div><dt>In game or better</dt><dd>{ingame}</dd></div>
+      {synced && <div><dt>Last report</dt><dd class="date">{formatDate(synced)}</dd></div>}
+    </dl>
+  </section>
+
+  <section class="container" aria-label="Games">
+    {
+      ready.length > 0 && (
+        <div class="retest" aria-labelledby="retest-title">
+          <span class="retest-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" /></svg>
+          </span>
+          <div class="retest-copy">
+            <h2 id="retest-title">{ready.length} games are ready to retest</h2>
+            <p class="muted">What stopped them has been fixed since their last report. A new run shows how much further they get.</p>
+          </div>
+          <ul class="retest-covers">
+            {ready.slice(0, 7).map(({ game, fixed }) => (
+              <li>
+                <a href={`/compatibility/${game.slug}`} title={`${game.name}: ${fixedText(fixed)}`} style={`--tint:${game.art?.color ?? "var(--raised)"}`}>
+                  {(game.art?.cover ?? game.art?.square) ? <img src={artSrc((game.art!.cover ?? game.art!.square)!, 120)} alt={game.name} width="44" height="66" loading="lazy" decoding="async" /> : <span class="visually-hidden">{game.name}</span>}
+                </a>
+              </li>
+            ))}
+            {ready.length > 7 && <li class="more">+{ready.length - 7}</li>}
+          </ul>
+          <button type="button" class="button" aria-pressed="false" data-ready-toggle>
+            <span class="off">Show them</span>
+            <span class="on">Show all games</span>
+          </button>
+        </div>
+      )
+    }
+
+    <div class="ladder card">
+      <div class="ladder-head">
+        <h2>How far games get</h2>
+        <span class="muted">Pick stages to filter</span>
+        <button type="button" class="clear" data-clear-stages hidden>Clear</button>
+      </div>
+      <div class="bars" role="group" aria-label="Filter by stage">
+        {
+          ladder.map((l) => (
+            <button
+              type="button"
+              class:list={["bar", { zero: l.count === 0, none: l.rank < 0 }]}
+              data-stage-filter={l.rank}
+              aria-pressed="false"
+              aria-disabled={l.count === 0 ? "true" : undefined}
+              style={`--tone:${l.tone};--height:${(l.count / tallest) * 100}%`}
+              title={l.meaning}
+              aria-label={`${l.name}: ${l.count} games`}
+            >
+              <span class="bar-track">
+                <span class="bar-count">{l.count}</span>
+                <span class="bar-fill" />
+              </span>
+              <span class="bar-name">{l.short}</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <label class="search">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+        <span class="visually-hidden">Search games</span>
+        <input type="search" name="q" placeholder="Search by name or title ID" autocomplete="off" data-filter />
+      </label>
+
+      <div class="filters" data-filters>
+        <button type="button" class="filters-button" aria-expanded="false" aria-controls="filter-panel" data-filters-toggle>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4" /></svg>
+          Filters
+          <span class="filters-count" data-filters-count hidden></span>
+        </button>
+        <div class="filters-panel" id="filter-panel" hidden>
+          <fieldset>
+            <legend>Operating system</legend>
+            <div class="chips">
+              {Object.entries(PLATFORM_LABEL).map(([key, label]) => <button type="button" class="chip" data-platform={key} aria-pressed="false">{label}</button>)}
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>GPU</legend>
+            <div class="chips">
+              {GPUS.map((gpu) => <button type="button" class="chip" data-gpu={gpu.toLowerCase()} aria-pressed="false">{gpu}</button>)}
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Builds</legend>
+            <button type="button" class="chip solo" aria-pressed="false" data-main-toggle>
+              Main builds only
+            </button>
+            <p class="hint">Leave out results that needed open pull requests or local patches.</p>
+          </fieldset>
+          <p class="hint">With an OS or GPU picked, each game shows its best result on that system.</p>
+        </div>
+      </div>
+
+      <label class="select">
+        <span class="visually-hidden">Sort</span>
+        <select name="sort" data-filter>
+          <option value="stage">Furthest first</option>
+          <option value="updated">Recently updated</option>
+          <option value="name">A–Z</option>
+        </select>
+      </label>
+
+      <div class="view" role="group" aria-label="Layout">
+        <button type="button" data-view="grid" aria-pressed="true" aria-label="Grid view">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2" /><rect x="13" y="3" width="8" height="8" rx="2" /><rect x="3" y="13" width="8" height="8" rx="2" /><rect x="13" y="13" width="8" height="8" rx="2" /></svg>
+        </button>
+        <button type="button" data-view="list" aria-pressed="false" aria-label="List view">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1.5" /><rect x="3" y="10" width="18" height="4" rx="1.5" /><rect x="3" y="16" width="18" height="4" rx="1.5" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="summary">
+      <p class="muted" aria-live="polite"><span data-count>{games.length}</span> games</p>
+      <ul class="active" aria-label="Active filters" data-active></ul>
+    </div>
+
+    <h2 class="visually-hidden">Games</h2>
+    <div class="list-head" aria-hidden="true">
+      <span>Game</span>
+      <span>Stage</span>
+      <span>Tested on</span>
+      <span>Last tested</span>
+    </div>
+    <div class="games" data-games>
+      {games.map((game, i) => <GameCard game={game} eager={i < 6} ready={retest.get(game.slug)?.ready} />)}
+    </div>
+
+    <div class="empty card" data-empty hidden>
+      <h2>No games match</h2>
+      <p class="muted">Tested a game that isn't listed? Share how far it got.</p>
+      <a class="button primary" href="/report">Report a test run</a>
+    </div>
+
+    <details class="legend card">
+      <summary>What the stages mean</summary>
+      <ol>
+        {
+          STAGES.map((s) => (
+            <li style={`--tone:var(--stage-${stageSlug(s.name)})`}>
+              <b>{s.name}</b>
+              <span class="muted">{s.meaning}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="muted">
+        A striped segment means the game gets further with open pull requests or local patches than on <code>main</code>. “Main builds only” hides that progress.
+      </p>
+    </details>
+  </section>
+</Base>
+
+<script>
+  const grid = document.querySelector<HTMLElement>("[data-games]")!;
+  const cards = [...grid.querySelectorAll<HTMLAnchorElement>(".game")];
+  const search = document.querySelector<HTMLInputElement>("input[name=q]")!;
+  const mainToggle = document.querySelector<HTMLButtonElement>("[data-main-toggle]")!;
+  const readyToggle = document.querySelector<HTMLButtonElement>("[data-ready-toggle]");
+  const clearStages = document.querySelector<HTMLButtonElement>("[data-clear-stages]")!;
+  const ladderBars = document.querySelector<HTMLElement>(".bars")!;
+  const isOn = (button: HTMLButtonElement | null) => button?.ariaPressed === "true";
+  const sort = document.querySelector<HTMLSelectElement>("select[name=sort]")!;
+  const segments = [...document.querySelectorAll<HTMLButtonElement>("[data-stage-filter]")];
+  const chips = [...document.querySelectorAll<HTMLButtonElement>("[data-platform]")];
+  const gpuChips = [...document.querySelectorAll<HTMLButtonElement>("[data-gpu]")];
+  const activeList = document.querySelector<HTMLElement>("[data-active]")!;
+  const filtersToggle = document.querySelector<HTMLButtonElement>("[data-filters-toggle]")!;
+  const filtersPanel = document.getElementById("filter-panel")!;
+  const filtersCount = document.querySelector<HTMLElement>("[data-filters-count]")!;
+  const views = [...document.querySelectorAll<HTMLButtonElement>("[data-view]")];
+  const count = document.querySelector("[data-count]")!;
+  const empty = document.querySelector<HTMLElement>("[data-empty]")!;
+
+  const pressed = (buttons: HTMLButtonElement[], key: string) => buttons.filter((b) => b.ariaPressed === "true").map((b) => b.dataset[key]!);
+  const press = (buttons: HTMLButtonElement[], key: string, values: string[]) => buttons.forEach((b) => (b.ariaPressed = String(values.includes(b.dataset[key]!))));
+
+  let platforms: string[] = [];
+  let gpus: string[] = [];
+
+  /**
+   * How far a card's game gets. With an OS or GPU picked, it is the best stage on a matching system, so "Linux + AMD"
+   * means reports from Linux with an AMD GPU; null when the game was never tested on one.
+   */
+  function rank(card: HTMLElement): number | null {
+    if (!platforms.length && !gpus.length) return Number(isOn(mainToggle) ? card.dataset.stage : card.dataset.reach);
+    let best: number | null = null;
+    for (const token of (isOn(mainToggle) ? card.dataset.systemsMain : card.dataset.systems)!.split(" ").filter(Boolean)) {
+      const [os, gpu, value] = token.split(":");
+      if ((platforms.length && !platforms.includes(os)) || (gpus.length && !gpus.includes(gpu))) continue;
+      best = Math.max(best ?? -1, Number(value));
+    }
+    return best;
+  }
+
+  function apply() {
+    const query = search.value.trim().toLowerCase();
+    const stages = pressed(segments, "stageFilter").map(Number);
+    ladderBars.classList.toggle("filtering", stages.length > 0);
+    clearStages.hidden = stages.length === 0;
+    platforms = pressed(chips, "platform");
+    gpus = pressed(gpuChips, "gpu");
+    let shown = 0;
+
+    for (const card of cards) {
+      const reached = rank(card);
+      const visible =
+        (!query || card.dataset.search!.includes(query)) &&
+        reached !== null &&
+        (!stages.length || stages.includes(reached)) &&
+        (!isOn(readyToggle) || "ready" in card.dataset);
+      card.hidden = !visible;
+      if (visible) shown++;
+    }
+    renderActive(stages);
+
+    const order: Record<string, (a: HTMLElement, b: HTMLElement) => number> = {
+      stage: (a, b) => (rank(b) ?? -2) - (rank(a) ?? -2) || b.dataset.updated!.localeCompare(a.dataset.updated!),
+      updated: (a, b) => b.dataset.updated!.localeCompare(a.dataset.updated!),
+      name: (a, b) => a.dataset.name!.localeCompare(b.dataset.name!),
+    };
+    grid.append(...[...cards].sort(order[sort.value]));
+    count.textContent = String(shown);
+    empty.hidden = shown > 0;
+    save({ q: query, stage: stages.join(","), platform: platforms.join(","), gpu: gpus.join(","), main: isOn(mainToggle) ? "1" : "", ready: isOn(readyToggle) ? "1" : "", sort: sort.value === "stage" ? "" : sort.value });
+  }
+
+  /** Removable pills for every active filter, so it is always clear what the grid shows. */
+  function renderActive(stages: number[]) {
+    const pills: { label: string; clear: () => void }[] = [];
+    for (const b of segments.filter((b) => stages.includes(Number(b.dataset.stageFilter)))) pills.push({ label: b.querySelector(".bar-name")!.textContent!, clear: () => (b.ariaPressed = "false") });
+    for (const b of [...chips, ...gpuChips].filter((b) => b.ariaPressed === "true")) pills.push({ label: b.textContent!.trim(), clear: () => (b.ariaPressed = "false") });
+    if (isOn(mainToggle)) pills.push({ label: "Main builds only", clear: () => (mainToggle.ariaPressed = "false") });
+    if (isOn(readyToggle)) pills.push({ label: "Ready to retest", clear: () => (readyToggle!.ariaPressed = "false") });
+    if (search.value.trim()) pills.push({ label: `“${search.value.trim()}”`, clear: () => (search.value = "") });
+
+    activeList.replaceChildren(
+      ...pills.map(({ label, clear }) => {
+        const item = document.createElement("li");
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = label;
+        button.setAttribute("aria-label", `Remove filter: ${label}`);
+        button.addEventListener("click", () => {
+          clear();
+          apply();
+        });
+        item.append(button);
+        return item;
+      }),
+    );
+    if (pills.length > 1) {
+      const item = document.createElement("li");
+      const all = document.createElement("button");
+      all.type = "button";
+      all.className = "clear-all";
+      all.textContent = "Clear all";
+      all.addEventListener("click", () => {
+        [...segments, ...chips, ...gpuChips, mainToggle].forEach((b) => (b.ariaPressed = "false"));
+        if (readyToggle) readyToggle.ariaPressed = "false";
+        search.value = "";
+        apply();
+      });
+      item.append(all);
+      activeList.append(item);
+    }
+    const panelFilters = platforms.length + gpus.length + (isOn(mainToggle) ? 1 : 0);
+    filtersCount.hidden = panelFilters === 0;
+    filtersCount.textContent = String(panelFilters);
+  }
+
+  // The filter panel opens below its button and closes on Escape or a click elsewhere.
+  const setPanel = (open: boolean) => {
+    filtersPanel.hidden = !open;
+    filtersToggle.ariaExpanded = String(open);
+  };
+  filtersToggle.addEventListener("click", () => setPanel(filtersPanel.hidden === true));
+  document.addEventListener("click", (event) => {
+    if (!filtersPanel.hidden && !(event.target as HTMLElement).closest("[data-filters]")) setPanel(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !filtersPanel.hidden) {
+      setPanel(false);
+      filtersToggle.focus();
+    }
+  });
+
+  function setView(view: string) {
+    grid.classList.toggle("list", view === "list");
+    press(views, "view", [view]);
+    try {
+      localStorage.setItem("compat-view", view);
+    } catch {}
+  }
+
+  function save(state: Record<string, string>) {
+    const params = new URLSearchParams(Object.entries(state).filter(([, v]) => v));
+    history.replaceState(null, "", params.size ? `?${params}` : location.pathname);
+  }
+
+  function restore() {
+    const params = new URLSearchParams(location.search);
+    search.value = params.get("q") ?? "";
+    mainToggle.ariaPressed = String(params.get("main") === "1");
+    if (readyToggle) readyToggle.ariaPressed = String(params.get("ready") === "1");
+    sort.value = params.get("sort") ?? "stage";
+    press(segments, "stageFilter", params.get("stage")?.split(",") ?? []);
+    press(chips, "platform", params.get("platform")?.split(",") ?? []);
+    press(gpuChips, "gpu", params.get("gpu")?.split(",") ?? []);
+    try {
+      setView(params.get("view") ?? localStorage.getItem("compat-view") ?? "grid");
+    } catch {}
+  }
+
+  const toggle = (button: HTMLButtonElement) => {
+    button.ariaPressed = String(button.ariaPressed !== "true");
+    apply();
+  };
+  segments.forEach((b) => b.addEventListener("click", () => b.ariaDisabled !== "true" && toggle(b)));
+  [mainToggle, readyToggle].forEach((b) => b?.addEventListener("click", () => toggle(b)));
+  clearStages.addEventListener("click", () => {
+    press(segments, "stageFilter", []);
+    apply();
+  });
+  [...chips, ...gpuChips].forEach((b) => b.addEventListener("click", () => toggle(b)));
+  views.forEach((b) => b.addEventListener("click", () => setView(b.dataset.view!)));
+  document.querySelectorAll("[data-filter]").forEach((el) => el.addEventListener("input", apply));
+
+  restore();
+  apply();
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    padding-block: clamp(48px, 8vw, 96px) 40px;
+  }
+  .hero > :not(.fan) {
+    position: relative;
+    max-width: 640px;
+  }
+  /* Covers of the furthest-along games, fanned out beside the heading. */
+  .fan {
+    position: absolute;
+    right: var(--gutter);
+    top: 50%;
+    width: 420px;
+    height: 300px;
+    translate: 0 -50%;
+  }
+  .fan :global(.art) {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 150px;
+    border-radius: 12px;
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.08),
+      0 24px 48px -16px rgb(0 0 0 / 0.7);
+    transform-origin: 50% 140%;
+    translate: -50% 0;
+    transition: rotate 0.5s var(--ease);
+  }
+  .fan :global(.art:nth-child(1)) {
+    rotate: -24deg;
+  }
+  .fan :global(.art:nth-child(2)) {
+    z-index: 1;
+    rotate: -12deg;
+  }
+  .fan :global(.art:nth-child(3)) {
+    z-index: 2;
+  }
+  .fan :global(.art:nth-child(4)) {
+    z-index: 1;
+    rotate: 12deg;
+  }
+  .fan :global(.art:nth-child(5)) {
+    rotate: 24deg;
+  }
+  .hero:hover .fan :global(.art:nth-child(1)) {
+    rotate: -30deg;
+  }
+  .hero:hover .fan :global(.art:nth-child(2)) {
+    rotate: -15deg;
+  }
+  .hero:hover .fan :global(.art:nth-child(4)) {
+    rotate: 15deg;
+  }
+  .hero:hover .fan :global(.art:nth-child(5)) {
+    rotate: 30deg;
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 48px;
+    margin: 32px 0 0;
+  }
+  .stats dt {
+    color: var(--faint);
+    font: 500 0.72rem/1 var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .stats dd {
+    margin: 8px 0 0;
+    font-size: 2rem;
+    font-weight: 650;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stats .date {
+    font-size: 1.25rem;
+    line-height: 2.4rem;
+  }
+
+  /* Ready to retest: one banner with a fan of covers and a button that filters the grid to those games. */
+  .retest {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    border: 1px solid color-mix(in srgb, var(--good) 35%, var(--line));
+    border-radius: var(--radius);
+    background:
+      radial-gradient(420px 160px at 0% 50%, color-mix(in srgb, var(--good) 14%, transparent), transparent 75%),
+      var(--surface);
+    box-shadow: inset 0 1px 0 var(--highlight);
+  }
+  .retest-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--good) 16%, var(--surface));
+    color: var(--good);
+  }
+  .retest-copy {
+    flex: 1 1 280px;
+    min-width: 0;
+  }
+  .retest-copy h2 {
+    margin: 0 0 2px;
+    font-size: 1.05rem;
+  }
+  .retest-copy p {
+    margin: 0;
+    font-size: 0.86rem;
+  }
+  .retest-covers {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0 0 0 10px;
+    list-style: none;
+  }
+  .retest-covers li {
+    margin-left: -10px;
+  }
+  .retest-covers a {
+    display: block;
+    width: 34px;
+    height: 50px;
+    overflow: hidden;
+    border: 2px solid var(--surface);
+    border-radius: 7px;
+    background: var(--tint);
+    box-shadow: 0 6px 14px -6px rgb(0 0 0 / 0.6);
+    transition: transform 0.2s var(--ease);
+  }
+  .retest-covers a:hover,
+  .retest-covers a:focus-visible {
+    position: relative;
+    z-index: 1;
+    transform: translateY(-4px) scale(1.12);
+  }
+  .retest-covers img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .retest-covers .more {
+    display: grid;
+    place-items: center;
+    height: 30px;
+    margin-left: 6px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--raised);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  [data-ready-toggle] .on,
+  [data-ready-toggle][aria-pressed="true"] .off {
+    display: none;
+  }
+  [data-ready-toggle][aria-pressed="true"] .on {
+    display: inline;
+  }
+  [data-ready-toggle][aria-pressed="true"] {
+    border-color: var(--good);
+    background: color-mix(in srgb, var(--good) 16%, var(--surface));
+  }
+
+  /* The ladder: one bar per stage, rising from left to right, each a filter toggle. */
+  .ladder {
+    margin-bottom: 16px;
+    padding: 18px 20px 14px;
+  }
+  .ladder-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 14px;
+    margin-bottom: 14px;
+  }
+  .ladder-head h2 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  .ladder-head .muted {
+    font-size: 0.84rem;
+  }
+  .clear {
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: 600 0.84rem var(--font);
+    cursor: pointer;
+  }
+  .bars {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    align-items: start;
+    gap: 6px;
+  }
+  .bar {
+    display: grid;
+    grid-template-rows: 130px auto;
+    align-content: start;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    padding: 6px 4px 8px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      opacity 0.2s;
+  }
+  .bar.none {
+    margin-right: 6px;
+    border-right: 1px dashed var(--line);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  }
+  .bar:not([aria-disabled]):hover {
+    background: color-mix(in srgb, var(--tone) 8%, transparent);
+  }
+  .bar[aria-disabled] {
+    cursor: default;
+  }
+  .bar-count {
+    color: var(--text);
+    font: 700 1.05rem / 1 var(--display);
+    font-variant-numeric: tabular-nums;
+  }
+  .bar.zero .bar-count {
+    color: var(--faint);
+    font-weight: 500;
+  }
+  /* The count sits on top of its bar, so it rises with it. */
+  .bar-track {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+  /* A faint baseline under every bar keeps empty stages readable as a step. */
+  .bar-track::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--line-strong);
+  }
+  .bar-fill {
+    position: relative;
+    z-index: 1;
+    width: min(46px, 70%);
+    height: max(calc(var(--height) * 0.78), 4px);
+    border-radius: 6px 6px 3px 3px;
+    background: linear-gradient(to top, color-mix(in srgb, var(--tone) 70%, var(--surface)), var(--tone));
+    box-shadow: 0 0 22px -8px var(--tone);
+    transition:
+      transform 0.25s var(--ease),
+      box-shadow 0.25s;
+  }
+  .bar.zero .bar-fill {
+    height: 0;
+  }
+  .bar-name {
+    overflow: hidden;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .bar:not([aria-disabled]):hover .bar-fill {
+    transform: scaleY(1.03);
+    transform-origin: bottom;
+  }
+  .bars.filtering .bar:not([aria-pressed="true"]) {
+    opacity: 0.4;
+  }
+  .bar[aria-pressed="true"] {
+    border-color: color-mix(in srgb, var(--tone) 55%, transparent);
+    background: color-mix(in srgb, var(--tone) 10%, transparent);
+  }
+  .bar[aria-pressed="true"] .bar-name {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .bar[aria-pressed="true"] .bar-fill {
+    box-shadow: 0 0 30px -4px var(--tone);
+  }
+
+  .toolbar {
+    position: sticky;
+    top: 64px;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 12px var(--gutter);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+  }
+  .search {
+    display: flex;
+    flex: 1 1 260px;
+    align-items: center;
+    gap: 10px;
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--faint);
+  }
+  .search:focus-within {
+    border-color: var(--accent);
+  }
+  .search input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.95rem;
+  }
+  .chips,
+  .view {
+    display: flex;
+    gap: 4px;
+    padding: 3px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+  }
+  .chip,
+  .view button {
+    height: 34px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--muted);
+    font: 500 0.85rem var(--font);
+    cursor: pointer;
+  }
+  .view button {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    padding: 0;
+  }
+  .chip[aria-pressed="true"],
+  .view button[aria-pressed="true"] {
+    background: var(--raised);
+    color: var(--text);
+  }
+  .chip.solo {
+    height: 42px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .chip.solo[aria-pressed="true"] {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+    color: var(--text);
+  }
+  .filters {
+    position: relative;
+  }
+  .filters-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: 500 0.88rem var(--font);
+    cursor: pointer;
+  }
+  .filters-button:hover,
+  .filters-button[aria-expanded="true"] {
+    border-color: var(--line-strong);
+    background: var(--raised);
+  }
+  .filters-count {
+    display: grid;
+    place-items: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .filters-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 20;
+    display: grid;
+    gap: 16px;
+    width: min(340px, calc(100vw - 32px));
+    padding: 18px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--raised);
+    box-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.55);
+  }
+  .filters-panel fieldset {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .filters-panel legend {
+    margin-bottom: 8px;
+    color: var(--faint);
+    font: 500 0.7rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .filters-panel .chips {
+    width: fit-content;
+    background: var(--surface);
+  }
+  .filters-panel .chip.solo {
+    justify-self: start;
+    height: 36px;
+  }
+  .hint {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .select select {
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: 500 0.88rem var(--font);
+  }
+  .summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin: 8px 0 16px;
+    font-size: 0.88rem;
+  }
+  .summary p {
+    margin: 0;
+  }
+  .active {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .active :global(button) {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 10px 0 12px;
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    color: var(--text);
+    font: 500 0.8rem var(--font);
+    cursor: pointer;
+  }
+  .active :global(button)::after {
+    content: "×";
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .active :global(button:hover) {
+    border-color: var(--accent);
+  }
+  .active :global(.clear-all) {
+    border-color: transparent;
+    background: none;
+    color: var(--accent);
+  }
+  .active :global(.clear-all)::after {
+    content: none;
+  }
+
+  .games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: 16px;
+  }
+  /* List view: one row per game, with columns for stage, systems and last test. */
+  .list-head {
+    display: none;
+  }
+  .games.list {
+    grid-template-columns: 1fr;
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .list-head:has(+ .games.list) {
+    display: grid;
+  }
+  .list-head,
+  .games.list :global(.body) {
+    grid-template-columns: minmax(0, 1.5fr) minmax(150px, 1fr) minmax(0, 1.2fr) 110px;
+    gap: 20px;
+  }
+  .list-head {
+    align-items: center;
+    padding: 10px 16px 10px 82px;
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background: var(--raised);
+    color: var(--faint);
+    font: 500 0.7rem var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .games.list :global(.game) {
+    flex-direction: row;
+    align-items: center;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .games.list :global(.game:first-child) {
+    border-top: 0;
+  }
+  .games.list :global(.game:hover) {
+    background: var(--raised);
+    transform: none;
+    box-shadow: none;
+  }
+  .games.list :global(.game::before),
+  .games.list :global(.ready) {
+    display: none;
+  }
+  .games.list :global(.cover) {
+    flex: 0 0 44px;
+    margin: 8px 0 8px 16px;
+    border-radius: 6px;
+  }
+  .games.list :global(.body) {
+    display: grid;
+    flex: 1;
+    align-items: center;
+    padding: 10px 16px;
+  }
+  .games.list :global(.title) {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+  .games.list :global(.fallback span) {
+    display: none;
+  }
+  .games.list :global(h3) {
+    min-height: 0;
+    -webkit-line-clamp: 1;
+  }
+  .games.list :global(.ids) {
+    display: block;
+    color: var(--faint);
+    font-size: 0.74rem;
+  }
+  .games.list :global(.stage) {
+    grid-template-columns: minmax(60px, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+  }
+  .games.list :global(.systems) {
+    display: flex;
+  }
+  .games.list :global(.tested) {
+    display: block;
+  }
+  .games.list :global(.game[data-ready]) :global(.ids)::after {
+    content: " · ready to retest";
+    color: var(--good);
+    font-family: var(--font);
+  }
+
+  .empty {
+    padding: 48px;
+    text-align: center;
+  }
+
+  .legend {
+    margin-top: 48px;
+    padding: 4px 24px;
+  }
+  .legend summary {
+    padding: 16px 0;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .legend ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px 32px;
+    margin: 8px 0 20px;
+    padding: 0;
+    list-style: none;
+    counter-reset: stage;
+  }
+  .legend li {
+    display: grid;
+    gap: 2px;
+    padding-left: 16px;
+    border-left: 3px solid var(--tone);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 1100px) {
+    .fan {
+      display: none;
+    }
+  }
+  @media (max-width: 720px) {
+    /* On narrow screens the chart turns sideways: one row per stage. */
+    .bars {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+    .bar {
+      grid-template-rows: none;
+      grid-template-columns: 76px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      padding: 5px 8px;
+    }
+    .bar.none {
+      margin: 0 0 4px;
+      border-right: 1px solid transparent;
+      border-bottom: 1px dashed var(--line);
+      border-radius: var(--radius-sm);
+    }
+    .bar-name {
+      order: -1;
+      font-size: 0.8rem;
+      text-align: left;
+    }
+    .bar-track {
+      flex-direction: row;
+      justify-content: flex-start;
+      height: 18px;
+    }
+    .bar-track::after {
+      display: none;
+    }
+    .bar-fill {
+      order: -1;
+      width: max(calc(var(--height) * 0.82), 4px);
+      height: 12px;
+      border-radius: 3px 6px 6px 3px;
+    }
+    .bar.zero .bar-fill {
+      width: 0;
+      height: 12px;
+    }
+    .bar-count {
+      font-size: 0.86rem;
+    }
+    .games {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .list-head {
+      display: none !important;
+    }
+    .games.list {
+      border-radius: var(--radius);
+    }
+    .games.list :global(.body) {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .games.list :global(.systems) {
+      display: none;
+    }
+    .toolbar {
+      position: static;
+    }
+  }
+</style>

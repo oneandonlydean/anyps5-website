@@ -1,0 +1,236 @@
+---
+import Base from "../layouts/Base.astro";
+import StageBadge from "../components/StageBadge.astro";
+import { formatDate } from "../lib/site";
+import { getUpdates, type Update } from "../lib/updates";
+import { artSrc } from "../lib/view";
+
+const updates = await getUpdates();
+// Day groups, newest first; the first 40 days show, the rest load with a button.
+const days = Object.entries(Object.groupBy(updates, (u) => u.date.slice(0, 10))) as [string, Update[]][];
+const VISIBLE_DAYS = 40;
+const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).length;
+---
+
+<Base title="Updates" description="New releases, games that moved up a stage, and weekly implementation progress for AnyPS5.">
+  <section class="container page-head">
+    <span class="eyebrow">Updates</span>
+    <h1>What's new</h1>
+    <p class="lede">Releases, games that moved up the ladder, and what each week added. Follow along in a feed reader or a Discord channel with the feed.</p>
+    <div class="head-actions">
+      <a class="button" href="/updates.xml">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm-2-7a11 11 0 0 1 11 11h-3a8 8 0 0 0-8-8v-3Zm0-7a18 18 0 0 1 18 18h-3A15 15 0 0 0 3 6V3Z"></path></svg>
+        Atom feed
+      </a>
+    </div>
+  </section>
+
+  <section class="container feed" data-updates>
+    <div class="chips" role="group" aria-label="Show">
+      <button type="button" aria-pressed="true" data-kind="all">All</button>
+      <button type="button" aria-pressed="false" data-kind="stage">Games {count("stage")}</button>
+      <button type="button" aria-pressed="false" data-kind="release">Releases {count("release")}</button>
+      <button type="button" aria-pressed="false" data-kind="week">Progress {count("week")}</button>
+    </div>
+
+    {
+      days.map(([day, items], i) => (
+        <section class="day" hidden={i >= VISIBLE_DAYS} data-day>
+          <h2>
+            <time datetime={day}>{formatDate(day)}</time>
+          </h2>
+          <ul>
+            {items.map((u) => (
+              <li class:list={["item", u.kind]} data-kind={u.kind}>
+                <a href={u.url}>
+                  {u.game ? (
+                    <span class="thumb" style={`--tint:${u.game.color ?? "var(--raised)"}`}>
+                      {u.game.cover && <img src={artSrc(u.game.cover, 96)} alt="" width="48" height="72" loading="lazy" decoding="async" />}
+                    </span>
+                  ) : (
+                    <span class:list={["thumb icon", u.kind]} aria-hidden="true">
+                      {u.kind === "release" ? "★" : "↗"}
+                    </span>
+                  )}
+                  <span class="copy">
+                    <b>{u.title}</b>
+                    <span class="muted">{u.text}</span>
+                  </span>
+                  {u.stage && <StageBadge stage={u.stage} />}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+    {
+      days.length > VISIBLE_DAYS && (
+        <button type="button" class="button more" data-more>
+          Show older updates
+        </button>
+      )
+    }
+  </section>
+</Base>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-updates]")!;
+  const days = [...root.querySelectorAll<HTMLElement>("[data-day]")];
+  let kind = "all";
+
+  const apply = () => {
+    for (const day of days) {
+      let visible = 0;
+      for (const item of day.querySelectorAll<HTMLElement>("[data-kind]")) {
+        item.hidden = kind !== "all" && item.dataset.kind !== kind;
+        if (!item.hidden) visible++;
+      }
+      day.classList.toggle("empty", visible === 0);
+    }
+  };
+
+  root.querySelector(".chips")!.addEventListener("click", (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-kind]");
+    if (!button) return;
+    kind = button.dataset.kind!;
+    for (const b of root.querySelectorAll(".chips button")) b.setAttribute("aria-pressed", String(b === button));
+    apply();
+  });
+  root.querySelector("[data-more]")?.addEventListener("click", (event) => {
+    days.forEach((d) => (d.hidden = false));
+    (event.currentTarget as HTMLElement).remove();
+  });
+</script>
+
+<style>
+  .head-actions {
+    margin-top: 24px;
+  }
+  .feed {
+    padding-bottom: 96px;
+  }
+  .feed > * {
+    max-width: 860px;
+  }
+  .chips {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 28px;
+    padding: 3px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+  }
+  .chips button {
+    height: 34px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--muted);
+    font: 500 0.86rem var(--font);
+    cursor: pointer;
+  }
+  .chips button[aria-pressed="true"] {
+    background: var(--raised);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+  }
+  .day {
+    position: relative;
+    padding: 0 0 22px 22px;
+    border-left: 1px solid var(--line);
+  }
+  .day.empty {
+    display: none;
+  }
+  .day::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  h2 {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  ul {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .item a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px 10px 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s var(--ease);
+  }
+  .item a:hover {
+    border-color: var(--line-strong);
+    color: var(--text);
+    transform: translateX(2px);
+  }
+  .thumb {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 54px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--tint);
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .thumb.icon {
+    height: 36px;
+    background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+    color: var(--accent-strong);
+    font-size: 1rem;
+  }
+  .thumb.icon.week {
+    background: color-mix(in srgb, var(--accent-2) 16%, var(--surface));
+    color: var(--accent-2);
+  }
+  .copy {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+    font-size: 0.9rem;
+  }
+  .copy b {
+    font-weight: 600;
+  }
+  .copy .muted {
+    font-size: 0.84rem;
+  }
+  .more {
+    margin-top: 8px;
+  }
+  @media (max-width: 560px) {
+    .item :global(.badge) {
+      display: none;
+    }
+  }
+</style>

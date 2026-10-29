@@ -1,0 +1,1055 @@
+---
+import Base from "../layouts/Base.astro";
+import LibraryMap from "../components/progress/LibraryMap.astro";
+import LineChart from "../components/progress/LineChart.astro";
+import Sparkline from "../components/Sparkline.astro";
+import { getGames, getNeeds, type GameNeeds } from "../lib/data";
+import { formatDate, REPO_URL } from "../lib/site";
+import { getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
+
+const [progress, libraryHistory, coverage, needs, games] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames()]);
+const number = new Intl.NumberFormat("en-GB");
+const percent = (done: number, total: number, digits = 1) => `${total ? ((done / total) * 100).toFixed(digits) : "0"}%`;
+
+const libraries = progress?.libraries;
+const inert = libraries?.groups.reduce((n, g) => n + g.inert, 0) ?? 0;
+const complete = libraries?.groups.filter((g) => g.done === g.total).length ?? 0;
+
+// Encodings in reading order, with what each one is for.
+const ENCODINGS: Record<string, string> = {
+  SOP1: "Scalar ALU, one operand",
+  SOP2: "Scalar ALU, two operands",
+  SOPK: "Scalar ALU with an inline constant",
+  SOPC: "Scalar compare",
+  SOPP: "Program control and branches",
+  SMEM: "Scalar memory",
+  VOP1: "Vector ALU, one operand",
+  VOP2: "Vector ALU, two operands",
+  VOP3: "Vector ALU, three operands",
+  VOP3P: "Packed vector math",
+  VOPC: "Vector compare",
+  VINTRP: "Attribute interpolation",
+  DS: "Local and global data share",
+  MUBUF: "Untyped buffer memory",
+  MTBUF: "Typed buffer memory",
+  MIMG: "Image sample, load and store",
+  FLAT: "Flat memory",
+  GLOBAL: "Global memory",
+  SCRATCH: "Scratch memory",
+  EXP: "Export to render targets",
+};
+const FORMS = [
+  { key: "base", label: "Own encoding" },
+  { key: "vop3", label: "As VOP3" },
+  { key: "dpp16", label: "DPP16" },
+  { key: "dpp8", label: "DPP8" },
+] as const;
+
+// Encodings grouped the way the ISA is: scalar ALU, vector ALU, memory.
+const GROUPS = [
+  { title: "Scalar", encodings: ["SOP1", "SOP2", "SOPK", "SOPC", "SOPP", "SMEM"] },
+  { title: "Vector", encodings: ["VOP1", "VOP2", "VOP3", "VOP3P", "VOPC", "VINTRP"] },
+  { title: "Memory and export", encodings: ["DS", "MUBUF", "MTBUF", "MIMG", "FLAT", "GLOBAL", "SCRATCH", "EXP"] },
+];
+const matrix = coverage
+  ? Object.keys(ENCODINGS)
+      .map((encoding) => ({ encoding, cells: FORMS.map((f) => coverage.forms.find((c) => c.encoding === encoding && c.form === f.key) ?? null) }))
+      .filter((row) => row.cells.some(Boolean))
+  : [];
+
+/** The day closest to `days` before the last one, for "change since" figures. */
+function before(history: Coverage["history"], days: number) {
+  const last = new Date(history.at(-1)!.date).getTime();
+  return history.find((h) => last - new Date(h.date).getTime() <= days * 864e5) ?? history[0];
+}
+const tiles = GROUPS.map((g) => ({
+  title: g.title,
+  rows: matrix
+    .filter((row) => g.encodings.includes(row.encoding))
+    .map((row) => {
+      const forms = row.cells.flatMap((c, i) => (c ? [{ ...c, label: FORMS[i].label }] : []));
+      const decoded = forms.reduce((n, f) => n + f.decoded, 0);
+      const total = forms.reduce((n, f) => n + f.total, 0);
+      return { encoding: row.encoding, forms, decoded, total, missing: forms.flatMap((f) => f.missing.map((name) => ({ form: f.label, name }))) };
+    }),
+}));
+const throwsSince = coverage && {
+  first: coverage.history[0],
+  month: before(coverage.history, 30),
+};
+
+/** "Format8_8_8_8UNorm" → "8_8_8_8 UNorm"; FMASK and block-compressed names keep their own shape. */
+function formatLabel(name: string | null, value: number) {
+  if (!name) return `#${value}`;
+  return name
+    .replace(/^Format/, "")
+    .replace(/(UNorm|SNorm|UScaled|SScaled|UInt|SInt|Float|Srgb|UBNorm|UBScaled)/, " $1")
+    .replace(/_/g, "·")
+    .trim();
+}
+
+const site = (file: string, line: number) => `${REPO_URL}/blob/${coverage!.commit}/core/shader/recompiler/${file}#L${line}`;
+const throwsByFile = coverage
+  ? Object.entries(Object.groupBy(coverage.throws.sites, (s) => s.file)).sort((a, b) => b[1]!.length - a[1]!.length || a[0].localeCompare(b[0]))
+  : [];
+const shaderDates = coverage?.history.map((h) => h.date) ?? [];
+
+// What games are waiting on: open functions and errors named in each game's newest blocker, by how many games name them.
+const gameName = new Map(games.map((g) => [g.slug, g.name]));
+function wanted<T>(pick: (n: GameNeeds) => T[], key: (item: T) => string) {
+  const tally = new Map<string, { item: T; games: string[] }>();
+  for (const [slug, n] of needs) {
+    for (const item of pick(n)) {
+      const entry = tally.get(key(item)) ?? { item, games: [] };
+      if (!entry.games.includes(slug)) entry.games.push(slug);
+      tally.set(key(item), entry);
+    }
+  }
+  return [...tally.values()].sort((a, b) => b.games.length - a.games.length || key(a.item).localeCompare(key(b.item)));
+}
+const wantedFunctions = wanted((n) => n.functions.filter((f) => f.status !== "implemented"), (f) => f.name).slice(0, 12);
+const wantedErrors = wanted((n) => n.errors, (e) => e.message).slice(0, 10);
+---
+
+<Base title="Progress" description="How much of the PS5 system libraries and the RDNA 2 shader instruction set AnyPS5 implements, measured from its source.">
+  <section class="container page-head">
+    <span class="eyebrow">Implementation progress</span>
+    <h1>How much is done</h1>
+    <p class="lede">
+      AnyPS5 reimplements the PS5's system libraries and recompiles its GPU shaders. Every number here is measured from the project's source on each build, so nobody keeps these figures by hand.
+    </p>
+    <nav class="jump" aria-label="On this page">
+      <a href="#libraries">System libraries</a>
+      <a href="#shaders">Shader recompiler</a>
+      <a href="#wanted">Most wanted</a>
+      <a href="#method">How it's measured</a>
+    </nav>
+  </section>
+
+  {
+    libraries && (
+      <section class="container block" id="libraries">
+        <div class="card part">
+          <header class="part-head">
+            <div>
+              <span class="eyebrow">System libraries</span>
+              <h2>
+                <span class="big">{percent(libraries.done, libraries.total)}</span> of declared functions implemented
+              </h2>
+              <p class="muted">
+                Each tile is one PS5 system library, sized by how many of its functions the project has declared so far. The total grows as more functions are found.
+              </p>
+            </div>
+            <dl class="facts">
+              <div><dt>Implemented</dt><dd>{number.format(libraries.done)}</dd></div>
+              <div><dt>Missing</dt><dd>{number.format(libraries.total - libraries.done)}</dd></div>
+              <div><dt>No-op bodies</dt><dd title="Implemented functions that only discard their arguments and return a constant">{number.format(inert)}</dd></div>
+              <div><dt>Complete libraries</dt><dd>{complete} <small>of {libraries.groups.length}</small></dd></div>
+            </dl>
+          </header>
+          <div class="meter" role="img" aria-label={`${percent(libraries.done, libraries.total)} implemented`}>
+            <span style={`width:${(libraries.done / libraries.total) * 100}%`} />
+          </div>
+          <LibraryMap groups={libraries.groups} />
+          {libraryHistory.length > 1 && (
+            <div class="chart-wrap">
+              <LineChart
+                title="Library functions over time"
+                unit="functions"
+                dates={libraryHistory.map((d) => d.date)}
+                series={[
+                  { label: "Implemented", values: libraryHistory.map((d) => d.libraries.done), color: "var(--good)" },
+                  { label: "Declared", values: libraryHistory.map((d) => d.libraries.total), color: "var(--faint)", dashed: true },
+                ]}
+              />
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    coverage && throwsSince && (
+      <section class="container block" id="shaders">
+        <div class="section-intro">
+          <span class="eyebrow">Shader recompiler</span>
+          <h2>Translating {coverage.isa} shaders to Vulkan</h2>
+          <p class="muted">
+            Measured against AMD's machine-readable {coverage.isa} instruction set, on upstream <code>main</code> at{" "}
+            <a href={`${REPO_URL}/commit/${coverage.commit}`}>
+              <code>{coverage.commit.slice(0, 9)}</code>
+            </a>{" "}
+            ({formatDate(coverage.date)}).
+          </p>
+        </div>
+
+        <div class="tiles">
+          <div class="card tile">
+            <span class="label">Instruction forms</span>
+            <b>
+              <span data-count={((coverage.instructions.decoded / coverage.instructions.total) * 100).toFixed(1)} data-digits="1">
+                {((coverage.instructions.decoded / coverage.instructions.total) * 100).toFixed(1)}
+              </span>
+              %
+            </b>
+            <span class="muted">
+              {number.format(coverage.instructions.decoded)} of {number.format(coverage.instructions.total)} decode; {number.format(coverage.instructions.translated)} also translate
+            </span>
+            <Sparkline values={coverage.history.map((h) => h.instructions?.decoded ?? null)} color="var(--accent-2)" label="Decoded instruction forms over time" />
+          </div>
+          <div class="card tile">
+            <span class="label">DPP lane swizzles</span>
+            <b>{percent(coverage.dpp.decoded, coverage.dpp.total)}</b>
+            <span class="muted">
+              {coverage.dpp.decoded} of {coverage.dpp.total} DPP16 and DPP8 forms
+            </span>
+            <Sparkline values={coverage.history.map((h) => h.dpp?.decoded ?? null)} color="var(--accent-2)" label="Accepted DPP forms over time" />
+          </div>
+          <div class="card tile">
+            <span class="label">Image formats</span>
+            <b>{percent(coverage.formats.sampled, coverage.formats.total, 0)}</b>
+            <span class="muted">
+              {coverage.formats.sampled} of {coverage.formats.total} can be sampled; {coverage.formats.buffer} as buffers
+            </span>
+          </div>
+          <div class="card tile">
+            <span class="label">Descriptor types</span>
+            <b>
+              {coverage.descriptors.filter((d) => d.handled).length}
+              <small>/{coverage.descriptors.length}</small>
+            </b>
+            <span class="muted">image dimensions mapped</span>
+          </div>
+          <div class="card tile throws">
+            <span class="label">Unsupported cases</span>
+            <b data-count={coverage.throws.total}>{coverage.throws.total}</b>
+            <span class="muted">
+              {throwsSince.first.throws > coverage.throws.total ? (
+                <>
+                  <span class="down">↓ {throwsSince.first.throws - coverage.throws.total}</span> since {formatDate(throwsSince.first.date)}
+                </>
+              ) : (
+                <>since {formatDate(throwsSince.first.date)}</>
+              )}
+              {throwsSince.month !== throwsSince.first && (
+                <>
+                  ; {coverage.throws.total - throwsSince.month.throws >= 0 ? "+" : "−"}
+                  {Math.abs(coverage.throws.total - throwsSince.month.throws)} in 30 days
+                </>
+              )}
+            </span>
+            <Sparkline values={coverage.history.map((h) => h.throws)} color="var(--accent)" label="Unsupported cases over time" />
+          </div>
+        </div>
+
+        <div class="card part">
+          <header class="part-head">
+            <div>
+              <h3>Instructions by encoding</h3>
+              <p class="muted">
+                Every {coverage.isa} instruction in every encoding it can take, and how many the decoder accepts. Vector instructions also come in the 64-bit VOP3 encoding and with DPP lane-swizzle words. Tiles with gaps list what is missing.
+              </p>
+            </div>
+          </header>
+          {tiles.map((group) => (
+            <section class="enc-group">
+              <h4>{group.title}</h4>
+              <ul class="enc-tiles">
+                {group.rows.map((t) => (
+                  <li class:list={["enc-tile", { full: t.decoded === t.total }]} style={`--pct:${(t.decoded / t.total) * 100}`}>
+                    <div class="enc-top">
+                      <span class="ring" role="img" aria-label={`${t.decoded} of ${t.total} forms decoded`}>
+                        <span>{Math.floor((t.decoded / t.total) * 100)}%</span>
+                      </span>
+                      <span class="enc-name">
+                        <b class="mono">{t.encoding}</b>
+                        <span class="muted">{ENCODINGS[t.encoding]}</span>
+                      </span>
+                    </div>
+                    <ul class="enc-forms">
+                      {t.forms.map((f) => (
+                        <li style={`--fill:${(f.decoded / f.total) * 100}%`}>
+                          <span>{f.label}</span>
+                          <span class="mini" aria-hidden="true" />
+                          <span class="mono">
+                            {f.decoded}/{f.total}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    {t.missing.length > 0 && (
+                      <details class="enc-missing">
+                        <summary>{t.missing.length} not decoded</summary>
+                        <p class="mono">{t.missing.map((m) => (t.forms.length > 1 ? `${m.name} (${m.form})` : m.name)).join(", ")}</p>
+                      </details>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+          {coverage.untranslated.length > 0 && (
+            <p class="note">
+              Decoded but not yet translated: <span class="mono">{coverage.untranslated.join(", ")}</span>
+            </p>
+          )}
+          <div class="chart-wrap">
+            <LineChart
+              title="Instruction forms decoded over time"
+              unit="forms"
+              dates={shaderDates}
+              series={[
+                { label: "Decoded", values: coverage.history.map((h) => h.instructions?.decoded ?? null), color: "var(--accent-2)" },
+                { label: "In the instruction set", values: coverage.history.map((h) => h.instructions?.total ?? null), color: "var(--faint)", dashed: true },
+              ]}
+            />
+          </div>
+        </div>
+
+        <div class="card part">
+          <header class="part-head">
+            <div>
+              <h3>Unsupported cases left</h3>
+              <p class="muted">
+                Places where the recompiler stops with an error saying something is unsupported or not implemented: an operand combination, a format or a shader feature it does not handle yet. As support grows, rejections are first written down and then removed, so this can rise before it falls.
+              </p>
+            </div>
+          </header>
+          <div class="throws-grid">
+            <LineChart title="Unsupported cases over time" unit="cases" dates={shaderDates} series={[{ label: "Unsupported cases", values: coverage.history.map((h) => h.throws), color: "var(--accent)" }]} />
+            <div>
+              <p class="label">By component</p>
+              <ul class="areas">
+                {coverage.throws.areas.map((a) => (
+                  <li>
+                    <span>{a.name}</span>
+                    <span class="area-bar" style={`--w:${(a.count / coverage.throws.areas[0].count) * 100}%`} />
+                    <span class="mono">{a.count}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <details class="sites" data-pagefind-ignore>
+            <summary>All {coverage.throws.total} cases, by file</summary>
+            <div class="sites-list">
+              {throwsByFile.map(([file, sites]) => (
+                <section>
+                  <h4 class="mono">
+                    {file} <span class="muted">{sites!.length}</span>
+                  </h4>
+                  <ul>
+                    {sites!.map((s) => (
+                      <li>
+                        <a class="mono" href={site(s.file, s.line)}>
+                          L{s.line}
+                        </a>{" "}
+                        {s.message}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          </details>
+        </div>
+
+        <div class="card part">
+          <header class="part-head">
+            <div>
+              <h3>Image formats</h3>
+              <p class="muted">
+                Every format value a texture or buffer descriptor can name, and which layers handle it: the recompiler can <b>sample</b> it, read or write it as a typed <b>buffer</b>, and the graphics driver maps it to a <b>Vulkan</b> texture format.
+              </p>
+            </div>
+            <div class="chips" role="group" aria-label="Show formats" data-format-filter>
+              <button type="button" aria-pressed="true" data-show="all">All {coverage.formatRows.length}</button>
+              <button type="button" aria-pressed="false" data-show="sampled">Sampled {coverage.formats.sampled}</button>
+              <button type="button" aria-pressed="false" data-show="buffer">Buffer {coverage.formats.buffer}</button>
+              <button type="button" aria-pressed="false" data-show="host">Vulkan {coverage.formats.host}</button>
+              <button type="button" aria-pressed="false" data-show="none">Unhandled {coverage.formatRows.filter((f) => !f.sampled && !f.buffer && !f.host).length}</button>
+            </div>
+          </header>
+          <ul class="formats" data-formats data-pagefind-ignore>
+            {coverage.formatRows.map((f) => (
+              <li
+                class:list={{ unnamed: !f.name }}
+                data-sampled={f.sampled ? "" : undefined}
+                data-buffer={f.buffer ? "" : undefined}
+                data-host={f.host ? "" : undefined}
+                title={`${f.name ?? "No name in the recompiler"} (value ${f.value})`}
+              >
+                <span class="fmt">{formatLabel(f.name, f.value)}</span>
+                <span class="pips" aria-label={[f.sampled && "sampled", f.buffer && "buffer", f.host && "Vulkan"].filter(Boolean).join(", ") || "not handled"}>
+                  <i class:list={{ on: f.sampled }}>S</i>
+                  <i class:list={{ on: f.buffer }}>B</i>
+                  <i class:list={{ on: f.host }}>V</i>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <div class="descriptors">
+            <p class="label">Image descriptor types</p>
+            <ul>
+              {coverage.descriptors.map((d) => (
+                <li class:list={{ on: d.handled }}>
+                  <span aria-hidden="true">{d.handled ? "✓" : "✕"}</span>
+                  {d.name.replace(/^Color/, "")}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    (wantedFunctions.length > 0 || wantedErrors.length > 0) && (
+      <section class="container block" id="wanted">
+        <div class="card part">
+          <header class="part-head">
+            <div>
+              <span class="eyebrow">Most wanted</span>
+              <h2>What games are waiting on</h2>
+              <p class="muted">
+                Functions and errors named in each game's newest bring-up report that are still open in today's source, by how many games name them. Fixing one of these moves real games forward.
+              </p>
+            </div>
+          </header>
+          <div class="wanted-grid">
+            {wantedFunctions.length > 0 && (
+              <div>
+                <p class="label">System functions</p>
+                <ol class="wanted">
+                  {wantedFunctions.map(({ item, games: slugs }) => (
+                    <li>
+                      <div>
+                        <code>{item.name}</code>
+                        <span class="muted">
+                          {" "}
+                          in <a href={`?library=${encodeURIComponent(item.library)}#libraries`}>{item.library}</a>
+                          {item.status === "undeclared" && ", not declared yet"}
+                        </span>
+                      </div>
+                      <span class="games">
+                        {slugs.map((slug, i) => (
+                          <>
+                            {i > 0 && ", "}
+                            <a href={`/compatibility/${slug}`}>{gameName.get(slug)}</a>
+                          </>
+                        ))}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+            {wantedErrors.length > 0 && (
+              <div>
+                <p class="label">Errors</p>
+                <ol class="wanted">
+                  {wantedErrors.map(({ item, games: slugs }) => (
+                    <li>
+                      <div>
+                        <code class="message">{item.message}</code>
+                      </div>
+                      <span class="games">
+                        {slugs.map((slug, i) => (
+                          <>
+                            {i > 0 && ", "}
+                            <a href={`/compatibility/${slug}`}>{gameName.get(slug)}</a>
+                          </>
+                        ))}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="container block method" id="method">
+    <div class="card part">
+      <h2>How it's measured</h2>
+      <div class="method-grid">
+        <div>
+          <h3>System libraries</h3>
+          <p class="muted">
+            From upstream's own <a href={`${REPO_URL}/blob/main/docs/dev/PROGRESS.md`}>progress report</a>: a function counts as implemented unless its body calls the not-implemented stub. No-op bodies are counted as implemented and shown separately.
+          </p>
+        </div>
+        <div>
+          <h3>Shader recompiler</h3>
+          <p class="muted">
+            Each build reads the recompiler's opcode tables, its DPP rules, its translator, its format tables and its error sites straight from upstream source, and compares them with AMD's machine-readable ISA. Earlier days are measured again with the same rules, so the charts stay comparable. If upstream reorganises this code, the build stops instead of publishing wrong numbers.
+          </p>
+        </div>
+        <div>
+          <h3>Not measured yet</h3>
+          <p class="muted">
+            Whether every operand modifier combination is accepted: VOP3 abs, neg, clamp and omod, op_sel, SDWA byte and word selects, and integer source modifiers inside DPP. Those are decided by code paths a source scan cannot follow; counting them needs a harness that runs the decoder itself.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  for (const group of document.querySelectorAll<HTMLElement>("[data-format-filter]")) {
+    const list = group.closest(".part")!.querySelector<HTMLElement>("[data-formats]")!;
+    group.addEventListener("click", (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-show]");
+      if (!button) return;
+      for (const b of group.querySelectorAll("button")) b.setAttribute("aria-pressed", String(b === button));
+      const show = button.dataset.show!;
+      for (const item of list.children as HTMLCollectionOf<HTMLElement>) {
+        const handled = "sampled" in item.dataset || "buffer" in item.dataset || "host" in item.dataset;
+        item.hidden = show === "all" ? false : show === "none" ? handled : !(show in item.dataset);
+      }
+    });
+  }
+</script>
+
+<style>
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .jump a {
+    padding: 7px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.86rem;
+    text-decoration: none;
+  }
+  .jump a:hover {
+    border-color: var(--line-strong);
+    color: var(--text);
+  }
+  .block {
+    display: grid;
+    gap: 16px;
+    padding-bottom: clamp(40px, 6vw, 72px);
+  }
+  .section-intro {
+    max-width: 760px;
+    margin-bottom: 8px;
+  }
+  .part {
+    padding: clamp(20px, 3vw, 32px);
+  }
+  .part-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px 40px;
+    margin-bottom: 20px;
+  }
+  .part-head > div:first-child {
+    flex: 1 1 420px;
+    max-width: 720px;
+  }
+  .part-head p {
+    margin: 0;
+  }
+  .part h2 {
+    font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  }
+  .part h3 {
+    margin-bottom: 6px;
+  }
+  .big {
+    font-family: var(--display);
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 1.6em;
+    letter-spacing: -0.04em;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 6px 28px;
+    margin: 0;
+  }
+  .facts dt,
+  .label {
+    margin: 0;
+    color: var(--faint);
+    font: 500 0.7rem/1.4 var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .facts dd {
+    margin: 2px 0 0;
+    font-size: 1.35rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .facts small,
+  .tile small {
+    color: var(--muted);
+    font-size: 0.6em;
+    font-weight: 500;
+  }
+  .meter {
+    height: 6px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: var(--stage-untested);
+  }
+  .meter span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--good);
+  }
+  .chart-wrap {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .tile {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 18px 20px;
+    font-size: 0.82rem;
+  }
+  .tile b {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .down {
+    color: var(--good);
+    font-weight: 600;
+  }
+
+  .enc-group + .enc-group {
+    margin-top: 22px;
+  }
+  .enc-group h4 {
+    margin: 0 0 10px;
+    color: var(--faint);
+    font: 500 0.72rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .enc-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .enc-tile {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+  }
+  .enc-tile:not(.full) {
+    border-color: color-mix(in srgb, var(--warn) 40%, var(--line));
+  }
+  .enc-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  /* A coverage ring: full circles read as done at a glance, gaps stand out. */
+  .ring {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background:
+      radial-gradient(closest-side, var(--bg) 76%, transparent 78%),
+      conic-gradient(var(--accent-2) calc(var(--pct) * 1%), var(--stage-untested) 0);
+  }
+  .enc-tile:not(.full) .ring {
+    background:
+      radial-gradient(closest-side, var(--bg) 76%, transparent 78%),
+      conic-gradient(var(--warn) calc(var(--pct) * 1%), var(--stage-untested) 0);
+  }
+  .ring span {
+    font: 700 0.68rem var(--mono);
+  }
+  .enc-name {
+    display: grid;
+    min-width: 0;
+    line-height: 1.3;
+  }
+  .enc-name b {
+    font-size: 0.92rem;
+  }
+  .enc-name .muted {
+    font-size: 0.76rem;
+  }
+  .enc-forms {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .enc-forms li {
+    display: grid;
+    grid-template-columns: 92px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.76rem;
+  }
+  .mini {
+    height: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent-2) var(--fill), var(--stage-untested) var(--fill));
+  }
+  .enc-forms .mono {
+    color: var(--text);
+    font-size: 0.72rem;
+  }
+  .enc-missing {
+    font-size: 0.78rem;
+  }
+  .enc-missing summary {
+    width: fit-content;
+    color: var(--warn);
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .enc-missing p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+  .note {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .throws-grid {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 32px;
+  }
+  .areas {
+    display: grid;
+    gap: 8px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.85rem;
+  }
+  .areas li {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) 1fr 3ch;
+    align-items: center;
+    gap: 10px;
+  }
+  .areas li > span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .area-bar {
+    height: 8px;
+    border-radius: 2px 4px 4px 2px;
+    background: linear-gradient(90deg, var(--accent) var(--w), transparent var(--w));
+  }
+  .areas .mono {
+    text-align: right;
+  }
+  .sites {
+    margin-top: 20px;
+    font-size: 0.85rem;
+  }
+  .sites summary {
+    width: fit-content;
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .sites-list {
+    display: grid;
+    gap: 14px;
+    max-height: 480px;
+    overflow: auto;
+    margin-top: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+  .sites h4 {
+    margin: 0 0 4px;
+    font-size: 0.8rem;
+  }
+  .sites ul {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+  }
+  .sites a {
+    display: inline-block;
+    min-width: 5ch;
+    font-size: 0.78rem;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 3px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+  }
+  .chips button {
+    height: 32px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--muted);
+    font: 500 0.82rem var(--font);
+    cursor: pointer;
+  }
+  .chips button[aria-pressed="true"] {
+    background: var(--raised);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+  }
+  .formats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .formats li {
+    display: grid;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface);
+  }
+  .formats li.unnamed {
+    border-style: dashed;
+    background: none;
+  }
+  .fmt {
+    overflow: hidden;
+    font: 0.74rem var(--mono);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .unnamed .fmt {
+    color: var(--faint);
+  }
+  .pips {
+    display: flex;
+    gap: 3px;
+  }
+  .pips i {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 16px;
+    border-radius: 3px;
+    background: var(--stage-untested);
+    color: var(--faint);
+    font: 600 0.6rem var(--mono);
+    font-style: normal;
+  }
+  .pips i.on {
+    background: color-mix(in srgb, var(--accent-2) 80%, var(--surface));
+    color: var(--on-accent);
+  }
+  .descriptors {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .descriptors ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .descriptors li {
+    display: inline-flex;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.85rem;
+  }
+  .descriptors li.on span {
+    color: var(--good);
+  }
+  .descriptors li:not(.on) span {
+    color: var(--bad);
+  }
+
+  .wanted-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .wanted {
+    display: grid;
+    gap: 10px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: wanted;
+  }
+  .wanted li {
+    position: relative;
+    display: grid;
+    gap: 4px;
+    padding: 10px 14px 10px 44px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    font-size: 0.86rem;
+    counter-increment: wanted;
+  }
+  .wanted li::before {
+    content: counter(wanted);
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    color: var(--faint);
+    font: 600 0.8rem var(--mono);
+  }
+  .wanted code {
+    overflow-wrap: anywhere;
+  }
+  .wanted .message {
+    border: 0;
+    padding: 0;
+    background: none;
+    font-size: 0.82rem;
+  }
+  .games {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 12px;
+  }
+  .method-grid p {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 1100px) {
+    .tiles {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 860px) {
+    .throws-grid,
+    .wanted-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .wanted {
+    display: grid;
+    gap: 10px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: wanted;
+  }
+  .wanted li {
+    position: relative;
+    display: grid;
+    gap: 4px;
+    padding: 10px 14px 10px 44px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    font-size: 0.86rem;
+    counter-increment: wanted;
+  }
+  .wanted li::before {
+    content: counter(wanted);
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    color: var(--faint);
+    font: 600 0.8rem var(--mono);
+  }
+  .wanted code {
+    overflow-wrap: anywhere;
+  }
+  .wanted .message {
+    border: 0;
+    padding: 0;
+    background: none;
+    font-size: 0.82rem;
+  }
+  .games {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .method-grid {
+      grid-template-columns: 1fr;
+    }
+    .facts {
+      grid-template-columns: repeat(2, auto);
+    }
+  }
+  @media (max-width: 640px) {
+    .tiles {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

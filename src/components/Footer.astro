@@ -1,0 +1,136 @@
+---
+import Logo from "./Logo.astro";
+import { DISCORD_URL, DISCUSSIONS_URL, REPO_URL } from "../lib/site";
+import { localePath, parsePath, strings } from "../i18n";
+
+const { locale } = parsePath(Astro.url.pathname);
+const t = strings(locale);
+const local = (path: string) => localePath(locale, path);
+const columns = [
+  {
+    title: t.footer.project,
+    links: [
+      { href: "/compatibility", label: t.nav.compatibility },
+      { href: "/convert", label: t.footer.webConverter },
+      { href: "/download", label: t.nav.download },
+      { href: "/progress", label: t.nav.progress },
+      { href: "/updates", label: t.footer.updates },
+    ],
+  },
+  {
+    title: t.footer.learn,
+    links: [
+      { href: local("/guide"), label: t.nav.guide },
+      { href: "/docs", label: t.footer.documentation },
+      { href: local("/faq"), label: t.footer.faq },
+      { href: `${REPO_URL}/blob/main/docs/dev/BUILD.md`, label: t.footer.build },
+      { href: `${REPO_URL}/blob/main/CONTRIBUTING.md`, label: t.footer.contributing },
+    ],
+  },
+  {
+    title: t.footer.community,
+    links: [
+      { href: DISCORD_URL, label: "Discord" },
+      { href: REPO_URL, label: "GitHub" },
+      { href: DISCUSSIONS_URL, label: t.footer.bringUp },
+      { href: "/report", label: t.footer.report },
+      { href: "/community", label: t.footer.involved },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="container grid">
+    <div class="about">
+      <a class="brand" href={local("/")}><Logo size={16} /> AnyPS5</a>
+      <p class="muted">{t.footer.tagline}</p>
+    </div>
+    {
+      columns.map(({ title, links }) => (
+        <nav aria-label={title}>
+          <h2>{title}</h2>
+          <ul>
+            {links.map(({ href, label }) => (
+              <li>
+                <a href={href}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+  <div class="container legal">
+    <p>{t.footer.legal}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 96px;
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 40px;
+    padding-block: 56px 40px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+    font-family: var(--display);
+    font-optical-sizing: auto;
+  }
+  .about p {
+    max-width: 36ch;
+    font-size: 0.92rem;
+  }
+  h2 {
+    margin-bottom: 14px;
+    color: var(--muted);
+    font: 500 0.75rem/1 var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  ul a {
+    color: var(--muted);
+    font-size: 0.92rem;
+    text-decoration: none;
+  }
+  ul a:hover {
+    color: var(--text);
+  }
+  .legal {
+    padding-block: 24px 40px;
+    border-top: 1px solid var(--line);
+  }
+  .legal p {
+    max-width: 110ch;
+    margin: 0;
+    color: var(--faint);
+    font-size: 0.8rem;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

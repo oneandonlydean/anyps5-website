@@ -1,0 +1,214 @@
+---
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { isTranslated, LOCALES, localePath, parsePath, strings } from "../i18n";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  /** Leave the page out of site search. */
+  unsearchable?: boolean;
+}
+
+// The language comes from the URL: /es/guide is the Spanish setup guide.
+const { locale, path } = parsePath(Astro.url.pathname);
+const t = strings(locale);
+const { title, description = t.meta.description, image = "/og/default.jpg", unsearchable = false } = Astro.props;
+// The label search results show for each part of the site.
+const SECTIONS: Record<string, string> = {
+  compatibility: "Compatibility",
+  guide: "Setup guide",
+  docs: "Docs",
+  progress: "Progress",
+  convert: "Converter",
+  download: "Download",
+  updates: "Updates",
+  community: "Community",
+  report: "Report",
+  faq: "FAQ",
+};
+const section = SECTIONS[path.split("/")[1]] ?? "Home";
+const fullTitle = title ? `${title} · AnyPS5` : t.meta.title;
+// Translated pages point search engines at each other's language versions.
+const alternates = isTranslated(path)
+  ? (Object.keys(LOCALES) as (keyof typeof LOCALES)[]).map((l) => ({ lang: LOCALES[l].lang, href: new URL(localePath(l, path), Astro.site).href }))
+  : [];
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={LOCALES[locale].lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={new URL(path, Astro.site).href} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="AnyPS5 updates" href="/updates.xml" />
+    <meta name="theme-color" content="#06080d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AnyPS5" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://image.api.playstation.com" crossorigin />
+    <script is:inline>
+      try {
+        const saved = localStorage.getItem("theme");
+        const theme = saved ?? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        if (theme === "light") document.documentElement.dataset.theme = "light";
+      } catch {}
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#content">{t.nav.skip}</a>
+    <Header />
+    <main id="content" data-pagefind-body={unsearchable ? undefined : ""} data-pagefind-meta={`section:${section}`}>
+      <span hidden data-pagefind-meta="title">{title ?? "AnyPS5"}</span>
+      <slot />
+    </main>
+    <Footer />
+    <div class="toast" role="status" aria-live="polite" data-toast></div>
+    <script>
+      // A small confirmation toast. Anything can show one with: document.dispatchEvent(new CustomEvent("toast", { detail: "Copied" })).
+      const toast = document.querySelector<HTMLElement>("[data-toast]")!;
+      let hide: ReturnType<typeof setTimeout> | undefined;
+      document.addEventListener("toast", (event) => {
+        toast.textContent = (event as CustomEvent<string>).detail;
+        toast.classList.add("show");
+        clearTimeout(hide);
+        hide = setTimeout(() => toast.classList.remove("show"), 2200);
+      });
+
+      // Copy buttons on code blocks in the guide and docs.
+      for (const pre of document.querySelectorAll<HTMLElement>(".prose pre")) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "copy-code";
+        button.textContent = "Copy";
+        button.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(pre.querySelector("code")?.innerText ?? pre.innerText);
+            document.dispatchEvent(new CustomEvent("toast", { detail: "Copied to the clipboard" }));
+          } catch {
+            document.dispatchEvent(new CustomEvent("toast", { detail: "Copying was blocked; select the text instead" }));
+          }
+        });
+        pre.classList.add("has-copy");
+        pre.append(button);
+      }
+    </script>
+    <script>
+      // Numbers marked data-count count up the first time they scroll into view. Ones already on screen at load keep
+      // their final value, so nothing flashes, and reduced-motion settings skip the effect.
+      const counters = [...document.querySelectorAll<HTMLElement>("[data-count]")];
+      if (counters.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const format = (value: number, digits: number) => value.toLocaleString("en-GB", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+        const run = (el: HTMLElement) => {
+          const target = Number(el.dataset.count);
+          const digits = Number(el.dataset.digits ?? 0);
+          const start = performance.now();
+          const step = (now: number) => {
+            const t = Math.min(1, (now - start) / 1100);
+            el.textContent = format(target * (1 - (1 - t) ** 3), digits);
+            if (t < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        };
+        const observer = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            observer.unobserve(entry.target);
+            run(entry.target as HTMLElement);
+          }
+        });
+        for (const el of counters) {
+          if (el.getBoundingClientRect().top < innerHeight) continue;
+          el.textContent = format(0, Number(el.dataset.digits ?? 0));
+          observer.observe(el);
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 120;
+    padding: 10px 18px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--raised);
+    box-shadow: 0 16px 40px -12px rgb(0 0 0 / 0.5);
+    color: var(--text);
+    font-size: 0.88rem;
+    font-weight: 500;
+    opacity: 0;
+    translate: -50% 12px;
+    pointer-events: none;
+    transition:
+      opacity 0.2s,
+      translate 0.3s var(--ease);
+  }
+  .toast:empty {
+    display: none;
+  }
+  .toast:global(.show) {
+    opacity: 1;
+    translate: -50% 0;
+  }
+  :global(.prose pre.has-copy) {
+    position: relative;
+  }
+  :global(.copy-code) {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    background: var(--raised);
+    color: var(--muted);
+    font: 500 0.75rem var(--font);
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  :global(.prose pre:hover .copy-code),
+  :global(.copy-code:focus-visible) {
+    opacity: 1;
+  }
+  @media (hover: none) {
+    :global(.copy-code) {
+      opacity: 1;
+    }
+  }
+  .skip {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 100;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .skip:focus {
+    top: 12px;
+  }
+</style>
