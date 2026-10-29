@@ -1,5 +1,5 @@
 {
-  "commit": "2960e9a6e7e1fc99c4ed180c71495b5eb83464c7",
+  "commit": "edf6804cf52c62eacafc592dd6142cb4efe5bd05",
   "date": "2026-10-29",
   "isa": "AMD RDNA 2",
   "instructions": {
@@ -2780,7 +2780,7 @@
     },
     {
       "date": "2026-10-29",
-      "commit": "2960e9a6e7e1fc99c4ed180c71495b5eb83464c7",
+      "commit": "edf6804cf52c62eacafc592dd6142cb4efe5bd05",
       "instructions": {
         "total": 1460,
         "decoded": 1456,
