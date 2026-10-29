@@ -276,34 +276,38 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
             <p class="lede">{t.home.shotsText}</p>
           </div>
         </div>
-        <div class="showcase reveal">
-          {freshRows.map((row, r) => (
-            <div class="reel">
-              <div class:list={["reel-track", { reverse: r === 1 }]} style={`--duration:${Math.max(row.length * 12, 90)}s`}>
-                {[0, 1].map((copy) => (
-                  <ul aria-hidden={copy === 1 ? "true" : undefined}>
-                    {row.map(({ game, shot }) => {
-                      const g = reach(game);
-                      return (
-                        <li style={`--c:${shot.color}`}>
-                          <a href={`/compatibility/${game.slug}`} tabindex={copy === 1 ? -1 : undefined}>
-                            <img src={`/community/${shot.id}-thumb.webp`} alt="" width={shot.width} height={shot.height} loading="lazy" decoding="async" />
-                            <span class="film-copy">
-                              <span class="film-name">{game.name}</span>
-                              <span class="film-meta">
-                                <StageBadge stage={g.stage} onMain={g.onMain} />
-                                {shot.author && <span class="film-by">{t.home.shotBy(shot.author)}</span>}
-                              </span>
-                            </span>
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                ))}
-              </div>
+        <div class="container">
+          <div class="showcase reveal">
+            <div class="showcase-rows">
+              {freshRows.map((row, r) => (
+                <div class="reel">
+                  <div class:list={["reel-track", { reverse: r === 1 }]} style={`--duration:${Math.max(row.length * 12, 90)}s`}>
+                    {[0, 1].map((copy) => (
+                      <ul aria-hidden={copy === 1 ? "true" : undefined}>
+                        {row.map(({ game, shot }) => {
+                          const g = reach(game);
+                          return (
+                            <li style={`--c:${shot.color}`}>
+                              <a href={`/compatibility/${game.slug}`} tabindex={copy === 1 ? -1 : undefined}>
+                                <img src={`/community/${shot.id}-thumb.webp`} alt="" width={shot.width} height={shot.height} loading="lazy" decoding="async" />
+                                <span class="film-copy">
+                                  <span class="film-name">{game.name}</span>
+                                  <span class="film-meta">
+                                    <StageBadge stage={g.stage} onMain={g.onMain} />
+                                    {shot.author && <span class="film-by">{t.home.shotBy(shot.author)}</span>}
+                                  </span>
+                                </span>
+                              </a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </section>
     )
@@ -1268,19 +1272,31 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
 
   /* The showcase wall: two tilted rows of community screenshots drifting in opposite directions. Hovering a row
      pauses it and lifts the screenshot under the pointer while the rest dim. */
-  .fresh {
-    overflow: hidden;
-  }
   .fresh .section-head {
     margin-bottom: 36px;
   }
+  /* The wall keeps to the content width; its rows fade out softly at both sides. */
   .showcase {
+    overflow: hidden;
+    padding-block: 34px;
+    margin-block: -20px;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      rgb(0 0 0 / 0.25) 4%,
+      rgb(0 0 0 / 0.7) 9%,
+      #000 15%,
+      #000 85%,
+      rgb(0 0 0 / 0.7) 91%,
+      rgb(0 0 0 / 0.25) 96%,
+      transparent
+    );
+  }
+  .showcase-rows {
     display: grid;
     gap: 14px;
-    padding-block: 28px;
     rotate: -2.5deg;
-    scale: 1.06;
-    mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent);
+    scale: 1.08;
   }
   .reel {
     overflow: hidden;
@@ -1387,7 +1403,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   }
   /* Without motion, the rows stand still and scroll sideways instead. */
   @media (prefers-reduced-motion: reduce) {
-    .showcase {
+    .showcase-rows {
       rotate: none;
       scale: none;
     }
