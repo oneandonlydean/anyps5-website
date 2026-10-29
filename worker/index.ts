@@ -22,7 +22,7 @@ export default {
       cf: { cacheEverything: true, cacheTtlByStatus: { "200-299": 86400, "300-599": 0 } },
     } as RequestInit);
     const headers = new Headers(upstream.headers);
-    if (upstream.ok) headers.set("cache-control", "public, max-age=86400");
+    headers.set("cache-control", upstream.ok ? "public, max-age=86400" : "no-store");
     return new Response(upstream.body, { status: upstream.status, headers });
   },
 };
