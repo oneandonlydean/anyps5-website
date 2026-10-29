@@ -68,7 +68,7 @@ const { games } = Astro.props;
         return;
       }
       const link = el("a", "Sign in with GitHub to upload", "button");
-      (link as HTMLAnchorElement).href = `/auth/github?return=${encodeURIComponent(location.pathname + location.search + "#upload")}`;
+      (link as HTMLAnchorElement).href = `/auth/github?return=${encodeURIComponent(location.pathname + location.search)}`;
       account.append(link, el("span", "Reports are tied to your GitHub account, so nobody can upload in your name.", "muted note"));
       return;
     }

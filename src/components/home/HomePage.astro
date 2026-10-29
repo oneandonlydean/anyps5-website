@@ -1217,7 +1217,11 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .crowd {
     display: grid;
     gap: 6px;
-    margin-bottom: 28px;
+    margin-bottom: clamp(40px, 5vw, 56px);
+  }
+  /* The last section before the footer, whose own top margin is the gap. */
+  .people {
+    padding-bottom: 0;
   }
   .lane {
     display: grid;
