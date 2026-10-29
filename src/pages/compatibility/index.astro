@@ -7,6 +7,8 @@ import { STAGES, stageRank, stageSlug } from "../../lib/stages";
 import { artSrc, PLATFORM_LABEL, reach } from "../../lib/view";
 
 const [games, retest, shots] = await Promise.all([getGames(), getRetest(), getScreenshots()]);
+// The order the page's script sorts into by default (furthest reached, then newest), so nothing moves after load.
+const ordered = [...games].sort((a, b) => stageRank(reach(b).stage) - stageRank(reach(a).stage) || b.updated.localeCompare(a.updated));
 // Games whose blockers have been fixed since their newest report, most fixes first.
 const ready = games
   .filter((g) => retest.get(g.slug)?.ready)
@@ -167,7 +169,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
       <span>Last tested</span>
     </div>
     <div class="games" data-games>
-      {games.map((game, i) => <GameCard game={game} eager={i < 6} ready={retest.get(game.slug)?.ready} shots={shots.get(game.slug)?.length} />)}
+      {ordered.map((game, i) => <GameCard game={game} eager={i < 6} ready={retest.get(game.slug)?.ready} shots={shots.get(game.slug)?.length} />)}
     </div>
 
     <div class="empty card" data-empty hidden>
