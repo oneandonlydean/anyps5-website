@@ -2,6 +2,7 @@ node_modules/
 dist/
 .astro/
 public/convert/app/
+public/community/
 data/generated/docs/
 .env
 .wrangler/

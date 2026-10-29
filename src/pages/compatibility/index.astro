@@ -2,12 +2,12 @@
 import Base from "../../layouts/Base.astro";
 import GameArt from "../../components/GameArt.astro";
 import GameCard from "../../components/GameCard.astro";
-import { getGames, getRetest } from "../../lib/data";
+import { getGames, getRetest, getScreenshots } from "../../lib/data";
 import { formatDate } from "../../lib/site";
 import { STAGES, stageRank, stageSlug } from "../../lib/stages";
 import { artSrc, PLATFORM_LABEL, reach } from "../../lib/view";
 
-const [games, retest] = await Promise.all([getGames(), getRetest()]);
+const [games, retest, shots] = await Promise.all([getGames(), getRetest(), getScreenshots()]);
 // Games whose blockers have been fixed since their newest report, most fixes first.
 const ready = games
   .filter((g) => retest.get(g.slug)?.ready)
@@ -181,7 +181,7 @@ const fan = games
       <span>Last tested</span>
     </div>
     <div class="games" data-games>
-      {games.map((game, i) => <GameCard game={game} eager={i < 6} ready={retest.get(game.slug)?.ready} />)}
+      {games.map((game, i) => <GameCard game={game} eager={i < 6} ready={retest.get(game.slug)?.ready} shots={shots.get(game.slug)?.length} />)}
     </div>
 
     <div class="empty card" data-empty hidden>
@@ -964,7 +964,8 @@ const fan = games
     box-shadow: none;
   }
   .games.list :global(.game::before),
-  .games.list :global(.ready) {
+  .games.list :global(.ready),
+  .games.list :global(.shots) {
     display: none;
   }
   .games.list :global(.cover) {

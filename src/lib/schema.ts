@@ -60,6 +60,23 @@ export const Report = z.object({
 });
 export type Report = z.infer<typeof Report>;
 
+/** An image embedded in a discussion post, with the post it came from. */
+export const Media = z.object({
+  src: z.url(),
+  alt: z.string(),
+  url: z.url(),
+  author: z.string().nullable(),
+  date: z.string(),
+});
+export type Media = z.infer<typeof Media>;
+
+/** A downloaded community image, keyed by `mediaId(src)`: its size and colour, or why it is not shown. */
+export const Shot = z.union([
+  z.object({ src: z.url(), width: z.number(), height: z.number(), color: z.string() }),
+  z.object({ src: z.url(), skipped: z.enum(["failed", "small", "shape"]), checked: z.string() }),
+]);
+export type Shot = z.infer<typeof Shot>;
+
 export const Thread = z.object({
   number: z.number(),
   title: z.string(),
@@ -69,6 +86,7 @@ export const Thread = z.object({
   updated: z.string(),
   comments: z.number(),
   reports: z.array(Report),
+  media: z.array(Media).default([]),
 });
 export type Thread = z.infer<typeof Thread>;
 

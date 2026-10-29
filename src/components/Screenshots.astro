@@ -1,0 +1,547 @@
+---
+import { formatDate } from "../lib/site";
+import { caption, type Screenshot } from "../lib/screenshots";
+import { stageSlug } from "../lib/stages";
+import { PLATFORM_LABEL } from "../lib/view";
+
+interface Props {
+  shots: Screenshot[];
+  game: string;
+}
+
+/**
+ * Screenshots testers posted in the game's discussion threads, in justified rows (each tile grows in proportion to its
+ * aspect ratio, so a row shares one height), with a viewer that opens from the tile.
+ */
+const { shots, game } = Astro.props;
+const FIRST = 9;
+const authors = [...new Set(shots.map((s) => s.author).filter((a): a is string => !!a))];
+const file = (s: Screenshot, size: "thumb" | "full") => `/community/${s.id}-${size}.webp`;
+const system = (s: Screenshot) => [s.platform && PLATFORM_LABEL[s.platform], s.gpuVendor].filter(Boolean).join(" · ");
+const viewer = shots.map((s) => ({
+  thumb: file(s, "thumb"),
+  full: file(s, "full"),
+  width: s.width,
+  height: s.height,
+  color: s.color,
+  caption: caption(s.alt),
+  stage: s.stage,
+  tone: `var(--stage-${stageSlug(s.stage)})`,
+  system: system(s),
+  author: s.author,
+  date: formatDate(s.date),
+  post: s.url,
+  original: s.src,
+}));
+---
+
+<section class="card panel community" data-shots>
+  <div class="head">
+    <div>
+      <h2>From the community <span class="muted count">{shots.length}</span></h2>
+      <p class="muted sub">
+        Captured by {authors.length === 1 ? "a tester" : `${authors.length} testers`} while testing {game}.
+      </p>
+    </div>
+    {
+      authors.length > 0 && (
+        <ul class="faces" aria-label="Testers who shared screenshots">
+          {authors.slice(0, 6).map((a) => (
+            <li title={a}>
+              <img src={`https://github.com/${a}.png?size=64`} alt={a} width="32" height="32" loading="lazy" decoding="async" />
+            </li>
+          ))}
+          {authors.length > 6 && <li class="more">+{authors.length - 6}</li>}
+        </ul>
+      )
+    }
+  </div>
+
+  <div class="shots">
+    {
+      shots.map((s, i) => (
+        <a
+          class="shot"
+          href={file(s, "full")}
+          data-index={i}
+          hidden={i >= FIRST}
+          style={`--r:${(s.width / s.height).toFixed(3)};--c:${s.color};--tone:var(--stage-${stageSlug(s.stage)})`}
+        >
+          <img src={file(s, "thumb")} alt={caption(s.alt) ?? `${game} screenshot${s.author ? ` by ${s.author}` : ""}`} width={s.width} height={s.height} loading="lazy" decoding="async" />
+          <span class="meta" aria-hidden="true">
+            {s.stage && (
+              <span class="stage">
+                <b />
+                {s.stage}
+              </span>
+            )}
+            {s.author && <span class="by">{s.author}</span>}
+          </span>
+        </a>
+      ))
+    }
+  </div>
+  {
+    shots.length > FIRST && (
+      <button class="button ghost all" type="button" data-all>
+        Show all {shots.length} screenshots
+      </button>
+    )
+  }
+  <p class="credit muted">Shared by testers in the AnyPS5 Game bring-up discussions. Select a screenshot for its post.</p>
+
+  <dialog class="viewer" aria-label={`${game} screenshots`}>
+    <div class="stage-area">
+      <img class="photo" alt="" />
+      <button class="nav prev" type="button" aria-label="Previous screenshot" data-step="-1">‹</button>
+      <button class="nav next" type="button" aria-label="Next screenshot" data-step="1">›</button>
+    </div>
+    <div class="bar">
+      <div class="about">
+        <img class="face" alt="" width="36" height="36" />
+        <div>
+          <p class="line1"><span class="tag"><b></b><span class="tag-text"></span></span><span class="system muted"></span></p>
+          <p class="line2"><span class="caption"></span><span class="muted credit-line"></span></p>
+        </div>
+      </div>
+      <div class="links">
+        <span class="counter mono muted"></span>
+        <a class="button ghost small post" target="_blank" rel="noopener">View post</a>
+        <a class="original muted" target="_blank" rel="noopener">Original</a>
+        <button class="close" type="button" aria-label="Close" data-close>✕</button>
+      </div>
+    </div>
+  </dialog>
+  <script type="application/json" data-viewer set:html={JSON.stringify(viewer).replace(/</g, "\\u003c")} />
+</section>
+
+<script>
+  interface Shot {
+    thumb: string;
+    full: string;
+    width: number;
+    height: number;
+    color: string;
+    caption: string | null;
+    stage: string | null;
+    tone: string;
+    system: string;
+    author: string | null;
+    date: string;
+    post: string;
+    original: string;
+  }
+
+  for (const section of document.querySelectorAll<HTMLElement>("[data-shots]")) {
+    const shots: Shot[] = JSON.parse(section.querySelector("[data-viewer]")!.textContent!);
+    const tiles = [...section.querySelectorAll<HTMLAnchorElement>(".shot")];
+    const dialog = section.querySelector<HTMLDialogElement>(".viewer")!;
+    const photo = dialog.querySelector<HTMLImageElement>(".photo")!;
+    const $ = (selector: string) => dialog.querySelector<HTMLElement>(selector)!;
+    let current = 0;
+
+    section.querySelector("[data-all]")?.addEventListener("click", (e) => {
+      tiles.forEach((t) => (t.hidden = false));
+      (e.currentTarget as HTMLElement).remove();
+    });
+
+    // The viewer shows the thumbnail (already loaded) at once and swaps in the full image when it has decoded.
+    const show = (index: number) => {
+      current = (index + shots.length) % shots.length;
+      const s = shots[current];
+      dialog.style.setProperty("--c", s.color);
+      photo.width = s.width;
+      photo.height = s.height;
+      photo.style.aspectRatio = `${s.width} / ${s.height}`;
+      photo.src = s.thumb;
+      photo.alt = s.caption ?? "Screenshot";
+      const full = new Image();
+      full.src = s.full;
+      full.decode().then(
+        () => current === shots.indexOf(s) && (photo.src = s.full),
+        () => {},
+      );
+      $(".tag").hidden = !s.stage;
+      $(".tag").style.setProperty("--tone", s.tone);
+      $(".tag-text").textContent = s.stage ?? "";
+      $(".system").textContent = s.system;
+      $(".caption").textContent = s.caption ?? "";
+      $(".credit-line").textContent = [s.author, s.date].filter(Boolean).join(" · ");
+      const face = $(".face") as HTMLImageElement;
+      face.hidden = !s.author;
+      if (s.author) face.src = `https://github.com/${s.author}.png?size=72`;
+      $(".counter").textContent = `${current + 1} / ${shots.length}`;
+      ($(".post") as HTMLAnchorElement).href = s.post;
+      ($(".original") as HTMLAnchorElement).href = s.original;
+      for (const step of [-1, 1]) new Image().src = shots[(current + step + shots.length) % shots.length].thumb;
+    };
+
+    // Opening and closing morph between the tile and the viewer where the browser supports view transitions.
+    const morph = (tile: HTMLElement | undefined, update: () => void, opening: boolean) => {
+      const img = tile?.querySelector("img");
+      if (!document.startViewTransition || !img || matchMedia("(prefers-reduced-motion: reduce)").matches) return update();
+      (opening ? img : photo).style.viewTransitionName = "shot";
+      const transition = document.startViewTransition(() => {
+        (opening ? img : photo).style.viewTransitionName = "";
+        update();
+        (opening ? photo : img).style.viewTransitionName = "shot";
+      });
+      transition.finished.finally(() => {
+        img.style.viewTransitionName = "";
+        photo.style.viewTransitionName = "";
+      });
+    };
+
+    const open = (index: number) => {
+      morph(
+        tiles[index],
+        () => {
+          show(index);
+          dialog.showModal();
+        },
+        true,
+      );
+    };
+    const close = () => {
+      const tile = tiles[current];
+      morph(tile && !tile.hidden ? tile : undefined, () => dialog.close(), false);
+    };
+
+    tiles.forEach((tile, i) =>
+      tile.addEventListener("click", (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        e.preventDefault();
+        open(i);
+      }),
+    );
+    dialog.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      const step = target.closest<HTMLElement>("[data-step]")?.dataset.step;
+      if (step) show(current + Number(step));
+      else if (target.closest("[data-close]") || target === dialog || target.classList.contains("stage-area")) close();
+    });
+    dialog.addEventListener("cancel", (e) => {
+      e.preventDefault();
+      close();
+    });
+    dialog.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+    // Swipe between screenshots on touch screens.
+    let startX: number | null = null;
+    photo.addEventListener("pointerdown", (e) => (startX = e.clientX));
+    photo.addEventListener("pointerup", (e) => {
+      if (startX !== null && Math.abs(e.clientX - startX) > 50) show(current + (e.clientX < startX ? 1 : -1));
+      startX = null;
+    });
+  }
+</script>
+
+<style>
+  /* Matches the game page's other panels. */
+  .community {
+    padding: clamp(20px, 3vw, 28px);
+  }
+  .community h2 {
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  .count {
+    font-weight: 500;
+  }
+  .head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .head h2 {
+    margin: 0;
+  }
+  .sub {
+    margin: 4px 0 0;
+    font-size: 0.88rem;
+  }
+  .faces {
+    display: flex;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0 0 0 8px;
+    list-style: none;
+  }
+  .faces li {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-left: -8px;
+    overflow: hidden;
+    border: 2px solid var(--surface);
+    border-radius: 50%;
+    background: var(--line);
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .faces img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .shots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  /* Keeps the last row from stretching a lone screenshot across the whole width. */
+  .shots::after {
+    content: "";
+    flex-grow: 999;
+  }
+  .shot {
+    position: relative;
+    flex: var(--r) 1 calc(var(--r) * 150px);
+    aspect-ratio: var(--r);
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--c);
+    outline-offset: 3px;
+  }
+  .shot[hidden] {
+    display: none;
+  }
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      scale 0.5s var(--ease),
+      filter 0.5s var(--ease);
+  }
+  .shot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+    background: linear-gradient(to top, rgb(0 0 0 / 0.75), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+  }
+  .meta {
+    position: absolute;
+    inset: auto 10px 9px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #fff;
+    font-size: 0.75rem;
+    opacity: 0;
+    translate: 0 6px;
+    transition:
+      opacity 0.3s var(--ease),
+      translate 0.3s var(--ease);
+  }
+  .stage {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+  .stage b,
+  .tag b {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: 0 0 10px var(--tone);
+  }
+  .by {
+    overflow: hidden;
+    opacity: 0.85;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .shot:hover img,
+  .shot:focus-visible img {
+    scale: 1.04;
+    filter: saturate(1.15);
+  }
+  .shot:hover::after,
+  .shot:focus-visible::after,
+  .shot:hover .meta,
+  .shot:focus-visible .meta {
+    opacity: 1;
+    translate: 0 0;
+  }
+  @media (hover: none) {
+    .shot::after,
+    .meta {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  .all {
+    display: block;
+    margin: 16px auto 0;
+  }
+  .credit {
+    margin: 14px 0 0;
+    font-size: 0.78rem;
+  }
+
+  /* The viewer: the screenshot on a glow of its own colour, with who posted it underneath. */
+  .viewer {
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+  }
+  .viewer[open] {
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+  .viewer::backdrop {
+    background:
+      radial-gradient(60% 60% at 50% 45%, color-mix(in srgb, var(--c, #000) 45%, transparent), transparent),
+      rgb(3 5 9 / 0.94);
+    backdrop-filter: blur(6px);
+  }
+  .stage-area {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 0;
+    padding: clamp(12px, 3vw, 40px) clamp(12px, 6vw, 88px) 12px;
+  }
+  .photo {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 30px 90px -20px color-mix(in srgb, var(--c, #000) 70%, #000);
+    touch-action: pan-y;
+    user-select: none;
+  }
+  .nav {
+    position: absolute;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.06);
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1;
+    translate: 0 -50%;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav:hover {
+    background: rgb(255 255 255 / 0.16);
+  }
+  .prev {
+    left: clamp(8px, 2vw, 24px);
+  }
+  .next {
+    right: clamp(8px, 2vw, 24px);
+  }
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 20px;
+    padding: 14px clamp(16px, 4vw, 40px) max(18px, env(safe-area-inset-bottom));
+  }
+  .about {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .about p {
+    margin: 0;
+  }
+  .face {
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.1);
+  }
+  .line1 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+    font-size: 0.86rem;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 600;
+  }
+  .tag[hidden] {
+    display: none;
+  }
+  .line2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 10px;
+    margin-top: 2px;
+    font-size: 0.82rem;
+  }
+  .caption:empty {
+    display: none;
+  }
+  .viewer .muted {
+    color: rgb(255 255 255 / 0.62);
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .counter {
+    font-size: 0.8rem;
+  }
+  .original {
+    font-size: 0.82rem;
+  }
+  .close {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.06);
+    color: #fff;
+    cursor: pointer;
+  }
+  @media (max-width: 640px) {
+    /* Two screenshots to a row on phones. */
+    .shot {
+      flex-basis: calc(var(--r) * 80px);
+    }
+    .nav {
+      display: none;
+    }
+    .faces {
+      display: none;
+    }
+  }
+</style>

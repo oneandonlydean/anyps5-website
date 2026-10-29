@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { answer, buildKindOf, formSections, gpuOf, inlineField, issueRefs, parseReport, platformOf, stageFromFurthest, titleIds } from "../src/lib/parse";
+import { answer, buildKindOf, formSections, gpuOf, inlineField, issueRefs, parseReport, platformOf, postImages, stageFromFurthest, titleIds } from "../src/lib/parse";
 
 const fixture = (name: string) => readFileSync(new URL(`./fixtures/${name}.md`, import.meta.url), "utf8");
 const meta = { url: "https://github.com/boykopovar/AnyPS5/discussions/1", discussion: 1, author: "tester", date: "2026-10-20T00:00:00Z" };
@@ -75,5 +75,32 @@ describe("parseReport on real posts", () => {
 
   it("keeps form sections keyed by heading", () => {
     expect(formSections(fixture("form"))["content version tested"]).toBe("01.007.000");
+  });
+});
+
+describe("postImages", () => {
+  it("reads Markdown and HTML images, with alt text", () => {
+    const body = [
+      "![Main menu](https://raw.githubusercontent.com/u/r/main/menu.png)",
+      '<img width="1920" alt="In game" src="https://github.com/user-attachments/assets/abc" />',
+      "![](https://files.catbox.moe/x.png \"title\")",
+    ].join("\n");
+    expect(postImages(body)).toEqual([
+      { src: "https://raw.githubusercontent.com/u/r/main/menu.png", alt: "Main menu" },
+      { src: "https://github.com/user-attachments/assets/abc", alt: "In game" },
+      { src: "https://files.catbox.moe/x.png", alt: "" },
+    ]);
+  });
+
+  it("skips code, badges, duplicates and non-http sources", () => {
+    const body = [
+      "```\n![log](https://example.com/in-code.png)\n```",
+      "`![inline](https://example.com/inline.png)`",
+      "![badge](https://img.shields.io/badge/x-y-green)",
+      "![icon](https://example.com/icon.svg)",
+      '<img src="javascript:alert(1)">',
+      "![a](https://example.com/a.png) ![a again](https://example.com/a.png)",
+    ].join("\n");
+    expect(postImages(body)).toEqual([{ src: "https://example.com/a.png", alt: "a" }]);
   });
 });

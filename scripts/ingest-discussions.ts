@@ -1,6 +1,6 @@
 import { generated, readJson, writeJson } from "./lib/files";
 import { graphql, REPO } from "./lib/github";
-import { formSections, parseReport, titleIds, type PostMeta } from "../src/lib/parse";
+import { formSections, parseReport, postImages, titleIds, type PostMeta } from "../src/lib/parse";
 import type { Report, Thread } from "../src/lib/schema";
 
 const CATEGORY = "Game bring-up";
@@ -58,6 +58,7 @@ function toThread(d: Discussion): Thread | null {
   });
   const posts = [d, ...d.comments.nodes.flatMap((c) => [c, ...c.replies.nodes])];
   const reports = posts.map((post) => parseReport(post.body, meta(post))).filter((r): r is Report => r !== null);
+  const media = posts.flatMap((post) => postImages(post.body).map((image) => ({ ...image, url: post.url, author: post.author?.login ?? null, date: post.createdAt })));
 
   return {
     number: d.number,
@@ -68,6 +69,7 @@ function toThread(d: Discussion): Thread | null {
     updated: d.updatedAt,
     comments: d.comments.totalCount,
     reports,
+    media,
   };
 }
 

@@ -1,7 +1,10 @@
 import { loadGenerated, loadOverlays } from "./load";
 import { groupGames, resolveGame, type Game } from "./resolve";
 import { matcher, type ErrorSite, type FunctionIndex, type Needs } from "./needs";
-import type { Art, Issue, Report, Thread, Title } from "./schema";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
+import type { Art, Issue, Report, Shot, Thread, Title } from "./schema";
+import { gameScreenshots, type Screenshot } from "./screenshots";
 import { stageRank } from "./stages";
 
 let cache: Promise<Game[]> | undefined;
@@ -105,5 +108,21 @@ export function getRetest(): Promise<Map<string, Retest>> {
       });
     }
     return out;
+  })());
+}
+
+let screenshotCache: Promise<Map<string, Screenshot[]>> | undefined;
+
+/**
+ * Each game's community screenshots, keyed by game slug. Only images whose WebP copies exist are listed, so a build
+ * without `npm run sync:screenshots` simply has none.
+ */
+export function getScreenshots(): Promise<Map<string, Screenshot[]>> {
+  return (screenshotCache ??= (async () => {
+    const [games, shots] = await Promise.all([getGames(), loadGenerated<Record<string, Shot>>("screenshots.json", {})]);
+    const present = Object.fromEntries(
+      Object.entries(shots).filter(([id]) => existsSync(resolve(process.cwd(), "public/community", `${id}-thumb.webp`))),
+    );
+    return new Map(games.map((game) => [game.slug, gameScreenshots(game.threads, present)]).filter(([, list]) => list.length > 0) as [string, Screenshot[]][]);
   })());
 }

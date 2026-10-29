@@ -34,6 +34,7 @@ function thread(number: number, ids: string[], reports: Report[] = []): Thread {
     updated: "2026-10-01T00:00:00Z",
     comments: 0,
     reports,
+    media: [],
   };
 }
 

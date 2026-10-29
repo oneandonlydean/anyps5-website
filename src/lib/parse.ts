@@ -13,6 +13,22 @@ export function issueRefs(text: string): number[] {
   return unique(refs);
 }
 
+/** Hosts that serve badges and icons rather than screenshots. */
+const NOT_SCREENSHOTS = /(?:img\.shields\.io|badgen\.net|camo\.githubusercontent\.com|avatars\.githubusercontent\.com|\.svg(?:$|\?))/i;
+
+/** The images a post embeds, as Markdown or HTML, outside code blocks; http(s) only, each once. */
+export function postImages(body: string): { src: string; alt: string }[] {
+  const text = body.replace(/^(```|~~~)[\s\S]*?^\1/gm, "").replace(/`[^`\n]*`/g, "");
+  const found: { src: string; alt: string }[] = [];
+  for (const m of text.matchAll(/!\[([^\]]*)\]\(\s*<?(https?:\/\/[^)\s>]+)>?(?:\s+"[^"]*")?\s*\)|<img\b([^>]*)>/gi)) {
+    const attr = (name: string) => m[3]?.match(new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, "i"))?.slice(1).find((v) => v !== undefined);
+    const src = (m[2] ?? attr("src") ?? "").replace(/&amp;/g, "&");
+    const alt = (m[1] ?? attr("alt") ?? "").trim();
+    if (/^https?:\/\//i.test(src) && !NOT_SCREENSHOTS.test(src) && !found.some((f) => f.src === src)) found.push({ src, alt });
+  }
+  return found;
+}
+
 /** Splits an issue-form body into `{ "furthest point": "Menu", ... }` keyed by lower-case heading. */
 export function formSections(body: string): Record<string, string> {
   const sections: Record<string, string> = {};

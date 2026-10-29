@@ -12,8 +12,10 @@ interface Props {
   eager?: boolean;
   /** Something the game was waiting on has been fixed since its newest report. */
   ready?: boolean;
+  /** How many community screenshots the game page shows. */
+  shots?: number;
 }
-const { game, eager = false, ready = false } = Astro.props;
+const { game, eager = false, ready = false, shots = 0 } = Astro.props;
 const { stage, onMain } = reach(game);
 const search = [game.name, ...game.aliases, ...game.titleIds].join(" ").toLowerCase();
 const tint = game.art?.color ?? `var(--stage-${stageSlug(stage)})`;
@@ -51,6 +53,18 @@ const lastTested = game.reports[0]?.date;
     navTransitionName={`cover-${game.slug}`}
   />
   {ready && <span class="ready" title="Fixed since the last report: ready to retest">Retest</span>}
+  {
+    shots > 0 && (
+      <span class="shots" title={`${shots} community screenshot${shots === 1 ? "" : "s"}`}>
+        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">
+          <path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+          <circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2" />
+        </svg>
+        {shots}
+        <span class="visually-hidden"> screenshots</span>
+      </span>
+    )
+  }
   <div class="body">
     <div class="title">
       <h3>{game.name}</h3>
@@ -124,6 +138,21 @@ const lastTested = game.reports[0]?.date;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     box-shadow: 0 4px 12px -4px rgb(0 0 0 / 0.5);
+  }
+  .shots {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.55);
+    color: #fff;
+    font: 600 0.7rem/1.4 var(--mono);
+    backdrop-filter: blur(6px);
   }
   .body {
     position: relative;

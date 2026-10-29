@@ -3,9 +3,10 @@ import Base from "../../layouts/Base.astro";
 import GameArt from "../../components/GameArt.astro";
 import StageBadge from "../../components/StageBadge.astro";
 import NeedsPanel from "../../components/NeedsPanel.astro";
+import Screenshots from "../../components/Screenshots.astro";
 import StageHistory from "../../components/StageHistory.astro";
 import StageLadder from "../../components/StageLadder.astro";
-import { getGames, getNeeds, getRetest } from "../../lib/data";
+import { getGames, getNeeds, getRetest, getScreenshots } from "../../lib/data";
 import type { Game } from "../../lib/resolve";
 import { formatDate, newReportUrl, SITE_REPO_URL } from "../../lib/site";
 import { stageSlug } from "../../lib/stages";
@@ -20,6 +21,7 @@ const { game } = Astro.props as { game: Game };
 const { stage, onMain } = reach(game);
 const needs = (await getNeeds()).get(game.slug);
 const retest = (await getRetest()).get(game.slug)!;
+const shots = (await getScreenshots()).get(game.slug) ?? [];
 const freshness = retest.lastTested
   ? `Last tested ${formatDate(retest.lastTested)} · ${retest.releasesSince === 0 ? "on the current release" : `${retest.releasesSince} release${retest.releasesSince === 1 ? "" : "s"} ago`}`
   : null;
@@ -115,6 +117,8 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
           <StageLadder stage={game.stage} branchStage={game.branchStage} platforms={game.platforms} />
           {game.branchStage && <p class="hint">Striped steps are reached only with open pull requests or local patches, not yet on <code>main</code>.</p>}
         </section>
+
+        {shots.length > 0 && <Screenshots shots={shots} game={game.name} />}
 
         {
           (game.note || game.blockers.length > 0) && (

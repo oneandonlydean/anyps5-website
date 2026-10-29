@@ -24,7 +24,7 @@ The committed `data/generated/` files are enough to build the compatibility page
 | `npm run fetch:upstream -- --libraries` | Fetch everything for a deployable converter |
 | `npm run fetch:coverage` | Measure shader recompiler coverage from upstream source |
 
-Scripts that call GitHub use `GITHUB_TOKEN`, or `gh auth token` when it is unset. `SGDB_API_KEY` enables SteamGridDB art; without it, art comes from the PlayStation Store only.
+Scripts that call GitHub use `GITHUB_TOKEN`, or `gh auth token` when it is unset. `SGDB_API_KEY` enables SteamGridDB art; without it, art comes from the PlayStation Store only. `sync:art` also reads it from a local `.env` file, which is not committed.
 
 ## How compatibility works
 
@@ -33,8 +33,9 @@ Every game sits on an eight-stage ladder: Converts, Loads, Starts, First draw, P
 1. **Reports.** `sync:reports` reads every thread in the upstream [Game bring-up](https://github.com/boykopovar/AnyPS5/discussions/categories/game-bring-up) discussions, opening posts and replies. It parses each report's furthest point, system, GPU, build and blockers into `data/generated/threads.json`. The parser is `src/lib/parse.ts`, tested against real posts in `tests/fixtures/`.
 2. **Names and issues.** `sync:titles` maps title IDs to official names. `sync:issues` records the state of every issue or pull request that a report names as a blocker.
 3. **Art.** `sync:art` resolves cover, hero, logo and square art from the PlayStation Store, plus SteamGridDB when a key is set, and each game's dominant colour. Images are hotlinked, never stored.
-4. **Curation.** `data/games/<slug>.yaml` files override any of the above. See [CONTRIBUTING.md](CONTRIBUTING.md).
-5. **Resolution.** `src/lib/resolve.ts` groups threads into games by title ID. The headline stage comes from the best report on a `main` or release build. Higher stages reached only with open pull requests or local patches show separately. A curated stage wins until a newer report goes further.
+4. **Screenshots.** `sync:reports` also records every image posted in those threads. `sync:screenshots` downloads each one once, leaves out icons and odd shapes, and writes small WebP copies to `public/community/` (not committed) with their size and dominant colour in `data/generated/screenshots.json`. Game pages show them in a gallery, credited to the tester with a link to their post; a build without the copies shows none.
+5. **Curation.** `data/games/<slug>.yaml` files override any of the above. See [CONTRIBUTING.md](CONTRIBUTING.md).
+6. **Resolution.** `src/lib/resolve.ts` groups threads into games by title ID. The headline stage comes from the best report on a `main` or release build. Higher stages reached only with open pull requests or local patches show separately. A curated stage wins until a newer report goes further.
 
 The sync workflow runs every six hours and opens a pull request. Its description lists stage changes and new games, so a person reviews every change before it goes live.
 
