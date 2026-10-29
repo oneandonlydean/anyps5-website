@@ -437,9 +437,12 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
     gap: 24px;
     align-items: start;
   }
+  /* minmax(0, …) lets a wide child (the reports table, the stage ladder) scroll inside its panel instead of
+     widening the page. */
   .main,
   .side {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
   .side {
@@ -678,7 +681,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
 
   @media (max-width: 920px) {
     .layout {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
     .side {
       position: static;
