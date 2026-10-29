@@ -10,7 +10,7 @@ import { getGames, getNeeds, getRetest, getScreenshots } from "../../lib/data";
 import type { Game } from "../../lib/resolve";
 import { formatDate, newReportUrl, SITE_REPO_URL } from "../../lib/site";
 import { stageSlug } from "../../lib/stages";
-import { artSrc, artSrcset, PLATFORM_LABEL, reach } from "../../lib/view";
+import { artSrc, artSrcset, PLATFORM_LABEL, reach, regionName } from "../../lib/view";
 import { gameTheme } from "../../lib/color";
 
 export async function getStaticPaths() {
@@ -35,7 +35,8 @@ const themeStyle =
   (["dark", "light"] as const)
     .flatMap((mode) => Object.entries(theme[mode]).map(([key, value]) => `--game-${mode}-${key}:${value}`))
     .join(";");
-const thread = game.threads[0];
+// A game released in several regions can have a thread per title ID; the busiest one takes new reports.
+const [thread, ...otherThreads] = [...game.threads].sort((a, b) => b.comments - a.comments || a.number - b.number);
 const BUILD_LABEL = { main: "main", prs: "main + PRs", patched: "patched", unknown: "—" } as const;
 const editUrl = game.overlayFile
   ? `${SITE_REPO_URL}/edit/main/data/games/${game.overlayFile}`
@@ -68,7 +69,11 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
           <div class="meta">
             <StageBadge stage={stage} onMain={onMain} />
             {game.verified && <span class="tag verified">✓ Checked by a maintainer</span>}
-            {game.titleIds.map((id) => <span class="tag mono">{id}</span>)}
+            {game.releases.map((r) => (
+              <span class="tag mono" title={regionName(r.region) ?? undefined}>
+                {r.titleId}
+              </span>
+            ))}
             {game.kind !== "retail" && <span class="tag">{game.kind === "homebrew" ? "Homebrew" : "App"}</span>}
             {freshness && <span class:list={["tag", { stale: retest.stale }]}>{freshness}</span>}
           </div>
@@ -214,6 +219,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
             {thread ? "Add a test report" : "Report a test run"}
           </a>
           {thread && <a class="button" href={thread.url}>Open discussion · {thread.comments} replies</a>}
+          {otherThreads.map((t) => <a class="helper" href={t.url}>Also discussed in #{t.number} · {t.comments} replies</a>)}
           <a class="helper" href={`/report?game=${game.slug}`}>Write it with the report helper</a>
           <a class="helper follow" href={`/compatibility/${game.slug}.xml`}>
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm-2-7a11 11 0 0 1 11 11h-3a8 8 0 0 0-8-8v-3Zm0-7a18 18 0 0 1 18 18h-3A15 15 0 0 0 3 6V3Z"></path></svg>
@@ -223,8 +229,19 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
         </div>
 
         <dl class="card panel facts">
-          <div><dt>Title IDs</dt><dd class="mono">{game.titleIds.join(", ")}</dd></div>
-          {game.region && <div><dt>Region</dt><dd>{game.region}</dd></div>}
+          <div>
+            <dt>{game.releases.length === 1 ? "Title ID" : "Title IDs"}</dt>
+            <dd>
+              <ul class="releases">
+                {game.releases.map((r) => (
+                  <li>
+                    <span class="mono">{r.titleId}</span>
+                    {r.region && <span class="muted">{regionName(r.region)}</span>}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
           <div><dt>Reporters</dt><dd>{game.reporters}</dd></div>
           {game.gpuVendors.length > 0 && <div><dt>GPUs tested</dt><dd>{game.gpuVendors.join(", ")}</dd></div>}
           {game.updated && <div><dt>Last activity</dt><dd>{formatDate(game.updated)}</dd></div>}
@@ -447,6 +464,17 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
   }
   .count {
     font-weight: 500;
+  }
+  .releases {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .releases li {
+    display: flex;
+    gap: 10px;
   }
   .hint {
     margin: 18px 0 0;

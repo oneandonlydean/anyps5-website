@@ -52,6 +52,58 @@ describe("identity", () => {
     expect(games).toHaveLength(1);
     expect(games[0]).toMatchObject({ name: "One", titleIds: ["PPSA00001", "PPSA00002"] });
   });
+
+  it("merges regional releases that go by the same name", () => {
+    const named = (n: number, title: string, id: string) => ({ ...thread(n, [id]), title: `${title} (${id})` });
+    const titles = {
+      PPSA21564: { name: "ASTRO BOT", region: "UP", concept: "10002684" },
+      PPSA21567: { name: "ASTRO BOT", region: "EP", concept: "10002684" },
+      PPSA00010: { name: "Some Game™", region: "UP", concept: null },
+      PPSA00011: { name: "Different Name", region: "JP", concept: null },
+    };
+    const games = groupGames(
+      [named(1, "Astro Bot", "PPSA21564"), named(2, "ASTRO BOT", "PPSA21567"), named(3, "Some Game", "PPSA00010"), named(4, "Some Game", "PPSA00011")],
+      [],
+      titles,
+    );
+    expect(games.map((g) => [g.name, g.slug, g.titleIds])).toEqual([
+      ["Astro Bot", "astro-bot", ["PPSA21564", "PPSA21567"]],
+      ["Some Game", "some-game", ["PPSA00010", "PPSA00011"]],
+    ]);
+    expect(resolveGame(games[0], titles, {}, {}).releases).toEqual([
+      { titleId: "PPSA21564", region: "UP" },
+      { titleId: "PPSA21567", region: "EP" },
+    ]);
+  });
+
+  it("trusts thread names over store names and concepts", () => {
+    const titles = {
+      PPSA17221: { name: "Minecraft", region: "UP", concept: "1" },
+      PPSA19639: { name: "Minecraft", region: "UP", concept: "1" },
+      PPSA18194: { name: "METAL GEAR SOLID 4", region: "UP", concept: "2" },
+      PPSA18216: { name: "METAL GEAR SOLID: Peace Walker", region: "UP", concept: "2" },
+    };
+    const games = groupGames(
+      [
+        { ...thread(1, ["PPSA19639"]), title: "Minecraft Preview (PPSA19639)" },
+        { ...thread(2, ["PPSA17221"]), title: "Minecraft Bedrock (PPSA17221) runs on Windows" },
+        { ...thread(3, ["PPSA18194"]), title: "METAL GEAR SOLID 4 (PPSA18194)" },
+        { ...thread(4, ["PPSA18216"]), title: "METAL GEAR SOLID: Peace Walker (PPSA18216)" },
+      ],
+      [],
+      titles,
+    );
+    expect(games).toHaveLength(4);
+  });
+
+  it("keeps a PS4 and a PS5 game with the same name apart", () => {
+    const games = groupGames(
+      [{ ...thread(1, ["CUSA04885"]), title: "Resident Evil 4 (CUSA04885)" }, { ...thread(2, ["PPSA06900"]), title: "Resident Evil 4 (PPSA06900)" }],
+      [],
+      {},
+    );
+    expect(games).toHaveLength(2);
+  });
 });
 
 describe("stage", () => {

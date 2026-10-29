@@ -41,3 +41,10 @@ export function systemTokens(game: Pick<Game, "reports" | "platforms">, mainOnly
   for (const [platform, stage] of Object.entries(game.platforms)) add(`${platform}:any`, stageRank(stage));
   return [...best].map(([key, rank]) => `${key}:${rank}`).join(" ");
 }
+
+const REGIONS: Record<string, string> = { U: "Americas", E: "Europe", J: "Japan", H: "Asia", K: "Korea" };
+
+/** A store region code (EP, UP, JP, HP...) as a name; the first letter is the region. */
+export function regionName(code: string | null): string | null {
+  return code ? (REGIONS[code[0]] ?? code) : null;
+}

@@ -233,17 +233,6 @@
       "PlayStation Store"
     ]
   },
-  "PPSA01859": {
-    "checked": "2026-10-29T03:44:12.563Z",
-    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202101/0812/FkzwjnJknkrFlozkTdeQBMub.png",
-    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202101/0812/DGW5xHgDXbWaEvssZRG0QeCl.png",
-    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202101/0812/fqYIgLso71CzAFjqJOAyNs9V.png",
-    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202011/1002/BfO9sfCf06jv872bfF8B0evm.png",
-    "color": "#080808",
-    "credits": [
-      "PlayStation Store"
-    ]
-  },
   "PPSA01880": {
     "checked": "2026-10-29T03:43:19.456Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202108/0404/MqhhoiKkeruDNT1cwDhLcYrx.png",
@@ -291,17 +280,6 @@
   },
   "PPSA02100": {
     "checked": "2026-10-29T03:42:51.564Z",
-    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202206/0300/E2vZwVaDJbhLZpJo7Q10IyYo.png",
-    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202206/0300/VdyFw6rwpTdZS2UioHYBbvre.png",
-    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202206/0300/UogbMjgPOJrYBn5QvUmuR7G9.jpg",
-    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0921/0mLk3apI4VtkXnhnyxjLJeuX.png",
-    "color": "#581818",
-    "credits": [
-      "PlayStation Store"
-    ]
-  },
-  "PPSA02101": {
-    "checked": "2026-10-29T03:44:53.103Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202206/0300/E2vZwVaDJbhLZpJo7Q10IyYo.png",
     "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202206/0300/VdyFw6rwpTdZS2UioHYBbvre.png",
     "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202206/0300/UogbMjgPOJrYBn5QvUmuR7G9.jpg",
@@ -1608,17 +1586,6 @@
       "SteamGridDB"
     ]
   },
-  "PPSA14408": {
-    "checked": "2026-10-29T03:44:03.276Z",
-    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202304/2815/11d0dbc5e72685640d62c9848170615d220d91d690181b82.png",
-    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202304/2815/ba755604a4acc0ae3c9a87fb1572d7811fb6e38e46573397.png",
-    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202305/1710/11379a68eb2eee217aca5c909eb31c58af24d94dc923bcbb.jpg",
-    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202305/2407/ee722b65007ecab97bb464f1c7933a6f961c95f44240a0ac.png",
-    "color": "#080808",
-    "credits": [
-      "PlayStation Store"
-    ]
-  },
   "PPSA14632": {
     "checked": "2026-10-29T03:43:30.811Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202406/0615/49738f6fcecfdb8d9aeef78ac743a0caa69317a3671f0a97.png",
@@ -1830,17 +1797,6 @@
       "PlayStation Store"
     ]
   },
-  "PPSA18216": {
-    "checked": "2026-10-29T03:43:03.597Z",
-    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202601/2201/10c1fc1cb379073791df85ad3bd235930896bfa9b20fa1f1.png",
-    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202601/2903/492bf059e5c7ed0ffacd99a444a093d2a785b0cff7fe901e.jpg",
-    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202601/2903/809466ea5dca03e287de3174e70a27e567fe3dc956ee115a.jpg",
-    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202601/2903/2ad8f7b5d60dbf57e1405c3df8a4b6bbfb68849d361c5780.png",
-    "color": "#080808",
-    "credits": [
-      "PlayStation Store"
-    ]
-  },
   "PPSA18391": {
     "checked": "2026-10-29T03:44:17.153Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202309/1413/f9a913034fefdd40882754ba3abdb649f7e7b2c33032523a.png",
@@ -1916,18 +1872,6 @@
     "color": "#080808",
     "credits": [
       "PlayStation Store"
-    ]
-  },
-  "PPSA19639": {
-    "checked": "2026-10-29T03:42:47.783Z",
-    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202407/0401/670c294ded3baf4fa11068db2ec6758c63f7daeb266a35a1.png",
-    "cover": "https://cdn2.steamgriddb.com/grid/07b2b4fe3807556cf4062b03d58f52e2.png",
-    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202407/1020/91fe046f742042e3b31e57f7731dbe2226e1fd1e02a36223.jpg",
-    "logo": "https://image.api.playstation.com/vulcan/img/rnd/202010/2122/ZRHdO5IMMhSYmYcwSr3ut3j7.png",
-    "color": "#0898f8",
-    "credits": [
-      "PlayStation Store",
-      "SteamGridDB"
     ]
   },
   "PPSA19728": {
@@ -2096,17 +2040,6 @@
       "PlayStation Store"
     ]
   },
-  "PPSA21567": {
-    "checked": "2026-10-29T03:44:52.889Z",
-    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202406/0500/8f15268257b878597757fcc5f2c9545840867bc71fc863b1.png",
-    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202406/0500/0d05cb43413f28a641ac0c40fc272c70bbe194f6ade4b175.png",
-    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202406/0500/80ecf657918558eeef8da3ee4cef326e4517d34e6c69d950.jpg",
-    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202406/2523/5ad9f2928d33bcba38475e560667f8c9be51f466f06bebe2.png",
-    "color": "#f8f8f8",
-    "credits": [
-      "PlayStation Store"
-    ]
-  },
   "PPSA21607": {
     "checked": "2026-10-29T03:43:50.358Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202404/2509/00c1e572d0de4274a103a5b96a0693b22100a082875ae186.png",
@@ -2201,17 +2134,6 @@
     "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202609/1710/b210acbb74895099d2855f9d732028f193ab86d43a1c94e4.png",
     "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202604/2909/e84aaf752ce5d2c7ad76d48c248d95d52698facd42864afc.png",
     "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202609/1710/9e2da5ce178c4507c31e5a37b709e15dda7d74b5905dd0c3.png",
-    "color": "#080808",
-    "credits": [
-      "PlayStation Store"
-    ]
-  },
-  "PPSA24040": {
-    "checked": "2026-10-29T03:43:45.392Z",
-    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202601/2201/10c1fc1cb379073791df85ad3bd235930896bfa9b20fa1f1.png",
-    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202601/2903/492bf059e5c7ed0ffacd99a444a093d2a785b0cff7fe901e.jpg",
-    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202601/2903/809466ea5dca03e287de3174e70a27e567fe3dc956ee115a.jpg",
-    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202601/2903/2ad8f7b5d60dbf57e1405c3df8a4b6bbfb68849d361c5780.png",
     "color": "#080808",
     "credits": [
       "PlayStation Store"

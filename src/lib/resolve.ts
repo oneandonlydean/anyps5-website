@@ -21,7 +21,8 @@ export interface Game extends Omit<Identity, "overlay"> {
   aliases: string[];
   tags: string[];
   kind: "retail" | "homebrew" | "app";
-  region: string | null;
+  /** Every title ID with its store region code (EP, UP, JP...), when known. */
+  releases: { titleId: string; region: string | null }[];
   stage: StageOrNone | null;
   branchStage: StageOrNone | null;
   verified: boolean;
@@ -60,7 +61,13 @@ function storeName(name: string): string {
   return name.replace(/[®™©]/g, "").replace(/\s+/g, " ").trim();
 }
 
-/** Groups threads and overlays that share a title ID into one game each. */
+/**
+ * Groups threads and overlays into one game each. Title IDs join when a thread or overlay lists them together, and
+ * regional releases of one game join when they go by the same name: each title ID's curated name, else the name in
+ * its thread title, else its store name (the store names some different apps alike, and a store concept can cover a
+ * whole collection, so neither is trusted over what testers called it). Names only join within a console generation:
+ * a PS4 and a PS5 game with one name can be different games.
+ */
 export function groupGames(threads: Thread[], overlays: NamedOverlay[], titles: Record<string, Title>): Identity[] {
   const parent = new Map<string, string>();
   const find = (id: string): string => {
@@ -74,6 +81,20 @@ export function groupGames(threads: Thread[], overlays: NamedOverlay[], titles: 
 
   threads.forEach((t) => union(t.titleIds));
   overlays.forEach((o) => union(o.title_ids));
+
+  const names = new Map<string, string>();
+  const name = (value: string | null | undefined, ids: string[]) => ids.forEach((id) => value && !names.has(id) && names.set(id, value));
+  overlays.forEach((o) => name(o.name, o.title_ids));
+  threads.forEach((t) => name(threadName(t.title), t.titleIds));
+  [...threads.flatMap((t) => t.titleIds), ...overlays.flatMap((o) => o.title_ids)].forEach((id) => name(titles[id] && storeName(titles[id].name), [id]));
+  const firstNamed = new Map<string, string>();
+  for (const [id, value] of names) {
+    const key = `${id.slice(0, 4)}:${slugify(value)}`;
+    if (key.endsWith(":")) continue;
+    const first = firstNamed.get(key);
+    if (first) union([first, id]);
+    else firstNamed.set(key, id);
+  }
 
   const groups = new Map<string, { ids: Set<string>; threads: Thread[]; overlay: NamedOverlay | null }>();
   const group = (id: string) => {
@@ -167,7 +188,7 @@ export function resolveGame(
     aliases: overlay?.aliases ?? [],
     tags: overlay?.tags ?? [],
     kind: overlay?.kind ?? (titles[identity.key] ? "retail" : "homebrew"),
-    region: titles[identity.key]?.region ?? null,
+    releases: identity.titleIds.map((titleId) => ({ titleId, region: titles[titleId]?.region ?? null })),
     stage,
     branchStage,
     verified: Boolean(curated && !reportWins),
