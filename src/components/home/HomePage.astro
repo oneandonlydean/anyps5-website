@@ -302,7 +302,10 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
             const r = reach(g);
             return (
               <a class:list={["feature reveal", { wide: i < 2 }]} href={`/compatibility/${g.slug}`} style={`--tint:${g.art?.color ?? "#223"}`}>
-                <img class="feature-art" data-vt={`hero-${g.slug}`} src={artSrc(g.art!.hero!, i < 2 ? 1280 : 800)} alt="" loading="lazy" decoding="async" />
+                {/* The art and its scrim morph together into the game page's backdrop. */}
+                <div class="feature-media" data-vt={`hero-${g.slug}`}>
+                  <img class="feature-art" src={artSrc(g.art!.hero!, i < 2 ? 1280 : 800)} alt="" loading="lazy" decoding="async" />
+                </div>
                 <div class="feature-copy">
                   {g.art?.logo ? <img class="feature-logo" src={artSrc(g.art.logo, 480)} alt={g.name} loading="lazy" /> : <h3>{g.name}</h3>}
                   <div class="feature-stage">
@@ -1046,20 +1049,24 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     grid-column: span 2;
     min-height: 320px;
   }
-  .feature-art {
+  .feature-media {
     position: absolute;
     inset: 0;
-    z-index: -2;
+    z-index: -1;
+    overflow: hidden;
+    border-radius: inherit;
+    view-transition-class: hero-morph;
+  }
+  .feature-art {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.8s var(--ease);
   }
-  .feature::after {
+  .feature-media::after {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1;
     background: linear-gradient(to top, color-mix(in srgb, var(--tint) 30%, rgb(0 0 0 / 0.92)), rgb(0 0 0 / 0.05) 65%);
   }
   .feature:hover {

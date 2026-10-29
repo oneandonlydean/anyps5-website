@@ -128,6 +128,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         });
       })();
     </script>
+    {/* A game page is rendered in the background once its link is hovered or pressed, so it opens with its art already
+        loaded and the cover or backdrop morphs onto a finished page. */}
+    <script is:inline type="speculationrules">
+      { "prerender": [{ "where": { "and": [{ "href_matches": "/compatibility/*" }, { "not": { "href_matches": "/compatibility/*.xml" } }] }, "eagerness": "moderate" }] }
+    </script>
     <slot name="head" />
   </head>
   <body>

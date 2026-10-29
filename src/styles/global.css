@@ -410,6 +410,15 @@ pre {
   animation-duration: 0.25s;
 }
 
+/* A home-page feature growing into a game's backdrop: both snapshots fill the moving box and crop like the art does,
+   instead of keeping their own shapes and sliding against each other. */
+::view-transition-old(*.hero-morph),
+::view-transition-new(*.hero-morph) {
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
