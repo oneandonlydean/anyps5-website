@@ -12,6 +12,8 @@ const ready = games
   .filter((g) => retest.get(g.slug)?.ready)
   .map((g) => ({ game: g, fixed: retest.get(g.slug)!.fixed }))
   .sort((a, b) => b.fixed.functions.length + b.fixed.issues.length - (a.fixed.functions.length + a.fixed.issues.length));
+// The cover stack beside the retest toggle only shows games with art; the rest are counted in "+N".
+const readyCovers = ready.filter(({ game }) => game.art?.cover ?? game.art?.square).slice(0, 5);
 const fixedText = ({ functions, issues }: { functions: string[]; issues: unknown[] }) =>
   [functions.length && `${functions.length} function${functions.length === 1 ? "" : "s"} implemented`, issues.length && `${issues.length} fix${issues.length === 1 ? "" : "es"} merged`]
     .filter(Boolean)
@@ -82,14 +84,14 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
             </button>
             <p class="muted">What stopped these games has been fixed since their last report. A new run shows how much further they get.</p>
             <ul class="retest-covers">
-              {ready.slice(0, 5).map(({ game, fixed }) => (
+              {readyCovers.map(({ game, fixed }) => (
                 <li>
-                  <a href={`/compatibility/${game.slug}`} title={`${game.name}: ${fixedText(fixed)}`} style={`--tint:${game.art?.color ?? "var(--raised)"}`}>
-                    {(game.art?.cover ?? game.art?.square) ? <img src={artSrc((game.art!.cover ?? game.art!.square)!, 120)} alt={game.name} width="30" height="44" loading="lazy" decoding="async" /> : <span class="visually-hidden">{game.name}</span>}
+                  <a href={`/compatibility/${game.slug}`} title={`${game.name}: ${fixedText(fixed)}`} style={`--tint:${game.art!.color ?? "var(--raised)"}`}>
+                    <img src={artSrc((game.art!.cover ?? game.art!.square)!, 120)} alt={game.name} width="30" height="44" loading="lazy" decoding="async" />
                   </a>
                 </li>
               ))}
-              {ready.length > 5 && <li class="more">+{ready.length - 5}</li>}
+              {ready.length > readyCovers.length && <li class="more">+{ready.length - readyCovers.length}</li>}
             </ul>
           </div>
         )
