@@ -145,7 +145,25 @@ const viewer = shots.map((s) => ({
       (e.currentTarget as HTMLElement).remove();
     });
 
-    // The viewer shows the thumbnail (already loaded) at once and swaps in the full image when it has decoded.
+    // Full images are fetched and decoded ahead of time: when a tile is hovered, focused or pressed, and for the
+    // screenshots either side of the one open. A full image that isn't ready yet is stood in for by its thumbnail.
+    const decoded = new Set<string>();
+    const loading = new Map<string, Promise<void>>();
+    const load = (url: string) => {
+      if (!loading.has(url)) {
+        const img = new Image();
+        img.src = url;
+        loading.set(
+          url,
+          img.decode().then(
+            () => void decoded.add(url),
+            () => {},
+          ),
+        );
+      }
+      return loading.get(url)!;
+    };
+
     const show = (index: number) => {
       current = (index + shots.length) % shots.length;
       const s = shots[current];
@@ -153,14 +171,9 @@ const viewer = shots.map((s) => ({
       photo.width = s.width;
       photo.height = s.height;
       photo.style.aspectRatio = `${s.width} / ${s.height}`;
-      photo.src = s.thumb;
+      photo.src = decoded.has(s.full) ? s.full : s.thumb;
       photo.alt = s.caption ?? "Screenshot";
-      const full = new Image();
-      full.src = s.full;
-      full.decode().then(
-        () => current === shots.indexOf(s) && (photo.src = s.full),
-        () => {},
-      );
+      if (!decoded.has(s.full)) load(s.full).then(() => current === shots.indexOf(s) && decoded.has(s.full) && (photo.src = s.full));
       $(".tag").hidden = !s.stage;
       $(".tag").style.setProperty("--tone", s.tone);
       $(".tag-text").textContent = s.stage ?? "";
@@ -173,7 +186,7 @@ const viewer = shots.map((s) => ({
       $(".counter").textContent = `${current + 1} / ${shots.length}`;
       ($(".post") as HTMLAnchorElement).href = s.post;
       ($(".original") as HTMLAnchorElement).href = s.original;
-      for (const step of [-1, 1]) new Image().src = shots[(current + step + shots.length) % shots.length].thumb;
+      for (const step of [-1, 1]) load(shots[(current + step + shots.length) % shots.length].full);
     };
 
     // Opening and closing morph between the tile and the viewer where the browser supports view transitions.
@@ -192,7 +205,9 @@ const viewer = shots.map((s) => ({
       });
     };
 
-    const open = (index: number) => {
+    // Opens with the full image: waits for it, but never more than a moment, so a slow connection still opens promptly.
+    const open = async (index: number) => {
+      await Promise.race([load(shots[index].full), new Promise((resolve) => setTimeout(resolve, 350))]);
       morph(
         tiles[index],
         () => {
@@ -207,13 +222,14 @@ const viewer = shots.map((s) => ({
       morph(tile && !tile.hidden ? tile : undefined, () => dialog.close(), false);
     };
 
-    tiles.forEach((tile, i) =>
+    tiles.forEach((tile, i) => {
+      for (const type of ["pointerenter", "pointerdown", "focus"]) tile.addEventListener(type, () => load(shots[i].full), { passive: true });
       tile.addEventListener("click", (e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
         e.preventDefault();
         open(i);
-      }),
-    );
+      });
+    });
     dialog.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
       const step = target.closest<HTMLElement>("[data-step]")?.dataset.step;
