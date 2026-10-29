@@ -24,6 +24,8 @@ export interface Env {
   DISCORD_WEBHOOK_RELEASES?: string;
   /** Games reaching a new stage on the compatibility list. */
   DISCORD_WEBHOOK_GAMES?: string;
+  /** Yesterday's progress summary, once a day; falls back to DISCORD_WEBHOOK_PROGRESS. */
+  DISCORD_WEBHOOK_DIGEST?: string;
   TOKEN_KEY: string;
 
   // The site's own features: GitHub sign-in, uploaded run reports, maintainer tools.
@@ -59,10 +61,12 @@ export interface Ctx {
   env: Env;
   http: Http;
   key: CryptoKey;
+  /** What changed upstream during this run (a merge, a release, new reports); the site rebuilds when it is not empty. */
+  changes: Set<string>;
 }
 
 export async function makeCtx(env: Env, subrequestLimit?: number): Promise<Ctx> {
-  return { env, http: new Http(subrequestLimit), key: await importKey(env.TOKEN_KEY) };
+  return { env, http: new Http(subrequestLimit), key: await importKey(env.TOKEN_KEY), changes: new Set() };
 }
 
 export const now = () => Math.floor(Date.now() / 1000);

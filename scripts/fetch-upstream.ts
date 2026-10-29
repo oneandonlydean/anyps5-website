@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { unzipSync } from "fflate";
-import { generated, root, writeJson } from "./lib/files";
+import { generated, readJson, root, writeJson } from "./lib/files";
 import { countPeople, type ContributorEntry } from "./lib/contributors";
 import { rest, restCount } from "./lib/github";
 
@@ -122,10 +122,26 @@ async function publishProgress() {
   };
   type Part = { done: number; total: number; percent: number; groups: Group[] };
   type Day = { date: string; commit: string; libraries: { done: number; total: number }; shaders: { done: number; total: number } };
-  const [progress, history] = await Promise.all([
-    getJson<Record<"libraries" | "shaders", Part>>(`${UPSTREAM_PAGES}/progress.json`),
+  // Upstream publishes progress.json only when its Pages deploy succeeds, so it can lag main. The site's CI runs
+  // upstream's own tools/progress.py on main and passes the result in UPSTREAM_PROGRESS; that wins when present.
+  const local = process.env.UPSTREAM_PROGRESS ? await readJson<Record<"libraries" | "shaders", Part> | null>(process.env.UPSTREAM_PROGRESS, null) : null;
+  const [published, history] = await Promise.all([
+    local ? Promise.resolve(null) : getJson<Record<"libraries" | "shaders", Part>>(`${UPSTREAM_PAGES}/progress.json`),
     getJson<Day[]>(`${UPSTREAM_PAGES}/history.json`),
   ]);
+  const progress = (local ?? published)!;
+  if (local) {
+    // Today's point comes from main too, so the history ends where the numbers on the page do.
+    const today = new Date().toISOString().slice(0, 10);
+    const point: Day = {
+      date: today,
+      commit: process.env.UPSTREAM_PROGRESS_COMMIT ?? "",
+      libraries: { done: local.libraries.done, total: local.libraries.total },
+      shaders: { done: local.shaders.done, total: local.shaders.total },
+    };
+    history.splice(0, history.length, ...history.filter((d) => d.date.slice(0, 10) !== today), point);
+    console.log(`progress: measured on main${point.commit ? ` (${point.commit.slice(0, 8)})` : ""}: libraries ${local.libraries.done}/${local.libraries.total}`);
+  }
   const slim = (part: Part) => ({
     done: part.done,
     total: part.total,

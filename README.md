@@ -108,9 +108,16 @@ The site's Worker (`worker/`) also runs the Discord bot that was the separate gh
 | `DISCORD_WEBHOOK_PROGRESS` | Features, fixes and speed-ups (falls back to `DISCORD_WEBHOOK_URL`). Each post is coloured by area, with the area, type, size and any game the pull request names. A linked author is pinged. |
 | `DISCORD_WEBHOOK_DEV` | Tests, docs and tooling merges. Not posted when unset. |
 | `DISCORD_WEBHOOK_RELEASES` | New releases, checked every 5 minutes. |
-| `DISCORD_WEBHOOK_GAMES` | Games reaching a new stage, read from the site's games feed every 10 minutes. |
+| `DISCORD_WEBHOOK_GAMES` | Games reaching a new stage, read from the site's games feed every 2 minutes. |
+| `DISCORD_WEBHOOK_DIGEST` | Yesterday's progress summary, once a day just after midnight UTC (falls back to `DISCORD_WEBHOOK_PROGRESS`). |
 
 The bot runs only in the `production` environment of `wrangler.jsonc`, which has the database and secrets. The demo has neither, so its bot endpoints return 404 and it has no cron. Its tests run in the Workers runtime: `npm run test:worker`.
+
+### Keeping the site current
+
+The bot is also the site's change detector. Each minute it checks for merges, and every few minutes for releases and Game bring-up discussions. When something the site shows has changed (a user-facing merge, a release, new reports), it asks this repository to rebuild (`SITE_DISPATCH_TOKEN`), at most every 2 minutes. GitHub runs one build at a time and keeps only the newest waiting request, so a busy day turns into a fresh build every 10 minutes or so. The scheduled check in `site.yml` is the backstop. While this repository is private it runs every 3 hours; once it is public, every hour or more often costs nothing.
+
+Library progress comes from upstream's published `progress.json`, which lags `main` whenever upstream's Pages deploy fails. `fetch:upstream` takes `UPSTREAM_PROGRESS` instead when it is set: the output of upstream's own `tools/progress.py --json` run on a checkout of `main`. A CI step that sets it is in "Measuring library progress on main" below.
 
 ### Cutover from gh-worker
 
@@ -131,6 +138,23 @@ The production environment uses gh-worker's D1 database, so linked members, the 
 
    In the GitHub OAuth app, set the callback URL to `/github/callback`. The slash commands stay registered and need no change.
 6. Point `.github/workflows/site.yml` at the production deploy (no `noindex` header) instead of `deploy:demo`.
+
+### Measuring library progress on main
+
+This step runs upstream's `tools/progress.py` (it only reads source files) and hands its output to `fetch:upstream`. Add it to `.github/workflows/site.yml` before the "Refresh compatibility data" step. If it fails, the build carries on with the published numbers.
+
+```yaml
+      - name: Measure library progress on upstream main
+        if: steps.seen.outputs.cache-hit != 'true'
+        continue-on-error: true
+        run: |
+          src="$RUNNER_TEMP/upstream-src"
+          git clone --quiet --depth 1 --filter=blob:none --sparse "https://github.com/$UPSTREAM" "$src"
+          git -C "$src" sparse-checkout set tools core/libs/prx core/shader/recompiler/RdnaDecoder/include
+          python3 "$src/tools/progress.py" --json > "$RUNNER_TEMP/progress-main.json"
+          echo "UPSTREAM_PROGRESS=$RUNNER_TEMP/progress-main.json" >> "$GITHUB_ENV"
+          echo "UPSTREAM_PROGRESS_COMMIT=$(git -C "$src" rev-parse HEAD)" >> "$GITHUB_ENV"
+```
 
 ## Layout
 

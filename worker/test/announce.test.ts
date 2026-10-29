@@ -104,3 +104,60 @@ it("reads the site's Atom feeds", () => {
     { id: "https://site.test/updates#x", title: 'A <b> "c"', url: "https://site.test/compatibility/x", updated: T0, summary: "Up from Starts." },
   ]);
 });
+
+const DISPATCH = "POST https://api.github.com/repos/acme/site/dispatches";
+const dispatches = (calls: { url: string; body: string }[]) => calls.filter((c) => c.url.endsWith("/dispatches"));
+const rebuilding = (extra: Partial<Env> = {}) => withEnv({ SITE_DISPATCH_TOKEN: "dispatch", SITE_REPO: "acme/site", ...extra });
+
+it("rebuilds the site after a user-facing merge, but not after a test-only one", async () => {
+  await setCursor(T0);
+  let calls = mockFetch({ [PULLS]: () => pulls([{ ...pull(2, at(2)), title: "test(libc): cover strtod" }]), [DISPATCH]: () => new Response(null, { status: 204 }) });
+  await runCron(rebuilding(), POLL_ONLY);
+  expect(dispatches(calls)).toHaveLength(0);
+
+  calls = mockFetch({
+    [PULLS]: () => pulls([{ ...pull(3, at(3)), title: "feat(libkernel): implement ksem" }]),
+    [WEBHOOK]: () => new Response(null, { status: 204 }),
+    [DISPATCH]: () => new Response(null, { status: 204 }),
+  });
+  await runCron(rebuilding(), POLL_ONLY);
+  expect(dispatches(calls)).toHaveLength(1);
+  expect(JSON.parse(dispatches(calls)[0]!.body)).toMatchObject({ event_type: "site-data-changed", client_payload: { reason: "merge" } });
+});
+
+it("rebuilds the site when Game bring-up discussions change, after first recording where they are", async () => {
+  await setCursor(T0);
+  let updated = "2026-10-01T00:05:00Z";
+  const calls = mockFetch({
+    "POST https://api.github.com/graphql": (call) =>
+      call.body.includes("discussions(")
+        ? json({ data: { repository: { discussions: { nodes: [{ updatedAt: "2026-10-01T09:00:00Z", category: { name: "General" } }, { updatedAt: updated, category: { name: "Game bring-up" } }] } } } })
+        : pulls([]),
+    [DISPATCH]: () => new Response(null, { status: 204 }),
+  });
+  await runCron(rebuilding(), EVERYTHING);
+  expect(dispatches(calls)).toHaveLength(0);
+  await runCron(rebuilding(), EVERYTHING);
+  expect(dispatches(calls)).toHaveLength(0);
+  updated = "2026-10-01T00:09:00Z";
+  await env.SITE_DB!.prepare("DELETE FROM site_kv WHERE key = 'rebuild_at'").run();
+  await runCron(rebuilding(), EVERYTHING);
+  expect(dispatches(calls)).toHaveLength(1);
+});
+
+it("posts each finished day's progress summary once, never today's", async () => {
+  await setCursor(T0);
+  const digest = (day: string) => [`digest:${day}`, `Progress on ${day}: 100 changes merged`] as [string, string];
+  let xml = feed(digest("2026-09-30"));
+  const calls = mockFetch({ [PULLS]: () => pulls([]), [WEBHOOK]: () => new Response(null, { status: 204 }) });
+  const e = withEnv({ DISCORD_WEBHOOK_PROGRESS: hook("progress"), ASSETS: { fetch: async () => new Response(xml) } as unknown as Fetcher });
+
+  await runCron(e, EVERYTHING);
+  expect(posts(calls, "progress")).toHaveLength(0);
+  xml = feed(digest("2026-10-01"), digest("2026-09-30"));
+  await runCron(e, EVERYTHING);
+  expect(posts(calls, "progress")).toHaveLength(0);
+  await runCron(e, new Date("2026-10-02T00:10:00Z"));
+  await runCron(e, new Date("2026-10-02T00:20:00Z"));
+  expect(posts(calls, "progress").map((p) => p.embeds[0].title)).toEqual(["Progress on 2026-10-01: 100 changes merged"]);
+});

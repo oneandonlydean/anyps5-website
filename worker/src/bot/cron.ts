@@ -1,4 +1,5 @@
-import { announceGames, announceReleases, classifyPull, mergeMessage, mergeWebhook } from "./announce";
+import { requestRebuild } from "../site/rebuild";
+import { announceDigest, announceGames, announceReleases, classifyPull, mergeMessage, mergeWebhook, watchDiscussions } from "./announce";
 import * as discord from "./discord";
 import { log, makeCtx, now, type Ctx, type Env, type User } from "./env";
 import * as github from "./github";
@@ -23,17 +24,24 @@ const MAX_BISECTIONS = 6;
 
 const CURSOR_KEY = "last_merged_at";
 
-// Releases are checked every 5 minutes and the site's games feed every 10; merges every minute.
+// How often each check runs, in minutes; merges are checked every minute.
 const RELEASE_EVERY = 5;
-const GAMES_EVERY = 10;
+const GAMES_EVERY = 2;
+const DISCUSSIONS_EVERY = 2;
+const DIGEST_EVERY = 10;
+
+type Step = [string, (ctx: Ctx) => Promise<void>];
 
 export async function runCron(env: Env, at = new Date()): Promise<void> {
   const ctx = await makeCtx(env, SUBREQUEST_BUDGET);
   await cleanup(ctx);
   const minute = at.getUTCMinutes();
-  const steps: [string, (ctx: Ctx) => Promise<void>][] = [
-    ...(minute % RELEASE_EVERY === 0 ? [["releases", announceReleases] as [string, (ctx: Ctx) => Promise<void>]] : []),
-    ...(minute % GAMES_EVERY === 0 ? [["games", announceGames] as [string, (ctx: Ctx) => Promise<void>]] : []),
+  const every = (n: number, step: Step): Step[] => (minute % n === 0 ? [step] : []);
+  const steps: Step[] = [
+    ...every(RELEASE_EVERY, ["releases", announceReleases]),
+    ...every(GAMES_EVERY, ["games", announceGames]),
+    ...every(DIGEST_EVERY, ["digest", (c) => announceDigest(c, at.toISOString().slice(0, 10))]),
+    ...every(DISCUSSIONS_EVERY, ["discussions", watchDiscussions]),
     ["poll", pollMerges],
     ["resync", resync],
   ];
@@ -44,6 +52,14 @@ export async function runCron(env: Env, at = new Date()): Promise<void> {
     } catch (err) {
       logError("cron_step_failed", err, { step: name });
       if (err instanceof BudgetError) break;
+    }
+  }
+  // Anything that changed what the site shows (a merge, a release, new reports) rebuilds it, a few minutes behind.
+  if (ctx.changes.size) {
+    try {
+      await requestRebuild(env, [...ctx.changes].join(", "));
+    } catch (err) {
+      logError("rebuild_request_failed", err);
     }
   }
   log("cron_done", { subrequests: ctx.http.used });
@@ -175,6 +191,7 @@ export async function pollMerges(ctx: Ctx): Promise<void> {
       log("merge_announced", { pr: pr.number, area: merge.area });
     }
     await recordMerge(ctx, pr);
+    if (merge.notable) ctx.changes.add("merge");
 
     if (author) {
       try {

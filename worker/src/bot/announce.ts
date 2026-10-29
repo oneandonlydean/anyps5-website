@@ -82,6 +82,7 @@ export async function announceReleases(ctx: Ctx): Promise<void> {
       ],
     });
     log("release_announced", { tag: release.tag_name });
+    ctx.changes.add("release");
   }
   await kvSet(ctx, "last_release", release.tag_name);
 }
@@ -105,33 +106,74 @@ export function parseFeed(xml: string): FeedEntry[] {
   });
 }
 
-const GAMES_SEEN = "games_seen";
-const GAMES_PER_RUN = 5;
-const GAMES_REMEMBERED = 400;
+const FEED_PER_RUN = 5;
+const FEED_REMEMBERED = 400;
+
+interface FeedBridge {
+  /** One of the site's feeds. */
+  path: string;
+  webhook: string | undefined;
+  /** Where the ids already posted are remembered. */
+  key: string;
+  color: number;
+  /** Entries to leave for later, such as a day that is not over yet. */
+  ready?: (entry: FeedEntry) => boolean;
+}
 
 /**
- * Posts games that reached a new stage, read from the site's games feed (which updates when the site rebuilds).
- * Entries are remembered by id rather than by date, because a stage rise can be dated before ones already posted.
- * The first run only records what is there.
+ * Posts new entries of one of the site's feeds (which update when the site rebuilds). Entries are remembered by id
+ * rather than by date, because one can be dated before others already posted. The first run only records what is
+ * there, so a backlog is never posted.
  */
-export async function announceGames(ctx: Ctx): Promise<void> {
-  const webhook = ctx.env.DISCORD_WEBHOOK_GAMES;
-  if (!webhook || !ctx.env.ASSETS) return;
-  const res = await ctx.env.ASSETS.fetch(`${baseUrl(ctx.env)}/feeds/games.xml`);
+async function announceFeed(ctx: Ctx, bridge: FeedBridge): Promise<void> {
+  if (!bridge.webhook || !ctx.env.ASSETS) return;
+  const res = await ctx.env.ASSETS.fetch(`${baseUrl(ctx.env)}${bridge.path}`);
   if (!res.ok) return;
-  const entries = parseFeed(await res.text());
-  const stored = await kvGet(ctx, GAMES_SEEN);
+  const entries = parseFeed(await res.text()).filter((e) => !bridge.ready || bridge.ready(e));
+  const stored = await kvGet(ctx, bridge.key);
   const seen = new Set<string>(stored ? (JSON.parse(stored) as string[]) : []);
-  const fresh = stored === null ? [] : entries.filter((e) => !seen.has(e.id)).reverse().slice(0, GAMES_PER_RUN);
+  const fresh = stored === null ? [] : entries.filter((e) => !seen.has(e.id)).reverse().slice(0, FEED_PER_RUN);
   for (const entry of fresh) {
-    await discord.postWebhook(ctx, "discord games webhook", webhook, {
-      embeds: [{ title: entry.title.slice(0, 256), url: entry.url, description: entry.summary || undefined, color: 0x3ddc84, timestamp: entry.updated || undefined }],
+    await discord.postWebhook(ctx, `discord webhook ${bridge.key}`, bridge.webhook, {
+      embeds: [{ title: entry.title.slice(0, 256), url: entry.url, description: entry.summary || undefined, color: bridge.color, timestamp: entry.updated || undefined }],
     });
     seen.add(entry.id);
-    log("game_announced", { id: entry.id });
+    log("feed_entry_announced", { feed: bridge.path, id: entry.id });
   }
   if (stored === null) entries.forEach((e) => seen.add(e.id));
   // Newest first, so the oldest ids are the ones forgotten once the list is full.
   const remembered = [...entries.map((e) => e.id).filter((id) => seen.has(id)), ...[...seen].filter((id) => !entries.some((e) => e.id === id))];
-  await kvSet(ctx, GAMES_SEEN, JSON.stringify(remembered.slice(0, GAMES_REMEMBERED)));
+  await kvSet(ctx, bridge.key, JSON.stringify(remembered.slice(0, FEED_REMEMBERED)));
+}
+
+/** Games that reached a new stage, from the site's games feed. */
+export const announceGames = (ctx: Ctx) =>
+  announceFeed(ctx, { path: "/feeds/games.xml", webhook: ctx.env.DISCORD_WEBHOOK_GAMES, key: "games_seen", color: 0x3ddc84 });
+
+/**
+ * Yesterday's progress summary, from the site's daily feed. Today's summary keeps changing until the day is over,
+ * so only finished days are posted: the first check after midnight UTC (once the site has rebuilt) posts the day before.
+ */
+export const announceDigest = (ctx: Ctx, today = new Date().toISOString().slice(0, 10)) =>
+  announceFeed(ctx, {
+    path: "/feeds/progress-daily.xml",
+    webhook: ctx.env.DISCORD_WEBHOOK_DIGEST || ctx.env.DISCORD_WEBHOOK_PROGRESS,
+    key: "digest_seen",
+    color: 0x37e0c8,
+    ready: (e) => (e.id.match(/(?:digest|week):(\d{4}-\d{2}-\d{2})/)?.[1] ?? today) < today,
+  });
+
+/**
+ * Notices new or updated Game bring-up discussions, so the site rebuilds with new reports. Reads the ten most recently
+ * updated discussions in one query and remembers the newest bring-up update.
+ */
+export async function watchDiscussions(ctx: Ctx): Promise<void> {
+  if (!ctx.env.SITE_DISPATCH_TOKEN) return;
+  const [owner, name] = ctx.env.GITHUB_REPO.split("/");
+  const data = await github.recentDiscussions(ctx, owner!, name!);
+  const newest = data.filter((d) => d.category === "Game bring-up").map((d) => d.updatedAt).sort().at(-1);
+  if (!newest) return;
+  const seen = await kvGet(ctx, "discussions_updated");
+  if (seen !== null && newest > seen) ctx.changes.add("reports");
+  if (newest !== seen) await kvSet(ctx, "discussions_updated", newest);
 }

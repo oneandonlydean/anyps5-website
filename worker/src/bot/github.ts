@@ -205,3 +205,15 @@ export async function latestRelease({ env, http }: Ctx): Promise<Release | null>
   }
   return res.json<Release>();
 }
+
+/** The ten most recently updated discussions, with their category, for noticing new reports. */
+export async function recentDiscussions(ctx: Ctx, owner: string, name: string): Promise<{ category: string; updatedAt: string }[]> {
+  const data = await graphql<{ repository: { discussions: { nodes: { updatedAt: string; category: { name: string } }[] } } | null }>(
+    ctx,
+    "github discussions",
+    `query($owner: String!, $name: String!) { repository(owner: $owner, name: $name) {
+      discussions(first: 10, orderBy: { field: UPDATED_AT, direction: DESC }) { nodes { updatedAt category { name } } } } }`,
+    { owner, name },
+  );
+  return data.repository?.discussions.nodes.map((d) => ({ category: d.category.name, updatedAt: d.updatedAt })) ?? [];
+}
