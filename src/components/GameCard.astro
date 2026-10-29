@@ -6,6 +6,7 @@ import type { Game } from "../lib/resolve";
 import { stageRank, stageSlug } from "../lib/stages";
 import { formatDate } from "../lib/site";
 import { PLATFORM_LABEL, reach, systemTokens } from "../lib/view";
+import { gameTheme } from "../lib/color";
 
 interface Props {
   game: Game;
@@ -18,7 +19,8 @@ interface Props {
 const { game, eager = false, ready = false, shots = 0 } = Astro.props;
 const { stage, onMain } = reach(game);
 const search = [game.name, ...game.aliases, ...game.titleIds].join(" ").toLowerCase();
-const tint = game.art?.color ?? `var(--stage-${stageSlug(stage)})`;
+// The hover glow takes the art's colour, or the stage's when the art is grey and would give no visible glow.
+const tint = gameTheme(game.art?.color) ? game.art!.color! : `var(--stage-${stageSlug(stage)})`;
 // Shown in list view only: the systems reports came from, and when the game was last tested.
 const systems = [
   ...new Set(game.reports.map((r) => [r.platform && PLATFORM_LABEL[r.platform], r.gpuVendor].filter(Boolean).join(" · ")).filter(Boolean)),

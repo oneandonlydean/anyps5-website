@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { gameTheme } from "../src/lib/color";
+import { gameTheme, vibrantColor } from "../src/lib/color";
 
 /** WCAG contrast ratio between two hex colours. */
 function contrast(a: string, b: string): number {
@@ -36,5 +36,21 @@ describe("gameTheme", () => {
       const theme = gameTheme(hex);
       for (const set of [theme!.dark, theme!.light]) for (const value of Object.values(set)) expect(value).toMatch(/^#[0-9a-f]{6}$/);
     }
+  });
+});
+
+describe("vibrantColor", () => {
+  const image = (...parts: [number, [number, number, number]][]) => Uint8Array.from(parts.flatMap(([n, rgb]) => Array.from({ length: n }, () => rgb).flat()));
+
+  it("picks the vivid hue over a larger black background", () => {
+    const hex = vibrantColor(image([800, [8, 8, 8]], [150, [220, 40, 40]], [50, [200, 200, 200]]), 3)!;
+    const [r, g, b] = [1, 3, 5].map((i) => Number.parseInt(hex.slice(i, i + 2), 16));
+    expect(r).toBeGreaterThan(180);
+    expect(g).toBeLessThan(80);
+    expect(b).toBeLessThan(80);
+  });
+
+  it("gives null for art with almost no colour", () => {
+    expect(vibrantColor(image([980, [10, 10, 10]], [20, [30, 120, 220]]), 3)).toBeNull();
   });
 });

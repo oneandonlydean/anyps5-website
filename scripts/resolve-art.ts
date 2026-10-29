@@ -1,5 +1,6 @@
 import sharp from "sharp";
 import { generated, readJson, writeJson } from "./lib/files";
+import { vibrantColor } from "../src/lib/color";
 import { loadGenerated, loadOverlays } from "../src/lib/load";
 import { groupGames, type Identity } from "../src/lib/resolve";
 import type { Art, Thread, Title } from "../src/lib/schema";
@@ -97,12 +98,16 @@ async function steamGridArt(name: string): Promise<Partial<Roles>> {
   return Object.fromEntries(Object.entries({ cover, hero, logo, square }).filter(([, v]) => v));
 }
 
-async function dominantColor(url: string | null): Promise<string | null> {
+async function artColor(url: string | null): Promise<string | null> {
   if (!url) return null;
   try {
     const response = await fetch(SONY_CDN.test(url) ? `${url}?w=64` : url, { headers: { "User-Agent": UA } });
     if (!response.ok) return null;
-    const { dominant } = await sharp(Buffer.from(await response.arrayBuffer())).stats();
+    const image = sharp(Buffer.from(await response.arrayBuffer())).removeAlpha();
+    const { data, info } = await image.clone().resize(48, 48, { fit: "inside" }).raw().toBuffer({ resolveWithObject: true });
+    const vibrant = vibrantColor(data, info.channels);
+    if (vibrant) return vibrant;
+    const { dominant } = await image.stats();
     return "#" + [dominant.r, dominant.g, dominant.b].map((c) => c.toString(16).padStart(2, "0")).join("");
   } catch {
     return null;
@@ -128,7 +133,7 @@ async function resolve(identity: Identity, titles: Record<string, Title>): Promi
   return {
     checked: new Date().toISOString(),
     ...roles,
-    color: await dominantColor(roles.square ?? roles.cover ?? roles.hero),
+    color: await artColor(roles.square ?? roles.cover ?? roles.hero),
     credits,
   };
 }

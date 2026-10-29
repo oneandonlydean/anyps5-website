@@ -155,7 +155,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     </div>
 
     <div class="summary">
-      <p class="muted" aria-live="polite"><span data-shown>{games.length}</span> games</p>
+      <p class="muted" aria-live="polite"><span data-shown>{games.length}</span> <span data-shown-label>games</span></p>
       <ul class="active" aria-label="Active filters" data-active></ul>
     </div>
 
@@ -215,6 +215,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   const filtersCount = document.querySelector<HTMLElement>("[data-filters-count]")!;
   const views = [...document.querySelectorAll<HTMLButtonElement>("[data-view]")];
   const count = document.querySelector("[data-shown]")!;
+  const countLabel = document.querySelector("[data-shown-label]")!;
   const empty = document.querySelector<HTMLElement>("[data-empty]")!;
 
   const pressed = (buttons: HTMLButtonElement[], key: string) => buttons.filter((b) => b.ariaPressed === "true").map((b) => b.dataset[key]!);
@@ -267,6 +268,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     };
     grid.append(...[...cards].sort(order[sort.value]));
     count.textContent = String(shown);
+    countLabel.textContent = shown === 1 ? "game" : "games";
     empty.hidden = shown > 0;
     save({ q: query, stage: stages.join(","), platform: platforms.join(","), gpu: gpus.join(","), main: isOn(mainToggle) ? "1" : "", ready: isOn(readyToggle) ? "1" : "", sort: sort.value === "stage" ? "" : sort.value });
   }

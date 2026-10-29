@@ -61,3 +61,36 @@ export function gameTheme(hex: string | null | undefined): GameTheme | null {
     light: { accent: at(0.5), strong: at(0.42), second: at(0.54, 40) },
   };
 }
+
+/**
+ * The colour a piece of art reads as: the most prominent vivid hue rather than the most common pixel, which on game
+ * covers is usually a black or white background. Pixels are grouped into hue buckets weighted by how colourful they
+ * are; the heaviest bucket's average wins. Art with almost no colour gives null.
+ */
+export function vibrantColor(pixels: Uint8Array | Buffer, channels: number): string | null {
+  const BUCKETS = 18;
+  const sums = Array.from({ length: BUCKETS }, () => ({ weight: 0, r: 0, g: 0, b: 0 }));
+  let colourful = 0;
+  const total = pixels.length / channels;
+  for (let i = 0; i < pixels.length; i += channels) {
+    const [r, g, b] = [pixels[i], pixels[i + 1], pixels[i + 2]];
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    const saturation = max === 0 ? 0 : (max - min) / max;
+    const value = max / 255;
+    if (saturation < 0.3 || value < 0.2 || value > 0.98) continue;
+    colourful++;
+    const d = max - min;
+    const hue = max === r ? ((g - b) / d + 6) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    const bucket = sums[Math.floor((hue / 6) * BUCKETS) % BUCKETS];
+    const weight = saturation * value;
+    bucket.weight += weight;
+    bucket.r += r * weight;
+    bucket.g += g * weight;
+    bucket.b += b * weight;
+  }
+  if (colourful < total * 0.03) return null;
+  const top = sums.reduce((a, b) => (b.weight > a.weight ? b : a));
+  const hex = (v: number) => Math.round(v / top.weight).toString(16).padStart(2, "0");
+  return `#${hex(top.r)}${hex(top.g)}${hex(top.b)}`;
+}
