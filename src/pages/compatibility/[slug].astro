@@ -228,7 +228,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
             [thread, ...otherThreads].filter(Boolean).map((t, i) => (
               <a class="button" href={t!.url}>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z" /></svg>
-                {i === 0 ? "Open discussion" : `Also discussed in #${t!.number}`}
+                {i === 0 ? "Open discussion" : `Discussion #${t!.number}`}
                 <span class="replies">{replies(t!.comments)}</span>
               </a>
             ))
@@ -622,12 +622,15 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
   }
   .actions {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 10px;
   }
   .actions .button {
     justify-content: flex-start;
     width: 100%;
     padding-inline: 18px;
+    white-space: normal;
+    text-align: left;
   }
   .actions .button.primary {
     justify-content: center;
@@ -645,6 +648,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
   }
   .replies {
     margin-left: auto;
+    white-space: nowrap;
     color: var(--muted);
     font-weight: 500;
     font-size: 0.82rem;
