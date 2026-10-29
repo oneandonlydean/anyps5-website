@@ -116,6 +116,8 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The data was refreshed by the steps above.
+          SKIP_SYNC: "1"
         run: npm run deploy:demo
 
       - name: Remember this upstream state as deployed
