@@ -230,8 +230,12 @@ describe("unsupported throws", () => {
 });
 
 describe("formats and descriptors", () => {
+  it("requires the driver's format table outside lenient history scans", () => {
+    expect(() => imageFormats(files)).toThrow(ScanError);
+  });
+
   it("joins the defined range with each layer", () => {
-    expect(imageFormats(files)).toEqual([
+    expect(imageFormats(files, true)).toEqual([
       { value: 1, name: "Format8UNorm", sampled: true, buffer: false, host: false },
       { value: 2, name: "Format8SNorm", sampled: false, buffer: true, host: false },
       { value: 3, name: null, sampled: false, buffer: false, host: false },

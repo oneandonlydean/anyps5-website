@@ -9,32 +9,57 @@ const OUT = generated("threads.json");
 interface Post {
   url: string;
   createdAt: string;
+  lastEditedAt: string | null;
   body: string;
   author: { login: string } | null;
 }
 interface Comment extends Post {
   replies: { nodes: Post[] };
 }
+interface Comments {
+  totalCount: number;
+  pageInfo: { hasNextPage: boolean; endCursor: string };
+  nodes: Comment[];
+}
 interface Discussion extends Post {
+  id: string;
   number: number;
   title: string;
   updatedAt: string;
-  comments: { totalCount: number; nodes: Comment[] };
+  comments: Comments;
 }
 
-const POST = "url createdAt body author { login }";
+const POST = "url createdAt lastEditedAt body author { login }";
+const COMMENTS = `totalCount pageInfo { hasNextPage endCursor } nodes { ${POST} replies(first: 100) { nodes { ${POST} } } }`;
 const PAGE = `
   query($owner: String!, $name: String!, $category: ID!, $after: String) {
     repository(owner: $owner, name: $name) {
       discussions(first: 10, after: $after, categoryId: $category, orderBy: { field: UPDATED_AT, direction: DESC }) {
         pageInfo { hasNextPage endCursor }
         nodes {
-          number title updatedAt ${POST}
-          comments(first: 100) { totalCount nodes { ${POST} replies(first: 50) { nodes { ${POST} } } } }
+          id number title updatedAt ${POST}
+          comments(first: 100) { ${COMMENTS} }
         }
       }
     }
   }`;
+
+const MORE_COMMENTS = `
+  query($id: ID!, $after: String) {
+    node(id: $id) { ... on Discussion { comments(first: 100, after: $after) { ${COMMENTS} } } }
+  }`;
+
+/** Fetches the comments beyond the first page, so the newest reports in a long thread are not left out. */
+async function allComments(d: Discussion): Promise<Comment[]> {
+  const comments = [...d.comments.nodes];
+  let page = d.comments.pageInfo;
+  while (page.hasNextPage) {
+    const data = await graphql<{ node: { comments: Comments } }>(MORE_COMMENTS, { id: d.id, after: page.endCursor });
+    comments.push(...data.node.comments.nodes);
+    page = data.node.comments.pageInfo;
+  }
+  return comments;
+}
 
 async function categoryId(): Promise<string> {
   const data = await graphql<{ repository: { discussionCategories: { nodes: { id: string; name: string }[] } } }>(
@@ -55,6 +80,7 @@ function toThread(d: Discussion): Thread | null {
     discussion: d.number,
     author: post.author?.login ?? null,
     date: post.createdAt,
+    edited: post.lastEditedAt,
   });
   const posts = [d, ...d.comments.nodes.flatMap((c) => [c, ...c.replies.nodes])];
   const reports = posts.map((post) => parseReport(post.body, meta(post))).filter((r): r is Report => r !== null);
@@ -88,6 +114,7 @@ async function main() {
     for (const discussion of nodes) {
       if (known.get(discussion.number)?.updated === discussion.updatedAt) break pages;
       fetched++;
+      discussion.comments.nodes = await allComments(discussion);
       const thread = toThread(discussion);
       if (thread) known.set(thread.number, thread);
       else known.delete(discussion.number);

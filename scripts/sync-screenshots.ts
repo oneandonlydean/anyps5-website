@@ -43,7 +43,9 @@ async function convert(id: string, src: string): Promise<Shot> {
   try {
     // The first frame of an animation; orientation from EXIF; a pixel limit against decompression bombs.
     const image = sharp(input, { limitInputPixels: 80_000_000 }).rotate();
-    const { width = 0, height = 0 } = await image.metadata();
+    // Metadata gives the stored size; orientations 5 to 8 are turned a quarter, so rotate() swaps the sides.
+    const meta = await image.metadata();
+    const [width, height] = (meta.orientation ?? 1) >= 5 ? [meta.height ?? 0, meta.width ?? 0] : [meta.width ?? 0, meta.height ?? 0];
     if (width < MIN_WIDTH || height < MIN_HEIGHT) return { src, skipped: "small", checked };
     if (Math.max(width / height, height / width) > MAX_RATIO) return { src, skipped: "shape", checked };
     const { dominant } = await image.clone().stats();

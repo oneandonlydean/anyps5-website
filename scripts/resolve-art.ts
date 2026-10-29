@@ -73,14 +73,18 @@ export function conceptMedia(html: string, concept: string): Partial<Roles> {
   return found;
 }
 
+// A 404 means a source has no art for the game; any other failure throws, so the game keeps its cached art.
 async function storeArt(concept: string): Promise<Partial<Roles>> {
   const response = await fetch(`https://store.playstation.com/en-us/concept/${concept}`, { headers: { "User-Agent": UA } });
-  return response.ok ? conceptMedia(await response.text(), concept) : {};
+  if (response.status === 404) return {};
+  if (!response.ok) throw new Error(`PlayStation Store ${response.status}`);
+  return conceptMedia(await response.text(), concept);
 }
 
 async function sgdb<T>(path: string): Promise<T[]> {
   const response = await fetch(`${SGDB}${path}`, { headers: { Authorization: `Bearer ${SGDB_KEY}` } });
-  if (!response.ok) return [];
+  if (response.status === 404) return [];
+  if (!response.ok) throw new Error(`SteamGridDB ${response.status}`);
   return ((await response.json()) as { data?: T[] }).data ?? [];
 }
 
@@ -151,11 +155,16 @@ async function main() {
   const cache = await readJson<Record<string, Art>>(OUT, {});
   const now = Date.now();
   const queue = identities.filter((i) => force || !isFresh(cache[i.key], now));
+  const failed: string[] = [];
 
   await Promise.all(
     Array.from({ length: CONCURRENCY }, async () => {
       for (let identity = queue.shift(); identity; identity = queue.shift()) {
-        cache[identity.key] = await resolve(identity, titles);
+        try {
+          cache[identity.key] = await resolve(identity, titles);
+        } catch (error) {
+          failed.push(`${identity.name}: ${(error as Error).message}`);
+        }
       }
     }),
   );
@@ -165,6 +174,7 @@ async function main() {
   await writeJson(OUT, art);
   const withArt = Object.values(art).filter((a) => a.square || a.cover).length;
   console.log(`art: ${withArt} of ${keys.size} games have cover art${SGDB_KEY ? "" : " (SGDB_API_KEY not set: PlayStation Store only)"}`);
+  if (failed.length) console.warn(`art: kept cached art for ${failed.length} games after errors, e.g. ${failed.slice(0, 3).join("; ")}`);
 }
 
 await main();

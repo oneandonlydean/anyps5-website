@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { unzipSync } from "fflate";
 import { root } from "./files";
@@ -39,7 +39,9 @@ export async function loadIsaXml(): Promise<string> {
     if (!response.ok) throw new Error(`ISA download failed: ${response.status}`);
     const data = Buffer.from(await response.arrayBuffer());
     await mkdir(CACHE, { recursive: true });
-    await writeFile(zip, data);
+    // Through a temporary file, so an interrupted download is not cached as a broken zip.
+    await writeFile(`${zip}.tmp`, data);
+    await rename(`${zip}.tmp`, zip);
     return data;
   });
   const files = unzipSync(new Uint8Array(bytes), { filter: (f) => f.name.endsWith(ISA_FILE) });

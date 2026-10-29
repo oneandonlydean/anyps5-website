@@ -16,7 +16,7 @@ async function main() {
     for (const row of rows) {
       const [titleId, concept, name, , region] = row.split("\t");
       const id = titleId?.slice(0, 9);
-      if (!id || !wanted.has(id) || titles[id]) continue;
+      if (!id || !name || !wanted.has(id) || titles[id]) continue;
       titles[id] = { name: name.trim(), region: region?.trim() || null, concept: concept?.trim() || null };
     }
   }

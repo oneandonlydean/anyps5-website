@@ -1,7 +1,7 @@
 import type { BuildKind, Platform, Report } from "./schema";
 import { NOT_CONVERTING, type StageOrNone } from "./stages";
 
-const REPO_REF = /github\.com\/boykopovar\/AnyPS5\/(?:issues|pull)\/(\d+)/gi;
+const REPO_REF = /github\.com\/boykopovar\/AnyPS5\/(?:issues|pull)\/(\d{1,7})\b/gi;
 const HASH_REF = /(?<![\w/&])#(\d{2,6})\b/g;
 
 export function titleIds(text: string): string[] {
@@ -123,6 +123,8 @@ export interface PostMeta {
   discussion: number;
   author: string | null;
   date: string;
+  /** When the post was last edited, if it was; its text describes the build as of then. */
+  edited?: string | null;
 }
 
 /** Turns one discussion post or reply into a report, or null when it states no furthest point. */
@@ -142,6 +144,7 @@ export function parseReport(body: string, meta: PostMeta): Report | null {
 
   return {
     ...meta,
+    edited: meta.edited ?? null,
     stage,
     platform: platformOf(system),
     gpu,

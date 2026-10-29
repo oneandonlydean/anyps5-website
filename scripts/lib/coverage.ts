@@ -329,7 +329,7 @@ export interface FormatRow {
   host: boolean;
 }
 
-export function imageFormats(files: Files): FormatRow[] {
+export function imageFormats(files: Files, lenient = false): FormatRow[] {
   const enumText = search(files, "IrBufferFormat enum", (text) => arrayBody(text, "enum\\s+class\\s+IrBufferFormat\\s*:\\s*[\\w:]+"));
   const names = new Map([...enumText.matchAll(/(\w+)\s*=\s*(\d+)/g)].map((m) => [Number(m[2]), m[1]]));
 
@@ -343,6 +343,8 @@ export function imageFormats(files: Files): FormatRow[] {
   const buffer = caseNames(search(files, "GetFormatInfo()", (text) => functionBody(text, "GetFormatInfo")), "IrBufferFormat");
 
   const textures = files.get(TEXTURE_FORMATS);
+  // Older trees predate the driver's format table; today's scan must find it, or every format would read unsupported.
+  if (!textures && !lenient) throw new ScanError(TEXTURE_FORMATS);
   const host = new Set<number>();
   if (textures) {
     const text = stripComments(textures);
@@ -408,7 +410,7 @@ export function measure(files: Files, isa: IsaForm[], lenient = false): Snapshot
     forms: instructions?.forms ?? null,
     untranslated: instructions?.untranslated ?? [],
     throws: unsupportedThrows(files),
-    formats: attempt(lenient, () => imageFormats(files)),
+    formats: attempt(lenient, () => imageFormats(files, lenient)),
     descriptors: attempt(lenient, () => descriptorTypes(files)),
   };
 }

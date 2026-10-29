@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { unzipSync } from "fflate";
 import { generated, root, writeJson } from "./lib/files";
@@ -58,20 +58,24 @@ async function publishConverter(release: Release, withLibraries: boolean) {
   const meta = JSON.parse(new TextDecoder().decode(files["web-release.json"]));
   if (meta.tag !== release.tag_name || !/^[0-9a-f]{40}$/.test(meta.revision)) throw new Error("Web converter does not match the release");
 
-  await rm(CONVERTER, { recursive: true, force: true });
-  for (const name of WEB_FILES) await write(resolve(CONVERTER, name), files[name]);
+  // Built in a staging folder and swapped in at the end, so a failed run leaves the previous converter intact.
+  const staging = `${CONVERTER}.next`;
+  await rm(staging, { recursive: true, force: true });
+  for (const name of WEB_FILES) await write(resolve(staging, name), files[name]);
   const embedCss = await readFile(resolve(root, "src/styles/converter-embed.css"));
-  await write(resolve(CONVERTER, "embed.css"), embedCss);
+  await write(resolve(staging, "embed.css"), embedCss);
   // Takes the theme from the embedding page before first paint; /convert keeps it in sync afterwards.
   const theme = `<script>try{document.documentElement.dataset.theme=parent.document.documentElement.dataset.theme==="light"?"light":"dark"}catch{}</script>`;
   const html = new TextDecoder().decode(files["index.html"]).replace("</head>", `<link rel="stylesheet" href="embed.css">${theme}</head>`);
-  await write(resolve(CONVERTER, "index.html"), html);
+  await write(resolve(staging, "index.html"), html);
 
-  const manifest = withLibraries ? await publishLibraries(release) : await upstreamManifest(release);
-  await writeJson(resolve(CONVERTER, "release.json"), { ...manifest, revision: meta.revision });
+  const manifest = withLibraries ? await publishLibraries(release, staging) : await upstreamManifest(release);
+  await writeJson(resolve(staging, "release.json"), { ...manifest, revision: meta.revision });
+  await rm(CONVERTER, { recursive: true, force: true });
+  await rename(staging, CONVERTER);
 }
 
-async function publishLibraries(release: Release) {
+async function publishLibraries(release: Release, dir: string) {
   const platforms: Record<string, unknown> = {};
   for (const platform of PLATFORMS) {
     const { bytes, sha256 } = await download(asset(release, `prx-${platform}-${release.tag_name}.zip`));
@@ -84,7 +88,7 @@ async function publishLibraries(release: Release) {
       },
     });
     const path = `libraries/${platform}-${sha256}.zip`;
-    await write(resolve(CONVERTER, path), bytes);
+    await write(resolve(dir, path), bytes);
     platforms[platform] = { path, size: bytes.byteLength, expandedBytes, sha256 };
   }
   return { tag: release.tag_name, url: release.html_url, platforms };
