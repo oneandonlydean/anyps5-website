@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  // A demo deployment of the site on Cloudflare: npm run deploy:demo. The Discord bot is off here (no database or
-  // secrets); it runs in the production environment below, which is for the official site.
+  // A demo deployment of the site on Cloudflare: npm run deploy:demo. It also runs a test copy of the Discord bot, with
+  // its own Discord app, database and webhooks (see "Testing the bot before cutover" in the README). The bot stays off
+  // until its TOKEN_KEY secret is set. The production environment below is the official site and bot.
   "name": "anyps5-demo",
   "main": "worker/src/index.ts",
   "compatibility_date": "2026-10-01",
@@ -15,14 +16,21 @@
   },
   "routes": [{ "pattern": "anyps5-demo.deanisa.ninja", "custom_domain": true }],
   "observability": { "enabled": true },
+  "triggers": { "crons": ["* * * * *"] },
   // The site's own data: GitHub sign-in, uploaded run reports, what maintainers hid. Shared with production, so
   // uploads made before cutover carry over.
   "d1_databases": [
-    { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" }
+    { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" },
+    // The test bot's own database, never the live gh-worker's. Empty to start: the first run only records where
+    // things stand, so the backlog is never announced.
+    { "binding": "DB", "database_name": "anyps5-bot-test", "database_id": "0b37243f-4f64-42ce-b8a5-bba81a75696b", "migrations_dir": "worker/migrations" }
   ],
   "vars": {
     "MAINTAINERS": "158058829",
-    "SITE_REPO": "oneandonlydean/anyps5-website"
+    "SITE_REPO": "oneandonlydean/anyps5-website",
+    "GITHUB_REPO": "boykopovar/AnyPS5",
+    "BASE_URL": "https://anyps5-demo.deanisa.ninja"
+    // DISCORD_PUBLIC_KEY is a secret here, from the test Discord app.
   },
 
   "env": {
