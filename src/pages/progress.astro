@@ -9,7 +9,7 @@ import { getCoverage, getProgress, getProgressHistory, type Coverage } from "../
 
 const [progress, libraryHistory, coverage, needs, games] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames()]);
 const number = new Intl.NumberFormat("en-GB");
-const percent = (done: number, total: number, digits = 1) => `${total ? ((done / total) * 100).toFixed(digits) : "0"}%`;
+const percent = (done: number, total: number, digits = 2) => `${total ? ((done / total) * 100).toFixed(digits) : "0"}%`;
 
 const libraries = progress?.libraries;
 const inert = libraries?.groups.reduce((n, g) => n + g.inert, 0) ?? 0;
@@ -188,8 +188,8 @@ const wantedErrors = wanted((n) => n.errors, (e) => e.message).slice(0, 10);
           <div class="card tile">
             <span class="label">Instruction forms</span>
             <b>
-              <span data-count={((coverage.instructions.decoded / coverage.instructions.total) * 100).toFixed(1)} data-digits="1">
-                {((coverage.instructions.decoded / coverage.instructions.total) * 100).toFixed(1)}
+              <span data-count={((coverage.instructions.decoded / coverage.instructions.total) * 100).toFixed(2)} data-digits="2">
+                {((coverage.instructions.decoded / coverage.instructions.total) * 100).toFixed(2)}
               </span>
               %
             </b>
@@ -208,7 +208,7 @@ const wantedErrors = wanted((n) => n.errors, (e) => e.message).slice(0, 10);
           </div>
           <div class="card tile">
             <span class="label">Image formats</span>
-            <b>{percent(coverage.formats.sampled, coverage.formats.total, 0)}</b>
+            <b>{percent(coverage.formats.sampled, coverage.formats.total)}</b>
             <span class="muted">
               {coverage.formats.sampled} of {coverage.formats.total} can be sampled; {coverage.formats.buffer} as buffers
             </span>

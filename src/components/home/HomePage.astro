@@ -110,7 +110,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
         <a class="stat card" href="/progress">
           <span class="label">{t.home.libraries}</span>
           <b>
-            <span data-count={Math.round(progress.libraries.percent)}>{progress.libraries.percent.toFixed(0)}</span>
+            <span data-count={progress.libraries.percent.toFixed(2)} data-digits="2">{progress.libraries.percent.toFixed(2)}</span>
             <small>%</small>
           </b>
           <span class="meter" style={`--value:${progress.libraries.percent}%`} />
@@ -124,7 +124,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
         <a class="stat card" href="/progress#shaders">
           <span class="label">{t.home.shaders}</span>
           <b>
-            <span data-count={shaders.percent.toFixed(1)} data-digits="1">{shaders.percent.toFixed(1)}</span>
+            <span data-count={shaders.percent.toFixed(2)} data-digits="2">{shaders.percent.toFixed(2)}</span>
             <small>%</small>
           </b>
           <span class="meter" style={`--value:${shaders.percent}%`} />

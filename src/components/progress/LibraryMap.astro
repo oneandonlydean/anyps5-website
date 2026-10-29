@@ -11,7 +11,7 @@ const { groups } = Astro.props;
 const W = 1000;
 const H = 560;
 const tiles = squarify([...groups].sort((a, b) => b.total - a.total), (g) => g.total, W, H);
-const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 1000) / 10;
+const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 10000) / 100;
 ---
 
 <div class="library-map" data-library-map data-pagefind-ignore>
