@@ -1,6 +1,5 @@
 ---
 import Base from "../../layouts/Base.astro";
-import GameArt from "../../components/GameArt.astro";
 import GameCard from "../../components/GameCard.astro";
 import { getGames, getRetest, getScreenshots } from "../../lib/data";
 import { formatDate } from "../../lib/site";
@@ -24,29 +23,21 @@ const ladder = [
   { name: "No stage", short: "No stage", meaning: "Not tested yet, or does not convert yet.", rank: -1, count: reaches.filter((r) => stageRank(r) < 0).length, tone: "var(--stage-none)" },
   ...counts.map((c) => ({ ...c, tone: `var(--stage-${stageSlug(c.name)})` })),
 ];
-const tallest = Math.max(...ladder.map((l) => l.count), 1);
 const tested = reaches.filter((r) => stageRank(r) >= 0).length;
 const ingame = reaches.filter((r) => stageRank(r) >= stageRank("Ingame")).length;
 const synced = games.map((g) => g.updated).sort().at(-1);
 const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
-const fan = games
-  .filter((g) => g.art?.cover)
-  .sort((a, b) => stageRank(reach(b).stage) - stageRank(reach(a).stage))
-  .slice(0, 5);
 ---
 
 <Base title="Game compatibility" description={`How far ${games.length} PS5 games get on AnyPS5, from converting to fully playable, with per-game blockers and test reports.`}>
-  <section class="container hero">
-    <div class="fan" aria-hidden="true">
-      {fan.map((g, i) => <GameArt name={g.name} src={g.art!.cover} color={g.art!.color} ratio="2/3" widths={[240, 360]} sizes="180px" eager={i === 2} />)}
+  <section class="container intro">
+    <div class="intro-copy">
+      <span class="eyebrow">Game compatibility</span>
+      <h1>How far every game gets</h1>
+      <p class="lede">Community test reports place every game on an eight-stage ladder, from converting to fully playable.</p>
     </div>
-    <span class="eyebrow">Game compatibility</span>
-    <h1>How far every game gets</h1>
-    <p class="lede">
-      Each game climbs an eight-stage ladder, from converting to playable. Stages come from community test reports in the Game bring-up discussions and are checked by maintainers.
-    </p>
     <dl class="stats">
-      <div><dt>Games tracked</dt><dd>{games.length}</dd></div>
+      <div><dt>Tracked</dt><dd>{games.length}</dd></div>
       <div><dt>Tested</dt><dd>{tested}</dd></div>
       <div><dt>In game or better</dt><dd>{ingame}</dd></div>
       {synced && <div><dt>Last report</dt><dd class="date">{formatDate(synced)}</dd></div>}
@@ -54,62 +45,55 @@ const fan = games
   </section>
 
   <section class="container" aria-label="Games">
-    {
-      ready.length > 0 && (
-        <div class="retest" aria-labelledby="retest-title">
-          <span class="retest-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" /></svg>
-          </span>
-          <div class="retest-copy">
-            <h2 id="retest-title">{ready.length} games are ready to retest</h2>
-            <p class="muted">What stopped them has been fixed since their last report. A new run shows how much further they get.</p>
-          </div>
-          <ul class="retest-covers">
-            {ready.slice(0, 7).map(({ game, fixed }) => (
-              <li>
-                <a href={`/compatibility/${game.slug}`} title={`${game.name}: ${fixedText(fixed)}`} style={`--tint:${game.art?.color ?? "var(--raised)"}`}>
-                  {(game.art?.cover ?? game.art?.square) ? <img src={artSrc((game.art!.cover ?? game.art!.square)!, 120)} alt={game.name} width="44" height="66" loading="lazy" decoding="async" /> : <span class="visually-hidden">{game.name}</span>}
-                </a>
-              </li>
-            ))}
-            {ready.length > 7 && <li class="more">+{ready.length - 7}</li>}
-          </ul>
-          <button type="button" class="button" aria-pressed="false" data-ready-toggle>
-            <span class="off">Show them</span>
-            <span class="on">Show all games</span>
-          </button>
-        </div>
-      )
-    }
-
-    <div class="ladder card">
-      <div class="ladder-head">
-        <h2>How far games get</h2>
-        <span class="muted">Pick stages to filter</span>
+    <div class="overview card" data-overview>
+      <div class="overview-head">
+        <h2>Stages</h2>
+        <span class="muted">Select stages to filter the list</span>
         <button type="button" class="clear" data-clear-stages hidden>Clear</button>
       </div>
-      <div class="bars" role="group" aria-label="Filter by stage">
+      <div class="spectrum" aria-hidden="true">
+        {ladder.filter((l) => l.count > 0).map((l) => <span data-rank={l.rank} style={`--tone:${l.tone};flex-grow:${l.count}`} title={`${l.name}: ${l.count}`} />)}
+      </div>
+      <div class="stages" role="group" aria-label="Filter by stage">
         {
           ladder.map((l) => (
             <button
               type="button"
-              class:list={["bar", { zero: l.count === 0, none: l.rank < 0 }]}
+              class:list={["stage", { none: l.rank < 0 }]}
               data-stage-filter={l.rank}
               aria-pressed="false"
               aria-disabled={l.count === 0 ? "true" : undefined}
-              style={`--tone:${l.tone};--height:${(l.count / tallest) * 100}%`}
+              style={`--tone:${l.tone}`}
               title={l.meaning}
               aria-label={`${l.name}: ${l.count} games`}
             >
-              <span class="bar-track">
-                <span class="bar-count">{l.count}</span>
-                <span class="bar-fill" />
-              </span>
-              <span class="bar-name">{l.short}</span>
+              <span class="stage-name">{l.short}</span>
+              <span class="stage-count">{l.count}</span>
             </button>
           ))
         }
       </div>
+      {
+        ready.length > 0 && (
+          <div class="retest">
+            <button type="button" class="retest-toggle" aria-pressed="false" data-ready-toggle>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" /></svg>
+              <span><b>{ready.length}</b> ready to retest</span>
+            </button>
+            <p class="muted">What stopped these games has been fixed since their last report. A new run shows how much further they get.</p>
+            <ul class="retest-covers">
+              {ready.slice(0, 5).map(({ game, fixed }) => (
+                <li>
+                  <a href={`/compatibility/${game.slug}`} title={`${game.name}: ${fixedText(fixed)}`} style={`--tint:${game.art?.color ?? "var(--raised)"}`}>
+                    {(game.art?.cover ?? game.art?.square) ? <img src={artSrc((game.art!.cover ?? game.art!.square)!, 120)} alt={game.name} width="30" height="44" loading="lazy" decoding="async" /> : <span class="visually-hidden">{game.name}</span>}
+                  </a>
+                </li>
+              ))}
+              {ready.length > 5 && <li class="more">+{ready.length - 5}</li>}
+            </ul>
+          </div>
+        )
+      }
     </div>
 
     <div class="toolbar">
@@ -169,7 +153,7 @@ const fan = games
     </div>
 
     <div class="summary">
-      <p class="muted" aria-live="polite"><span data-count>{games.length}</span> games</p>
+      <p class="muted" aria-live="polite"><span data-shown>{games.length}</span> games</p>
       <ul class="active" aria-label="Active filters" data-active></ul>
     </div>
 
@@ -216,7 +200,8 @@ const fan = games
   const mainToggle = document.querySelector<HTMLButtonElement>("[data-main-toggle]")!;
   const readyToggle = document.querySelector<HTMLButtonElement>("[data-ready-toggle]");
   const clearStages = document.querySelector<HTMLButtonElement>("[data-clear-stages]")!;
-  const ladderBars = document.querySelector<HTMLElement>(".bars")!;
+  const overview = document.querySelector<HTMLElement>("[data-overview]")!;
+  const spectrum = [...overview.querySelectorAll<HTMLElement>(".spectrum span")];
   const isOn = (button: HTMLButtonElement | null) => button?.ariaPressed === "true";
   const sort = document.querySelector<HTMLSelectElement>("select[name=sort]")!;
   const segments = [...document.querySelectorAll<HTMLButtonElement>("[data-stage-filter]")];
@@ -227,7 +212,7 @@ const fan = games
   const filtersPanel = document.getElementById("filter-panel")!;
   const filtersCount = document.querySelector<HTMLElement>("[data-filters-count]")!;
   const views = [...document.querySelectorAll<HTMLButtonElement>("[data-view]")];
-  const count = document.querySelector("[data-count]")!;
+  const count = document.querySelector("[data-shown]")!;
   const empty = document.querySelector<HTMLElement>("[data-empty]")!;
 
   const pressed = (buttons: HTMLButtonElement[], key: string) => buttons.filter((b) => b.ariaPressed === "true").map((b) => b.dataset[key]!);
@@ -254,7 +239,8 @@ const fan = games
   function apply() {
     const query = search.value.trim().toLowerCase();
     const stages = pressed(segments, "stageFilter").map(Number);
-    ladderBars.classList.toggle("filtering", stages.length > 0);
+    overview.classList.toggle("filtering", stages.length > 0);
+    spectrum.forEach((span) => span.classList.toggle("on", stages.includes(Number(span.dataset.rank))));
     clearStages.hidden = stages.length === 0;
     platforms = pressed(chips, "platform");
     gpus = pressed(gpuChips, "gpu");
@@ -286,7 +272,7 @@ const fan = games
   /** Removable pills for every active filter, so it is always clear what the grid shows. */
   function renderActive(stages: number[]) {
     const pills: { label: string; clear: () => void }[] = [];
-    for (const b of segments.filter((b) => stages.includes(Number(b.dataset.stageFilter)))) pills.push({ label: b.querySelector(".bar-name")!.textContent!, clear: () => (b.ariaPressed = "false") });
+    for (const b of segments.filter((b) => stages.includes(Number(b.dataset.stageFilter)))) pills.push({ label: b.querySelector(".stage-name")!.textContent!, clear: () => (b.ariaPressed = "false") });
     for (const b of [...chips, ...gpuChips].filter((b) => b.ariaPressed === "true")) pills.push({ label: b.textContent!.trim(), clear: () => (b.ariaPressed = "false") });
     if (isOn(mainToggle)) pills.push({ label: "Main builds only", clear: () => (mainToggle.ariaPressed = "false") });
     if (isOn(readyToggle)) pills.push({ label: "Ready to retest", clear: () => (readyToggle!.ariaPressed = "false") });
@@ -389,200 +375,71 @@ const fan = games
 </script>
 
 <style>
-  .hero {
-    position: relative;
-    padding-block: clamp(48px, 8vw, 96px) 40px;
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 24px 48px;
+    padding-block: clamp(40px, 6vw, 80px) 32px;
   }
-  .hero > :not(.fan) {
-    position: relative;
-    max-width: 640px;
+  .intro h1 {
+    margin-bottom: 0.25em;
   }
-  /* Covers of the furthest-along games, fanned out beside the heading. */
-  .fan {
-    position: absolute;
-    right: var(--gutter);
-    top: 50%;
-    width: 420px;
-    height: 300px;
-    translate: 0 -50%;
-  }
-  .fan :global(.art) {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 150px;
-    border-radius: 12px;
-    box-shadow:
-      0 0 0 1px rgb(255 255 255 / 0.08),
-      0 24px 48px -16px rgb(0 0 0 / 0.7);
-    transform-origin: 50% 140%;
-    translate: -50% 0;
-    transition: rotate 0.5s var(--ease);
-  }
-  .fan :global(.art:nth-child(1)) {
-    rotate: -24deg;
-  }
-  .fan :global(.art:nth-child(2)) {
-    z-index: 1;
-    rotate: -12deg;
-  }
-  .fan :global(.art:nth-child(3)) {
-    z-index: 2;
-  }
-  .fan :global(.art:nth-child(4)) {
-    z-index: 1;
-    rotate: 12deg;
-  }
-  .fan :global(.art:nth-child(5)) {
-    rotate: 24deg;
-  }
-  .hero:hover .fan :global(.art:nth-child(1)) {
-    rotate: -30deg;
-  }
-  .hero:hover .fan :global(.art:nth-child(2)) {
-    rotate: -15deg;
-  }
-  .hero:hover .fan :global(.art:nth-child(4)) {
-    rotate: 15deg;
-  }
-  .hero:hover .fan :global(.art:nth-child(5)) {
-    rotate: 30deg;
+  .intro .lede {
+    max-width: 560px;
+    margin: 0;
   }
   .stats {
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px 48px;
-    margin: 32px 0 0;
+    margin: 0;
+  }
+  .stats div {
+    display: grid;
+    gap: 6px;
+    padding: 2px 24px;
+    border-left: 1px solid var(--line);
+  }
+  .stats div:first-child {
+    padding-left: 0;
+    border-left: 0;
   }
   .stats dt {
     color: var(--faint);
-    font: 500 0.72rem/1 var(--mono);
+    font: 500 0.68rem var(--mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    white-space: nowrap;
   }
   .stats dd {
-    margin: 8px 0 0;
-    font-size: 2rem;
-    font-weight: 650;
-    letter-spacing: -0.03em;
+    margin: 0;
+    font: 700 1.75rem/1 var(--display);
     font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
   }
   .stats .date {
-    font-size: 1.25rem;
-    line-height: 2.4rem;
-  }
-
-  /* Ready to retest: one banner with a fan of covers and a button that filters the grid to those games. */
-  .retest {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px 24px;
-    margin-bottom: 20px;
-    padding: 16px 20px;
-    border: 1px solid color-mix(in srgb, var(--good) 35%, var(--line));
-    border-radius: var(--radius);
-    background:
-      radial-gradient(420px 160px at 0% 50%, color-mix(in srgb, var(--good) 14%, transparent), transparent 75%),
-      var(--surface);
-    box-shadow: inset 0 1px 0 var(--highlight);
-  }
-  .retest-icon {
-    flex: none;
-    display: grid;
-    place-items: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: color-mix(in srgb, var(--good) 16%, var(--surface));
-    color: var(--good);
-  }
-  .retest-copy {
-    flex: 1 1 280px;
-    min-width: 0;
-  }
-  .retest-copy h2 {
-    margin: 0 0 2px;
     font-size: 1.05rem;
-  }
-  .retest-copy p {
-    margin: 0;
-    font-size: 0.86rem;
-  }
-  .retest-covers {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0 0 0 10px;
-    list-style: none;
-  }
-  .retest-covers li {
-    margin-left: -10px;
-  }
-  .retest-covers a {
-    display: block;
-    width: 34px;
-    height: 50px;
-    overflow: hidden;
-    border: 2px solid var(--surface);
-    border-radius: 7px;
-    background: var(--tint);
-    box-shadow: 0 6px 14px -6px rgb(0 0 0 / 0.6);
-    transition: transform 0.2s var(--ease);
-  }
-  .retest-covers a:hover,
-  .retest-covers a:focus-visible {
-    position: relative;
-    z-index: 1;
-    transform: translateY(-4px) scale(1.12);
-  }
-  .retest-covers img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .retest-covers .more {
-    display: grid;
-    place-items: center;
-    height: 30px;
-    margin-left: 6px;
-    padding: 0 10px;
-    border-radius: 999px;
-    background: var(--raised);
-    color: var(--muted);
-    font-size: 0.78rem;
-    font-weight: 700;
-  }
-  [data-ready-toggle] .on,
-  [data-ready-toggle][aria-pressed="true"] .off {
-    display: none;
-  }
-  [data-ready-toggle][aria-pressed="true"] .on {
-    display: inline;
-  }
-  [data-ready-toggle][aria-pressed="true"] {
-    border-color: var(--good);
-    background: color-mix(in srgb, var(--good) 16%, var(--surface));
+    line-height: 1.7rem;
+    white-space: nowrap;
   }
 
-  /* The ladder: one bar per stage, rising from left to right, each a filter toggle. */
-  .ladder {
+  /* The stage overview: the spread of games across the ladder, a filter tile per stage, and the retest shortcut. */
+  .overview {
+    display: grid;
+    gap: 16px;
     margin-bottom: 16px;
-    padding: 18px 20px 14px;
+    padding: 20px 22px;
   }
-  .ladder-head {
+  .overview-head {
     display: flex;
-    flex-wrap: wrap;
     align-items: baseline;
-    gap: 4px 14px;
-    margin-bottom: 14px;
+    gap: 12px;
   }
-  .ladder-head h2 {
+  .overview-head h2 {
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
-  .ladder-head .muted {
-    font-size: 0.84rem;
+  .overview-head .muted {
+    font-size: 0.85rem;
   }
   .clear {
     margin-left: auto;
@@ -590,114 +447,166 @@ const fan = games
     border: 0;
     background: none;
     color: var(--accent);
-    font: 600 0.84rem var(--font);
+    font: inherit;
+    font-size: 0.85rem;
     cursor: pointer;
   }
-  .bars {
+  .spectrum {
+    display: flex;
+    gap: 3px;
+    height: 10px;
+  }
+  .spectrum span {
+    min-width: 6px;
+    border-radius: 3px;
+    background: var(--tone);
+    transition: opacity 0.2s;
+  }
+  .filtering .spectrum span:not(.on) {
+    opacity: 0.2;
+  }
+  .stages {
     display: grid;
     grid-template-columns: repeat(9, minmax(0, 1fr));
-    align-items: start;
-    gap: 6px;
-  }
-  .bar {
-    display: grid;
-    grid-template-rows: 130px auto;
-    align-content: start;
     gap: 8px;
-    width: 100%;
-    min-width: 0;
-    padding: 6px 4px 8px;
-    border: 1px solid transparent;
+  }
+  .stage {
+    position: relative;
+    display: grid;
+    gap: 6px;
+    padding: 13px 12px 11px;
+    overflow: hidden;
+    border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    background: none;
-    color: var(--muted);
+    background: color-mix(in srgb, var(--raised) 50%, transparent);
+    color: var(--text);
     font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      background 0.2s,
+      opacity 0.2s,
+      translate 0.2s var(--ease);
+  }
+  .stage::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--tone);
+  }
+  .stage.none {
+    border-style: dashed;
+  }
+  .stage-name {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .stage-count {
+    font: 700 1.3rem/1 var(--display);
+    font-variant-numeric: tabular-nums;
+  }
+  .stage:not([aria-disabled]):hover {
+    border-color: color-mix(in srgb, var(--tone) 55%, var(--line));
+    translate: 0 -1px;
+  }
+  .stage[aria-disabled] {
+    opacity: 0.4;
+    cursor: default;
+  }
+  .stage[aria-pressed="true"] {
+    border-color: var(--tone);
+    background: color-mix(in srgb, var(--tone) 16%, var(--surface));
+  }
+  .stage[aria-pressed="true"] .stage-name {
+    color: var(--text);
+  }
+  .filtering .stage:not([aria-pressed="true"]):not([aria-disabled]) {
+    opacity: 0.55;
+  }
+  .retest {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .retest-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid color-mix(in srgb, var(--good) 45%, var(--line));
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--good) 10%, transparent);
+    color: var(--text);
+    font: 600 0.88rem var(--font);
+    white-space: nowrap;
     cursor: pointer;
     transition:
       background 0.2s,
-      border-color 0.2s,
-      opacity 0.2s;
+      color 0.2s;
   }
-  .bar.none {
-    margin-right: 6px;
-    border-right: 1px dashed var(--line);
-    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  .retest-toggle svg {
+    color: var(--good);
   }
-  .bar:not([aria-disabled]):hover {
-    background: color-mix(in srgb, var(--tone) 8%, transparent);
+  .retest-toggle:hover {
+    background: color-mix(in srgb, var(--good) 18%, transparent);
   }
-  .bar[aria-disabled] {
-    cursor: default;
+  .retest-toggle[aria-pressed="true"] {
+    border-color: var(--good);
+    background: var(--good);
+    color: #04140a;
   }
-  .bar-count {
-    color: var(--text);
-    font: 700 1.05rem / 1 var(--display);
-    font-variant-numeric: tabular-nums;
+  .retest-toggle[aria-pressed="true"] svg {
+    color: currentColor;
   }
-  .bar.zero .bar-count {
-    color: var(--faint);
-    font-weight: 500;
+  .retest p {
+    flex: 1 1 280px;
+    margin: 0;
+    font-size: 0.85rem;
   }
-  /* The count sits on top of its bar, so it rises with it. */
-  .bar-track {
-    position: relative;
+  .retest-covers {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    gap: 6px;
+    margin: 0;
+    padding: 0 0 0 8px;
+    list-style: none;
   }
-  /* A faint baseline under every bar keeps empty stages readable as a step. */
-  .bar-track::after {
-    content: "";
-    position: absolute;
-    left: 10%;
-    right: 10%;
-    bottom: 0;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--line-strong);
+  .retest-covers li {
+    margin-left: -8px;
   }
-  .bar-fill {
-    position: relative;
-    z-index: 1;
-    width: min(46px, 70%);
-    height: max(calc(var(--height) * 0.78), 4px);
-    border-radius: 6px 6px 3px 3px;
-    background: linear-gradient(to top, color-mix(in srgb, var(--tone) 70%, var(--surface)), var(--tone));
-    box-shadow: 0 0 22px -8px var(--tone);
-    transition:
-      transform 0.25s var(--ease),
-      box-shadow 0.25s;
-  }
-  .bar.zero .bar-fill {
-    height: 0;
-  }
-  .bar-name {
+  .retest-covers a {
+    display: block;
+    width: 30px;
+    height: 44px;
     overflow: hidden;
+    border: 2px solid var(--surface);
+    border-radius: 6px;
+    background: var(--tint);
+    transition: translate 0.2s var(--ease);
+  }
+  .retest-covers a:hover,
+  .retest-covers a:focus-visible {
+    translate: 0 -3px;
+  }
+  .retest-covers img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .retest-covers .more {
+    margin-left: 6px;
+    color: var(--muted);
     font-size: 0.78rem;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    font-weight: 700;
   }
-  .bar:not([aria-disabled]):hover .bar-fill {
-    transform: scaleY(1.03);
-    transform-origin: bottom;
-  }
-  .bars.filtering .bar:not([aria-pressed="true"]) {
-    opacity: 0.4;
-  }
-  .bar[aria-pressed="true"] {
-    border-color: color-mix(in srgb, var(--tone) 55%, transparent);
-    background: color-mix(in srgb, var(--tone) 10%, transparent);
-  }
-  .bar[aria-pressed="true"] .bar-name {
-    color: var(--text);
-    font-weight: 600;
-  }
-  .bar[aria-pressed="true"] .bar-fill {
-    box-shadow: 0 0 30px -4px var(--tone);
-  }
-
   .toolbar {
     position: sticky;
     top: 64px;
@@ -1044,55 +953,26 @@ const fan = games
     font-size: 0.9rem;
   }
 
-  @media (max-width: 1100px) {
-    .fan {
-      display: none;
+  @media (max-width: 1000px) {
+    .intro {
+      grid-template-columns: 1fr;
+    }
+    .stages {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
   }
   @media (max-width: 720px) {
-    /* On narrow screens the chart turns sideways: one row per stage. */
-    .bars {
-      grid-template-columns: 1fr;
-      gap: 2px;
+    .stages {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-    .bar {
-      grid-template-rows: none;
-      grid-template-columns: 76px minmax(0, 1fr);
-      align-items: center;
-      gap: 10px;
-      padding: 5px 8px;
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 16px;
     }
-    .bar.none {
-      margin: 0 0 4px;
-      border-right: 1px solid transparent;
-      border-bottom: 1px dashed var(--line);
-      border-radius: var(--radius-sm);
-    }
-    .bar-name {
-      order: -1;
-      font-size: 0.8rem;
-      text-align: left;
-    }
-    .bar-track {
-      flex-direction: row;
-      justify-content: flex-start;
-      height: 18px;
-    }
-    .bar-track::after {
-      display: none;
-    }
-    .bar-fill {
-      order: -1;
-      width: max(calc(var(--height) * 0.82), 4px);
-      height: 12px;
-      border-radius: 3px 6px 6px 3px;
-    }
-    .bar.zero .bar-fill {
-      width: 0;
-      height: 12px;
-    }
-    .bar-count {
-      font-size: 0.86rem;
+    .stats div {
+      padding: 0;
+      border: 0;
     }
     .games {
       grid-template-columns: repeat(2, 1fr);
