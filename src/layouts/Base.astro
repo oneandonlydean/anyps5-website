@@ -146,16 +146,33 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <div class="toast" role="status" aria-live="polite" data-toast></div>
     <script>
       // Dates from <LocalDate>, rewritten from UTC into the visitor's timezone, in the page's language (British date
-      // order for English, as the rest of the site writes dates).
+      // order for English, as the rest of the site writes dates), with UTC kept alongside: a time shows both clocks, a
+      // date names the UTC day when it differs, and hovering either gives the exact moment in both.
       const lang = document.documentElement.lang === "en" ? "en-GB" : document.documentElement.lang || undefined;
-      const formats = {
-        date: new Intl.DateTimeFormat(lang, { day: "numeric", month: "short", year: "numeric" }),
-        time: new Intl.DateTimeFormat(lang, { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZoneName: "short" }),
+      const day = { day: "numeric", month: "short", year: "numeric" } as const;
+      const clock = { hour: "2-digit", minute: "2-digit" } as const;
+      const local = {
+        date: new Intl.DateTimeFormat(lang, day),
+        time: new Intl.DateTimeFormat(lang, { ...day, ...clock, timeZoneName: "short" }),
       };
+      const utc = {
+        date: new Intl.DateTimeFormat(lang, { ...day, timeZone: "UTC" }),
+        clock: new Intl.DateTimeFormat(lang, { ...clock, timeZone: "UTC" }),
+        time: new Intl.DateTimeFormat(lang, { ...day, ...clock, timeZone: "UTC" }),
+      };
+      const inUtc = new Intl.DateTimeFormat().resolvedOptions().timeZone === "UTC" || new Date().getTimezoneOffset() === 0;
       for (const el of document.querySelectorAll<HTMLTimeElement>("time[data-local]")) {
         const date = new Date(el.dateTime);
         if (Number.isNaN(date.getTime())) continue;
-        el.textContent = formats[el.dataset.local === "time" ? "time" : "date"].format(date);
+        const exact = `${local.time.format(date)}\n${utc.time.format(date)} UTC`;
+        if (el.dataset.local === "time") {
+          el.textContent = inUtc ? `${utc.time.format(date)} UTC` : `${local.time.format(date)} (${utc.clock.format(date)} UTC)`;
+        } else {
+          const here = local.date.format(date);
+          const there = utc.date.format(date);
+          el.textContent = here === there ? here : `${here} (${there} UTC)`;
+        }
+        el.title = inUtc ? `${utc.time.format(date)} UTC` : exact;
       }
     </script>
     <script>
