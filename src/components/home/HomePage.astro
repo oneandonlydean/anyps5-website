@@ -29,13 +29,16 @@ const byReach = [...games].sort((a, b) => stageRank(reach(b).stage) - stageRank(
 const wall = byReach.filter((g) => g.art?.cover).slice(0, 36);
 const columns = [0, 1, 2, 3, 4, 5].map((c) => wall.filter((_, i) => i % 6 === c));
 const featured = byReach.filter((g) => g.art?.hero).slice(0, 6);
-// The newest community screenshot from each game that already draws frames.
+// Community screenshots for the showcase wall: the newest from each game that already draws frames, then a second
+// from each, split over two rows that drift in opposite directions. Near-black frames are left to the game pages.
 const shotsByGame = await getScreenshots();
-const fresh = games
+const showable = games
   .filter((g) => stageRank(g.stage) >= stageRank("Presents") && shotsByGame.has(g.slug))
-  .flatMap((g) => [...shotsByGame.get(g.slug)!].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 1).map((shot) => ({ game: g, shot })))
-  .sort((a, b) => b.shot.date.localeCompare(a.shot.date))
-  .slice(0, 12);
+  .map((g) => ({ game: g, shots: shotsByGame.get(g.slug)!.filter((s) => (s.brightness ?? 1) >= 0.08).sort((a, b) => b.date.localeCompare(a.date)) }))
+  .filter((g) => g.shots.length > 0)
+  .sort((a, b) => b.shots[0].date.localeCompare(a.shots[0].date));
+const fresh = [0, 1].flatMap((pass) => showable.filter((g) => g.shots[pass]).map((g) => ({ game: g.game, shot: g.shots[pass] }))).slice(0, 28);
+const freshRows = [fresh.filter((_, i) => i % 2 === 0), fresh.filter((_, i) => i % 2 === 1)];
 const tested = games.filter((g) => reach(g).stage);
 const ingame = games.filter((g) => stageRank(reach(g).stage) >= stageRank("Ingame")).length;
 const distribution = STAGES.map((s, i) => ({ ...s, count: tested.filter((g) => stageRank(reach(g).stage) === i).length })).filter((s) => s.count > 0);
@@ -273,25 +276,35 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
             <p class="lede">{t.home.shotsText}</p>
           </div>
         </div>
-        <ul class="film" role="list">
-          {fresh.map(({ game, shot }) => {
-            const r = reach(game);
-            return (
-              <li style={`--c:${shot.color}`}>
-                <a href={`/compatibility/${game.slug}`}>
-                  <img src={`/community/${shot.id}-thumb.webp`} alt="" width={shot.width} height={shot.height} loading="lazy" decoding="async" />
-                  <span class="film-copy">
-                    <span class="film-name">{game.name}</span>
-                    <span class="film-meta">
-                      <StageBadge stage={r.stage} onMain={r.onMain} />
-                      {shot.author && <span class="film-by">{t.home.shotBy(shot.author)}</span>}
-                    </span>
-                  </span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        <div class="showcase reveal">
+          {freshRows.map((row, r) => (
+            <div class="reel">
+              <div class:list={["reel-track", { reverse: r === 1 }]} style={`--duration:${Math.max(row.length * 12, 90)}s`}>
+                {[0, 1].map((copy) => (
+                  <ul aria-hidden={copy === 1 ? "true" : undefined}>
+                    {row.map(({ game, shot }) => {
+                      const g = reach(game);
+                      return (
+                        <li style={`--c:${shot.color}`}>
+                          <a href={`/compatibility/${game.slug}`} tabindex={copy === 1 ? -1 : undefined}>
+                            <img src={`/community/${shot.id}-thumb.webp`} alt="" width={shot.width} height={shot.height} loading="lazy" decoding="async" />
+                            <span class="film-copy">
+                              <span class="film-name">{game.name}</span>
+                              <span class="film-meta">
+                                <StageBadge stage={g.stage} onMain={g.onMain} />
+                                {shot.author && <span class="film-by">{t.home.shotBy(shot.author)}</span>}
+                              </span>
+                            </span>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
     )
   }
@@ -1253,52 +1266,137 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     }
   }
 
-  /* A film strip of community screenshots that scrolls sideways and fades out at both edges. */
-  .fresh .section-head {
-    margin-bottom: 28px;
+  /* The showcase wall: two tilted rows of community screenshots drifting in opposite directions. Hovering a row
+     pauses it and lifts the screenshot under the pointer while the rest dim. */
+  .fresh {
+    overflow: hidden;
   }
-  .film {
+  .fresh .section-head {
+    margin-bottom: 36px;
+  }
+  .showcase {
+    display: grid;
+    gap: 14px;
+    padding-block: 28px;
+    rotate: -2.5deg;
+    scale: 1.06;
+    mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent);
+  }
+  .reel {
+    overflow: hidden;
+    padding-block: 14px;
+    margin-block: -14px;
+  }
+  .reel-track {
+    display: flex;
+    width: max-content;
+    animation: slide var(--duration) linear infinite;
+  }
+  .reel-track.reverse {
+    animation-direction: reverse;
+  }
+  .reel-track ul {
     display: flex;
     gap: 14px;
     margin: 0;
-    padding: 6px max(var(--gutter), calc((100% - var(--width)) / 2 + var(--gutter))) 18px;
-    overflow-x: auto;
+    padding: 0 14px 0 0;
     list-style: none;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: max(var(--gutter), calc((100% - var(--width)) / 2 + var(--gutter)));
-    scrollbar-width: thin;
-    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
   }
-  .film li {
-    flex: 0 0 clamp(260px, 32vw, 420px);
-    scroll-snap-align: start;
+  .reel li {
+    flex: none;
+    width: clamp(240px, 24vw, 340px);
+    transition:
+      opacity 0.35s var(--ease),
+      scale 0.45s var(--ease),
+      filter 0.35s var(--ease);
   }
-  .film a {
+  .reel:nth-child(2) li {
+    width: clamp(200px, 19vw, 280px);
+  }
+  .reel:hover .reel-track,
+  .reel:focus-within .reel-track {
+    animation-play-state: paused;
+  }
+  .reel:hover li:not(:hover),
+  .reel:focus-within li:not(:focus-within) {
+    opacity: 0.45;
+    filter: saturate(0.6);
+  }
+  .reel li:hover,
+  .reel li:focus-within {
+    z-index: 1;
+    scale: 1.08;
+  }
+  .reel a {
     position: relative;
     display: block;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: var(--radius);
     background: var(--c);
-    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 24px 50px -28px var(--c);
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.07),
+      0 26px 50px -30px var(--c);
     color: #fff;
     text-decoration: none;
   }
-  .film img {
+  .reel img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: scale 0.6s var(--ease);
+    transition: scale 6s linear;
   }
-  .film a::after {
+  /* A slow push-in on the screenshot being looked at. */
+  .reel a:hover img,
+  .reel a:focus-visible img {
+    scale: 1.14;
+  }
+  .reel a::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgb(0 0 0 / 0.82), rgb(0 0 0 / 0.1) 55%, transparent);
+    background: linear-gradient(to top, rgb(0 0 0 / 0.85), rgb(0 0 0 / 0.15) 50%, transparent);
+    opacity: 0.55;
+    transition: opacity 0.35s var(--ease);
   }
-  .film a:hover img,
-  .film a:focus-visible img {
-    scale: 1.05;
+  .reel a:hover::after,
+  .reel a:focus-visible::after {
+    opacity: 1;
+  }
+  .reel .film-meta {
+    opacity: 0;
+    translate: 0 8px;
+    transition:
+      opacity 0.35s var(--ease),
+      translate 0.35s var(--ease);
+  }
+  .reel a:hover .film-meta,
+  .reel a:focus-visible .film-meta {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .reel .film-name {
+    font-size: 0.92rem;
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.6);
+  }
+  @media (hover: none) {
+    .reel .film-meta {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  /* Without motion, the rows stand still and scroll sideways instead. */
+  @media (prefers-reduced-motion: reduce) {
+    .showcase {
+      rotate: none;
+      scale: none;
+    }
+    .reel {
+      overflow-x: auto;
+    }
+    .reel-track ul[aria-hidden] {
+      display: none;
+    }
   }
   .film-copy {
     position: absolute;
