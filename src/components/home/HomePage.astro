@@ -648,7 +648,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   }
 
   .latest {
-    padding-block: 8px 24px;
+    padding-block: clamp(44px, 6vw, 64px) 0;
   }
   .latest-head {
     display: flex;
