@@ -72,7 +72,7 @@ export type Media = z.infer<typeof Media>;
 
 /** A downloaded community image, keyed by `mediaId(src)`: its size and colour, or why it is not shown. */
 export const Shot = z.union([
-  z.object({ src: z.url(), width: z.number(), height: z.number(), color: z.string(), brightness: z.number().optional() }),
+  z.object({ src: z.url(), width: z.number(), height: z.number(), color: z.string() }),
   z.object({ src: z.url(), skipped: z.enum(["failed", "small", "shape"]), checked: z.string() }),
 ]);
 export type Shot = z.infer<typeof Shot>;

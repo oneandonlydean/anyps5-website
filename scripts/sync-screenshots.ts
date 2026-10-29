@@ -32,12 +32,6 @@ async function download(src: string): Promise<Buffer> {
   return body;
 }
 
-/** Mean luminance of an image file, from 0 to 1. */
-async function brightness(path: string): Promise<number> {
-  const { channels } = await sharp(path).greyscale().stats();
-  return Math.round((channels[0].mean / 255) * 1000) / 1000;
-}
-
 async function convert(id: string, src: string): Promise<Shot> {
   const checked = new Date().toISOString();
   let input: Buffer;
@@ -57,7 +51,7 @@ async function convert(id: string, src: string): Promise<Shot> {
       await image.clone().resize({ width: Math.min(size.width, width), withoutEnlargement: true }).webp({ quality: size.quality }).toFile(path);
     }
     const hex = (n: number) => n.toString(16).padStart(2, "0");
-    return { src, width, height, color: `#${hex(dominant.r)}${hex(dominant.g)}${hex(dominant.b)}`, brightness: await brightness(files(id)[0]) };
+    return { src, width, height, color: `#${hex(dominant.r)}${hex(dominant.g)}${hex(dominant.b)}` };
   } catch {
     return { src, skipped: "failed", checked };
   }
@@ -84,11 +78,6 @@ async function main() {
       }
     }),
   );
-
-  // Entries from before brightness was recorded are measured from their thumbnails.
-  for (const [id, shot] of Object.entries(out)) {
-    if (!("skipped" in shot) && shot.brightness === undefined && existsSync(files(id)[0])) out[id] = { ...shot, brightness: await brightness(files(id)[0]) };
-  }
 
   await writeJson(OUT, Object.fromEntries(Object.entries(out).sort(([a], [b]) => a.localeCompare(b))));
   const shown = Object.values(out).filter((s) => !("skipped" in s)).length;

@@ -32,8 +32,6 @@ export interface Screenshot {
   width: number;
   height: number;
   color: string;
-  /** Mean luminance from 0 to 1, so showcases can skip near-black frames. */
-  brightness: number | null;
   /** From the test report the image was posted with, when it was posted with one. */
   stage: StageOrNone | null;
   platform: Platform | null;
@@ -72,7 +70,6 @@ export function gameScreenshots(threads: Thread[], shots: Record<string, Shot>):
       width: shot.width,
       height: shot.height,
       color: shot.color,
-      brightness: shot.brightness ?? null,
       stage: report?.stage ?? null,
       platform: report?.platform ?? null,
       gpuVendor: report?.gpuVendor ?? null,
