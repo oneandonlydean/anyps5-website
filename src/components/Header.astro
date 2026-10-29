@@ -98,8 +98,9 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
 </script>
 
 <style>
+  /* No view-transition-name: a captured header loses its backdrop blur, so it would flicker as each transition ended.
+     As part of the page's crossfade it stays steady, since its pixels are the same on both pages. */
   .header {
-    view-transition-name: site-header;
     position: sticky;
     top: 0;
     z-index: 50;
