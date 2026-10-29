@@ -21,16 +21,24 @@ export async function getSteps(locale: Locale = DEFAULT_LOCALE): Promise<Step[]>
     .sort((a, b) => a.entry.data.step - b.entry.data.step);
 }
 
+/** The sidebar for every docs page: the setup guide's steps, then the reference pages. */
 export function guideNav(steps: Step[], locale: Locale = DEFAULT_LOCALE) {
   const t = strings(locale).guide;
   return [
     {
       title: t.title,
       links: [
-        { href: localePath(locale, "/guide"), label: t.overview },
-        ...steps.map((s) => ({ href: localePath(locale, `/guide/${s.slug}`), label: `${s.entry.data.step}. ${s.entry.data.title}` })),
+        { href: localePath(locale, "/docs/guide"), label: t.overview },
+        ...steps.map((s) => ({ href: localePath(locale, `/docs/guide/${s.slug}`), label: `${s.entry.data.step}. ${s.entry.data.title}` })),
       ],
     },
-    { title: t.reference, links: [{ href: "/docs/usage", label: t.usage }, { href: "/docs/input-mapping", label: t.inputMapping }] },
+    {
+      title: t.reference,
+      links: [
+        { href: "/docs", label: t.allDocs },
+        { href: "/docs/usage", label: t.usage },
+        { href: "/docs/input-mapping", label: t.inputMapping },
+      ],
+    },
   ];
 }

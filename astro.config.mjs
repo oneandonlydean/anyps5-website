@@ -1,11 +1,24 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
+import { readdirSync } from "node:fs";
+
+// The setup guide moved from /guide into the docs; old links (including each language's) redirect to the new pages.
+const guide = "src/content/guide";
+const steps = readdirSync(guide).filter((f) => f.endsWith(".mdx")).map((f) => f.replace(/\.mdx$/, ""));
+const languages = readdirSync(guide, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+const guideRedirects = Object.fromEntries(
+  ["", ...languages.map((l) => `/${l}`)].flatMap((prefix) => [
+    [`${prefix}/guide`, `${prefix}/docs/guide`],
+    ...steps.map((step) => [`${prefix}/guide/${step}`, `${prefix}/docs/guide/${step}`]),
+  ]),
+);
 
 export default defineConfig({
   site: process.env.SITE_URL ?? "http://localhost:4321",
   integrations: [mdx(), sitemap()],
   trailingSlash: "ignore",
+  redirects: guideRedirects,
   devToolbar: { enabled: false },
   // Listen on every interface so other devices on the LAN can open the dev server.
   server: { host: true },

@@ -5,14 +5,14 @@ import { systemTokens } from "../src/lib/view";
 describe("locale paths", () => {
   it("prefixes only pages that have translations", () => {
     expect(localePath("es", "/")).toBe("/es/");
-    expect(localePath("es", "/guide/run")).toBe("/es/guide/run");
+    expect(localePath("es", "/docs/guide/run")).toBe("/es/docs/guide/run");
     expect(localePath("ru", "/faq")).toBe("/ru/faq");
     expect(localePath("es", "/compatibility")).toBe("/compatibility");
-    expect(localePath("en", "/guide")).toBe("/guide");
+    expect(localePath("en", "/docs/guide")).toBe("/docs/guide");
   });
 
   it("splits a URL into its language and English path", () => {
-    expect(parsePath("/zh-cn/guide/dump")).toEqual({ locale: "zh-cn", path: "/guide/dump" });
+    expect(parsePath("/zh-cn/docs/guide/dump")).toEqual({ locale: "zh-cn", path: "/docs/guide/dump" });
     expect(parsePath("/es/")).toEqual({ locale: "es", path: "/" });
     expect(parsePath("/progress")).toEqual({ locale: "en", path: "/progress" });
     // A game slug that happens to start like a language stays English.
@@ -21,8 +21,8 @@ describe("locale paths", () => {
 
   it("knows which pages are translated", () => {
     expect(isTranslated("/")).toBe(true);
-    expect(isTranslated("/guide")).toBe(true);
-    expect(isTranslated("/guide/convert")).toBe(true);
+    expect(isTranslated("/docs/guide")).toBe(true);
+    expect(isTranslated("/docs/guide/convert")).toBe(true);
     expect(isTranslated("/faq")).toBe(true);
     expect(isTranslated("/compatibility/hades-ii")).toBe(false);
   });

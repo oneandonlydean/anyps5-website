@@ -119,12 +119,13 @@ const strings: Strings = {
     reference: "Referencia",
     usage: "Uso del relinker",
     inputMapping: "Asignación de controles",
+    allDocs: "Toda la documentación",
   },
   faq: {
     title: "Preguntas frecuentes",
     eyebrow: "Preguntas frecuentes",
     heading: "Lo que la gente pregunta",
-    lede: 'Las respuestas cortas. La <a href="/guide">guía de instalación</a> tiene las largas, y en <a href="https://discord.gg/BHFztBPUe">Discord</a> hay gente para ayudarte.',
+    lede: 'Las respuestas cortas. La <a href="/docs/guide">guía de instalación</a> tiene las largas, y en <a href="https://discord.gg/BHFztBPUe">Discord</a> hay gente para ayudarte.',
     description: "Respuestas a preguntas habituales sobre AnyPS5: qué es, si es un emulador, hardware, Steam Deck, macOS y por qué se detiene un juego.",
     groups: [
       {
@@ -132,7 +133,7 @@ const strings: Strings = {
         questions: [
           {
             q: "¿Qué es AnyPS5?",
-            a: 'Una herramienta que convierte el ejecutable de un juego de PS5 en un programa nativo de Linux o Windows. Incluye un <b>relinker</b> (reenlazador), que reescribe el ejecutable, y reimplementaciones de las <b>bibliotecas del sistema</b> de la PS5, a las que llama el programa convertido en lugar de a las de la consola. Empieza por la <a href="/guide">guía de instalación</a>.',
+            a: 'Una herramienta que convierte el ejecutable de un juego de PS5 en un programa nativo de Linux o Windows. Incluye un <b>relinker</b> (reenlazador), que reescribe el ejecutable, y reimplementaciones de las <b>bibliotecas del sistema</b> de la PS5, a las que llama el programa convertido en lugar de a las de la consola. Empieza por la <a href="/docs/guide">guía de instalación</a>.',
           },
           {
             q: "¿Es un emulador?",
@@ -144,7 +145,7 @@ const strings: Strings = {
           },
           {
             q: "¿Necesito una PS5?",
-            a: 'Sí, para hacer el volcado. AnyPS5 trabaja con un volcado descifrado de un juego que tengas. El <a href="/guide/dump">paso de volcado</a> de la guía explica lo que hace falta.',
+            a: 'Sí, para hacer el volcado. AnyPS5 trabaja con un volcado descifrado de un juego que tengas. El <a href="/docs/guide/dump">paso de volcado</a> de la guía explica lo que hace falta.',
           },
         ],
       },
@@ -153,7 +154,7 @@ const strings: Strings = {
         questions: [
           {
             q: "¿Qué hardware necesito?",
-            a: 'Una CPU x86-64 con las extensiones del conjunto de instrucciones del procesador Zen 2 de la PS5 (AVX2, FMA, F16C, BMI1, BMI2, LZCNT y MOVBE), una GPU con Vulkan 1.1 y bastante memoria: un juego de PS5 puede reservar hasta 13,5 GiB. La página de <a href="/guide/requirements">requisitos</a> tiene los detalles.',
+            a: 'Una CPU x86-64 con las extensiones del conjunto de instrucciones del procesador Zen 2 de la PS5 (AVX2, FMA, F16C, BMI1, BMI2, LZCNT y MOVBE), una GPU con Vulkan 1.1 y bastante memoria: un juego de PS5 puede reservar hasta 13,5 GiB. La página de <a href="/docs/guide/requirements">requisitos</a> tiene los detalles.',
           },
           {
             q: "¿Funciona en CPU Intel?",
@@ -178,7 +179,7 @@ const strings: Strings = {
           },
           {
             q: "Se detiene con un error. ¿Y ahora qué?",
-            a: 'AnyPS5 se detiene a propósito cuando se encuentra con algo que todavía no soporta, y muestra el motivo. Busca el mensaje en <a href="/guide/troubleshooting">solución de problemas</a>. Si no está ahí, inclúyelo en un <a href="/report">informe de prueba</a>: el texto exacto del error es lo que más ayuda.',
+            a: 'AnyPS5 se detiene a propósito cuando se encuentra con algo que todavía no soporta, y muestra el motivo. Busca el mensaje en <a href="/docs/guide/troubleshooting">solución de problemas</a>. Si no está ahí, inclúyelo en un <a href="/report">informe de prueba</a>: el texto exacto del error es lo que más ayuda.',
           },
           {
             q: "¿Por qué el primer arranque es tan lento?",
@@ -186,7 +187,7 @@ const strings: Strings = {
           },
           {
             q: "¿Dónde están mis partidas guardadas?",
-            a: 'En la carpeta <code>_sd</code>, junto a <code>app0/</code>; copia <code>_sd</code> y <code>_sd_mem</code> para llevarte tu progreso. Consulta <a href="/guide/run">ejecutar el juego</a>.',
+            a: 'En la carpeta <code>_sd</code>, junto a <code>app0/</code>; copia <code>_sd</code> y <code>_sd_mem</code> para llevarte tu progreso. Consulta <a href="/docs/guide/run">ejecutar el juego</a>.',
           },
           {
             q: "¿Funcionarán las funciones en línea?",

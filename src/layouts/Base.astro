@@ -12,7 +12,7 @@ interface Props {
   unsearchable?: boolean;
 }
 
-// The language comes from the URL: /es/guide is the Spanish setup guide.
+// The language comes from the URL: /es/docs/guide is the Spanish setup guide.
 const { locale, path } = parsePath(Astro.url.pathname);
 const t = strings(locale);
 const { title, description = t.meta.description, image = "/og/default.jpg", unsearchable = false } = Astro.props;

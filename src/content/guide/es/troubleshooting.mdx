@@ -10,14 +10,14 @@ Cuando algo todavía no está soportado, AnyPS5 se detiene con un error en lugar
 
 | Lo que ves | Qué hacer |
 |---|---|
-| El juego indica que faltan extensiones de CPU | A tu CPU le faltan instrucciones que el juego necesita. Consulta los [requisitos](/guide/requirements#processor). |
+| El juego indica que faltan extensiones de CPU | A tu CPU le faltan instrucciones que el juego necesita. Consulta los [requisitos](/docs/guide/requirements#processor). |
 | Windows dice que la aplicación no es compatible (código de salida 216) | Se convirtió para Linux. Vuelve a convertirlo con **Windows** seleccionado, o con `--windows`. |
 | Error 193 en Windows | Hay un `.prx` original de PS5 en `libs/`. Ahí solo van las bibliotecas de AnyPS5. |
 | Error 126 en Windows | Falta una biblioteca. Usa las bibliotecas del archivo de la versión publicada, que incluyen las DLL necesarias. |
 | `[gpu] open /dev/udmabuf: Permission denied` | Añade tu usuario al grupo `kvm` y vuelve a iniciar sesión. |
 | Un error de `param.json` | Copia el `sce_sys/param.json` del juego en `app0/sce_sys/`. |
-| Un error de chunk de PlayGo al arrancar | Define `APS5_PLAYGO_UNLISTED_CHUNKS`. Consulta [prepara tu volcado](/guide/dump#known-problems-with-some-dumps). |
-| `sceFontOpenFontSet` con `file=(none)`, o falta texto | Añade [fuentes del sistema](/guide/run#system-fonts). |
+| Un error de chunk de PlayGo al arrancar | Define `APS5_PLAYGO_UNLISTED_CHUNKS`. Consulta [prepara tu volcado](/docs/guide/dump#known-problems-with-some-dumps). |
+| `sceFontOpenFontSet` con `file=(none)`, o falta texto | Añade [fuentes del sistema](/docs/guide/run#system-fonts). |
 | `replace guest placeholder with resident direct memory` | Windows se quedó sin memoria asignable. Aumenta el archivo de paginación. |
 | `sceSystemServiceLoadExec: execv failed: Permission denied` | Ejecuta `chmod +x` en cada ejecutable que haya generado el conversor. |
 | `SDL_GetWindowDisplayIndex failed` | La pantalla estaba en reposo cuando se inició el juego. Actívala y vuelve a iniciarlo. |
@@ -31,7 +31,7 @@ La mayoría de los juegos se topan con algo que todavía no está implementado. 
 
 1. Busca tu juego en la [lista de compatibilidad](/compatibility). Si la detención ya se conoce, aparece junto con la incidencia que le hace seguimiento.
 2. Comprueba si hay una versión más reciente en la [página de descargas](/download).
-3. Si tu resultado es nuevo, [infórmalo](/guide/report).
+3. Si tu resultado es nuevo, [infórmalo](/docs/guide/report).
 
 ## Códigos de salida
 

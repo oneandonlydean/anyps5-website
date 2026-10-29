@@ -10,14 +10,14 @@ step: 5
 
 | 你看到的 | 怎么办 |
 |---|---|
-| 游戏列出了缺少的 CPU 扩展 | 你的 CPU 缺少游戏需要的指令。参见[配置要求](/guide/requirements#processor)。 |
+| 游戏列出了缺少的 CPU 扩展 | 你的 CPU 缺少游戏需要的指令。参见[配置要求](/docs/guide/requirements#processor)。 |
 | Windows 提示该应用不兼容（退出代码 216） | 它是为 Linux 转换的。选择 **Windows** 或使用 `--windows` 重新转换。 |
 | Windows 上出现错误 193 | `libs/` 里有原始的 PS5 `.prx` 文件。那里只能放 AnyPS5 的系统库。 |
 | Windows 上出现错误 126 | 缺少某个库。请使用发布压缩包里的系统库，其中包含所需的 DLL。 |
 | `[gpu] open /dev/udmabuf: Permission denied` | 把你的用户加入 `kvm` 用户组，然后重新登录。 |
 | `param.json` 相关错误 | 把游戏的 `sce_sys/param.json` 复制到 `app0/sce_sys/`。 |
-| 启动时出现 PlayGo chunk 错误 | 设置 `APS5_PLAYGO_UNLISTED_CHUNKS`。参见[准备导出文件](/guide/dump#known-problems-with-some-dumps)。 |
-| 出现带 `file=(none)` 的 `sceFontOpenFontSet`，或文字缺失 | 添加[系统字体](/guide/run#system-fonts)。 |
+| 启动时出现 PlayGo chunk 错误 | 设置 `APS5_PLAYGO_UNLISTED_CHUNKS`。参见[准备导出文件](/docs/guide/dump#known-problems-with-some-dumps)。 |
+| 出现带 `file=(none)` 的 `sceFontOpenFontSet`，或文字缺失 | 添加[系统字体](/docs/guide/run#system-fonts)。 |
 | `replace guest placeholder with resident direct memory` | Windows 的可提交内存不足。调大页面文件。 |
 | `sceSystemServiceLoadExec: execv failed: Permission denied` | 对转换器写出的每个可执行文件运行 `chmod +x`。 |
 | `SDL_GetWindowDisplayIndex failed` | 游戏启动时显示器处于休眠状态。唤醒显示器后重新启动。 |
@@ -31,7 +31,7 @@ step: 5
 
 1. 在[兼容性列表](/compatibility)中搜索你的游戏。如果这个问题已知，列表中会附上跟踪它的 issue。
 2. 去[下载页面](/download)看看有没有更新的版本。
-3. 如果你的结果是新的，请[提交报告](/guide/report)。
+3. 如果你的结果是新的，请[提交报告](/docs/guide/report)。
 
 ## 退出代码
 

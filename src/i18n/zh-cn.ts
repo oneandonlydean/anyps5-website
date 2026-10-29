@@ -118,12 +118,13 @@ const strings: Strings = {
     reference: "参考",
     usage: "重链接器用法",
     inputMapping: "按键映射",
+    allDocs: "全部文档",
   },
   faq: {
     title: "常见问题",
     eyebrow: "常见问题",
     heading: "大家常问的问题",
-    lede: '这里是简短回答。详细的内容在<a href="/guide">安装指南</a>里，想找人聊就去 <a href="https://discord.gg/BHFztBPUe">Discord</a>。',
+    lede: '这里是简短回答。详细的内容在<a href="/docs/guide">安装指南</a>里，想找人聊就去 <a href="https://discord.gg/BHFztBPUe">Discord</a>。',
     description: "关于 AnyPS5 的常见问题解答：它是什么、是不是模拟器、硬件要求、Steam Deck、macOS，以及游戏为什么会卡住。",
     groups: [
       {
@@ -131,7 +132,7 @@ const strings: Strings = {
         questions: [
           {
             q: "AnyPS5 是什么？",
-            a: '一个把 PS5 游戏的可执行文件变成原生 Linux 或 Windows 程序的工具。它包含一个负责改写可执行文件的<b>重链接器</b>（relinker），以及 PS5 <b>系统库</b>的重新实现，转换后的程序调用的是这些库，而不是主机自带的库。可以从<a href="/guide">安装指南</a>开始。',
+            a: '一个把 PS5 游戏的可执行文件变成原生 Linux 或 Windows 程序的工具。它包含一个负责改写可执行文件的<b>重链接器</b>（relinker），以及 PS5 <b>系统库</b>的重新实现，转换后的程序调用的是这些库，而不是主机自带的库。可以从<a href="/docs/guide">安装指南</a>开始。',
           },
           {
             q: "它是模拟器吗？",
@@ -143,7 +144,7 @@ const strings: Strings = {
           },
           {
             q: "我需要一台 PS5 吗？",
-            a: '需要，用来导出游戏。AnyPS5 处理的是你所拥有游戏的解密导出文件。指南中的<a href="/guide/dump">导出步骤</a>列出了所需内容。',
+            a: '需要，用来导出游戏。AnyPS5 处理的是你所拥有游戏的解密导出文件。指南中的<a href="/docs/guide/dump">导出步骤</a>列出了所需内容。',
           },
         ],
       },
@@ -152,7 +153,7 @@ const strings: Strings = {
         questions: [
           {
             q: "需要什么硬件？",
-            a: '一颗支持 PS5 所用 Zen 2 处理器指令集扩展（AVX2、FMA、F16C、BMI1、BMI2、LZCNT 和 MOVBE）的 x86-64 CPU，一块支持 Vulkan 1.1 的显卡，以及充足的内存：一款 PS5 游戏最多可占用 13.5 GiB。详见<a href="/guide/requirements">配置要求</a>页面。',
+            a: '一颗支持 PS5 所用 Zen 2 处理器指令集扩展（AVX2、FMA、F16C、BMI1、BMI2、LZCNT 和 MOVBE）的 x86-64 CPU，一块支持 Vulkan 1.1 的显卡，以及充足的内存：一款 PS5 游戏最多可占用 13.5 GiB。详见<a href="/docs/guide/requirements">配置要求</a>页面。',
           },
           {
             q: "Intel CPU 能用吗？",
@@ -177,7 +178,7 @@ const strings: Strings = {
           },
           {
             q: "它报错停止了，怎么办？",
-            a: 'AnyPS5 遇到尚不支持的东西时会主动停止，并打印原因。先在<a href="/guide/troubleshooting">故障排除</a>里查找这条信息。如果找不到，就把它写进<a href="/report">测试报告</a>：准确的错误文本最有帮助。',
+            a: 'AnyPS5 遇到尚不支持的东西时会主动停止，并打印原因。先在<a href="/docs/guide/troubleshooting">故障排除</a>里查找这条信息。如果找不到，就把它写进<a href="/report">测试报告</a>：准确的错误文本最有帮助。',
           },
           {
             q: "为什么第一次启动这么慢？",
@@ -185,7 +186,7 @@ const strings: Strings = {
           },
           {
             q: "存档在哪里？",
-            a: '在 <code>app0/</code> 旁边的 <code>_sd</code> 文件夹里；复制 <code>_sd</code> 和 <code>_sd_mem</code> 即可迁移进度。参见<a href="/guide/run">运行游戏</a>。',
+            a: '在 <code>app0/</code> 旁边的 <code>_sd</code> 文件夹里；复制 <code>_sd</code> 和 <code>_sd_mem</code> 即可迁移进度。参见<a href="/docs/guide/run">运行游戏</a>。',
           },
           {
             q: "联网功能能用吗？",

@@ -118,12 +118,13 @@ const strings: Strings = {
     reference: "Referência",
     usage: "Uso do relinker",
     inputMapping: "Mapeamento de controles",
+    allDocs: "Toda a documentação",
   },
   faq: {
     title: "Perguntas frequentes",
     eyebrow: "FAQ",
     heading: "Perguntas que o pessoal faz",
-    lede: 'As respostas curtas. O <a href="/guide">guia de instalação</a> tem as longas, e o <a href="https://discord.gg/BHFztBPUe">Discord</a> tem gente para conversar.',
+    lede: 'As respostas curtas. O <a href="/docs/guide">guia de instalação</a> tem as longas, e o <a href="https://discord.gg/BHFztBPUe">Discord</a> tem gente para conversar.',
     description: "Respostas para dúvidas comuns sobre o AnyPS5: o que é, se é um emulador, hardware, Steam Deck, macOS e por que um jogo para.",
     groups: [
       {
@@ -131,7 +132,7 @@ const strings: Strings = {
         questions: [
           {
             q: "O que é o AnyPS5?",
-            a: 'Uma ferramenta que transforma o executável de um jogo de PS5 em um programa nativo de Linux ou Windows. Ela traz um <b>relinker</b>, que reescreve o executável, e reimplementações das <b>bibliotecas de sistema</b> do PS5, que o programa convertido chama no lugar das do console. Comece pelo <a href="/guide">guia de instalação</a>.',
+            a: 'Uma ferramenta que transforma o executável de um jogo de PS5 em um programa nativo de Linux ou Windows. Ela traz um <b>relinker</b>, que reescreve o executável, e reimplementações das <b>bibliotecas de sistema</b> do PS5, que o programa convertido chama no lugar das do console. Comece pelo <a href="/docs/guide">guia de instalação</a>.',
           },
           {
             q: "É um emulador?",
@@ -143,7 +144,7 @@ const strings: Strings = {
           },
           {
             q: "Preciso de um PS5?",
-            a: 'Sim, para fazer o dump. O AnyPS5 trabalha com um dump descriptografado de um jogo que você tem. O <a href="/guide/dump">passo do dump</a> no guia explica o que é necessário.',
+            a: 'Sim, para fazer o dump. O AnyPS5 trabalha com um dump descriptografado de um jogo que você tem. O <a href="/docs/guide/dump">passo do dump</a> no guia explica o que é necessário.',
           },
         ],
       },
@@ -152,7 +153,7 @@ const strings: Strings = {
         questions: [
           {
             q: "Que hardware eu preciso?",
-            a: 'Um processador x86-64 com as extensões de conjunto de instruções do processador Zen 2 do PS5 (AVX2, FMA, F16C, BMI1, BMI2, LZCNT e MOVBE), uma GPU com Vulkan 1.1 e bastante memória: um jogo de PS5 pode reservar até 13,5 GiB. A página de <a href="/guide/requirements">requisitos</a> tem os detalhes.',
+            a: 'Um processador x86-64 com as extensões de conjunto de instruções do processador Zen 2 do PS5 (AVX2, FMA, F16C, BMI1, BMI2, LZCNT e MOVBE), uma GPU com Vulkan 1.1 e bastante memória: um jogo de PS5 pode reservar até 13,5 GiB. A página de <a href="/docs/guide/requirements">requisitos</a> tem os detalhes.',
           },
           {
             q: "Funciona em processadores Intel?",
@@ -177,7 +178,7 @@ const strings: Strings = {
           },
           {
             q: "Parou com um erro. E agora?",
-            a: 'O AnyPS5 para de propósito quando encontra algo que ainda não suporta, e mostra o motivo. Procure a mensagem na página de <a href="/guide/troubleshooting">solução de problemas</a>. Se ela não estiver lá, inclua-a em um <a href="/report">relatório de teste</a>: o texto exato do erro é o que mais ajuda.',
+            a: 'O AnyPS5 para de propósito quando encontra algo que ainda não suporta, e mostra o motivo. Procure a mensagem na página de <a href="/docs/guide/troubleshooting">solução de problemas</a>. Se ela não estiver lá, inclua-a em um <a href="/report">relatório de teste</a>: o texto exato do erro é o que mais ajuda.',
           },
           {
             q: "Por que a primeira execução é tão lenta?",
@@ -185,7 +186,7 @@ const strings: Strings = {
           },
           {
             q: "Onde ficam meus saves?",
-            a: 'Na pasta <code>_sd</code>, ao lado de <code>app0/</code>; copie <code>_sd</code> e <code>_sd_mem</code> para levar o seu progresso. Veja <a href="/guide/run">rodando o jogo</a>.',
+            a: 'Na pasta <code>_sd</code>, ao lado de <code>app0/</code>; copie <code>_sd</code> e <code>_sd_mem</code> para levar o seu progresso. Veja <a href="/docs/guide/run">rodando o jogo</a>.',
           },
           {
             q: "Os recursos online vão funcionar?",

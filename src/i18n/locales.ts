@@ -12,11 +12,11 @@ export const DEFAULT_LOCALE: Locale = "en";
 export const TRANSLATED_LOCALES = (Object.keys(LOCALES) as Locale[]).filter((l) => l !== DEFAULT_LOCALE);
 
 /** Paths that exist in every language: the home page, the setup guide and the FAQ. Everything else is English. */
-const TRANSLATED_PATHS = [/^\/$/, /^\/guide(\/[^/]+)?\/?$/, /^\/faq\/?$/];
+const TRANSLATED_PATHS = [/^\/$/, /^\/docs\/guide(\/[^/]+)?\/?$/, /^\/faq\/?$/];
 
 export const isTranslated = (path: string) => TRANSLATED_PATHS.some((p) => p.test(path));
 
-/** A path in a language: "/guide" becomes "/es/guide". Paths without translations stay English. */
+/** A path in a language: "/docs/guide" becomes "/es/docs/guide". Paths without translations stay English. */
 export function localePath(locale: Locale, path: string): string {
   if (locale === DEFAULT_LOCALE || !isTranslated(path)) return path;
   return path === "/" ? `/${locale}/` : `/${locale}${path}`;

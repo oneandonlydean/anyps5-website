@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import Article from "../../layouts/Article.astro";
 import { DOCS, renderDoc } from "../../lib/docs";
-import { docsNav } from "../../lib/nav";
+import { getSteps, guideNav } from "../../lib/guide";
 import { getRelease } from "../../lib/upstream";
 
 export const getStaticPaths = (() => DOCS.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }))) satisfies GetStaticPaths;
@@ -11,7 +11,7 @@ const { doc } = Astro.props;
 const [{ html, headings }, release] = await Promise.all([renderDoc(doc.file), getRelease()]);
 ---
 
-<Article title={doc.title} eyebrow="Documentation" lede={doc.summary} nav={docsNav} headings={headings}>
+<Article title={doc.title} eyebrow="Documentation" lede={doc.summary} nav={guideNav(await getSteps())} headings={headings}>
   {release && <p class="source">From the <a href={release.url}>{release.tag}</a> release. These pages update with every release.</p>}
   <Fragment set:html={html} />
 </Article>

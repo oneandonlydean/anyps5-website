@@ -3,15 +3,17 @@ export const DISCORD_URL = "https://discord.gg/BHFztBPUe";
 export const DISCUSSIONS_URL = `${REPO_URL}/discussions/categories/game-bring-up`;
 export const SITE_REPO_URL = "https://github.com/oneandonlydean/anyps5-website";
 
-/** Main navigation; labels come from the i18n strings under `nav`. */
-export const NAV = [
+/**
+ * Main navigation; labels come from the i18n strings under `nav`. `translated` is where an item leads in other
+ * languages when its own page is English only: the docs index is, but the setup guide inside it is translated.
+ */
+export const NAV: { href: string; key: "compatibility" | "converter" | "docs" | "progress" | "download"; translated?: string }[] = [
   { href: "/compatibility", key: "compatibility" },
   { href: "/convert", key: "converter" },
-  { href: "/guide", key: "guide" },
-  { href: "/docs", key: "docs" },
+  { href: "/docs", key: "docs", translated: "/docs/guide" },
   { href: "/progress", key: "progress" },
   { href: "/download", key: "download" },
-] as const;
+];
 
 export function newReportUrl(title?: string): string {
   const params = new URLSearchParams({ category: "game-bring-up" });

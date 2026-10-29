@@ -10,14 +10,14 @@ Quando algo ainda não é suportado, o AnyPS5 para com um erro em vez de tentar 
 
 | O que aparece | O que fazer |
 |---|---|
-| O jogo informa extensões de CPU faltando | Falta ao seu processador alguma instrução de que o jogo precisa. Veja os [requisitos](/guide/requirements#processor). |
+| O jogo informa extensões de CPU faltando | Falta ao seu processador alguma instrução de que o jogo precisa. Veja os [requisitos](/docs/guide/requirements#processor). |
 | O Windows diz que o aplicativo não é compatível (código de saída 216) | Ele foi convertido para Linux. Converta de novo com **Windows** selecionado, ou com `--windows`. |
 | Erro 193 no Windows | Há um `.prx` original do PS5 em `libs/`. Ali só devem ficar as bibliotecas do AnyPS5. |
 | Erro 126 no Windows | Falta uma biblioteca. Use as bibliotecas do arquivo da versão, que já incluem as DLLs necessárias. |
 | `[gpu] open /dev/udmabuf: Permission denied` | Adicione o seu usuário ao grupo `kvm` e faça login de novo. |
 | Um erro de `param.json` | Copie o `sce_sys/param.json` do jogo para `app0/sce_sys/`. |
-| Um erro de chunk do PlayGo ao abrir | Defina `APS5_PLAYGO_UNLISTED_CHUNKS`. Veja [preparando o seu dump](/guide/dump#known-problems-with-some-dumps). |
-| `sceFontOpenFontSet` com `file=(none)`, ou texto faltando | Adicione as [fontes do sistema](/guide/run#system-fonts). |
+| Um erro de chunk do PlayGo ao abrir | Defina `APS5_PLAYGO_UNLISTED_CHUNKS`. Veja [preparando o seu dump](/docs/guide/dump#known-problems-with-some-dumps). |
+| `sceFontOpenFontSet` com `file=(none)`, ou texto faltando | Adicione as [fontes do sistema](/docs/guide/run#system-fonts). |
 | `replace guest placeholder with resident direct memory` | O Windows ficou sem memória para alocar. Aumente o arquivo de paginação. |
 | `sceSystemServiceLoadExec: execv failed: Permission denied` | Rode `chmod +x` em todos os executáveis que o conversor gerou. |
 | `SDL_GetWindowDisplayIndex failed` | O monitor estava em repouso quando o jogo abriu. Acorde-o e abra o jogo de novo. |
@@ -31,7 +31,7 @@ A maioria dos jogos esbarra em algo que ainda não foi implementado. Uma mensage
 
 1. Procure o seu jogo na [lista de compatibilidade](/compatibility). Se a parada já é conhecida, ela aparece lá com a issue que a acompanha.
 2. Veja se saiu uma versão mais nova na [página de download](/download).
-3. Se o seu resultado for novo, [relate-o](/guide/report).
+3. Se o seu resultado for novo, [relate-o](/docs/guide/report).
 
 ## Códigos de saída
 

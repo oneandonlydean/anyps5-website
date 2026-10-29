@@ -61,7 +61,7 @@ The [progress page](src/pages/progress.astro) has two halves, and neither is mai
 
 ## Languages
 
-The home page, the setup guide and the FAQ exist in English, Spanish, Brazilian Portuguese, Simplified Chinese and Russian, under `/es/`, `/pt-br/`, `/zh-cn/` and `/ru/`. Every other page is English only.
+The home page, the setup guide and the FAQ exist in English, Spanish, Brazilian Portuguese, Simplified Chinese and Russian, under `/es/`, `/pt-br/`, `/zh-cn/` and `/ru/`. Every other page is English only. The setup guide lives in the docs, at `/docs/guide`; old `/guide` links redirect there.
 
 - **Interface text:** strings live in `src/i18n/<locale>.ts`. `en.ts` is the source, and TypeScript fails the build if a translation is missing a key.
 - **Guide steps:** translations live in `src/content/guide/<locale>/`, with the same file names as the English steps. A step without a translation falls back to English.
@@ -87,7 +87,7 @@ The log is in `~/.local/state/anyps5-demo/refresh.log`. User timers only run whi
 ## Layout
 
 ```
-src/pages/          routes: home, compatibility, convert, guide, docs, download, progress, community, og images
+src/pages/          routes: home, compatibility, convert, docs (with the setup guide), download, progress, community, og images
 src/content/guide/  setup guide, one MDX file per step
 src/lib/            data loading, parsing, resolution, docs rendering, OG images
 scripts/            data sync, upstream fetch, validation, sync summaries

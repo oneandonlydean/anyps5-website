@@ -1,13 +1,17 @@
 ---
 import Logo from "./Logo.astro";
 import Search from "./Search.astro";
-import { isTranslated, LOCALES, localePath, parsePath, strings, type Locale } from "../i18n";
+import { DEFAULT_LOCALE, isTranslated, LOCALES, localePath, parsePath, strings, type Locale } from "../i18n";
 import { DISCORD_URL, NAV, REPO_URL } from "../lib/site";
 
 const { locale, path } = parsePath(Astro.url.pathname);
 const t = strings(locale);
 const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
-const nav = NAV.map(({ href, key }) => ({ href: localePath(locale, href), label: t.nav[key], current: isCurrent(href) }));
+const nav = NAV.map(({ href, key, translated }) => ({
+  href: localePath(locale, locale !== DEFAULT_LOCALE && translated ? translated : href),
+  label: t.nav[key],
+  current: isCurrent(href),
+}));
 // Each language's version of this page, or that language's home page when this page is English only.
 const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, name: LOCALES[l].name, href: localePath(l, isTranslated(path) ? path : "/") }));
 ---

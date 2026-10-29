@@ -21,7 +21,7 @@ const index = steps.findIndex((s) => s.slug === step.slug);
 const prev = steps[index - 1];
 const next = steps[index + 1];
 const { Content, headings } = await render(step.entry);
-const href = (slug?: string) => localePath(locale, slug ? `/guide/${slug}` : "/guide");
+const href = (slug?: string) => localePath(locale, slug ? `/docs/guide/${slug}` : "/docs/guide");
 ---
 
 <Article

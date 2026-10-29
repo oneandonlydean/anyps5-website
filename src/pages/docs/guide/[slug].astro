@@ -1,6 +1,6 @@
 ---
-import GuideStep from "../../components/guide/GuideStep.astro";
-import { getSteps } from "../../lib/guide";
+import GuideStep from "../../../components/guide/GuideStep.astro";
+import { getSteps } from "../../../lib/guide";
 
 export async function getStaticPaths() {
   const steps = await getSteps();

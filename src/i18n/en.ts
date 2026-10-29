@@ -2,7 +2,7 @@
  * Every string on the translated pages (home, setup guide, FAQ) and the shared header and footer, in English.
  * Translations in this folder have the same shape; TypeScript checks that nothing is missing.
  *
- * Strings may hold simple HTML where noted. Links use English paths ("/guide/run"); pages rewrite them for each
+ * Strings may hold simple HTML where noted. Links use English paths ("/docs/guide/run"); pages rewrite them for each
  * language. Functions build sentences around numbers.
  */
 const en = {
@@ -125,13 +125,14 @@ const en = {
     reference: "Reference",
     usage: "Relinker usage",
     inputMapping: "Input mapping",
+    allDocs: "All documentation",
   },
   faq: {
     title: "FAQ",
     eyebrow: "FAQ",
     heading: "Questions people ask",
     /** HTML. */
-    lede: 'The short answers. The <a href="/guide">setup guide</a> has the long ones, and <a href="https://discord.gg/BHFztBPUe">Discord</a> has people.',
+    lede: 'The short answers. The <a href="/docs/guide">setup guide</a> has the long ones, and <a href="https://discord.gg/BHFztBPUe">Discord</a> has people.',
     description: "Answers to common questions about AnyPS5: what it is, whether it is an emulator, hardware, Steam Deck, macOS, and why a game stops.",
     /** Answers are HTML. */
     groups: [
@@ -140,7 +141,7 @@ const en = {
         questions: [
           {
             q: "What is AnyPS5?",
-            a: 'A tool that turns a PS5 game\'s executable into a native Linux or Windows program. It ships a <b>relinker</b>, which rewrites the executable, and reimplementations of the PS5\'s <b>system libraries</b>, which the converted program calls instead of the console\'s. Start with the <a href="/guide">setup guide</a>.',
+            a: 'A tool that turns a PS5 game\'s executable into a native Linux or Windows program. It ships a <b>relinker</b>, which rewrites the executable, and reimplementations of the PS5\'s <b>system libraries</b>, which the converted program calls instead of the console\'s. Start with the <a href="/docs/guide">setup guide</a>.',
           },
           {
             q: "Is it an emulator?",
@@ -152,7 +153,7 @@ const en = {
           },
           {
             q: "Do I need a PS5?",
-            a: 'Yes, to make the dump. AnyPS5 works on a decrypted dump of a game you own. The <a href="/guide/dump">dump step</a> of the guide lists what it needs.',
+            a: 'Yes, to make the dump. AnyPS5 works on a decrypted dump of a game you own. The <a href="/docs/guide/dump">dump step</a> of the guide lists what it needs.',
           },
         ],
       },
@@ -161,7 +162,7 @@ const en = {
         questions: [
           {
             q: "What hardware do I need?",
-            a: 'An x86-64 CPU with the instruction set extensions of the PS5\'s Zen 2 processor (AVX2, FMA, F16C, BMI1, BMI2, LZCNT and MOVBE), a GPU with Vulkan 1.1, and plenty of memory: a PS5 game can reserve up to 13.5 GiB. The <a href="/guide/requirements">requirements</a> page has the details.',
+            a: 'An x86-64 CPU with the instruction set extensions of the PS5\'s Zen 2 processor (AVX2, FMA, F16C, BMI1, BMI2, LZCNT and MOVBE), a GPU with Vulkan 1.1, and plenty of memory: a PS5 game can reserve up to 13.5 GiB. The <a href="/docs/guide/requirements">requirements</a> page has the details.',
           },
           {
             q: "Does it work on Intel CPUs?",
@@ -186,7 +187,7 @@ const en = {
           },
           {
             q: "It stops with an error. What now?",
-            a: 'AnyPS5 stops on purpose when it meets something it does not support yet, and prints why. Look the message up in <a href="/guide/troubleshooting">troubleshooting</a>. If it is not there, include it in a <a href="/report">test report</a>: exact error text helps most.',
+            a: 'AnyPS5 stops on purpose when it meets something it does not support yet, and prints why. Look the message up in <a href="/docs/guide/troubleshooting">troubleshooting</a>. If it is not there, include it in a <a href="/report">test report</a>: exact error text helps most.',
           },
           {
             q: "Why is the first start so slow?",
@@ -194,7 +195,7 @@ const en = {
           },
           {
             q: "Where are my saves?",
-            a: 'In the <code>_sd</code> folder next to <code>app0/</code>; copy <code>_sd</code> and <code>_sd_mem</code> to move your progress. See <a href="/guide/run">running the game</a>.',
+            a: 'In the <code>_sd</code> folder next to <code>app0/</code>; copy <code>_sd</code> and <code>_sd_mem</code> to move your progress. See <a href="/docs/guide/run">running the game</a>.',
           },
           {
             q: "Will online features work?",

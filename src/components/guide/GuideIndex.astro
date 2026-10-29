@@ -17,7 +17,7 @@ const steps = await getSteps(locale);
     {
       steps.map((s) => (
         <li>
-          <a href={localePath(locale, `/guide/${s.slug}`)}>
+          <a href={localePath(locale, `/docs/guide/${s.slug}`)}>
             <span class="num">{s.entry.data.step}</span>
             <span>
               <strong>{s.entry.data.title}</strong>

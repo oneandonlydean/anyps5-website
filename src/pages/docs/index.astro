@@ -1,9 +1,10 @@
 ---
 import Article from "../../layouts/Article.astro";
 import { DOCS } from "../../lib/docs";
-import { docsNav } from "../../lib/nav";
+import { getSteps, guideNav } from "../../lib/guide";
 import { REPO_URL } from "../../lib/site";
 
+const steps = await getSteps();
 const more = [
   { href: `${REPO_URL}/blob/main/docs/dev/BUILD.md`, title: "Build instructions", summary: "Build the relinker and libraries from source." },
   { href: `${REPO_URL}/blob/main/docs/dev/GAME_TESTING.md`, title: "Game testing", summary: "How to run a title for a thorough test report." },
@@ -11,7 +12,16 @@ const more = [
 ];
 ---
 
-<Article title="Documentation" eyebrow="Reference" lede="Reference material for AnyPS5, kept in step with the latest release. New here? Start with the setup guide." nav={docsNav}>
+<Article title="Documentation" eyebrow="Docs" lede="Everything for using AnyPS5: a step-by-step setup guide, and reference material kept in step with the latest release." nav={guideNav(steps)}>
+  <a class="card start" href="/docs/guide">
+    <span class="eyebrow">Start here · {steps.length} steps</span>
+    <strong>Setup guide</strong>
+    <span class="muted">From a game you own to a native program on your PC. Most of it happens in your browser.</span>
+    <ol>
+      {steps.map((s) => <li>{s.entry.data.title}</li>)}
+    </ol>
+  </a>
+  <h2>Reference</h2>
   <div class="cards">
     {
       DOCS.map((d) => (
@@ -53,6 +63,38 @@ const more = [
   }
   .card:hover {
     border-color: var(--accent);
+  }
+  .start {
+    gap: 8px;
+    margin-bottom: 36px;
+    padding: 24px;
+    background:
+      radial-gradient(600px 200px at 0% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent),
+      var(--surface);
+  }
+  .start strong {
+    font-size: 1.25rem;
+  }
+  .start ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+  .start li {
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    counter-increment: step;
+  }
+  .start li::before {
+    content: counter(step) ". ";
+    color: var(--faint);
   }
   .card .muted {
     font-size: 0.9rem;
