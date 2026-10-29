@@ -1,5 +1,5 @@
 {
-  "commit": "3a2b91981651569163768854a1fcdc7193b6667b",
+  "commit": "2960e9a6e7e1fc99c4ed180c71495b5eb83464c7",
   "sites": [
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
@@ -10983,17 +10983,22 @@
     },
     {
       "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
-      "line": 159,
+      "line": 151,
+      "message": "f32 denormal mode 1 at pc … needs DenormPreserve 32, which the device does not offer for this shader"
+    },
+    {
+      "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
+      "line": 172,
       "message": "f32 denormal mode … at pc … needs DenormPreserve 32, which the device does not offer for this shader"
     },
     {
       "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
-      "line": 163,
+      "line": 176,
       "message": "f32 denormal mode … at pc … is not implemented"
     },
     {
       "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
-      "line": 1297,
+      "line": 1310,
       "message": "TranslateVectorInstruction not implemented"
     },
     {

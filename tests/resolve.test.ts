@@ -7,6 +7,7 @@ function report(overrides: Partial<Report>): Report {
   return {
     url: "https://github.com/boykopovar/AnyPS5/discussions/1",
     discussion: 1,
+    edited: null,
     author: "a",
     date: "2026-10-01T00:00:00Z",
     stage: "Starts",

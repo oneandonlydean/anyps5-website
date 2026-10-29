@@ -92,8 +92,9 @@ export function getRetest(): Promise<Map<string, Retest>> {
       const need = needs.get(game.slug);
       const report = game.reports.find((r) => r.blockers.length);
       const named = (report?.blockers ?? []).map((n) => issues[n]).filter((i): i is Issue => Boolean(i));
-      // A closed issue or a merged pull request is a fix; a pull request closed without merging is not.
-      const isFix = (i: Issue) => (i.kind === "pr" ? i.state === "merged" : i.state === "closed");
+      // A closed issue or a merged pull request is a fix, if it landed after the report was last written: reports
+      // often name pull requests that were merged before the run, or are edited to say so. A pull request closed without merging is not a fix.
+      const isFix = (i: Issue) => (i.kind === "pr" ? i.state === "merged" : i.state === "closed") && Boolean(i.closedAt && report && i.closedAt > (report.edited ?? report.date));
       const fixed = {
         functions: need?.functions.filter((f) => f.status === "implemented").map((f) => f.name) ?? [],
         issues: named.filter(isFix),

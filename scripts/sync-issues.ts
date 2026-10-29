@@ -11,6 +11,8 @@ interface Node {
   title: string;
   url: string;
   state: "OPEN" | "CLOSED" | "MERGED";
+  closedAt: string | null;
+  mergedAt?: string | null;
 }
 
 async function main() {
@@ -27,7 +29,7 @@ async function main() {
   for (let i = 0; i < numbers.length; i += BATCH) {
     const batch = numbers.slice(i, i + BATCH);
     const fields = batch
-      .map((n) => `n${n}: issueOrPullRequest(number: ${n}) { __typename ... on Issue { number title url state } ... on PullRequest { number title url state } }`)
+      .map((n) => `n${n}: issueOrPullRequest(number: ${n}) { __typename ... on Issue { number title url state closedAt } ... on PullRequest { number title url state closedAt mergedAt } }`)
       .join("\n");
     const data = await graphql<{ repository: Record<string, Node | null> }>(
       `query($owner: String!, $name: String!) { repository(owner: $owner, name: $name) { ${fields} } }`,
@@ -42,6 +44,7 @@ async function main() {
         title: node.title,
         state: node.state.toLowerCase() as Issue["state"],
         url: node.url,
+        closedAt: node.mergedAt ?? node.closedAt,
       };
     }
   }

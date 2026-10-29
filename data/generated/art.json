@@ -753,6 +753,15 @@
       "PlayStation Store"
     ]
   },
+  "PPSA03984": {
+    "checked": "2026-10-29T06:29:52.217Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
   "PPSA04075": {
     "checked": "2026-10-29T05:23:20.726Z",
     "square": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA15834_00/1/i_44254c8aff753e0147cf6f5b15086ff311923651fa43944308a576ae768ccc2f/i/icon0.png",
@@ -3059,6 +3068,24 @@
     "color": null,
     "credits": []
   },
+  "PPSA99023": {
+    "checked": "2026-10-29T06:29:52.559Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
+  "PPSA99030": {
+    "checked": "2026-10-29T06:29:52.198Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
   "PPSA99039": {
     "checked": "2026-10-29T05:22:27.835Z",
     "square": null,
@@ -3088,6 +3115,24 @@
   },
   "PPSA99203": {
     "checked": "2026-10-29T05:22:17.318Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
+  "PPSA99225": {
+    "checked": "2026-10-29T06:29:52.324Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
+  "PPSA99305": {
+    "checked": "2026-10-29T06:29:52.212Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -3197,6 +3242,15 @@
   },
   "PPSA99871": {
     "checked": "2026-10-29T05:22:33.084Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
+  "PPSA99874": {
+    "checked": "2026-10-29T06:29:51.942Z",
     "square": null,
     "cover": null,
     "hero": null,

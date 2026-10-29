@@ -6,6 +6,7 @@ const post = (n: number) => `https://github.com/boykopovar/AnyPS5/discussions/1#
 const report = (n: number, stage: Report["stage"], date: string): Report => ({
   url: post(n),
   discussion: 1,
+  edited: null,
   author: "tester",
   date,
   stage,

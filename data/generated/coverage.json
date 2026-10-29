@@ -1,6 +1,6 @@
 {
-  "commit": "3a2b91981651569163768854a1fcdc7193b6667b",
-  "date": "2026-10-28",
+  "commit": "2960e9a6e7e1fc99c4ed180c71495b5eb83464c7",
+  "date": "2026-10-29",
   "isa": "AMD RDNA 2",
   "instructions": {
     "total": 1460,
@@ -782,12 +782,12 @@
       },
       {
         "file": "Translation/src/VectorInstructions.cpp",
-        "line": 163,
+        "line": 176,
         "message": "f32 denormal mode … at pc … is not implemented"
       },
       {
         "file": "Translation/src/VectorInstructions.cpp",
-        "line": 1297,
+        "line": 1310,
         "message": "TranslateVectorInstruction not implemented"
       }
     ]
@@ -2761,6 +2761,26 @@
     {
       "date": "2026-10-28",
       "commit": "3a2b91981651569163768854a1fcdc7193b6667b",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1456,
+        "translated": 1455
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 199
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 81,
+        "buffer": 80,
+        "host": 68
+      },
+      "throws": 148
+    },
+    {
+      "date": "2026-10-29",
+      "commit": "2960e9a6e7e1fc99c4ed180c71495b5eb83464c7",
       "instructions": {
         "total": 1460,
         "decoded": 1456,

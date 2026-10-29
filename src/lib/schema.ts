@@ -45,6 +45,8 @@ export const Report = z.object({
   discussion: z.number(),
   author: z.string().nullable(),
   date: z.string(),
+  /** When the report was last edited, if it was. */
+  edited: z.string().nullable().default(null),
   stage: stageOrNone.nullable(),
   platform: Platform.nullable(),
   gpu: z.string().nullable(),
@@ -96,6 +98,8 @@ export const Issue = z.object({
   title: z.string(),
   state: z.enum(["open", "closed", "merged"]),
   url: z.url(),
+  /** When the pull request merged or the issue closed; null while open. */
+  closedAt: z.string().nullable().default(null),
 });
 export type Issue = z.infer<typeof Issue>;
 
