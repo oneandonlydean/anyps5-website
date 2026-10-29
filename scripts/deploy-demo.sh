@@ -11,5 +11,7 @@ cat > dist/_headers <<'HEADERS'
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 HEADERS
-npx wrangler d1 migrations apply SITE_DB --remote --env=""
+# The site database's migrations; needs "D1: Edit" on the Cloudflare token. A failure is reported but doesn't stop
+# the deploy, since most deploys add no migrations.
+npx wrangler d1 migrations apply SITE_DB --remote --env="" || echo "::warning::Could not apply the site database's migrations; check the token has D1 Edit."
 npx wrangler deploy --env=""
