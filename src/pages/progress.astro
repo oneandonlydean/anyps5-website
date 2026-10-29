@@ -109,6 +109,14 @@ function wanted<T>(pick: (n: GameNeeds) => T[], key: (item: T) => string) {
 }
 const wantedFunctions = wanted((n) => n.functions.filter((f) => f.status !== "implemented"), (f) => f.name).slice(0, 12);
 const wantedErrors = wanted((n) => n.errors, (e) => e.message).slice(0, 10);
+// The same, by library, for the library map's flags and panel.
+const missingNeeds = wanted((n) => n.functions.filter((f) => f.status !== "implemented"), (f) => f.name);
+const waitingByLibrary: Record<string, { slug: string; name: string }[]> = {};
+for (const { item, games: slugs } of missingNeeds) {
+  const list = (waitingByLibrary[item.library] ??= []);
+  for (const slug of slugs) if (!list.some((g) => g.slug === slug)) list.push({ slug, name: gameName.get(slug) ?? slug });
+}
+const wantedByFunction = Object.fromEntries(missingNeeds.map(({ item, games: slugs }) => [item.name, slugs.length]));
 ---
 
 <Base title="Progress" description="How much of the PS5 system libraries and the RDNA 2 shader instruction set AnyPS5 implements, measured from its source.">
@@ -137,7 +145,7 @@ const wantedErrors = wanted((n) => n.errors, (e) => e.message).slice(0, 10);
                 <span class="big">{percent(libraries.done, libraries.total)}</span> of declared functions implemented
               </h2>
               <p class="muted">
-                Each tile is one PS5 system library, sized by how many of its functions the project has declared so far. The total grows as more functions are found.
+                Each tile is one PS5 system library, grouped by what it does, sized by how many functions it has, and greener the more of them work. A ⚑ marks libraries that games are stuck on right now. The total grows as more functions are found.
               </p>
             </div>
             <dl class="facts">
@@ -150,7 +158,7 @@ const wantedErrors = wanted((n) => n.errors, (e) => e.message).slice(0, 10);
           <div class="meter" role="img" aria-label={`${percent(libraries.done, libraries.total)} implemented`}>
             <span style={`width:${(libraries.done / libraries.total) * 100}%`} />
           </div>
-          <LibraryMap groups={libraries.groups} />
+          <LibraryMap groups={libraries.groups} waiting={waitingByLibrary} wanted={wantedByFunction} />
           {libraryHistory.length > 1 && (
             <div class="chart-wrap">
               <LineChart

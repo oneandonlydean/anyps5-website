@@ -1,17 +1,77 @@
 ---
+import { LIBRARY_AREAS, libraryArea } from "../../lib/library-areas";
 import { squarify } from "../../lib/treemap";
 import type { ProgressGroup } from "../../lib/upstream";
 
 interface Props {
   groups: ProgressGroup[];
+  /** Games whose newest blocker names a missing function in a library, by library label. */
+  waiting: Record<string, { slug: string; name: string }[]>;
+  /** Missing functions named by game blockers, with how many games name them. */
+  wanted: Record<string, number>;
 }
 
-const { groups } = Astro.props;
-// Laid out in a 1000 × 560 box and placed in percentages, so the map scales with its container.
+/**
+ * The system libraries as a treemap grouped by area: each tile is sized by its declared functions and shaded by how
+ * many are implemented. An area's libraries under SMALL functions share one tile, which opens a list of them. Phones
+ * get the same groups as rows of bars. Clicking a library opens a panel with its numbers, the games waiting on it and
+ * its missing functions.
+ */
+const { groups, waiting, wanted } = Astro.props;
+// Below this many functions a tile is too small to label at the map's usual size, so it joins its area's shared tile.
+const SMALL = 40;
 const W = 1000;
-const H = 560;
-const tiles = squarify([...groups].sort((a, b) => b.total - a.total), (g) => g.total, W, H);
-const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 10000) / 100;
+const H = 620;
+const HEAD = 30;
+const GAP = 4;
+
+const percent = (done: number, total: number) => (total ? (done / total) * 100 : 0);
+const shown = (p: number) => `${p === 100 || p === 0 ? p.toFixed(0) : p.toFixed(2)}%`;
+// Six steps of one green, from barely started to complete, so tiles compare at a glance.
+const step = (p: number) => (p >= 100 ? 5 : Math.min(4, Math.floor(p / 20)));
+
+const libraries = groups.map((g) => ({ ...g, area: libraryArea(g.name), waiting: waiting[g.label] ?? [] }));
+const areas = LIBRARY_AREAS.map((name) => {
+  const all = libraries.filter((l) => l.area === name).sort((a, b) => b.total - a.total);
+  const done = all.reduce((n, l) => n + l.done, 0);
+  const total = all.reduce((n, l) => n + l.total, 0);
+  return { name, all, big: all.filter((l) => l.total >= SMALL), small: all.filter((l) => l.total < SMALL), done, total };
+})
+  .filter((a) => a.total > 0)
+  .sort((a, b) => b.total - a.total);
+
+type Item = { kind: "library"; label: string; done: number; total: number; waiting: number } | { kind: "fold"; area: string; count: number; done: number; total: number; waiting: number };
+const blocks = squarify(areas, (a) => a.total, W, H).map((a) => {
+  const inner = { x: a.x + GAP / 2, y: a.y + HEAD, w: a.w - GAP, h: a.h - HEAD - GAP / 2 };
+  const items: Item[] = a.big.map((l) => ({ kind: "library", label: l.label, done: l.done, total: l.total, waiting: l.waiting.length }));
+  if (a.small.length) {
+    items.push({
+      kind: "fold",
+      area: a.name,
+      count: a.small.length,
+      done: a.small.reduce((n, l) => n + l.done, 0),
+      total: a.small.reduce((n, l) => n + l.total, 0),
+      waiting: new Set(a.small.flatMap((l) => l.waiting.map((g) => g.slug))).size,
+    });
+  }
+  const tiles = squarify(
+    items.sort((x, y) => y.total - x.total),
+    (i) => i.total,
+    inner.w,
+    inner.h,
+  ).map((t) => ({ ...t, x: t.x + inner.x, y: t.y + inner.y }));
+  return { ...a, tiles };
+});
+const place = (r: { x: number; y: number; w: number; h: number }) => `left:${(r.x / W) * 100}%;top:${(r.y / H) * 100}%;width:${(r.w / W) * 100}%;height:${(r.h / H) * 100}%`;
+
+// Everything the panel shows, read by the script below.
+const data = {
+  libraries: Object.fromEntries(libraries.map((l) => [l.label, { area: l.area, done: l.done, total: l.total, inert: l.inert, waiting: l.waiting }])),
+  folds: Object.fromEntries(areas.filter((a) => a.small.length).map((a) => [a.name, a.small.map((l) => l.label)])),
+  wanted,
+  small: SMALL,
+};
+const waitingTitle = (n: number) => `${n} ${n === 1 ? "game is" : "games are"} waiting on this`;
 ---
 
 <div class="library-map" data-library-map data-pagefind-ignore>
@@ -19,163 +79,297 @@ const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 10000) / 100;
     <label class="search">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
       <span class="visually-hidden">Find a library</span>
-      <input type="search" placeholder={`Find one of ${tiles.length} libraries`} data-find />
+      <input type="search" placeholder={`Find one of ${libraries.length} libraries`} data-find />
     </label>
-    <span class="key" aria-hidden="true"><i class="done"></i> Implemented <i class="todo"></i> Missing</span>
+    <div class="key" aria-hidden="true">
+      <span>0%</span>
+      {[0, 1, 2, 3, 4, 5].map((s) => <i class={`s${s}`} />)}
+      <span>100%</span>
+      <span class="key-flag"><b class="flag">⚑</b> games waiting</span>
+    </div>
   </div>
 
-  <div class="map" role="group" aria-label="Libraries sized by declared functions">
+  <div class="map" role="group" aria-label="Libraries grouped by area, sized by declared functions">
     {
-      tiles.map((t) => {
-        return (
-          <button
-            type="button"
-            class:list={["tile", { complete: t.done === t.total }]}
-            style={`left:${(t.x / W) * 100}%;top:${(t.y / H) * 100}%;width:${(t.w / W) * 100}%;height:${(t.h / H) * 100}%;--done:${pct(t)}%`}
-            data-label={t.label}
-            data-done={t.done}
-            data-total={t.total}
-            data-inert={t.inert}
-            aria-label={`${t.label}: ${t.done} of ${t.total} functions, ${pct(t)}%`}
-          >
-            <span class="name">{t.label}</span>
-          </button>
-        );
-      })
+      blocks.map((a) => (
+        <section class="area" style={place(a)} aria-label={`${a.name}: ${shown(percent(a.done, a.total))} implemented`}>
+          <h4 class="area-head">
+            <span>{a.name}</span>
+            <span class="area-pct">{shown(percent(a.done, a.total))}</span>
+          </h4>
+        </section>
+      ))
+    }
+    {
+      blocks.flatMap((a) =>
+        a.tiles.map((t) => {
+          const p = percent(t.done, t.total);
+          return t.kind === "library" ? (
+            <button type="button" class={`tile s${step(p)}`} style={place(t)} data-library={t.label} aria-label={`${t.label}: ${t.done} of ${t.total} functions, ${shown(p)}`}>
+              <span class="tile-name">{t.label}</span>
+              <span class="tile-pct">{shown(p)}</span>
+              {t.waiting > 0 && (
+                <span class="flag" title={waitingTitle(t.waiting)}>
+                  ⚑ {t.waiting}
+                </span>
+              )}
+            </button>
+          ) : (
+            <button type="button" class={`tile fold s${step(p)}`} style={place(t)} data-fold={t.area} aria-label={`${t.count} small libraries in ${t.area}, ${shown(p)} implemented`}>
+              <span class="tile-name">+{t.count} more</span>
+              <span class="tile-pct">{shown(p)}</span>
+              {t.waiting > 0 && (
+                <span class="flag" title={waitingTitle(t.waiting)}>
+                  ⚑ {t.waiting}
+                </span>
+              )}
+            </button>
+          );
+        }),
+      )
     }
     <div class="tip" hidden role="status"></div>
+  </div>
+
+  {/* Phones: each area as a list of bars, with its small libraries folded away. */}
+  <div class="list">
+    {
+      areas.map((a) => (
+        <section class="list-area">
+          <h4 class="area-head">
+            <span>{a.name}</span>
+            <span class="area-pct">{shown(percent(a.done, a.total))}</span>
+          </h4>
+          {a.big.map((l) => (
+            <button type="button" class="row" data-library={l.label} style={`--p:${percent(l.done, l.total)}%`}>
+              <span class="row-name">{l.label}</span>
+              {l.waiting.length > 0 && <span class="flag">⚑ {l.waiting.length}</span>}
+              <span class="row-pct">{shown(percent(l.done, l.total))}</span>
+            </button>
+          ))}
+          {a.small.length > 0 && (
+            <details>
+              <summary>{a.small.length} small libraries</summary>
+              {a.small.map((l) => (
+                <button type="button" class="row" data-library={l.label} style={`--p:${percent(l.done, l.total)}%`}>
+                  <span class="row-name">{l.label}</span>
+                  {l.waiting.length > 0 && <span class="flag">⚑ {l.waiting.length}</span>}
+                  <span class="row-pct">{shown(percent(l.done, l.total))}</span>
+                </button>
+              ))}
+            </details>
+          )}
+        </section>
+      ))
+    }
   </div>
 
   <section class="detail card" hidden aria-live="polite" data-detail>
     <header>
       <div>
+        <span class="eyebrow" data-detail-area></span>
         <h3 data-detail-name></h3>
-        <p class="muted" data-detail-count></p>
       </div>
       <button type="button" class="button small" data-detail-close>Close</button>
     </header>
-    <div class="cells" role="img" data-detail-cells></div>
-    <p class="cells-key muted"><i class="done"></i> Implemented <i class="todo"></i> Missing · hover a cell for its name</p>
-    <h4 class="names-head">Missing functions</h4>
-    <ul class="names mono" data-detail-names></ul>
+    <div data-detail-body></div>
   </section>
+
+  <script type="application/json" data-library-data set:html={JSON.stringify(data).replace(/</g, "\\u003c")} />
 </div>
 
 <script>
-  const number = new Intl.NumberFormat("en-GB");
+  interface Library {
+    area: string;
+    done: number;
+    total: number;
+    inert: number;
+    waiting: { slug: string; name: string }[];
+  }
+  interface Data {
+    libraries: Record<string, Library>;
+    folds: Record<string, string[]>;
+    wanted: Record<string, number>;
+    small: number;
+  }
   type Functions = Record<string, { done: string[]; todo: string[] }>;
+
+  const number = new Intl.NumberFormat("en-GB");
+  const shown = (done: number, total: number) => {
+    const p = total ? (done / total) * 100 : 0;
+    return `${p === 100 || p === 0 ? p.toFixed(0) : p.toFixed(2)}%`;
+  };
   let functions: Promise<Functions> | undefined;
   const loadFunctions = () =>
     (functions ??= fetch("/progress/functions.json")
       .then((r): Promise<Functions> => (r.ok ? r.json() : Promise.resolve({})))
       .catch((): Functions => ({})));
-  const missingOf = async (label: string) => (await loadFunctions())[label]?.todo ?? [];
+
+  const el = <K extends keyof HTMLElementTagNameMap>(tag: K, props: Partial<HTMLElementTagNameMap[K]> = {}, ...children: (Node | string)[]) => {
+    const node = Object.assign(document.createElement(tag), props);
+    node.append(...children);
+    return node;
+  };
 
   for (const root of document.querySelectorAll<HTMLElement>("[data-library-map]")) {
+    const data: Data = JSON.parse(root.querySelector("[data-library-data]")!.textContent!);
     const map = root.querySelector<HTMLElement>(".map")!;
     const tip = root.querySelector<HTMLElement>(".tip")!;
     const tiles = [...root.querySelectorAll<HTMLButtonElement>(".tile")];
+    const rows = [...root.querySelectorAll<HTMLButtonElement>(".row")];
     const detail = root.querySelector<HTMLElement>("[data-detail]")!;
+    const body = root.querySelector<HTMLElement>("[data-detail-body]")!;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const summary = (tile: HTMLElement) => {
-      const done = Number(tile.dataset.done);
-      const total = Number(tile.dataset.total);
-      const inert = Number(tile.dataset.inert);
-      let text = `${number.format(done)} of ${number.format(total)} functions, ${total - done} missing`;
-      if (inert) text += ` · ${inert} implemented as no-ops`;
+    const summary = (l: Library) => {
+      let text = `${number.format(l.done)} of ${number.format(l.total)} functions, ${number.format(l.total - l.done)} missing`;
+      if (l.inert) text += ` · ${number.format(l.inert)} implemented as no-ops`;
       return text;
     };
+    const meter = (done: number, total: number) => {
+      const bar = el("div", { className: "detail-meter" });
+      bar.style.setProperty("--p", `${total ? (done / total) * 100 : 0}%`);
+      bar.setAttribute("role", "img");
+      bar.setAttribute("aria-label", `${shown(done, total)} implemented`);
+      return bar;
+    };
+    const select = (match: (t: HTMLElement) => boolean) => [...tiles, ...rows].forEach((t) => t.classList.toggle("selected", match(t)));
+    const reveal = () => {
+      detail.hidden = false;
+      detail.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
+    };
 
-    let hovered: HTMLElement | null = null;
-    const showTip = async (tile: HTMLElement) => {
-      hovered = tile;
+    const openLibrary = async (label: string) => {
+      const l = data.libraries[label];
+      if (!l) return;
+      const fold = Object.entries(data.folds).find(([, labels]) => labels.includes(label))?.[0];
+      select((t) => t.dataset.library === label || (!!fold && t.dataset.fold === fold));
+      root.querySelector("[data-detail-area]")!.textContent = l.area;
+      root.querySelector("[data-detail-name]")!.textContent = label;
+
+      const parts: Node[] = [
+        el("p", { className: "detail-big" }, el("b", {}, shown(l.done, l.total)), " implemented"),
+        meter(l.done, l.total),
+        el("p", { className: "muted detail-count" }, summary(l)),
+      ];
+      if (l.waiting.length) {
+        parts.push(
+          el("h4", { className: "names-head" }, `${l.waiting.length} ${l.waiting.length === 1 ? "game is" : "games are"} waiting on it`),
+          el("p", { className: "games" }, ...l.waiting.map((g) => el("a", { className: "chip", href: `/compatibility/${g.slug}` }, g.name))),
+        );
+      }
+      const list = el("ul", { className: "names mono" }, el("li", { className: "muted" }, "Loading…"));
+      parts.push(el("h4", { className: "names-head" }, "Missing functions"), list);
+      body.replaceChildren(...parts);
+      reveal();
+
+      // Functions games are waiting on first, then the rest in order.
+      const todo = (await loadFunctions())[label]?.todo ?? [];
+      const sorted = [...todo].sort((a, b) => (data.wanted[b] ?? 0) - (data.wanted[a] ?? 0));
+      list.replaceChildren(
+        ...(sorted.length
+          ? sorted.map((name) => {
+              const n = data.wanted[name];
+              return el("li", n ? { className: "wanted", title: `${n} ${n === 1 ? "game" : "games"} waiting on it` } : {}, name, ...(n ? [el("span", { className: "flag" }, `⚑ ${n}`)] : []));
+            })
+          : [el("li", { className: "muted" }, l.done === l.total ? "Every declared function is implemented." : "The list of missing functions isn't available.")]),
+      );
+    };
+
+    const openFold = (area: string) => {
+      const labels = data.folds[area] ?? [];
+      const all = labels.map((label) => data.libraries[label]);
+      const done = all.reduce((n, l) => n + l.done, 0);
+      const total = all.reduce((n, l) => n + l.total, 0);
+      select((t) => t.dataset.fold === area);
+      root.querySelector("[data-detail-area]")!.textContent = area;
+      root.querySelector("[data-detail-name]")!.textContent = `${labels.length} small libraries`;
+      body.replaceChildren(
+        el("p", { className: "detail-big" }, el("b", {}, shown(done, total)), " implemented"),
+        meter(done, total),
+        el("p", { className: "muted detail-count" }, `Each has fewer than ${data.small} declared functions: ${number.format(done)} of ${number.format(total)} together.`),
+        el(
+          "div",
+          { className: "fold-list" },
+          ...labels.map((label) => {
+            const l = data.libraries[label];
+            const row = el(
+              "button",
+              { type: "button", className: "row" },
+              el("span", { className: "row-name" }, label),
+              ...(l.waiting.length ? [el("span", { className: "flag" }, `⚑ ${l.waiting.length}`)] : []),
+              el("span", { className: "row-pct" }, shown(l.done, l.total)),
+            );
+            row.style.setProperty("--p", `${l.total ? (l.done / l.total) * 100 : 0}%`);
+            row.addEventListener("click", () => openLibrary(label));
+            return row;
+          }),
+        ),
+      );
+      reveal();
+    };
+
+    const showTip = (tile: HTMLElement) => {
+      const label = tile.dataset.library;
+      const l = label ? data.libraries[label] : undefined;
+      const lines: Node[] = [];
+      if (l && label) {
+        lines.push(el("b", {}, label), el("span", { className: "muted" }, `${l.area} · ${summary(l)}`));
+        if (l.waiting.length) lines.push(el("span", { className: "tip-flag" }, `⚑ ${l.waiting.length} ${l.waiting.length === 1 ? "game is" : "games are"} waiting on it`));
+      } else if (tile.dataset.fold) {
+        const labels = data.folds[tile.dataset.fold] ?? [];
+        lines.push(el("b", {}, `${labels.length} small libraries`), el("span", { className: "muted" }, `${tile.dataset.fold} · click to see them all`));
+      }
+      tip.replaceChildren(...lines);
+      tip.hidden = false;
       const box = map.getBoundingClientRect();
       const rect = tile.getBoundingClientRect();
-      const name = document.createElement("b");
-      name.textContent = tile.dataset.label!;
-      const count = document.createElement("span");
-      count.className = "muted";
-      count.textContent = summary(tile);
-      tip.replaceChildren(name, count);
-      tip.hidden = false;
-      const left = rect.left - box.left + rect.width / 2;
-      tip.style.left = `${Math.min(Math.max(left, 150), box.width - 150)}px`;
+      tip.style.left = `${Math.min(Math.max(rect.left - box.left + rect.width / 2, 150), box.width - 150)}px`;
       const below = rect.top - box.top < box.height / 2;
       tip.style.top = below ? `${rect.bottom - box.top + 8}px` : "";
       tip.style.bottom = below ? "" : `${box.bottom - rect.top + 8}px`;
-
-      const names = await missingOf(tile.dataset.label!);
-      if (hovered !== tile || !names.length) return;
-      const list = document.createElement("ul");
-      for (const n of names.slice(0, 8)) {
-        const item = document.createElement("li");
-        item.textContent = n;
-        list.append(item);
-      }
-      tip.append(list);
-      if (names.length > 8) {
-        const more = document.createElement("span");
-        more.className = "muted";
-        more.textContent = `and ${names.length - 8} more · click to see all`;
-        tip.append(more);
-      }
-    };
-
-    const openDetail = async (tile: HTMLElement) => {
-      tiles.forEach((t) => t.classList.toggle("selected", t === tile));
-      root.querySelector("[data-detail-name]")!.textContent = tile.dataset.label!;
-      root.querySelector("[data-detail-count]")!.textContent = summary(tile);
-      const list = root.querySelector<HTMLElement>("[data-detail-names]")!;
-      const { done = [], todo: names = [] } = (await loadFunctions())[tile.dataset.label!] ?? {};
-      // One cell per declared function, implemented first, so the library reads like a filling bar.
-      const cells = root.querySelector<HTMLElement>("[data-detail-cells]")!;
-      cells.setAttribute("aria-label", summary(tile));
-      cells.replaceChildren(
-        ...[...done.map((n) => [n, true] as const), ...names.map((n) => [n, false] as const)].map(([n, ok]) => {
-          const cell = document.createElement("i");
-          cell.title = n;
-          if (ok) cell.className = "done";
-          return cell;
-        }),
-      );
-      list.replaceChildren(
-        ...(names.length ? names : ["Every declared function is implemented."]).map((n) => {
-          const item = document.createElement("li");
-          item.textContent = n;
-          return item;
-        }),
-      );
-      detail.hidden = false;
-      detail.scrollIntoView({ block: "nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     };
 
     for (const tile of tiles) {
       tile.addEventListener("pointerenter", () => showTip(tile));
       tile.addEventListener("focus", () => showTip(tile));
       tile.addEventListener("blur", () => (tip.hidden = true));
-      tile.addEventListener("click", () => openDetail(tile));
+      tile.addEventListener("click", () => (tile.dataset.fold ? openFold(tile.dataset.fold) : openLibrary(tile.dataset.library!)));
     }
-    map.addEventListener("pointerleave", () => ((tip.hidden = true), (hovered = null)));
+    for (const row of rows) row.addEventListener("click", () => openLibrary(row.dataset.library!));
+    map.addEventListener("pointerleave", () => (tip.hidden = true));
     root.querySelector("[data-detail-close]")!.addEventListener("click", () => {
       detail.hidden = true;
-      tiles.forEach((t) => t.classList.remove("selected"));
+      select(() => false);
     });
 
+    // Search dims everything else; a small library that matches lights up its area's shared tile. Enter opens the first match.
     const find = root.querySelector<HTMLInputElement>("[data-find]")!;
+    const matches = (q: string) => Object.keys(data.libraries).filter((label) => label.toLowerCase().includes(q));
     const search = (query: string) => {
       const q = query.trim().toLowerCase();
-      map.classList.toggle("searching", q.length > 0);
-      for (const t of tiles) t.classList.toggle("match", q.length > 0 && t.dataset.label!.toLowerCase().includes(q));
+      const hits = new Set(q ? matches(q) : []);
+      root.classList.toggle("searching", q.length > 0);
+      for (const t of tiles) t.classList.toggle("match", t.dataset.library ? hits.has(t.dataset.library) : (data.folds[t.dataset.fold!] ?? []).some((label) => hits.has(label)));
+      for (const r of rows) {
+        r.classList.toggle("match", hits.has(r.dataset.library!));
+        if (hits.has(r.dataset.library!)) r.closest("details")?.setAttribute("open", "");
+      }
     };
     find.addEventListener("input", () => search(find.value));
+    find.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+      const q = find.value.trim().toLowerCase();
+      const first = q && (matches(q).find((label) => label.toLowerCase() === q) ?? matches(q)[0]);
+      if (first) openLibrary(first);
+    });
 
     // Game pages link here with ?library=Label to show what that library is missing.
     const linked = new URLSearchParams(location.search).get("library");
-    const target = linked && tiles.find((t) => t.dataset.label === linked);
-    if (target) {
+    if (linked && data.libraries[linked]) {
       find.value = linked;
       search(linked);
-      openDetail(target);
+      openLibrary(linked);
     }
   }
 </script>
@@ -216,95 +410,188 @@ const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 10000) / 100;
   }
   .key {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     color: var(--muted);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
   .key i {
-    width: 12px;
+    width: 18px;
     height: 12px;
     border-radius: 3px;
   }
-  .key i.done {
-    background: var(--good);
+  .key > span:first-child {
+    margin-right: 4px;
   }
-  .key i.todo {
-    margin-left: 10px;
-    background: var(--stage-untested);
+  .key-flag {
+    margin-left: 14px;
+  }
+
+  /* Six steps of the same green over the surface, darkest for barely started; ink flips to dark on the bright ones. */
+  .library-map {
+    --s0: color-mix(in oklab, var(--good) 10%, var(--surface));
+    --s1: color-mix(in oklab, var(--good) 26%, var(--surface));
+    --s2: color-mix(in oklab, var(--good) 44%, var(--surface));
+    --s3: color-mix(in oklab, var(--good) 62%, var(--surface));
+    --s4: color-mix(in oklab, var(--good) 80%, var(--surface));
+    --s5: var(--good);
+    --ink-dark: #04140b;
+  }
+  .s0 {
+    --fill: var(--s0);
+    --ink: var(--text);
+  }
+  .s1 {
+    --fill: var(--s1);
+    --ink: var(--text);
+  }
+  .s2 {
+    --fill: var(--s2);
+    --ink: var(--text);
+  }
+  .s3 {
+    --fill: var(--s3);
+    --ink: var(--ink-dark);
+  }
+  .s4 {
+    --fill: var(--s4);
+    --ink: var(--ink-dark);
+  }
+  .s5 {
+    --fill: var(--s5);
+    --ink: var(--ink-dark);
+  }
+  :root[data-theme="light"] .library-map .s1,
+  :root[data-theme="light"] .library-map .s2 {
+    --ink: var(--ink-dark);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .library-map .s1,
+    :root:not([data-theme="dark"]) .library-map .s2 {
+      --ink: var(--ink-dark);
+    }
+  }
+  .key i {
+    background: var(--fill);
   }
 
   .map {
     position: relative;
-    aspect-ratio: 1000 / 560;
-    overflow: visible;
-    container-type: inline-size;
+    aspect-ratio: 1000 / 620;
   }
+  .area {
+    position: absolute;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+  }
+  .area-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0;
+    padding: 6px 9px 0;
+    overflow: hidden;
+    color: var(--muted);
+    font: 600 0.7rem var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .area-head span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .area-pct {
+    color: var(--text);
+    letter-spacing: 0;
+  }
+
   .tile {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1px;
     overflow: hidden;
     margin: 0;
-    padding: 0;
+    padding: 5px 7px;
     border: 0;
     /* A 2px surface gap between tiles. */
     box-shadow: inset 0 0 0 1px var(--bg);
-    border-radius: 4px;
-    /* Implemented functions fill the tile from the bottom; a fine grid hints at individual functions. */
-    background: linear-gradient(to top, color-mix(in srgb, var(--good) 78%, var(--surface)) var(--done), var(--stage-untested) var(--done));
-    color: var(--text);
+    border-radius: 5px;
+    background: var(--fill);
+    color: var(--ink);
     font: inherit;
     text-align: left;
     cursor: pointer;
     container-type: size;
-    transition: filter 0.15s, opacity 0.15s;
+    transition:
+      filter 0.15s,
+      opacity 0.15s;
   }
-  .tile::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(to right, color-mix(in srgb, var(--bg) 35%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in srgb, var(--bg) 35%, transparent) 1px, transparent 1px);
-    background-size: 7px 7px;
-    pointer-events: none;
-  }
-  .tile.complete {
-    background: var(--good);
+  .tile.fold {
+    background: repeating-linear-gradient(135deg, var(--fill) 0 6px, color-mix(in oklab, var(--fill) 80%, var(--bg)) 6px 12px);
   }
   .tile:hover,
   .tile:focus-visible,
   .tile.selected {
     z-index: 1;
-    filter: brightness(1.15);
+    filter: brightness(1.12);
     outline: 2px solid var(--text);
     outline-offset: -1px;
   }
-  .name {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    z-index: 1;
-    max-width: calc(100% - 10px);
+  .tile-name {
     overflow: hidden;
-    padding: 1px 6px;
-    border-radius: 4px;
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    font-size: clamp(0.62rem, 1.15cqi, 0.78rem);
-    font-weight: 600;
+    font-size: 0.74rem;
+    font-weight: 650;
+    line-height: 1.2;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  /* Labels only where they fit; every tile still names itself in its tooltip and accessible label. */
-  @container (width < 56px) or (height < 24px) {
-    .name {
+  .tile-pct {
+    font: 500 0.68rem var(--mono);
+    opacity: 0.85;
+  }
+  .tile .flag {
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+  }
+  .library-map :global(.flag) {
+    padding: 0 5px;
+    border-radius: 999px;
+    background: var(--warn);
+    color: #1a1000;
+    font: 700 0.64rem/1.5 var(--mono);
+    white-space: nowrap;
+  }
+  .key .flag {
+    padding: 0 4px;
+  }
+  /* Text only where it fits; every tile still names itself in its tooltip and accessible label. */
+  @container (height < 38px) {
+    .tile-pct {
       display: none;
     }
   }
-  .searching .tile:not(.match) {
-    opacity: 0.25;
+  @container (width < 56px) or (height < 22px) {
+    .tile-name,
+    .tile-pct,
+    .tile .flag {
+      display: none;
+    }
   }
-  .searching .tile.match .name {
-    display: block;
+  @container (width < 70px) or (height < 52px) {
+    .tile .flag {
+      display: none;
+    }
+  }
+  .searching .tile:not(.match),
+  .searching .row:not(.match) {
+    opacity: 0.25;
   }
 
   .tip {
@@ -323,18 +610,61 @@ const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 10000) / 100;
     translate: -50% 0;
     pointer-events: none;
   }
-  .tip :global(ul) {
-    display: grid;
-    gap: 1px;
-    margin: 6px 0 0;
-    padding: 0;
-    list-style: none;
-    font: 0.74rem/1.45 var(--mono);
+  .tip :global(.tip-flag) {
+    color: var(--warn);
+    font-weight: 600;
   }
-  .tip :global(li) {
+
+  /* The phone layout. */
+  .list {
+    display: none;
+  }
+  .list-area {
+    padding: 4px 0 14px;
+    border-top: 1px solid var(--line);
+  }
+  .list-area .area-head {
+    padding: 10px 0 8px;
+  }
+  .library-map :global(.row) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 4px;
+    padding: 7px 10px;
     overflow: hidden;
+    border: 0;
+    border-radius: 6px;
+    background: linear-gradient(to right, color-mix(in oklab, var(--good) 38%, var(--surface)) var(--p), color-mix(in oklab, var(--stage-untested) 45%, var(--surface)) var(--p));
+    color: var(--text);
+    font: inherit;
+    font-size: 0.86rem;
+    text-align: left;
+    cursor: pointer;
+  }
+  .library-map :global(.row.selected),
+  .library-map :global(.row:focus-visible) {
+    outline: 2px solid var(--text);
+    outline-offset: -1px;
+  }
+  .library-map :global(.row-name) {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-weight: 600;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+  .library-map :global(.row-pct) {
+    font: 500 0.78rem var(--mono);
+  }
+  details summary {
+    padding: 6px 2px;
+    color: var(--muted);
+    font-size: 0.84rem;
+    cursor: pointer;
   }
 
   .detail {
@@ -348,60 +678,56 @@ const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 10000) / 100;
     gap: 16px;
   }
   .detail h3 {
-    margin: 0;
+    margin: 2px 0 0;
   }
-  .detail p {
-    margin: 4px 0 14px;
-    font-size: 0.88rem;
+  .detail :global(.detail-big) {
+    margin: 10px 0 8px;
+    color: var(--muted);
   }
-  .cells {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 11px);
-    gap: 2px;
-    max-height: 260px;
-    overflow: auto;
-    margin-bottom: 8px;
+  .detail :global(.detail-big b) {
+    color: var(--text);
+    font: 750 1.6rem var(--display);
+    letter-spacing: -0.02em;
   }
-  .cells :global(i) {
-    width: 11px;
-    height: 11px;
-    border-radius: 2px;
-    background: var(--stage-untested);
+  .detail :global(.detail-meter) {
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--good) var(--p), var(--stage-untested) var(--p));
   }
-  .cells :global(i.done) {
-    background: var(--good);
+  .detail :global(.detail-count) {
+    margin: 8px 0 18px;
+    font-size: 0.86rem;
   }
-  .cells :global(i:hover) {
-    outline: 2px solid var(--text);
-  }
-  .cells-key {
+  .detail :global(.games) {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     gap: 6px;
     margin: 0 0 18px;
-    font-size: 0.78rem;
   }
-  .cells-key i {
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    background: var(--stage-untested);
+  .detail :global(.chip) {
+    padding: 3px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--text);
+    font-size: 0.8rem;
   }
-  .cells-key i.done {
-    background: var(--good);
+  .detail :global(.chip:hover) {
+    border-color: var(--warn);
   }
-  .cells-key i.todo {
-    margin-left: 8px;
+  .detail :global(.fold-list) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 4px 12px;
   }
-  .names-head {
+  .detail :global(.names-head) {
     margin: 0 0 8px;
     color: var(--faint);
     font: 500 0.7rem var(--mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-  .names {
-    columns: 3 220px;
+  .detail :global(.names) {
+    columns: 3 240px;
     column-gap: 24px;
     max-height: 320px;
     overflow: auto;
@@ -409,17 +735,34 @@ const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 10000) / 100;
     padding: 0;
     list-style: none;
     font-size: 0.78rem;
-    line-height: 1.6;
+    line-height: 1.7;
   }
-  .names li {
+  .detail :global(.names li) {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+  .detail :global(.names li.wanted) {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .detail :global(.names .flag) {
+    margin-left: 6px;
+  }
 
   @media (max-width: 700px) {
     .map {
-      aspect-ratio: 1000 / 900;
+      display: none;
+    }
+    .list {
+      display: block;
+    }
+    .key i,
+    .key > span:not(.key-flag) {
+      display: none;
+    }
+    .key-flag {
+      margin-left: 0;
     }
   }
 </style>
