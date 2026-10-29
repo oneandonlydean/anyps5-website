@@ -16,23 +16,25 @@ const threads = Object.fromEntries(games.map((g) => [g.slug, { name: g.name, thr
     <p class="lede">Every run helps, including the ones that crash. Upload the report AnyPS5 writes after a run, and your result joins the compatibility list.</p>
   </section>
 
-  <div class="container report">
-    <RunReportUpload />
+  <div class="container">
+    <div class="report">
+      <RunReportUpload />
 
-    <section class="card fallback" data-fallback data-threads={JSON.stringify(threads)}>
-      <h2>No report file yet?</h2>
-      <p class="muted">
-        Until AnyPS5 builds write <code>anyps5-report.json</code>, post your result in the Game bring-up discussions. Their form asks for the title ID, the AnyPS5 build,
-        your system and how far the game got.
-      </p>
-      <div class="actions">
-        <a class="button primary" href={newReportUrl()} data-thread>Start a bring-up report</a>
-        <a class="button" href={DISCUSSIONS_URL}>Browse the discussions</a>
-      </div>
-      <p class="muted small">
-        Testing a game that's already listed? Its page on the <a href="/compatibility">compatibility list</a> links to its thread.
-      </p>
-    </section>
+      <section class="card fallback" data-fallback data-threads={JSON.stringify(threads)}>
+        <h2>No report file yet?</h2>
+        <p class="muted">
+          Until AnyPS5 builds write <code>anyps5-report.json</code>, post your result in the Game bring-up discussions. Their form asks for the title ID, the AnyPS5 build,
+          your system and how far the game got.
+        </p>
+        <div class="actions">
+          <a class="button primary" href={newReportUrl()} data-thread>Start a bring-up report</a>
+          <a class="button" href={DISCUSSIONS_URL}>Browse the discussions</a>
+        </div>
+        <p class="muted small">
+          Testing a game that's already listed? Its page on the <a href="/compatibility">compatibility list</a> links to its thread.
+        </p>
+      </section>
+    </div>
   </div>
 </Base>
 
