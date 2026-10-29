@@ -37,16 +37,21 @@ jobs:
 
   worker:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: worker
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: worker/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            worker/package-lock.json
+      # The Worker imports shared code from src/lib (the run report schema, the merge classifier), whose dependencies
+      # (zod) come from the site's packages.
       - run: npm ci
+      - run: npm ci
+        working-directory: worker
       - run: npm run typecheck
+        working-directory: worker
       - run: npm test
+        working-directory: worker
