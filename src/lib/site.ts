@@ -30,3 +30,6 @@ export function formatBytes(bytes: number): string {
   const i = Math.min(units.length - 1, Math.floor(Math.log(bytes) / Math.log(1024)));
   return `${(bytes / 1024 ** i).toFixed(i ? 1 : 0)} ${units[i]}`;
 }
+
+/** When this build ran: one moment for every page, since the module is evaluated once per build. */
+export const BUILT_AT = new Date();

@@ -33,6 +33,8 @@ const strings: Strings = {
     bringUp: "游戏适配",
     report: "提交测试报告",
     involved: "加入我们",
+    lastUpdated: "最后更新",
+    dataFrom: "数据来自 AnyPS5",
     legal:
       "AnyPS5 是一个独立项目，与 Sony Interactive Entertainment 无关，也未获其授权或认可。“PlayStation”和“PS5”是 Sony Interactive Entertainment Inc. 的商标。游戏美术素材归各自发行商所有，图片来自 PlayStation Store 和 SteamGridDB。AnyPS5 不包含也不分发任何受版权保护的软件、固件或密钥。",
   },
@@ -59,6 +61,9 @@ const strings: Strings = {
     latest: "最新",
     latestUpdates: "最新动态",
     allUpdates: "全部动态",
+    progressLabel: "进展",
+    changesMerged: (n: string) => `合并了 ${n} 项更改`,
+    areas: { libraries: "系统库", gpu: "GPU 驱动", shader: "着色器重编译器", relinker: "重链接器", converter: "网页转换器", project: "工具和文档" },
     firstReport: "首次报告",
     upFrom: (stage: string) => `从 ${stage} 提升`,
     howItWorks: "工作原理",

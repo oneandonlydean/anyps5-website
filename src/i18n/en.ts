@@ -38,6 +38,8 @@ const en = {
     bringUp: "Game bring-up",
     report: "Report a test run",
     involved: "Get involved",
+    lastUpdated: "Last updated",
+    dataFrom: "data from AnyPS5",
     legal:
       "AnyPS5 is an independent project, not affiliated with, authorised or endorsed by Sony Interactive Entertainment. “PlayStation” and “PS5” are trademarks of Sony Interactive Entertainment Inc. Game artwork belongs to its publishers and is shown from the PlayStation Store and SteamGridDB. AnyPS5 does not include or distribute copyrighted software, firmware or keys.",
   },
@@ -65,6 +67,9 @@ const en = {
     latest: "Latest",
     latestUpdates: "Latest updates",
     allUpdates: "All updates",
+    progressLabel: "Progress",
+    changesMerged: (n: string) => `${n} changes merged`,
+    areas: { libraries: "System libraries", gpu: "GPU driver", shader: "Shader recompiler", relinker: "Relinker", converter: "Web converter", project: "Tools and docs" },
     firstReport: "First report",
     upFrom: (stage: string) => `Up from ${stage}`,
     howItWorks: "How it works",

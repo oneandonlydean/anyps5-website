@@ -20,6 +20,15 @@ const [w, h] = ratio.split("/").map(Number);
 const width = widths.at(-1)!;
 const tint = color ?? `hsl(${hue(name)} 45% 32%)`;
 const ring = `hsl(${(hue(name) + 40) % 360} 70% 60%)`;
+// Small tiles (lists, update rows) show up to two initials instead of a name too small to read.
+const initials =
+  name
+    .replace(/[™®©]/g, "")
+    .split(/[\s:–—-]+/)
+    .filter((w) => /^[\p{L}\p{N}]/u.test(w))
+    .slice(0, 2)
+    .map((w) => [...w][0]!.toUpperCase())
+    .join("") || "?";
 ---
 
 <div class:list={["art", className]} data-vt={navTransitionName} data-vt-peer={peerTransitionName} style={`--ratio:${ratio};--tint:${tint};--ring:${ring}`}>
@@ -37,7 +46,10 @@ const ring = `hsl(${(hue(name) + 40) % 360} 70% 60%)`;
         decoding="async"
       />
     ) : (
-      <span class="fallback" aria-hidden="true"><span>{name}</span></span>
+      <span class="fallback" aria-hidden="true">
+        <span class="name">{name}</span>
+        <span class="initials">{initials}</span>
+      </span>
     )
   }
 </div>
@@ -92,7 +104,10 @@ const ring = `hsl(${(hue(name) + 40) % 360} 70% 60%)`;
     border-radius: 2px;
     background: var(--ring);
   }
-  .fallback span {
+  .initials {
+    display: none;
+  }
+  .fallback .name {
     display: -webkit-box;
     overflow: hidden;
     color: rgb(255 255 255 / 0.95);
@@ -104,5 +119,25 @@ const ring = `hsl(${(hue(name) + 40) % 360} 70% 60%)`;
     text-shadow: 0 2px 20px rgb(0 0 0 / 0.35);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
+  }
+  /* Below about 90 px wide, the name can't be read; centred initials stand in. */
+  @container (max-width: 90px) {
+    .fallback {
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .fallback::before,
+    .fallback .name {
+      display: none;
+    }
+    .initials {
+      display: block;
+      color: rgb(255 255 255 / 0.95);
+      font-size: 34cqi;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-shadow: 0 1px 8px rgb(0 0 0 / 0.35);
+    }
   }
 </style>

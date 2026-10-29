@@ -33,6 +33,8 @@ const strings: Strings = {
     bringUp: "Bring-up de jogos",
     report: "Relatar um teste",
     involved: "Participe",
+    lastUpdated: "Última atualização",
+    dataFrom: "dados do AnyPS5",
     legal:
       "O AnyPS5 é um projeto independente, sem afiliação, autorização ou endosso da Sony Interactive Entertainment. “PlayStation” e “PS5” são marcas registradas da Sony Interactive Entertainment Inc. As artes dos jogos pertencem às suas respectivas publicadoras e são exibidas a partir da PlayStation Store e do SteamGridDB. O AnyPS5 não inclui nem distribui software, firmware ou chaves protegidos por direitos autorais.",
   },
@@ -59,6 +61,9 @@ const strings: Strings = {
     latest: "Novidades",
     latestUpdates: "Últimas novidades",
     allUpdates: "Todas as novidades",
+    progressLabel: "Progresso",
+    changesMerged: (n: string) => `${n} mudanças integradas`,
+    areas: { libraries: "Bibliotecas do sistema", gpu: "Driver de GPU", shader: "Recompilador de shaders", relinker: "Relinker", converter: "Conversor web", project: "Ferramentas e documentação" },
     firstReport: "Primeiro relatório",
     upFrom: (stage: string) => `Subiu de ${stage}`,
     howItWorks: "Como funciona",

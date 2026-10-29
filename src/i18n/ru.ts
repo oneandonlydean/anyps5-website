@@ -42,6 +42,8 @@ const strings: Strings = {
     bringUp: "Запуск игр",
     report: "Отправить отчёт о тесте",
     involved: "Участвовать",
+    lastUpdated: "Обновлено",
+    dataFrom: "данные из AnyPS5",
     legal:
       "AnyPS5 — независимый проект, не связанный с Sony Interactive Entertainment и не одобренный ею. «PlayStation» и «PS5» — товарные знаки Sony Interactive Entertainment Inc. Обложки игр принадлежат их издателям и взяты из PlayStation Store и SteamGridDB. AnyPS5 не содержит и не распространяет защищённое авторским правом ПО, прошивки или ключи.",
   },
@@ -69,6 +71,9 @@ const strings: Strings = {
     latest: "Новое",
     latestUpdates: "Последние новости",
     allUpdates: "Все новости",
+    progressLabel: "Прогресс",
+    changesMerged: (n: string) => `Принято изменений: ${n}`,
+    areas: { libraries: "Системные библиотеки", gpu: "Драйвер GPU", shader: "Перекомпилятор шейдеров", relinker: "Релинкер", converter: "Веб-конвертер", project: "Инструменты и документация" },
     firstReport: "Первый отчёт",
     upFrom: (stage: string) => `Было: ${stage}`,
     howItWorks: "Как это работает",

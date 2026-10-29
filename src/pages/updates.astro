@@ -1,10 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
 import StageBadge from "../components/StageBadge.astro";
+import GameArt from "../components/GameArt.astro";
 import { formatDate } from "../lib/site";
 import { AREA_LABEL, AREAS, typeLabel } from "../lib/merges";
 import { CATEGORY, getUpdates, type Update } from "../lib/updates";
-import { artSrc } from "../lib/view";
 
 const all = await getUpdates();
 // Single merges are listed inside their day's digest rather than one by one.
@@ -118,8 +118,8 @@ const FEEDS = [
                 <li class:list={["item", u.kind]} data-category={CATEGORY[u.kind]} id={u.id}>
                   <a href={u.url}>
                     {u.game ? (
-                      <span class="thumb" style={`--tint:${u.game.color ?? "var(--raised)"}`}>
-                        {u.game.cover && <img src={artSrc(u.game.cover, 96)} alt="" width="48" height="72" loading="lazy" decoding="async" />}
+                      <span class="art-thumb">
+                        <GameArt name={u.game.name} src={u.game.cover} color={u.game.color} ratio="2/3" widths={[96]} sizes="36px" />
                       </span>
                     ) : (
                       <span class:list={["thumb icon", u.kind]} aria-hidden="true">
@@ -364,6 +364,12 @@ const FEEDS = [
     overflow: hidden;
     border-radius: 6px;
     background: var(--tint);
+  }
+  .art-thumb {
+    flex: none;
+    width: 36px;
+    overflow: hidden;
+    border-radius: 6px;
   }
   .thumb img {
     width: 100%;
