@@ -25,8 +25,6 @@ const shots = (await getScreenshots()).get(game.slug) ?? [];
 const freshness = retest.lastTested
   ? `Last tested ${formatDate(retest.lastTested)} · ${retest.releasesSince === 0 ? "on the current release" : `${retest.releasesSince} release${retest.releasesSince === 1 ? "" : "s"} ago`}`
   : null;
-const badge = new URL(`/badge/${game.slug}.svg`, Astro.site).href;
-const badgeMarkdown = `[![AnyPS5: ${stage ?? "untested"}](${badge})](${new URL(`/compatibility/${game.slug}`, Astro.site).href})`;
 const art = game.art;
 // The page takes its accent colours from the game's art; near-grey art keeps the site's own.
 const theme = gameTheme(art?.color);
@@ -263,35 +261,10 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
           {game.updated && <div><dt>Last activity</dt><dd>{formatDate(game.updated)}</dd></div>}
           {game.aliases.length > 0 && <div><dt>Also known as</dt><dd>{game.aliases.join(", ")}</dd></div>}
         </dl>
-
-        <div class="card panel embed">
-          <p class="embed-label">Status badge</p>
-          <img src={`/badge/${game.slug}.svg`} alt={`AnyPS5: ${stage ?? "untested"}`} height="20" />
-          <div class="copy-row">
-            <input readonly value={badgeMarkdown} aria-label="Badge Markdown" data-badge />
-            <button type="button" class="button small" data-copy-badge>Copy</button>
-          </div>
-          <p class="embed-hint">Markdown for a README, forum post or Discord. It updates when the game moves up.</p>
-        </div>
-
-        {art?.credits.length ? <p class="credit">Artwork: {art.credits.join(", ")}. Art belongs to its publishers.</p> : null}
       </aside>
     </div>
   </div>
 </Base>
-
-<script>
-  document.querySelector("[data-copy-badge]")?.addEventListener("click", async () => {
-    const field = document.querySelector<HTMLInputElement>("[data-badge]")!;
-    try {
-      await navigator.clipboard.writeText(field.value);
-      document.dispatchEvent(new CustomEvent("toast", { detail: "Badge Markdown copied" }));
-    } catch {
-      field.select();
-      document.dispatchEvent(new CustomEvent("toast", { detail: "Press Ctrl+C to copy the selected Markdown" }));
-    }
-  });
-</script>
 
 <style>
   /* Game accents from gameTheme(); custom properties resolve where they are declared, so the gradient is redone too. */
@@ -698,45 +671,6 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
   .facts dd {
     margin: 0;
     font-size: 0.92rem;
-  }
-  .embed {
-    display: grid;
-    gap: 10px;
-  }
-  .embed-label {
-    margin: 0;
-    color: var(--faint);
-    font: 500 0.7rem var(--mono);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .embed img {
-    width: auto;
-  }
-  .copy-row {
-    display: flex;
-    gap: 6px;
-  }
-  .copy-row input {
-    flex: 1;
-    min-width: 0;
-    padding: 0 10px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--bg);
-    color: var(--muted);
-    font: 0.72rem var(--mono);
-  }
-  .embed-hint {
-    margin: 0;
-    color: var(--faint);
-    font-size: 0.78rem;
-  }
-  .credit {
-    margin: 0;
-    padding-inline: 4px;
-    color: var(--faint);
-    font-size: 0.78rem;
   }
 
   @media (max-width: 920px) {
