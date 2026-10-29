@@ -1,0 +1,137 @@
+import { AREA_LABEL, classify, typeLabel, type ClassifiedMerge, type MergeArea } from "../../../src/lib/merges";
+import * as discord from "./discord";
+import { baseUrl, log, type Ctx, type Env } from "./env";
+import * as github from "./github";
+
+/**
+ * What the bot posts, and where. Merges are sorted with the site's own classifier, so Discord and /updates agree on
+ * what counts as progress: features, fixes and speed-ups go to the progress channel, everything else to the dev
+ * channel if one is set. Releases and game stage rises have channels of their own.
+ */
+
+const AREA_COLOR: Record<MergeArea, number> = {
+  libraries: 0x5b9bff,
+  gpu: 0xf5b84a,
+  shader: 0x37e0c8,
+  relinker: 0xc084fc,
+  converter: 0x3ddc84,
+  project: 0x8e98ab,
+};
+
+export const classifyPull = (pr: github.Pull, env: Env): ClassifiedMerge =>
+  classify({ number: pr.number, title: pr.title, mergedAt: pr.merged_at, author: pr.user?.login ?? null, labels: pr.labels }, env.GITHUB_REPO);
+
+/** The webhook a merge goes to, or undefined when it is not announced. */
+export function mergeWebhook(env: Env, merge: ClassifiedMerge): string | undefined {
+  return merge.notable ? env.DISCORD_WEBHOOK_PROGRESS || env.DISCORD_WEBHOOK_URL : env.DISCORD_WEBHOOK_DEV || undefined;
+}
+
+/** A merge announcement. A linked author is pinged; nobody else can be, whatever the title contains. */
+export function mergeMessage(env: Env, pr: github.Pull, merge: ClassifiedMerge, discordId: string | undefined): Record<string, unknown> {
+  const files = `${pr.changed_files} file${pr.changed_files === 1 ? "" : "s"}`;
+  const fields = [
+    { name: "Area", value: merge.library ? `${AREA_LABEL[merge.area]} · ${merge.library}` : AREA_LABEL[merge.area], inline: true },
+    { name: "Type", value: typeLabel(merge.type), inline: true },
+    { name: "Changes", value: `+${pr.additions} −${pr.deletions} in ${files}`, inline: true },
+  ];
+  if (merge.titleIds.length) {
+    const games = merge.titleIds.map((id) => `[${id}](${baseUrl(env)}/compatibility/?q=${id})`).join(", ");
+    fields.push({ name: "Games", value: games.slice(0, 1024), inline: false });
+  }
+  return {
+    content: discordId ? `<@${discordId}>` : undefined,
+    embeds: [
+      {
+        author: pr.user ? { name: pr.user.login, url: pr.user.html_url, icon_url: pr.user.avatar_url } : undefined,
+        title: `#${pr.number} ${merge.library ?? AREA_LABEL[merge.area]}: ${merge.summary}`.slice(0, 256),
+        url: pr.html_url,
+        description: pr.merged_by ? `Merged by ${pr.merged_by}` : undefined,
+        color: AREA_COLOR[merge.area],
+        fields,
+        timestamp: pr.merged_at,
+      },
+    ],
+    allowed_mentions: discordId ? { users: [discordId] } : { parse: [] },
+  };
+}
+
+const kvGet = (ctx: Ctx, key: string) => ctx.env.DB.prepare("SELECT value FROM kv WHERE key = ?").bind(key).first<string>("value");
+const kvSet = (ctx: Ctx, key: string, value: string) =>
+  ctx.env.DB.prepare("INSERT INTO kv (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value").bind(key, value).run();
+
+/** Posts the newest release once. The first run only records it, so an old release is never announced. */
+export async function announceReleases(ctx: Ctx): Promise<void> {
+  const webhook = ctx.env.DISCORD_WEBHOOK_RELEASES;
+  if (!webhook) return;
+  const release = await github.latestRelease(ctx);
+  if (!release) return;
+  const seen = await kvGet(ctx, "last_release");
+  if (seen === release.tag_name) return;
+  if (seen !== null) {
+    const notes = (release.body ?? "").trim();
+    await discord.postWebhook(ctx, "discord releases webhook", webhook, {
+      embeds: [
+        {
+          title: `AnyPS5 ${release.name || release.tag_name}`.slice(0, 256),
+          url: release.html_url,
+          description: (notes.length > 1500 ? `${notes.slice(0, 1500)}…` : notes) || undefined,
+          color: 0x5b9bff,
+          fields: [{ name: "Get it", value: `[Download](${baseUrl(ctx.env)}/download) · [Web converter](${baseUrl(ctx.env)}/convert)` }],
+          timestamp: release.published_at,
+        },
+      ],
+    });
+    log("release_announced", { tag: release.tag_name });
+  }
+  await kvSet(ctx, "last_release", release.tag_name);
+}
+
+export interface FeedEntry {
+  id: string;
+  title: string;
+  url: string;
+  updated: string;
+  summary: string;
+}
+
+const unescape = (s: string) =>
+  s.replace(/&(lt|gt|quot|apos|#39|amp);/g, (_, e: string) => ({ lt: "<", gt: ">", quot: '"', apos: "'", "#39": "'", amp: "&" })[e]!);
+
+/** Entries of one of the site's own Atom feeds, newest first, as the feed lists them. */
+export function parseFeed(xml: string): FeedEntry[] {
+  return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map(([, entry]) => {
+    const tag = (name: string) => unescape(entry!.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`))?.[1] ?? "");
+    return { id: tag("id"), title: tag("title"), url: unescape(entry!.match(/<link href="([^"]*)"/)?.[1] ?? ""), updated: tag("updated"), summary: tag("summary") };
+  });
+}
+
+const GAMES_SEEN = "games_seen";
+const GAMES_PER_RUN = 5;
+const GAMES_REMEMBERED = 400;
+
+/**
+ * Posts games that reached a new stage, read from the site's games feed (which updates when the site rebuilds).
+ * Entries are remembered by id rather than by date, because a stage rise can be dated before ones already posted.
+ * The first run only records what is there.
+ */
+export async function announceGames(ctx: Ctx): Promise<void> {
+  const webhook = ctx.env.DISCORD_WEBHOOK_GAMES;
+  if (!webhook || !ctx.env.ASSETS) return;
+  const res = await ctx.env.ASSETS.fetch(`${baseUrl(ctx.env)}/feeds/games.xml`);
+  if (!res.ok) return;
+  const entries = parseFeed(await res.text());
+  const stored = await kvGet(ctx, GAMES_SEEN);
+  const seen = new Set<string>(stored ? (JSON.parse(stored) as string[]) : []);
+  const fresh = stored === null ? [] : entries.filter((e) => !seen.has(e.id)).reverse().slice(0, GAMES_PER_RUN);
+  for (const entry of fresh) {
+    await discord.postWebhook(ctx, "discord games webhook", webhook, {
+      embeds: [{ title: entry.title.slice(0, 256), url: entry.url, description: entry.summary || undefined, color: 0x3ddc84, timestamp: entry.updated || undefined }],
+    });
+    seen.add(entry.id);
+    log("game_announced", { id: entry.id });
+  }
+  if (stored === null) entries.forEach((e) => seen.add(e.id));
+  // Newest first, so the oldest ids are the ones forgotten once the list is full.
+  const remembered = [...entries.map((e) => e.id).filter((id) => seen.has(id)), ...[...seen].filter((id) => !entries.some((e) => e.id === id))];
+  await kvSet(ctx, GAMES_SEEN, JSON.stringify(remembered.slice(0, GAMES_REMEMBERED)));
+}

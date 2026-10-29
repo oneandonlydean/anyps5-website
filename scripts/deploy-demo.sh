@@ -11,4 +11,4 @@ cat > dist/_headers <<'HEADERS'
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 HEADERS
-npx wrangler deploy
+npx wrangler deploy --env=""

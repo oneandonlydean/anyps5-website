@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "test": "vitest run",
+    "test:worker": "npm --prefix worker test",
     "sync:titles": "tsx scripts/sync-titles.ts",
     "sync:reports": "tsx scripts/ingest-discussions.ts",
     "sync:issues": "tsx scripts/sync-issues.ts",

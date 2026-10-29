@@ -1,4 +1,4 @@
-import { titleIds } from "./parse";
+import { titleIds } from "./ids";
 
 /** A merged upstream pull request, as the sync stores it. */
 export interface Merge {
@@ -59,7 +59,7 @@ function areaOf(scope: string | null, labels: string[]): MergeArea {
 
 export function classify(merge: Merge, repo = "boykopovar/AnyPS5"): ClassifiedMerge {
   const m = merge.title.match(/^(\w+)(?:\(([^)]+)\))?!?:\s*(.+)$/);
-  const type = m ? m[1].toLowerCase() : /^revert\b/i.test(merge.title) ? "revert" : "other";
+  const type = m?.[1] ? m[1].toLowerCase() : /^revert\b/i.test(merge.title) ? "revert" : "other";
   const scope = m?.[2]?.trim() ?? null;
   const area = areaOf(scope, merge.labels);
   return {

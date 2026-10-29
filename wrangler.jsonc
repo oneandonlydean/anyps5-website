@@ -1,16 +1,44 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  // A demo deployment of the site on Cloudflare: npm run deploy:demo
+  // A demo deployment of the site on Cloudflare: npm run deploy:demo. The Discord bot is off here (no database or
+  // secrets); it runs in the production environment below, which is for the official site.
   "name": "anyps5-demo",
-  "main": "worker/index.ts",
+  "main": "worker/src/index.ts",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    // Everything is a static file except the converter's library downloads, which the Worker streams from upstream.
-    "run_worker_first": ["/convert/app/libraries/*"]
+    // Everything is a static file except the converter's library downloads, which the Worker streams from upstream,
+    // and the Discord bot's endpoints.
+    "run_worker_first": ["/convert/app/libraries/*", "/linked-role", "/discord/callback", "/github/callback", "/interactions"]
   },
   "routes": [{ "pattern": "anyps5-demo.deanisa.ninja", "custom_domain": true }],
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+
+  "env": {
+    // The official site with the Discord bot: npx wrangler deploy --env production. See "Discord bot" in the README
+    // for the cutover steps. Until then this environment is not deployed, and the old gh-worker keeps running.
+    "production": {
+      "name": "anyps5",
+      // Set to the official domain at cutover, and BASE_URL below to match. Empty so it never takes the demo's domain.
+      "routes": [],
+      "triggers": { "crons": ["* * * * *"] },
+      // The gh-worker's existing database, so linked users, merge history and the announcement cursor carry over.
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "gh-discord-roles",
+          "database_id": "32ee5bdf-8377-4aa2-820f-3233ff722da1",
+          "migrations_dir": "worker/migrations"
+        }
+      ],
+      "vars": {
+        "GITHUB_REPO": "boykopovar/AnyPS5",
+        "BASE_URL": "",
+        // Public key from the Discord app's General Information page; verifies slash-command requests.
+        "DISCORD_PUBLIC_KEY": "800ef93c85606d8c2e8e6e7552b062c30848b7f469d1936d7c67e9cdead806c2"
+      }
+    }
+  }
 }

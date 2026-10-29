@@ -1,12 +1,11 @@
 import type { BuildKind, Platform, Report } from "./schema";
 import { NOT_CONVERTING, type StageOrNone } from "./stages";
+import { titleIds } from "./ids";
+
+export { titleIds };
 
 const REPO_REF = /github\.com\/boykopovar\/AnyPS5\/(?:issues|pull)\/(\d{1,7})\b/gi;
 const HASH_REF = /(?<![\w/&])#(\d{2,6})\b/g;
-
-export function titleIds(text: string): string[] {
-  return unique([...text.toUpperCase().matchAll(/\b(PPSA|CUSA)[-_ ]?(\d{5})\b/g)].map((m) => m[1] + m[2]));
-}
 
 export function issueRefs(text: string): number[] {
   const refs = [...text.matchAll(REPO_REF), ...text.matchAll(HASH_REF)].map((m) => Number(m[1]));

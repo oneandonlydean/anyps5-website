@@ -84,9 +84,47 @@ systemctl --user enable --now anyps5-demo-refresh.timer
 
 The log is in `~/.local/state/anyps5-demo/refresh.log`. User timers only run while you are logged in. Run `loginctl enable-linger` to make them run at any time.
 
+## Discord bot
+
+The site's Worker (`worker/`) also runs the Discord bot that was the separate gh-worker:
+
+- **Linked roles:** members link their GitHub account and get roles by merged pull request count.
+- **Slash commands:** `/prs` and `/leaderboard`.
+- **Announcements:** every minute it checks for merges and posts each one as it lands. Merges are sorted with the same classifier as `/updates` (`src/lib/merges.ts`):
+
+| Webhook secret | What goes there |
+|---|---|
+| `DISCORD_WEBHOOK_PROGRESS` | Features, fixes and speed-ups (falls back to `DISCORD_WEBHOOK_URL`). Each post is coloured by area, with the area, type, size and any game the pull request names. A linked author is pinged. |
+| `DISCORD_WEBHOOK_DEV` | Tests, docs and tooling merges. Not posted when unset. |
+| `DISCORD_WEBHOOK_RELEASES` | New releases, checked every 5 minutes. |
+| `DISCORD_WEBHOOK_GAMES` | Games reaching a new stage, read from the site's games feed every 10 minutes. |
+
+The bot runs only in the `production` environment of `wrangler.jsonc`, which has the database and secrets. The demo has neither, so its bot endpoints return 404 and it has no cron. Its tests run in the Workers runtime: `npm run test:worker`.
+
+### Cutover from gh-worker
+
+The production environment uses gh-worker's D1 database, so linked members, the merge history and the announcement cursor carry over. On the day:
+
+1. Set the official domain in `env.production.routes` and `BASE_URL` in `wrangler.jsonc`.
+2. Set the secrets on the new Worker with `npx wrangler secret put <NAME> --env production`:
+   - `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`, `DISCORD_BOT_TOKEN`
+   - `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITHUB_TOKEN`
+   - `TOKEN_KEY`: the **same value** gh-worker uses. Linked members' Discord tokens are encrypted with it; with a new key they would all have to link again.
+   - the webhooks above
+3. Stop gh-worker's cron (remove its trigger, or delete the Worker), so the two never post the same merge or refresh the same tokens.
+4. Deploy: `npx wrangler deploy --env production`. Then run `npm --prefix worker run migrate:remote`; it is a no-op unless new migrations were added.
+5. In the Discord developer portal, point these at the new domain:
+   - Interactions Endpoint URL: `/interactions`
+   - Linked Roles Verification URL: `/linked-role`
+   - OAuth2 redirect: `/discord/callback`
+
+   In the GitHub OAuth app, set the callback URL to `/github/callback`. The slash commands stay registered and need no change.
+6. Point `.github/workflows/site.yml` at the production deploy (no `noindex` header) instead of `deploy:demo`.
+
 ## Layout
 
 ```
+worker/             the Cloudflare Worker: library proxy and Discord bot, with its own tests
 src/pages/          routes: home, compatibility, convert, docs (with the setup guide), download, progress, community, og images
 src/content/guide/  setup guide, one MDX file per step
 src/lib/            data loading, parsing, resolution, docs rendering, OG images
