@@ -7,8 +7,7 @@ import StageBar from "../StageBar.astro";
 import { getGames } from "../../lib/data";
 import { DISCORD_URL, formatDate, REPO_URL } from "../../lib/site";
 import { STAGES, stageRank, stageSlug } from "../../lib/stages";
-import Sparkline from "../Sparkline.astro";
-import { getCoverage, getProgress, getProgressHistory, getRelease } from "../../lib/upstream";
+import { getCoverage, getProgress, getRelease } from "../../lib/upstream";
 import { getUpdates } from "../../lib/updates";
 import { AREAS } from "../../lib/merges";
 import { loadGenerated } from "../../lib/load";
@@ -24,7 +23,7 @@ const t = strings(locale);
 const local = (path: string) => localePath(locale, path);
 const num = (n: number) => n.toLocaleString(locale === "en" ? "en-GB" : locale);
 
-const [games, release, progress, coverage, updates, libraryHistory] = await Promise.all([getGames(), getRelease(), getProgress(), getCoverage(), getUpdates(), getProgressHistory()]);
+const [games, release, progress, coverage, updates] = await Promise.all([getGames(), getRelease(), getProgress(), getCoverage(), getUpdates()]);
 // The newest day of merges, split by area, beside the newest releases and stage rises.
 const digest = updates.find((u) => u.kind === "digest");
 const digestAreas = digest ? AREAS.map((a) => [a, (digest.merges ?? []).filter((m) => m.area === a).length] as const).filter(([, n]) => n > 0) : [];
@@ -116,7 +115,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
           </b>
           <span class="meter" style={`--value:${progress.libraries.percent}%`} />
           <span class="muted">{t.home.librariesOf(num(progress.libraries.done), num(progress.libraries.total))}</span>
-          <Sparkline values={libraryHistory.map((d) => d.libraries.done)} color="var(--good)" label={t.home.librariesTrend} />
         </a>
       )
     }
@@ -130,7 +128,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
           </b>
           <span class="meter" style={`--value:${shaders.percent}%`} />
           <span class="muted">{t.home.shadersOf(num(coverage!.throws.total))}</span>
-          <Sparkline values={coverage!.history.map((h) => h.instructions?.decoded ?? null)} color="var(--accent-2)" label={t.home.shadersTrend} />
         </a>
       )
     }
