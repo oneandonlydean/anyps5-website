@@ -1,0 +1,53 @@
+import { stageRank, type StageOrNone } from "./stages";
+
+/** One uploaded run report, as the site Worker exports it (see worker/src/site/reports.ts). */
+export interface UploadSummary {
+  id: number;
+  titleId: string;
+  stage: StageOrNone;
+  login: string;
+  githubId: number;
+  at: string;
+  os: string;
+  gpuVendor: string;
+  commit: string;
+  release: string | null;
+  contentVersion: string | null;
+  exit: string;
+  missing: string[];
+  unsupported: string[];
+  stop: { kind: string; message: string | null };
+}
+
+export interface UploadExport {
+  generated: string | null;
+  uploads: UploadSummary[];
+  hidden: { screenshots: string[]; art: string[] };
+}
+
+export interface AutoStage {
+  /** The furthest stage any upload reached. */
+  stage: StageOrNone;
+  /** Distinct accounts whose uploads reached it, plus one if a Discussions report did too. */
+  confirmations: number;
+  /** Two confirmations: enough to count toward the game's stage. */
+  confirmed: boolean;
+}
+
+/** Confirmations needed before uploads move a game's stage. */
+export const CONFIRMATIONS_NEEDED = 2;
+
+/**
+ * Where a game's uploads put it. A stage counts once two different accounts reached it, or one account and a
+ * Discussions report did; the furthest such stage is confirmed. The furthest stage reached at all is shown as
+ * pending with its confirmation count.
+ */
+export function autoStage(uploads: UploadSummary[], discussionStage: StageOrNone | null): { furthest: AutoStage | null; confirmedStage: StageOrNone | null } {
+  if (!uploads.length) return { furthest: null, confirmedStage: null };
+  const confirmationsAt = (stage: StageOrNone) =>
+    new Set(uploads.filter((u) => stageRank(u.stage) >= stageRank(stage)).map((u) => u.githubId)).size + (stageRank(discussionStage) >= stageRank(stage) ? 1 : 0);
+  const stages = [...new Set(uploads.map((u) => u.stage))].sort((a, b) => stageRank(b) - stageRank(a));
+  const top = stages[0]!;
+  const confirmedStage = stages.find((s) => confirmationsAt(s) >= CONFIRMATIONS_NEEDED) ?? null;
+  return { furthest: { stage: top, confirmations: confirmationsAt(top), confirmed: confirmedStage === top }, confirmedStage };
+}

@@ -1,0 +1,139 @@
+import { env } from "cloudflare:workers";
+import { expect, it } from "vitest";
+import sample from "../../tests/fixtures/run-report.json";
+import worker from "../src/index";
+import { sha256 } from "../src/site/http";
+import { ctx, json, mockFetch } from "./helpers";
+
+const SITE = "https://worker.test";
+const now = () => Math.floor(Date.now() / 1000);
+const fresh = () => ({ ...structuredClone(sample), generated: new Date().toISOString() });
+
+async function signIn(login: string, id: number): Promise<string> {
+  const token = `session-${login}`;
+  await env.SITE_DB!.batch([
+    env.SITE_DB!.prepare("INSERT OR REPLACE INTO accounts (github_id, login, avatar, created_at) VALUES (?, ?, NULL, ?)").bind(id, login, now()),
+    env.SITE_DB!.prepare("INSERT INTO sessions (id_hash, github_id, expires_at) VALUES (?, ?, ?)").bind(await sha256(token), id, now() + 3600),
+  ]);
+  return `session=${token}`;
+}
+
+const call = (path: string, init: RequestInit & { cookie?: string; origin?: string | null } = {}) => {
+  const headers = new Headers(init.headers);
+  if (init.cookie) headers.set("cookie", init.cookie);
+  if (init.origin !== null && init.method === "POST") headers.set("origin", init.origin ?? SITE);
+  return worker.fetch!(new Request(`${SITE}${path}`, { ...init, headers }) as any, env, ctx);
+};
+const post = (path: string, body: unknown, cookie?: string, origin?: string | null) =>
+  call(path, { method: "POST", body: typeof body === "string" ? body : JSON.stringify(body), cookie, origin, headers: { "content-type": "application/json" } });
+
+it("signs in with GitHub and keeps only a hashed session", async () => {
+  const start = await call("/auth/github?return=/compatibility/hades-ii");
+  expect(start.status).toBe(302);
+  const location = new URL(start.headers.get("location")!);
+  expect(location.origin + location.pathname).toBe("https://github.com/login/oauth/authorize");
+  const state = location.searchParams.get("state")!;
+
+  mockFetch({
+    "POST https://github.com/login/oauth/access_token": () => json({ access_token: "gh-user-token" }),
+    "GET https://api.github.com/user": () => json({ id: 42, login: "Tester", avatar_url: "https://avatars.test/42" }),
+  });
+  const done = await call(`/auth/github/callback?code=c&state=${state}`, { cookie: `login_state=${state}` });
+  expect(done.status).toBe(302);
+  expect(done.headers.get("location")).toBe("/compatibility/hades-ii");
+  const session = done.headers.getSetCookie().find((c) => c.startsWith("session="))!.split(";")[0]!;
+
+  const me = await (await call("/api/me", { cookie: session })).json();
+  expect(me).toMatchObject({ signedIn: true, login: "Tester", maintainer: false });
+  const stored = await env.SITE_DB!.prepare("SELECT id_hash FROM sessions").first<string>("id_hash");
+  expect(stored).toBe(await sha256(session.slice("session=".length)));
+});
+
+it("refuses a callback whose state doesn't match the cookie, and only returns to this site", async () => {
+  expect((await call("/auth/github/callback?code=c&state=x", { cookie: "login_state=y" })).status).toBe(400);
+  const start = await call("/auth/github?return=//evil.example");
+  const state = new URL(start.headers.get("location")!).searchParams.get("state")!;
+  const row = await env.SITE_DB!.prepare("SELECT return_to FROM login_state WHERE state = ?").bind(state).first<string>("return_to");
+  expect(row).toBe("/report");
+});
+
+it("takes a valid report once, from a signed-in account on this site", async () => {
+  const cookie = await signIn("tester", 42);
+  const report = fresh();
+  const res = await post("/api/reports", report, cookie);
+  expect(res.status).toBe(201);
+  expect(await res.json()).toMatchObject({ status: "visible", titleId: "PPSA21564", stage: "Presents", flags: [] });
+  expect((await post("/api/reports", report, cookie)).status).toBe(409);
+  expect((await post("/api/reports", report)).status).toBe(401);
+  expect((await post("/api/reports", { ...report, generated: new Date(Date.now() - 1000).toISOString() }, cookie, "https://evil.example")).status).toBe(403);
+});
+
+it("rejects files that aren't reports, or that contradict themselves", async () => {
+  const cookie = await signIn("tester", 42);
+  expect((await post("/api/reports", "not json", cookie)).status).toBe(400);
+  const wrong = await post("/api/reports", { ...fresh(), extra: true }, cookie);
+  expect(wrong.status).toBe(400);
+  expect((await wrong.json<{ error: string }>()).error).toBe("This isn't a valid AnyPS5 run report.");
+  const contradictory = fresh();
+  contradictory.run.milestones.firstPresent = 1;
+  expect((await post("/api/reports", contradictory, cookie)).status).toBe(400);
+  expect((await post("/api/reports", "x".repeat(70_000), cookie)).status).toBe(413);
+});
+
+it("holds flagged reports for review and keeps them out of the export", async () => {
+  const cookie = await signIn("tester", 42);
+  const modified = fresh();
+  modified.anyps5.modified = true;
+  const res = await post("/api/reports", modified, cookie);
+  expect(await res.json()).toMatchObject({ status: "review", flags: ["Built from modified AnyPS5 sources."] });
+  const exported = await (await call("/api/export")).json<{ uploads: unknown[] }>();
+  expect(exported.uploads).toHaveLength(0);
+});
+
+it("lets maintainers approve, hide and block, logs it, and keeps others out", async () => {
+  const tester = await signIn("tester", 42);
+  const mod = await signIn("MOD1", 7);
+  const modified = fresh();
+  modified.anyps5.modified = true;
+  const { id } = await (await post("/api/reports", modified, tester)).json<{ id: number }>();
+
+  expect((await post("/api/mod/action", { action: "approve", kind: "upload", target: String(id) }, tester)).status).toBe(403);
+  expect((await call("/api/mod/queue", { cookie: tester })).status).toBe(403);
+  const queue = await (await call("/api/mod/queue", { cookie: mod })).json<{ review: { id: number; flags: string[] }[] }>();
+  expect(queue.review.map((r) => r.id)).toEqual([id]);
+
+  expect((await post("/api/mod/action", { action: "approve", kind: "upload", target: String(id) }, mod)).status).toBe(200);
+  expect((await post("/api/mod/action", { action: "hide", kind: "screenshot", target: "abc123", reason: "duplicate" }, mod)).status).toBe(200);
+  expect((await post("/api/mod/action", { action: "hide", kind: "art", target: "PPSA21564:cover" }, mod)).status).toBe(200);
+  let exported = await (await call("/api/export")).json<{ uploads: { id: number; login: string }[]; hidden: { screenshots: string[]; art: string[] } }>();
+  expect(exported.uploads.map((u) => [u.id, u.login])).toEqual([[id, "tester"]]);
+  expect(exported.hidden).toEqual({ screenshots: ["abc123"], art: ["PPSA21564:cover"] });
+
+  expect((await post("/api/mod/action", { action: "block", kind: "account", target: "tester" }, mod)).status).toBe(200);
+  exported = await (await call("/api/export")).json();
+  expect(exported.uploads).toHaveLength(0);
+  expect((await post("/api/reports", fresh(), tester)).status).toBe(403);
+
+  expect((await post("/api/mod/action", { action: "explode", kind: "upload", target: "1" }, mod)).status).toBe(400);
+  expect((await post("/api/mod/action", { action: "hide", kind: "art", target: "../etc" }, mod)).status).toBe(400);
+  const log = await env.SITE_DB!.prepare("SELECT action, kind, by_login FROM moderation_log ORDER BY id").all();
+  expect(log.results.map((r) => `${r.action} ${r.kind} ${r.by_login}`)).toEqual(["approve upload MOD1", "hide screenshot MOD1", "hide art MOD1", "block account MOD1"]);
+});
+
+it("asks the site repository to rebuild after an upload, at most once every two minutes", async () => {
+  const cookie = await signIn("tester", 42);
+  const calls = mockFetch({ "POST https://api.github.com/repos/acme/site/dispatches": () => new Response(null, { status: 204 }) });
+  const e = { ...env, SITE_DISPATCH_TOKEN: "dispatch-token", SITE_REPO: "acme/site" };
+  const send = (generated: string) =>
+    worker.fetch!(
+      new Request(`${SITE}/api/reports`, { method: "POST", body: JSON.stringify({ ...fresh(), generated }), headers: { cookie, origin: SITE } }) as any,
+      e as any,
+      { waitUntil: (p: Promise<unknown>) => void p, passThroughOnException() {}, props: {} } as unknown as ExecutionContext,
+    );
+  expect((await send(new Date().toISOString())).status).toBe(201);
+  await new Promise((r) => setTimeout(r, 20));
+  expect((await send(new Date(Date.now() - 5000).toISOString())).status).toBe(201);
+  await new Promise((r) => setTimeout(r, 20));
+  expect(calls.filter((c) => c.url.endsWith("/dispatches"))).toHaveLength(1);
+  expect(JSON.parse(calls[0]!.body)).toMatchObject({ event_type: "site-data-changed" });
+});

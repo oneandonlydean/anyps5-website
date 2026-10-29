@@ -25,6 +25,18 @@ export interface Env {
   /** Games reaching a new stage on the compatibility list. */
   DISCORD_WEBHOOK_GAMES?: string;
   TOKEN_KEY: string;
+
+  // The site's own features: GitHub sign-in, uploaded run reports, maintainer tools.
+  /** The site's database (accounts, uploads, what maintainers hid). Without it, those features are off. */
+  SITE_DB?: D1Database;
+  /** A GitHub OAuth app for signing in to the site (callback: <site>/auth/github/callback). */
+  SITE_GITHUB_CLIENT_ID?: string;
+  SITE_GITHUB_CLIENT_SECRET?: string;
+  /** Comma-separated GitHub logins that get the maintainer tools. */
+  MAINTAINERS?: string;
+  /** A token allowed to start the site repository's "Update site" workflow, and that repository ("owner/name"). */
+  SITE_DISPATCH_TOKEN?: string;
+  SITE_REPO?: string;
 }
 
 /** The bot runs only where its database and token key are configured; the demo deploy has neither. */

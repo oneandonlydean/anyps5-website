@@ -8,6 +8,10 @@ export default defineConfig(async () => ({
       miniflare: {
         bindings: {
           TEST_MIGRATIONS: await readD1Migrations("./migrations"),
+          TEST_SITE_MIGRATIONS: await readD1Migrations("./site-migrations"),
+          SITE_GITHUB_CLIENT_ID: "site-client",
+          SITE_GITHUB_CLIENT_SECRET: "site-secret",
+          MAINTAINERS: "Mod1, mod2",
           GITHUB_REPO: "acme/widgets",
           BASE_URL: "https://worker.test",
           DISCORD_CLIENT_ID: "app123",

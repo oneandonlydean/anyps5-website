@@ -1,0 +1,31 @@
+{
+  "format": "anyps5-report",
+  "version": 1,
+  "generated": "2026-10-29T12:00:00Z",
+  "anyps5": { "commit": "edf6804cf52c62eacafc592dd6142cb4efe5bd05", "release": "v0.1.3", "modified": false },
+  "game": { "titleId": "PPSA21564", "contentVersion": "01.002.000", "name": "ASTRO BOT" },
+  "system": {
+    "os": "linux",
+    "osVersion": "Arch Linux (kernel 6.11)",
+    "cpu": "AMD Ryzen 7 5800X",
+    "ramGiB": 32,
+    "gpu": { "vendor": "AMD", "name": "Radeon RX 6800", "driver": "Mesa 24.2.3 (RADV)", "vulkan": "1.3.289" }
+  },
+  "run": {
+    "seconds": 312,
+    "exit": "crash",
+    "stage": "presents",
+    "milestones": { "loaded": 1.2, "started": 1.4, "firstDraw": 8.9, "firstPresent": 9.3 },
+    "framesPresented": 4120,
+    "averageFps": 41.7
+  },
+  "missing": { "functions": [{ "library": "libSceNpTrophy", "name": "sceNpTrophyCreateContext", "calls": 3 }] },
+  "shaders": {
+    "compiled": 1234,
+    "failed": 3,
+    "unsupported": [{ "encoding": "MIMG", "opcode": "IMAGE_GATHER8H_PCK", "modifiers": [], "count": 2 }],
+    "imageFormats": [{ "format": 37, "name": "Format8_8_8_8Srgb", "supported": false, "count": 1 }],
+    "descriptors": [{ "type": "SampledImage", "supported": true }]
+  },
+  "stop": { "kind": "unsupported-shader", "message": "IMAGE_GATHER8H_PCK is not implemented", "source": "core/shader/recompiler/Translator/src/Mimg.cpp:812" }
+}

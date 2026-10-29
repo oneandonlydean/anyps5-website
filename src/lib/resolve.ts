@@ -1,6 +1,7 @@
 import type { NamedOverlay } from "./load";
 import type { Art, Issue, Platform, Report, Thread, Title } from "./schema";
 import { stageRank, type StageOrNone } from "./stages";
+import { autoStage, CONFIRMATIONS_NEEDED, type AutoStage, type UploadSummary } from "./uploads";
 
 export interface Identity {
   key: string;
@@ -36,6 +37,16 @@ export interface Game extends Omit<Identity, "overlay"> {
   reports: Report[];
   art: Art | null;
   overlayFile: string | null;
+  /** Run reports uploaded on the site, newest first. */
+  uploads: UploadSummary[];
+  /** The furthest stage uploads reached, and whether it has enough confirmations to count. */
+  autoStage: AutoStage | null;
+}
+
+/** What the site's own users added: uploaded run reports, and art maintainers hid ("<game key>:<role>"). */
+export interface Community {
+  uploads: UploadSummary[];
+  hiddenArt: Set<string>;
 }
 
 /** Build kinds whose reports set a game's headline stage. */
@@ -160,6 +171,7 @@ export function resolveGame(
   titles: Record<string, Title>,
   issues: Record<number, Issue>,
   art: Record<string, Art>,
+  community: Community = { uploads: [], hiddenArt: new Set() },
 ): Game {
   const { overlay, ...rest } = identity;
   const curated = overlay?.curated;
@@ -168,7 +180,12 @@ export function resolveGame(
   const top = best(qualifying);
 
   const reportWins = !curated || (top && top.date.slice(0, 10) > curated.date && stageRank(top.stage) > stageRank(curated.stage));
-  const stage = reportWins ? (top?.stage ?? null) : curated.stage;
+  const reported = reportWins ? (top?.stage ?? null) : curated.stage;
+  // Uploads raise the stage once confirmed: two accounts, or one account and a Discussions report.
+  const uploads = community.uploads.filter((u) => identity.titleIds.includes(u.titleId)).sort((a, b) => b.at.localeCompare(a.at));
+  const auto = autoStage(uploads, top?.stage ?? null);
+  const uploadWins = auto.confirmedStage !== null && stageRank(auto.confirmedStage) > stageRank(reported);
+  const stage = uploadWins ? auto.confirmedStage : reported;
   const branchTop = best(reports.filter((r) => !QUALIFYING.has(r.buildKind)));
   const branchStage = branchTop && stageRank(branchTop.stage) > stageRank(stage) ? branchTop.stage : null;
 
@@ -179,12 +196,13 @@ export function resolveGame(
   Object.assign(platforms, curated?.platforms);
 
   const events = timeline(qualifying);
+  if (uploadWins) events.push({ date: confirmedAt(uploads, auto.confirmedStage!, top), stage: auto.confirmedStage!, url: null });
   // A curated stage is a rise only when it is above the last one reached; a correction downwards is not an event.
   if (curated && !reportWins && stageRank(curated.stage) > stageRank(events.at(-1)?.stage)) events.push({ date: curated.date, stage: curated.stage, url: null });
 
   const latestWithBlockers = reports.find((r) => r.blockers.length);
   const blockerNumbers = curated?.blockers ?? latestWithBlockers?.blockers ?? [];
-  const updated = [...identity.threads.map((t) => t.updated), curated?.date ?? ""].sort().at(-1) ?? "";
+  const updated = [...identity.threads.map((t) => t.updated), curated?.date ?? "", uploads[0]?.at ?? ""].sort().at(-1) ?? "";
 
   return {
     ...rest,
@@ -194,7 +212,7 @@ export function resolveGame(
     releases: identity.titleIds.map((titleId) => ({ titleId, region: titles[titleId]?.region ?? null })),
     stage,
     branchStage,
-    verified: Boolean(curated && !reportWins),
+    verified: Boolean(curated && !reportWins && !uploadWins),
     platforms,
     gpuVendors: [...new Set(reports.map((r) => r.gpuVendor).filter((v): v is string => Boolean(v)))],
     reporters: new Set(reports.map((r) => r.author).filter(Boolean)).size,
@@ -203,9 +221,30 @@ export function resolveGame(
     blockers: openBlockers(blockerNumbers, issues),
     timeline: events.sort((a, b) => a.date.localeCompare(b.date)),
     reports,
-    art: withOverrides(art[identity.key] ?? null, overlay?.art),
+    art: withoutHidden(withOverrides(art[identity.key] ?? null, overlay?.art), identity.key, community.hiddenArt),
     overlayFile: overlay?.file ?? null,
+    uploads,
+    autoStage: auto.furthest,
   };
+}
+
+/** When uploads confirmed a stage: the upload that brought the count to two (or the first, with a Discussions report). */
+function confirmedAt(uploads: UploadSummary[], stage: StageOrNone, top: Report | null): string {
+  const reaching = uploads.filter((u) => stageRank(u.stage) >= stageRank(stage)).sort((a, b) => a.at.localeCompare(b.at));
+  const accounts = new Set<number>();
+  const needed = stageRank(top?.stage) >= stageRank(stage) ? CONFIRMATIONS_NEEDED - 1 : CONFIRMATIONS_NEEDED;
+  for (const u of reaching) {
+    accounts.add(u.githubId);
+    if (accounts.size >= needed) return u.at;
+  }
+  return reaching.at(-1)!.at;
+}
+
+/** Art roles maintainers hid for this game are dropped, so the page falls back as if the art were missing. */
+function withoutHidden(art: Art | null, key: string, hidden: Set<string>): Art | null {
+  if (!art || !hidden.size) return art;
+  const roles = ["square", "cover", "hero", "logo"] as const;
+  return { ...art, ...Object.fromEntries(roles.filter((r) => hidden.has(`${key}:${r}`)).map((r) => [r, null])) };
 }
 
 function withOverrides(art: Art | null, overrides: NamedOverlay["art"]): Art | null {

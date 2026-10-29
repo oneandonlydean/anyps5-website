@@ -3,7 +3,9 @@
  * - the converter's system library downloads: those archives (~100 MB each) exceed the 25 MiB asset limit, so they
  *   stream from the upstream Pages site instead, as the dev server's proxy does;
  * - the Discord bot: linked roles, slash commands, and a cron that announces merges, releases and game stage rises.
- *   It runs only where its database and secrets are configured (the production environment), so the demo has none.
+ *   It runs only where its database and secrets are configured (the production environment), so the demo has none;
+ * - the site's own features (/auth/*, /api/*): GitHub sign-in, uploaded run reports and maintainer tools, wherever
+ *   the site database is bound.
  */
 import { runCron } from "./bot/cron";
 import { botEnabled, log, type Env } from "./bot/env";
@@ -11,6 +13,10 @@ import { HttpError } from "./bot/http";
 import { interactions } from "./bot/interactions";
 import { discordCallback, githubCallback, linkedRole } from "./bot/link";
 import { page } from "./bot/pages";
+import { finishSignIn, me, signOut, startSignIn } from "./site/auth";
+import { problem } from "./site/http";
+import { act, queue } from "./site/moderation";
+import { exportData, upload } from "./site/reports";
 
 const UPSTREAM = "https://boykopovar.github.io/AnyPS5";
 const LIBRARIES = "/convert/app/libraries/";
@@ -20,6 +26,18 @@ const BOT_ROUTES: Record<string, (req: Request, env: Env) => Promise<Response>> 
   "GET /discord/callback": discordCallback,
   "GET /github/callback": githubCallback,
   "POST /interactions": interactions,
+};
+
+type Wait = (promise: Promise<unknown>) => void;
+const SITE_ROUTES: Record<string, (req: Request, env: Env, wait: Wait) => Promise<Response>> = {
+  "GET /auth/github": startSignIn,
+  "GET /auth/github/callback": finishSignIn,
+  "POST /auth/logout": signOut,
+  "GET /api/me": me,
+  "POST /api/reports": upload,
+  "GET /api/export": exportData,
+  "GET /api/mod/queue": queue,
+  "POST /api/mod/action": act,
 };
 
 async function library(request: Request, url: URL): Promise<Response> {
@@ -36,9 +54,19 @@ async function library(request: Request, url: URL): Promise<Response> {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname.startsWith(LIBRARIES)) return library(request, url);
+
+    const site = SITE_ROUTES[`${request.method} ${url.pathname}`];
+    if (site && env.SITE_DB) {
+      try {
+        return await site(request, env, (p) => ctx.waitUntil(p));
+      } catch (err) {
+        log("site_route_failed", { path: url.pathname, error: String(err) });
+        return problem(500, "Something went wrong. Try again.");
+      }
+    }
 
     const route = BOT_ROUTES[`${request.method} ${url.pathname}`];
     if (route && botEnabled(env)) {

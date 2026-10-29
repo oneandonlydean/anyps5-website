@@ -148,3 +148,23 @@ describe("threadName", () => {
     expect(threadName("Bringing up the rear (PPSA00001)")).toBe("Bringing up the rear");
   });
 });
+
+describe("uploads", () => {
+  const upload = (githubId: number, stage: Report["stage"], at: string) =>
+    ({ id: githubId, titleId: "PPSA00001", stage, login: `u${githubId}`, githubId, at, os: "linux", gpuVendor: "AMD", commit: "a".repeat(40), release: null, contentVersion: null, exit: "crash", missing: [], unsupported: [], stop: { kind: "none", message: null } }) as const;
+  const resolveWith = (uploads: ReturnType<typeof upload>[], hidden: string[] = []) =>
+    resolveGame(groupGames([thread(1, ["PPSA00001"], [report({ stage: "Starts" })])], [], {})[0]!, {}, {}, { PPSA00001: { checked: "", square: "s", cover: "c", hero: "h", logo: null, color: null, credits: [] } }, { uploads: uploads as never, hiddenArt: new Set(hidden) });
+
+  it("shows one upload as pending, and moves the stage once a second account confirms it", () => {
+    const one = resolveWith([upload(1, "Presents", "2026-10-20T00:00:00Z")]);
+    expect(one.stage).toBe("Starts");
+    expect(one.autoStage).toEqual({ stage: "Presents", confirmations: 1, confirmed: false });
+    const two = resolveWith([upload(1, "Presents", "2026-10-20T00:00:00Z"), upload(2, "Presents", "2026-10-22T00:00:00Z")]);
+    expect(two.stage).toBe("Presents");
+    expect(two.timeline.at(-1)).toEqual({ date: "2026-10-22T00:00:00Z", stage: "Presents", url: null });
+  });
+
+  it("drops art a maintainer hid", () => {
+    expect(resolveWith([], ["PPSA00001:cover"]).art).toMatchObject({ cover: null, square: "s", hero: "h" });
+  });
+});

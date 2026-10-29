@@ -1,0 +1,118 @@
+---
+interface Props {
+  /** The game's key in the art data (its main title ID), for hiding art roles. */
+  gameKey: string;
+}
+
+/**
+ * Hide buttons for maintainers, added to the page only when the signed-in account is one: on screenshots, the cover,
+ * backdrop and logo, and uploaded reports. Changes show once the site rebuilds, a few minutes later.
+ */
+const { gameKey } = Astro.props;
+---
+
+<div class="maintainer" data-maintainer={gameKey} hidden>
+  <span class="label">Maintainer</span>
+  <button type="button" data-hide-art="cover">Hide cover</button>
+  <button type="button" data-hide-art="hero">Hide backdrop</button>
+  <button type="button" data-hide-art="logo">Hide logo</button>
+  <a href="/moderate">Review queue</a>
+</div>
+
+<script>
+  const bar = document.querySelector<HTMLElement>("[data-maintainer]");
+
+  async function act(action: string, kind: string, target: string, reason?: string): Promise<boolean> {
+    const res = await fetch("/api/mod/action", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ action, kind, target, reason }),
+    });
+    const message = res.ok ? "Hidden. The page updates after the next rebuild, in a few minutes." : ((await res.json().catch(() => null))?.error ?? "That didn't work.");
+    document.dispatchEvent(new CustomEvent("toast", { detail: message }));
+    return res.ok;
+  }
+
+  function hideButton(label: string, onClick: () => Promise<boolean>, done: () => void): HTMLButtonElement {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "mod-hide";
+    button.textContent = label;
+    button.addEventListener("click", async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!confirm(`${label}?`)) return;
+      button.disabled = true;
+      if (await onClick()) done();
+      else button.disabled = false;
+    });
+    return button;
+  }
+
+  if (bar) {
+    fetch("/api/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((me: { maintainer?: boolean } | null) => {
+        if (!me?.maintainer) return;
+        const key = bar.dataset.maintainer!;
+        bar.hidden = false;
+        for (const button of bar.querySelectorAll<HTMLButtonElement>("[data-hide-art]")) {
+          button.addEventListener("click", async () => {
+            const role = button.dataset.hideArt!;
+            if (confirm(`Hide this game's ${button.textContent!.replace("Hide ", "")}?`) && (await act("hide", "art", `${key}:${role}`))) button.disabled = true;
+          });
+        }
+        // Screenshots: the id is in each tile's link, /community/<id>-full.webp.
+        for (const tile of document.querySelectorAll<HTMLAnchorElement>(".shot")) {
+          const id = tile.getAttribute("href")?.match(/\/community\/([0-9a-z]+)-full\.webp$/)?.[1];
+          if (id) tile.append(hideButton("Hide screenshot", () => act("hide", "screenshot", id, "Hidden from the game page"), () => (tile.style.opacity = "0.3")));
+        }
+        for (const row of document.querySelectorAll<HTMLElement>("[data-upload-id]")) {
+          row.append(hideButton("Hide report", () => act("hide", "upload", row.dataset.uploadId!), () => row.setAttribute("data-hidden", "")));
+        }
+      })
+      .catch(() => {});
+  }
+</script>
+
+<style>
+  .maintainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 8px 12px;
+    border: 1px dashed var(--warn);
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+  }
+  .maintainer[hidden] {
+    display: none;
+  }
+  .label {
+    color: var(--warn);
+    font: 600 0.7rem var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .maintainer button,
+  :global(.mod-hide) {
+    padding: 3px 9px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: 500 0.76rem var(--font);
+    cursor: pointer;
+  }
+  :global(.shot .mod-hide) {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 2;
+  }
+  :global([data-upload-id] .mod-hide) {
+    margin-top: 8px;
+  }
+</style>

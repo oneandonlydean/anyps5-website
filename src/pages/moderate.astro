@@ -1,0 +1,238 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Moderation" description="Tools for AnyPS5 maintainers." unsearchable noindex>
+  <section class="container page-head">
+    <span class="eyebrow">Maintainers</span>
+    <h1>Moderation</h1>
+    <p class="lede">Review flagged run reports, hide reports, screenshots or art, and block accounts. Changes show on the site after the next rebuild, a few minutes later.</p>
+  </section>
+
+  <section class="container mod" data-mod>
+    <p class="muted" data-state>Checking your account…</p>
+    <div data-panels hidden>
+      <section class="card panel">
+        <h2>Needs review <span class="muted count" data-review-count></span></h2>
+        <p class="hint">Reports the consistency checks flagged. They don't count until approved.</p>
+        <ul class="list" data-list="review"></ul>
+      </section>
+      <section class="card panel">
+        <h2>Latest uploads</h2>
+        <ul class="list" data-list="recent"></ul>
+      </section>
+      <section class="card panel">
+        <h2>Hidden</h2>
+        <p class="hint">Screenshots and art hidden from game pages. On a game page, maintainers get hide buttons of their own.</p>
+        <ul class="list" data-list="hidden"></ul>
+      </section>
+      <section class="card panel">
+        <h2>Accounts</h2>
+        <form class="block" data-block>
+          <label>
+            <span class="visually-hidden">GitHub login</span>
+            <input name="login" placeholder="GitHub login" required pattern="[A-Za-z0-9-]{1,39}" />
+          </label>
+          <button type="submit" class="button small">Block</button>
+        </form>
+        <p class="hint">A blocked account can't upload, and its reports disappear from the site.</p>
+        <ul class="list" data-list="blocked"></ul>
+      </section>
+      <section class="card panel">
+        <h2>Recent actions</h2>
+        <ul class="list log" data-list="log"></ul>
+      </section>
+    </div>
+  </section>
+</Base>
+
+<script>
+  type Upload = { id: number; titleId: string; stage: string; login: string; at: string; os: string; gpuVendor: string; status: string; flags: string[]; stop: { kind: string; message: string | null } };
+  type Queue = { review: Upload[]; recent: Upload[]; blocked: string[]; hidden: { kind: string; target: string; reason: string | null; by_login: string }[]; log: { action: string; kind: string; target: string; by_login: string; created_at: number }[] };
+
+  const root = document.querySelector<HTMLElement>("[data-mod]")!;
+  const state = root.querySelector<HTMLElement>("[data-state]")!;
+  const panels = root.querySelector<HTMLElement>("[data-panels]")!;
+  const list = (name: string) => root.querySelector<HTMLElement>(`[data-list="${name}"]`)!;
+
+  const el = (tag: string, text = "", className?: string) => {
+    const node = document.createElement(tag);
+    node.textContent = text;
+    if (className) node.className = className;
+    return node;
+  };
+
+  async function act(action: string, kind: string, target: string) {
+    const res = await fetch("/api/mod/action", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action, kind, target }) });
+    const data = await res.json().catch(() => ({}));
+    document.dispatchEvent(new CustomEvent("toast", { detail: res.ok ? "Done. The site updates after the next rebuild." : (data.error ?? "That didn't work.") }));
+    if (res.ok) load();
+  }
+
+  const button = (label: string, onClick: () => void) => {
+    const b = el("button", label, "button small") as HTMLButtonElement;
+    b.type = "button";
+    b.addEventListener("click", onClick);
+    return b;
+  };
+
+  function uploadItem(u: Upload) {
+    const item = el("li");
+    const head = el("div", "", "row");
+    const game = el("a", u.titleId) as HTMLAnchorElement;
+    game.href = `/compatibility/?q=${u.titleId}`;
+    head.append(game, el("span", `${u.stage} · ${u.os} · ${u.gpuVendor}`), el("span", `${u.login} · ${new Date(u.at).toLocaleString()}`, "muted"), el("span", u.status, `status ${u.status}`));
+    item.append(head);
+    if (u.stop.message) item.append(el("p", `${u.stop.kind}: ${u.stop.message}`, "muted small"));
+    for (const flag of u.flags) item.append(el("p", flag, "flag small"));
+    const actions = el("div", "", "actions");
+    if (u.status === "review") actions.append(button("Approve", () => act("approve", "upload", String(u.id))));
+    if (u.status !== "hidden") actions.append(button("Hide", () => act("hide", "upload", String(u.id))));
+    else actions.append(button("Unhide", () => act("unhide", "upload", String(u.id))));
+    actions.append(button(`Block ${u.login}`, () => confirm(`Block ${u.login}? Their reports disappear from the site.`) && act("block", "account", u.login)));
+    item.append(actions);
+    return item;
+  }
+
+  function fill(name: string, items: HTMLElement[], empty: string) {
+    list(name).replaceChildren(...(items.length ? items : [el("li", empty, "muted empty")]));
+  }
+
+  async function load() {
+    const res = await fetch("/api/mod/queue");
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 401) {
+        const link = el("a", "Sign in with GitHub", "") as HTMLAnchorElement;
+        link.href = "/auth/github?return=/moderate";
+        state.replaceChildren(link, el("span", " to use the maintainer tools."));
+      } else state.replaceChildren(el("span", data.error ?? "Moderation isn't available here."));
+      panels.hidden = true;
+      return;
+    }
+    const q: Queue = await res.json();
+    state.hidden = true;
+    panels.hidden = false;
+    root.querySelector<HTMLElement>('[data-review-count]')!.textContent = String(q.review.length);
+    fill("review", q.review.map(uploadItem), "Nothing waiting.");
+    fill("recent", q.recent.map(uploadItem), "No uploads yet.");
+    fill(
+      "hidden",
+      q.hidden.map((h) => {
+        const item = el("li", "", "row");
+        item.append(el("span", `${h.kind}: ${h.target}`, "mono"), el("span", `${h.by_login}${h.reason ? ` · ${h.reason}` : ""}`, "muted"), button("Unhide", () => act("unhide", h.kind, h.target)));
+        return item;
+      }),
+      "Nothing hidden.",
+    );
+    fill(
+      "blocked",
+      q.blocked.map((login) => {
+        const item = el("li", "", "row");
+        item.append(el("span", login), button("Unblock", () => act("unblock", "account", login)));
+        return item;
+      }),
+      "No blocked accounts.",
+    );
+    fill(
+      "log",
+      q.log.map((l) => el("li", `${new Date(l.created_at * 1000).toLocaleString()} · ${l.by_login}: ${l.action} ${l.kind} ${l.target}`, "small")),
+      "No actions yet.",
+    );
+  }
+
+  root.querySelector<HTMLFormElement>("[data-block]")!.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.currentTarget as HTMLFormElement;
+    const login = (form.elements.namedItem("login") as HTMLInputElement).value.trim();
+    if (login && confirm(`Block ${login}?`)) act("block", "account", login).then(() => form.reset());
+  });
+
+  load();
+</script>
+
+<style>
+  .mod {
+    padding-bottom: 96px;
+  }
+  [data-panels] {
+    display: grid;
+    gap: 20px;
+    max-width: 960px;
+  }
+  [data-panels][hidden] {
+    display: none;
+  }
+  .panel {
+    padding: clamp(18px, 3vw, 26px);
+  }
+  .panel h2 {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+  }
+  .hint {
+    margin: 0 0 14px;
+    color: var(--faint);
+    font-size: 0.85rem;
+  }
+  .list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .list :global(li) {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+  }
+  .list :global(li.empty) {
+    border-style: dashed;
+  }
+  .list :global(.row) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+  }
+  .list :global(.small) {
+    margin: 6px 0 0;
+    font-size: 0.8rem;
+  }
+  .list :global(.flag) {
+    color: var(--warn);
+  }
+  .list :global(.status) {
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: var(--raised);
+    font: 600 0.7rem var(--mono);
+    text-transform: uppercase;
+  }
+  .list :global(.status.review) {
+    color: var(--warn);
+  }
+  .list :global(.actions) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .block {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .block input {
+    min-width: 0;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+  }
+</style>

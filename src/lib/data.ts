@@ -5,20 +5,27 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Art, Issue, Report, Shot, Thread, Title } from "./schema";
 import { gameScreenshots, type Screenshot } from "./screenshots";
+import type { UploadExport } from "./uploads";
+
+/** Uploaded run reports and what maintainers hid, from the site Worker (scripts/sync-uploads.ts). */
+export const getCommunity = () =>
+  loadGenerated<UploadExport>("uploads.json", { generated: null, uploads: [], hidden: { screenshots: [], art: [] } });
 import { stageRank } from "./stages";
 
 let cache: Promise<Game[]> | undefined;
 
 async function load(): Promise<Game[]> {
-  const [threads, overlays, titles, issues, art] = await Promise.all([
+  const [threads, overlays, titles, issues, art, community] = await Promise.all([
     loadGenerated<Thread[]>("threads.json", []),
     loadOverlays(),
     loadGenerated<Record<string, Title>>("titles.json", {}),
     loadGenerated<Record<number, Issue>>("issues.json", {}),
     loadGenerated<Record<string, Art>>("art.json", {}),
+    getCommunity(),
   ]);
+  const extra = { uploads: community.uploads, hiddenArt: new Set(community.hidden.art) };
   return groupGames(threads, overlays, titles)
-    .map((identity) => resolveGame(identity, titles, issues, art))
+    .map((identity) => resolveGame(identity, titles, issues, art, extra))
     .sort((a, b) => stageRank(b.stage) - stageRank(a.stage) || b.updated.localeCompare(a.updated));
 }
 
@@ -120,9 +127,11 @@ let screenshotCache: Promise<Map<string, Screenshot[]>> | undefined;
  */
 export function getScreenshots(): Promise<Map<string, Screenshot[]>> {
   return (screenshotCache ??= (async () => {
-    const [games, shots] = await Promise.all([getGames(), loadGenerated<Record<string, Shot>>("screenshots.json", {})]);
+    const [games, shots, community] = await Promise.all([getGames(), loadGenerated<Record<string, Shot>>("screenshots.json", {}), getCommunity()]);
+    // Maintainers can hide a screenshot (a duplicate, a poor capture); it is then left out like a missing file.
+    const hidden = new Set(community.hidden.screenshots);
     const present = Object.fromEntries(
-      Object.entries(shots).filter(([id]) => existsSync(resolve(process.cwd(), "public/community", `${id}-thumb.webp`))),
+      Object.entries(shots).filter(([id]) => !hidden.has(id) && existsSync(resolve(process.cwd(), "public/community", `${id}-thumb.webp`))),
     );
     return new Map(games.map((game) => [game.slug, gameScreenshots(game.threads, present)]).filter(([, list]) => list.length > 0) as [string, Screenshot[]][]);
   })());

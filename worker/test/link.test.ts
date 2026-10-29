@@ -2,10 +2,10 @@ import { env } from "cloudflare:workers";
 import { expect, it } from "vitest";
 import { decrypt, importKey } from "../src/bot/crypto";
 import worker from "../src/index";
-import { DISCORD_TOKEN, ROLE, SEARCH, getUser, json, mockFetch, type Call } from "./helpers";
+import { DISCORD_TOKEN, ROLE, SEARCH, ctx, getUser, json, mockFetch, type Call } from "./helpers";
 
 const get = (path: string, cookie?: string) =>
-  worker.fetch(new Request(`https://worker.test${path}`, { headers: cookie ? { cookie } : {} }) as any, env);
+  worker.fetch(new Request(`https://worker.test${path}`, { headers: cookie ? { cookie } : {} }) as any, env, ctx);
 
 const cookieOf = (res: Response) => res.headers.get("set-cookie")!.split(";")[0]!;
 const stateOf = (res: Response) => new URL(res.headers.get("location")!).searchParams.get("state")!;

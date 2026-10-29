@@ -84,6 +84,17 @@ systemctl --user enable --now anyps5-demo-refresh.timer
 
 The log is in `~/.local/state/anyps5-demo/refresh.log`. User timers only run while you are logged in. Run `loginctl enable-linger` to make them run at any time.
 
+## Run reports and maintainer tools
+
+People can sign in with GitHub and upload the `anyps5-report.json` AnyPS5 writes after a run. The brief for the runtime side is `docs/proposals/run-report.md`, and the format is `src/lib/run-report.ts`.
+
+- **Upload checks:** the Worker validates each upload strictly against the schema. It refuses reports that contradict themselves (impossible milestones, dates in the future) and flags claims that contradict the source code, such as a "missing" function that is implemented or an "unsupported" instruction the recompiler translates. Flagged reports wait for a maintainer.
+- **Confirmations:** an upload counts toward a game's stage once two different accounts reach it, or one account and a Discussions report do. Until then the game page shows it as "1 of 2 confirmations".
+- **Maintainer tools:** maintainers (the `MAINTAINERS` variable in `wrangler.jsonc`) get hide buttons on game pages, for screenshots, the cover, backdrop and logo, and uploaded reports. `/moderate` has a review queue, hidden items, account blocking and a log of every action.
+- **How changes reach the site:** uploads and maintainer actions live in the `anyps5-site` D1 database. `sync:uploads` pulls them into the build from `/api/export`. With `SITE_DISPATCH_TOKEN` set, the Worker asks this repository to rebuild after each change, at most every 2 minutes.
+
+To switch sign-in on, create a GitHub OAuth app (Settings → Developer settings → OAuth Apps) with the callback URL `https://<site>/auth/github/callback`. Then set `SITE_GITHUB_CLIENT_ID` and `SITE_GITHUB_CLIENT_SECRET` with `npx wrangler secret put <NAME> --env=""` (or `--env production`). For rebuilds, `SITE_DISPATCH_TOKEN` is a fine-grained token with "Contents: read and write" on this repository.
+
 ## Discord bot
 
 The site's Worker (`worker/`) also runs the Discord bot that was the separate gh-worker:

@@ -1,0 +1,149 @@
+---
+import StageBadge from "./StageBadge.astro";
+import { formatDate } from "../lib/site";
+import { CONFIRMATIONS_NEEDED, type AutoStage, type UploadSummary } from "../lib/uploads";
+import { PLATFORM_LABEL } from "../lib/view";
+
+interface Props {
+  uploads: UploadSummary[];
+  auto: AutoStage | null;
+  slug: string;
+}
+
+/** Run reports people uploaded on the site, with how far they got and whether that is confirmed yet. */
+const { uploads, auto, slug } = Astro.props;
+const STOP: Record<string, string> = {
+  none: "Ran without stopping",
+  "missing-function": "Stopped on a missing function",
+  "unsupported-shader": "Stopped on an unsupported shader",
+  "unsupported-format": "Stopped on an unsupported format",
+  crash: "Crashed",
+  assert: "Stopped on an assertion",
+  other: "Stopped",
+};
+const shown = uploads.slice(0, 10);
+---
+
+<section class="card panel uploads" data-uploads>
+  <h2>Uploaded run reports <span class="muted count">{uploads.length}</span></h2>
+  {
+    auto && (
+      <p class="status">
+        <StageBadge stage={auto.stage} />
+        {auto.confirmed ? (
+          <span>
+            Confirmed by {auto.confirmations} {auto.confirmations === 1 ? "report" : "reports"}.
+          </span>
+        ) : (
+          <span class="muted">
+            {auto.confirmations} of {CONFIRMATIONS_NEEDED} confirmations. It counts toward the game's stage once another tester confirms it.
+          </span>
+        )}
+      </p>
+    )
+  }
+  <ul>
+    {
+      shown.map((u) => (
+        <li data-upload-id={u.id}>
+          <div class="row">
+            <StageBadge stage={u.stage} />
+            <span class="system">
+              {PLATFORM_LABEL[u.os as keyof typeof PLATFORM_LABEL] ?? u.os} · {u.gpuVendor}
+            </span>
+            <span class="muted build mono">{u.release ?? u.commit.slice(0, 8)}</span>
+            <span class="muted by">
+              <a href={`https://github.com/${u.login}`}>{u.login}</a> · {formatDate(u.at)}
+            </span>
+          </div>
+          <p class="stop">
+            {STOP[u.stop.kind] ?? "Stopped"}
+            {u.stop.message && <span class="muted mono">: {u.stop.message}</span>}
+          </p>
+          {(u.missing.length > 0 || u.unsupported.length > 0) && (
+            <p class="needs">
+              {u.missing.slice(0, 4).map((name) => (
+                <span class="chip mono" title="Missing function">
+                  {name}
+                </span>
+              ))}
+              {u.unsupported.slice(0, 4).map((op) => (
+                <span class="chip shader mono" title="Unsupported shader instruction">
+                  {op}
+                </span>
+              ))}
+            </p>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+  <a class="more" href={`/report?game=${slug}#upload`}>Upload your run report</a>
+</section>
+
+<style>
+  .status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+    font-size: 0.9rem;
+  }
+  ul {
+    display: grid;
+    gap: 10px;
+    margin: 0 0 14px;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+  li[data-hidden] {
+    opacity: 0.4;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    font-size: 0.86rem;
+  }
+  .by {
+    margin-left: auto;
+    font-size: 0.8rem;
+  }
+  .build {
+    font-size: 0.78rem;
+  }
+  .stop {
+    margin: 8px 0 0;
+    font-size: 0.86rem;
+  }
+  .stop .mono {
+    font-size: 0.8rem;
+    word-break: break-word;
+  }
+  .needs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0 0;
+  }
+  .chip {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    color: var(--muted);
+    font-size: 0.74rem;
+  }
+  .chip.shader {
+    background: color-mix(in srgb, var(--accent-2) 12%, transparent);
+  }
+  .more {
+    font-size: 0.86rem;
+  }
+</style>

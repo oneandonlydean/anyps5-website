@@ -1,7 +1,7 @@
 import { env } from "cloudflare:workers";
 import { beforeAll, expect, it } from "vitest";
 import worker from "../src/index";
-import { addUser } from "./helpers";
+import { addUser, ctx } from "./helpers";
 
 const hex = (b: ArrayBuffer) => Array.from(new Uint8Array(b), (x) => x.toString(16).padStart(2, "0")).join("");
 
@@ -24,6 +24,7 @@ async function send(interaction: unknown, tamper = false): Promise<Response> {
       body: tamper ? body + " " : body,
     }) as any,
     testEnv,
+    ctx,
   );
 }
 
@@ -36,7 +37,7 @@ const command = (name: string, caller: string, user?: string) => ({
 it("answers a signed ping and rejects unsigned or tampered requests", async () => {
   expect(await (await send({ type: 1 })).json()).toEqual({ type: 1 });
   expect((await send({ type: 1 }, true)).status).toBe(401);
-  const unsigned = await worker.fetch(new Request("https://worker.test/interactions", { method: "POST", body: "{}" }) as any, testEnv);
+  const unsigned = await worker.fetch(new Request("https://worker.test/interactions", { method: "POST", body: "{}" }) as any, testEnv, ctx);
   expect(unsigned.status).toBe(401);
 });
 

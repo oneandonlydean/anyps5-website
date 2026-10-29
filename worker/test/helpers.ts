@@ -98,3 +98,6 @@ export const setCursor = (value: string) =>
 
 export const getCursor = () =>
   env.DB.prepare("SELECT value FROM kv WHERE key = 'last_merged_at'").first<string>("value");
+
+/** The execution context the Worker's fetch handler receives; background work runs to completion in tests anyway. */
+export const ctx = { waitUntil: () => {}, passThroughOnException: () => {}, props: {} } as unknown as ExecutionContext;

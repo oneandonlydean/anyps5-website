@@ -1,0 +1,245 @@
+---
+import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
+---
+
+<section class="card upload" id="upload" data-upload>
+  <div class="intro">
+    <h2>Upload a run report</h2>
+    <p class="muted">
+      After each run, AnyPS5 can write <code>anyps5-report.json</code> next to the game: how far it got, what it was missing, and why it stopped. Upload it to add your
+      result to the compatibility list. A stage counts once {CONFIRMATIONS_NEEDED} testers confirm it, or one tester and a Discussions report.
+    </p>
+    <p class="muted soon">AnyPS5 builds that write this file are on the way. Until then, use the form below.</p>
+  </div>
+
+  <div class="account" data-account>
+    <span class="muted">Checking whether you're signed in…</span>
+  </div>
+
+  <div class="drop" data-drop hidden>
+    <input type="file" accept=".json,application/json" id="report-file" data-file />
+    <label for="report-file">
+      <b>Choose anyps5-report.json</b>
+      <span class="muted">or drop it here</span>
+    </label>
+    <div class="preview" data-preview hidden></div>
+    <button type="button" class="button primary" data-send hidden>Upload report</button>
+  </div>
+  <div class="result" data-result role="status" aria-live="polite"></div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-upload]")!;
+  const account = root.querySelector<HTMLElement>("[data-account]")!;
+  const drop = root.querySelector<HTMLElement>("[data-drop]")!;
+  const input = root.querySelector<HTMLInputElement>("[data-file]")!;
+  const preview = root.querySelector<HTMLElement>("[data-preview]")!;
+  const send = root.querySelector<HTMLButtonElement>("[data-send]")!;
+  const result = root.querySelector<HTMLElement>("[data-result]")!;
+  const MAX = 64 * 1024;
+  let body: string | null = null;
+
+  const el = (tag: string, text: string, className?: string) => {
+    const node = document.createElement(tag);
+    node.textContent = text;
+    if (className) node.className = className;
+    return node;
+  };
+
+  function showAccount(me: { signedIn: boolean; signInAvailable?: boolean; login?: string; avatar?: string; blocked?: boolean }) {
+    account.replaceChildren();
+    if (!me.signedIn) {
+      if (me.signInAvailable === false) {
+        account.append(el("span", "Uploading isn't switched on for this site yet.", "muted"));
+        return;
+      }
+      const link = el("a", "Sign in with GitHub to upload", "button");
+      (link as HTMLAnchorElement).href = `/auth/github?return=${encodeURIComponent(location.pathname + location.search + "#upload")}`;
+      account.append(link, el("span", "Reports are tied to your GitHub account, so nobody can upload in your name.", "muted note"));
+      return;
+    }
+    if (me.avatar) {
+      const img = document.createElement("img");
+      img.src = me.avatar;
+      img.alt = "";
+      img.width = 24;
+      img.height = 24;
+      account.append(img);
+    }
+    account.append(el("span", `Signed in as ${me.login}`));
+    const out = el("button", "Sign out", "linkish") as HTMLButtonElement;
+    out.type = "button";
+    out.addEventListener("click", async () => {
+      await fetch("/auth/logout", { method: "POST" });
+      location.reload();
+    });
+    account.append(out);
+    if (me.blocked) account.append(el("span", "This account can't upload reports.", "muted"));
+    else drop.hidden = false;
+  }
+
+  fetch("/api/me")
+    .then((r) => (r.ok ? r.json() : { signedIn: false, signInAvailable: false }))
+    .then(showAccount)
+    .catch(() => showAccount({ signedIn: false, signInAvailable: false }));
+
+  // A quick look in the browser first, so an obviously wrong file is caught before it is sent.
+  async function choose(file: File | undefined) {
+    result.replaceChildren();
+    preview.hidden = send.hidden = true;
+    body = null;
+    if (!file) return;
+    if (file.size > MAX) return result.append(el("p", "That file is too big for a run report (64 KB at most).", "bad"));
+    const text = await file.text();
+    let report: any;
+    try {
+      report = JSON.parse(text);
+    } catch {
+      return result.append(el("p", "That file isn't JSON. Choose the anyps5-report.json AnyPS5 wrote.", "bad"));
+    }
+    if (report?.format !== "anyps5-report") return result.append(el("p", "That isn't an AnyPS5 run report.", "bad"));
+    body = text;
+    preview.replaceChildren(
+      el("b", `${report.game?.name ?? report.game?.titleId ?? "Unknown game"} (${report.game?.titleId ?? "?"})`),
+      el("span", `Reached ${report.run?.stage ?? "?"} on ${report.system?.os ?? "?"} with ${report.system?.gpu?.vendor ?? "?"}`, "muted"),
+    );
+    preview.hidden = send.hidden = false;
+  }
+
+  input.addEventListener("change", () => choose(input.files?.[0]));
+  drop.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    drop.classList.add("over");
+  });
+  drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+  drop.addEventListener("drop", (event) => {
+    event.preventDefault();
+    drop.classList.remove("over");
+    choose(event.dataTransfer?.files[0]);
+  });
+
+  send.addEventListener("click", async () => {
+    if (!body) return;
+    send.disabled = true;
+    result.replaceChildren(el("p", "Uploading…", "muted"));
+    const res = await fetch("/api/reports", { method: "POST", headers: { "content-type": "application/json" }, body });
+    const data = await res.json().catch(() => ({}));
+    result.replaceChildren();
+    send.disabled = false;
+    if (res.ok) {
+      const done = el(
+        "p",
+        data.status === "review"
+          ? "Thanks! Something in this report needs a maintainer to look at it first; it shows once they have."
+          : "Thanks! Your report is in. The game's page shows it after the next update, in a few minutes.",
+        "good",
+      );
+      const link = el("a", `Find ${data.titleId} on the compatibility list`) as HTMLAnchorElement;
+      link.href = `/compatibility/?q=${encodeURIComponent(data.titleId)}`;
+      result.append(done, link);
+      preview.hidden = send.hidden = true;
+      input.value = "";
+      return;
+    }
+    result.append(el("p", data.error ?? "The upload didn't work. Try again.", "bad"));
+    if (Array.isArray(data.issues)) {
+      const list = document.createElement("ul");
+      for (const issue of data.issues) list.append(el("li", issue));
+      result.append(list);
+    }
+  });
+</script>
+
+<style>
+  .upload {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: clamp(20px, 3vw, 28px);
+  }
+  .upload h2 {
+    margin: 0 0 6px;
+    font-size: 1.15rem;
+  }
+  .intro p {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+  .soon {
+    margin-top: 8px !important;
+    font-size: 0.84rem !important;
+  }
+  .account {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+  .account :global(img) {
+    border-radius: 50%;
+  }
+  .account :global(.note) {
+    font-size: 0.82rem;
+  }
+  .account :global(.linkish) {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    cursor: pointer;
+  }
+  .drop {
+    display: grid;
+    gap: 12px;
+    justify-items: start;
+    padding: 18px;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .drop[hidden] {
+    display: none;
+  }
+  .drop.over {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
+  .drop input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .drop label {
+    display: grid;
+    gap: 2px;
+    cursor: pointer;
+  }
+  .drop input:focus-visible + label {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+  .preview {
+    display: grid;
+    gap: 2px;
+    font-size: 0.9rem;
+  }
+  .result :global(p) {
+    margin: 0 0 6px;
+    font-size: 0.9rem;
+  }
+  .result :global(.good) {
+    color: var(--good);
+  }
+  .result :global(.bad) {
+    color: var(--bad);
+  }
+  .result :global(ul) {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>

@@ -10,11 +10,20 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     // Everything is a static file except the converter's library downloads, which the Worker streams from upstream,
-    // and the Discord bot's endpoints.
-    "run_worker_first": ["/convert/app/libraries/*", "/linked-role", "/discord/callback", "/github/callback", "/interactions"]
+    // the site's sign-in and API (/auth/*, /api/*), and the Discord bot's endpoints.
+    "run_worker_first": ["/convert/app/libraries/*", "/api/*", "/auth/*", "/linked-role", "/discord/callback", "/github/callback", "/interactions"]
   },
   "routes": [{ "pattern": "anyps5-demo.deanisa.ninja", "custom_domain": true }],
   "observability": { "enabled": true },
+  // The site's own data: GitHub sign-in, uploaded run reports, what maintainers hid. Shared with production, so
+  // uploads made before cutover carry over.
+  "d1_databases": [
+    { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" }
+  ],
+  "vars": {
+    "MAINTAINERS": "oneandonlydean",
+    "SITE_REPO": "oneandonlydean/anyps5-website"
+  },
 
   "env": {
     // The official site with the Discord bot: npx wrangler deploy --env production. See "Discord bot" in the README
@@ -31,9 +40,12 @@
           "database_name": "gh-discord-roles",
           "database_id": "32ee5bdf-8377-4aa2-820f-3233ff722da1",
           "migrations_dir": "worker/migrations"
-        }
+        },
+        { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" }
       ],
       "vars": {
+        "MAINTAINERS": "oneandonlydean",
+        "SITE_REPO": "oneandonlydean/anyps5-website",
         "GITHUB_REPO": "boykopovar/AnyPS5",
         "BASE_URL": "",
         // Public key from the Discord app's General Information page; verifies slash-command requests.

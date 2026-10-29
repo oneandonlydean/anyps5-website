@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import RunReportUpload from "../components/RunReportUpload.astro";
 import { getGames } from "../lib/data";
 import { DISCUSSIONS_URL, REPO_URL } from "../lib/site";
 import { getRelease } from "../lib/upstream";
@@ -26,6 +27,10 @@ const FURTHEST = [
       <a href={DISCUSSIONS_URL}>Game bring-up</a> discussions, ready to post. Nothing leaves your browser until you post it yourself.
     </p>
   </section>
+
+  <div class="container">
+    <RunReportUpload />
+  </div>
 
   <section class="container layout" data-report data-games={JSON.stringify(index)} data-repo={REPO_URL}>
     <form class="card form" novalidate>
