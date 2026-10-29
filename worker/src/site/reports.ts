@@ -1,4 +1,4 @@
-import { checkReport, MAX_REPORT_BYTES, RunReport, SITE_STAGE, type UpstreamFacts } from "../../../src/lib/run-report";
+import { checkReport, MAX_REPORT_BYTES, SITE_STAGE, validateRunReport, type RunReport, type UpstreamFacts } from "../../../src/lib/run-report";
 import type { Env } from "../bot/env";
 import { currentAccount } from "./auth";
 import { json, nowSeconds, problem, sameOrigin, sha256 } from "./http";
@@ -6,48 +6,67 @@ import { requestRebuild } from "./rebuild";
 
 const PER_DAY = 30;
 const FACTS_TTL = 600_000;
-let facts: { at: number; value: UpstreamFacts } | undefined;
+const TITLE_ID = /^[A-Z]{4}[0-9]{5}$/;
 
-/** Implemented functions and untranslated instructions, from the site's own build; empty when unavailable. */
-async function upstreamFacts(env: Env, origin: string): Promise<UpstreamFacts> {
+interface Facts extends UpstreamFacts {
+  /** Title IDs of games the site knows; empty when unavailable. */
+  titleIds: Set<string>;
+}
+let facts: { at: number; value: Facts } | undefined;
+
+/** Implemented functions, untranslated instructions and known games, from the site's own build; empty when unavailable. */
+async function upstreamFacts(env: Env, origin: string): Promise<Facts> {
   if (facts && Date.now() - facts.at < FACTS_TTL) return facts.value;
-  let value: UpstreamFacts = { implemented: () => undefined, untranslated: new Set() };
+  let value: Facts = { implemented: () => undefined, untranslated: new Set(), titleIds: new Set() };
   try {
     const res = env.ASSETS ? await env.ASSETS.fetch(`${origin}/progress/facts.json`) : null;
     if (res?.ok) {
-      const data = await res.json<{ implemented: string[]; untranslated: string[] }>();
+      const data = await res.json<{ implemented: string[]; untranslated: string[]; titleIds?: string[] }>();
       const done = new Set(data.implemented);
-      value = { implemented: (name) => (done.size ? done.has(name) : undefined), untranslated: new Set(data.untranslated.map((o) => o.toUpperCase())) };
+      value = {
+        implemented: (name) => (done.size ? done.has(name) : undefined),
+        untranslated: new Set(data.untranslated.map((o) => o.toUpperCase())),
+        titleIds: new Set(data.titleIds ?? []),
+      };
     }
   } catch {}
   facts = { at: Date.now(), value };
   return value;
 }
 
-/** Takes a run report from a signed-in account: validated, checked against upstream, and stored once. */
+/**
+ * Takes a run report from a signed-in account: at most 64 KiB, valid against the run report schema, consistent, and
+ * stored once per run. A report without a title ID needs `?titleId=` naming the game the uploader chose.
+ */
 export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>) => void): Promise<Response> {
   if (!sameOrigin(req)) return problem(403, "Cross-site request refused.");
   const account = await currentAccount(req, env);
   if (!account) return problem(401, "Sign in with GitHub to upload a report.");
   if (account.blocked) return problem(403, "This account can't upload reports.");
-  if (Number(req.headers.get("content-length") ?? 0) > MAX_REPORT_BYTES) return problem(413, "A report is at most 64 KB.");
-  const body = await req.text();
-  if (body.length > MAX_REPORT_BYTES) return problem(413, "A report is at most 64 KB.");
+  const tooBig = () => problem(413, "A run report is at most 64 KB.");
+  if (Number(req.headers.get("content-length") ?? 0) > MAX_REPORT_BYTES) return tooBig();
+  const bytes = new Uint8Array(await req.arrayBuffer());
+  if (bytes.length > MAX_REPORT_BYTES) return tooBig();
 
   let data: unknown;
   try {
-    data = JSON.parse(body);
+    data = JSON.parse(new TextDecoder("utf-8", { fatal: true, ignoreBOM: false }).decode(bytes));
   } catch {
     return problem(400, "That file isn't JSON. Upload the anyps5-report.json AnyPS5 wrote.");
   }
-  const parsed = RunReport.safeParse(data);
-  if (!parsed.success) {
-    const issues = parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "report"}: ${i.message}`);
-    return json({ error: "This isn't a valid AnyPS5 run report.", issues }, 400);
-  }
-  const report = parsed.data;
-  const { errors, flags } = checkReport(report, await upstreamFacts(env, new URL(req.url).origin));
+  const { report, issues } = validateRunReport(data);
+  if (!report) return json({ error: "This isn't a valid AnyPS5 run report.", issues }, 400);
+  const known = await upstreamFacts(env, new URL(req.url).origin);
+  const { errors, flags } = checkReport(report, known);
   if (errors.length) return json({ error: "This report contradicts itself.", issues: errors }, 400);
+
+  // A converted game without its metadata has no title ID; the uploader says which game it was.
+  const chosen = new URL(req.url).searchParams.get("titleId");
+  const titleId = report.game.titleId ?? chosen;
+  if (!titleId) return json({ error: "This report doesn't say which game it was. Choose the game, then upload again.", needsGame: true }, 400);
+  if (!report.game.titleId && (!TITLE_ID.test(titleId) || (known.titleIds.size > 0 && !known.titleIds.has(titleId)))) {
+    return problem(400, "Choose a game from the compatibility list.");
+  }
 
   const db = env.SITE_DB!;
   const today = await db.prepare("SELECT count(*) AS n FROM uploads WHERE github_id = ? AND created_at > ?").bind(account.github_id, nowSeconds() - 86400).first<number>("n");
@@ -55,68 +74,90 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
 
   const stored = JSON.stringify(report);
   const digest = await sha256(stored);
-  if (await db.prepare("SELECT 1 FROM uploads WHERE digest = ?").bind(digest).first()) return problem(409, "This report was already uploaded.");
+  if (await db.prepare("SELECT 1 FROM uploads WHERE digest = ? OR run_id = ?").bind(digest, report.run.id).first()) return problem(409, "This run was already uploaded.");
   const status = flags.length ? "review" : "visible";
   const row = await db
-    .prepare("INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id")
-    .bind(account.github_id, report.game.titleId, report.run.stage, report.anyps5.commit, stored, digest, JSON.stringify(flags), status, nowSeconds())
+    .prepare(
+      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
+    )
+    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1)
     .first<number>("id");
   if (status === "visible") wait(requestRebuild(env, "upload"));
-  return json({ id: row, status, flags, titleId: report.game.titleId, stage: SITE_STAGE[report.run.stage] }, 201);
+  return json({ id: row, status, flags, titleId, stage: SITE_STAGE[report.run.stage] }, 201);
 }
 
 export interface UploadSummary {
   id: number;
   titleId: string;
-  stage: string;
+  /** The report had no title ID; the uploader chose the game. */
+  titleChosen: boolean;
+  /** The compatibility list's stage, or null when the run's stage is unknown. */
+  stage: string | null;
   login: string;
   githubId: number;
   at: string;
-  os: string;
-  gpuVendor: string;
-  commit: string;
+  os: string | null;
+  gpuVendor: string | null;
+  commit: string | null;
   release: string | null;
   contentVersion: string | null;
   exit: string;
-  missing: string[];
-  unsupported: string[];
-  stop: { kind: string; message: string | null };
+  recovered: boolean;
+  /** Top entries of each list; null when the runtime didn't collect that section in this run. */
+  missing: string[] | null;
+  unsupported: string[] | null;
+  /** Entries the runtime dropped from each list to keep the file small. */
+  truncated: { functions: number; unsupported: number };
+  stop: { kind: string; reason: string; message: string };
 }
 
-export function summarise(row: { id: number; report: string; login: string; github_id: number; created_at: number }): UploadSummary {
-  const r = RunReport.parse(JSON.parse(row.report));
+type Row = { id: number; report: string; login: string; github_id: number; created_at: number; title_id: string; title_chosen: number };
+
+export function summarise(row: Row): UploadSummary {
+  const r = JSON.parse(row.report) as RunReport;
+  const instruction = (u: RunReport["shaders"]["unsupported"][number]) => [u.encoding, u.opcode ?? (u.opcodeValue !== null ? `#${u.opcodeValue}` : null)].filter(Boolean).join(" ") || "unknown";
   return {
     id: row.id,
-    titleId: r.game.titleId,
-    stage: SITE_STAGE[r.run.stage] as string,
+    titleId: row.title_id,
+    titleChosen: row.title_chosen === 1,
+    stage: SITE_STAGE[r.run.stage],
     login: row.login,
     githubId: row.github_id,
     at: new Date(row.created_at * 1000).toISOString(),
     os: r.system.os,
-    gpuVendor: r.system.gpu.vendor,
+    gpuVendor: r.system.gpu?.vendor ?? null,
     commit: r.anyps5.commit,
-    release: r.anyps5.release ?? null,
-    contentVersion: r.game.contentVersion ?? null,
+    release: r.anyps5.release,
+    contentVersion: r.game.contentVersion,
     exit: r.run.exit,
-    missing: [...r.missing.functions].sort((a, b) => b.calls - a.calls).slice(0, 20).map((f) => f.name),
-    unsupported: [...r.shaders.unsupported].sort((a, b) => b.count - a.count).slice(0, 20).map((u) => `${u.encoding} ${u.opcode}`),
-    stop: { kind: r.stop.kind, message: r.stop.message ?? null },
+    recovered: r.run.recovered,
+    missing: r.coverage.missing ? r.missing.functions.slice(0, 20).map((f) => f.name) : null,
+    unsupported: r.coverage.unsupported ? r.shaders.unsupported.slice(0, 20).map(instruction) : null,
+    truncated: { functions: r.truncated.functions, unsupported: r.truncated.unsupported },
+    stop: { kind: r.stop.kind, reason: r.stop.reason, message: r.stop.message },
   };
 }
+
+const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, a.login";
 
 /** Everything the site build needs: visible uploads from accounts in good standing, and what maintainers hid. */
 export async function exportData(_req: Request, env: Env): Promise<Response> {
   const db = env.SITE_DB!;
   const [uploads, hidden] = await Promise.all([
-    db
-      .prepare("SELECT u.id, u.report, u.github_id, u.created_at, a.login FROM uploads u JOIN accounts a ON a.github_id = u.github_id WHERE u.status = 'visible' AND a.blocked = 0 ORDER BY u.id")
-      .all<{ id: number; report: string; github_id: number; created_at: number; login: string }>(),
+    db.prepare(`SELECT ${COLUMNS} FROM uploads u JOIN accounts a ON a.github_id = u.github_id WHERE u.status = 'visible' AND a.blocked = 0 ORDER BY u.id`).all<Row>(),
     db.prepare("SELECT kind, target FROM hidden").all<{ kind: string; target: string }>(),
   ]);
   return json(
     {
       generated: new Date().toISOString(),
-      uploads: uploads.results.map(summarise),
+      // Reports stored under the draft format can't be read as version 1; they are left out.
+      uploads: uploads.results.flatMap((row) => {
+        try {
+          return [summarise(row)];
+        } catch {
+          return [];
+        }
+      }),
       hidden: {
         screenshots: hidden.results.filter((h) => h.kind === "screenshot").map((h) => h.target),
         art: hidden.results.filter((h) => h.kind === "art").map((h) => h.target),
@@ -127,3 +168,4 @@ export async function exportData(_req: Request, env: Env): Promise<Response> {
   );
 }
 
+export { COLUMNS };

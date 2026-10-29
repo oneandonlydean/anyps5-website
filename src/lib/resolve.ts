@@ -230,7 +230,7 @@ export function resolveGame(
 
 /** When uploads confirmed a stage: the upload that brought the count to two (or the first, with a Discussions report). */
 function confirmedAt(uploads: UploadSummary[], stage: StageOrNone, top: Report | null): string {
-  const reaching = uploads.filter((u) => stageRank(u.stage) >= stageRank(stage)).sort((a, b) => a.at.localeCompare(b.at));
+  const reaching = uploads.filter((u) => u.stage !== null && stageRank(u.stage) >= stageRank(stage)).sort((a, b) => a.at.localeCompare(b.at));
   const accounts = new Set<number>();
   const needed = stageRank(top?.stage) >= stageRank(stage) ? CONFIRMATIONS_NEEDED - 1 : CONFIRMATIONS_NEEDED;
   for (const u of reaching) {

@@ -1,5 +1,11 @@
 ---
 import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
+
+interface Props {
+  /** Games on the compatibility list, for reports without a title ID (the uploader picks the game). */
+  games: { name: string; id: string }[];
+}
+const { games } = Astro.props;
 ---
 
 <section class="card upload" id="upload" data-upload>
@@ -23,6 +29,13 @@ import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
       <span class="muted">or drop it here</span>
     </label>
     <div class="preview" data-preview hidden></div>
+    <label class="pick" data-pick hidden>
+      <span>This report doesn't say which game it was. Which game did you run?</span>
+      <input list="upload-games" placeholder="Game name or title ID" autocomplete="off" data-pick-input />
+      <datalist id="upload-games">
+        {games.map((g) => <option value={`${g.name} (${g.id})`} />)}
+      </datalist>
+    </label>
     <button type="button" class="button primary" data-send hidden>Upload report</button>
   </div>
   <div class="result" data-result role="status" aria-live="polite"></div>
@@ -36,6 +49,8 @@ import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
   const preview = root.querySelector<HTMLElement>("[data-preview]")!;
   const send = root.querySelector<HTMLButtonElement>("[data-send]")!;
   const result = root.querySelector<HTMLElement>("[data-result]")!;
+  const pick = root.querySelector<HTMLElement>("[data-pick]")!;
+  const pickInput = root.querySelector<HTMLInputElement>("[data-pick-input]")!;
   const MAX = 64 * 1024;
   let body: string | null = null;
 
@@ -99,10 +114,14 @@ import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
     }
     if (report?.format !== "anyps5-report") return result.append(el("p", "That isn't an AnyPS5 run report.", "bad"));
     body = text;
+    const titleId: string | null = report.game?.titleId ?? null;
+    const stage = report.run?.stage && report.run.stage !== "unknown" ? report.run.stage : "an unknown stage";
     preview.replaceChildren(
-      el("b", `${report.game?.name ?? report.game?.titleId ?? "Unknown game"} (${report.game?.titleId ?? "?"})`),
-      el("span", `Reached ${report.run?.stage ?? "?"} on ${report.system?.os ?? "?"} with ${report.system?.gpu?.vendor ?? "?"}`, "muted"),
+      el("b", titleId ? `${report.game?.name ?? "Unknown name"} (${titleId})` : "Game not recorded in the report"),
+      el("span", `Reached ${stage} on ${report.system?.os ?? "an unknown OS"} with ${report.system?.gpu?.vendor ?? "an unknown GPU"}`, "muted"),
     );
+    pick.hidden = titleId !== null;
+    pickInput.value = "";
     preview.hidden = send.hidden = false;
   }
 
@@ -122,7 +141,14 @@ import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
     if (!body) return;
     send.disabled = true;
     result.replaceChildren(el("p", "Uploading…", "muted"));
-    const res = await fetch("/api/reports", { method: "POST", headers: { "content-type": "application/json" }, body });
+    // A picked game is sent as its title ID: "Name (PPSA12345)" or a bare ID.
+    const chosen = pick.hidden ? null : (pickInput.value.match(/\b([A-Z]{4}\d{5})\)?\s*$/)?.[1] ?? null);
+    if (!pick.hidden && !chosen) {
+      send.disabled = false;
+      result.replaceChildren(el("p", "Choose the game from the list first.", "bad"));
+      return;
+    }
+    const res = await fetch(`/api/reports${chosen ? `?titleId=${chosen}` : ""}`, { method: "POST", headers: { "content-type": "application/json" }, body });
     const data = await res.json().catch(() => ({}));
     result.replaceChildren();
     send.disabled = false;
@@ -137,7 +163,7 @@ import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
       const link = el("a", `Find ${data.titleId} on the compatibility list`) as HTMLAnchorElement;
       link.href = `/compatibility/?q=${encodeURIComponent(data.titleId)}`;
       result.append(done, link);
-      preview.hidden = send.hidden = true;
+      preview.hidden = send.hidden = pick.hidden = true;
       input.value = "";
       return;
     }
@@ -220,6 +246,24 @@ import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
   .drop input:focus-visible + label {
     outline: 2px solid var(--accent);
     outline-offset: 4px;
+  }
+  .pick {
+    display: grid;
+    gap: 6px;
+    width: min(100%, 460px);
+    font-size: 0.88rem;
+  }
+  .pick[hidden] {
+    display: none;
+  }
+  .pick input {
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
   }
   .preview {
     display: grid;

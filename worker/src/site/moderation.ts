@@ -2,7 +2,7 @@ import type { Env } from "../bot/env";
 import { currentAccount, isMaintainer, type Account } from "./auth";
 import { json, nowSeconds, problem, sameOrigin } from "./http";
 import { requestRebuild } from "./rebuild";
-import { summarise } from "./reports";
+import { COLUMNS, summarise } from "./reports";
 
 /**
  * Maintainer tools. Each action is listed with what it accepts and what it does, so new ones slot in. Every action
@@ -72,9 +72,18 @@ export async function queue(req: Request, env: Env): Promise<Response> {
   const who = await maintainer(req, env);
   if (who instanceof Response) return who;
   const db = env.SITE_DB!;
-  const rows = "SELECT u.id, u.report, u.github_id, u.created_at, u.status, u.flags, a.login FROM uploads u JOIN accounts a ON a.github_id = u.github_id";
-  type Row = { id: number; report: string; github_id: number; created_at: number; status: string; flags: string; login: string };
-  const withState = (r: Row) => ({ ...summarise(r), status: r.status, flags: JSON.parse(r.flags) as string[] });
+  const rows = `SELECT ${COLUMNS}, u.status, u.flags FROM uploads u JOIN accounts a ON a.github_id = u.github_id`;
+  type Row = Parameters<typeof summarise>[0] & { status: string; flags: string };
+  // Reports stored under the draft format can't be summarised as version 1; they still show, with what is known.
+  const withState = (r: Row) => {
+    let summary: Partial<ReturnType<typeof summarise>>;
+    try {
+      summary = summarise(r);
+    } catch {
+      summary = { id: r.id, titleId: r.title_id, login: r.login, at: new Date(r.created_at * 1000).toISOString(), stage: null };
+    }
+    return { ...summary, status: r.status, flags: JSON.parse(r.flags) as string[] };
+  };
   const [review, recent, blocked, hidden, log] = await Promise.all([
     db.prepare(`${rows} WHERE u.status = 'review' ORDER BY u.id`).all<Row>(),
     db.prepare(`${rows} ORDER BY u.id DESC LIMIT 50`).all<Row>(),

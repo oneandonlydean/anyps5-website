@@ -1,96 +1,87 @@
-import { z } from "zod";
+import { Validator } from "@cfworker/json-schema";
+import schema from "./run-report/run-report.schema.json";
 import type { StageOrNone } from "./stages";
 
 /**
- * The run report the AnyPS5 runtime writes after each run (anyps5-report.json; see docs/proposals/run-report.md).
- * The Worker validates uploads against this schema and the site build reads stored reports with it, so both agree on
- * what a report is. Unknown fields are rejected: a report is a fixed, small document, not free-form data.
+ * The run report the AnyPS5 runtime writes after each run (anyps5-report.json). The schema is upstream's, copied
+ * unchanged from docs/run-report.schema.json (version 1, frozen in commit ca194ef6 of the run-report-v1 branch), so the
+ * Worker and the build accept exactly what the runtime writes. Every object in it is closed: a new field needs a new
+ * copy of the schema. The validator is one that runs in Cloudflare Workers, where code generation isn't allowed.
  */
 
-const text = (max = 300) => z.string().max(max);
-const count = z.number().int().nonnegative();
-const seconds = z.number().nonnegative().max(1e7);
+export const SCHEMA_COMMIT = "ca194ef6d16ec5bbac957723aafcd143c1a74c34";
 
-export const RUN_STAGES = ["converts", "loads", "starts", "first-draw", "presents"] as const;
-export type RunStage = (typeof RUN_STAGES)[number];
+export type RunStage = "unknown" | "loads" | "starts" | "first-draw" | "presents";
+type Text = string | null;
 
-/** A run report's stage as the compatibility list names it. */
-export const SITE_STAGE: Record<RunStage, StageOrNone> = {
-  converts: "Converts",
+export interface RunReport {
+  format: "anyps5-report";
+  version: 1;
+  generated: string;
+  anyps5: { commit: Text; release: Text; modified: boolean | null };
+  game: { titleId: Text; contentId: Text; contentVersion: Text; name: Text };
+  system: {
+    os: "linux" | "windows" | "macos" | null;
+    osVersion: Text;
+    cpu: Text;
+    ramGiB: number | null;
+    gpu: { vendor: "AMD" | "NVIDIA" | "Intel" | "Apple" | "Other" | null; name: Text; driver: Text; vulkan: Text } | null;
+  };
+  run: {
+    id: string;
+    seconds: number;
+    exit: "clean" | "crash" | "abort" | "killed";
+    exitCode: number | null;
+    stage: RunStage;
+    milestones: { loaded?: number; started?: number; firstDraw?: number; firstPresent?: number };
+    framesPresented: number;
+    averageFps: number | null;
+    fpsWindowSeconds: number | null;
+    recovered: boolean;
+    incomplete: boolean;
+  };
+  coverage: { milestones: boolean; missing: boolean; shaders: boolean; unsupported: boolean; imageFormats: boolean; descriptors: boolean };
+  truncated: { functions: number; unsupported: number; imageFormats: number; descriptors: number };
+  missing: { functions: { library: Text; name: string; calls: number }[] };
+  shaders: {
+    compiled: number;
+    failed: number;
+    cacheHits?: number;
+    unsupported: { encoding: Text; opcode: Text; opcodeValue: number | null; modifiers: string[] | null; count: number }[];
+    imageFormats: { format: number; name: Text; status: "accepted" | "rejected" | "unknown"; usage: string; count: number }[];
+    descriptors: { type: string; status: "accepted" | "rejected" | "unknown"; usage: string; count: number }[];
+  };
+  stop: {
+    kind: "none" | "missing-function" | "unsupported-shader" | "unsupported-format" | "crash" | "assert" | "other";
+    reason: "guest-exit" | "quit-requested" | "runtime-stop" | "crash" | "unclean-unknown" | "other";
+    message: string;
+    source: Text;
+  };
+}
+
+/** A run report's stage as the compatibility list names it; `unknown` puts the game on no stage. */
+export const SITE_STAGE: Record<RunStage, StageOrNone | null> = {
+  unknown: null,
   loads: "Loads",
   starts: "Starts",
   "first-draw": "First draw",
   presents: "Presents",
 };
 
-export const RunReport = z
-  .object({
-    format: z.literal("anyps5-report"),
-    version: z.literal(1),
-    generated: z.iso.datetime(),
-    anyps5: z.object({ commit: z.string().regex(/^[0-9a-f]{40}$/), release: text(40).nullable().optional(), modified: z.boolean() }).strict(),
-    game: z
-      .object({
-        titleId: z.string().regex(/^(PPSA|CUSA)\d{5}$/),
-        contentId: text(64).optional(),
-        contentVersion: z
-          .string()
-          .regex(/^\d{2}\.\d{3}(\.\d{3})?$/)
-          .optional(),
-        name: text(120).optional(),
-      })
-      .strict(),
-    system: z
-      .object({
-        os: z.enum(["linux", "windows", "macos"]),
-        osVersion: text(120).optional(),
-        cpu: text(120).optional(),
-        ramGiB: z.number().int().positive().max(4096).optional(),
-        gpu: z
-          .object({
-            vendor: z.enum(["AMD", "NVIDIA", "Intel", "Apple", "Other"]),
-            name: text(120).optional(),
-            driver: text(120).optional(),
-            vulkan: text(20).optional(),
-          })
-          .strict(),
-      })
-      .strict(),
-    run: z
-      .object({
-        seconds,
-        exit: z.enum(["clean", "crash", "abort", "killed"]),
-        stage: z.enum(RUN_STAGES),
-        milestones: z.object({ loaded: seconds.optional(), started: seconds.optional(), firstDraw: seconds.optional(), firstPresent: seconds.optional() }).strict(),
-        framesPresented: count.optional(),
-        averageFps: z.number().nonnegative().max(1000).optional(),
-      })
-      .strict(),
-    missing: z
-      .object({ functions: z.array(z.object({ library: text(80), name: text(120), calls: count }).strict()).max(200) })
-      .strict(),
-    shaders: z
-      .object({
-        compiled: count,
-        failed: count,
-        unsupported: z.array(z.object({ encoding: text(16), opcode: text(64), modifiers: z.array(text(24)).max(16), count }).strict()).max(200),
-        imageFormats: z.array(z.object({ format: count, name: text(64).optional(), supported: z.boolean(), count: count.optional() }).strict()).max(100),
-        descriptors: z.array(z.object({ type: text(48), supported: z.boolean() }).strict()).max(100),
-      })
-      .strict(),
-    stop: z
-      .object({
-        kind: z.enum(["none", "missing-function", "unsupported-shader", "unsupported-format", "crash", "assert", "other"]),
-        message: text().optional(),
-        source: text(200).optional(),
-      })
-      .strict(),
-  })
-  .strict();
-export type RunReport = z.infer<typeof RunReport>;
+/** The whole file, in bytes of UTF-8; checked before parsing. */
+export const MAX_REPORT_BYTES = 65_536;
 
-/** Largest accepted file; the runtime keeps reports well under this. */
-export const MAX_REPORT_BYTES = 64 * 1024;
+const validator = new Validator(schema as object, "2020-12", false);
+
+/** Validates parsed JSON against the schema. Returns the report, or up to five readable problems. */
+export function validateRunReport(data: unknown): { report: RunReport; issues: [] } | { report: null; issues: string[] } {
+  const result = validator.validate(data);
+  if (result.valid) return { report: data as RunReport, issues: [] };
+  // The validator reports every failing keyword up the tree; the deepest ones say what is actually wrong.
+  const leaves = result.errors.filter((e) => !["properties", "allOf", "items", "$ref", "if", "then"].includes(e.keyword));
+  const issues = [...new Set((leaves.length ? leaves : result.errors).map((e) => `${e.instanceLocation.replace(/^#\/?/, "") || "report"}: ${e.error}`))];
+  return { report: null, issues: issues.slice(0, 5) };
+}
 
 /** What the checks know about upstream: which functions are implemented and which instructions are untranslated. */
 export interface UpstreamFacts {
@@ -105,41 +96,44 @@ export interface Check {
   flags: string[];
 }
 
-const MILESTONE_FOR: Partial<Record<RunStage, keyof RunReport["run"]["milestones"]>> = {
-  loads: "loaded",
-  starts: "started",
-  "first-draw": "firstDraw",
-  presents: "firstPresent",
-};
+const ORDER = ["loaded", "started", "firstDraw", "firstPresent"] as const;
+const STAGE_MILESTONE: Record<RunStage, (typeof ORDER)[number] | null> = { unknown: null, loads: "loaded", starts: "started", "first-draw": "firstDraw", presents: "firstPresent" };
 
 /**
- * Consistency checks beyond the schema. A report can't be proven genuine (the runtime is open source and runs on the
- * tester's machine), but one that contradicts itself or the source code is easy to spot.
+ * Checks the schema can't express, which the runtime's own tests cover and asks validators to repeat: milestone
+ * order, the stage matching its furthest milestone, and the frame rate matching frames over the measured window.
+ * Then checks against upstream: a report can't be proven genuine (the runtime is open source and runs on the tester's
+ * machine), but one that contradicts the source code is easy to spot. Lists a section's coverage says weren't
+ * collected are never read as "nothing there".
  */
 export function checkReport(report: RunReport, facts: UpstreamFacts, now = Date.now()): Check {
   const errors: string[] = [];
   const flags: string[] = [];
   const generated = Date.parse(report.generated);
-  if (generated > now + 864e5) errors.push("The report is dated in the future.");
-  if (generated < now - 180 * 864e5) errors.push("The report is more than 180 days old.");
+  if (Number.isNaN(generated)) errors.push("The report's date can't be read.");
+  else if (generated > now + 864e5) errors.push("The report is dated in the future.");
+  else if (generated < now - 180 * 864e5) errors.push("The report is more than 180 days old.");
 
-  const { milestones } = report.run;
-  const order: (keyof typeof milestones)[] = ["loaded", "started", "firstDraw", "firstPresent"];
-  const reached = RUN_STAGES.indexOf(report.run.stage);
-  for (const [stage, key] of Object.entries(MILESTONE_FOR) as [RunStage, keyof typeof milestones][]) {
-    if (RUN_STAGES.indexOf(stage) <= reached && milestones[key] === undefined) errors.push(`Stage "${report.run.stage}" needs the ${key} milestone.`);
-    if (RUN_STAGES.indexOf(stage) > reached && milestones[key] !== undefined) errors.push(`The ${key} milestone is past the reported stage.`);
-  }
-  const times = order.map((k) => milestones[k]).filter((t): t is number => t !== undefined);
+  const { milestones, stage } = report.run;
+  const reached = ORDER.filter((k) => milestones[k] !== undefined);
+  const times = reached.map((k) => milestones[k]!);
   if (times.some((t, i) => i > 0 && t < times[i - 1]!)) errors.push("Milestones are out of order.");
   if (times.some((t) => t > report.run.seconds)) errors.push("A milestone is later than the end of the run.");
-  if (report.run.stage === "presents" && !report.run.framesPresented) flags.push("Reached presents but reports no frames.");
+  if ((reached.at(-1) ?? null) !== STAGE_MILESTONE[stage]) errors.push(`Stage "${stage}" doesn't match the furthest milestone.`);
+  const { averageFps, fpsWindowSeconds, framesPresented } = report.run;
+  if (averageFps !== null && fpsWindowSeconds) {
+    const expected = framesPresented / fpsWindowSeconds;
+    if (Math.abs(averageFps - expected) > Math.max(0.5, expected * 0.1)) errors.push("The average frame rate doesn't match the frames and the time measured.");
+  }
 
-  const implemented = report.missing.functions.filter((f) => facts.implemented(f.name) === true).map((f) => f.name);
-  if (implemented.length) flags.push(`Lists ${implemented.length} missing function(s) that are implemented upstream: ${implemented.slice(0, 5).join(", ")}.`);
-  const translated = facts.untranslated.size ? report.shaders.unsupported.filter((u) => !facts.untranslated.has(u.opcode.toUpperCase())).map((u) => u.opcode) : [];
-  if (translated.length) flags.push(`Lists ${translated.length} unsupported instruction(s) the recompiler translates: ${translated.slice(0, 5).join(", ")}.`);
-  if (report.stop.kind === "unsupported-shader" && report.shaders.unsupported.length === 0) flags.push("Stopped on a shader but lists no unsupported instruction.");
-  if (report.anyps5.modified) flags.push("Built from modified AnyPS5 sources.");
+  if (report.coverage.missing) {
+    const implemented = report.missing.functions.filter((f) => facts.implemented(f.name) === true).map((f) => f.name);
+    if (implemented.length) flags.push(`Lists ${implemented.length} missing function(s) that are implemented upstream: ${implemented.slice(0, 5).join(", ")}.`);
+  }
+  if (report.coverage.unsupported && facts.untranslated.size) {
+    const translated = report.shaders.unsupported.filter((u) => u.opcode !== null && !facts.untranslated.has(u.opcode.toUpperCase())).map((u) => u.opcode!);
+    if (translated.length) flags.push(`Lists ${translated.length} unsupported instruction(s) the recompiler translates: ${translated.slice(0, 5).join(", ")}.`);
+  }
+  if (report.anyps5.modified === true) flags.push("Built from modified AnyPS5 sources.");
   return { errors, flags };
 }

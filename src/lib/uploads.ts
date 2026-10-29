@@ -1,22 +1,29 @@
 import { stageRank, type StageOrNone } from "./stages";
 
-/** One uploaded run report, as the site Worker exports it (see worker/src/site/reports.ts). */
+/** One uploaded run report, as the site Worker exports it (see worker/src/site/reports.ts). Null means unknown. */
 export interface UploadSummary {
   id: number;
   titleId: string;
-  stage: StageOrNone;
+  /** The report had no title ID; the uploader chose the game. */
+  titleChosen: boolean;
+  /** The compatibility list's stage, or null when the run's stage is unknown. */
+  stage: StageOrNone | null;
   login: string;
   githubId: number;
   at: string;
-  os: string;
-  gpuVendor: string;
-  commit: string;
+  os: string | null;
+  gpuVendor: string | null;
+  commit: string | null;
   release: string | null;
   contentVersion: string | null;
   exit: string;
-  missing: string[];
-  unsupported: string[];
-  stop: { kind: string; message: string | null };
+  /** Written at the next start for a run that ended uncleanly. */
+  recovered: boolean;
+  /** Top entries of each list; null when the runtime didn't collect that section in this run. */
+  missing: string[] | null;
+  unsupported: string[] | null;
+  truncated: { functions: number; unsupported: number };
+  stop: { kind: string; reason: string; message: string };
 }
 
 export interface UploadExport {
@@ -43,10 +50,12 @@ export const CONFIRMATIONS_NEEDED = 2;
  * pending with its confirmation count.
  */
 export function autoStage(uploads: UploadSummary[], discussionStage: StageOrNone | null): { furthest: AutoStage | null; confirmedStage: StageOrNone | null } {
-  if (!uploads.length) return { furthest: null, confirmedStage: null };
+  // A run whose stage is unknown says nothing about how far the game gets.
+  const staged = uploads.filter((u): u is UploadSummary & { stage: StageOrNone } => u.stage !== null);
+  if (!staged.length) return { furthest: null, confirmedStage: null };
   const confirmationsAt = (stage: StageOrNone) =>
-    new Set(uploads.filter((u) => stageRank(u.stage) >= stageRank(stage)).map((u) => u.githubId)).size + (stageRank(discussionStage) >= stageRank(stage) ? 1 : 0);
-  const stages = [...new Set(uploads.map((u) => u.stage))].sort((a, b) => stageRank(b) - stageRank(a));
+    new Set(staged.filter((u) => stageRank(u.stage) >= stageRank(stage)).map((u) => u.githubId)).size + (stageRank(discussionStage) >= stageRank(stage) ? 1 : 0);
+  const stages = [...new Set(staged.map((u) => u.stage))].sort((a, b) => stageRank(b) - stageRank(a));
   const top = stages[0]!;
   const confirmedStage = stages.find((s) => confirmationsAt(s) >= CONFIRMATIONS_NEEDED) ?? null;
   return { furthest: { stage: top, confirmations: confirmationsAt(top), confirmed: confirmedStage === top }, confirmedStage };

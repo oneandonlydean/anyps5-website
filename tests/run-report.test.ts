@@ -1,53 +1,68 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { checkReport, RunReport } from "../src/lib/run-report";
+import { checkReport, MAX_REPORT_BYTES, validateRunReport, type RunReport } from "../src/lib/run-report";
 import { autoStage, type UploadSummary } from "../src/lib/uploads";
 
-const sample = () => JSON.parse(readFileSync(new URL("./fixtures/run-report.json", import.meta.url), "utf8"));
+const DIR = new URL("./fixtures/run-reports/", import.meta.url);
+const FIXTURES = readdirSync(DIR).filter((f) => f.endsWith(".json"));
+const load = (name: string) => JSON.parse(readFileSync(new URL(name, DIR), "utf8"));
+const report = (name: string) => validateRunReport(load(name)).report as RunReport;
 const NOW = Date.parse("2026-10-30T00:00:00Z");
-const facts = { implemented: (name: string) => (name === "sceKernelOpen" ? true : name === "sceNpTrophyCreateContext" ? false : undefined), untranslated: new Set(["IMAGE_GATHER8H_PCK"]) };
+const facts = (untranslated: string[] = []) => ({
+  implemented: (name: string) => (name === "sceNpTrophyCreateContext" ? true : undefined),
+  untranslated: new Set(untranslated),
+});
 
-describe("RunReport", () => {
-  it("accepts the sample report", () => {
-    expect(RunReport.safeParse(sample()).success).toBe(true);
+describe("the runtime's sample reports", () => {
+  it.each(FIXTURES)("%s validates, fits the size limit and passes the extra checks", (name) => {
+    const text = readFileSync(new URL(name, DIR), "utf8");
+    expect(new TextEncoder().encode(text).length).toBeLessThanOrEqual(MAX_REPORT_BYTES);
+    const { report: r, issues } = validateRunReport(JSON.parse(text));
+    expect(issues).toEqual([]);
+    expect(checkReport(r!, { implemented: () => undefined, untranslated: new Set() }, NOW).errors).toEqual([]);
   });
 
-  it("rejects unknown fields, bad IDs and oversized lists", () => {
-    expect(RunReport.safeParse({ ...sample(), extra: 1 }).success).toBe(false);
-    expect(RunReport.safeParse({ ...sample(), game: { titleId: "PPSA1234" } }).success).toBe(false);
-    const big = sample();
-    big.missing.functions = Array.from({ length: 201 }, (_, i) => ({ library: "libc", name: `f${i}`, calls: 1 }));
-    expect(RunReport.safeParse(big).success).toBe(false);
+  it("covers every stop kind", () => {
+    expect(new Set(FIXTURES.map((f) => load(f).stop.kind))).toEqual(new Set(["none", "missing-function", "unsupported-shader", "unsupported-format", "crash", "assert", "other"]));
+  });
+});
+
+describe("validateRunReport", () => {
+  it("rejects unknown fields and combinations the schema forbids, saying where", () => {
+    const extra = { ...load("stop-none.json"), extra: 1 };
+    expect(validateRunReport(extra).report).toBeNull();
+    const mismatch = load("stop-none.json");
+    mismatch.stop.reason = "runtime-stop";
+    expect(validateRunReport(mismatch).report).toBeNull();
+    const badId = load("stop-none.json");
+    badId.game.titleId = "PPSA1234";
+    expect(validateRunReport(badId).issues.join(" ")).toContain("game/titleId");
   });
 });
 
 describe("checkReport", () => {
-  it("passes a consistent report", () => {
-    expect(checkReport(RunReport.parse(sample()), facts, NOW)).toEqual({ errors: [], flags: [] });
+  it("refuses what the schema can't express: milestone order, stage, frame rate", () => {
+    const order = report("stop-crash.json");
+    order.run.milestones.firstDraw = 0.1;
+    expect(checkReport(order, facts(), NOW).errors).toContain("Milestones are out of order.");
+    const stage = report("stop-crash.json");
+    stage.run.stage = "first-draw";
+    expect(checkReport(stage, facts(), NOW).errors).toContain('Stage "first-draw" doesn\'t match the furthest milestone.');
+    const fps = report("stop-crash.json");
+    fps.run.averageFps = fps.run.averageFps! * 3;
+    expect(checkReport(fps, facts(), NOW).errors).toContain("The average frame rate doesn't match the frames and the time measured.");
   });
 
-  it("refuses milestones that contradict the stage or each other", () => {
-    const r = sample();
-    r.run.stage = "starts";
-    expect(checkReport(RunReport.parse(r), facts, NOW).errors).toContain("The firstDraw milestone is past the reported stage.");
-    const s = sample();
-    s.run.milestones.firstDraw = 0.5;
-    expect(checkReport(RunReport.parse(s), facts, NOW).errors).toContain("Milestones are out of order.");
-    const t = sample();
-    t.generated = "2027-01-01T00:00:00Z";
-    expect(checkReport(RunReport.parse(t), facts, NOW).errors).toContain("The report is dated in the future.");
-  });
-
-  it("flags claims that contradict upstream", () => {
-    const r = sample();
-    r.missing.functions.push({ library: "libkernel", name: "sceKernelOpen", calls: 1 });
-    r.shaders.unsupported.push({ encoding: "VOP3", opcode: "V_ADD_F32", modifiers: [], count: 1 });
-    const { errors, flags } = checkReport(RunReport.parse(r), facts, NOW);
-    expect(errors).toEqual([]);
-    expect(flags).toEqual([
-      "Lists 1 missing function(s) that are implemented upstream: sceKernelOpen.",
-      "Lists 1 unsupported instruction(s) the recompiler translates: V_ADD_F32.",
+  it("flags claims that contradict upstream, only where the section was collected", () => {
+    expect(checkReport(report("stop-missing-function.json"), facts(), NOW).flags).toEqual([
+      "Lists 1 missing function(s) that are implemented upstream: sceNpTrophyCreateContext.",
     ]);
+    expect(checkReport(report("stop-unsupported-shader.json"), facts(["IMAGE_GATHER8H_PCK"]), NOW).flags).toEqual([
+      "Lists 1 unsupported instruction(s) the recompiler translates: V_CVT_PK_U8_F32.",
+    ]);
+    const off = report("stop-missing-function.json");
+    off.coverage.missing = false;
+    expect(checkReport(off, facts(), NOW).flags).toEqual([]);
   });
 });
 
@@ -60,5 +75,6 @@ describe("autoStage", () => {
     expect(autoStage([up(1, "Presents"), up(2, "First draw")], null)).toEqual({ furthest: { stage: "Presents", confirmations: 1, confirmed: false }, confirmedStage: "First draw" });
     expect(autoStage([up(1, "Presents")], "Menus").confirmedStage).toBe("Presents");
     expect(autoStage([], "Menus")).toEqual({ furthest: null, confirmedStage: null });
+    expect(autoStage([up(1, null as never), up(2, null as never)], null)).toEqual({ furthest: null, confirmedStage: null });
   });
 });

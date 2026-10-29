@@ -1,13 +1,21 @@
 import { env } from "cloudflare:workers";
 import { expect, it } from "vitest";
-import sample from "../../tests/fixtures/run-report.json";
+import sample from "../../tests/fixtures/run-reports/stop-unsupported-shader.json";
+import noTitle from "../../tests/fixtures/run-reports/missing-metadata-gpu.json";
 import worker from "../src/index";
 import { sha256 } from "../src/site/http";
 import { ctx, json, mockFetch } from "./helpers";
 
 const SITE = "https://worker.test";
 const now = () => Math.floor(Date.now() / 1000);
-const fresh = () => ({ ...structuredClone(sample), generated: new Date().toISOString() });
+// Each upload is a different run: a new run id, dated now.
+const runId = () => Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
+const fresh = () => {
+  const r = structuredClone(sample);
+  r.generated = new Date().toISOString().replace(/\.\d+Z$/, "Z");
+  r.run.id = runId();
+  return r;
+};
 
 async function signIn(login: string, id: number): Promise<string> {
   const token = `session-${login}`;
@@ -62,10 +70,12 @@ it("takes a valid report once, from a signed-in account on this site", async () 
   const report = fresh();
   const res = await post("/api/reports", report, cookie);
   expect(res.status).toBe(201);
-  expect(await res.json()).toMatchObject({ status: "visible", titleId: "PPSA21564", stage: "Presents", flags: [] });
+  expect(await res.json()).toMatchObject({ status: "visible", titleId: "PPSA12345", stage: "First draw", flags: [] });
   expect((await post("/api/reports", report, cookie)).status).toBe(409);
   expect((await post("/api/reports", report)).status).toBe(401);
-  expect((await post("/api/reports", { ...report, generated: new Date(Date.now() - 1000).toISOString() }, cookie, "https://evil.example")).status).toBe(403);
+  expect((await post("/api/reports", fresh(), cookie, "https://evil.example")).status).toBe(403);
+  // The same run, re-saved with a different date, is still the same run.
+  expect((await post("/api/reports", { ...report, generated: new Date(Date.now() - 60_000).toISOString().replace(/\.\d+Z$/, "Z") }, cookie)).status).toBe(409);
 });
 
 it("rejects files that aren't reports, or that contradict themselves", async () => {
@@ -75,7 +85,7 @@ it("rejects files that aren't reports, or that contradict themselves", async () 
   expect(wrong.status).toBe(400);
   expect((await wrong.json<{ error: string }>()).error).toBe("This isn't a valid AnyPS5 run report.");
   const contradictory = fresh();
-  contradictory.run.milestones.firstPresent = 1;
+  contradictory.run.milestones.firstDraw = 0.5;
   expect((await post("/api/reports", contradictory, cookie)).status).toBe(400);
   expect((await post("/api/reports", "x".repeat(70_000), cookie)).status).toBe(413);
 });
@@ -124,9 +134,9 @@ it("asks the site repository to rebuild after an upload, at most once every two 
   const cookie = await signIn("tester", 42);
   const calls = mockFetch({ "POST https://api.github.com/repos/acme/site/dispatches": () => new Response(null, { status: 204 }) });
   const e = { ...env, SITE_DISPATCH_TOKEN: "dispatch-token", SITE_REPO: "acme/site" };
-  const send = (generated: string) =>
+  const send = (_generated: string) =>
     worker.fetch!(
-      new Request(`${SITE}/api/reports`, { method: "POST", body: JSON.stringify({ ...fresh(), generated }), headers: { cookie, origin: SITE } }) as any,
+      new Request(`${SITE}/api/reports`, { method: "POST", body: JSON.stringify(fresh()), headers: { cookie, origin: SITE } }) as any,
       e as any,
       { waitUntil: (p: Promise<unknown>) => void p, passThroughOnException() {}, props: {} } as unknown as ExecutionContext,
     );
@@ -136,4 +146,18 @@ it("asks the site repository to rebuild after an upload, at most once every two 
   await new Promise((r) => setTimeout(r, 20));
   expect(calls.filter((c) => c.url.endsWith("/dispatches"))).toHaveLength(1);
   expect(JSON.parse(calls[0]!.body)).toMatchObject({ event_type: "site-data-changed" });
+});
+
+it("asks which game a report without a title ID was, and accepts the uploader's choice", async () => {
+  const cookie = await signIn("tester", 42);
+  const report = { ...structuredClone(noTitle), generated: new Date().toISOString().replace(/\.\d+Z$/, "Z") };
+  const first = await post("/api/reports", report, cookie);
+  expect(first.status).toBe(400);
+  expect(await first.json()).toMatchObject({ needsGame: true });
+  expect((await post("/api/reports?titleId=not-an-id", report, cookie)).status).toBe(400);
+  const chosen = await post("/api/reports?titleId=PPSA12345", report, cookie);
+  expect(chosen.status).toBe(201);
+  expect(await chosen.json()).toMatchObject({ titleId: "PPSA12345", stage: null });
+  const exported = await (await call("/api/export")).json<{ uploads: { titleId: string; titleChosen: boolean; stage: string | null; gpuVendor: string | null; missing: unknown }[] }>();
+  expect(exported.uploads[0]).toMatchObject({ titleId: "PPSA12345", titleChosen: true, stage: null, gpuVendor: null });
 });

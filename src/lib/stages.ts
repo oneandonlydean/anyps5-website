@@ -1,9 +1,9 @@
 export const STAGES = [
   { name: "Converts", short: "Converts", meaning: "The package unpacks and the relinker converts the executable." },
-  { name: "Loads", short: "Loads", meaning: "All imports resolve and the executable loads." },
+  { name: "Loads", short: "Loads", meaning: "The executable loads and reaches the game's entry point." },
   { name: "Starts", short: "Starts", meaning: "Game code runs past startup." },
   { name: "First draw", short: "Draws", meaning: "The first GPU draw or dispatch executes." },
-  { name: "Presents", short: "Presents", meaning: "Frames reach the screen: logos, loading screens or video." },
+  { name: "Presents", short: "Presents", meaning: "The game hands finished frames to the GPU for display: logos, loading screens or video." },
   { name: "Menus", short: "Menus", meaning: "A menu or title screen renders and responds to input." },
   { name: "Ingame", short: "Ingame", meaning: "Gameplay is reached." },
   { name: "Playable", short: "Playable", meaning: "Playable from start to finish with minor issues." },

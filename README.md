@@ -86,7 +86,7 @@ The log is in `~/.local/state/anyps5-demo/refresh.log`. User timers only run whi
 
 ## Run reports and maintainer tools
 
-People can sign in with GitHub and upload the `anyps5-report.json` AnyPS5 writes after a run. The brief for the runtime side is `docs/proposals/run-report.md`, and the format is `src/lib/run-report.ts`.
+People can sign in with GitHub and upload the `anyps5-report.json` AnyPS5 writes after a run. The format is upstream's: `src/lib/run-report/run-report.schema.json` is an unchanged copy of `docs/run-report.schema.json` (version 1, frozen with the runtime team), and `tests/fixtures/run-reports/` holds their sample reports, which the tests run. To update it, copy in the new schema and fixtures and bump `SCHEMA_COMMIT` in `src/lib/run-report.ts`. The brief and replies are in `docs/proposals/`.
 
 - **Upload checks:** the Worker validates each upload strictly against the schema. It refuses reports that contradict themselves (impossible milestones, dates in the future) and flags claims that contradict the source code, such as a "missing" function that is implemented or an "unsupported" instruction the recompiler translates. Flagged reports wait for a maintainer.
 - **Confirmations:** an upload counts toward a game's stage once two different accounts reach it, or one account and a Discussions report do. Until then the game page shows it as "1 of 2 confirmations".

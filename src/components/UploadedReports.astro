@@ -21,7 +21,16 @@ const STOP: Record<string, string> = {
   assert: "Stopped on an assertion",
   other: "Stopped",
 };
+const REASON: Record<string, string> = {
+  "guest-exit": "the game exited",
+  "quit-requested": "the window was closed",
+  "runtime-stop": "AnyPS5 stopped it",
+  crash: "it crashed",
+  "unclean-unknown": "it ended uncleanly",
+  other: "it ended",
+};
 const shown = uploads.slice(0, 10);
+const osName = (os: string | null) => (os ? (PLATFORM_LABEL[os as keyof typeof PLATFORM_LABEL] ?? os) : "Unknown OS");
 ---
 
 <section class="card panel uploads" data-uploads>
@@ -47,31 +56,37 @@ const shown = uploads.slice(0, 10);
       shown.map((u) => (
         <li data-upload-id={u.id}>
           <div class="row">
-            <StageBadge stage={u.stage} />
+            {u.stage ? <StageBadge stage={u.stage} /> : <span class="muted unknown">Stage unknown</span>}
             <span class="system">
-              {PLATFORM_LABEL[u.os as keyof typeof PLATFORM_LABEL] ?? u.os} · {u.gpuVendor}
+              {osName(u.os)} · {u.gpuVendor ?? "unknown GPU"}
             </span>
-            <span class="muted build mono">{u.release ?? u.commit.slice(0, 8)}</span>
+            <span class="muted build mono">{u.release ?? u.commit?.slice(0, 8) ?? "unknown build"}</span>
+            {u.recovered && <span class="tag" title="Written at the next start, after the run ended uncleanly">Recovered</span>}
+            {u.titleChosen && <span class="tag" title="The report had no title ID; the uploader chose this game">Game chosen by uploader</span>}
             <span class="muted by">
               <a href={`https://github.com/${u.login}`}>{u.login}</a> · {formatDate(u.at)}
             </span>
           </div>
           <p class="stop">
-            {STOP[u.stop.kind] ?? "Stopped"}
-            {u.stop.message && <span class="muted mono">: {u.stop.message}</span>}
+            {STOP[u.stop.kind] ?? "Stopped"}, {REASON[u.stop.reason] ?? "it ended"}
+            <span class="muted mono">: {u.stop.message}</span>
           </p>
-          {(u.missing.length > 0 || u.unsupported.length > 0) && (
+          {((u.missing?.length ?? 0) > 0 || (u.unsupported?.length ?? 0) > 0) && (
             <p class="needs">
-              {u.missing.slice(0, 4).map((name) => (
+              {(u.missing ?? []).slice(0, 4).map((name) => (
                 <span class="chip mono" title="Missing function">
                   {name}
                 </span>
               ))}
-              {u.unsupported.slice(0, 4).map((op) => (
+              {(u.missing?.length ?? 0) + u.truncated.functions > 4 && <span class="muted more-count">+{(u.missing?.length ?? 0) + u.truncated.functions - 4} functions</span>}
+              {(u.unsupported ?? []).slice(0, 4).map((op) => (
                 <span class="chip shader mono" title="Unsupported shader instruction">
                   {op}
                 </span>
               ))}
+              {(u.unsupported?.length ?? 0) + u.truncated.unsupported > 4 && (
+                <span class="muted more-count">+{(u.unsupported?.length ?? 0) + u.truncated.unsupported - 4} instructions</span>
+              )}
             </p>
           )}
         </li>
@@ -139,6 +154,17 @@ const shown = uploads.slice(0, 10);
     background: color-mix(in srgb, var(--accent) 12%, transparent);
     color: var(--muted);
     font-size: 0.74rem;
+  }
+  .tag {
+    padding: 1px 8px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+  .unknown,
+  .more-count {
+    font-size: 0.78rem;
   }
   .chip.shader {
     background: color-mix(in srgb, var(--accent-2) 12%, transparent);
