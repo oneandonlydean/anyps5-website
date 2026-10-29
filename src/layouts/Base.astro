@@ -70,6 +70,38 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         if (theme === "light") document.documentElement.dataset.theme = "light";
       } catch {}
     </script>
+    <script is:inline>
+      // Shared-element transitions name only the one element that links to the other page (the card you clicked, or
+      // the card you came back to), so the browser morphs one cover instead of capturing every card on a long list.
+      (() => {
+        const path = (url) => new URL(url, location.href).pathname.replace(/\/$/, "");
+        const named = () => document.querySelectorAll("[data-vt]");
+        const clear = () => named().forEach((el) => (el.style.viewTransitionName = ""));
+        const name = (url) => {
+          const target = path(url);
+          for (const el of named()) {
+            const link = el.closest("a");
+            const box = el.getBoundingClientRect();
+            if (link && path(link.href) === target && box.bottom > 0 && box.top < innerHeight) {
+              el.style.viewTransitionName = el.dataset.vt;
+              return;
+            }
+          }
+        };
+        addEventListener("pageswap", (e) => {
+          if (e.viewTransition && e.activation?.entry.url) name(e.activation.entry.url);
+        });
+        addEventListener("pagereveal", (e) => {
+          clear();
+          if (!e.viewTransition) return;
+          // Entrance animations would fight the morph; pages skip them when this class is set.
+          document.documentElement.classList.add("vt-arrived");
+          const from = self.navigation?.activation?.from?.url;
+          if (from) name(from);
+          e.viewTransition.finished.finally(clear);
+        });
+      })();
+    </script>
     <slot name="head" />
   </head>
   <body>

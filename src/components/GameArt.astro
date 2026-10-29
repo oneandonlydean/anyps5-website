@@ -12,15 +12,17 @@ interface Props {
   class?: string;
   /** A view-transition-name, so the same cover can morph between pages. */
   transitionName?: string;
+  /** A view-transition-name applied only while navigating to or from the page this art links to (see Base.astro). */
+  navTransitionName?: string;
 }
-const { name, src, color, ratio, widths, sizes, eager = false, class: className, transitionName } = Astro.props;
+const { name, src, color, ratio, widths, sizes, eager = false, class: className, transitionName, navTransitionName } = Astro.props;
 const [w, h] = ratio.split("/").map(Number);
 const width = widths.at(-1)!;
 const tint = color ?? `hsl(${hue(name)} 45% 32%)`;
 const ring = `hsl(${(hue(name) + 40) % 360} 70% 60%)`;
 ---
 
-<div class:list={["art", className]} style={`--ratio:${ratio};--tint:${tint};--ring:${ring}${transitionName ? `;view-transition-name:${transitionName}` : ""}`}>
+<div class:list={["art", className]} data-vt={navTransitionName} style={`--ratio:${ratio};--tint:${tint};--ring:${ring}${transitionName ? `;view-transition-name:${transitionName}` : ""}`}>
   {
     src ? (
       <img

@@ -48,7 +48,7 @@ const lastTested = game.reports[0]?.date;
     widths={[240, 360, 480]}
     sizes="(max-width: 600px) 45vw, 200px"
     eager={eager}
-    transitionName={`cover-${game.slug}`}
+    navTransitionName={`cover-${game.slug}`}
   />
   {ready && <span class="ready" title="Fixed since the last report: ready to retest">Retest</span>}
   <div class="body">

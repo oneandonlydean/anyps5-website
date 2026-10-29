@@ -319,6 +319,11 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
       0 0 90px -30px var(--tint);
     animation: lift 0.9s var(--ease) both;
   }
+  /* Arriving through a view transition, the cover and backdrop morph in from the previous page instead. */
+  :global(.vt-arrived) .backdrop,
+  :global(.vt-arrived) .hero :global(.cover) {
+    animation: none;
+  }
   @keyframes lift {
     from {
       opacity: 0;

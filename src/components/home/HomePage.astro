@@ -240,7 +240,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
             const r = reach(g);
             return (
               <a class:list={["feature reveal", { wide: i < 2 }]} href={`/compatibility/${g.slug}`} style={`--tint:${g.art?.color ?? "#223"}`}>
-                <img class="feature-art" style={`view-transition-name:hero-${g.slug}`} src={artSrc(g.art!.hero!, i < 2 ? 1280 : 800)} alt="" loading="lazy" decoding="async" />
+                <img class="feature-art" data-vt={`hero-${g.slug}`} src={artSrc(g.art!.hero!, i < 2 ? 1280 : 800)} alt="" loading="lazy" decoding="async" />
                 <div class="feature-copy">
                   {g.art?.logo ? <img class="feature-logo" src={artSrc(g.art.logo, 480)} alt={g.name} loading="lazy" /> : <h3>{g.name}</h3>}
                   <div class="feature-stage">
