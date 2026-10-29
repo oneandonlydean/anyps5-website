@@ -82,11 +82,19 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
 
   const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const mobile = document.getElementById("mobile-nav");
-  toggle?.addEventListener("click", () => {
-    const open = toggle.getAttribute("aria-expanded") !== "true";
-    toggle.setAttribute("aria-expanded", String(open));
-    mobile!.hidden = !open;
+  const setMenu = (open: boolean) => {
+    toggle?.setAttribute("aria-expanded", String(open));
+    if (mobile) mobile.hidden = !open;
+  };
+  toggle?.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
+  // Escape closes the menu, and so does widening the window to where the full navigation shows.
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mobile && !mobile.hidden) {
+      setMenu(false);
+      toggle?.focus();
+    }
   });
+  matchMedia("(min-width: 881px)").addEventListener("change", (event) => event.matches && setMenu(false));
 </script>
 
 <style>

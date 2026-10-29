@@ -222,6 +222,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   const press = (buttons: HTMLButtonElement[], key: string, values: string[]) => buttons.forEach((b) => (b.ariaPressed = String(values.includes(b.dataset[key]!))));
 
   let platforms: string[] = [];
+  let currentView = "grid";
   let gpus: string[] = [];
 
   /**
@@ -270,7 +271,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     count.textContent = String(shown);
     countLabel.textContent = shown === 1 ? "game" : "games";
     empty.hidden = shown > 0;
-    save({ q: query, stage: stages.join(","), platform: platforms.join(","), gpu: gpus.join(","), main: isOn(mainToggle) ? "1" : "", ready: isOn(readyToggle) ? "1" : "", sort: sort.value === "stage" ? "" : sort.value });
+    save({ q: query, stage: stages.join(","), platform: platforms.join(","), gpu: gpus.join(","), main: isOn(mainToggle) ? "1" : "", ready: isOn(readyToggle) ? "1" : "", sort: sort.value === "stage" ? "" : sort.value, view: currentView === "list" ? "list" : "" });
   }
 
   /** Removable pills for every active filter, so it is always clear what the grid shows. */
@@ -292,6 +293,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
         button.addEventListener("click", () => {
           clear();
           apply();
+          refocus();
         });
         item.append(button);
         return item;
@@ -308,6 +310,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
         if (readyToggle) readyToggle.ariaPressed = "false";
         search.value = "";
         apply();
+        refocus();
       });
       item.append(all);
       activeList.append(item);
@@ -315,6 +318,11 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     const panelFilters = platforms.length + gpus.length + (isOn(mainToggle) ? 1 : 0);
     filtersCount.hidden = panelFilters === 0;
     filtersCount.textContent = String(panelFilters);
+  }
+
+  /** The pills are rebuilt on every change, so keyboard focus moves to the next pill, or the search box when none are left. */
+  function refocus() {
+    (activeList.querySelector("button") ?? search).focus();
   }
 
   // The filter panel opens below its button and closes on Escape or a click elsewhere.
@@ -336,6 +344,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   function setView(view: string) {
     grid.classList.toggle("list", view === "list");
     press(views, "view", [view]);
+    currentView = view;
     try {
       localStorage.setItem("compat-view", view);
     } catch {}
@@ -352,7 +361,8 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     mainToggle.ariaPressed = String(params.get("main") === "1");
     if (readyToggle) readyToggle.ariaPressed = String(params.get("ready") === "1");
     sort.value = params.get("sort") ?? "stage";
-    press(segments, "stageFilter", params.get("stage")?.split(",") ?? []);
+    // A linked stage with no games would empty the list with no way to click it off.
+    press(segments.filter((b) => b.ariaDisabled !== "true"), "stageFilter", params.get("stage")?.split(",") ?? []);
     press(chips, "platform", params.get("platform")?.split(",") ?? []);
     press(gpuChips, "gpu", params.get("gpu")?.split(",") ?? []);
     try {
@@ -371,7 +381,12 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     apply();
   });
   [...chips, ...gpuChips].forEach((b) => b.addEventListener("click", () => toggle(b)));
-  views.forEach((b) => b.addEventListener("click", () => setView(b.dataset.view!)));
+  views.forEach((b) =>
+    b.addEventListener("click", () => {
+      setView(b.dataset.view!);
+      apply();
+    }),
+  );
   document.querySelectorAll("[data-filter]").forEach((el) => el.addEventListener("input", apply));
 
   restore();
@@ -566,7 +581,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   .retest-toggle[aria-pressed="true"] {
     border-color: var(--good);
     background: var(--good);
-    color: #04140a;
+    color: var(--on-good);
   }
   .retest-toggle[aria-pressed="true"] svg {
     color: currentColor;

@@ -19,6 +19,7 @@
   --accent-2: #37e0c8;
   --on-accent: #050912;
   --good: #3ddc84;
+  --on-good: #04140a;
   --warn: #f5b84a;
   --bad: #ff6b81;
   --scrim: rgb(6 8 13 / 0.72);
@@ -63,10 +64,12 @@
   --faint: #646c7e;
   --accent: #1d5fe0;
   --accent-strong: #134bb8;
-  --accent-2: #0b9b88;
+  --accent-2: #0a7a6c;
   --on-accent: #ffffff;
-  --good: #16a35a;
-  --warn: #b7791f;
+  /* Dark enough for small text on the light background (at least 4.5:1). */
+  --good: #137a45;
+  --on-good: #ffffff;
+  --warn: #8c5a12;
   --bad: #d43552;
   --scrim: rgb(246 247 250 / 0.8);
 

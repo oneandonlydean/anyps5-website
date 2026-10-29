@@ -24,13 +24,12 @@ const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 1000) / 10;
     <span class="key" aria-hidden="true"><i class="done"></i> Implemented <i class="todo"></i> Missing</span>
   </div>
 
-  <div class="map" role="list" aria-label="Libraries sized by declared functions">
+  <div class="map" role="group" aria-label="Libraries sized by declared functions">
     {
       tiles.map((t) => {
         return (
           <button
             type="button"
-            role="listitem"
             class:list={["tile", { complete: t.done === t.total }]}
             style={`left:${(t.x / W) * 100}%;top:${(t.y / H) * 100}%;width:${(t.w / W) * 100}%;height:${(t.h / H) * 100}%;--done:${pct(t)}%`}
             data-label={t.label}
@@ -147,12 +146,13 @@ const pct = (g: ProgressGroup) => Math.round((g.done / g.total) * 1000) / 10;
         }),
       );
       detail.hidden = false;
-      detail.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      detail.scrollIntoView({ block: "nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     };
 
     for (const tile of tiles) {
       tile.addEventListener("pointerenter", () => showTip(tile));
       tile.addEventListener("focus", () => showTip(tile));
+      tile.addEventListener("blur", () => (tip.hidden = true));
       tile.addEventListener("click", () => openDetail(tile));
     }
     map.addEventListener("pointerleave", () => ((tip.hidden = true), (hovered = null)));

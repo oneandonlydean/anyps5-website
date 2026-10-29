@@ -177,7 +177,8 @@ export function resolveGame(
   Object.assign(platforms, curated?.platforms);
 
   const events = timeline(qualifying);
-  if (curated && !reportWins) events.push({ date: curated.date, stage: curated.stage, url: null });
+  // A curated stage is a rise only when it is above the last one reached; a correction downwards is not an event.
+  if (curated && !reportWins && stageRank(curated.stage) > stageRank(events.at(-1)?.stage)) events.push({ date: curated.date, stage: curated.stage, url: null });
 
   const latestWithBlockers = reports.find((r) => r.blockers.length);
   const blockerNumbers = curated?.blockers ?? latestWithBlockers?.blockers ?? [];

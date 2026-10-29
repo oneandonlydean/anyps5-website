@@ -25,6 +25,10 @@ const { stage, onMain = true } = Astro.props;
     font-weight: 600;
     white-space: nowrap;
   }
+  /* Light stage colours need more of the text colour in them to stay readable at this size. */
+  :global(:root[data-theme="light"]) .badge {
+    color: color-mix(in srgb, var(--tone) 45%, var(--text));
+  }
   b {
     width: 7px;
     height: 7px;

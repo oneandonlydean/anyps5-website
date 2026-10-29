@@ -23,6 +23,8 @@ const UPSTREAM_PAGES = "https://boykopovar.github.io/AnyPS5/";
 /** Points links that are relative to docs/user/ upstream at this site or at the repository. */
 export function rewriteLink(href: string): string {
   if (href === UPSTREAM_PAGES) return "/convert";
+  // Upstream text is rendered as HTML, so a script link would run on this site.
+  if (/^\s*(javascript|data|vbscript):/i.test(href)) return "#";
   if (/^[a-z]+:|^#/i.test(href)) return href;
   const [path, hash] = href.split("#");
   const doc = DOCS.find((d) => d.file === path);

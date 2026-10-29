@@ -201,10 +201,13 @@ const FURTHEST = [
     } catch {}
   }
 
-  function restore() {
+  /** Restores the saved draft. Opened for a different game, only the fields about the person's setup carry over. */
+  function restore(game?: string) {
     try {
       const draft = JSON.parse(localStorage.getItem(DRAFT) ?? "null") as Record<string, string> | null;
+      const sameGame = !game || draft?.game === game;
       for (const [name, text] of Object.entries(draft ?? {})) {
+        if (!sameGame && name !== "system" && name !== "commit") continue;
         const field = form.elements.namedItem(name);
         if (field instanceof RadioNodeList) field.value = text;
         else if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) field.value = text;
@@ -228,9 +231,10 @@ const FURTHEST = [
   }
 
   const params = new URLSearchParams(location.search);
-  restore();
   const linked = params.get("game") && games.find((g) => g.slug === params.get("game"));
-  if (linked) (form.elements.namedItem("game") as HTMLInputElement).value = `${linked.name} (${linked.ids[0]})`;
+  const linkedName = linked ? `${linked.name} (${linked.ids[0]})` : undefined;
+  restore(linkedName);
+  if (linkedName) (form.elements.namedItem("game") as HTMLInputElement).value = linkedName;
   const system = root.querySelector<HTMLInputElement>("[data-system]")!;
   if (!system.value) {
     detectSystem().then((guess) => {

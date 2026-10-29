@@ -38,12 +38,18 @@ const APP = "/convert/app/index.html";
     if (root) root.dataset.theme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
   };
   // Same origin, so the frame can grow with its content instead of scrolling inside the page.
-  frame.addEventListener("load", () => {
+  const sized = new WeakSet<HTMLElement>();
+  const setup = () => {
     sync();
     const body = frame.contentDocument?.body;
-    if (!body) return;
+    if (!body || sized.has(body)) return;
+    sized.add(body);
     new ResizeObserver(() => (frame.style.height = `${body.scrollHeight}px`)).observe(body);
-  });
+  };
+  frame.addEventListener("load", setup);
+  // A cached converter can finish loading before this script runs, so its load event has already fired.
+  const doc = frame.contentDocument;
+  if (doc?.readyState === "complete" && doc.location.href !== "about:blank") setup();
   document.addEventListener("themechange", sync);
 </script>
 

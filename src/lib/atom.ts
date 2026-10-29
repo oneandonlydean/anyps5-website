@@ -33,6 +33,7 @@ export function atomFeed(options: { site: URL | undefined; path: string; page: s
   <subtitle>${escape(options.subtitle)}</subtitle>
   <link rel="self" href="${escape(absolute(options.path))}"/>
   <link href="${escape(absolute(options.page))}"/>
+  <author><name>AnyPS5</name></author>
   <updated>${options.entries[0] ? iso(options.entries[0].date) : new Date(0).toISOString()}</updated>
 ${entries}
 </feed>

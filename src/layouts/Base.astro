@@ -10,12 +10,14 @@ interface Props {
   image?: string;
   /** Leave the page out of site search. */
   unsearchable?: boolean;
+  /** Keeps the page out of search engines, and gives it no canonical URL (the 404 page). */
+  noindex?: boolean;
 }
 
 // The language comes from the URL: /es/docs/guide is the Spanish setup guide.
 const { locale, path } = parsePath(Astro.url.pathname);
 const t = strings(locale);
-const { title, description = t.meta.description, image = "/og/default.jpg", unsearchable = false } = Astro.props;
+const { title, description = t.meta.description, image = "/og/default.jpg", unsearchable = false, noindex = false } = Astro.props;
 // The label search results show for each part of the site.
 const SECTIONS: Record<string, string> = {
   compatibility: "Compatibility",
@@ -45,7 +47,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
     {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={new URL(path, Astro.site).href} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

@@ -109,7 +109,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
                     . A new run will show how much further it gets.
                   </p>
                 ) : (
-                  <p>The newest report is from {formatDate(retest.lastTested!)}, {retest.releasesSince} releases ago. A run on the current build would keep this page accurate.</p>
+                  <p>The newest report is from {formatDate(retest.lastTested!)}{retest.releasesSince > 1 ? `, ${retest.releasesSince} releases ago` : ""}. A run on the current build would keep this page accurate.</p>
                 )}
               </div>
               <a class="button primary" href={`/report?game=${game.slug}`}>
