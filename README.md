@@ -124,7 +124,7 @@ After a run, AnyPS5 writes `anyps5-report.json` (built by the runtime team on th
 
 ## Discord bot
 
-The Worker also runs the bot that used to be the separate gh-worker. It runs only in the `production` environment, which has the bot's database and secrets. The demo has neither, so the bot is off there.
+The Worker also runs the bot that used to be the separate gh-worker. It runs in the `production` environment, with the live database and secrets. The demo runs a test copy; see below.
 
 - **Linked roles:** members link GitHub and get roles by merged pull request count.
 - **Slash commands:** `/prs` and `/leaderboard`. Register or update them with `npm --prefix worker run register-commands`, and the linked-role metadata with `register-metadata`. Both need `DISCORD_CLIENT_ID` and `DISCORD_BOT_TOKEN` in the environment.
@@ -139,6 +139,29 @@ The Worker also runs the bot that used to be the separate gh-worker. It runs onl
 | `DISCORD_WEBHOOK_DIGEST` | Yesterday's progress summary, once a day from 01:00 UTC (falls back to `DISCORD_WEBHOOK_PROGRESS`) |
 
 - **Keeping the site current:** when the bot sees a user-facing merge, a release or new bring-up reports, it asks this repository to rebuild. Requests are at most every 2 minutes, and one that comes too soon is kept and sent later. GitHub runs one build at a time and keeps only the newest waiting one, so on a busy day the site is rebuilt about every 10 minutes.
+
+### Testing the bot before cutover
+
+The demo runs a test copy of the bot with its own Discord app and its own database (`anyps5-bot-test`). The live gh-worker and its database are never touched. The bot stays off until the demo has a `TOKEN_KEY` secret, and deleting that secret turns it off again. On its first run it only records where things stand, so old merges are never posted.
+
+Set each secret from the repository root with `npx wrangler secret put <NAME> --env=""`, which prompts for the value.
+
+1. **Discord app.** In the [Developer Portal](https://discord.com/developers/applications), create a new application, for example "AnyPS5 (test)".
+   - **General Information:** copy the Application ID into `DISCORD_CLIENT_ID` and the Public Key into `DISCORD_PUBLIC_KEY`.
+   - **OAuth2:** copy the Client Secret into `DISCORD_CLIENT_SECRET`, and add the redirect `https://anyps5-demo.deanisa.ninja/discord/callback`.
+   - **Bot:** reset the token and copy it into `DISCORD_BOT_TOKEN`.
+2. **GitHub OAuth app**, for linking GitHub accounts to roles. Create one in [Developer settings](https://github.com/settings/developers) with the callback `https://anyps5-demo.deanisa.ninja/github/callback`. Its Client ID goes in `GITHUB_CLIENT_ID` and a new client secret in `GITHUB_CLIENT_SECRET`. This is separate from the site's sign-in app.
+3. **GitHub token** for reading pull requests: a [fine-grained token](https://github.com/settings/personal-access-tokens/new) with "Public repositories" read-only access, in `GITHUB_TOKEN`.
+4. **Private channel and webhooks.** In the Discord server, create a channel such as `#bot-test` and make it private (Edit Channel → Permissions → Private Channel). Then go to Edit Channel → Integrations → Webhooks → New Webhook and copy its URL into `DISCORD_WEBHOOK_URL`. To test every kind of post, put the same URL in `DISCORD_WEBHOOK_PROGRESS`, `DISCORD_WEBHOOK_DEV`, `DISCORD_WEBHOOK_RELEASES`, `DISCORD_WEBHOOK_GAMES` and `DISCORD_WEBHOOK_DIGEST` too, or make a channel for each to match production. Without `DISCORD_WEBHOOK_DEV`, `_RELEASES` or `_GAMES`, those posts are skipped.
+5. **Turn it on.** Generate a key with `openssl rand -base64 32` and set it as `TOKEN_KEY`.
+6. **Discord endpoints.** These are checked as you save them, so set them after step 5:
+   - General Information → Interactions Endpoint URL: `https://anyps5-demo.deanisa.ninja/interactions`
+   - General Information → Linked Roles Verification URL: `https://anyps5-demo.deanisa.ninja/linked-role`
+7. **Commands and role metadata.** In fish, `read -sx DISCORD_BOT_TOKEN` and `read -x DISCORD_CLIENT_ID` keep the token off screen and out of history. Then run `npm --prefix worker run register-metadata` and `npm --prefix worker run register-commands`.
+8. **Add it to the server.** Open `https://discord.com/oauth2/authorize?client_id=<Application ID>&scope=applications.commands`. Then, to keep `/prs` and `/leaderboard` in the test channel, go to Server Settings → Integrations → the app → turn off "All Channels" and add `#bot-test`.
+9. **Linked role.** Server Settings → Roles → create a role such as "Contributor (test)" → Links → Add requirement → the test app, for example at least 1 merged pull request. Get it from the server menu → Linked Roles, which takes you through Discord and GitHub sign-in.
+
+What to expect: merges post within a minute or two of landing (upstream merges about 160 a day, so the channel gets busy). A game reaching a new stage posts within about two minutes of the site rebuilding. A release posts within five minutes. The daily summary posts after 01:00 UTC. `npx wrangler tail --env=""` shows the bot's logs. At cutover, the production environment uses the live app and database, and the test app can be deleted.
 
 ## Deploying and running
 
