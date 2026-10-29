@@ -28,8 +28,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx tsx scripts/stages.ts snapshot "$RUNNER_TEMP/before.json"
-      - run: npm run sync:titles
+      # Reports first: titles and art are looked up for the title IDs the reports name.
       - run: npm run sync:reports -- ${{ inputs.full && '--full' || '' }}
+      - run: npm run sync:titles
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm run sync:issues

@@ -18,10 +18,11 @@ export default {
     const upstream = await fetch(`${UPSTREAM}/libraries/${url.pathname.slice(LIBRARIES.length)}${url.search}`, {
       method: request.method,
       headers: range ? { range } : {},
-      cf: { cacheEverything: true, cacheTtl: 86400 },
+      // Archives are named by hash, so they are cached for a day; errors are not, so a brief upstream outage clears.
+      cf: { cacheEverything: true, cacheTtlByStatus: { "200-299": 86400, "300-599": 0 } },
     } as RequestInit);
     const headers = new Headers(upstream.headers);
-    headers.set("cache-control", "public, max-age=86400");
+    if (upstream.ok) headers.set("cache-control", "public, max-age=86400");
     return new Response(upstream.body, { status: upstream.status, headers });
   },
 };

@@ -17,7 +17,7 @@
     "sync:issues": "tsx scripts/sync-issues.ts",
     "sync:art": "tsx scripts/resolve-art.ts",
     "sync:screenshots": "tsx scripts/sync-screenshots.ts",
-    "sync": "npm run sync:titles && npm run sync:reports && npm run sync:issues && npm run sync:art && npm run sync:screenshots",
+    "sync": "npm run sync:reports && npm run sync:titles && npm run sync:issues && npm run sync:art && npm run sync:screenshots",
     "fetch:upstream": "tsx scripts/fetch-upstream.ts",
     "fetch:coverage": "tsx scripts/fetch-coverage.ts",
     "validate": "tsx scripts/validate.ts",

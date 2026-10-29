@@ -2,7 +2,7 @@
 
 The official website for [AnyPS5](https://github.com/boykopovar/AnyPS5). It has the web converter, a setup guide, the release docs, downloads, implementation progress, and the game compatibility list.
 
-Static [Astro](https://astro.build) site, deployed to GitHub Pages.
+Static [Astro](https://astro.build) site. The demo runs on Cloudflare; GitHub Pages is an option (see [Deploy](#deploy)).
 
 ## Develop
 
@@ -37,7 +37,7 @@ Every game sits on an eight-stage ladder: Converts, Loads, Starts, First draw, P
 5. **Curation.** `data/games/<slug>.yaml` files override any of the above. See [CONTRIBUTING.md](CONTRIBUTING.md).
 6. **Resolution.** `src/lib/resolve.ts` groups threads into games by title ID. The headline stage comes from the best report on a `main` or release build. Higher stages reached only with open pull requests or local patches show separately. A curated stage wins until a newer report goes further.
 
-The sync workflow runs every six hours and opens a pull request. Its description lists stage changes and new games, so a person reviews every change before it goes live.
+The sync workflow (manual for now) opens a pull request whose description lists stage changes and new games, so a person reviews every change before it goes live. Pull requests opened with the workflow's own token do not trigger CI; use a personal access token or app token if they should.
 
 ## How progress is measured
 
@@ -103,7 +103,6 @@ The live demo is on Cloudflare (see [Cloudflare demo](#cloudflare-demo)). There,
 
 - Enable GitHub Pages with "GitHub Actions" as the source.
 - Set the repository variable `SITE_URL` to the site's public URL, and add `public/CNAME` for a custom domain.
-- Optionally add the `SGDB_API_KEY` secret.
 - Restore the push and schedule triggers in the workflow.
 
 `SITE_REPO_URL` in `src/lib/site.ts` points the "Suggest a correction" links at this repository.

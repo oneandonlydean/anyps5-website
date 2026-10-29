@@ -15,7 +15,8 @@ const guideRedirects = Object.fromEntries(
 );
 
 export default defineConfig({
-  site: process.env.SITE_URL ?? "http://localhost:4321",
+  // `||`, not `??`: CI passes an empty string when the SITE_URL variable is not set.
+  site: process.env.SITE_URL || "http://localhost:4321",
   integrations: [mdx(), sitemap()],
   trailingSlash: "ignore",
   redirects: guideRedirects,
