@@ -10,19 +10,19 @@ interface Props {
   sizes: string;
   eager?: boolean;
   class?: string;
-  /** A view-transition-name, so the same cover can morph between pages. */
-  transitionName?: string;
-  /** A view-transition-name applied only while navigating to or from the page this art links to (see Base.astro). */
+  /** On a list: a view-transition-name applied only while navigating to or from the page this art links to. */
   navTransitionName?: string;
+  /** On a detail page: a view-transition-name applied only when the other page has art with that name (see Base.astro). */
+  peerTransitionName?: string;
 }
-const { name, src, color, ratio, widths, sizes, eager = false, class: className, transitionName, navTransitionName } = Astro.props;
+const { name, src, color, ratio, widths, sizes, eager = false, class: className, navTransitionName, peerTransitionName } = Astro.props;
 const [w, h] = ratio.split("/").map(Number);
 const width = widths.at(-1)!;
 const tint = color ?? `hsl(${hue(name)} 45% 32%)`;
 const ring = `hsl(${(hue(name) + 40) % 360} 70% 60%)`;
 ---
 
-<div class:list={["art", className]} data-vt={navTransitionName} style={`--ratio:${ratio};--tint:${tint};--ring:${ring}${transitionName ? `;view-transition-name:${transitionName}` : ""}`}>
+<div class:list={["art", className]} data-vt={navTransitionName} data-vt-peer={peerTransitionName} style={`--ratio:${ratio};--tint:${tint};--ring:${ring}`}>
   {
     src ? (
       <img

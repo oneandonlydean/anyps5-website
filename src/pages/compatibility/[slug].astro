@@ -46,9 +46,12 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
   <div class:list={{ themed: theme }} style={themeStyle}>
     <section class="hero" style={`--tint:${art?.color ?? "var(--bg-glow)"}`}>
       {/* The backdrop sits dimmed behind a gradient, so phones get a smaller file than its width would ask for. */}
-      {art?.hero && <img class="backdrop" style={`view-transition-name:hero-${game.slug}`} src={artSrc(art.hero, 1920)} srcset={artSrcset(art.hero, [640, 1280, 1920])} sizes="(max-width: 800px) 60vw, 100vw" alt="" fetchpriority="high" decoding="async" />}
-      <div class="container hero-inner">
-        <GameArt class="cover" name={game.name} src={art?.cover ?? art?.square ?? null} color={art?.color} ratio="2/3" widths={[320, 480, 640]} sizes="240px" eager transitionName={`cover-${game.slug}`} />
+      {/* The scrim lives inside the backdrop, so the two morph together from a home-page feature. */}
+      <div class="backdrop" data-vt-peer={art?.hero ? `hero-${game.slug}` : undefined}>
+        {art?.hero && <img src={artSrc(art.hero, 1920)} srcset={artSrcset(art.hero, [640, 1280, 1920])} sizes="(max-width: 800px) 60vw, 100vw" alt="" fetchpriority="high" decoding="async" />}
+      </div>
+      <div class="container hero-inner" data-vt-with={art?.hero ? `hero-${game.slug}` : undefined}>
+        <GameArt class="cover" name={game.name} src={art?.cover ?? art?.square ?? null} color={art?.color} ratio="2/3" widths={[240, 360, 480]} sizes="240px" eager peerTransitionName={`cover-${game.slug}`} />
         <div class="headline">
           <a class="back" href="/compatibility">← All games</a>
           {
@@ -282,7 +285,11 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
   .backdrop {
     position: absolute;
     inset: 0;
-    z-index: -2;
+    z-index: -1;
+  }
+  .backdrop img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -290,11 +297,10 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
     opacity: 0.7;
     animation: settle 1.2s var(--ease) both;
   }
-  .hero::after {
+  .backdrop::after {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1;
     background:
       linear-gradient(to top, var(--bg) 4%, color-mix(in srgb, var(--bg) 50%, transparent) 50%, color-mix(in srgb, var(--bg) 10%, transparent)),
       linear-gradient(to right, color-mix(in srgb, var(--bg) 85%, transparent), transparent 65%),
@@ -320,7 +326,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
     animation: lift 0.9s var(--ease) both;
   }
   /* Arriving through a view transition, the cover and backdrop morph in from the previous page instead. */
-  :global(.vt-arrived) .backdrop,
+  :global(.vt-arrived) .backdrop img,
   :global(.vt-arrived) .hero :global(.cover) {
     animation: none;
   }
