@@ -1,8 +1,8 @@
 ---
+import LocalDate from "../../components/LocalDate.astro";
 import Base from "../../layouts/Base.astro";
 import GameCard from "../../components/GameCard.astro";
 import { getGames, getRetest, getScreenshots } from "../../lib/data";
-import { formatDate } from "../../lib/site";
 import { STAGES, stageRank, stageSlug } from "../../lib/stages";
 import { artSrc, PLATFORM_LABEL, reach } from "../../lib/view";
 
@@ -44,7 +44,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
       <div><dt>Tracked</dt><dd>{games.length}</dd></div>
       <div><dt>Tested</dt><dd>{tested}</dd></div>
       <div><dt>In game or better</dt><dd>{ingame}</dd></div>
-      {synced && <div><dt>Last report</dt><dd class="date">{formatDate(synced)}</dd></div>}
+      {synced && <div><dt>Last report</dt><dd class="date"><LocalDate iso={synced} /></dd></div>}
     </dl>
   </section>
 

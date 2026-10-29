@@ -1,15 +1,15 @@
 ---
+import LocalDate from "./LocalDate.astro";
 import Logo from "./Logo.astro";
 import { BUILT_AT, DISCORD_URL, DISCUSSIONS_URL, REPO_URL } from "../lib/site";
 import { getCoverage, getRelease } from "../lib/upstream";
-import { LOCALES, localePath, parsePath, strings } from "../i18n";
+import { localePath, parsePath, strings } from "../i18n";
 
 const { locale } = parsePath(Astro.url.pathname);
 const t = strings(locale);
 const local = (path: string) => localePath(locale, path);
 // When the site was built, and the upstream commit its data was measured on.
 const [coverage, release] = await Promise.all([getCoverage(), getRelease()]);
-const built = new Intl.DateTimeFormat(LOCALES[locale].lang, { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" }).format(BUILT_AT);
 const columns = [
   {
     title: t.footer.project,
@@ -68,7 +68,7 @@ const columns = [
   <div class="container legal">
     <p>{t.footer.legal}</p>
     <p class="build">
-      {t.footer.lastUpdated} <time datetime={BUILT_AT.toISOString()}>{built} UTC</time>
+      {t.footer.lastUpdated} <LocalDate iso={BUILT_AT.toISOString()} time />
       {
         coverage?.commit && (
           <>

@@ -1,10 +1,10 @@
 ---
+import LocalDate from "./LocalDate.astro";
 import GameArt from "./GameArt.astro";
 import StageBadge from "./StageBadge.astro";
 import StageBar from "./StageBar.astro";
 import type { Game } from "../lib/resolve";
 import { stageRank, stageSlug } from "../lib/stages";
-import { formatDate } from "../lib/site";
 import { PLATFORM_LABEL, reach, systemTokens } from "../lib/view";
 import { gameTheme } from "../lib/color";
 
@@ -81,7 +81,7 @@ const lastTested = game.reports[0]?.date;
       {systems.length > 3 && <span class="more">+{systems.length - 3}</span>}
       {systems.length === 0 && <span class="none">Not reported</span>}
     </span>
-    <span class="tested">{lastTested ? formatDate(lastTested) : "—"}</span>
+    <span class="tested">{lastTested ? <LocalDate iso={lastTested} /> : "—"}</span>
   </div>
 </a>
 

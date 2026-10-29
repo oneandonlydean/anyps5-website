@@ -1,7 +1,8 @@
 ---
+import LocalDate from "./LocalDate.astro";
 import type { GameNeeds } from "../lib/data";
 import type { FunctionStatus } from "../lib/needs";
-import { formatDate, REPO_URL } from "../lib/site";
+import { REPO_URL } from "../lib/site";
 
 interface Props {
   needs: GameNeeds;
@@ -24,7 +25,7 @@ const short = (file: string) => file.split("/").slice(-1)[0];
   <h2>What it needs</h2>
   <p class="from">
     Read from the blocker in the{" "}
-    <a href={needs.report.url}>report of {formatDate(needs.report.date)}</a>
+    <a href={needs.report.url}>report of <LocalDate iso={needs.report.date} /></a>
     {needs.report.author && <> by {needs.report.author}</>}, checked against today's source.
   </p>
 

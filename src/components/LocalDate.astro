@@ -1,0 +1,25 @@
+---
+import { formatDate } from "../lib/site";
+
+interface Props {
+  iso: string;
+  /** Show the time of day too. */
+  time?: boolean;
+  class?: string;
+}
+
+/**
+ * A moment, printed in UTC for search engines and readers without JavaScript, and rewritten into the visitor's own
+ * timezone by the script in Base.astro. Only for real moments (a release, a report, an upload): daily figures are UTC
+ * days and stay as they are.
+ */
+const { iso, time = false, class: className } = Astro.props;
+// A bare day ("2026-10-29") is a calendar date, not a moment: moving it to another timezone would shift the day.
+const moment = iso.includes("T");
+const date = new Date(iso);
+const utc = time
+  ? `${new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "UTC" }).format(date)} UTC`
+  : formatDate(iso);
+---
+
+<time class={className} datetime={moment ? date.toISOString() : iso} data-local={moment ? (time ? "time" : "date") : undefined}>{utc}</time>

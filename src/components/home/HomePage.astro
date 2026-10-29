@@ -1,4 +1,5 @@
 ---
+import LocalDate from "../LocalDate.astro";
 import Base from "../../layouts/Base.astro";
 import GameArt from "../GameArt.astro";
 import StageBadge from "../StageBadge.astro";
@@ -90,7 +91,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     </div>
     <div class="glow" aria-hidden="true"></div>
     <div class="container hero-copy">
-      {release && <a class="release" href={release.url}><b>{release.tag}</b> {t.home.latestRelease} · {formatDate(release.published)} <span aria-hidden="true">→</span></a>}
+      {release && <a class="release" href={release.url}><b>{release.tag}</b> {t.home.latestRelease} · <LocalDate iso={release.published} /> <span aria-hidden="true">→</span></a>}
       <h1 set:html={t.home.headline.replace("<em>", '<span class="gradient-text">').replace("</em>", "</span>")} />
       <p class="lede">{t.home.lede}</p>
       <div class="ctas">
@@ -166,7 +167,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
             <a class="card merged" href="/updates#progress">
               <span class="kicker">
                 <span>{t.home.progressLabel}</span>
-                <time datetime={digest.date}>{formatDate(digest.date)}</time>
+                <time datetime={digest.date} title="A day in UTC">{formatDate(digest.date)}</time>
               </span>
               <b class="big">{t.home.changesMerged(num(digest.merges?.length ?? 0))}</b>
               <span class="split" aria-hidden="true">
@@ -208,9 +209,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
                         <span class="muted">{u.text}</span>
                       )}
                     </span>
-                    <time class="muted" datetime={u.date}>
-                      {formatDate(u.date)}
-                    </time>
+                    <LocalDate class="muted" iso={u.date} />
                   </a>
                 </li>
               ))}

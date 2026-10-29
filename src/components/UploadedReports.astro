@@ -1,6 +1,6 @@
 ---
+import LocalDate from "./LocalDate.astro";
 import StageBadge from "./StageBadge.astro";
-import { formatDate } from "../lib/site";
 import { CONFIRMATIONS_NEEDED, type AutoStage, type UploadSummary } from "../lib/uploads";
 import { PLATFORM_LABEL } from "../lib/view";
 
@@ -64,7 +64,7 @@ const osName = (os: string | null) => (os ? (PLATFORM_LABEL[os as keyof typeof P
             {u.recovered && <span class="tag" title="Written at the next start, after the run ended uncleanly">Recovered</span>}
             {u.titleChosen && <span class="tag" title="The report had no title ID; the uploader chose this game">Game chosen by uploader</span>}
             <span class="muted by">
-              <a href={`https://github.com/${u.login}`}>{u.login}</a> · {formatDate(u.at)}
+              <a href={`https://github.com/${u.login}`}>{u.login}</a> · <LocalDate iso={u.at} />
             </span>
           </div>
           <p class="stop">

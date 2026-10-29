@@ -1,4 +1,5 @@
 ---
+import LocalDate from "../../components/LocalDate.astro";
 import Base from "../../layouts/Base.astro";
 import GameArt from "../../components/GameArt.astro";
 import StageBadge from "../../components/StageBadge.astro";
@@ -92,7 +93,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
                 <h2>{retest.ready ? "Ready to retest" : "Due a fresh run"}</h2>
                 {retest.ready ? (
                   <p>
-                    What stopped it last time has been fixed since the report of {formatDate(retest.lastTested!)}:
+                    What stopped it last time has been fixed since the report of <LocalDate iso={retest.lastTested!} />:
                     {retest.fixed.functions.length > 0 && <> {retest.fixed.functions.length} named function{retest.fixed.functions.length === 1 ? " is" : "s are"} implemented now</>}
                     {retest.fixed.functions.length > 0 && retest.fixed.issues.length > 0 && ","}
                     {retest.fixed.issues.length > 0 && (
@@ -110,7 +111,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
                     . A new run will show how much further it gets.
                   </p>
                 ) : (
-                  <p>The newest report is from {formatDate(retest.lastTested!)}{retest.releasesSince > 1 ? `, ${retest.releasesSince} releases ago` : ""}. A run on the current build would keep this page accurate.</p>
+                  <p>The newest report is from <LocalDate iso={retest.lastTested!} />{retest.releasesSince > 1 ? `, ${retest.releasesSince} releases ago` : ""}. A run on the current build would keep this page accurate.</p>
                 )}
               </div>
               <a class="button primary" href={`/report?game=${game.slug}`}>
@@ -159,7 +160,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
                 <ol class="timeline">
                   {game.timeline.map((e) => (
                     <li style={`--tone:var(--stage-${stageSlug(e.stage)})`}>
-                      <time datetime={e.date}>{formatDate(e.date)}</time>
+                      <LocalDate iso={e.date} />
                       {e.url ? <a href={e.url}>Reached {e.stage}</a> : <span>Reached {e.stage} ({e.source === "uploads" ? "confirmed by uploaded run reports" : "checked by a maintainer"})</span>}
                     </li>
                   ))}
@@ -190,7 +191,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
                     {game.reports.map((r) => (
                       <tr>
                         <td class="nowrap">
-                          <a href={r.url}>{formatDate(r.date)}</a>
+                          <a href={r.url}><LocalDate iso={r.date} /></a>
                         </td>
                         <td>
                           <StageBadge stage={r.stage} />
@@ -259,7 +260,7 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
           </div>
           <div><dt>Reporters</dt><dd>{game.reporters}</dd></div>
           {game.gpuVendors.length > 0 && <div><dt>GPUs tested</dt><dd>{game.gpuVendors.join(", ")}</dd></div>}
-          {game.updated && <div><dt>Last activity</dt><dd>{formatDate(game.updated)}</dd></div>}
+          {game.updated && <div><dt>Last activity</dt><dd><LocalDate iso={game.updated} /></dd></div>}
           {game.aliases.length > 0 && <div><dt>Also known as</dt><dd>{game.aliases.join(", ")}</dd></div>}
         </dl>
       </aside>

@@ -1,6 +1,7 @@
 ---
+import LocalDate from "../components/LocalDate.astro";
 import Base from "../layouts/Base.astro";
-import { formatBytes, formatDate, REPO_URL } from "../lib/site";
+import { formatBytes, REPO_URL } from "../lib/site";
 import { getRelease, type ReleaseAsset } from "../lib/upstream";
 
 const release = await getRelease();
@@ -62,7 +63,7 @@ const groups: { title: string; text: string; items: { label: string; asset?: Rel
     {
       release ? (
         <p class="lede">
-          <a href={release.url}>{release.tag}</a>, published {formatDate(release.published)}. Most people only need the <a href="/convert">web converter</a>, which already
+          <a href={release.url}>{release.tag}</a>, published <LocalDate iso={release.published} />. Most people only need the <a href="/convert">web converter</a>, which already
           includes everything below.
         </p>
       ) : (
