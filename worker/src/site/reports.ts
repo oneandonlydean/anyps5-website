@@ -45,8 +45,8 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   if (account.blocked) return problem(403, "This account can't upload reports.");
   const tooBig = () => problem(413, "A run report is at most 64 KB.");
   if (Number(req.headers.get("content-length") ?? 0) > MAX_REPORT_BYTES) return tooBig();
-  const bytes = new Uint8Array(await req.arrayBuffer());
-  if (bytes.length > MAX_REPORT_BYTES) return tooBig();
+  const bytes = await readLimited(req, MAX_REPORT_BYTES);
+  if (!bytes) return tooBig();
 
   let data: unknown;
   try {
@@ -76,14 +76,46 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   const digest = await sha256(stored);
   if (await db.prepare("SELECT 1 FROM uploads WHERE digest = ? OR run_id = ?").bind(digest, report.run.id).first()) return problem(409, "This run was already uploaded.");
   const status = flags.length ? "review" : "visible";
-  const row = await db
+  let row: number | null;
+  try {
+    row = await db
     .prepare(
       "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
     )
     .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1)
     .first<number>("id");
+  } catch (err) {
+    // The same run sent twice at once: the second insert hits the unique index.
+    if (String(err).includes("UNIQUE")) return problem(409, "This run was already uploaded.");
+    throw err;
+  }
   if (status === "visible") wait(requestRebuild(env, "upload"));
   return json({ id: row, status, flags, titleId, stage: SITE_STAGE[report.run.stage] }, 201);
+}
+
+/** The body, or null once it passes `limit` bytes; read as a stream, so an oversized upload is never held in full. */
+async function readLimited(req: Request, limit: number): Promise<Uint8Array | null> {
+  if (!req.body) return new Uint8Array();
+  const reader = req.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.length;
+    if (size > limit) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+  const out = new Uint8Array(size);
+  let at = 0;
+  for (const chunk of chunks) {
+    out.set(chunk, at);
+    at += chunk.length;
+  }
+  return out;
 }
 
 export interface UploadSummary {

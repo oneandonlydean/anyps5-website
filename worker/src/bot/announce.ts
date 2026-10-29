@@ -102,7 +102,9 @@ const unescape = (s: string) =>
 export function parseFeed(xml: string): FeedEntry[] {
   return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map(([, entry]) => {
     const tag = (name: string) => unescape(entry!.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`))?.[1] ?? "");
-    return { id: tag("id"), title: tag("title"), url: unescape(entry!.match(/<link href="([^"]*)"/)?.[1] ?? ""), updated: tag("updated"), summary: tag("summary") };
+    // Ids are absolute URLs; only the path is kept, so moving the site to another domain doesn't make every entry new.
+    const id = tag("id").replace(/^https?:\/\/[^/]+/, "");
+    return { id, title: tag("title"), url: unescape(entry!.match(/<link href="([^"]*)"/)?.[1] ?? ""), updated: tag("updated"), summary: tag("summary") };
   });
 }
 
@@ -129,21 +131,31 @@ async function announceFeed(ctx: Ctx, bridge: FeedBridge): Promise<void> {
   if (!bridge.webhook || !ctx.env.ASSETS) return;
   const res = await ctx.env.ASSETS.fetch(`${baseUrl(ctx.env)}${bridge.path}`);
   if (!res.ok) return;
-  const entries = parseFeed(await res.text()).filter((e) => !bridge.ready || bridge.ready(e));
+  const all = parseFeed(await res.text());
+  const entries = all.filter((e) => !bridge.ready || bridge.ready(e));
   const stored = await kvGet(ctx, bridge.key);
   const seen = new Set<string>(stored ? (JSON.parse(stored) as string[]) : []);
   const fresh = stored === null ? [] : entries.filter((e) => !seen.has(e.id)).reverse().slice(0, FEED_PER_RUN);
+  // Newest first, so the oldest ids are the ones forgotten once the list is full. Saved after every post, so a
+  // failure partway through never posts the earlier entries again.
+  const remember = () => {
+    const remembered = [...all.map((e) => e.id).filter((id) => seen.has(id)), ...[...seen].filter((id) => !all.some((e) => e.id === id))];
+    return kvSet(ctx, bridge.key, JSON.stringify(remembered.slice(0, FEED_REMEMBERED)));
+  };
+  // The first run records everything there, ready or not, so nothing already in the feed is posted later as new.
+  if (stored === null) {
+    all.forEach((e) => seen.add(e.id));
+    await remember();
+    return;
+  }
   for (const entry of fresh) {
     await discord.postWebhook(ctx, `discord webhook ${bridge.key}`, bridge.webhook, {
-      embeds: [{ title: entry.title.slice(0, 256), url: entry.url, description: entry.summary || undefined, color: bridge.color, timestamp: entry.updated || undefined }],
+      embeds: [{ title: entry.title.slice(0, 256), url: entry.url, description: entry.summary.slice(0, 2000) || undefined, color: bridge.color, timestamp: entry.updated || undefined }],
     });
     seen.add(entry.id);
+    await remember();
     log("feed_entry_announced", { feed: bridge.path, id: entry.id });
   }
-  if (stored === null) entries.forEach((e) => seen.add(e.id));
-  // Newest first, so the oldest ids are the ones forgotten once the list is full.
-  const remembered = [...entries.map((e) => e.id).filter((id) => seen.has(id)), ...[...seen].filter((id) => !entries.some((e) => e.id === id))];
-  await kvSet(ctx, bridge.key, JSON.stringify(remembered.slice(0, FEED_REMEMBERED)));
 }
 
 /** Games that reached a new stage, from the site's games feed. */
@@ -151,17 +163,21 @@ export const announceGames = (ctx: Ctx) =>
   announceFeed(ctx, { path: "/feeds/games.xml", webhook: ctx.env.DISCORD_WEBHOOK_GAMES, key: "games_seen", color: 0x3ddc84 });
 
 /**
- * Yesterday's progress summary, from the site's daily feed. Today's summary keeps changing until the day is over,
- * so only finished days are posted: the first check after midnight UTC (once the site has rebuilt) posts the day before.
+ * Yesterday's progress summary, from the site's daily feed. A day's summary keeps changing until the day is over and
+ * the site has rebuilt, so a day is posted only from 01:00 UTC the next day, and once.
  */
-export const announceDigest = (ctx: Ctx, today = new Date().toISOString().slice(0, 10)) =>
-  announceFeed(ctx, {
+export function announceDigest(ctx: Ctx, at = new Date()) {
+  const today = at.toISOString().slice(0, 10);
+  const yesterday = new Date(at.getTime() - 864e5).toISOString().slice(0, 10);
+  const settled = (day: string) => day < yesterday || (day === yesterday && at.getUTCHours() >= 1);
+  return announceFeed(ctx, {
     path: "/feeds/progress-daily.xml",
     webhook: ctx.env.DISCORD_WEBHOOK_DIGEST || ctx.env.DISCORD_WEBHOOK_PROGRESS,
     key: "digest_seen",
     color: 0x37e0c8,
-    ready: (e) => (e.id.match(/(?:digest|week):(\d{4}-\d{2}-\d{2})/)?.[1] ?? today) < today,
+    ready: (e) => settled(e.id.match(/(?:digest|week):(\d{4}-\d{2}-\d{2})/)?.[1] ?? today),
   });
+}
 
 /**
  * Notices new or updated Game bring-up discussions, so the site rebuilds with new reports. Reads the ten most recently

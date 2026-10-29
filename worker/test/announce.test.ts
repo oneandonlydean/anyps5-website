@@ -101,7 +101,7 @@ it("posts games that reach a new stage, each once, starting from what the feed a
 
 it("reads the site's Atom feeds", () => {
   expect(parseFeed(feed(["x", "A &lt;b&gt; &quot;c&quot;"]))).toEqual([
-    { id: "https://site.test/updates#x", title: 'A <b> "c"', url: "https://site.test/compatibility/x", updated: T0, summary: "Up from Starts." },
+    { id: "/updates#x", title: 'A <b> "c"', url: "https://site.test/compatibility/x", updated: T0, summary: "Up from Starts." },
   ]);
 });
 
@@ -157,7 +157,46 @@ it("posts each finished day's progress summary once, never today's", async () =>
   xml = feed(digest("2026-10-01"), digest("2026-09-30"));
   await runCron(e, EVERYTHING);
   expect(posts(calls, "progress")).toHaveLength(0);
+  // Just after midnight the site may not have rebuilt with the day's last merges yet, so nothing is posted.
   await runCron(e, new Date("2026-10-02T00:10:00Z"));
-  await runCron(e, new Date("2026-10-02T00:20:00Z"));
+  expect(posts(calls, "progress")).toHaveLength(0);
+  await runCron(e, new Date("2026-10-02T01:00:00Z"));
+  await runCron(e, new Date("2026-10-02T01:10:00Z"));
   expect(posts(calls, "progress").map((p) => p.embeds[0].title)).toEqual(["Progress on 2026-10-01: 100 changes merged"]);
+});
+
+it("posts feed entries one by one, so a failure partway through never repeats the earlier ones", async () => {
+  await setCursor(T0);
+  let xml = feed(["stage:a:Menus", "A reaches Menus"]);
+  let fail = "";
+  const calls = mockFetch({
+    [PULLS]: () => pulls([]),
+    [WEBHOOK]: (call) => (fail && call.body.includes(fail) ? new Response(null, { status: 400 }) : new Response(null, { status: 204 })),
+  });
+  const e = withEnv({ DISCORD_WEBHOOK_GAMES: hook("games"), ASSETS: { fetch: async () => new Response(xml) } as unknown as Fetcher });
+  await runCron(e, EVERYTHING);
+  xml = feed(["stage:c:Ingame", "C reaches Ingame"], ["stage:b:Ingame", "B reaches Ingame"], ["stage:a:Menus", "A reaches Menus"]);
+  fail = "C reaches";
+  await runCron(e, EVERYTHING);
+  fail = "";
+  await runCron(e, EVERYTHING);
+  // C's first attempt failed and was retried on the next run; B, posted before the failure, was not posted again.
+  expect(posts(calls, "games").map((p) => p.embeds[0].title)).toEqual(["B reaches Ingame", "C reaches Ingame", "C reaches Ingame"]);
+});
+
+it("keeps a rebuild request made in the quiet period, and sends it once the period has passed", async () => {
+  await setCursor(T0);
+  const calls = mockFetch({
+    [PULLS]: () => pulls([{ ...pull(2, at(2)), title: "feat(libc): add strtold" }]),
+    [WEBHOOK]: () => new Response(null, { status: 204 }),
+    [DISPATCH]: () => new Response(null, { status: 204 }),
+  });
+  await env.SITE_DB!.prepare("INSERT INTO site_kv (key, value) VALUES ('rebuild_at', ?)").bind(String(Math.floor(Date.now() / 1000))).run();
+  await runCron(rebuilding(), POLL_ONLY);
+  expect(dispatches(calls)).toHaveLength(0);
+  expect(await env.SITE_DB!.prepare("SELECT value FROM site_kv WHERE key = 'rebuild_pending'").first<string>("value")).toBe("merge");
+  await env.SITE_DB!.prepare("UPDATE site_kv SET value = '0' WHERE key = 'rebuild_at'").run();
+  await runCron(rebuilding(), POLL_ONLY);
+  expect(dispatches(calls)).toHaveLength(1);
+  expect(await env.SITE_DB!.prepare("SELECT value FROM site_kv WHERE key = 'rebuild_pending'").first()).toBeNull();
 });

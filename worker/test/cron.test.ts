@@ -249,10 +249,10 @@ it("stays within the subrequest budget in the worst case", async () => {
     [SEARCH]: () => json({ total_count: 100 + n++, incomplete_results: false }),
     [ROLE]: () => json({}),
   });
-  await runCron(env);
-  expect(calls.length).toBeLessThanOrEqual(48);
-  expect(announced(calls)).toHaveLength(9);
-  expect(calls.filter((c) => c.method === "PUT").length).toBe(11);
+  await runCron(env, new Date("2026-10-01T00:07:00Z"));
+  expect(calls.length).toBeLessThanOrEqual(44);
+  expect(announced(calls)).toHaveLength(8);
+  expect(calls.filter((c) => c.method === "PUT").length).toBe(10);
 });
 
 it("cleans up expired state and abandoned half-linked users", async () => {

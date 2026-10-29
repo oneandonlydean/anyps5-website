@@ -1,4 +1,4 @@
-import { requestRebuild } from "../site/rebuild";
+import { flushPendingRebuild, requestRebuild } from "../site/rebuild";
 import { announceDigest, announceGames, announceReleases, classifyPull, mergeMessage, mergeWebhook, watchDiscussions } from "./announce";
 import * as discord from "./discord";
 import { log, makeCtx, now, type Ctx, type Env, type User } from "./env";
@@ -11,7 +11,8 @@ import { syncUser } from "./sync";
 // left, so a run handles 9 merges in the worst case (author linked, token
 // refreshed, count pushed) and MAX_MERGES_PER_RUN when authors are not
 // linked. The cron runs every minute, so both caps are per minute.
-const SUBREQUEST_BUDGET = 48;
+// 44 leaves room for the requests the budget doesn't count: the site's own feeds (assets) and the rebuild request.
+const SUBREQUEST_BUDGET = 44;
 const MERGE_COST = 4; // webhook, token refresh, search, role PUT
 const USER_COST = 4; // user by id, search, token refresh, role PUT
 const RESYNC_USERS_PER_RUN = 2;
@@ -34,13 +35,17 @@ type Step = [string, (ctx: Ctx) => Promise<void>];
 
 export async function runCron(env: Env, at = new Date()): Promise<void> {
   const ctx = await makeCtx(env, SUBREQUEST_BUDGET);
-  await cleanup(ctx);
+  try {
+    await cleanup(ctx);
+  } catch (err) {
+    logError("cleanup_failed", err);
+  }
   const minute = at.getUTCMinutes();
   const every = (n: number, step: Step): Step[] => (minute % n === 0 ? [step] : []);
   const steps: Step[] = [
     ...every(RELEASE_EVERY, ["releases", announceReleases]),
     ...every(GAMES_EVERY, ["games", announceGames]),
-    ...every(DIGEST_EVERY, ["digest", (c) => announceDigest(c, at.toISOString().slice(0, 10))]),
+    ...every(DIGEST_EVERY, ["digest", (c) => announceDigest(c, at)]),
     ...every(DISCUSSIONS_EVERY, ["discussions", watchDiscussions]),
     ["poll", pollMerges],
     ["resync", resync],
@@ -55,12 +60,11 @@ export async function runCron(env: Env, at = new Date()): Promise<void> {
     }
   }
   // Anything that changed what the site shows (a merge, a release, new reports) rebuilds it, a few minutes behind.
-  if (ctx.changes.size) {
-    try {
-      await requestRebuild(env, [...ctx.changes].join(", "));
-    } catch (err) {
-      logError("rebuild_request_failed", err);
-    }
+  try {
+    if (ctx.changes.size) await requestRebuild(env, [...ctx.changes].join(", "));
+    else await flushPendingRebuild(env);
+  } catch (err) {
+    logError("rebuild_request_failed", err);
   }
   log("cron_done", { subrequests: ctx.http.used });
 }

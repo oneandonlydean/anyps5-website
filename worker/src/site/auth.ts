@@ -20,12 +20,16 @@ export interface Account {
 
 export const signInEnabled = (env: Env) => Boolean(env.SITE_DB && env.SITE_GITHUB_CLIENT_ID && env.SITE_GITHUB_CLIENT_SECRET);
 
-export const isMaintainer = (env: Env, login: string) =>
+/**
+ * Maintainers are listed by GitHub account id, not login: a login can be renamed, and someone else could then
+ * register the freed name. A blocked account loses maintainer rights too.
+ */
+export const isMaintainer = (env: Env, account: Pick<Account, "github_id" | "blocked">) =>
+  !account.blocked &&
   (env.MAINTAINERS ?? "")
     .split(",")
-    .map((l) => l.trim().toLowerCase())
-    .filter(Boolean)
-    .includes(login.toLowerCase());
+    .map((id) => id.trim())
+    .includes(String(account.github_id));
 
 /** The signed-in account for a request, or null. */
 export async function currentAccount(req: Request, env: Env): Promise<Account | null> {
@@ -38,16 +42,29 @@ export async function currentAccount(req: Request, env: Env): Promise<Account | 
     .first<Account>();
 }
 
-/** Only same-site paths, so sign-in can't be used to send people elsewhere. */
-const safeReturn = (path: string | null) => (path && path.startsWith("/") && !path.startsWith("//") && !path.includes("\\") ? path : "/report");
+/**
+ * Only plain paths on this site, so sign-in can't be used to send people elsewhere. Browsers strip tabs and newlines
+ * from URLs ("/\t/evil.example" becomes "//evil.example"), so only URL-safe characters are allowed, and the result must
+ * resolve to this site.
+ */
+function safeReturn(path: string | null, origin: string): string {
+  if (!path || !/^\/(?!\/)[A-Za-z0-9\-._~/?#=&%+]*$/.test(path)) return "/report";
+  try {
+    return new URL(path, origin).origin === origin ? path : "/report";
+  } catch {
+    return "/report";
+  }
+}
 
 export async function startSignIn(req: Request, env: Env): Promise<Response> {
   if (!signInEnabled(env)) return problem(503, "Signing in is not set up on this site yet.");
   const url = new URL(req.url);
   const state = randomToken();
-  await env.SITE_DB!.prepare("INSERT INTO login_state (state, return_to, expires_at) VALUES (?, ?, ?)")
-    .bind(state, safeReturn(url.searchParams.get("return")), nowSeconds() + STATE_TTL)
-    .run();
+  // Abandoned sign-ins leave rows behind; clear the expired ones as new ones are made.
+  await env.SITE_DB!.batch([
+    env.SITE_DB!.prepare("DELETE FROM login_state WHERE expires_at < ?").bind(nowSeconds()),
+    env.SITE_DB!.prepare("INSERT INTO login_state (state, return_to, expires_at) VALUES (?, ?, ?)").bind(state, safeReturn(url.searchParams.get("return"), url.origin), nowSeconds() + STATE_TTL),
+  ]);
   const q = new URLSearchParams({ client_id: env.SITE_GITHUB_CLIENT_ID!, redirect_uri: `${url.origin}/auth/github/callback`, state, allow_signup: "true" });
   return new Response(null, { status: 302, headers: { location: `https://github.com/login/oauth/authorize?${q}`, "set-cookie": setCookie(STATE, state, STATE_TTL) } });
 }
@@ -102,7 +119,7 @@ export async function signOut(req: Request, env: Env): Promise<Response> {
 export async function me(req: Request, env: Env): Promise<Response> {
   const account = await currentAccount(req, env);
   if (!account) return json({ signedIn: false, signInAvailable: signInEnabled(env) });
-  return json({ signedIn: true, login: account.login, avatar: account.avatar, maintainer: isMaintainer(env, account.login), blocked: account.blocked === 1 });
+  return json({ signedIn: true, login: account.login, avatar: account.avatar, maintainer: isMaintainer(env, account), blocked: account.blocked === 1 });
 }
 
 const redirect = (location: string) => new Response(null, { status: 302, headers: { location } });

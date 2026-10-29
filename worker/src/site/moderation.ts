@@ -22,8 +22,15 @@ const hide = (env: Env, kind: Kind, target: string, by: string, reason: string |
 const setUpload = async (env: Env, target: string, status: string) =>
   ((await env.SITE_DB!.prepare("UPDATE uploads SET status = ? WHERE id = ?").bind(status, Number(target)).run()).meta.changes ?? 0) > 0;
 
+/** Blocks by login, resolved to one account: the one that signed in most recently under that name. */
 const setBlocked = async (env: Env, login: string, blocked: number) =>
-  ((await env.SITE_DB!.prepare("UPDATE accounts SET blocked = ? WHERE lower(login) = lower(?)").bind(blocked, login).run()).meta.changes ?? 0) > 0;
+  ((
+    await env.SITE_DB!.prepare(
+      "UPDATE accounts SET blocked = ? WHERE github_id = (SELECT github_id FROM accounts WHERE lower(login) = lower(?) ORDER BY created_at DESC LIMIT 1)",
+    )
+      .bind(blocked, login)
+      .run()
+  ).meta.changes ?? 0) > 0;
 
 const ACTIONS: Record<string, Action> = {
   approve: { kinds: ["upload"], apply: (env, _k, target) => setUpload(env, target, "visible") },
@@ -46,7 +53,7 @@ const TARGET = /^[A-Za-z0-9_.:-]{1,120}$/;
 async function maintainer(req: Request, env: Env): Promise<Account | Response> {
   const account = await currentAccount(req, env);
   if (!account) return problem(401, "Sign in with GitHub first.");
-  if (!isMaintainer(env, account.login)) return problem(403, "Only maintainers can do this.");
+  if (!isMaintainer(env, account)) return problem(403, "Only maintainers can do this.");
   return account;
 }
 
@@ -57,7 +64,7 @@ export async function act(req: Request, env: Env, wait: (p: Promise<unknown>) =>
   const body = (await req.json().catch(() => null)) as { action?: string; kind?: Kind; target?: string; reason?: string } | null;
   const action = body?.action ? ACTIONS[body.action] : undefined;
   if (!action || !body?.kind || !action.kinds.includes(body.kind) || !body.target || !TARGET.test(body.target)) return problem(400, "Unknown action.");
-  const reason = body.reason?.slice(0, 200) || null;
+  const reason = typeof body.reason === "string" ? body.reason.slice(0, 200) || null : null;
   const changed = await action.apply(env, body.kind, body.target, who.login, reason);
   if (!changed) return problem(404, "Nothing to change.");
   await env.SITE_DB!.prepare("INSERT INTO moderation_log (action, kind, target, reason, by_login, created_at) VALUES (?, ?, ?, ?, ?, ?)")

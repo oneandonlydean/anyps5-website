@@ -161,3 +161,33 @@ it("asks which game a report without a title ID was, and accepts the uploader's 
   const exported = await (await call("/api/export")).json<{ uploads: { titleId: string; titleChosen: boolean; stage: string | null; gpuVendor: string | null; missing: unknown }[] }>();
   expect(exported.uploads[0]).toMatchObject({ titleId: "PPSA12345", titleChosen: true, stage: null, gpuVendor: null });
 });
+
+it("never returns sign-in anywhere but this site, even with tabs or newlines in the path", async () => {
+  for (const sneaky of ["/%09/evil.example", "/%0a/evil.example", "//evil.example", "/\\evil.example", "https://evil.example/"]) {
+    const start = await call(`/auth/github?return=${sneaky}`);
+    const state = new URL(start.headers.get("location")!).searchParams.get("state")!;
+    const row = await env.SITE_DB!.prepare("SELECT return_to FROM login_state WHERE state = ?").bind(state).first<string>("return_to");
+    expect(row, sneaky).toBe("/report");
+  }
+  const ok = await call(`/auth/github?return=${encodeURIComponent("/compatibility/hades-ii?x=1#uploads")}`);
+  const state = new URL(ok.headers.get("location")!).searchParams.get("state")!;
+  expect(await env.SITE_DB!.prepare("SELECT return_to FROM login_state WHERE state = ?").bind(state).first<string>("return_to")).toBe("/compatibility/hades-ii?x=1#uploads");
+});
+
+it("gives maintainer rights by account id, not login, and takes them from a blocked account", async () => {
+  const impostor = await signIn("MOD1", 999);
+  expect((await call("/api/mod/queue", { cookie: impostor })).status).toBe(403);
+  const mod = await signIn("someone-renamed", 7);
+  expect((await call("/api/mod/queue", { cookie: mod })).status).toBe(200);
+  await env.SITE_DB!.prepare("UPDATE accounts SET blocked = 1 WHERE github_id = 7").run();
+  expect((await call("/api/mod/queue", { cookie: mod })).status).toBe(403);
+});
+
+it("proxies only the converter's archives, as downloads", async () => {
+  mockFetch({ "GET https://boykopovar.github.io/AnyPS5/libraries/": () => new Response("<script>alert(1)</script>", { headers: { "content-type": "text/html" } }) });
+  expect((await call("/convert/app/libraries/page.html")).status).toBe(404);
+  expect((await call("/convert/app/libraries/x.zip", { method: "POST", origin: null })).status).toBe(405);
+  const zip = await call("/convert/app/libraries/linux-abc.zip");
+  expect(zip.headers.get("content-type")).toBe("application/octet-stream");
+  expect(zip.headers.get("x-content-type-options")).toBe("nosniff");
+});

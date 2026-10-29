@@ -40,7 +40,13 @@ const SITE_ROUTES: Record<string, (req: Request, env: Env, wait: Wait) => Promis
   "POST /api/mod/action": act,
 };
 
+/**
+ * Only the converter's archives (.zip) are proxied, as opaque downloads: the content comes from another site but is
+ * served on this one, so it must never be able to render as a page.
+ */
 async function library(request: Request, url: URL): Promise<Response> {
+  if (request.method !== "GET" && request.method !== "HEAD") return new Response("Method not allowed", { status: 405 });
+  if (!url.pathname.endsWith(".zip")) return new Response("Not found", { status: 404 });
   const range = request.headers.get("range");
   const upstream = await fetch(`${UPSTREAM}/libraries/${url.pathname.slice(LIBRARIES.length)}${url.search}`, {
     method: request.method,
@@ -50,6 +56,8 @@ async function library(request: Request, url: URL): Promise<Response> {
   } as RequestInit);
   const headers = new Headers(upstream.headers);
   headers.set("cache-control", upstream.ok ? "public, max-age=86400" : "no-store");
+  headers.set("content-type", "application/octet-stream");
+  headers.set("x-content-type-options", "nosniff");
   return new Response(upstream.body, { status: upstream.status, headers });
 }
 
