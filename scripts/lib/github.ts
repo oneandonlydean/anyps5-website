@@ -29,3 +29,13 @@ export async function rest<T>(path: string): Promise<T> {
   if (!response.ok) throw new Error(`GitHub ${path} ${response.status}`);
   return (await response.json()) as T;
 }
+
+/** The number of items a list endpoint holds, read from the last page link of a one-item-per-page request. */
+export async function restCount(path: string): Promise<number> {
+  const response = await fetch(`https://api.github.com${path}${path.includes("?") ? "&" : "?"}per_page=1`, {
+    headers: { Authorization: `bearer ${authToken()}`, Accept: "application/vnd.github+json" },
+  });
+  if (!response.ok) throw new Error(`GitHub ${path} ${response.status}`);
+  const last = response.headers.get("link")?.match(/[?&]page=(\d+)>;\s*rel="last"/)?.[1];
+  return last ? Number(last) : ((await response.json()) as unknown[]).length;
+}

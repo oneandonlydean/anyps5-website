@@ -3,7 +3,8 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { unzipSync } from "fflate";
 import { generated, root, writeJson } from "./lib/files";
-import { rest } from "./lib/github";
+import { countPeople, type ContributorEntry } from "./lib/contributors";
+import { rest, restCount } from "./lib/github";
 
 const CONVERTER = resolve(root, "public/convert/app");
 const UPSTREAM_PAGES = "https://boykopovar.github.io/AnyPS5";
@@ -155,22 +156,22 @@ async function publishReleases() {
 }
 
 /**
- * Code contributors for the home page: everyone with a GitHub account, with avatars, and a total that also counts
- * commit authors without an account (GitHub lists those per email address). Bots are left out.
+ * Code contributors for the home page: everyone with a GitHub account, with avatars; how many people have authored
+ * commits, counting authors without an account once each (see countPeople); and the commit count of the default
+ * branch, as GitHub shows it on the repository page.
  */
 async function publishContributors() {
-  type Contributor = { login?: string; avatar_url?: string; html_url?: string; contributions: number; type: string };
-  const all: Contributor[] = [];
+  const all: (ContributorEntry & { avatar_url?: string; html_url?: string })[] = [];
   for (let page = 1; ; page++) {
-    const batch = await rest<Contributor[]>(`/repos/boykopovar/AnyPS5/contributors?per_page=100&anon=1&page=${page}`);
+    const batch = await rest<typeof all>(`/repos/boykopovar/AnyPS5/contributors?per_page=100&anon=1&page=${page}`);
     all.push(...batch);
     if (batch.length < 100) break;
   }
-  const humans = all.filter((c) => !c.login?.endsWith("[bot]") && c.type !== "Bot");
   await writeJson(generated("contributors.json"), {
-    total: humans.length,
-    people: humans
-      .filter((c) => c.type === "User")
+    total: countPeople(all),
+    commits: await restCount("/repos/boykopovar/AnyPS5/commits"),
+    people: all
+      .filter((c) => c.type === "User" && !c.login?.endsWith("[bot]"))
       .map((c) => ({ login: c.login!, avatar: c.avatar_url!, url: c.html_url!, contributions: c.contributions })),
   });
 }

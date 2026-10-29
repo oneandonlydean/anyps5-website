@@ -43,8 +43,14 @@ const tested = games.filter((g) => reach(g).stage);
 const ingame = games.filter((g) => stageRank(reach(g).stage) >= stageRank("Ingame")).length;
 const distribution = STAGES.map((s, i) => ({ ...s, count: tested.filter((g) => stageRank(reach(g).stage) === i).length })).filter((s) => s.count > 0);
 // The people behind the project: code contributors by commits, and everyone who has filed a test report.
-const { total: contributorTotal, people: contributors } = await loadGenerated<{
+const {
+  total: contributorTotal,
+  commits: commitTotal,
+  people: contributors,
+} = await loadGenerated<{
   total: number;
+  /** Commits on the default branch; data from before it was recorded falls back to the per-person sum. */
+  commits?: number;
   people: { login: string; avatar: string; url: string; contributions: number }[];
 }>("contributors.json", { total: 0, people: [] });
 const leaders = contributors.slice(0, 6);
@@ -53,7 +59,7 @@ const LANE = 90;
 const crowd = contributors.slice(6, 6 + LANE * 2);
 const crowdRows = [crowd.filter((_, i) => i % 2 === 0), crowd.filter((_, i) => i % 2 === 1)];
 const unseen = contributorTotal - leaders.length - crowd.length;
-const commits = contributors.reduce((n, c) => n + c.contributions, 0);
+const commits = commitTotal ?? contributors.reduce((n, c) => n + c.contributions, 0);
 const testerCounts = new Map<string, number>();
 for (const g of games) for (const r of g.reports) if (r.author) testerCounts.set(r.author, (testerCounts.get(r.author) ?? 0) + 1);
 const testers = [...testerCounts].sort((a, b) => b[1] - a[1]).map(([login, reports]) => ({ login, reports }));
