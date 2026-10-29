@@ -99,6 +99,33 @@ data/generated/     synced data, committed by the sync workflow
 
 The live demo is on Cloudflare (see [Cloudflare demo](#cloudflare-demo)). There, a small Worker streams the converter's large library archives from upstream.
 
+### Automatic updates
+
+`.github/workflows/site.yml` refreshes all data, builds and deploys to Cloudflare:
+
+- **On a push to `main`:** when this site's code changes.
+- **On an upstream ping:** a `repository_dispatch` event of type `upstream-updated`, sent by upstream after a merge or release.
+- **Every 3 hours:** it builds only if something the site shows has changed upstream: the latest release, the published library progress, the shader recompiler or GPU driver source, or the bring-up discussions. While this repository is private, more frequent checks would use up its free Actions minutes; once it is public, every 30 minutes is fine.
+- **Daily:** a full refresh regardless.
+
+It needs these repository secrets:
+
+- `CLOUDFLARE_API_TOKEN`: create one from Cloudflare's "Edit Cloudflare Workers" template, limited to this account and the `deanisa.ninja` zone.
+- `CLOUDFLARE_ACCOUNT_ID`
+- `SGDB_API_KEY`: optional.
+
+For the upstream ping, upstream adds this step to its workflows. It needs a fine-grained token, stored as an upstream secret, with "Contents: read and write" on this repository only:
+
+```yaml
+- name: Tell the website to update
+  if: github.ref == 'refs/heads/main'
+  run: gh api repos/oneandonlydean/anyps5-website/dispatches -f event_type=upstream-updated
+  env:
+    GH_TOKEN: ${{ secrets.WEBSITE_DISPATCH_TOKEN }}
+```
+
+### GitHub Pages
+
 `.github/workflows/deploy.yml` can also publish to GitHub Pages, which serves the archives itself. It is manual-only for now. To use it:
 
 - Enable GitHub Pages with "GitHub Actions" as the source.
