@@ -54,7 +54,9 @@ export function slugify(text: string): string {
 
 /** The name in a template-style title, `Game name (PPSA00000)`, or null when the title does not follow it. */
 export function threadName(title: string): string | null {
-  return title.match(/^\s*(.+?)\s*[([]\s*(?:PPSA|CUSA)\d{5}/i)?.[1].trim() ?? null;
+  // Some threads repeat the category in their title: "Game bring-up: Dusklight (PPSA12345)".
+  const bare = title.replace(/^\s*(?:game\s*)?bring[\s-]*up\s*[:\-–—]\s*/i, "");
+  return bare.match(/^\s*(.+?)\s*[([]\s*(?:PPSA|CUSA)\d{5}/i)?.[1].trim() ?? null;
 }
 
 function storeName(name: string): string {

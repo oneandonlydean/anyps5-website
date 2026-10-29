@@ -65,6 +65,8 @@ const en = {
     latest: "Latest",
     latestUpdates: "Latest updates",
     allUpdates: "All updates",
+    firstReport: "First report",
+    upFrom: (stage: string) => `Up from ${stage}`,
     howItWorks: "How it works",
     stepsTitle: "Three steps from your console to your PC",
     steps: [

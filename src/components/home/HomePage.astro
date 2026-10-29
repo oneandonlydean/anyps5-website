@@ -10,7 +10,7 @@ import Sparkline from "../Sparkline.astro";
 import { getCoverage, getProgress, getProgressHistory, getRelease } from "../../lib/upstream";
 import { getUpdates } from "../../lib/updates";
 import { loadGenerated } from "../../lib/load";
-import { artSrc, reach } from "../../lib/view";
+import { artSrc, hue, reach } from "../../lib/view";
 import { localePath, strings, type Locale } from "../../i18n";
 
 interface Props {
@@ -23,7 +23,8 @@ const local = (path: string) => localePath(locale, path);
 const num = (n: number) => n.toLocaleString(locale === "en" ? "en-GB" : locale);
 
 const [games, release, progress, coverage, updates, libraryHistory] = await Promise.all([getGames(), getRelease(), getProgress(), getCoverage(), getUpdates(), getProgressHistory()]);
-const latest = updates.slice(0, 4);
+// Single merges arrive by the hundred each day; the home page shows releases, stage rises and daily digests.
+const latest = updates.filter((u) => u.kind !== "merge").slice(0, 4);
 const shaders = coverage && { percent: (coverage.instructions.decoded / coverage.instructions.total) * 100 };
 const byReach = [...games].sort((a, b) => stageRank(reach(b).stage) - stageRank(reach(a).stage) || b.updated.localeCompare(a.updated));
 const wall = byReach.filter((g) => g.art?.cover).slice(0, 36);
@@ -148,19 +149,45 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   {
     latest.length > 0 && (
       <section class="container latest" aria-label={t.home.latestUpdates}>
-        <span class="label">{t.home.latest}</span>
+        <div class="latest-head">
+          <span class="label">
+            <i class="pulse" aria-hidden="true" />
+            {t.home.latest}
+          </span>
+          <a class="all" href="/updates">
+            {t.home.allUpdates} <span aria-hidden="true">→</span>
+          </a>
+        </div>
         <ul>
           {latest.map((u) => (
             <li>
-              <a href={u.url}>
-                <time datetime={u.date}>{formatDate(u.date)}</time> {u.title}
+              <a class:list={["card update", u.kind]} href={u.url} style={u.game ? `--tint:${u.game.color ?? `hsl(${hue(u.game.name)} 45% 32%)`}` : undefined}>
+                {u.game?.cover && <img class="glow" src={artSrc(u.game.cover, 96)} alt="" width="48" height="72" loading="lazy" decoding="async" aria-hidden="true" />}
+                {u.game ? (
+                  <span class="thumb">
+                    {u.game.cover ? <img src={artSrc(u.game.cover, 96)} alt="" width="48" height="72" loading="lazy" decoding="async" /> : <span aria-hidden="true">{u.game.name.replace(/^.*:\s*/, "").charAt(0).toUpperCase()}</span>}
+                  </span>
+                ) : (
+                  <span class="thumb icon" aria-hidden="true">
+                    {u.kind === "release" ? "★" : "↗"}
+                  </span>
+                )}
+                <span class="copy">
+                  <time datetime={u.date}>{formatDate(u.date)}</time>
+                  <b>{u.game?.name ?? u.title}</b>
+                  {u.kind === "stage" ? (
+                    <span class="what">
+                      <StageBadge stage={u.stage!} />
+                      <span class="muted">{u.from ? t.home.upFrom(u.from) : t.home.firstReport}</span>
+                    </span>
+                  ) : (
+                    <span class="muted text">{u.text}</span>
+                  )}
+                </span>
               </a>
             </li>
           ))}
         </ul>
-        <a class="all" href="/updates">
-          {t.home.allUpdates} <span aria-hidden="true">→</span>
-        </a>
       </section>
     )
   }
@@ -592,37 +619,157 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   }
 
   .latest {
+    margin-top: 28px;
+  }
+  .latest-head {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 10px 20px;
-    margin-top: 22px;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .latest-head .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  /* A live dot: the feed is rebuilt with every data refresh. */
+  .pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-2) 60%, transparent);
+    animation: pulse 2.4s var(--ease) infinite;
+  }
+  @keyframes pulse {
+    70% {
+      box-shadow: 0 0 0 7px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+  .latest .all {
     font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .latest .all span {
+    display: inline-block;
+    transition: translate 0.2s var(--ease);
+  }
+  .latest .all:hover span {
+    translate: 3px 0;
   }
   .latest ul {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    gap: 8px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .latest li a {
+  .update {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 100%;
+    padding: 12px 14px 12px 12px;
+    overflow: hidden;
     color: var(--text);
     text-decoration: none;
+    isolation: isolate;
+    transition: border-color 0.25s, transform 0.25s var(--ease);
   }
-  .latest li a:hover {
-    color: var(--accent);
+  .update:hover {
+    border-color: var(--line-strong);
+    color: var(--text);
+    transform: translateY(-2px);
   }
-  .latest time {
-    margin-right: 4px;
+  /* The cover, blurred into the card's corner, so each game brings its own colour. */
+  .update .glow {
+    position: absolute;
+    z-index: -1;
+    top: -40%;
+    left: -10%;
+    width: 60%;
+    height: 180%;
+    object-fit: cover;
+    filter: blur(28px) saturate(1.4);
+    opacity: 0.22;
+    transition: opacity 0.25s;
+    pointer-events: none;
+  }
+  .update:hover .glow {
+    opacity: 0.34;
+  }
+  .update .thumb {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 66px;
+    overflow: hidden;
+    border-radius: 7px;
+    background: radial-gradient(120% 90% at 30% 10%, color-mix(in srgb, var(--tint) 70%, white 8%), color-mix(in srgb, var(--tint) 55%, black));
+    color: rgb(255 255 255 / 0.9);
+    font: 700 1.3rem/1 var(--display);
+    box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.6), inset 0 0 0 1px rgb(255 255 255 / 0.08);
+  }
+  .update .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .update .thumb.icon {
+    height: 44px;
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+    border-radius: 12px;
+    background: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent) 30%, transparent), color-mix(in srgb, var(--accent) 6%, var(--surface)));
+    color: var(--accent-strong);
+    font-size: 1.05rem;
+  }
+  .update.week .thumb.icon,
+  .update.digest .thumb.icon {
+    border-color: color-mix(in srgb, var(--accent-2) 35%, var(--line));
+    background: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent-2) 30%, transparent), color-mix(in srgb, var(--accent-2) 6%, var(--surface)));
+    color: var(--accent-2);
+  }
+  .update .copy {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+  .update time {
     color: var(--faint);
-    font-variant-numeric: tabular-nums;
+    font: 500 0.7rem/1 var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
-  .latest .all {
+  .update b {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.95rem;
     font-weight: 600;
-    text-decoration: none;
+    line-height: 1.25;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .update .what {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    font-size: 0.78rem;
+  }
+  .update .text {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   .steps {
@@ -1101,6 +1248,9 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     translate: -50% 0;
   }
   @media (prefers-reduced-motion: reduce) {
+    .pulse {
+      animation: none;
+    }
     .window {
       overflow-x: auto;
       mask-image: none;
@@ -1145,7 +1295,8 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   }
 
   @media (max-width: 960px) {
-    .status {
+    .status,
+    .latest ul {
       grid-template-columns: 1fr 1fr;
     }
     .native {
@@ -1179,6 +1330,9 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     }
   }
   @media (max-width: 560px) {
+    .latest ul {
+      grid-template-columns: 1fr;
+    }
     .leaders {
       grid-template-columns: 1fr 1fr;
       gap: 10px;

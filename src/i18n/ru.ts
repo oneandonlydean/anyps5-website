@@ -69,6 +69,8 @@ const strings: Strings = {
     latest: "Новое",
     latestUpdates: "Последние новости",
     allUpdates: "Все новости",
+    firstReport: "Первый отчёт",
+    upFrom: (stage: string) => `Было: ${stage}`,
     howItWorks: "Как это работает",
     stepsTitle: "Три шага от консоли до ПК",
     steps: [

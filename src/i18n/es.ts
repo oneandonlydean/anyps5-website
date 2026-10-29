@@ -60,6 +60,8 @@ const strings: Strings = {
     latest: "Lo último",
     latestUpdates: "Últimas novedades",
     allUpdates: "Todas las novedades",
+    firstReport: "Primer informe",
+    upFrom: (stage: string) => `Sube desde ${stage}`,
     howItWorks: "Cómo funciona",
     stepsTitle: "Tres pasos de tu consola a tu PC",
     steps: [

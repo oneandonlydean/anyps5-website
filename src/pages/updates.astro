@@ -2,35 +2,66 @@
 import Base from "../layouts/Base.astro";
 import StageBadge from "../components/StageBadge.astro";
 import { formatDate } from "../lib/site";
-import { getUpdates, type Update } from "../lib/updates";
+import { AREA_LABEL, AREAS, typeLabel } from "../lib/merges";
+import { CATEGORY, getUpdates, type Update } from "../lib/updates";
 import { artSrc } from "../lib/view";
 
-const updates = await getUpdates();
-// Day groups, newest first; the first 40 days show, the rest load with a button.
+const all = await getUpdates();
+// Single merges are listed inside their day's digest rather than one by one.
+const updates = all.filter((u) => u.kind !== "merge");
 const days = Object.entries(Object.groupBy(updates, (u) => u.date.slice(0, 10))) as [string, Update[]][];
-const VISIBLE_DAYS = 40;
-const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).length;
+const VISIBLE_DAYS = 21;
+// Merge lists are long (around 160 a day), so only the most recent days carry them.
+const LISTED_DAYS = 14;
+const listed = new Set(days.slice(0, LISTED_DAYS).map(([day]) => day));
+const count = (category: string) => updates.filter((u) => CATEGORY[u.kind] === category).length;
+const merges = all.filter((u) => u.kind === "merge").length;
+
+const FEEDS = [
+  { path: "/feeds/releases.xml", title: "Releases", text: "Each new AnyPS5 release. Good for an announcements channel." },
+  { path: "/feeds/progress.xml", title: "Progress", text: "Every feature, fix and speed-up as it is merged, around 160 a day." },
+  { path: "/feeds/progress-daily.xml", title: "Daily progress", text: "One summary a day of what was merged and what it added." },
+  { path: "/feeds/games.xml", title: "Games", text: "Games that reach a new stage on the compatibility list." },
+];
 ---
 
-<Base title="Updates" description="New releases, games that moved up a stage, and weekly implementation progress for AnyPS5.">
+<Base title="Updates" description="New releases, games that moved up a stage, and every fix merged into AnyPS5, with feeds for each.">
   <section class="container page-head">
     <span class="eyebrow">Updates</span>
     <h1>What's new</h1>
-    <p class="lede">Releases, games that moved up the ladder, and what each week added. Follow along in a feed reader or a Discord channel with the feed.</p>
-    <div class="head-actions">
-      <a class="button" href="/updates.xml">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm-2-7a11 11 0 0 1 11 11h-3a8 8 0 0 0-8-8v-3Zm0-7a18 18 0 0 1 18 18h-3A15 15 0 0 0 3 6V3Z"></path></svg>
-        Atom feed
-      </a>
-    </div>
+    <p class="lede">Releases, games that moved up the ladder, and what was merged each day: {merges.toLocaleString("en-GB")} features, fixes and speed-ups in the last 30 days.</p>
   </section>
 
-  <section class="container feed" data-updates>
+  <section class="container feeds" aria-labelledby="feeds-title">
+    <h2 id="feeds-title" class="feeds-title">Follow in Discord or a feed reader</h2>
+    <ul>
+      {
+        FEEDS.map((f) => (
+          <li class="card feed-card">
+            <div>
+              <b>{f.title}</b>
+              <span class="muted">{f.text}</span>
+            </div>
+            <div class="feed-actions">
+              <button type="button" class="button small" data-copy-feed={f.path}>
+                Copy link
+              </button>
+              <a class="feed-open" href={f.path} aria-label={`${f.title} feed`}>
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm-2-7a11 11 0 0 1 11 11h-3a8 8 0 0 0-8-8v-3Zm0-7a18 18 0 0 1 18 18h-3A15 15 0 0 0 3 6V3Z" /></svg>
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="container timeline" data-updates>
     <div class="chips" role="group" aria-label="Show">
-      <button type="button" aria-pressed="true" data-kind="all">All</button>
-      <button type="button" aria-pressed="false" data-kind="stage">Games {count("stage")}</button>
-      <button type="button" aria-pressed="false" data-kind="release">Releases {count("release")}</button>
-      <button type="button" aria-pressed="false" data-kind="week">Progress {count("week")}</button>
+      <button type="button" aria-pressed="true" data-category="all">All</button>
+      <button type="button" aria-pressed="false" data-category="releases">Releases {count("releases")}</button>
+      <button type="button" aria-pressed="false" data-category="progress" id="progress">Progress {count("progress")}</button>
+      <button type="button" aria-pressed="false" data-category="games">Games {count("games")}</button>
     </div>
 
     {
@@ -40,26 +71,70 @@ const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).l
             <time datetime={day}>{formatDate(day)}</time>
           </h2>
           <ul>
-            {items.map((u) => (
-              <li class:list={["item", u.kind]} data-kind={u.kind}>
-                <a href={u.url}>
-                  {u.game ? (
-                    <span class="thumb" style={`--tint:${u.game.color ?? "var(--raised)"}`}>
-                      {u.game.cover && <img src={artSrc(u.game.cover, 96)} alt="" width="48" height="72" loading="lazy" decoding="async" />}
+            {items.map((u) =>
+              u.kind === "digest" ? (
+                <li class="item digest" data-category="progress" id={u.id}>
+                  <details>
+                    <summary>
+                      <span class="thumb icon" aria-hidden="true">↗</span>
+                      <span class="copy">
+                        <b>{u.title}</b>
+                        <span class="muted">{u.text}</span>
+                      </span>
+                      {listed.has(day) && <span class="toggle" aria-hidden="true" />}
+                    </summary>
+                    {listed.has(day) && (
+                      <div class="merges">
+                        {AREAS.map((area) => {
+                          const list = (u.merges ?? []).filter((m) => m.area === area);
+                          return list.length > 0 && (
+                            <section class="area">
+                              <h3>
+                                {AREA_LABEL[area]} <span class="muted">{list.length}</span>
+                              </h3>
+                              <ul>
+                                {list.map((m) => (
+                                  <li class:list={["merge", m.type]}>
+                                    <span class="type">{typeLabel(m.type)}</span>
+                                    <a href={m.url}>
+                                      {m.library && <span class="lib">{m.library}</span>}
+                                      {m.summary}
+                                    </a>
+                                    <span class="by muted">
+                                      #{m.number}
+                                      {m.author && ` · ${m.author}`}
+                                    </span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </section>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </details>
+                </li>
+              ) : (
+                <li class:list={["item", u.kind]} data-category={CATEGORY[u.kind]} id={u.id}>
+                  <a href={u.url}>
+                    {u.game ? (
+                      <span class="thumb" style={`--tint:${u.game.color ?? "var(--raised)"}`}>
+                        {u.game.cover && <img src={artSrc(u.game.cover, 96)} alt="" width="48" height="72" loading="lazy" decoding="async" />}
+                      </span>
+                    ) : (
+                      <span class:list={["thumb icon", u.kind]} aria-hidden="true">
+                        {u.kind === "release" ? "★" : "↗"}
+                      </span>
+                    )}
+                    <span class="copy">
+                      <b>{u.title}</b>
+                      <span class="muted">{u.text}</span>
                     </span>
-                  ) : (
-                    <span class:list={["thumb icon", u.kind]} aria-hidden="true">
-                      {u.kind === "release" ? "★" : "↗"}
-                    </span>
-                  )}
-                  <span class="copy">
-                    <b>{u.title}</b>
-                    <span class="muted">{u.text}</span>
-                  </span>
-                  {u.stage && <StageBadge stage={u.stage} />}
-                </a>
-              </li>
-            ))}
+                    {u.stage && <StageBadge stage={u.stage} />}
+                  </a>
+                </li>
+              ),
+            )}
           </ul>
         </section>
       ))
@@ -77,13 +152,14 @@ const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).l
 <script>
   const root = document.querySelector<HTMLElement>("[data-updates]")!;
   const days = [...root.querySelectorAll<HTMLElement>("[data-day]")];
-  let kind = "all";
+  const chips = [...root.querySelectorAll<HTMLButtonElement>(".chips button")];
 
-  const apply = () => {
+  const show = (category: string) => {
+    chips.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.category === category)));
     for (const day of days) {
       let visible = 0;
-      for (const item of day.querySelectorAll<HTMLElement>("[data-kind]")) {
-        item.hidden = kind !== "all" && item.dataset.kind !== kind;
+      for (const item of day.querySelectorAll<HTMLElement>(":scope > ul > [data-category]")) {
+        item.hidden = category !== "all" && item.dataset.category !== category;
         if (!item.hidden) visible++;
       }
       day.classList.toggle("empty", visible === 0);
@@ -91,27 +167,86 @@ const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).l
   };
 
   root.querySelector(".chips")!.addEventListener("click", (event) => {
-    const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-kind]");
-    if (!button) return;
-    kind = button.dataset.kind!;
-    for (const b of root.querySelectorAll(".chips button")) b.setAttribute("aria-pressed", String(b === button));
-    apply();
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-category]");
+    if (button) show(button.dataset.category!);
   });
+  // /updates#progress (where the daily feed links) opens on the progress tab.
+  if (location.hash === "#progress") show("progress");
+
   root.querySelector("[data-more]")?.addEventListener("click", (event) => {
     days.forEach((d) => (d.hidden = false));
     (event.currentTarget as HTMLElement).remove();
   });
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy-feed]")) {
+    button.addEventListener("click", async () => {
+      const url = new URL(button.dataset.copyFeed!, location.origin).href;
+      try {
+        await navigator.clipboard.writeText(url);
+        document.dispatchEvent(new CustomEvent("toast", { detail: "Feed link copied" }));
+      } catch {
+        document.dispatchEvent(new CustomEvent("toast", { detail: url }));
+      }
+    });
+  }
 </script>
 
 <style>
-  .head-actions {
-    margin-top: 24px;
+  .feeds {
+    margin-bottom: 40px;
   }
-  .feed {
+  .feeds-title {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .feeds ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .feed-card {
+    display: grid;
+    gap: 12px;
+    align-content: space-between;
+    padding: 16px;
+  }
+  .feed-card div:first-child {
+    display: grid;
+    gap: 4px;
+  }
+  .feed-card .muted {
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+  .feed-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .feed-open {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--muted);
+  }
+  .feed-open:hover {
+    border-color: var(--line-strong);
+    color: var(--text);
+  }
+
+  .timeline {
     padding-bottom: 96px;
   }
-  .feed > * {
-    max-width: 860px;
+  .timeline > * {
+    max-width: 900px;
   }
   .chips {
     display: inline-flex;
@@ -157,21 +292,22 @@ const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).l
     background: var(--accent);
     box-shadow: 0 0 0 4px var(--bg);
   }
-  h2 {
+  .day > h2 {
     margin: 0 0 10px;
     color: var(--muted);
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0;
   }
-  ul {
+  .day > ul {
     display: grid;
     gap: 8px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .item a {
+  .item > a,
+  .item summary {
     display: flex;
     align-items: center;
     gap: 14px;
@@ -181,12 +317,43 @@ const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).l
     background: var(--surface);
     color: var(--text);
     text-decoration: none;
-    transition: border-color 0.2s, transform 0.2s var(--ease);
+    transition:
+      border-color 0.2s,
+      transform 0.2s var(--ease);
   }
-  .item a:hover {
+  .item > a:hover,
+  .item summary:hover {
     border-color: var(--line-strong);
     color: var(--text);
+  }
+  .item > a:hover {
     transform: translateX(2px);
+  }
+  .item summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  .item summary::-webkit-details-marker {
+    display: none;
+  }
+  .item details[open] summary {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .toggle {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    margin-right: 4px;
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    rotate: 45deg;
+    translate: 0 -2px;
+    transition: rotate 0.2s var(--ease);
+  }
+  details[open] .toggle {
+    rotate: 225deg;
+    translate: 0 2px;
   }
   .thumb {
     flex: none;
@@ -209,6 +376,7 @@ const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).l
     color: var(--accent-strong);
     font-size: 1rem;
   }
+  .digest .thumb.icon,
   .thumb.icon.week {
     background: color-mix(in srgb, var(--accent-2) 16%, var(--surface));
     color: var(--accent-2);
@@ -225,11 +393,85 @@ const count = (kind: Update["kind"]) => updates.filter((u) => u.kind === kind).l
   .copy .muted {
     font-size: 0.84rem;
   }
+
+  /* A day's merges, grouped by area. */
+  .merges {
+    display: grid;
+    gap: 18px;
+    padding: 16px 16px 18px;
+    border: 1px solid var(--line);
+    border-top: 0;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+  }
+  .area h3 {
+    margin: 0 0 8px;
+    font-size: 0.82rem;
+  }
+  .area ul {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .merge {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 0.84rem;
+  }
+  .type {
+    justify-self: start;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent-strong);
+    font: 600 0.68rem var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .merge.fix .type {
+    background: color-mix(in srgb, var(--good) 14%, transparent);
+    color: var(--good);
+  }
+  .merge.perf .type {
+    background: color-mix(in srgb, var(--warn) 16%, transparent);
+    color: var(--warn);
+  }
+  .merge a {
+    overflow: hidden;
+    color: var(--text);
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .merge a:hover {
+    text-decoration: underline;
+  }
+  .lib {
+    margin-right: 6px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+  }
+  .by {
+    font-size: 0.76rem;
+    white-space: nowrap;
+  }
   .more {
     margin-top: 8px;
   }
   @media (max-width: 560px) {
     .item :global(.badge) {
+      display: none;
+    }
+    .merge {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2px;
+    }
+    .type {
       display: none;
     }
   }

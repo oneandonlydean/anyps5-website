@@ -140,3 +140,11 @@ describe("stage", () => {
     expect(game.blockers.map((b) => b.number)).toEqual([5]);
   });
 });
+
+describe("threadName", () => {
+  it("drops a repeated category prefix", () => {
+    expect(threadName("Game bring-up: Dusklight (PPSA12345)")).toBe("Dusklight");
+    expect(threadName("Bring up - Hades II (PPSA36082)")).toBe("Hades II");
+    expect(threadName("Bringing up the rear (PPSA00001)")).toBe("Bringing up the rear");
+  });
+});

@@ -59,6 +59,8 @@ const strings: Strings = {
     latest: "最新",
     latestUpdates: "最新动态",
     allUpdates: "全部动态",
+    firstReport: "首次报告",
+    upFrom: (stage: string) => `从 ${stage} 提升`,
     howItWorks: "工作原理",
     stepsTitle: "从主机到 PC，只需三步",
     steps: [
