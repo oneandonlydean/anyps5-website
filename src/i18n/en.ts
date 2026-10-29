@@ -8,7 +8,7 @@
 const en = {
   meta: {
     title: "AnyPS5 · Native PS5 ports for Linux and Windows",
-    description: "AnyPS5 converts PS5 executables into native Linux and Windows programs. Browser converter, setup guide and per-game compatibility.",
+    description: "Turn PS5 games you own into native Linux and Windows programs. Convert in your browser, follow the setup guide, and see how far every game gets.",
   },
   nav: {
     compatibility: "Compatibility",
@@ -25,7 +25,7 @@ const en = {
     skip: "Skip to content",
   },
   footer: {
-    tagline: "Native Linux and Windows ports of PS5 executables. Free and open source under the GNU GPL v2.",
+    tagline: "Native Linux and Windows ports of PS5 games. Free and open source, under the GNU GPL v2.",
     project: "Project",
     learn: "Learn",
     community: "Community",
@@ -36,7 +36,7 @@ const en = {
     build: "Build from source",
     contributing: "Contributing",
     bringUp: "Game bring-up",
-    report: "Report a test run",
+    report: "Upload a run report",
     involved: "Get involved",
     lastUpdated: "Last updated",
     dataFrom: "data from AnyPS5",
@@ -47,7 +47,7 @@ const en = {
     latestRelease: "Latest release",
     /** HTML: the word in <em> gets the gradient. */
     headline: "PS5 games, running <em>natively</em> on PC.",
-    lede: "AnyPS5 relinks PS5 executables into native Linux and Windows programs that run against reimplemented system libraries. No emulator, no separate runtime process.",
+    lede: "AnyPS5 rewrites a PS5 game's executable so it runs as a normal Linux or Windows program, on the console's system libraries rebuilt from scratch. No emulator in between.",
     openConverter: "Open the converter",
     setupGuide: "Setup guide",
     compatibility: "Compatibility",
@@ -58,11 +58,11 @@ const en = {
     librariesOf: (done: string, total: string) => `${done} of ${total} functions`,
     librariesTrend: "Implemented functions, rising over time",
     shaders: "Shader recompiler",
-    shadersOf: (left: string) => `of RDNA 2 instruction forms; ${left} unsupported cases left`,
+    shadersOf: (left: string) => `of the PS5 GPU's instructions handled, ${left} known gaps to go`,
     shadersTrend: "Decoded instruction forms over time",
-    gamesUnderTest: "Games under test",
-    withReports: (n: string) => `${n} with test reports`,
-    reachGameplay: "Reach gameplay",
+    gamesUnderTest: "Games being tested",
+    withReports: (n: string) => `${n} with reports so far`,
+    reachGameplay: "Make it to gameplay",
     ofTested: (percent: string) => `${percent}% of tested games`,
     latest: "Latest",
     latestUpdates: "Latest updates",
@@ -77,7 +77,7 @@ const en = {
     steps: [
       { title: "Dump your game", text: "Use a PS5 you own to dump a game you bought. AnyPS5 never ships game files, firmware or keys." },
       { title: "Convert in the browser", text: "Drop the dump into the web converter. It relinks the executable on your device and bundles the system libraries." },
-      { title: "Run it natively", text: "Start the output like any Linux or Windows program, with a Vulkan GPU and your controller." },
+      { title: "Run it natively", text: "Launch it like any other program on Linux or Windows. All you need is a Vulkan GPU, and your controller works too." },
     ],
     learnMore: "Learn more",
     notEmulator: "Not an emulator",
@@ -102,7 +102,7 @@ const en = {
     allGames: (n: string) => `All ${n} games`,
     communityEyebrow: "Community",
     peopleTitle: "The people building AnyPS5",
-    peopleText: "Every commit and every test report moves a game forward, including the runs that crash.",
+    peopleText: "Every commit and every test run pushes a game a little further. Even the crashes help.",
     contributors: "Contributors",
     commits: "Commits",
     testers: "Testers",
@@ -111,9 +111,9 @@ const en = {
     moreContributors: "More contributors",
     everyone: "Everyone on GitHub",
     joinTitle: "Join in",
-    joinText: "Test a game and share the result, pick something from the most-wanted list, or come and talk.",
+    joinText: "Test a game and tell us how far it got, pick up something from the most-wanted list, or just come and say hi.",
     discord: "Join the Discord",
-    reportRun: "Report a test run",
+    reportRun: "Upload a run report",
     github: "GitHub repository",
   },
   guide: {
@@ -194,7 +194,7 @@ const en = {
           },
           {
             q: "It stops with an error. What now?",
-            a: 'AnyPS5 stops on purpose when it meets something it does not support yet, and prints why. Look the message up in <a href="/docs/guide/troubleshooting">troubleshooting</a>. If it is not there, include it in a <a href="/report">test report</a>: exact error text helps most.',
+            a: 'AnyPS5 stops on purpose when it meets something it does not support yet, and prints why. Look the message up in <a href="/docs/guide/troubleshooting">troubleshooting</a>. If it is not there, put it in a <a href="/report">run report</a> or the game\'s discussion thread: the exact error text helps most.',
           },
           {
             q: "Why is the first start so slow?",
@@ -215,11 +215,11 @@ const en = {
         questions: [
           {
             q: "How can I help?",
-            a: 'Test games and <a href="/report">report the results</a>, including crashes: every report sharpens the compatibility list and shows developers what to fix next. If you write C++, the <a href="/progress#wanted">most wanted</a> list and the <a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">contributing guide</a> are good places to start. Questions are welcome on <a href="https://discord.gg/BHFztBPUe">Discord</a>.',
+            a: 'Test games and <a href="/report">report the results</a>, including crashes: every report makes the compatibility list more accurate and shows developers what to fix next. If you write C++, the <a href="/progress#wanted">most wanted</a> list and the <a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">contributing guide</a> are good places to start. Questions are welcome on <a href="https://discord.gg/BHFztBPUe">Discord</a>.',
           },
           {
             q: "A game's entry is wrong. How do I fix it?",
-            a: "Every game page has a <b>Suggest a correction</b> link that opens the right file to edit. Curated corrections take priority over automatic reports.",
+            a: "Every game page has a <b>Suggest a correction</b> link that opens the right file to edit. A maintainer's correction always wins over automatic reports.",
           },
         ],
       },

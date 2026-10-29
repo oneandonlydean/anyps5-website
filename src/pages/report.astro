@@ -9,11 +9,11 @@ const games = await getGames();
 const threads = Object.fromEntries(games.map((g) => [g.slug, { name: g.name, thread: g.threads[0]?.url ?? newReportUrl(`${g.name} (${g.titleIds[0]})`) }]));
 ---
 
-<Base title="Report a test run" description="Upload the run report AnyPS5 writes after a run, and your result joins the AnyPS5 compatibility list.">
+<Base title="Upload a run report" description="Upload the run report AnyPS5 writes after each run, and your result goes on the AnyPS5 compatibility list.">
   <section class="container page-head">
-    <span class="eyebrow">Report a test run</span>
+    <span class="eyebrow">Upload a run report</span>
     <h1>Tell everyone how far it got</h1>
-    <p class="lede">Every run helps, including the ones that crash. Upload the report AnyPS5 writes after a run, and your result joins the compatibility list.</p>
+    <p class="lede">Every run helps, even the ones that crash. Upload the report AnyPS5 writes when a game stops, and your result goes straight onto the compatibility list.</p>
   </section>
 
   <div class="container">
@@ -23,8 +23,8 @@ const threads = Object.fromEntries(games.map((g) => [g.slug, { name: g.name, thr
       <section class="card fallback" data-fallback data-threads={JSON.stringify(threads)}>
         <h2>No report file yet?</h2>
         <p class="muted">
-          Until AnyPS5 builds write <code>anyps5-report.json</code>, post your result in the Game bring-up discussions. Their form asks for the title ID, the AnyPS5 build,
-          your system and how far the game got.
+          Released AnyPS5 builds don't write <code>anyps5-report.json</code> yet. Until they do, post your result in the Game bring-up discussions. The form asks for
+          the title ID, your AnyPS5 build, your system and how far the game got.
         </p>
         <div class="actions">
           <a class="button primary" href={newReportUrl()} data-thread>Start a bring-up report</a>
