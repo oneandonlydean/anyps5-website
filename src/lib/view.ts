@@ -48,3 +48,8 @@ const REGIONS: Record<string, string> = { U: "Americas", E: "Europe", J: "Japan"
 export function regionName(code: string | null): string | null {
   return code ? (REGIONS[code[0]] ?? code) : null;
 }
+
+/** A Discussions report's address in ?report=: "d" and its reply's id, or the thread number for the opening post. */
+export function reportKey(r: { url: string; discussion: number }): string {
+  return `d${r.url.match(/discussioncomment-(\d+)/)?.[1] ?? r.discussion}`;
+}

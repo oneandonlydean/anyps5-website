@@ -6,6 +6,8 @@ interface Props {
   /** Show the time of day too. */
   time?: boolean;
   class?: string;
+  /** Keep UTC out of the text (it stays in the tooltip), where space is tight. */
+  brief?: boolean;
 }
 
 /**
@@ -13,7 +15,7 @@ interface Props {
  * timezone by the script in Base.astro. Only for real moments (a release, a report, an upload): daily figures are UTC
  * days and stay as they are.
  */
-const { iso, time = false, class: className } = Astro.props;
+const { iso, time = false, class: className, brief = false } = Astro.props;
 // A bare day ("2026-10-29") is a calendar date, not a moment: moving it to another timezone would shift the day.
 const moment = iso.includes("T");
 const date = new Date(iso);
@@ -22,4 +24,4 @@ const utc = time
   : formatDate(iso);
 ---
 
-<time class={className} datetime={moment ? date.toISOString() : iso} data-local={moment ? (time ? "time" : "date") : undefined}>{utc}</time>
+<time class={className} datetime={moment ? date.toISOString() : iso} data-local={moment ? (time ? "time" : "date") : undefined} data-brief={brief ? "" : undefined}>{utc}</time>

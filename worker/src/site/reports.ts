@@ -130,6 +130,8 @@ export interface UploadSummary {
   at: string;
   os: string | null;
   gpuVendor: string | null;
+  /** The GPU's model name, as the driver reports it. */
+  gpu: string | null;
   commit: string | null;
   release: string | null;
   contentVersion: string | null;
@@ -158,6 +160,7 @@ export function summarise(row: Row): UploadSummary {
     at: new Date(row.created_at * 1000).toISOString(),
     os: r.system.os,
     gpuVendor: r.system.gpu?.vendor ?? null,
+    gpu: r.system.gpu?.name ?? null,
     commit: r.anyps5.commit,
     release: r.anyps5.release,
     contentVersion: r.game.contentVersion,
@@ -197,6 +200,23 @@ export async function exportData(_req: Request, env: Env): Promise<Response> {
     },
     200,
     { "cache-control": "public, max-age=60" },
+  );
+}
+
+/**
+ * One upload's whole report, for the game page's report details: only a visible upload from an account in good
+ * standing, so a hidden or flagged report never leaks through its id.
+ */
+export async function reportDetail(_req: Request, env: Env, id: number): Promise<Response> {
+  const row = await env
+    .SITE_DB!.prepare(`SELECT ${COLUMNS} FROM uploads u JOIN accounts a ON a.github_id = u.github_id WHERE u.id = ? AND u.status = 'visible' AND a.blocked = 0`)
+    .bind(id)
+    .first<Row>();
+  if (!row) return problem(404, "No report with that number.");
+  return json(
+    { id: row.id, titleId: row.title_id, titleChosen: row.title_chosen === 1, login: row.login, at: new Date(row.created_at * 1000).toISOString(), report: JSON.parse(row.report) },
+    200,
+    { "cache-control": "public, max-age=300" },
   );
 }
 

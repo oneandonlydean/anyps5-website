@@ -100,6 +100,26 @@ it("holds flagged reports for review and keeps them out of the export", async ()
   expect(exported.uploads).toHaveLength(0);
 });
 
+it("serves a visible upload's whole report by id, and nothing that is flagged, hidden or blocked", async () => {
+  const tester = await signIn("tester", 42);
+  const mod = await signIn("MOD1", 7);
+  const report = fresh();
+  const { id } = await (await post("/api/reports", report, tester)).json<{ id: number }>();
+  const res = await call(`/api/reports/${id}`);
+  expect(res.status).toBe(200);
+  expect(await res.json()).toMatchObject({ id, login: "tester", titleId: "PPSA12345", report: { run: { id: report.run.id }, system: { gpu: { name: report.system.gpu!.name } } } });
+  expect((await call("/api/reports/999999")).status).toBe(404);
+  expect((await call("/api/reports/abc")).status).not.toBe(200);
+
+  const flagged = fresh();
+  flagged.anyps5.modified = true;
+  const held = await (await post("/api/reports", flagged, tester)).json<{ id: number }>();
+  expect((await call(`/api/reports/${held.id}`)).status).toBe(404);
+
+  await post("/api/mod/action", { action: "hide", kind: "upload", target: String(id) }, mod);
+  expect((await call(`/api/reports/${id}`)).status).toBe(404);
+});
+
 it("lets maintainers approve, hide and block, logs it, and keeps others out", async () => {
   const tester = await signIn("tester", 42);
   const mod = await signIn("MOD1", 7);

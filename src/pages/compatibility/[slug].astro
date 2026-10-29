@@ -5,7 +5,7 @@ import GameArt from "../../components/GameArt.astro";
 import StageBadge from "../../components/StageBadge.astro";
 import NeedsPanel from "../../components/NeedsPanel.astro";
 import Screenshots from "../../components/Screenshots.astro";
-import UploadedReports from "../../components/UploadedReports.astro";
+import ReportDialog from "../../components/ReportDialog.astro";
 import MaintainerTools from "../../components/MaintainerTools.astro";
 import StageHistory from "../../components/StageHistory.astro";
 import StageLadder from "../../components/StageLadder.astro";
@@ -13,7 +13,8 @@ import { getGames, getNeeds, getRetest, getScreenshots } from "../../lib/data";
 import type { Game } from "../../lib/resolve";
 import { formatDate, SITE_REPO_URL } from "../../lib/site";
 import { stageSlug } from "../../lib/stages";
-import { artSrc, artSrcset, PLATFORM_LABEL, reach, regionName } from "../../lib/view";
+import { artSrc, artSrcset, PLATFORM_LABEL, reach, regionName, reportKey } from "../../lib/view";
+import { CONFIRMATIONS_NEEDED } from "../../lib/uploads";
 import { gameTheme } from "../../lib/color";
 
 export async function getStaticPaths() {
@@ -40,6 +41,35 @@ const themeStyle =
 const [thread, ...otherThreads] = [...game.threads].sort((a, b) => b.comments - a.comments || a.number - b.number);
 const replies = (n: number) => (n === 1 ? "1 reply" : `${n} replies`);
 const BUILD_LABEL = { main: "main", prs: "main + PRs", patched: "patched", unknown: "—" } as const;
+// Discussions reports and run reports uploaded here, newest first, in one table; each row opens its full report.
+const rows = [
+  ...game.reports.map((r) => ({
+    key: reportKey(r),
+    href: r.url,
+    date: r.date,
+    stage: r.stage,
+    os: r.platform as string | null,
+    gpuVendor: r.gpuVendor,
+    gpu: r.gpu,
+    build: BUILD_LABEL[r.buildKind] as string,
+    buildTitle: r.build ?? undefined,
+    by: r.author,
+    upload: undefined as number | undefined,
+  })),
+  ...game.uploads.map((u) => ({
+    key: `u${u.id}`,
+    href: `?report=u${u.id}`,
+    date: u.at,
+    stage: u.stage,
+    os: u.os,
+    gpuVendor: u.gpuVendor,
+    gpu: u.gpu ?? null,
+    build: u.release ?? u.commit?.slice(0, 7) ?? "—",
+    buildTitle: u.commit ?? undefined,
+    by: u.login as string | null,
+    upload: u.id,
+  })),
+].sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 const editUrl = game.overlayFile
   ? `${SITE_REPO_URL}/edit/main/data/games/${game.overlayFile}`
   : `${SITE_REPO_URL}/new/main/data/games?filename=${game.slug}.yaml&value=${encodeURIComponent(`title_ids: [${game.titleIds.join(", ")}]\n`)}`;
@@ -170,14 +200,26 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
           )
         }
 
-        {game.uploads.length > 0 && <UploadedReports uploads={game.uploads} auto={game.autoStage} slug={game.slug} />}
-
         <section class="card panel">
-          <h2>Test reports <span class="muted count">{game.reports.length}</span></h2>
+          <h2>Test reports <span class="muted count">{rows.length}</span></h2>
           {
-            game.reports.length ? (
+            game.autoStage && (
+              <p class="upload-status">
+                <StageBadge stage={game.autoStage.stage} />
+                {game.autoStage.confirmed ? (
+                  <span>Uploaded run reports reached this, confirmed by {game.autoStage.confirmations} {game.autoStage.confirmations === 1 ? "report" : "reports"}.</span>
+                ) : (
+                  <span class="muted">
+                    An uploaded run report reached this: {game.autoStage.confirmations} of {CONFIRMATIONS_NEEDED} confirmations. It counts toward the game's stage once another tester confirms it.
+                  </span>
+                )}
+              </p>
+            )
+          }
+          {
+            rows.length ? (
               <div class="table-wrap" data-pagefind-ignore>
-                <table>
+                <table class="reports">
                   <thead>
                     <tr>
                       <th>Date</th>
@@ -188,24 +230,33 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
                     </tr>
                   </thead>
                   <tbody>
-                    {game.reports.map((r) => (
-                      <tr>
+                    {rows.map((row) => (
+                      <tr data-report={row.key}>
                         <td class="nowrap">
-                          <a href={r.url}><LocalDate iso={r.date} /></a>
+                          <a href={row.href} data-open aria-haspopup="dialog">
+                            <LocalDate iso={row.date} brief />
+                          </a>
                         </td>
                         <td>
-                          <StageBadge stage={r.stage} />
+                          <StageBadge stage={row.stage} />
                         </td>
                         <td class="system">
-                          {r.platform && <span class:list={["chip-os", r.platform]}>{PLATFORM_LABEL[r.platform]}</span>}
-                          {r.gpuVendor && <span class:list={["chip-gpu", r.gpuVendor.toLowerCase()]}>{r.gpuVendor}</span>}
-                          {r.gpu && r.gpu !== r.gpuVendor && <span class="gpu-model">{r.gpu.replace(new RegExp(`^${r.gpuVendor ?? ""}\\s*`, "i"), "")}</span>}
-                          {!r.platform && !r.gpuVendor && !r.gpu && "—"}
+                          {row.os && <span class:list={["chip-os", row.os]}>{PLATFORM_LABEL[row.os as keyof typeof PLATFORM_LABEL] ?? row.os}</span>}
+                          {row.gpuVendor && <span class:list={["chip-gpu", row.gpuVendor.toLowerCase()]}>{row.gpuVendor}</span>}
+                          {row.gpu && row.gpu !== row.gpuVendor && <span class="gpu-model">{row.gpu.replace(new RegExp(`^${row.gpuVendor ?? ""}\\s*`, "i"), "")}</span>}
+                          {!row.os && !row.gpuVendor && !row.gpu && "—"}
                         </td>
-                        <td class="mono small" title={r.build ?? undefined}>
-                          {BUILD_LABEL[r.buildKind]}
+                        <td class="mono small" title={row.buildTitle}>
+                          {row.build}
                         </td>
-                        <td class="muted">{r.author ?? "—"}</td>
+                        <td class="muted by" data-upload-id={row.upload}>
+                          {row.by ?? "—"}
+                          {row.upload !== undefined && (
+                            <span class="source" title="A run report uploaded on this site">
+                              Run report
+                            </span>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -215,7 +266,9 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
               <p class="muted">No structured reports yet. The discussion thread may still have notes.</p>
             )
           }
+          {rows.length > 0 && <p class="report-hint muted">Select a report to see everything it says.</p>}
         </section>
+        <ReportDialog game={game.name} reports={game.reports} uploads={game.uploads} />
       </div>
 
       <aside class="side">
@@ -616,6 +669,37 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
   }
   .nowrap {
     white-space: nowrap;
+  }
+  .reports tbody tr {
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .reports tbody tr:hover {
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
+  .reports tr:has([data-hidden]) {
+    opacity: 0.4;
+  }
+  .by .source {
+    margin-left: 8px;
+    padding: 1px 7px;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+  .upload-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    margin: 0 0 14px;
+    font-size: 0.88rem;
+  }
+  .report-hint {
+    margin: 12px 0 0;
+    font-size: 0.8rem;
   }
   .small {
     font-size: 0.8rem;

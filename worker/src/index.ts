@@ -16,7 +16,7 @@ import { page } from "./bot/pages";
 import { finishSignIn, me, signOut, startSignIn } from "./site/auth";
 import { problem } from "./site/http";
 import { act, queue } from "./site/moderation";
-import { exportData, upload } from "./site/reports";
+import { exportData, reportDetail, upload } from "./site/reports";
 
 const UPSTREAM = "https://boykopovar.github.io/AnyPS5";
 const LIBRARIES = "/convert/app/libraries/";
@@ -65,6 +65,10 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname.startsWith(LIBRARIES)) return library(request, url);
+
+    // One upload's report: /api/reports/123.
+    const detail = request.method === "GET" && env.SITE_DB ? url.pathname.match(/^\/api\/reports\/([1-9][0-9]{0,9})$/) : null;
+    if (detail) return reportDetail(request, env, Number(detail[1])).catch((err) => (log("site_route_failed", { path: url.pathname, error: String(err) }), problem(500, "Something went wrong. Try again.")));
 
     const site = SITE_ROUTES[`${request.method} ${url.pathname}`];
     if (site && env.SITE_DB) {

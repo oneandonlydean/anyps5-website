@@ -1,0 +1,892 @@
+---
+import type { Report } from "../lib/schema";
+import type { UploadSummary } from "../lib/uploads";
+import { reportKey } from "../lib/view";
+
+interface Props {
+  game: string;
+  reports: Report[];
+  uploads: UploadSummary[];
+}
+
+/**
+ * The full view of one test report, opened from a row of the game page's report table (any element with
+ * data-report="<key>"), or straight from a link with ?report=<key>. An uploaded run report shows its summary at once
+ * and fills in from the whole report, which /api/reports/<id> serves; a Discussions report shows what its form said.
+ */
+const { game, reports, uploads } = Astro.props;
+const data = {
+  game,
+  discussions: Object.fromEntries(
+    reports.map((r) => [
+      reportKey(r),
+      {
+        url: r.url,
+        author: r.author,
+        date: r.date,
+        edited: r.edited,
+        stage: r.stage,
+        platform: r.platform,
+        gpu: r.gpu,
+        gpuVendor: r.gpuVendor,
+        build: r.build,
+        buildKind: r.buildKind,
+        prs: r.prs,
+        version: r.version,
+        shown: r.shown,
+        blockers: r.blockers,
+        blockerText: r.blockerText,
+      },
+    ]),
+  ),
+  uploads: Object.fromEntries(uploads.map((u) => [`u${u.id}`, u])),
+};
+---
+
+<dialog class="report-dialog" aria-labelledby="report-dialog-title" data-report-dialog>
+  <div class="frame">
+    <button class="close" type="button" aria-label="Close" data-close>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+    </button>
+    <div class="body" data-body></div>
+  </div>
+  <script type="application/json" data-report-data set:html={JSON.stringify(data).replace(/</g, "\\u003c")} />
+</dialog>
+
+<script>
+  import type { RunReport } from "../lib/run-report";
+  import type { Report } from "../lib/schema";
+  import { stageSlug, type StageOrNone } from "../lib/stages";
+  import type { UploadSummary } from "../lib/uploads";
+
+  type Discussion = Pick<
+    Report,
+    "url" | "author" | "date" | "edited" | "stage" | "platform" | "gpu" | "gpuVendor" | "build" | "buildKind" | "prs" | "version" | "shown" | "blockers" | "blockerText"
+  >;
+  interface Data {
+    game: string;
+    discussions: Record<string, Discussion>;
+    uploads: Record<string, UploadSummary>;
+  }
+  interface Detail {
+    id: number;
+    login: string;
+    at: string;
+    titleChosen: boolean;
+    report: RunReport;
+  }
+
+  const REPO = "https://github.com/boykopovar/AnyPS5";
+  const STAGE: Record<string, StageOrNone | null> = { unknown: null, loads: "Loads", starts: "Starts", "first-draw": "First draw", presents: "Presents" };
+  const OS: Record<string, string> = { linux: "Linux", windows: "Windows", macos: "macOS" };
+  const BUILD: Record<string, string> = { main: "main", prs: "main + open pull requests", patched: "patched locally", unknown: "unknown build" };
+  const STOP: Record<string, string> = {
+    none: "Ran without stopping",
+    "missing-function": "Stopped on a missing function",
+    "unsupported-shader": "Stopped on an unsupported shader",
+    "unsupported-format": "Stopped on an unsupported format",
+    crash: "Crashed",
+    assert: "Stopped on an assertion",
+    other: "Stopped",
+  };
+  const REASON: Record<string, string> = {
+    "guest-exit": "the game exited",
+    "quit-requested": "the window was closed",
+    "runtime-stop": "AnyPS5 stopped it",
+    crash: "it crashed",
+    "unclean-unknown": "it ended uncleanly",
+    other: "it ended",
+  };
+  const EXIT: Record<string, string> = { clean: "Clean", crash: "Crashed", abort: "Aborted", killed: "Killed" };
+  const MILESTONES = [
+    ["loaded", "Loaded"],
+    ["started", "Started"],
+    ["firstDraw", "First draw"],
+    ["firstPresent", "First frame shown"],
+  ] as const;
+
+  const dialog = document.querySelector<HTMLDialogElement>("[data-report-dialog]");
+  if (dialog) {
+    const body = dialog.querySelector<HTMLElement>("[data-body]")!;
+    const data = JSON.parse(dialog.querySelector("[data-report-data]")!.textContent!) as Data;
+    const details = new Map<string, Promise<Detail | null>>();
+
+    const lang = document.documentElement.lang === "en" ? "en-GB" : document.documentElement.lang || undefined;
+    const number = new Intl.NumberFormat(lang);
+    const when = new Intl.DateTimeFormat(lang, { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
+    const whenUtc = new Intl.DateTimeFormat(lang, { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "UTC" });
+    const day = new Intl.DateTimeFormat(lang, { day: "numeric", month: "short", year: "numeric" });
+    const plural = (n: number, one: string, many = `${one}s`) => `${number.format(n)} ${n === 1 ? one : many}`;
+    const seconds = (s: number) => (s < 60 ? `${s.toFixed(1)} s` : `${Math.floor(s / 60)} min ${Math.round(s % 60)} s`);
+
+    type Child = Node | string | null | undefined | false;
+    function el<K extends keyof HTMLElementTagNameMap>(tag: K, props: Partial<Omit<HTMLElementTagNameMap[K], "style">> & { style?: string; [k: string]: unknown } = {}, ...children: Child[]) {
+      const node = document.createElement(tag);
+      for (const [key, value] of Object.entries(props)) {
+        if (key.startsWith("data") || key === "title" || key === "style") node.setAttribute(key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`), String(value));
+        else (node as any)[key] = value;
+      }
+      node.append(...(children.filter((c) => c !== null && c !== undefined && c !== false) as (Node | string)[]));
+      return node;
+    }
+    const badge = (stage: StageOrNone | null) =>
+      el("span", { className: "rd-badge", style: `--tone: var(--stage-${stageSlug(stage)})` }, el("b", { ariaHidden: "true" }), stage ?? "Stage unknown");
+    const moment = (iso: string) => {
+      const date = new Date(iso);
+      const local = when.format(date);
+      const utc = `${whenUtc.format(date)} UTC`;
+      return el("time", { dateTime: date.toISOString(), title: utc }, new Date().getTimezoneOffset() === 0 ? utc : `${local} (${utc})`);
+    };
+    const section = (title: string, ...children: Child[]) => el("section", { className: "rd-section" }, el("h3", {}, title), ...children);
+    const facts = (rows: [string, Child][]) =>
+      el("dl", { className: "rd-facts" }, ...rows.filter(([, v]) => v !== null && v !== undefined && v !== "").map(([k, v]) => el("div", {}, el("dt", {}, k), el("dd", {}, v))));
+    const link = (href: string, text: string, className = "") => el("a", { href, className }, text);
+    const tag = (text: string, title?: string) => el("span", { className: "rd-tag", title: title ?? text }, text);
+    // Discussion form answers are Markdown flattened to one line: bold and code marks are dropped, and "* " bullets
+    // become a list.
+    function prose(text: string) {
+      const clean = text.replace(/\*\*|__|`/g, "").trim();
+      const items = clean.split(/(?:^|\s)[*•-]\s+(?=\S)/).map((t) => t.trim()).filter(Boolean);
+      return items.length > 1 ? el("ul", { className: "rd-bullets" }, ...items.map((t) => el("li", {}, t))) : el("p", { className: "rd-text" }, clean);
+    }
+    const commitLink = (sha: string) => link(`${REPO}/commit/${sha}`, sha.slice(0, 10), "mono");
+
+    function header(eyebrow: string, title: string, meta: Child[], tags: Child[]) {
+      return el(
+        "header",
+        { className: "rd-head" },
+        el("p", { className: "rd-eyebrow" }, eyebrow),
+        el("h2", { id: "report-dialog-title" }, title),
+        el("p", { className: "rd-meta" }, ...meta),
+        tags.some(Boolean) ? el("p", { className: "rd-tags" }, ...tags) : null,
+      );
+    }
+
+    // ---- An uploaded run report ----
+
+    function stopBox(kind: string, reason: string, message: string, source?: string | null) {
+      return el(
+        "div",
+        { className: `rd-stop${kind === "none" ? " ok" : ""}` },
+        el("strong", {}, `${STOP[kind] ?? "Stopped"}, ${REASON[reason] ?? "it ended"}.`),
+        message ? el("p", { className: "mono" }, message) : null,
+        source ? el("p", { className: "rd-faint" }, "From ", el("span", { className: "mono" }, source)) : null,
+      );
+    }
+
+    function timeline(r: RunReport) {
+      const total = Math.max(r.run.seconds, ...MILESTONES.map(([k]) => r.run.milestones[k] ?? 0), 0.1);
+      const reached = MILESTONES.filter(([k]) => r.run.milestones[k] !== undefined);
+      if (!r.coverage.milestones) return el("p", { className: "rd-faint" }, "This run didn't record when it reached each step.");
+      const bar = el(
+        "div",
+        { className: "rd-bar", role: "img", ariaLabel: `Ran for ${seconds(r.run.seconds)}` },
+        ...reached.map(([k, label]) => el("span", { className: "rd-dot", style: `left: ${(100 * r.run.milestones[k]!) / total}%`, title: `${label} at ${seconds(r.run.milestones[k]!)}` })),
+      );
+      const steps = el(
+        "ol",
+        { className: "rd-steps" },
+        ...MILESTONES.map(([k, label]) => {
+          const at = r.run.milestones[k];
+          return el("li", { className: at === undefined ? "missed" : "" }, el("span", {}, label), el("b", {}, at === undefined ? "Not reached" : seconds(at)));
+        }),
+      );
+      return el("div", { className: "rd-timeline" }, bar, el("div", { className: "rd-scale" }, el("span", {}, "0 s"), el("span", {}, seconds(total))), steps);
+    }
+
+    // Long lists show their first few entries and a button for the rest.
+    function fold(list: HTMLElement, keep: number, label: (n: number) => string): Node[] {
+      const extra = [...list.children].slice(keep) as HTMLElement[];
+      if (!extra.length) return [list];
+      for (const item of extra) item.hidden = true;
+      const button = el("button", { type: "button", className: "rd-more" }, label(extra.length));
+      button.addEventListener("click", () => {
+        for (const item of extra) item.hidden = false;
+        button.remove();
+      });
+      return [list, button];
+    }
+
+    function missing(r: RunReport) {
+      if (!r.coverage.missing) return el("p", { className: "rd-faint" }, "Not collected in this run.");
+      const fns = r.missing.functions;
+      if (!fns.length) return el("p", { className: "rd-faint" }, "None: every function the game called exists.");
+      const byLibrary = new Map<string, typeof fns>();
+      for (const f of fns) byLibrary.set(f.library ?? "Unknown library", [...(byLibrary.get(f.library ?? "Unknown library") ?? []), f]);
+      const groups = [...byLibrary].sort((a, b) => b[1].reduce((n, f) => n + f.calls, 0) - a[1].reduce((n, f) => n + f.calls, 0));
+      const all = el(
+        "div",
+        { className: "rd-groups" },
+        ...groups.map(([library, list]) =>
+          el(
+            "div",
+            { className: "rd-group" },
+            el(
+              "p",
+              { className: "rd-group-head" },
+              library === "Unknown library" ? el("span", {}, library) : link(`/progress/?library=${encodeURIComponent(library)}#libraries`, library, "mono"),
+              el("span", { className: "rd-faint" }, plural(list.length, "function")),
+            ),
+            ...fold(
+              el("ul", { className: "rd-list" }, ...list.sort((a, b) => b.calls - a.calls).map((f) => el("li", {}, el("span", { className: "mono" }, f.name), el("span", { className: "rd-count" }, plural(f.calls, "call"))))),
+              5,
+              (n) => `Show ${plural(n, "more function")}`,
+            ),
+          ),
+        ),
+      );
+      return el(
+        "div",
+        {},
+        ...fold(all, 6, (n) => `Show ${plural(n, "more library", "more libraries")}`),
+        r.truncated.functions ? el("p", { className: "rd-faint" }, `And ${plural(r.truncated.functions, "more function")} the file left out to stay small.`) : null,
+      );
+    }
+
+    function shaders(r: RunReport) {
+      const s = r.shaders;
+      const parts: Child[] = [];
+      if (r.coverage.shaders)
+        parts.push(
+          el(
+            "div",
+            { className: "rd-stats" },
+            stat("Compiled", number.format(s.compiled)),
+            stat("Failed", number.format(s.failed)),
+            s.cacheHits !== undefined ? stat("From the cache", number.format(s.cacheHits)) : null,
+          ),
+        );
+      if (r.coverage.unsupported) {
+        parts.push(el("h4", {}, "Unsupported instructions"));
+        parts.push(
+          ...(s.unsupported.length
+            ? fold(el(
+                "ul",
+                { className: "rd-list" },
+                ...s.unsupported.map((u) =>
+                  el(
+                    "li",
+                    {},
+                    el("span", { className: "mono" }, [u.encoding, u.opcode ?? (u.opcodeValue !== null ? `#${u.opcodeValue}` : null)].filter(Boolean).join(" ") || "Unknown"),
+                    ...(u.modifiers ?? []).map((m) => tag(m, "Modifier")),
+                    el("span", { className: "rd-count" }, plural(u.count, "use")),
+                  ),
+                ),
+              ), 8, (n) => `Show ${plural(n, "more instruction")}`)
+            : [el("p", { className: "rd-faint" }, "None.")]),
+        );
+        if (r.truncated.unsupported) parts.push(el("p", { className: "rd-faint" }, `And ${plural(r.truncated.unsupported, "more")} the file left out.`));
+      }
+      const problems = <T extends { status: string; count: number }>(title: string, covered: boolean, list: T[], name: (x: T) => string, cut: number) => {
+        if (!covered) return;
+        const bad = list.filter((x) => x.status !== "accepted");
+        const fine = list.length - bad.length;
+        parts.push(el("h4", {}, title));
+        parts.push(
+          ...(bad.length
+            ? fold(
+                el(
+                  "ul",
+                  { className: "rd-list" },
+                  ...bad.map((x) => el("li", {}, el("span", { className: "mono" }, name(x)), tag(x.status === "rejected" ? "Rejected" : "Unknown"), el("span", { className: "rd-count" }, plural(x.count, "use")))),
+                ),
+                8,
+                (n) => `Show ${plural(n, "more")}`,
+              )
+            : []),
+          el("p", { className: "rd-faint" }, bad.length ? `${plural(fine, "other")} handled.` : `All ${plural(fine, "kind")} handled.`),
+        );
+        if (cut) parts.push(el("p", { className: "rd-faint" }, `And ${plural(cut, "more")} the file left out.`));
+      };
+      problems("Image formats", r.coverage.imageFormats, s.imageFormats, (f) => `${f.name ?? `Format ${f.format}`} · ${f.usage}`, r.truncated.imageFormats);
+      problems("Descriptors", r.coverage.descriptors, s.descriptors, (d) => `${d.type} · ${d.usage}`, r.truncated.descriptors);
+      return parts.length ? el("div", {}, ...parts) : el("p", { className: "rd-faint" }, "Not collected in this run.");
+    }
+
+    const stat = (label: string, value: string, note?: string) => el("div", { className: "rd-stat" }, el("span", {}, label), el("b", {}, value), note ? el("small", {}, note) : null);
+
+    function uploadView(key: string, summary: UploadSummary, detail: Detail | null | undefined) {
+      const r = detail?.report;
+      const login = summary.login;
+      const tags: Child[] = [
+        summary.recovered ? tag("Recovered", "Written at the next start, after the run ended uncleanly") : null,
+        r?.run.incomplete ? tag("Incomplete", "The run ended before the report was finished") : null,
+        summary.titleChosen ? tag("Game chosen by uploader", "The report had no title ID; the uploader chose this game") : null,
+        r?.anyps5.modified ? tag("Modified build", "Built from a copy of AnyPS5 with local changes") : null,
+      ];
+      const parts: Child[] = [
+        header(
+          `Uploaded run report · ${data.game}`,
+          `${login}'s run`,
+          [badge(summary.stage as StageOrNone | null), " ", moment(summary.at), " · by ", link(`https://github.com/${login}`, login)],
+          tags,
+        ),
+        stopBox(summary.stop.kind, summary.stop.reason, summary.stop.message, r?.stop.source),
+      ];
+      if (!r) {
+        parts.push(
+          detail === null
+            ? el("p", { className: "rd-faint" }, "The full report couldn't be loaded. This is the summary the site keeps.")
+            : el("p", { className: "rd-faint rd-loading" }, "Loading the full report…"),
+          facts([
+            ["System", [OS[summary.os ?? ""] ?? summary.os, summary.gpu ?? summary.gpuVendor].filter(Boolean).join(" · ") || null],
+            ["AnyPS5", summary.release ?? (summary.commit ? commitLink(summary.commit) : null)],
+            ["Missing functions", summary.missing?.length ? summary.missing.join(", ") : null],
+            ["Unsupported instructions", summary.unsupported?.length ? summary.unsupported.join(", ") : null],
+          ]),
+        );
+        return parts;
+      }
+      parts.push(
+        section(
+          "The run",
+          el(
+            "div",
+            { className: "rd-stats" },
+            stat("Ran for", seconds(r.run.seconds)),
+            stat("Frames shown", number.format(r.run.framesPresented)),
+            stat("Average FPS", r.run.averageFps === null ? "—" : r.run.averageFps.toFixed(1), r.run.fpsWindowSeconds ? `over the last ${seconds(r.run.fpsWindowSeconds)}` : undefined),
+            stat("Exit", EXIT[r.run.exit] ?? r.run.exit, r.run.exitCode !== null ? `code ${r.run.exitCode}` : undefined),
+          ),
+          timeline(r),
+        ),
+        section(
+          "System",
+          facts([
+            ["OS", [OS[r.system.os ?? ""] ?? r.system.os, r.system.osVersion].filter(Boolean).join(" · ") || null],
+            ["CPU", r.system.cpu],
+            ["Memory", r.system.ramGiB !== null ? `${number.format(r.system.ramGiB)} GiB` : null],
+            ["GPU", r.system.gpu ? [r.system.gpu.vendor && !r.system.gpu.name?.startsWith(r.system.gpu.vendor) ? r.system.gpu.vendor : null, r.system.gpu.name].filter(Boolean).join(" ") || null : null],
+            ["Driver", r.system.gpu?.driver],
+            ["Vulkan", r.system.gpu?.vulkan],
+          ]),
+        ),
+        section(
+          "Build",
+          facts([
+            ["AnyPS5 release", r.anyps5.release],
+            ["Commit", r.anyps5.commit ? commitLink(r.anyps5.commit) : null],
+            ["Local changes", r.anyps5.modified === null ? null : r.anyps5.modified ? "Yes" : "None"],
+            ["Game version", r.game.contentVersion],
+            ["Content ID", r.game.contentId ? el("span", { className: "mono" }, r.game.contentId) : null],
+          ]),
+        ),
+        section(`Missing functions${r.coverage.missing ? ` · ${number.format(r.missing.functions.length + r.truncated.functions)}` : ""}`, missing(r)),
+        section("Shaders", shaders(r)),
+      );
+      const raw = JSON.stringify(r, null, 2);
+      const download = el("button", { type: "button", className: "rd-button" }, "Download JSON");
+      download.addEventListener("click", () => {
+        const a = el("a", { href: URL.createObjectURL(new Blob([raw], { type: "application/json" })), download: `anyps5-report-${summary.titleId}-${detail.id}.json` });
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      });
+      parts.push(
+        el(
+          "section",
+          { className: "rd-section" },
+          el("details", { className: "rd-raw" }, el("summary", {}, "The report file"), el("pre", { className: "mono" }, raw)),
+          el("div", { className: "rd-actions" }, download, copyButton(key)),
+        ),
+      );
+      return parts;
+    }
+
+    // ---- A Discussions report ----
+
+    function discussionView(key: string, d: Discussion) {
+      const author = d.author ?? "Someone";
+      return [
+        header(
+          `Game bring-up report · ${data.game}`,
+          `${author}'s report`,
+          [badge(d.stage), " ", el("time", { dateTime: d.date }, day.format(new Date(d.date))), d.edited ? el("span", { className: "rd-faint" }, ` · edited ${day.format(new Date(d.edited))}`) : null],
+          [d.buildKind !== "main" && d.buildKind !== "unknown" ? tag(BUILD[d.buildKind]!, "Doesn't count toward the game's stage on main") : null],
+        ),
+        section(
+          "Setup",
+          facts([
+            ["OS", d.platform ? (OS[d.platform] ?? d.platform) : null],
+            ["GPU", d.gpu ?? d.gpuVendor],
+            [
+              "Build",
+              d.build
+                ? el("span", {}, el("span", { className: d.build.length > 40 ? "" : "mono" }, d.build.replace(/\*\*|`/g, "")), el("span", { className: "rd-faint" }, ` · ${BUILD[d.buildKind]}`))
+                : null,
+            ],
+            ["Pull requests", d.prs.length ? el("span", {}, ...d.prs.flatMap((n, i) => [i ? ", " : "", link(`${REPO}/pull/${n}`, `#${n}`)])) : null],
+            ["Game version", d.version],
+          ]),
+        ),
+        d.shown ? section("What it shows", prose(d.shown)) : null,
+        d.blockerText || d.blockers.length
+          ? section(
+              "What stops it",
+              d.blockerText ? prose(d.blockerText) : null,
+              d.blockers.length ? el("p", {}, "Tracked in ", ...d.blockers.flatMap((n, i) => [i ? ", " : "", link(`${REPO}/issues/${n}`, `#${n}`)])) : null,
+            )
+          : null,
+        el("div", { className: "rd-actions" }, link(d.url, "Open the post on GitHub", "rd-button primary"), copyButton(key)),
+      ];
+    }
+
+    function copyButton(key: string) {
+      const button = el("button", { type: "button", className: "rd-button" }, "Copy link");
+      button.addEventListener("click", async () => {
+        const url = new URL(location.href);
+        url.search = `?report=${key}`;
+        url.hash = "";
+        try {
+          await navigator.clipboard.writeText(url.href);
+          document.dispatchEvent(new CustomEvent("toast", { detail: "Link copied" }));
+        } catch {
+          document.dispatchEvent(new CustomEvent("toast", { detail: "Copying was blocked" }));
+        }
+      });
+      return button;
+    }
+
+    // ---- Opening and closing ----
+
+    const fetchDetail = (key: string) => {
+      if (!details.has(key))
+        details.set(
+          key,
+          fetch(`/api/reports/${key.slice(1)}`)
+            .then((r) => (r.ok ? (r.json() as Promise<Detail>) : null))
+            .catch(() => null),
+        );
+      return details.get(key)!;
+    };
+
+    let current: string | null = null;
+    function render(key: string, detail?: Detail | null) {
+      const upload = data.uploads[key];
+      const discussion = data.discussions[key];
+      body.replaceChildren(...((upload ? uploadView(key, upload, detail) : discussionView(key, discussion!)).filter(Boolean) as Node[]));
+    }
+    function setUrl(key: string | null) {
+      const url = new URL(location.href);
+      if (key) url.searchParams.set("report", key);
+      else url.searchParams.delete("report");
+      history.replaceState(history.state, "", url);
+    }
+    function open(key: string) {
+      if (!data.uploads[key] && !data.discussions[key]) return false;
+      current = key;
+      render(key);
+      if (data.uploads[key])
+        fetchDetail(key).then((detail) => {
+          if (current === key) render(key, detail);
+        });
+      if (!dialog!.open) dialog!.showModal();
+      body.scrollTop = 0;
+      setUrl(key);
+      return true;
+    }
+
+    dialog.addEventListener("close", () => {
+      current = null;
+      setUrl(null);
+    });
+    dialog.querySelector("[data-close]")!.addEventListener("click", () => dialog.close());
+    // A click on the dimmed backdrop lands on the dialog itself.
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    for (const row of document.querySelectorAll<HTMLElement>("[data-report]")) {
+      row.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+        // Other links and buttons in the row (a maintainer's Hide) keep their own behaviour, and so does opening the
+        // row's own link in a new tab.
+        if (target.closest("a:not([data-open]), button") || e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        open(row.dataset.report!);
+      });
+      // Hovering a row starts loading its report, so the window usually opens complete.
+      row.addEventListener("pointerenter", () => data.uploads[row.dataset.report!] && fetchDetail(row.dataset.report!), { once: true });
+    }
+
+    const linked = new URLSearchParams(location.search).get("report");
+    if (linked && !open(linked)) setUrl(null);
+  }
+</script>
+
+<style>
+  .report-dialog {
+    width: min(760px, calc(100vw - 32px));
+    max-height: min(88vh, 1000px);
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: 0 40px 100px -30px rgb(0 0 0 / 0.7);
+    color: var(--text);
+    overflow: hidden;
+  }
+  .report-dialog::backdrop {
+    background: rgb(4 6 10 / 0.7);
+    backdrop-filter: blur(4px);
+  }
+  .report-dialog[open] {
+    display: flex;
+    animation: rd-in 0.22s var(--ease);
+  }
+  @keyframes rd-in {
+    from {
+      opacity: 0;
+      translate: 0 12px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .report-dialog[open] {
+      animation: none;
+    }
+  }
+  :global(html:has(.report-dialog[open])) {
+    overflow: hidden;
+  }
+  .frame {
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-width: 0;
+  }
+  .body {
+    flex: 1;
+    min-width: 0;
+    padding: clamp(20px, 4vw, 32px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    font-size: 0.92rem;
+  }
+  .close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--raised);
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .close:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+  }
+  .close svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  /* Everything below is built by the script, so it is styled globally under the dialog. */
+  .report-dialog :global(.rd-head) {
+    padding-right: 40px;
+    margin-bottom: 18px;
+  }
+  .report-dialog :global(.rd-eyebrow) {
+    margin: 0 0 6px;
+    color: var(--faint);
+    font: 600 0.7rem var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .report-dialog :global(h2) {
+    margin: 0 0 10px;
+    font-size: 1.45rem;
+    overflow-wrap: anywhere;
+  }
+  .report-dialog :global(.rd-meta) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 6px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+  .report-dialog :global(.rd-tags) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0 0;
+  }
+  .report-dialog :global(.rd-tag) {
+    padding: 1px 8px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+  .report-dialog :global(.rd-badge) {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 10px 4px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--tone) 14%, transparent);
+    color: color-mix(in srgb, var(--tone) 70%, var(--text));
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  :global(:root[data-theme="light"]) .report-dialog :global(.rd-badge) {
+    color: color-mix(in srgb, var(--tone) 45%, var(--text));
+  }
+  .report-dialog :global(.rd-badge b) {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--tone);
+  }
+  .report-dialog :global(.rd-stop) {
+    padding: 14px 16px;
+    border: 1px solid color-mix(in srgb, var(--warn) 40%, var(--line));
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--warn) 7%, transparent);
+  }
+  .report-dialog :global(.rd-stop.ok) {
+    border-color: color-mix(in srgb, var(--good) 40%, var(--line));
+    background: color-mix(in srgb, var(--good) 7%, transparent);
+  }
+  .report-dialog :global(.rd-stop p) {
+    margin: 6px 0 0;
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+  }
+  .report-dialog :global(.rd-section) {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .report-dialog :global(h3) {
+    margin: 0 0 12px;
+    font-size: 1rem;
+  }
+  .report-dialog :global(h4) {
+    margin: 16px 0 8px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .report-dialog :global(.rd-faint) {
+    color: var(--faint);
+    font-size: 0.84rem;
+  }
+  .report-dialog :global(.rd-loading) {
+    margin: 16px 0 10px;
+  }
+  .report-dialog :global(.rd-text) {
+    margin: 0 0 8px;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+  }
+  .report-dialog :global(.rd-bullets) {
+    display: grid;
+    gap: 6px;
+    margin: 0 0 8px;
+    padding-left: 18px;
+  }
+  .report-dialog :global(.rd-facts) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px 20px;
+    margin: 0;
+  }
+  .report-dialog :global(.rd-facts div) {
+    min-width: 0;
+  }
+  .report-dialog :global(.rd-facts dt) {
+    color: var(--faint);
+    font: 600 0.68rem var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .report-dialog :global(.rd-facts dd) {
+    margin: 3px 0 0;
+    overflow-wrap: anywhere;
+  }
+  .report-dialog :global(.rd-stats) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+  }
+  .report-dialog :global(.rd-stat) {
+    display: grid;
+    gap: 2px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--raised);
+  }
+  .report-dialog :global(.rd-stat span) {
+    color: var(--faint);
+    font-size: 0.76rem;
+  }
+  .report-dialog :global(.rd-stat b) {
+    font-size: 1.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .report-dialog :global(.rd-stat small) {
+    color: var(--faint);
+    font-size: 0.72rem;
+  }
+  .report-dialog :global(.rd-timeline) {
+    margin-top: 16px;
+  }
+  .report-dialog :global(.rd-bar) {
+    position: relative;
+    height: 8px;
+    margin: 0 5px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    opacity: 0.85;
+  }
+  .report-dialog :global(.rd-dot) {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--surface);
+    border-radius: 50%;
+    background: var(--text);
+    translate: -50% -50%;
+  }
+  .report-dialog :global(.rd-scale) {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    color: var(--faint);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .report-dialog :global(.rd-steps) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .report-dialog :global(.rd-steps li) {
+    display: grid;
+    gap: 1px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .report-dialog :global(.rd-steps b) {
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  .report-dialog :global(.rd-steps .missed b) {
+    color: var(--faint);
+    font-weight: 500;
+  }
+  .report-dialog :global(.rd-groups) {
+    display: grid;
+    gap: 14px;
+  }
+  .report-dialog :global(.rd-group-head) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 12px;
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+  .report-dialog :global(.rd-list) {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .report-dialog :global(.rd-list li) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: var(--raised);
+    font-size: 0.82rem;
+  }
+  .report-dialog :global(.rd-list .mono) {
+    overflow-wrap: anywhere;
+  }
+  .report-dialog :global(.rd-count) {
+    margin-left: auto;
+    color: var(--faint);
+    font-size: 0.76rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .report-dialog :global([hidden]) {
+    display: none !important;
+  }
+  .report-dialog :global(.rd-more) {
+    margin-top: 6px;
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: 600 0.8rem var(--font);
+    cursor: pointer;
+  }
+  .report-dialog :global(.rd-more:hover) {
+    text-decoration: underline;
+  }
+  .report-dialog :global(.rd-raw summary) {
+    color: var(--muted);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .report-dialog :global(.rd-raw pre) {
+    max-height: 340px;
+    margin: 10px 0 0;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    font-size: 0.74rem;
+    overflow: auto;
+  }
+  .report-dialog :global(.rd-actions) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .report-dialog :global(.rd-button) {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--raised);
+    color: var(--text);
+    font: 600 0.84rem var(--font);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .report-dialog :global(.rd-button:hover) {
+    border-color: var(--accent);
+  }
+  .report-dialog :global(.rd-button.primary) {
+    border-color: transparent;
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+</style>

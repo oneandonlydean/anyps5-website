@@ -170,7 +170,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         } else {
           const here = local.date.format(date);
           const there = utc.date.format(date);
-          el.textContent = here === there ? here : `${here} (${there} UTC)`;
+          el.textContent = here === there || el.hasAttribute("data-brief") ? here : `${here} (${there} UTC)`;
         }
         el.title = inUtc ? `${utc.time.format(date)} UTC` : exact;
       }

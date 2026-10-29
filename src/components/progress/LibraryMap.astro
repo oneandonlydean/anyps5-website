@@ -68,6 +68,8 @@ const place = (r: { x: number; y: number; w: number; h: number }) => `left:${(r.
 const data = {
   libraries: Object.fromEntries(libraries.map((l) => [l.label, { area: l.area, done: l.done, total: l.total, inert: l.inert, waiting: l.waiting }])),
   folds: Object.fromEntries(areas.filter((a) => a.small.length).map((a) => [a.name, a.small.map((l) => l.label)])),
+  /** Full library names (libSceNpTrophy) to labels, for links from run reports. */
+  names: Object.fromEntries(libraries.map((l) => [l.name, l.label])),
   wanted,
   small: SMALL,
 };
@@ -189,6 +191,7 @@ const waitingTitle = (n: number) => `${n} ${n === 1 ? "game is" : "games are"} w
   interface Data {
     libraries: Record<string, Library>;
     folds: Record<string, string[]>;
+    names: Record<string, string>;
     wanted: Record<string, number>;
     small: number;
   }
@@ -364,8 +367,9 @@ const waitingTitle = (n: number) => `${n} ${n === 1 ? "game is" : "games are"} w
       if (first) openLibrary(first);
     });
 
-    // Game pages link here with ?library=Label to show what that library is missing.
-    const linked = new URLSearchParams(location.search).get("library");
+    // Game pages link here with ?library=Label (or a full name, libSceNpTrophy) to show what that library is missing.
+    const asked = new URLSearchParams(location.search).get("library");
+    const linked = asked && (data.libraries[asked] ? asked : data.names[asked]);
     if (linked && data.libraries[linked]) {
       find.value = linked;
       search(linked);

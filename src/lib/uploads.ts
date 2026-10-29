@@ -13,6 +13,8 @@ export interface UploadSummary {
   at: string;
   os: string | null;
   gpuVendor: string | null;
+  /** The GPU's model name; missing from exports made before it was added. */
+  gpu?: string | null;
   commit: string | null;
   release: string | null;
   contentVersion: string | null;
