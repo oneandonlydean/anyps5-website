@@ -1,9 +1,23 @@
 {
   "libraries": {
-    "done": 6819,
-    "total": 14667,
-    "percent": 46.49,
+    "done": 6833,
+    "total": 15802,
+    "percent": 43.24,
     "groups": [
+      {
+        "name": "libSceAbstractStorage",
+        "label": "AbstractStorage",
+        "done": 0,
+        "total": 110,
+        "inert": 0
+      },
+      {
+        "name": "libSceAbstractYoutube",
+        "label": "AbstractYoutube",
+        "done": 0,
+        "total": 17,
+        "inert": 0
+      },
       {
         "name": "libSceAc3Enc",
         "label": "Ac3Enc",
@@ -63,9 +77,9 @@
       {
         "name": "libSceAmpr",
         "label": "Ampr",
-        "done": 131,
-        "total": 134,
-        "inert": 4
+        "done": 134,
+        "total": 137,
+        "inert": 0
       },
       {
         "name": "libSceAppChecker",
@@ -106,7 +120,7 @@
         "name": "libSceAudioIn",
         "label": "AudioIn",
         "done": 14,
-        "total": 42,
+        "total": 48,
         "inert": 3
       },
       {
@@ -120,7 +134,7 @@
         "name": "libSceAudioOut",
         "label": "AudioOut",
         "done": 68,
-        "total": 157,
+        "total": 159,
         "inert": 5
       },
       {
@@ -609,7 +623,7 @@
       {
         "name": "libSceIcu",
         "label": "Icu",
-        "done": 17,
+        "done": 21,
         "total": 120,
         "inert": 0
       },
@@ -652,7 +666,7 @@
         "name": "libSceIpmi",
         "label": "Ipmi",
         "done": 0,
-        "total": 54,
+        "total": 94,
         "inert": 0
       },
       {
@@ -698,6 +712,13 @@
         "inert": 0
       },
       {
+        "name": "libSceJson",
+        "label": "Json",
+        "done": 0,
+        "total": 25,
+        "inert": 0
+      },
+      {
         "name": "libSceJson2",
         "label": "Json2",
         "done": 151,
@@ -722,7 +743,7 @@
         "name": "libSceLibcInternal",
         "label": "LibcInternal",
         "done": 72,
-        "total": 75,
+        "total": 344,
         "inert": 1
       },
       {
@@ -736,7 +757,7 @@
         "name": "libSceLibreSsl3",
         "label": "LibreSsl3",
         "done": 5,
-        "total": 87,
+        "total": 270,
         "inert": 0
       },
       {
@@ -838,6 +859,13 @@
         "inert": 0
       },
       {
+        "name": "libSceNKWebKitRequirements",
+        "label": "NKWebKitRequirements",
+        "done": 0,
+        "total": 133,
+        "inert": 0
+      },
+      {
         "name": "libSceNet",
         "label": "Net",
         "done": 83,
@@ -919,14 +947,14 @@
         "label": "NpCppWebApi",
         "done": 484,
         "total": 751,
-        "inert": 297
+        "inert": 282
       },
       {
         "name": "libSceNpEntitlementAccess",
         "label": "NpEntitlementAccess",
-        "done": 19,
+        "done": 21,
         "total": 25,
-        "inert": 12
+        "inert": 14
       },
       {
         "name": "libSceNpEulaDialog",
@@ -1286,10 +1314,24 @@
         "inert": 1
       },
       {
+        "name": "libSceResourceArbitrator",
+        "label": "ResourceArbitrator",
+        "done": 0,
+        "total": 14,
+        "inert": 0
+      },
+      {
         "name": "libSceRnpsAppMgr",
         "label": "RnpsAppMgr",
         "done": 0,
         "total": 27,
+        "inert": 0
+      },
+      {
+        "name": "libSceRnpsNKInjectedBundle",
+        "label": "RnpsNKInjectedBundle",
+        "done": 0,
+        "total": 1,
         "inert": 0
       },
       {
@@ -1338,7 +1380,7 @@
         "name": "libSceSdma",
         "label": "Sdma",
         "done": 5,
-        "total": 26,
+        "total": 27,
         "inert": 3
       },
       {
@@ -1799,22 +1841,22 @@
       {
         "name": "libc",
         "label": "libc",
-        "done": 1457,
-        "total": 1473,
+        "done": 1460,
+        "total": 1476,
         "inert": 24
       },
       {
         "name": "libkernel",
         "label": "libkernel",
         "done": 700,
-        "total": 745,
+        "total": 746,
         "inert": 17
       },
       {
         "name": "libkernel_sys",
         "label": "libkernel_sys",
-        "done": 119,
-        "total": 506,
+        "done": 121,
+        "total": 833,
         "inert": 17
       },
       {

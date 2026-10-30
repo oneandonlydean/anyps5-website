@@ -663,6 +663,14 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/4367",
     "closedAt": "2026-10-13T09:00:56Z"
   },
+  "4399": {
+    "number": 4399,
+    "kind": "issue",
+    "title": "AGC: on a first run, one ps5-opengl pixel shader takes ~20 s to link on AMD's Windows driver, and Homebrew UI Lab and Surround Sound Studio quit after 2 s",
+    "state": "closed",
+    "url": "https://github.com/boykopovar/AnyPS5/issues/4399",
+    "closedAt": "2026-10-14T11:01:50Z"
+  },
   "4428": {
     "number": 4428,
     "kind": "pr",
@@ -2071,6 +2079,14 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/6563",
     "closedAt": "2026-10-19T08:44:32Z"
   },
+  "6565": {
+    "number": 6565,
+    "kind": "pr",
+    "title": "fix(libc): leave a range that a mutation waits for out of new leases",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/6565",
+    "closedAt": null
+  },
   "6570": {
     "number": 6570,
     "kind": "issue",
@@ -2438,6 +2454,14 @@
     "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/7413",
     "closedAt": "2026-10-19T19:50:43Z"
+  },
+  "7446": {
+    "number": 7446,
+    "kind": "pr",
+    "title": "fix(agc): prepare a draw or dispatch again when the memory it captured changed before it was recorded",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/7446",
+    "closedAt": null
   },
   "7532": {
     "number": 7532,
@@ -3583,6 +3607,14 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/10414",
     "closedAt": "2026-10-27T12:19:28Z"
   },
+  "10497": {
+    "number": 10497,
+    "kind": "pr",
+    "title": "fix(agc): refuse writable buffer feedback with native depth",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/10497",
+    "closedAt": null
+  },
   "10507": {
     "number": 10507,
     "kind": "pr",
@@ -3646,6 +3678,14 @@
     "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/10887",
     "closedAt": "2026-10-26T16:29:20Z"
+  },
+  "10904": {
+    "number": 10904,
+    "kind": "issue",
+    "title": "PPSA02530 stops at `scePadOpen` with port type 3 or 4 since #10361",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/issues/10904",
+    "closedAt": null
   },
   "10913": {
     "number": 10913,
@@ -3883,16 +3923,48 @@
     "number": 12208,
     "kind": "pr",
     "title": "fix(shader): poison an SRT read below a pointer loaded from memory",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/12208",
+    "closedAt": "2026-10-29T20:52:05Z"
+  },
+  "12898": {
+    "number": 12898,
+    "kind": "pr",
+    "title": "fix(libSceAvPlayer): keep synced video at the presentation clock when the title takes frames slowly",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/12898",
     "closedAt": null
   },
   "12923": {
     "number": 12923,
     "kind": "pr",
     "title": "fix(agc): don't release a label wait on a store its queue already took and reset",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/12923",
+    "closedAt": "2026-10-30T03:50:24Z"
+  },
+  "12954": {
+    "number": 12954,
+    "kind": "pr",
+    "title": "fix(libSceAudioOut): return from a blocking AudioOut2 push once the queue has room",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/12954",
+    "closedAt": null
+  },
+  "12983": {
+    "number": 12983,
+    "kind": "pr",
+    "title": "fix(agc): accept TRUNC_COORD on unnormalized samplers",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/12983",
+    "closedAt": null
+  },
+  "12995": {
+    "number": 12995,
+    "kind": "pr",
+    "title": "fix(ngs2): buffer voice setups, waveform blocks and patches sent during processing",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/12995",
     "closedAt": null
   }
 }

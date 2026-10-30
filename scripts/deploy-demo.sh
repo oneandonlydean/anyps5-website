@@ -3,8 +3,13 @@
 set -eu
 export SITE_URL="https://anyps5-demo.deanisa.ninja"
 # Refresh the data first, as the Update site workflow does, so a deploy from a laptop never puts older data over the
-# workflow's. SKIP_SYNC=1 skips it, for a quick look at a code change when the data was refreshed moments ago.
-if [ "${SKIP_SYNC:-}" != 1 ]; then
+# workflow's. SKIP_SYNC=1 skips it, for a quick look at a code change, but only when the data was refreshed in the last
+# 30 minutes: older data would replace whatever the workflow deployed since.
+fresh=$(find data/generated/coverage.json -mmin -30 2>/dev/null || true)
+if [ "${SKIP_SYNC:-}" = 1 ] && [ -z "$fresh" ]; then
+  echo "SKIP_SYNC ignored: the data is more than 30 minutes old, so refreshing it first."
+fi
+if [ "${SKIP_SYNC:-}" != 1 ] || [ -z "$fresh" ]; then
   export GITHUB_TOKEN="${GITHUB_TOKEN:-$(gh auth token)}"
   npm run sync
   npm run fetch:upstream

@@ -342,6 +342,17 @@
       "PlayStation Store"
     ]
   },
+  "PPSA02530": {
+    "checked": "2026-10-30T03:58:31.551Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2605/3d57b6ae9b22a4982f0272ef1c716ebbfee59b7ea1fe60af.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2605/b7ec5836e23affe26c8ad00124a1eddddab5e1bad456c03e.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2605/903271eb79de107c27515fd04ee6f9e9cfdf2d6028a48673.png",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202506/0422/647751cf9b6f5eaf47ac9fca1552133afbf3b7b1fdb12da2.png",
+    "color": "#152768",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
   "PPSA02572": {
     "checked": "2026-10-29T05:22:42.100Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202305/2420/c3daf3037feb797d9e71b81618e3b5ff3ff1f9609db5a4a2.png",
@@ -2943,6 +2954,15 @@
       "SteamGridDB"
     ]
   },
+  "PPSA47770": {
+    "checked": "2026-10-30T03:58:30.761Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
   "PPSA50001": {
     "checked": "2026-10-29T05:23:22.050Z",
     "square": null,
@@ -2962,6 +2982,15 @@
     "credits": [
       "SteamGridDB"
     ]
+  },
+  "PPSA77305": {
+    "checked": "2026-10-30T03:58:30.422Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
   },
   "PPSA85300": {
     "checked": "2026-10-29T05:22:23.672Z",
@@ -3096,6 +3125,17 @@
     "logo": null,
     "color": null,
     "credits": []
+  },
+  "PPSA99015": {
+    "checked": "2026-10-30T03:58:30.851Z",
+    "square": "https://cdn2.steamgriddb.com/grid/80ab7fc9a542a2a428b5e8ee0f9cabd9.png",
+    "cover": "https://cdn2.steamgriddb.com/grid/9283ebf97c0a60ab67f1e89f51e5dc8b.png",
+    "hero": "https://cdn2.steamgriddb.com/hero/5e29287840edf56cd1cd5341c5547471.png",
+    "logo": "https://cdn2.steamgriddb.com/logo/93374007058f38b1480062c3d8600fd7.png",
+    "color": "#3d83d4",
+    "credits": [
+      "SteamGridDB"
+    ]
   },
   "PPSA99023": {
     "checked": "2026-10-29T06:29:52.559Z",
@@ -3314,6 +3354,28 @@
     "hero": "https://cdn2.steamgriddb.com/hero/3a8b781906eaa647a820ba901f9dad36.png",
     "logo": "https://cdn2.steamgriddb.com/logo/1129cb8ba4665189d5a9bd861a2e28b9.png",
     "color": "#e3a25e",
+    "credits": [
+      "SteamGridDB"
+    ]
+  },
+  "PPSA99921": {
+    "checked": "2026-10-30T03:58:30.603Z",
+    "square": "https://cdn2.steamgriddb.com/grid/44b39d08c6f634375dac4f0f9a7da7d5.png",
+    "cover": "https://cdn2.steamgriddb.com/grid/81d2676a04f0d0aec263f6343898bb7e.png",
+    "hero": "https://cdn2.steamgriddb.com/hero/54c93bf7f802ddcef5fca9d833dcd5f8.jpg",
+    "logo": "https://cdn2.steamgriddb.com/logo/61f39ffb332429aee46c317f01ac1dc1.png",
+    "color": "#65c39a",
+    "credits": [
+      "SteamGridDB"
+    ]
+  },
+  "PPSA99922": {
+    "checked": "2026-10-30T03:58:30.860Z",
+    "square": null,
+    "cover": "https://cdn2.steamgriddb.com/grid/371afbfa699ed5cc19e9a239b7c0fe77.png",
+    "hero": "https://cdn2.steamgriddb.com/hero/0b7e926154c1274e8b602ff0d7c133d7.jpg",
+    "logo": "https://cdn2.steamgriddb.com/logo/8cdd10cbcfa2f43dc4c88c0f75ad5967.png",
+    "color": "#b7423f",
     "credits": [
       "SteamGridDB"
     ]

@@ -1,6 +1,1406 @@
 {
-  "synced": "2026-10-29T19:19:17.468Z",
+  "synced": "2026-10-30T03:58:32.665Z",
   "merges": [
+    {
+      "number": 12923,
+      "title": "fix(agc): don't release a label wait on a store its queue already took and reset",
+      "mergedAt": "2026-10-30T03:50:24Z",
+      "author": "hugodearaujo",
+      "labels": [
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12916,
+      "title": "feat(agc): merge a draw into more than one unclamped normalized color target",
+      "mergedAt": "2026-10-30T03:49:47Z",
+      "author": "Tehshortbus",
+      "labels": [
+        "shader",
+        "docs",
+        "agc",
+        "fix error",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12718,
+      "title": "fix(libSceFont): reuse a font context entry by address only while it is active",
+      "mergedAt": "2026-10-30T02:04:30Z",
+      "author": "XairRrR",
+      "labels": [
+        "prx"
+      ]
+    },
+    {
+      "number": 12577,
+      "title": "feat(libkernel_sys): implement sceKernelIsPs4Process query",
+      "mergedAt": "2026-10-30T02:03:27Z",
+      "author": "iAbdulrrahman",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12692,
+      "title": "feat(libSceIcu): implement converter stop and skip callbacks",
+      "mergedAt": "2026-10-30T01:52:25Z",
+      "author": "Ninot1Quyi",
+      "labels": [
+        "build",
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12690,
+      "title": "feat(agc): host system report and an actionable missing-Vulkan-feature message",
+      "mergedAt": "2026-10-30T01:52:19Z",
+      "author": "MarcZX10",
+      "labels": [
+        "libkernel",
+        "build",
+        "docs",
+        "agc",
+        "ci"
+      ]
+    },
+    {
+      "number": 12644,
+      "title": "fix(libSceSaveData.native): validate directory name in sceSaveDataBackup",
+      "mergedAt": "2026-10-30T01:52:13Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12171,
+      "title": "fix(agc): eliminate duplicated read counters in pipelined draw reports",
+      "mergedAt": "2026-10-30T01:51:11Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "build",
+        "agc",
+        "fix error"
+      ]
+    },
+    {
+      "number": 11468,
+      "title": "fix(libc): validate guest heap block headers before freeing",
+      "mergedAt": "2026-10-30T01:50:20Z",
+      "author": "valenciana-nc",
+      "labels": [
+        "libc",
+        "build",
+        "agc"
+      ]
+    },
+    {
+      "number": 13053,
+      "title": "build(deps): restore the SPIRV-Tools, SPIRV-Headers and libvorbis pins",
+      "mergedAt": "2026-10-30T01:49:42Z",
+      "author": "tibzejoker",
+      "labels": []
+    },
+    {
+      "number": 10581,
+      "title": "fix(agc): reject unmeasured single-sample dithered alpha-to-coverage",
+      "mergedAt": "2026-10-30T01:45:21Z",
+      "author": "ashwin280802",
+      "labels": [
+        "build",
+        "shader",
+        "docs",
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12643,
+      "title": "fix(relinker): validate text section range before scanning relative jump tables",
+      "mergedAt": "2026-10-30T01:32:29Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "relinker"
+      ]
+    },
+    {
+      "number": 12556,
+      "title": "fix(libkernel): return EFAULT from rtprio_thread and sched_rr_get_interval for a bad pointer",
+      "mergedAt": "2026-10-30T01:32:23Z",
+      "author": "babyhuey",
+      "labels": [
+        "libkernel",
+        "prx"
+      ]
+    },
+    {
+      "number": 12543,
+      "title": "test(libSceRudp): cover max segment size and event lifecycle in GuestRudpStatus",
+      "mergedAt": "2026-10-30T01:32:18Z",
+      "author": "Elma7e",
+      "labels": []
+    },
+    {
+      "number": 12538,
+      "title": "fix(libkernel): return EFAULT from the utimes family for an unreadable times array",
+      "mergedAt": "2026-10-30T01:31:44Z",
+      "author": "babyhuey",
+      "labels": [
+        "libkernel"
+      ]
+    },
+    {
+      "number": 12233,
+      "title": "fix(shader): keep mesh register windows out of local memory on NVIDIA",
+      "mergedAt": "2026-10-30T01:31:37Z",
+      "author": "beardsciences",
+      "labels": [
+        "shader",
+        "docs",
+        "agc"
+      ]
+    },
+    {
+      "number": 12436,
+      "title": "fix(libkernel): answer vm.loadavg with the host's load averages",
+      "mergedAt": "2026-10-30T01:31:31Z",
+      "author": "milescoviello",
+      "labels": [
+        "libkernel",
+        "docs",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12461,
+      "title": "test(libkernel): check pthread_barrier_destroy is busy while a thread waits",
+      "mergedAt": "2026-10-30T01:30:40Z",
+      "author": "Oscar45397",
+      "labels": []
+    },
+    {
+      "number": 12460,
+      "title": "test(libSceNet): cover the shutdown, listen, accept, bind and getsockname errors",
+      "mergedAt": "2026-10-30T01:30:34Z",
+      "author": "Oscar45397",
+      "labels": []
+    },
+    {
+      "number": 12427,
+      "title": "feat(libkernel_sys): answer sceKernelIsNeoMode from the param.sfo Neo-mode attribute",
+      "mergedAt": "2026-10-30T01:30:28Z",
+      "author": "simnJS",
+      "labels": [
+        "libkernel",
+        "build",
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12176,
+      "title": "fix(relinker): validate text section range and patch offset bounds in PLT compactor",
+      "mergedAt": "2026-10-30T01:27:04Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "relinker"
+      ]
+    },
+    {
+      "number": 13024,
+      "title": "docs(game-testing): point to the log that ps5-homebrew-ui titles write in their own storage",
+      "mergedAt": "2026-10-30T01:26:54Z",
+      "author": "wrocketdev",
+      "labels": []
+    },
+    {
+      "number": 12459,
+      "title": "test(libkernel): check pthread_cond_timedwait against a monotonic condvar clock",
+      "mergedAt": "2026-10-30T01:04:30Z",
+      "author": "Oscar45397",
+      "labels": []
+    },
+    {
+      "number": 12379,
+      "title": "feat(overlay): show PS5 system dialogs as real PC dialogs",
+      "mergedAt": "2026-10-30T01:04:23Z",
+      "author": "MarcZX10",
+      "labels": [
+        "build",
+        "docs",
+        "prx",
+        "agc"
+      ]
+    },
+    {
+      "number": 12531,
+      "title": "test(libkernel): cover the prefixed APR batch resolve without sizes",
+      "mergedAt": "2026-10-30T01:04:17Z",
+      "author": "olegon85",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "number": 12307,
+      "title": "fix(elfpatcher): take rel32 displacements as unsigned differences",
+      "mergedAt": "2026-10-30T01:04:11Z",
+      "author": "dkdhanda8",
+      "labels": [
+        "relinker"
+      ]
+    },
+    {
+      "number": 12296,
+      "title": "fix(libkernel): map Windows shared memory with the regular file checks",
+      "mergedAt": "2026-10-30T01:04:05Z",
+      "author": "JJenkx",
+      "labels": [
+        "libkernel",
+        "build",
+        "docs"
+      ]
+    },
+    {
+      "number": 11941,
+      "title": "fix(libSceNpEntitlementAccess): make abort and delete request idempotent",
+      "mergedAt": "2026-10-30T01:03:58Z",
+      "author": "akkadbakkad89",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12402,
+      "title": "feat(libSceResourceArbitrator): declare 14 additional callable exports",
+      "mergedAt": "2026-10-30T01:02:06Z",
+      "author": "kyon-eth",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12368,
+      "title": "feat(libkernel_sys): declare 328 missing callable exports",
+      "mergedAt": "2026-10-30T01:02:00Z",
+      "author": "kyon-eth",
+      "labels": [
+        "build",
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 11740,
+      "title": "perf(agc): accept a refreshed view in the T1 re-run when the lookup would not view the pending alias",
+      "mergedAt": "2026-10-30T01:01:54Z",
+      "author": "thuanquang",
+      "labels": [
+        "agc",
+        "unblocks title",
+        "perf"
+      ]
+    },
+    {
+      "number": 12179,
+      "title": "feat(libkernel): add sceKernelGetExecutableModuleHandle",
+      "mergedAt": "2026-10-30T01:01:02Z",
+      "author": "p3n1cillin",
+      "labels": [
+        "libkernel",
+        "docs",
+        "prx",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12217,
+      "title": "test(libSceWebBrowserDialog): cover cookie parameter validation in set and reset cookie",
+      "mergedAt": "2026-10-30T01:00:55Z",
+      "author": "al3w0f205",
+      "labels": []
+    },
+    {
+      "number": 12178,
+      "title": "fix(libc): raise inexact for nearbyintf",
+      "mergedAt": "2026-10-30T01:00:50Z",
+      "author": "Henryisdjfunkyho",
+      "labels": [
+        "libc",
+        "docs"
+      ]
+    },
+    {
+      "number": 9243,
+      "title": "perf(agc): cache CPU-path indirect draws behind APS5_DRAW_CACHE_INDIRECT",
+      "mergedAt": "2026-10-30T00:51:26Z",
+      "author": "fisherjoey",
+      "labels": [
+        "build",
+        "docs",
+        "agc",
+        "perf"
+      ]
+    },
+    {
+      "number": 11270,
+      "title": "fix(libc): compute _LLog with the bundled libc.prx's Dinkumware code",
+      "mergedAt": "2026-10-30T00:40:36Z",
+      "author": "AlexFigas",
+      "labels": [
+        "libc",
+        "docs"
+      ]
+    },
+    {
+      "number": 11075,
+      "title": "fix(agc): validate pipeline cache header format and empty cache paths",
+      "mergedAt": "2026-10-30T00:38:51Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "docs",
+        "agc"
+      ]
+    },
+    {
+      "number": 10140,
+      "title": "fix(agc): read user-data callees up to the 1 MiB raw shader program limit",
+      "mergedAt": "2026-10-30T00:25:59Z",
+      "author": "frankea",
+      "labels": [
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 11347,
+      "title": "feat(ngs2): accept custom submixers with more than eight channels",
+      "mergedAt": "2026-10-30T00:20:55Z",
+      "author": "edubox",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 11819,
+      "title": "test(libSceVoiceChat): cover accessibility events, ranged members, and session requests",
+      "mergedAt": "2026-10-30T00:20:50Z",
+      "author": "Elma7e",
+      "labels": []
+    },
+    {
+      "number": 11431,
+      "title": "fix(libkernel): answer pthread_getaffinity_np for the console's 8- and 16-byte sets",
+      "mergedAt": "2026-10-30T00:20:44Z",
+      "author": "p3n1cillin",
+      "labels": [
+        "libkernel",
+        "docs"
+      ]
+    },
+    {
+      "number": 9414,
+      "title": "fix(relinker): support MSVC build and prevent NOMINMAX collision on W…",
+      "mergedAt": "2026-10-30T00:20:38Z",
+      "author": "Delciob",
+      "labels": [
+        "build",
+        "relinker"
+      ]
+    },
+    {
+      "number": 10854,
+      "title": "fix(agc): count pending storage writes over a depth plane as a later writer",
+      "mergedAt": "2026-10-30T00:20:31Z",
+      "author": "milescoviello",
+      "labels": [
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 11550,
+      "title": "feat(agc): count why a template's collect was refused",
+      "mergedAt": "2026-10-30T00:04:12Z",
+      "author": "johandavidcm",
+      "labels": [
+        "build",
+        "agc"
+      ]
+    },
+    {
+      "number": 12060,
+      "title": "fix(libkernel): lock directories with flock on Windows as FreeBSD does",
+      "mergedAt": "2026-10-30T00:04:03Z",
+      "author": "Ragbie",
+      "labels": [
+        "libc",
+        "libkernel",
+        "docs"
+      ]
+    },
+    {
+      "number": 10544,
+      "title": "fix(libkernel): count a dissolved datagram association as disconnected on macOS",
+      "mergedAt": "2026-10-30T00:03:09Z",
+      "author": "maximilianfv",
+      "labels": [
+        "libkernel"
+      ]
+    },
+    {
+      "number": 10651,
+      "title": "test(agc): expect no kept image table writes for a set from the shared pool chain",
+      "mergedAt": "2026-10-30T00:03:02Z",
+      "author": "maximilianfv",
+      "labels": [
+        "agc"
+      ]
+    },
+    {
+      "number": 10627,
+      "title": "fix(libkernel): keep dlerror messages whole",
+      "mergedAt": "2026-10-30T00:02:56Z",
+      "author": "maximilianfv",
+      "labels": [
+        "libkernel"
+      ]
+    },
+    {
+      "number": 12085,
+      "title": "fix(libSceJobManager): spin idle workers without taking the manager lock",
+      "mergedAt": "2026-10-29T23:59:12Z",
+      "author": "JJenkx",
+      "labels": [
+        "prx"
+      ]
+    },
+    {
+      "number": 12369,
+      "title": "feat(libSceLibreSsl3): complete callable declarations and parent forwarding",
+      "mergedAt": "2026-10-29T23:59:07Z",
+      "author": "kyon-eth",
+      "labels": [
+        "build",
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 6204,
+      "title": "fix(relinker): guard Windows entry-stub RVA allocations",
+      "mergedAt": "2026-10-29T23:56:58Z",
+      "author": "vrebel11",
+      "labels": [
+        "build",
+        "relinker"
+      ]
+    },
+    {
+      "number": 9738,
+      "title": "fix(agc): keep the shader preparation lifecycle mutex alive through exit",
+      "mergedAt": "2026-10-29T23:56:52Z",
+      "author": "mugurc",
+      "labels": [
+        "agc"
+      ]
+    },
+    {
+      "number": 11639,
+      "title": "feat(libSceNpCppWebApi): track the UserProfile, ProfanityFilter and CommunicationRestrictionStatus parameter lifecycles as the module does",
+      "mergedAt": "2026-10-29T23:50:15Z",
+      "author": "AlexFigas",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 9589,
+      "title": "test(relinker): run the relinker fixture suites on Windows",
+      "mergedAt": "2026-10-29T23:45:39Z",
+      "author": "DavidSamir",
+      "labels": [
+        "build",
+        "relinker"
+      ]
+    },
+    {
+      "number": 12224,
+      "title": "test(libc): cover null stream handle and null path in directory operations",
+      "mergedAt": "2026-10-29T23:28:33Z",
+      "author": "al3w0f205",
+      "labels": []
+    },
+    {
+      "number": 12174,
+      "title": "fix(tools): parse quoted CMake cache check names in configure_seed",
+      "mergedAt": "2026-10-29T23:28:27Z",
+      "author": "rooklz",
+      "labels": [
+        "fix error"
+      ]
+    },
+    {
+      "number": 12068,
+      "title": "fix(build): skip the core/libs relinker CLI tests when ANYPS5_RELINKER_CLI is OFF",
+      "mergedAt": "2026-10-29T23:28:21Z",
+      "author": "dantdmdarealguy",
+      "labels": [
+        "libkernel",
+        "build",
+        "relinker",
+        "prx",
+        "agc"
+      ]
+    },
+    {
+      "number": 12061,
+      "title": "feat(libSceAmpr): add From*OnCompletion measure helpers",
+      "mergedAt": "2026-10-29T23:28:15Z",
+      "author": "akkadbakkad89",
+      "labels": [
+        "prx"
+      ]
+    },
+    {
+      "number": 9966,
+      "title": "fix(tools): stop masking a function body window once its brace closes",
+      "mergedAt": "2026-10-29T23:28:08Z",
+      "author": "jotitadev",
+      "labels": []
+    },
+    {
+      "number": 12161,
+      "title": "test(check-compile): split the two-variant mode cases and the invalid entry case",
+      "mergedAt": "2026-10-29T23:23:03Z",
+      "author": "dantdmdarealguy",
+      "labels": []
+    },
+    {
+      "number": 12221,
+      "title": "test(libSceFont): cover null textParser validation in sceFontCreateWords",
+      "mergedAt": "2026-10-29T23:22:57Z",
+      "author": "al3w0f205",
+      "labels": []
+    },
+    {
+      "number": 12074,
+      "title": "fix(agc): let heap mirrors replace host imports when the import budget is full",
+      "mergedAt": "2026-10-29T23:20:40Z",
+      "author": "mehmetbayoglu",
+      "labels": [
+        "build",
+        "docs",
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 6498,
+      "title": "fix(agc): refuse buffer aliases of native MSAA targets",
+      "mergedAt": "2026-10-29T23:19:54Z",
+      "author": "Amoenus",
+      "labels": [
+        "docs",
+        "agc",
+        "fix error"
+      ]
+    },
+    {
+      "number": 12676,
+      "title": "fix(libc): leave errno unchanged from ldexpf, as titles' libc.prx does",
+      "mergedAt": "2026-10-29T23:18:57Z",
+      "author": "JJenkx",
+      "labels": [
+        "libc"
+      ]
+    },
+    {
+      "number": 12654,
+      "title": "fix(tools): check exports through local ABI aliases",
+      "mergedAt": "2026-10-29T23:18:51Z",
+      "author": "SnekPolylepis",
+      "labels": []
+    },
+    {
+      "number": 10927,
+      "title": "feat(libc): implement std::_Throw(const std::bad_array_new_length&)",
+      "mergedAt": "2026-10-29T23:18:44Z",
+      "author": "edubox",
+      "labels": [
+        "libc",
+        "build",
+        "docs",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12724,
+      "title": "fix(shader): give one-lane waves an elected atomic max per lane",
+      "mergedAt": "2026-10-29T23:18:15Z",
+      "author": "Gonic0",
+      "labels": [
+        "shader",
+        "docs",
+        "agc"
+      ]
+    },
+    {
+      "number": 12722,
+      "title": "fix(tools): report deeply nested pad timelines as usage errors",
+      "mergedAt": "2026-10-29T23:18:09Z",
+      "author": "xXPBSXx",
+      "labels": []
+    },
+    {
+      "number": 12691,
+      "title": "fix(libc): allow zero-stride bsearch_s as bundled libc does",
+      "mergedAt": "2026-10-29T23:18:03Z",
+      "author": "JJenkx",
+      "labels": [
+        "libc",
+        "docs"
+      ]
+    },
+    {
+      "number": 12214,
+      "title": "test(libSceCamera): cover unopened handle and null parameter in sceCameraGetConfig and sceCameraGetDeviceConfig",
+      "mergedAt": "2026-10-29T23:10:44Z",
+      "author": "al3w0f205",
+      "labels": []
+    },
+    {
+      "number": 12740,
+      "title": "fix(libSceNpAuth): reject a null result pointer in sceNpAuthPollAsync",
+      "mergedAt": "2026-10-29T23:10:38Z",
+      "author": "XairRrR",
+      "labels": [
+        "prx"
+      ]
+    },
+    {
+      "number": 12731,
+      "title": "fix(cmake): keep the SEH personalities out of nghttp2's export set",
+      "mergedAt": "2026-10-29T23:10:33Z",
+      "author": "bunbeans2-arch",
+      "labels": [
+        "build",
+        "prx"
+      ]
+    },
+    {
+      "number": 12725,
+      "title": "fix(libSceAvPlayer): saturate the current time when the clock passes the uint64 range",
+      "mergedAt": "2026-10-29T23:02:43Z",
+      "author": "XairRrR",
+      "labels": [
+        "prx"
+      ]
+    },
+    {
+      "number": 12681,
+      "title": "fix(libc): leave errno unchanged from scalbn and scalbnf on every host",
+      "mergedAt": "2026-10-29T23:02:34Z",
+      "author": "JJenkx",
+      "labels": [
+        "libc"
+      ]
+    },
+    {
+      "number": 12220,
+      "title": "test(libSceSaveData.native): cover unmounted mount point in icon operations",
+      "mergedAt": "2026-10-29T23:00:36Z",
+      "author": "al3w0f205",
+      "labels": []
+    },
+    {
+      "number": 12218,
+      "title": "test(libSceNpTrophy): cover null and size validation in get game group and trophy info",
+      "mergedAt": "2026-10-29T23:00:29Z",
+      "author": "al3w0f205",
+      "labels": []
+    },
+    {
+      "number": 12215,
+      "title": "test(libSceAudio3d): cover speaker array creation invalid parameters",
+      "mergedAt": "2026-10-29T23:00:23Z",
+      "author": "al3w0f205",
+      "labels": []
+    },
+    {
+      "number": 12686,
+      "title": "feat(libSceVideoOut): add ANYPS5_RUMBLE to scale or turn off host controller vibration",
+      "mergedAt": "2026-10-29T22:46:18Z",
+      "author": "MarcZX10",
+      "labels": [
+        "build",
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12163,
+      "title": "fix(libkernel): classify guest sockets on Windows and align errno parity",
+      "mergedAt": "2026-10-29T22:46:12Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "libkernel"
+      ]
+    },
+    {
+      "number": 12588,
+      "title": "fix(tools): print the per-library progress change in % like the headline",
+      "mergedAt": "2026-10-29T22:46:06Z",
+      "author": "MarcZX10",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "number": 12602,
+      "title": "fix(tools): report deeply nested progress snapshots as usage errors",
+      "mergedAt": "2026-10-29T22:37:19Z",
+      "author": "xXPBSXx",
+      "labels": []
+    },
+    {
+      "number": 11450,
+      "title": "feat(libc): export std::__sce_v2::_Locinfo",
+      "mergedAt": "2026-10-29T22:37:12Z",
+      "author": "edubox",
+      "labels": [
+        "libc"
+      ]
+    },
+    {
+      "number": 12148,
+      "title": "build(libSceAjm.native): rewrite the patched LibAtrac9 sources only when they change",
+      "mergedAt": "2026-10-29T22:33:35Z",
+      "author": "MaxLikesCode",
+      "labels": [
+        "build",
+        "prx",
+        "fix error"
+      ]
+    },
+    {
+      "number": 12645,
+      "title": "fix(agc): validate rendering wait buffer and expand resource registration tests",
+      "mergedAt": "2026-10-29T22:28:28Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "docs",
+        "agc"
+      ]
+    },
+    {
+      "number": 12549,
+      "title": "fix(libc): normalize a pre-1970 calendar before the Windows host mktime",
+      "mergedAt": "2026-10-29T22:28:21Z",
+      "author": "JJenkx",
+      "labels": [
+        "libc"
+      ]
+    },
+    {
+      "number": 12555,
+      "title": "fix(libc): read x87 rounding in _Fltrounds",
+      "mergedAt": "2026-10-29T22:28:15Z",
+      "author": "JJenkx",
+      "labels": [
+        "libc",
+        "docs"
+      ]
+    },
+    {
+      "number": 12572,
+      "title": "test(libSceLibreSsl): compare exports with LibreSSL 2.5.4 behind ANYPS5_LIBRESSL_ORACLE",
+      "mergedAt": "2026-10-29T22:08:21Z",
+      "author": "JulesB40",
+      "labels": [
+        "build",
+        "docs",
+        "prx",
+        "fix error"
+      ]
+    },
+    {
+      "number": 12164,
+      "title": "fix(agc): remap B8G8R8A8_SNORM color target format to guest format 57",
+      "mergedAt": "2026-10-29T22:01:21Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "agc"
+      ]
+    },
+    {
+      "number": 12227,
+      "title": "perf(libc): skip never-written pages when evicting a resident direct-memory run",
+      "mergedAt": "2026-10-29T22:01:15Z",
+      "author": "klosixgaming-arch",
+      "labels": [
+        "libc",
+        "perf"
+      ]
+    },
+    {
+      "number": 12527,
+      "title": "fix(libc): name the extended errno values in strerror as titles' libc.prx does",
+      "mergedAt": "2026-10-29T22:01:08Z",
+      "author": "JJenkx",
+      "labels": [
+        "libc",
+        "docs"
+      ]
+    },
+    {
+      "number": 12503,
+      "title": "fix(libkernel): return EFAULT from kevent for an unreadable changelist or timeout or an unwritable eventlist",
+      "mergedAt": "2026-10-29T21:49:08Z",
+      "author": "babyhuey",
+      "labels": [
+        "libkernel"
+      ]
+    },
+    {
+      "number": 11768,
+      "title": "feat(prx): declare 150 PS5 3.20 exports in libSceAbstractStorage and libSceIpmi",
+      "mergedAt": "2026-10-29T21:49:00Z",
+      "author": "oneandonlydean",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 11767,
+      "title": "feat(prx): declare 150 PS5 3.20 exports in libSceAbstractYoutube and libSceNKWebKitRequirements",
+      "mergedAt": "2026-10-29T21:48:43Z",
+      "author": "oneandonlydean",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12675,
+      "title": "test(agc): wait for a batch to read as signaled before the recorder's signaled-batch checks",
+      "mergedAt": "2026-10-29T21:35:53Z",
+      "author": "CruddOCE",
+      "labels": [
+        "agc",
+        "fix error"
+      ]
+    },
+    {
+      "number": 12677,
+      "title": "test(agc): count the queued indirect draws while the GPU lock holds the committer",
+      "mergedAt": "2026-10-29T21:35:46Z",
+      "author": "dantdmdarealguy",
+      "labels": [
+        "agc"
+      ]
+    },
+    {
+      "number": 12573,
+      "title": "fix(libc): pick strftime and asctime names from a doubled 32-bit index",
+      "mergedAt": "2026-10-29T21:35:39Z",
+      "author": "JJenkx",
+      "labels": [
+        "libc"
+      ]
+    },
+    {
+      "number": 12655,
+      "title": "feat(prx): declare WKBundleInitialize in RnpsNKInjectedBundle",
+      "mergedAt": "2026-10-29T21:26:12Z",
+      "author": "SnekPolylepis",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12672,
+      "title": "test(libSceNpCommon): cover null pointer validation in sceNpCmpOnlineId and sceNpCmpNpIdInOrder",
+      "mergedAt": "2026-10-29T21:25:10Z",
+      "author": "al3w0f205",
+      "labels": []
+    },
+    {
+      "number": 11752,
+      "title": "feat(libSceLibcInternal): declare 120 PS5 3.20 pending exports",
+      "mergedAt": "2026-10-29T21:18:58Z",
+      "author": "oneandonlydean",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12856,
+      "title": "fix(libSceAudioOut): validate open format parameter and virtual port buffer boundaries",
+      "mergedAt": "2026-10-29T21:18:42Z",
+      "author": "slopgobblercobbler",
+      "labels": [
+        "build",
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12127,
+      "title": "fix(libc): absorb macOS nanosleep lateness in PreciseSleep",
+      "mergedAt": "2026-10-29T21:18:39Z",
+      "author": "iamthehimansh",
+      "labels": [
+        "libc"
+      ]
+    },
+    {
+      "number": 12637,
+      "title": "feat(libSceHttp2): implement sceHttp2SetMinSslVersion for versions 2 to 5",
+      "mergedAt": "2026-10-29T21:18:33Z",
+      "author": "Lindamea1",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12633,
+      "title": "feat(libSceVideodec2): implement H.264 picture info in sceVideodec2GetPictureInfo and sceVideodec2GetAvcPictureInfo",
+      "mergedAt": "2026-10-29T21:18:27Z",
+      "author": "Lindamea1",
+      "labels": [
+        "build",
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12551,
+      "title": "fix(tools): report deeply nested trace summaries",
+      "mergedAt": "2026-10-29T20:52:12Z",
+      "author": "LuPetro",
+      "labels": []
+    },
+    {
+      "number": 12208,
+      "title": "fix(shader): poison an SRT read below a pointer loaded from memory",
+      "mergedAt": "2026-10-29T20:52:05Z",
+      "author": "XairRrR",
+      "labels": [
+        "shader",
+        "docs",
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12540,
+      "title": "test(tools): create the progress report hard link with os.link for Python 3.9",
+      "mergedAt": "2026-10-29T20:51:59Z",
+      "author": "rooklz",
+      "labels": []
+    },
+    {
+      "number": 12546,
+      "title": "test(libSceSigninDialog): cover finished dialog open and close and result buffer preservation",
+      "mergedAt": "2026-10-29T20:43:48Z",
+      "author": "Elma7e",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "number": 12545,
+      "title": "test(libSceNpAuthAuthorizedAppDialog): cover argument validation precedence over uninitialized state",
+      "mergedAt": "2026-10-29T20:43:41Z",
+      "author": "Elma7e",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "number": 11986,
+      "title": "fix(tests): parse maps pathname past whitespace in guest_sysmodule",
+      "mergedAt": "2026-10-29T20:43:35Z",
+      "author": "juanpimg",
+      "labels": [
+        "libc"
+      ]
+    },
+    {
+      "number": 12843,
+      "title": "fix(relinker): preserve 32-bit wrapping in stub memory relocations",
+      "mergedAt": "2026-10-29T20:21:15Z",
+      "author": "PolkadotDom",
+      "labels": [
+        "build",
+        "relinker"
+      ]
+    },
+    {
+      "number": 12207,
+      "title": "fix(agc): sample a cube array over depth surfaces through their depth planes",
+      "mergedAt": "2026-10-29T20:21:05Z",
+      "author": "XairRrR",
+      "labels": [
+        "docs",
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12206,
+      "title": "fix(libkernel): scale the reported TSC frequency under APS5_TIME_SCALE",
+      "mergedAt": "2026-10-29T20:20:59Z",
+      "author": "XairRrR",
+      "labels": [
+        "libkernel",
+        "build",
+        "prx"
+      ]
+    },
+    {
+      "number": 12117,
+      "title": "fix(libc): forward non-write faults from watched macOS pages",
+      "mergedAt": "2026-10-29T20:20:53Z",
+      "author": "plexerPK",
+      "labels": [
+        "libc",
+        "build",
+        "docs"
+      ]
+    },
+    {
+      "number": 12081,
+      "title": "fix(agc): allow MSAA_ENABLE single-sample lines",
+      "mergedAt": "2026-10-29T20:20:46Z",
+      "author": "akkadbakkad89",
+      "labels": [
+        "docs",
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12093,
+      "title": "fix(libkernel): read a watched file's times again after its size on Windows",
+      "mergedAt": "2026-10-29T20:20:39Z",
+      "author": "dantdmdarealguy",
+      "labels": [
+        "libkernel",
+        "docs"
+      ]
+    },
+    {
+      "number": 12606,
+      "title": "feat(libkernel_sys): implement sceKernelSettimeofday",
+      "mergedAt": "2026-10-29T20:20:33Z",
+      "author": "EagleBearerYS",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12941,
+      "title": "fix(libc): keep clang's SLP vectorizer from raising spurious FP exceptions in libc",
+      "mergedAt": "2026-10-29T20:20:29Z",
+      "author": "AdnanKhan-ak47",
+      "labels": []
+    },
+    {
+      "number": 11957,
+      "title": "perf(agc): merge shared shader regions with a heap",
+      "mergedAt": "2026-10-29T20:20:26Z",
+      "author": "Bram910",
+      "labels": [
+        "build",
+        "agc",
+        "perf"
+      ]
+    },
+    {
+      "number": 12529,
+      "title": "revert(shader): check scalar buffer bounds in 64 bits again (#10337)",
+      "mergedAt": "2026-10-29T20:20:20Z",
+      "author": "imellag",
+      "labels": [
+        "shader"
+      ]
+    },
+    {
+      "number": 12491,
+      "title": "fix(tools): use literal paths for main sync PR history",
+      "mergedAt": "2026-10-29T20:20:13Z",
+      "author": "StoneDC",
+      "labels": [
+        "build"
+      ]
+    },
+    {
+      "number": 12585,
+      "title": "test(libSceFont): cover the sceFontRebindRenderer return codes",
+      "mergedAt": "2026-10-29T20:19:27Z",
+      "author": "xXPBSXx",
+      "labels": [
+        "build",
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12552,
+      "title": "test(libSceVideodec): cover null and struct size validation in delete and reset decoder",
+      "mergedAt": "2026-10-29T20:19:21Z",
+      "author": "Elma7e",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "number": 12547,
+      "title": "test(libSceCdlgG2P): cover finished dialog open and close and result prefix boundary",
+      "mergedAt": "2026-10-29T20:19:14Z",
+      "author": "Elma7e",
+      "labels": []
+    },
+    {
+      "number": 12264,
+      "title": "perf(agc): find a range's newest writer through a granule index instead of scanning the ring",
+      "mergedAt": "2026-10-29T20:19:11Z",
+      "author": "Tehshortbus",
+      "labels": [
+        "build",
+        "agc",
+        "perf"
+      ]
+    },
+    {
+      "number": 12590,
+      "title": "test(agc): require CMake 3.20 in the pipeline inspection script so CMP0054 is NEW",
+      "mergedAt": "2026-10-29T20:19:08Z",
+      "author": "tablefrogpillow",
+      "labels": [
+        "build",
+        "agc"
+      ]
+    },
+    {
+      "number": 12566,
+      "title": "fix(agc): write host-only multisample memory as zeros in a capture snapshot",
+      "mergedAt": "2026-10-29T20:19:02Z",
+      "author": "chitters2004",
+      "labels": [
+        "docs",
+        "agc"
+      ]
+    },
+    {
+      "number": 12587,
+      "title": "feat(libSceAudiodec): decode M4AAC with non-delay output enabled",
+      "mergedAt": "2026-10-29T20:18:55Z",
+      "author": "EagleBearerYS",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12583,
+      "title": "test(agc): cover cached fragment swizzles and constant selectors",
+      "mergedAt": "2026-10-29T20:01:00Z",
+      "author": "JJenkx",
+      "labels": [
+        "agc"
+      ]
+    },
+    {
+      "number": 12408,
+      "title": "fix(relinker): classify UD0 as a trap",
+      "mergedAt": "2026-10-29T20:00:53Z",
+      "author": "SHOnnay",
+      "labels": [
+        "relinker"
+      ]
+    },
+    {
+      "number": 12570,
+      "title": "fix(libSceRtc): reject far-future ticks before precise local time conversion",
+      "mergedAt": "2026-10-29T20:00:48Z",
+      "author": "rooklz",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12621,
+      "title": "fix(relinker): defer the runtime modules another deferred module needs on Windows",
+      "mergedAt": "2026-10-29T19:49:49Z",
+      "author": "Ragbie",
+      "labels": [
+        "relinker",
+        "docs"
+      ]
+    },
+    {
+      "number": 12563,
+      "title": "fix(libkernel): return EFAULT from setrlimit for an unreadable limit",
+      "mergedAt": "2026-10-29T19:35:46Z",
+      "author": "babyhuey",
+      "labels": [
+        "libkernel"
+      ]
+    },
+    {
+      "number": 12508,
+      "title": "fix(tools): follow next links in PR overlap pagination",
+      "mergedAt": "2026-10-29T19:35:40Z",
+      "author": "LuPetro",
+      "labels": []
+    },
+    {
+      "number": 12509,
+      "title": "fix(libc): synchronize macOS arena protection with write watch",
+      "mergedAt": "2026-10-29T19:35:34Z",
+      "author": "plexerPK",
+      "labels": [
+        "libc",
+        "build"
+      ]
+    },
+    {
+      "number": 11727,
+      "title": "fix(libSceAmpr): dynamically expand command buffer capacity on append",
+      "mergedAt": "2026-10-29T19:35:28Z",
+      "author": "camezaro-intc",
+      "labels": [
+        "docs",
+        "prx",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12210,
+      "title": "fix(agc): keep stencil planes coherent with guest memory",
+      "mergedAt": "2026-10-29T19:35:20Z",
+      "author": "XairRrR",
+      "labels": [
+        "docs",
+        "agc",
+        "unblocks title"
+      ]
+    },
+    {
+      "number": 12523,
+      "title": "fix(deps): update FreeType to 2.15.0",
+      "mergedAt": "2026-10-29T19:35:14Z",
+      "author": "johnohhh1",
+      "labels": [
+        "build",
+        "docs"
+      ]
+    },
+    {
+      "number": 12535,
+      "title": "fix(libSceRtc): check current tick before local time conversion",
+      "mergedAt": "2026-10-29T19:35:08Z",
+      "author": "LuPetro",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12528,
+      "title": "test(libSceFont): cover the renderer outline buffer size, reset and policy",
+      "mergedAt": "2026-10-29T19:35:01Z",
+      "author": "legendary-cookie",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "number": 11865,
+      "title": "fix(libkernel): sched_getparam reads out-of-range priorities, sched_setparam EPERM outside 256-767, own pid on the main thread",
+      "mergedAt": "2026-10-29T19:34:54Z",
+      "author": "ionut27001",
+      "labels": [
+        "libkernel",
+        "docs"
+      ]
+    },
+    {
+      "number": 11877,
+      "title": "test(libSceNpPartner001): cover post-terminate exception verification and repeated terminate",
+      "mergedAt": "2026-10-29T19:34:45Z",
+      "author": "Elma7e",
+      "labels": []
+    },
+    {
+      "number": 12975,
+      "title": "docs(agc): say what shadPS4 and fpPS4 do for FORCE_DEGAMMA on PS4",
+      "mergedAt": "2026-10-29T19:34:34Z",
+      "author": "xXPBSXx",
+      "labels": []
+    },
+    {
+      "number": 12961,
+      "title": "docs(debt): record MetadataReaderWriter names a device module does not resolve",
+      "mergedAt": "2026-10-29T19:34:28Z",
+      "author": "KernelPanicNT",
+      "labels": []
+    },
+    {
+      "number": 12929,
+      "title": "docs(debt): name what the emulators do when a video bus is opened twice",
+      "mergedAt": "2026-10-29T19:34:22Z",
+      "author": "xXPBSXx",
+      "labels": []
+    },
+    {
+      "number": 12734,
+      "title": "docs(libSceScreenShot): record aerolib IPC signatures for DRC parameters and VSH capture",
+      "mergedAt": "2026-10-29T19:34:16Z",
+      "author": "Elma7e",
+      "labels": [
+        "docs",
+        "prx"
+      ]
+    },
+    {
+      "number": 12747,
+      "title": "test(libkernel): pin the zone before the kernel timezone check",
+      "mergedAt": "2026-10-29T19:22:41Z",
+      "author": "oneandonlydean",
+      "labels": [
+        "fix error"
+      ]
+    },
+    {
+      "number": 12239,
+      "title": "perf(libc): resize a default heap block in place when it already has the room",
+      "mergedAt": "2026-10-29T19:20:33Z",
+      "author": "MarcZX10",
+      "labels": [
+        "libc",
+        "perf",
+        "perf numbers missing"
+      ]
+    },
     {
       "number": 12817,
       "title": "fix(relinker): validate code section bounds for instruction matches and SDK stubs",

@@ -1,6 +1,6 @@
 {
-  "commit": "5dc9aa339bb435c8c98bfcaa93046e8d5a5d972c",
-  "date": "2026-10-29",
+  "commit": "5ecef095b61e7a406b279c97896f3a8a6fbd6353",
+  "date": "2026-10-30",
   "isa": "AMD RDNA 2",
   "instructions": {
     "total": 1460,
@@ -77,7 +77,7 @@
       },
       {
         "file": "ControlFlow/src/RequestSerializer.cpp",
-        "line": 941,
+        "line": 951,
         "message": "unsupported recompile request serialization version"
       },
       {
@@ -472,7 +472,7 @@
       },
       {
         "file": "Recompiler.cpp",
-        "line": 1175,
+        "line": 1182,
         "message": "unsupported prepared vertex format"
       },
       {
@@ -527,7 +527,7 @@
       },
       {
         "file": "SpirvBackend/src/SpirvMemory/SpirvEmitterHelpers.cpp",
-        "line": 455,
+        "line": 460,
         "message": "alpha-to-coverage with a sample-mask export is unsupported"
       },
       {
@@ -537,12 +537,12 @@
       },
       {
         "file": "SpirvBackend/src/SpirvModuleEmitter.cpp",
-        "line": 1130,
+        "line": 1132,
         "message": "unsupported tessellation domain, partitioning, or output topology"
       },
       {
         "file": "SpirvBackend/src/SpirvModuleEmitter.cpp",
-        "line": 1172,
+        "line": 1174,
         "message": "unsupported mesh output kind"
       },
       {
@@ -2780,7 +2780,27 @@
     },
     {
       "date": "2026-10-29",
-      "commit": "5dc9aa339bb435c8c98bfcaa93046e8d5a5d972c",
+      "commit": "9a9332a4bf7b312feb5a7054217501326bb4fc4b",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1456,
+        "translated": 1455
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 199
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 81,
+        "buffer": 80,
+        "host": 68
+      },
+      "throws": 148
+    },
+    {
+      "date": "2026-10-30",
+      "commit": "5ecef095b61e7a406b279c97896f3a8a6fbd6353",
       "instructions": {
         "total": 1460,
         "decoded": 1456,
