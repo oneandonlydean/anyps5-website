@@ -520,3 +520,8 @@ pre {
 :root[data-theme="light"] .astro-code span {
   color: var(--shiki-light);
 }
+
+/* Dates shown in the visitor's timezone; hovering gives the exact moment and UTC. */
+time[data-local] {
+  cursor: help;
+}
