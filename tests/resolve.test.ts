@@ -119,6 +119,15 @@ describe("stage", () => {
     expect(game).toMatchObject({ stage: "Starts", branchStage: "Ingame" });
   });
 
+  it("lists the pull requests the branch-only stage needs, open ones first", () => {
+    const pr = (number: number, state: string) => ({ number, kind: "pr", title: `PR ${number}`, state, url: `https://github.com/boykopovar/AnyPS5/pull/${number}` });
+    const issues = { 7: pr(7, "merged"), 8: pr(8, "open"), 9: { ...pr(9, "open"), kind: "issue" } };
+    const branch = report({ stage: "Ingame", buildKind: "patched", prs: [7, 8, 9, 404] });
+    const game = resolveOne([thread(1, ["PPSA00001"], [report({ stage: "Starts" }), branch])], [], issues);
+    expect(game.branch).toMatchObject({ url: branch.url, patched: true });
+    expect(game.branch?.prs.map((p) => [p.number, p.state])).toEqual([[8, "open"], [7, "merged"]]);
+  });
+
   it("lets a curated stage win over older or lower reports", () => {
     const curated = { stage: "Converts" as const, date: "2026-10-05" };
     const game = resolveOne([thread(1, ["PPSA00001"], [report({ stage: "Menus", date: "2026-10-01" })])], [overlay({ curated })]);

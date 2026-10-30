@@ -40,6 +40,8 @@ const themeStyle =
 // A game released in several regions can have a thread per title ID; the busiest one takes new reports.
 const [thread, ...otherThreads] = [...game.threads].sort((a, b) => b.comments - a.comments || a.number - b.number);
 const replies = (n: number) => (n === 1 ? "1 reply" : `${n} replies`);
+/** Pull requests listed under the ladder before "and N more". */
+const BRANCH_PRS_SHOWN = 5;
 const BUILD_LABEL = { main: "main", prs: "main + PRs", patched: "patched", unknown: "—" } as const;
 // Discussions reports and run reports uploaded here, newest first, in one table; each row opens its full report.
 const rows = [
@@ -153,7 +155,35 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
         <section class="card panel">
           <h2>Progress</h2>
           <StageLadder stage={game.stage} branchStage={game.branchStage} platforms={game.platforms} />
-          {game.branchStage && <p class="hint">Striped steps are reached only with open pull requests or local patches, not yet on <code>main</code>.</p>}
+          {game.branch && (
+            <div class="branch-needs">
+              <p class="hint">
+                Striped steps are reached only with changes not yet on <code>main</code>.{" "}
+                {game.branch.prs.length > 0 ? <>The <a href={game.branch.url}>report</a> that got to {game.branchStage} used:</> : <>The <a href={game.branch.url}>report</a> that got to {game.branchStage} describes its local patches.</>}
+              </p>
+              {game.branch.prs.length > 0 && (
+                <ul class="blockers branch-prs">
+                  {game.branch.prs.slice(0, BRANCH_PRS_SHOWN).map((p) => (
+                    <li>
+                      <span class:list={["state", "pr", p.state]}>{p.state === "open" ? "Open PR" : p.state === "merged" ? "Merged since" : "Closed"}</span>
+                      <a href={p.url}>
+                        <span class="num">#{p.number}</span> {p.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {(game.branch.prs.length > BRANCH_PRS_SHOWN || (game.branch.patched && game.branch.prs.length > 0)) && (
+                <p class="hint">
+                  {game.branch.prs.length > BRANCH_PRS_SHOWN && <>And {game.branch.prs.length - BRANCH_PRS_SHOWN} more{game.branch.patched ? ", " : "."} </>}
+                  {game.branch.patched && <>{game.branch.prs.length > BRANCH_PRS_SHOWN ? "plus" : "Plus"} local changes listed in the report.</>}
+                </p>
+              )}
+              {!game.branch.patched && game.branch.prs.length > 0 && game.branch.prs.every((p) => p.state === "merged") && (
+                <p class="hint">All of these have merged since, so <code>main</code> may get there now. A new run would show it.</p>
+              )}
+            </div>
+          )}
         </section>
 
         {shots.length > 0 && <Screenshots shots={shots} game={game.name} />}
@@ -571,6 +601,25 @@ const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? ""
   .state.pr {
     background: color-mix(in srgb, var(--good) 15%, transparent);
     color: var(--good);
+  }
+  .state.pr.merged {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+  }
+  .state.pr.closed {
+    background: color-mix(in srgb, var(--faint) 15%, transparent);
+    color: var(--faint);
+  }
+  .branch-prs {
+    margin-top: 12px;
+  }
+  .branch-prs + .hint,
+  .branch-prs + .hint + .hint {
+    margin-top: 10px;
+  }
+  .branch-prs li {
+    padding: 8px 12px;
+    font-size: 0.9rem;
   }
   .system {
     min-width: 200px;

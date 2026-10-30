@@ -28,6 +28,8 @@ export interface Game extends Omit<Identity, "overlay"> {
   releases: { titleId: string; region: string | null }[];
   stage: StageOrNone | null;
   branchStage: StageOrNone | null;
+  /** The report behind branchStage, and the pull requests its build used: open first, then merged since, then closed. */
+  branch: { url: string; patched: boolean; prs: Issue[] } | null;
   verified: boolean;
   platforms: Partial<Record<Platform, StageOrNone>>;
   gpuVendors: string[];
@@ -164,6 +166,15 @@ function timeline(reports: Report[]): TimelineEvent[] {
   return events;
 }
 
+const PR_ORDER = { open: 0, merged: 1, closed: 2 } as const;
+
+function branchPrs(numbers: number[], issues: Record<number, Issue>): Issue[] {
+  return numbers
+    .map((n) => issues[n])
+    .filter((i): i is Issue => i?.kind === "pr")
+    .sort((a, b) => PR_ORDER[a.state] - PR_ORDER[b.state]);
+}
+
 function openBlockers(numbers: number[], issues: Record<number, Issue>): Issue[] {
   return numbers.map((n) => issues[n]).filter((i): i is Issue => i?.state === "open");
 }
@@ -221,6 +232,7 @@ export function resolveGame(
     releases: identity.titleIds.map((titleId) => ({ titleId, region: titles[titleId]?.region ?? null })),
     stage,
     branchStage,
+    branch: branchStage && branchTop ? { url: branchTop.url, patched: branchTop.buildKind === "patched", prs: branchPrs(branchTop.prs, issues) } : null,
     verified: Boolean(curated && !reportWins && !uploadWins),
     platforms,
     gpuVendors: [...new Set(reports.map((r) => r.gpuVendor).filter((v): v is string => Boolean(v)))],
