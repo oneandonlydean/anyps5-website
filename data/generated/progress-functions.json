@@ -75,6 +75,1210 @@
     "Acm",
     0
   ],
+  "__asan_addr_is_in_fake_stack": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_address_is_poisoned": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_after_dynamic_init": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_aligned_alloc": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_alloca_poison": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_allocas_unpoison": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_before_dynamic_init": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_calloc": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_current_error_report": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_current_error_report_size": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_describe_address": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_destroy_fake_stack": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load16_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load1_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load2_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load4_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_load8_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_loadN": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_loadN_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store16_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store1_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store2_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store4_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_store8_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_storeN": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_exp_storeN_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_free": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_alloc_stack": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_current_fake_stack": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_free_stack": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_report_access_size": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_report_access_type": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_report_address": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_report_bp": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_report_description": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_report_pc": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_report_sp": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_get_shadow_mapping": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_handle_no_return": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_init": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_init_v5": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load16_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load1_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load2_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load4_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load8_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_loadN": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_loadN_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_load_cxx_array_cookie": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_locate_address": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_malloc": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_malloc_stats": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_malloc_usable_size": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_memalign": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_memcpy": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_memmove": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_memset": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_option_detect_stack_use_after_return": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_poison_cxx_array_cookie": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_poison_intra_object_redzone": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_poison_memory_region": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_poison_stack_memory": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_posix_memalign": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_print_accumulated_stats": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_realloc": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_reallocalign": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_region_is_poisoned": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_register_elf_globals": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_register_globals": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_register_image_globals": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_error": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load16_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load1_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load2_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load4_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load8_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load_n": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_load_n_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store16_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store1_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store2_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store4_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store8_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store_n": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_exp_store_n_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load16_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load1_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load2_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load4_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load8_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load_n": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_load_n_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_present": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store16_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store1_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store2_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store4_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store8_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store_n": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_report_store_n_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_error_report_callback": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_00": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_01": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_02": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_03": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_04": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_05": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_06": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_07": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_f1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_f2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_f3": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_f5": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_set_shadow_f8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_0": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_10": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_3": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_5": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_6": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_7": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_free_9": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_0": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_10": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_3": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_5": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_6": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_7": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_9": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_0": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_10": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_3": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_5": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_6": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_7": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_stack_malloc_always_9": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store16_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store1_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store2": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store2_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store4": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store4_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_store8_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_storeN": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_storeN_noabort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_unpoison_intra_object_redzone": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_unpoison_memory_region": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_unpoison_stack_memory": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_unregister_elf_globals": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_unregister_globals": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_unregister_image_globals": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_update_allocation_context": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_version_mismatch_check_v6": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_version_mismatch_check_v7": [
+    "AddressSanitizer",
+    0
+  ],
+  "__asan_version_mismatch_check_v8": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sancov_default_options": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_annotate_contiguous_container": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_annotate_double_ended_contiguous_container": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_contiguous_container_find_bad_address": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_cov_dump": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_cov_trace_pc_guard": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_cov_trace_pc_guard_init": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_double_ended_contiguous_container_find_bad_address": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_dump_coverage": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_dump_trace_pc_guard_coverage": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_finish_switch_fiber": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_free_hook": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_allocated_begin": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_allocated_size": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_allocated_size_fast": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_current_allocated_bytes": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_estimated_allocated_size": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_free_bytes": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_heap_size": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_ownership": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_report_path": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_get_unmapped_bytes": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_malloc_hook": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_print_stack_trace": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_ptr_cmp": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_ptr_sub": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_purge_allocator": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_sandbox_on_notify": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_set_death_callback": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_set_report_fd": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_set_report_path": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_start_switch_fiber": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_symbolize_global": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_symbolize_pc": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_unaligned_load16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_unaligned_load32": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_unaligned_load64": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_unaligned_store16": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_unaligned_store32": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_unaligned_store64": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_verify_contiguous_container": [
+    "AddressSanitizer",
+    0
+  ],
+  "__sanitizer_verify_double_ended_contiguous_container": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_current_error_report": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_current_error_report_size": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_default_options": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_get_current_report_data": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_add_overflow": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_add_overflow_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_alignment_assumption": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_alignment_assumption_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_builtin_unreachable": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_divrem_overflow": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_divrem_overflow_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_dynamic_type_cache_miss": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_dynamic_type_cache_miss_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_float_cast_overflow": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_float_cast_overflow_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_function_type_mismatch": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_function_type_mismatch_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_function_type_mismatch_v1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_function_type_mismatch_v1_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_implicit_conversion": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_implicit_conversion_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_invalid_builtin": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_invalid_builtin_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_load_invalid_value": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_load_invalid_value_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_missing_return": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_mul_overflow": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_mul_overflow_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_negate_overflow": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_negate_overflow_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nonnull_arg": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nonnull_arg_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nonnull_return": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nonnull_return_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nonnull_return_v1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nonnull_return_v1_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nullability_arg": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nullability_arg_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nullability_return_v1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_nullability_return_v1_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_out_of_bounds": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_out_of_bounds_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_pointer_overflow": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_pointer_overflow_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_shift_out_of_bounds": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_shift_out_of_bounds_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_sub_overflow": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_sub_overflow_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_type_mismatch": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_type_mismatch_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_type_mismatch_v1": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_type_mismatch_v1_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_vla_bound_not_positive": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_handle_vla_bound_not_positive_abort": [
+    "AddressSanitizer",
+    0
+  ],
+  "__ubsan_vptr_type_cache": [
+    "AddressSanitizer",
+    0
+  ],
   "sceAgcAcbAcquireMem": [
     "Agc",
     1
@@ -196,6 +1400,18 @@
     1
   ],
   "sceAgcAcbSetMarkerSpan": [
+    "Agc",
+    1
+  ],
+  "sceAgcAcbSetWorkloadComplete": [
+    "Agc",
+    1
+  ],
+  "sceAgcAcbSetWorkloadStreamInactive": [
+    "Agc",
+    1
+  ],
+  "sceAgcAcbSetWorkloadsActive": [
     "Agc",
     1
   ],
@@ -996,18 +2212,6 @@
     1
   ],
   "sceAgcAcbInitializeDefaultHardwareState": [
-    "Agc",
-    0
-  ],
-  "sceAgcAcbSetWorkloadComplete": [
-    "Agc",
-    0
-  ],
-  "sceAgcAcbSetWorkloadStreamInactive": [
-    "Agc",
-    0
-  ],
-  "sceAgcAcbSetWorkloadsActive": [
     "Agc",
     0
   ],
@@ -2207,6 +3411,10 @@
     "Ajm.native",
     1
   ],
+  "sceAjmBatchJobInlineBuffer": [
+    "Ajm.native",
+    1
+  ],
   "sceAjmBatchJobRun": [
     "Ajm.native",
     1
@@ -2331,9 +3539,9 @@
     "Ajm.native",
     0
   ],
-  "sceAjmBatchJobInlineBuffer": [
+  "sceAjmBatchJobInlineBuffer_nid_disambig1": [
     "Ajmi",
-    0
+    1
   ],
   "sceAjmBatchJobRunBufferRa_nid_disambig1": [
     "Ajmi",
@@ -2987,6 +4195,10 @@
     "AppContent",
     0
   ],
+  "sceAppContentCheckBundleLicenseOnDisc": [
+    "AppContent",
+    0
+  ],
   "sceAppContentDownload0Expand": [
     "AppContent",
     0
@@ -3003,7 +4215,19 @@
     "AppContent",
     0
   ],
+  "sceAppContentDownloadDataGetBlockSize": [
+    "AppContent",
+    0
+  ],
   "sceAppContentGetDownloadedStoreCountry": [
+    "AppContent",
+    0
+  ],
+  "sceAppContentGetGameTrialsFlag": [
+    "AppContent",
+    0
+  ],
+  "sceAppContentGetPlayableStatus": [
     "AppContent",
     0
   ],
@@ -3575,6 +4799,10 @@
     "Audio3d",
     1
   ],
+  "sceAudio3dPortCreate": [
+    "Audio3d",
+    1
+  ],
   "sceAudio3dPortFlush": [
     "Audio3d",
     1
@@ -3606,10 +4834,6 @@
   "sceAudio3dTerminate": [
     "Audio3d",
     1
-  ],
-  "sceAudio3dPortCreate": [
-    "Audio3d",
-    0
   ],
   "sceAudio3dPortDestroy": [
     "Audio3d",
@@ -4115,6 +5339,10 @@
     "AudioOut",
     0
   ],
+  "sceAudioOut2GetSystemDebugState": [
+    "AudioOut",
+    0
+  ],
   "sceAudioOut2GetSystemStateEx": [
     "AudioOut",
     0
@@ -4123,7 +5351,31 @@
     "AudioOut",
     0
   ],
+  "sceAudioOut2LoContextCreateEx": [
+    "AudioOut",
+    0
+  ],
+  "sceAudioOut2LoContextGetAttributes": [
+    "AudioOut",
+    0
+  ],
+  "sceAudioOut2LoContextQueryMemoryEx": [
+    "AudioOut",
+    0
+  ],
+  "sceAudioOut2LoPortCreateEx": [
+    "AudioOut",
+    0
+  ],
+  "sceAudioOut2LoPortGetAttributes": [
+    "AudioOut",
+    0
+  ],
   "sceAudioOut2LoPortGetStateEx": [
+    "AudioOut",
+    0
+  ],
+  "sceAudioOut2LoPortSetAttributesEx": [
     "AudioOut",
     0
   ],
@@ -4175,6 +5427,10 @@
     "AudioOut",
     0
   ],
+  "sceAudioOut2PortSetAttributesEx": [
+    "AudioOut",
+    0
+  ],
   "sceAudioOut2PortUnregister": [
     "AudioOut",
     0
@@ -4191,7 +5447,19 @@
     "AudioOut",
     0
   ],
+  "sceAudioOut2SetHrtfIdForCronos": [
+    "AudioOut",
+    0
+  ],
+  "sceAudioOut2SetSpeakerInfo": [
+    "AudioOut",
+    0
+  ],
   "sceAudioOut2SetSystemDebugState": [
+    "AudioOut",
+    0
+  ],
+  "sceAudioOut2SetTvCorrectionInfo": [
     "AudioOut",
     0
   ],
@@ -5439,6 +6707,34 @@
     "AvSetting",
     0
   ],
+  "sceAvcap2Close": [
+    "Avcap2",
+    0
+  ],
+  "sceAvcap2Initialize": [
+    "Avcap2",
+    0
+  ],
+  "sceAvcap2OpenAudio": [
+    "Avcap2",
+    0
+  ],
+  "sceAvcap2ReadAudio": [
+    "Avcap2",
+    0
+  ],
+  "sceAvcap2Start": [
+    "Avcap2",
+    0
+  ],
+  "sceAvcap2Stop": [
+    "Avcap2",
+    0
+  ],
+  "sceAvcap2Terminate": [
+    "Avcap2",
+    0
+  ],
   "sceBackupRestoreUtilBackupData": [
     "BackupRestoreUtil",
     0
@@ -5505,39 +6801,43 @@
   ],
   "isobmf_box_getchildbox_nid_postfix": [
     "Beisobmf",
-    0
+    1
   ],
   "isobmf_box_getdiskoffset_nid_postfix": [
     "Beisobmf",
-    0
+    1
   ],
   "isobmf_box_getflags32b_nid_postfix": [
     "Beisobmf",
-    0
+    1
   ],
   "isobmf_box_getmember_length_nid_postfix": [
     "Beisobmf",
-    0
+    1
   ],
   "isobmf_box_getmember_ptr_nid_postfix": [
     "Beisobmf",
-    0
+    1
   ],
   "isobmf_box_getmember_type_nid_postfix": [
     "Beisobmf",
-    0
+    1
   ],
   "isobmf_box_getnextbox_nid_postfix": [
     "Beisobmf",
-    0
+    1
   ],
   "isobmf_box_getstate_nid_postfix": [
     "Beisobmf",
-    0
+    1
   ],
   "isobmf_box_gettype_nid_postfix": [
     "Beisobmf",
-    0
+    1
+  ],
+  "isobmf_decoder_next_disk_offset_nid_postfix": [
+    "Beisobmf",
+    1
   ],
   "isobmf_decoder_clear_nid_postfix": [
     "Beisobmf",
@@ -5560,10 +6860,6 @@
     0
   ],
   "isobmf_decoder_getquerydata_nid_postfix": [
-    "Beisobmf",
-    0
-  ],
-  "isobmf_decoder_next_disk_offset_nid_postfix": [
     "Beisobmf",
     0
   ],
@@ -5699,6 +6995,26 @@
     "Bemp2sys",
     0
   ],
+  "libSceBgftUnknown_3cvL6QTobNg_nid_no_patch": [
+    "Bgft",
+    0
+  ],
+  "libSceBgftUnknown_4JQKNtsVDpg_nid_no_patch": [
+    "Bgft",
+    0
+  ],
+  "libSceBgftUnknown_85axuUkg9eE_nid_no_patch": [
+    "Bgft",
+    0
+  ],
+  "libSceBgftUnknown_fJnnIc5sHOU_nid_no_patch": [
+    "Bgft",
+    0
+  ],
+  "libSceBgftUnknown_tBOVSvi9EjY_nid_no_patch": [
+    "Bgft",
+    0
+  ],
   "sceBgftServiceDownloadFindActivePatchTask": [
     "Bgft",
     0
@@ -5807,6 +7123,14 @@
     "Bgft",
     0
   ],
+  "sceBgftServiceIntDownloadClearAllInstalled": [
+    "Bgft",
+    0
+  ],
+  "sceBgftServiceIntDownloadClearInstalled": [
+    "Bgft",
+    0
+  ],
   "sceBgftServiceIntDownloadClearStats": [
     "Bgft",
     0
@@ -5875,6 +7199,10 @@
     "Bgft",
     0
   ],
+  "sceBgftServiceIntDownloadPauseGroupTasks": [
+    "Bgft",
+    0
+  ],
   "sceBgftServiceIntDownloadPauseTask": [
     "Bgft",
     0
@@ -5899,6 +7227,10 @@
     "Bgft",
     0
   ],
+  "sceBgftServiceIntDownloadResumeGroupTasks": [
+    "Bgft",
+    0
+  ],
   "sceBgftServiceIntDownloadResumeTask": [
     "Bgft",
     0
@@ -5915,6 +7247,10 @@
     "Bgft",
     0
   ],
+  "sceBgftServiceIntDownloadStartGroupTasks": [
+    "Bgft",
+    0
+  ],
   "sceBgftServiceIntDownloadStartTask": [
     "Bgft",
     0
@@ -5928,6 +7264,10 @@
     0
   ],
   "sceBgftServiceIntDownloadStopTaskAll": [
+    "Bgft",
+    0
+  ],
+  "sceBgftServiceIntDownloadUnregisterCompleteTask": [
     "Bgft",
     0
   ],
@@ -6043,6 +7383,10 @@
     "Bgft",
     0
   ],
+  "sceBgftServiceIntUploadUnregisterCompleteTask": [
+    "Bgft",
+    0
+  ],
   "sceBgftServiceIntUploadUnregisterTask": [
     "Bgft",
     0
@@ -6072,6 +7416,10 @@
     1
   ],
   "sceBluetoothHidRegisterDevice": [
+    "BluetoothHid",
+    1
+  ],
+  "sceBluetoothHidThreadParamInitialize": [
     "BluetoothHid",
     1
   ],
@@ -6119,11 +7467,23 @@
     "BluetoothHid",
     0
   ],
-  "sceBluetoothHidThreadParamInitialize": [
-    "BluetoothHid",
-    0
+  "sceCameraAudioClose": [
+    "Camera",
+    1
+  ],
+  "sceCameraAudioGetData": [
+    "Camera",
+    1
+  ],
+  "sceCameraAudioGetData2": [
+    "Camera",
+    1
   ],
   "sceCameraAudioOpen": [
+    "Camera",
+    1
+  ],
+  "sceCameraAudioReset": [
     "Camera",
     1
   ],
@@ -6455,22 +7815,6 @@
     "Camera",
     0
   ],
-  "sceCameraAudioClose": [
-    "Camera",
-    0
-  ],
-  "sceCameraAudioGetData": [
-    "Camera",
-    0
-  ],
-  "sceCameraAudioGetData2": [
-    "Camera",
-    0
-  ],
-  "sceCameraAudioReset": [
-    "Camera",
-    0
-  ],
   "sceCameraChangeAppModuleState": [
     "Camera",
     0
@@ -6507,6 +7851,14 @@
     "Camera",
     0
   ],
+  "sceCameraGetUsageInfo": [
+    "Camera",
+    0
+  ],
+  "sceCameraGetUsageInfoWithoutCountProcess": [
+    "Camera",
+    0
+  ],
   "sceCameraGetVrCaptureInfo": [
     "Camera",
     0
@@ -6524,6 +7876,10 @@
     0
   ],
   "sceCameraOpenByModuleId": [
+    "Camera",
+    0
+  ],
+  "sceCameraOpenByModuleIdWithMode": [
     "Camera",
     0
   ],
@@ -6552,6 +7908,10 @@
     0
   ],
   "sceCameraSetForceActivate": [
+    "Camera",
+    0
+  ],
+  "sceCameraSetForceDriverMode": [
     "Camera",
     0
   ],
@@ -6931,6 +8291,18 @@
     "CesCs",
     1
   ],
+  "sceCesRefersUcsProfileAscii": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileAsciiWithKatakana": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileBs4730": [
+    "CesCs",
+    1
+  ],
   "sceCesRefersUcsProfileCp1250": [
     "CesCs",
     1
@@ -7007,6 +8379,14 @@
     "CesCs",
     1
   ],
+  "sceCesRefersUcsProfileGbT1988": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileGbT1988Tilde0x7e": [
+    "CesCs",
+    1
+  ],
   "sceCesRefersUcsProfileIso8859_1": [
     "CesCs",
     1
@@ -7047,11 +8427,39 @@
     "CesCs",
     1
   ],
+  "sceCesRefersUcsProfileJisX0201": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileJisX0201Katakana": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileJisX0201Roman": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileJisX0201RomanTilde0x7e": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileJisX0201Tilde0x7e": [
+    "CesCs",
+    1
+  ],
   "sceCesRefersUcsProfileKoi8R": [
     "CesCs",
     1
   ],
   "sceCesRefersUcsProfileKoi8U": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileKsX1003": [
+    "CesCs",
+    1
+  ],
+  "sceCesRefersUcsProfileKsX1003Tilde0x7e": [
     "CesCs",
     1
   ],
@@ -7687,18 +9095,6 @@
     "CesCs",
     0
   ],
-  "sceCesRefersUcsProfileAscii": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileAsciiWithKatakana": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileBs4730": [
-    "CesCs",
-    0
-  ],
   "sceCesRefersUcsProfileCp1253": [
     "CesCs",
     0
@@ -7727,14 +9123,6 @@
     "CesCs",
     0
   ],
-  "sceCesRefersUcsProfileGbT1988": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileGbT1988Tilde0x7e": [
-    "CesCs",
-    0
-  ],
   "sceCesRefersUcsProfileIso8859_11": [
     "CesCs",
     0
@@ -7752,34 +9140,6 @@
     0
   ],
   "sceCesRefersUcsProfileIso8859_8": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileJisX0201": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileJisX0201Katakana": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileJisX0201Roman": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileJisX0201RomanTilde0x7e": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileJisX0201Tilde0x7e": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileKsX1003": [
-    "CesCs",
-    0
-  ],
-  "sceCesRefersUcsProfileKsX1003Tilde0x7e": [
     "CesCs",
     0
   ],
@@ -8483,7 +9843,23 @@
     "ContentSearch",
     1
   ],
+  "sceContentSearchAddAvContentCreatedEventCondition": [
+    "ContentSearch",
+    0
+  ],
+  "sceContentSearchDisableAvContentCreatedEvent": [
+    "ContentSearch",
+    0
+  ],
+  "sceContentSearchEnableAvContentCreatedEvent": [
+    "ContentSearch",
+    0
+  ],
   "sceContentSearchGetApplicationLastUpdateId": [
+    "ContentSearch",
+    0
+  ],
+  "sceContentSearchGetContentIdByAvContentCreatedEvent": [
     "ContentSearch",
     0
   ],
@@ -8519,6 +9895,10 @@
     "ConvertKeycode",
     1
   ],
+  "sceConvertKeycodeGetCharacterFromKeyboardData": [
+    "ConvertKeycode",
+    1
+  ],
   "sceConvertKeycodeGetImeKeyboardType": [
     "ConvertKeycode",
     1
@@ -8526,10 +9906,6 @@
   "sceConvertKeycodeGetVirtualKeycode": [
     "ConvertKeycode",
     1
-  ],
-  "sceConvertKeycodeGetCharacterFromKeyboardData": [
-    "ConvertKeycode",
-    0
   ],
   "sceCustomMusicAudioOutFinalize": [
     "CustomMusicAudioOut",
@@ -11123,6 +12499,10 @@
     "FreeType",
     1
   ],
+  "FT_Get_PS_Font_Info_nid_postfix": [
+    "FreeType",
+    1
+  ],
   "FT_Get_Postscript_Name_nid_postfix": [
     "FreeType",
     1
@@ -11136,6 +12516,10 @@
     1
   ],
   "FT_Get_X11_Font_Format_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Has_PS_Glyph_Names_nid_postfix": [
     "FreeType",
     1
   ],
@@ -11271,6 +12655,50 @@
     "FreeType",
     1
   ],
+  "FT_Stroker_BeginSubPath_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_ConicTo_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_CubicTo_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_Done_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_EndSubPath_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_GetBorderCounts_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_GetCounts_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_LineTo_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_New_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_Rewind_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Stroker_Set_nid_postfix": [
+    "FreeType",
+    1
+  ],
   "FT_Tan_nid_postfix": [
     "FreeType",
     1
@@ -11278,6 +12706,14 @@
   "FT_Vector_Unit_nid_postfix": [
     "FreeType",
     1
+  ],
+  "FT_Get_Advance_nid_postfix": [
+    "FreeType",
+    0
+  ],
+  "FT_Get_Advances_nid_postfix": [
+    "FreeType",
+    0
   ],
   "FT_Outline_Get_BBox_nid_postfix": [
     "FreeType",
@@ -11295,6 +12731,374 @@
     "FreeType",
     0
   ],
+  "sceFreeTypeOlAddModule_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlAlloc_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlAttachStream_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlCMapDone_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlCMapNew_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlDoneGlyphSlot_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlDoneMemory_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFree_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleAutofitter_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleBdf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleCff_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleGxvalid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleOtvalid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModulePcf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModulePfr_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModulePsaux_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModulePshinter_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModulePsnames_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleRaster1_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleRaster5_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleSfnt_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleSmoothLcd_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleSmoothLcdv_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleSmooth_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleT1cid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleTruetype_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleType1_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleType42_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModuleWinfonts_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaAddModule_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleAutofitter_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleBdf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleCff_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleGxvalid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleOtvalid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModulePcf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModulePfr_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModulePsaux_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModulePshinter_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModulePsnames_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleRaster1_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleRaster5_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleSfnt_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleSmoothLcd_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleSmoothLcdv_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleSmooth_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleT1cid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleTruetype_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleType1_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleType42_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaExportModuleWinfonts_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleAutofitter_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleBdf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleCff_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleGxvalid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleOtvalid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModulePcf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModulePfr_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModulePsaux_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModulePshinter_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModulePsnames_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleRaster1_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleRaster5_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleSfnt_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleSmoothLcd_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleSmoothLcdv_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleSmooth_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleT1cid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleTruetype_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleType1_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleType42_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaRemoveModuleWinfonts_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatBdf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatCid_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatOpenTypeOtf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatOpenTypeTtf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatOpenType_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatPcf_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatPfr_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatTrueTypeGx_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatTrueType_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatType1_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatType42_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportFormatWinFonts_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportHinterAutoFitter_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportModules_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportRendererRaster1_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportRendererRaster5_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportRendererSmoothLcd_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportRendererSmoothLcdv_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlFtaSupportRendererSmooth_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
+  "sceFreeTypeOlGetModuleInterface_nid_no_patch": [
+    "FreeTypeOl",
+    0
+  ],
   "FT_Get_PFR_Advance_nid_postfix": [
     "FreeTypeOptOl",
     1
@@ -11306,6 +13110,178 @@
   "FT_Get_PFR_Metrics_nid_postfix": [
     "FreeTypeOptOl",
     1
+  ],
+  "FT_Stream_Close_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_EnterFrame_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ExitFrame_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ExtractFrame_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_Free_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetChar_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetLongLE_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetLong_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetOffset_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetShortLE_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetShort_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetULongLE_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetULong_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetUOffset_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetUShortLE_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_GetUShort_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_OpenMemory_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_Pos_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadAt_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadChar_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadFields_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadLongLE_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadLong_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadOffset_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadShortLE_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadShort_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadULongLE_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadULong_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadUOffset_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadUShortLE_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReadUShort_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_Read_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_ReleaseFrame_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_Seek_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_Skip_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Stream_TryRead_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "ft_corner_is_flat_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "ft_corner_orientation_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "ft_highpow2_nid_postfix": [
+    "FreeTypeOt",
+    1
+  ],
+  "FT_Matrix_Multiply_Scaled_nid_postfix": [
+    "FreeTypeOt",
+    0
+  ],
+  "FT_MulDiv_No_Round_nid_postfix": [
+    "FreeTypeOt",
+    0
+  ],
+  "FT_Vector_Transform_Scaled_nid_postfix": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtHasPSGlyphNames_nid_no_patch": [
+    "FreeTypeOt",
+    0
   ],
   "sceFreeTypeOtNewSize_nid_no_patch": [
     "FreeTypeOt",
@@ -11343,6 +13319,50 @@
     "FreeTypeOt",
     0
   ],
+  "sceFreeTypeOtStrokerBeginSubPath_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerConicTo_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerCubicTo_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerDone_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerEndSubPath_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerGetBorderCounts_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerGetCounts_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerLineTo_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerNew_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerRewind_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtStrokerSet_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
   "sceFreeTypeOtTan_nid_no_patch": [
     "FreeTypeOt",
     0
@@ -11355,10 +13375,6 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_0rGx_oFMLyk_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_0rKmI1ZbMAc_nid_no_patch": [
     "FreeTypeOt",
     0
@@ -11367,15 +13383,7 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_1z6bBg1qBfU_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_2T7lbS_CSzA_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_2lSRg9FfIOY_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11384,10 +13392,6 @@
     0
   ],
   "sceFreeTypeOtUnknown_2rmvbvOCyjY_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_4J4Baf8ana8_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11407,10 +13411,6 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_4yt9cD1qcEI_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_5ipBcLYVc2k_nid_no_patch": [
     "FreeTypeOt",
     0
@@ -11420,14 +13420,6 @@
     0
   ],
   "sceFreeTypeOtUnknown_64XMq6sDxUo_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_6_yXRlVrjbc_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_6a1p3QgXvo0_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11471,31 +13463,11 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_AfL_nqNC5fY_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_Az4H9FlfxCA_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_B3uU5aDZn94_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_BB4gl7SgLdk_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_BBRhYfYBDgU_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
   "sceFreeTypeOtUnknown_BgUMBGvhATU_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_Bmi8PdvsM3M_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11519,19 +13491,7 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_Er0Lin_u20o_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_Ev3BqJ_U1Fg_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_FHdeCFVf_f8_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_Fv8MWCUH8k8_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11547,15 +13507,7 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_JFSCOXTEvfg_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_JgtSc0g3G6E_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_KHj92a3WDn4_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11563,15 +13515,7 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_LfyUi_LkdCk_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_Ln9I6YfmYJU_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_LsyswTUNTRs_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11587,18 +13531,6 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_P6WOAeb0lJ8_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_Po8kyd3DlIw_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_PrZtZyFwM6c_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_PvCNusrp9xQ_nid_no_patch": [
     "FreeTypeOt",
     0
@@ -11607,31 +13539,7 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_Qmgc0XACzRg_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_R1mZutnlTiM_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_RvFx7dv9ThU_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_RzgDJTjQst4_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_SX5I_XzH8HI_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_S_n0Md8Rjfw_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_TPKhRt1QIeE_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11643,19 +13551,11 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_U_0WKVAePww_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_VW4GD_TaIUc_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
   "sceFreeTypeOtUnknown_WIvTHYs7ZQQ_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_XGVABnpNksQ_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11675,19 +13575,7 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown__RLa_6fbshA_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown__Xm1cLEpBec_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown__b4iVKArt94_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_a7RlARfexoo_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11695,39 +13583,11 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_b5gZp_r3WWI_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_c002A4zTOgA_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_c1nbr8oSWlg_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_cKndiZnt0EA_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_cmd41395g7Y_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_dXJK59vXRxs_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_dlM4ASZdcjk_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_dlbnv6Wass8_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_eqGCaeizvWM_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11736,10 +13596,6 @@
     0
   ],
   "sceFreeTypeOtUnknown_g8eLxL9VAhU_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_gVf7xRLdWm8_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11759,31 +13615,11 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_jJh4SMt8NFQ_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_jX1zq1i8KfI_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_jl0VxYZb8_o_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_l6Cf9rb9fZQ_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
   "sceFreeTypeOtUnknown_m18bTUNF_0g_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_mF0B64O954g_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_mcT796Qgj_g_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11803,10 +13639,6 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_pBqh_Uh_gns_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_q4qhGebYuGI_nid_no_patch": [
     "FreeTypeOt",
     0
@@ -11815,27 +13647,11 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_rzIWh7FJnmU_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_t3vCgnT5YL0_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
   "sceFreeTypeOtUnknown_tCMhTh7h8D4_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_tDssQCH2syY_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_thA48N_0VwQ_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_u6Xquj1bFwc_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -11863,18 +13679,6 @@
     "FreeTypeOt",
     0
   ],
-  "sceFreeTypeOtUnknown_x8y0qzLiYOU_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_xejRyEbsLcw_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
-  "sceFreeTypeOtUnknown_xj3tNJptfLI_nid_no_patch": [
-    "FreeTypeOt",
-    0
-  ],
   "sceFreeTypeOtUnknown_yCEJIsjIOO8_nid_no_patch": [
     "FreeTypeOt",
     0
@@ -11897,6 +13701,18 @@
   ],
   "sceFreeTypeOtVectorUnit_nid_no_patch": [
     "FreeTypeOt",
+    0
+  ],
+  "sceFrontPanelDisplayInitialize": [
+    "FrontPanelDisplay",
+    0
+  ],
+  "sceFrontPanelDisplaySetOutputMode": [
+    "FrontPanelDisplay",
+    0
+  ],
+  "sceFrontPanelDisplayStickReadState": [
+    "FrontPanelDisplay",
     0
   ],
   "sceFsErriCtl": [
@@ -12639,7 +14455,23 @@
     "GameCustomDataDialog",
     0
   ],
+  "sceGameLiveStreamingClearPresetSocialFeedbackCommands": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingClearSocialFeedbackMessages": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingClearSpoilerTag": [
+    "GameLiveStreaming",
+    1
+  ],
   "sceGameLiveStreamingEnableLiveStreaming": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingEnableSocialFeedback": [
     "GameLiveStreaming",
     1
   ],
@@ -12651,7 +14483,55 @@
     "GameLiveStreaming",
     1
   ],
+  "sceGameLiveStreamingGetSocialFeedbackMessages": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingGetSocialFeedbackMessagesCount": [
+    "GameLiveStreaming",
+    1
+  ],
   "sceGameLiveStreamingInitialize": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingPermitLiveStreaming": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingPermitServerSideRecording": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingPostSocialMessage": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingSetCameraFrameSetting": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingSetInvitationSessionId": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingSetMaxBitrate": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingSetMetadata": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingSetPresetSocialFeedbackCommands": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingSetPresetSocialFeedbackCommandsDescription": [
+    "GameLiveStreaming",
+    1
+  ],
+  "sceGameLiveStreamingSetSpoilerTag": [
     "GameLiveStreaming",
     1
   ],
@@ -12667,22 +14547,6 @@
     "GameLiveStreaming",
     0
   ],
-  "sceGameLiveStreamingClearPresetSocialFeedbackCommands": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingClearSocialFeedbackMessages": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingClearSpoilerTag": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingEnableSocialFeedback": [
-    "GameLiveStreaming",
-    0
-  ],
   "sceGameLiveStreamingGetCurrentBroadcastScreenLayout": [
     "GameLiveStreaming",
     0
@@ -12691,31 +14555,11 @@
     "GameLiveStreaming",
     0
   ],
-  "sceGameLiveStreamingGetSocialFeedbackMessages": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingGetSocialFeedbackMessagesCount": [
-    "GameLiveStreaming",
-    0
-  ],
   "sceGameLiveStreamingLaunchLiveViewer": [
     "GameLiveStreaming",
     0
   ],
   "sceGameLiveStreamingLaunchLiveViewerA": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingPermitLiveStreaming": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingPermitServerSideRecording": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingPostSocialMessage": [
     "GameLiveStreaming",
     0
   ],
@@ -12751,10 +14595,6 @@
     "GameLiveStreaming",
     0
   ],
-  "sceGameLiveStreamingSetCameraFrameSetting": [
-    "GameLiveStreaming",
-    0
-  ],
   "sceGameLiveStreamingSetDefaultServiceProviderPermission": [
     "GameLiveStreaming",
     0
@@ -12763,35 +14603,11 @@
     "GameLiveStreaming",
     0
   ],
-  "sceGameLiveStreamingSetInvitationSessionId": [
-    "GameLiveStreaming",
-    0
-  ],
   "sceGameLiveStreamingSetLinkCommentPreset": [
     "GameLiveStreaming",
     0
   ],
-  "sceGameLiveStreamingSetMaxBitrate": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingSetMetadata": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingSetPresetSocialFeedbackCommands": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingSetPresetSocialFeedbackCommandsDescription": [
-    "GameLiveStreaming",
-    0
-  ],
   "sceGameLiveStreamingSetServiceProviderPermission": [
-    "GameLiveStreaming",
-    0
-  ],
-  "sceGameLiveStreamingSetSpoilerTag": [
     "GameLiveStreaming",
     0
   ],
@@ -13351,6 +15167,62 @@
     "GvMp4Parser",
     0
   ],
+  "libSceHidControlUnknown_00qes5NswlQ_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_8fIm7UR4VDc_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_AjBZjowWaFI_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_C05jP9w4PCc_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_DUGI7AXFtV0_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_HZJRMD3BeKk_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_OFyJjudLKlA_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_TKax3WNHtEg_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_WikCB91EU0w_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_i5ALHbvjRi8_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_iVF5VrBHJzk_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_tcDE01gUoN0_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_w2MEBm2Tvm8_nid_no_patch": [
+    "HidControl",
+    0
+  ],
+  "libSceHidControlUnknown_yJJq5Arw8EI_nid_no_patch": [
+    "HidControl",
+    0
+  ],
   "sceHidControlConnectHandle": [
     "HidControl",
     0
@@ -13384,6 +15256,10 @@
     0
   ],
   "sceHidControlGetBatteryState": [
+    "HidControl",
+    0
+  ],
+  "sceHidControlGetControllerSerialNumberInformation": [
     "HidControl",
     0
   ],
@@ -13447,6 +15323,10 @@
     "HidControl",
     0
   ],
+  "sceHidControlGetPswNearbyDeviceInfo": [
+    "HidControl",
+    0
+  ],
   "sceHidControlGetPswNetworkLocale": [
     "HidControl",
     0
@@ -13487,6 +15367,10 @@
     "HidControl",
     0
   ],
+  "sceHidControlPswUpdateInit": [
+    "HidControl",
+    0
+  ],
   "sceHidControlPswUpdateIsReady": [
     "HidControl",
     0
@@ -13508,6 +15392,10 @@
     0
   ],
   "sceHidControlPswUpdateStart": [
+    "HidControl",
+    0
+  ],
+  "sceHidControlPswUpdateTerm": [
     "HidControl",
     0
   ],
@@ -13548,6 +15436,10 @@
     0
   ],
   "sceHidControlSetPswConsoleMute": [
+    "HidControl",
+    0
+  ],
+  "sceHidControlSetPswControllerCommunicationMethod": [
     "HidControl",
     0
   ],
@@ -14303,6 +16195,10 @@
     "Hmd2",
     1
   ],
+  "sceHmd2ReprojectionEnableMirroring": [
+    "Hmd2",
+    1
+  ],
   "sceHmd2ReprojectionGetMirroringDisplayBufferSizeAlign": [
     "Hmd2",
     1
@@ -14311,11 +16207,19 @@
     "Hmd2",
     1
   ],
+  "sceHmd2ReprojectionGetPredictedDisplayTime": [
+    "Hmd2",
+    1
+  ],
   "sceHmd2ReprojectionQueryDisplayBufferSizeAlign": [
     "Hmd2",
     1
   ],
   "sceHmd2ReprojectionQuerySeeThroughBufferSizeAlign": [
+    "Hmd2",
+    1
+  ],
+  "sceHmd2ReprojectionSetRenderConfig": [
     "Hmd2",
     1
   ],
@@ -14703,19 +16607,11 @@
     "Hmd2",
     0
   ],
-  "sceHmd2ReprojectionEnableMirroring": [
-    "Hmd2",
-    0
-  ],
   "sceHmd2ReprojectionEnableVrMode": [
     "Hmd2",
     0
   ],
   "sceHmd2ReprojectionGetCurrentOutput": [
-    "Hmd2",
-    0
-  ],
-  "sceHmd2ReprojectionGetPredictedDisplayTime": [
     "Hmd2",
     0
   ],
@@ -14764,10 +16660,6 @@
     0
   ],
   "sceHmd2ReprojectionSetParamWithBuffer": [
-    "Hmd2",
-    0
-  ],
-  "sceHmd2ReprojectionSetRenderConfig": [
     "Hmd2",
     0
   ],
@@ -15343,6 +17235,10 @@
     "Http2",
     1
   ],
+  "sceHttp2GetMemoryPoolStats": [
+    "Http2",
+    1
+  ],
   "sceHttp2RedirectCacheFlush": [
     "Http2",
     1
@@ -15391,11 +17287,11 @@
     "Http2",
     0
   ],
-  "sceHttp2GetCookieBox": [
+  "sceHttp2GetAllTrailingHeaders": [
     "Http2",
     0
   ],
-  "sceHttp2GetMemoryPoolStats": [
+  "sceHttp2GetCookieBox": [
     "Http2",
     0
   ],
@@ -15475,6 +17371,10 @@
     "Http2",
     0
   ],
+  "sceHttp2SetProxyWithURL": [
+    "Http2",
+    0
+  ],
   "sceHttp2SetRecvTimeOut": [
     "Http2",
     0
@@ -15488,6 +17388,10 @@
     0
   ],
   "sceHttp2SetRequestNoContentLength": [
+    "Http2",
+    0
+  ],
+  "sceHttp2SetRequestServerName": [
     "Http2",
     0
   ],
@@ -15507,6 +17411,10 @@
     "Http2",
     0
   ],
+  "sceHttp2SetStripGZIPHeadersEnabled": [
+    "Http2",
+    0
+  ],
   "sceHttp2SetTimeOut": [
     "Http2",
     0
@@ -15523,6 +17431,10 @@
     "Http2",
     0
   ],
+  "sceHttp2WebSocketClose": [
+    "Http2",
+    0
+  ],
   "sceHttp2WebSocketCloseAsync": [
     "Http2",
     0
@@ -15531,11 +17443,23 @@
     "Http2",
     0
   ],
+  "sceHttp2WebSocketSendDataMessage": [
+    "Http2",
+    0
+  ],
   "sceHttp2WebSocketSendDataMessageAsync": [
     "Http2",
     0
   ],
+  "sceHttp2WebSocketSendTextMessage": [
+    "Http2",
+    0
+  ],
   "sceHttp2WebSocketSendTextMessageAsync": [
+    "Http2",
+    0
+  ],
+  "sceHttp2WebSocketSetCloseTimeout": [
     "Http2",
     0
   ],
@@ -15671,11 +17595,55 @@
     "Icu",
     1
   ],
+  "T_CString_int64ToString_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "T_CString_integerToString_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "T_CString_stringToInteger_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "T_CString_toLowerCase_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "T_CString_toUpperCase_nid_postfix": [
+    "Icu",
+    1
+  ],
   "u_UCharsToChars_nid_postfix": [
     "Icu",
     1
   ],
   "u_charsToUChars_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "u_isJavaSpaceChar_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "u_isUWhiteSpace_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "u_isWhitespace_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "u_isblank_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "u_isspace_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "u_unescapeAt_nid_postfix": [
     "Icu",
     1
   ],
@@ -15691,7 +17659,411 @@
     "Icu",
     1
   ],
-  "u_unescapeAt_nid_postfix": [
+  "sceIcuUnknown_0cYEtBUJ5zQ_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_1GkIKiuqgBg_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_1SsridDRBYQ_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_2qAOcgRJZ3M_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_3Z22ZB8mHq8_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_4FrZfvvYHCI_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_4Gv3tXZ2WKI_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_4JJDz6r_ghE_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_4Kf0Hy8xJrI_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_58CIUaViW_k_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_5V2WIPOZcaA_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_5__ZFSRQ0_k_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_6_NsFXHpWXc_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_6y_NITWLmmE_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_7E_h3yiZjKw_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_8y7DjDBJ6Nw_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_9TndABWg5Ds_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_AvrA9K2lvC4_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_BQtUj7CVrC0_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_BTFjoSWI5_Y_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_BZY5mpL0Syk_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_BhCcIlyHMrk_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_BsjbIVU27jQ_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_CfP4Q2Yjm1U_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_EuFvqF73SwU_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_FCx2DacLDWs_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_FHSNfxQFEdA_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_FNfP9dKTd5Q_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_F_2mXPmh_7s_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_H33ge_SDjlI_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_Hka9gz6FuDs_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_HneyXNQpPhQ_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_JGkExZI3fFI_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_JKRf_2yrIaE_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_KzcrFzKpYE8_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_LXxEsOsIa5g_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_LtBBDJEZXhY_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_OAFz3KoG_gA_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_OJ_13SCOxgI_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_Q8P3U9F8p_Y_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_Q8Y0ntVp_GY_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_QO5iuHMTu2o_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_RFnKlYsiIb0_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_RIcNJWDYKhM_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_RlZwfEuRDx8_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_S0WDjcZLdqI_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_Sv7TbVAEqeQ_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_TNZrG2iXikw_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_TU6Yl8_mT3c_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_TXEHKpCJ_aE_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_UmNS0P0_ovs_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_VZFw_xSe6Mo_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_WLoOrEfsob4_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_WPrktCwd_iw_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_Wm0y_9IRE8I_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_X7gbPHVoNEw_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_XVQ3cf0BdQ0_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_Z5_W18jAIH4_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_Z5ljxAg3thw_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_ZxnyBy8reV4_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown__L1K53Ku3mE_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown__P5TDFU2_fc_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown__aK6d418l4c_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown__kd2qcTMvHE_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown__xsbcqOIJmM_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_a25spvWYEOA_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_aF_oEFPzEsY_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_aXUj3BT58vY_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_b7p2qTtZPno_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_bgnHFMqxYag_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_c6eD2eDESGk_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_dzbKmf3Ycog_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_eD76mHY99fM_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_ekxUEjhuk3Q_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_h16q7HjVyTE_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_hI8JVrcGWhc_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_lNPpoUVElSA_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_n4o8mgXtF5s_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_n4yiKNo1yCs_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_ndOe3Wc7xjA_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_od0otGJ2Z3A_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_pCh4kIKMRhY_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_pgvyZZ_d1ck_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_q3mX36AQeC4_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_qGIX2VTcNJo_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_qXSNbAnlsKg_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_r6Wuu1Tc438_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_rbyBjvpNuME_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_sP5rfVNdvWM_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_sQ0avkeBLo4_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_tcf9HUwNaX0_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_u8WyPl4r3Oc_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_uKBkvN84hbw_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_udAPjod3tpU_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_vXu991uXNUo_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_wezXBwKdjAY_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_wlK146pHnQ4_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_wxirhbbuv84_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_wybPkXuWnoE_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_xAo5lvA_W3o_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_yVobQd4t_iA_nid_no_patch": [
+    "Icu",
+    0
+  ],
+  "sceIcuUnknown_zGuhKwXM9I0_nid_no_patch": [
     "Icu",
     0
   ],
@@ -16131,6 +18503,10 @@
     "InvitationDialog",
     1
   ],
+  "sceInvitationDialogGetStatus_nid_postfix": [
+    "InvitationDialog",
+    1
+  ],
   "sceInvitationDialogInitialize": [
     "InvitationDialog",
     1
@@ -16146,6 +18522,14 @@
   "sceInvitationDialogUpdateStatus": [
     "InvitationDialog",
     1
+  ],
+  "sceInvitationDialogGetResultA_nid_postfix": [
+    "InvitationDialog",
+    0
+  ],
+  "sceInvitationDialogOpenA_nid_postfix": [
+    "InvitationDialog",
+    0
   ],
   "_ZN4IPMI4impl11SessionImpl27respondToAsyncMethodRequestEjiPKvm": [
     "Ipmi",
@@ -16527,11 +18911,23 @@
     "JpegParser",
     0
   ],
+  "JSStringCreateWithCharacters": [
+    "Jsc",
+    1
+  ],
+  "JSStringCreateWithUTF8CString": [
+    "Jsc",
+    1
+  ],
   "JSStringGetCharactersPtr": [
     "Jsc",
     1
   ],
   "JSStringGetLength": [
+    "Jsc",
+    1
+  ],
+  "JSStringGetMaximumUTF8CStringSize": [
     "Jsc",
     1
   ],
@@ -16543,27 +18939,615 @@
     "Jsc",
     1
   ],
-  "JSStringCreateWithCharacters": [
-    "Jsc",
-    0
-  ],
-  "JSStringCreateWithUTF8CString": [
-    "Jsc",
-    0
-  ],
-  "JSStringGetMaximumUTF8CStringSize": [
-    "Jsc",
-    0
-  ],
   "JSStringIsEqualToUTF8CString": [
     "Jsc",
-    0
+    1
   ],
   "JSStringRelease": [
     "Jsc",
-    0
+    1
   ],
   "JSStringRetain": [
+    "Jsc",
+    1
+  ],
+  "JSObjectHasPropertyForKey": [
+    "Jsc",
+    0
+  ],
+  "JSValueMakeString": [
+    "Jsc",
+    0
+  ],
+  "JSWeakObjectMapCreate": [
+    "Jsc",
+    0
+  ],
+  "WTFLogAlwaysV": [
+    "Jsc",
+    0
+  ],
+  "_ZN10Deprecated18ScriptFunctionCallC2ERKNS_12ScriptObjectERKN3WTF6StringEPFN3JSC7JSValueEPNS8_14JSGlobalObjectES9_RKNS8_8CallDataES9_RKNS8_7ArgListERNS4_8NakedPtrINS8_9ExceptionEEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC10JSFunction6createERNS_2VMEPNS_14JSGlobalObjectEiRKN3WTF6StringENS_14NativeFunctionENS_9IntrinsicES9_PKNS_6DOMJIT9SignatureE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC11ProxyObjectC1ERNS_2VMEPNS_9StructureE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC11VMInspector9dumpValueENS_7JSValueE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC12CachePayloadD2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC12JSLockHolderC1ERNS_2VME": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC12StringObject18getOwnPropertySlotEPNS_8JSObjectEPNS_14JSGlobalObjectENS_12PropertyNameERNS_12PropertySlotE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC12StringObjectC1ERNS_2VMEPNS_9StructureE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC14JSGlobalObject13visitChildrenEPNS_6JSCellERNS_11SlotVisitorE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC14SourceProviderC2ERKNS_12SourceOriginEON3WTF6StringERKNS4_12TextPositionENS_24SourceProviderSourceTypeE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC14setNeverInlineENS_7JSValueE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC16InternalFunctionC1ERNS_2VMEPNS_9StructureENS_14NativeFunctionES5_": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC16callCustomSetterEPNS_14JSGlobalObjectENS_7JSValueEbPNS_8JSObjectES2_S2_": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC16getFunctionRealmERNS_2VMEPNS_8JSObjectE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC16setNeverOptimizeENS_7JSValueE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC17DebuggerCallFrame20positionForCallFrameERNS_2VMEPNS_9CallFrameE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC17FunctionOverrides18reinstallOverridesEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC17JSArrayBufferView14finishCreationERNS_2VME": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC17JSArrayBufferViewC2ERNS_2VMERNS0_19ConstructionContextE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC17checkModuleSyntaxEPNS_14JSGlobalObjectERKNS_10SourceCodeERNS_11ParserErrorE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC18GCActivityCallback18tryCreateFullTimerEPNS_4HeapE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC18sanitizeStackForVMERNS_2VME": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC19numberOfDFGCompilesEPNS_14JSGlobalObjectEPNS_9CallFrameE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC21MarkedJSValueRefArrayD2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC22EdenGCActivityCallback12doCollectionERNS_2VME": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC22FullGCActivityCallbackD0Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC22JSFinalizationRegistry9deadCountERKN3WTF6LockerINS_10JSCellLockEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC22resetSuperSamplerStateEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC25JSSegmentedVariableObject11analyzeHeapEPNS_6JSCellERNS_12HeapAnalyzerE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC27threadSpecificAssemblerDataEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC2VM10ClientDataD1Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC2VM14sharedInstanceEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC2VM16weakSetSpaceSlowEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC2VM18generatorSpaceSlowEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC2VM22boundFunctionSpaceSlowEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC2VM29scopedArgumentsTableSpaceSlowEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC6Config23enableRestrictedOptionsEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC6JSLock12DropAllLocksC2EPNS_14JSGlobalObjectE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC7JSProxy13visitChildrenEPNS_6JSCellERNS_11SlotVisitorE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC7JSProxy9setTargetERNS_2VMEPNS_14JSGlobalObjectE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC7Options24ensureOptionsAreCoherentEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC8Debugger17resolveBreakpointERNS_10BreakpointEPNS_14SourceProviderE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC8JSObject12getPrototypeEPS0_PNS_14JSGlobalObjectE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC8JSObject12setPrototypeEPS0_PNS_14JSGlobalObjectENS_7JSValueEb": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC8JSObject26setIndexQuicklyToUndecidedERNS_2VMEjNS_7JSValueE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3JSC9Structure26flattenDictionaryStructureERNS_2VMEPNS_8JSObjectE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF10StringImpl8utf8ImplEPKDsjRPcmNS_14ConversionModeE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF10TextStreamlsERKNS0_30FormatNumberRespectingIntegersE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF11ThreadGroup16addCurrentThreadEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF11ThreadGroupD1Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF11writeIndentERNS_10TextStreamEi": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF13MetaAllocatorD1Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF13StringBuilder6resizeEj": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF14FileSystemImpl12readFromFileEiPci": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF14FileSystemImpl15getFileDeviceIdERKNS_7CStringE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF15base64URLDecodeERKNS_6StringENS_33SignedOrUnsignedCharVectorAdapterE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF20ParallelHelperClientC1EONS_6RefPtrINS_18ParallelHelperPoolENS_13DumbPtrTraitsIS2_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF24AutomaticThreadCondition6createEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF3URL11setPasswordENS_10StringViewE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF3URL24removeFragmentIdentifierEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF3URLC1ERKS0_RKNS_6StringEPKNS_15URLTextEncodingE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF4Lock16unlockFairlySlowEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF6StringC2ENS_12ASCIILiteralE": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF7RunLoop14initializeMainEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF7RunLoop6wakeUpEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF7RunLoop9TimerBaseD0Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF8JSONImpl9ArrayBaseD2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF9BitVector10filterSlowERKS0_": [
+    "Jsc",
+    0
+  ],
+  "_ZN3WTF9BitVector15resizeOutOfLineEm": [
+    "Jsc",
+    0
+  ],
+  "_ZN7bmalloc15IsoHeapImplBasenwEmPv": [
+    "Jsc",
+    0
+  ],
+  "_ZN7bmalloc3api16freeLargeVirtualEPvmNS_8HeapKindE": [
+    "Jsc",
+    0
+  ],
+  "_ZN7bmalloc8FreeListC2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN7bmalloc8FreeListD2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN7bmalloc9Allocator14reallocateImplEPvmNS_13FailureActionE": [
+    "Jsc",
+    0
+  ],
+  "_ZN7bmalloc9Allocator16allocateSlowCaseEmNS_13FailureActionE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector13AgentRegistryC1Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector14ConsoleMessageC2EN3JSC13MessageSourceENS1_11MessageTypeENS1_12MessageLevelERKN3WTF6StringEONS5_3RefINS_15ScriptArgumentsENS5_13DumbPtrTraitsISA_EEEEPNS1_14JSGlobalObjectEm": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector14ConsoleMessagenwEm10NotNullTagPv": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector14InjectedScript14callFunctionOnERN3WTF6StringERKS2_S5_S5_bbRNS1_6RefPtrINS_8Protocol7Runtime12RemoteObjectENS1_13DumbPtrTraitsIS9_EEEERNS1_8OptionalIbEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector14InspectorAgent29willDestroyFrontendAndBackendENS_16DisconnectReasonE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector14InspectorAgentC1ERNS_12AgentContextE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector14InspectorAgentD1Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector14InspectorAgentnaEm": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector15RemoteInspector9setClientEPNS0_6ClientE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector15RemoteInspector9singletonEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector15ScriptCallStack6appendERKNS_15ScriptCallFrameE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector15ScriptCallStackC2ERN3WTF6VectorINS_15ScriptCallFrameELm0ENS1_15CrashOnOverflowELm16ENS1_10FastMallocEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector17ScriptDebugServer16willRunMicrotaskEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector20DOMBackendDispatcher11requestNodeElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector20DOMBackendDispatcher13performSearchElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector20DOMBackendDispatcher16getSearchResultsElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector20DOMBackendDispatcher24setEventListenerDisabledElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector20DOMBackendDispatcher29setBreakpointForEventListenerElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector21CSSFrontendDispatcher15styleSheetAddedEN3WTF6RefPtrINS_8Protocol3CSS19CSSStyleSheetHeaderENS1_13DumbPtrTraitsIS5_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector21HeapBackendDispatcher6createERNS_17BackendDispatcherEPNS_28HeapBackendDispatcherHandlerE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector21HeapBackendDispatcherD0Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector21InspectorConsoleAgent11startTimingEPN3JSC14JSGlobalObjectERKN3WTF6StringE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector21InspectorConsoleAgent17addConsoleMessageESt10unique_ptrINS_14ConsoleMessageESt14default_deleteIS2_EE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector21PageBackendDispatcherD0Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22ContentSearchUtilities11lineEndingsERKN3WTF6StringE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22InspectorDebuggerAgent24updatePauseReasonAndDataENS_26DebuggerFrontendDispatcher6ReasonEON3WTF6RefPtrINS3_8JSONImpl6ObjectENS3_13DumbPtrTraitsIS6_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22InspectorDebuggerAgent27didCreateFrontendAndBackendEPNS_14FrontendRouterEPNS_17BackendDispatcherE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22InspectorDebuggerAgentnaEm": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22InspectorDebuggerAgentnwEmPv": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22PageFrontendDispatcher31frameClearedScheduledNavigationERKN3WTF6StringE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22RemoteAutomationTargetC2ERKS0_": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22RemoteInspectionTarget34pauseWaitingForAutomaticInspectionEv": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector22RemoteInspectionTargetD0Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector23CanvasBackendDispatcherC2ERNS_17BackendDispatcherEPNS_30CanvasBackendDispatcherHandlerE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector23TargetBackendDispatcher15setPauseOnStartElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector24CanvasFrontendDispatcher17recordingProgressERKN3WTF6StringENS1_6RefPtrINS1_8JSONImpl7ArrayOfINS_8Protocol9Recording5FrameEEENS1_13DumbPtrTraitsISB_EEEEi": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector24ConsoleBackendDispatcherD0Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector24NetworkBackendDispatcher28interceptRequestWithResponseElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector24RuntimeBackendDispatcher25enableControlFlowProfilerElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector24RuntimeBackendDispatcher8dispatchElRKN3WTF6StringEONS1_3RefINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS7_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector25DebuggerBackendDispatcher13setBreakpointElON3WTF6RefPtrINS1_8JSONImpl6ObjectENS1_13DumbPtrTraitsIS4_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector25NetworkFrontendDispatcher18requestInterceptedERKN3WTF6StringENS1_6RefPtrINS_8Protocol7Network7RequestENS1_13DumbPtrTraitsIS8_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector26TimelineFrontendDispatcher13eventRecordedEN3WTF6RefPtrINS_8Protocol8Timeline13TimelineEventENS1_13DumbPtrTraitsIS5_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector28DOMDebuggerBackendDispatcherD0Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector28InspectorScriptProfilerAgentD2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector31NetworkBackendDispatcherHandler20LoadResourceCallbackC1EON3WTF3RefINS_17BackendDispatcherENS2_13DumbPtrTraitsIS4_EEEEi": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector31NetworkBackendDispatcherHandler20LoadResourceCallbackD2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector32DebuggerBackendDispatcherHandlerD2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector32TimelineBackendDispatcherHandlerC2Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector32TimelineBackendDispatcherHandlerD0Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector32TimelineBackendDispatcherHandlerD1Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector8Protocol16InspectorHelpers24parseEnumValueFromStringINS0_4Page16CoordinateSystemEEEN3WTF8OptionalIT_EERKNS5_6StringE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector8Protocol16InspectorHelpers24parseEnumValueFromStringINS0_7Console14ConsoleMessage5LevelEEEN3WTF8OptionalIT_EERKNS6_6StringE": [
+    "Jsc",
+    0
+  ],
+  "_ZN9Inspector8Protocol16InspectorHelpers24parseEnumValueFromStringINS0_7Runtime20ExecutionContextTypeEEEN3WTF8OptionalIT_EERKNS5_6StringE": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3JSC14ProtoCallFrame9codeBlockEv": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3JSC4Yarr17RegularExpression7isValidEv": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3JSC8Profiler8Database6toJSONEv": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3WTF10StringImpl21findIgnoringASCIICaseEPKS0_": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3WTF24TimeWithDynamicClockTypeltERKS0_": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3WTF3URL5queryEv": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3WTF6String12toUIntStrictEPbi": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3WTF7SecondsplERKNS_24TimeWithDynamicClockTypeE": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3WTF8JSONImpl5Value8asStringERNS_6StringE": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3WTF8JSONImpl9ArrayBase3endEv": [
+    "Jsc",
+    0
+  ],
+  "_ZNK3WTF8JSONImpl9ArrayBase6lengthEv": [
+    "Jsc",
+    0
+  ],
+  "_ZNK9Inspector15RemoteInspector26listingForAutomationTargetERKNS_22RemoteAutomationTargetE": [
+    "Jsc",
+    0
+  ],
+  "_ZNK9Inspector22RemoteAutomationTarget20remoteControlAllowedEv": [
+    "Jsc",
+    0
+  ],
+  "_ZThn16_N9Inspector19InspectorAuditAgentD1Ev": [
+    "Jsc",
+    0
+  ],
+  "_ZThn16_N9Inspector21InspectorConsoleAgent13clearMessagesERN3WTF6StringE": [
+    "Jsc",
+    0
+  ],
+  "_ZThn16_N9Inspector21InspectorRuntimeAgent20getCollectionEntriesERN3WTF6StringERKS2_PS4_PKiS8_RNS1_6RefPtrINS1_8JSONImpl7ArrayOfINS_8Protocol7Runtime15CollectionEntryEEENS1_13DumbPtrTraitsISF_EEEE": [
+    "Jsc",
+    0
+  ],
+  "_ZThn24_N9Inspector18InspectorHeapAgentD0Ev": [
     "Jsc",
     0
   ],
@@ -17445,11 +20429,11 @@
   ],
   "readIS_nid_postfix": [
     "Jxr",
-    0
+    1
   ],
   "writeIS_nid_postfix": [
     "Jxr",
-    0
+    1
   ],
   "sceKeyboardClose": [
     "Keyboard",
@@ -17843,11 +20827,7 @@
     "LibcInternal",
     1
   ],
-  "_ZNSt10filesystem18_Xfilesystem_errorEPKcRKNS_4pathESt10error_code_nid_postfix": [
-    "LibcInternal",
-    0
-  ],
-  "_ZNSt10filesystem18_Xfilesystem_errorEPKcSt10error_code_nid_postfix": [
+  "__opendir2_nid_postfix": [
     "LibcInternal",
     0
   ],
@@ -17912,6 +20892,10 @@
     1
   ],
   "CRYPTO_THREADID_set_numeric_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "CRYPTO_cleanup_all_ex_data_nid_postfix": [
     "LibreSsl",
     1
   ],
@@ -18107,7 +21091,19 @@
     "LibreSsl",
     1
   ],
+  "SSL_CTX_get_ex_new_index_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
   "SSL_alert_desc_string_long_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "SSL_get_ex_data_X509_STORE_CTX_idx_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "SSL_get_ex_new_index_nid_postfix": [
     "LibreSsl",
     1
   ],
@@ -18152,6 +21148,34 @@
     1
   ],
   "UI_method_set_writer_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "X509_LOOKUP_file_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "X509_STORE_CTX_get_chain_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "X509_STORE_CTX_get_current_cert_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "X509_STORE_CTX_get_error_depth_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "X509_STORE_CTX_get_error_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "X509_STORE_CTX_set_error_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "X509_STORE_new_nid_postfix": [
     "LibreSsl",
     1
   ],
@@ -18327,7 +21351,7 @@
     "LibreSsl",
     0
   ],
-  "CRYPTO_cleanup_all_ex_data_nid_postfix": [
+  "CompareObjects": [
     "LibreSsl",
     0
   ],
@@ -18739,6 +21763,10 @@
     "LibreSsl",
     0
   ],
+  "LoadFile": [
+    "LibreSsl",
+    0
+  ],
   "OBJ_cleanup_nid_postfix": [
     "LibreSsl",
     0
@@ -18919,10 +21947,6 @@
     "LibreSsl",
     0
   ],
-  "SSL_CTX_get_ex_new_index_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
   "SSL_CTX_get_verify_mode_nid_postfix": [
     "LibreSsl",
     0
@@ -19087,15 +22111,7 @@
     "LibreSsl",
     0
   ],
-  "SSL_get_ex_data_X509_STORE_CTX_idx_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
   "SSL_get_ex_data_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
-  "SSL_get_ex_new_index_nid_postfix": [
     "LibreSsl",
     0
   ],
@@ -19271,10 +22287,6 @@
     "LibreSsl",
     0
   ],
-  "X509_LOOKUP_file_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
   "X509_NAME_ENTRY_get_data_nid_postfix": [
     "LibreSsl",
     0
@@ -19303,27 +22315,7 @@
     "LibreSsl",
     0
   ],
-  "X509_STORE_CTX_get_chain_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
-  "X509_STORE_CTX_get_current_cert_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
-  "X509_STORE_CTX_get_error_depth_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
-  "X509_STORE_CTX_get_error_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
   "X509_STORE_CTX_get_ex_data_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
-  "X509_STORE_CTX_set_error_nid_postfix": [
     "LibreSsl",
     0
   ],
@@ -19340,10 +22332,6 @@
     0
   ],
   "X509_STORE_free_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
-  "X509_STORE_new_nid_postfix": [
     "LibreSsl",
     0
   ],
@@ -20707,11 +23695,51 @@
     "Mouse",
     0
   ],
+  "sceMouseExtensionGetCursor": [
+    "Mouse",
+    0
+  ],
+  "sceMouseExtensionRead": [
+    "Mouse",
+    0
+  ],
+  "sceMouseExtensionReadState": [
+    "Mouse",
+    0
+  ],
+  "sceMouseExtensionScalePosition": [
+    "Mouse",
+    0
+  ],
+  "sceMouseExtensionSetConfig": [
+    "Mouse",
+    0
+  ],
+  "sceMouseExtensionSetCursor": [
+    "Mouse",
+    0
+  ],
   "sceMouseGetDeviceInfo": [
     "Mouse",
     0
   ],
+  "sceMouseGetHandle": [
+    "Mouse",
+    0
+  ],
   "sceMouseMbusInit": [
+    "Mouse",
+    0
+  ],
+  "sceMouseReadAbsolutePosition": [
+    "Mouse",
+    0
+  ],
+  "sceMouseSetAbsoluteHighPrecisionMode": [
+    "Mouse",
+    0
+  ],
+  "sceMouseSetAbsoluteVirtualScreenSize": [
     "Mouse",
     0
   ],
@@ -20923,7 +23951,31 @@
     "MsgDialog.native",
     1
   ],
+  "libSceMusicFrameworkInterfaceUnknown_X9GN6gWabWM_nid_no_patch": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwAbortMessage": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwAddSrc": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwFinalize": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwGetCapability": [
+    "MusicFrameworkInterface",
+    0
+  ],
   "sceMusicFwGetCurrentTime": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwGetDuration": [
     "MusicFrameworkInterface",
     0
   ],
@@ -20939,7 +23991,23 @@
     "MusicFrameworkInterface",
     0
   ],
+  "sceMusicFwGetShuffle": [
+    "MusicFrameworkInterface",
+    0
+  ],
   "sceMusicFwGetVolume": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwGetVolume2": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwInitialize": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwInitialize2": [
     "MusicFrameworkInterface",
     0
   ],
@@ -20947,11 +24015,35 @@
     "MusicFrameworkInterface",
     0
   ],
+  "sceMusicFwIsPaused": [
+    "MusicFrameworkInterface",
+    0
+  ],
   "sceMusicFwIsPlaying": [
     "MusicFrameworkInterface",
     0
   ],
+  "sceMusicFwIsSeeking": [
+    "MusicFrameworkInterface",
+    0
+  ],
   "sceMusicFwIsStopped": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwLoad": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwPause": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwPlay": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwRegisterNotifyMessage": [
     "MusicFrameworkInterface",
     0
   ],
@@ -20975,11 +24067,19 @@
     "MusicFrameworkInterface",
     0
   ],
+  "sceMusicFwSetMuted": [
+    "MusicFrameworkInterface",
+    0
+  ],
   "sceMusicFwSetShuffle": [
     "MusicFrameworkInterface",
     0
   ],
   "sceMusicFwSetVolume": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwSetVolume2": [
     "MusicFrameworkInterface",
     0
   ],
@@ -20991,6 +24091,14 @@
     "MusicFrameworkInterface",
     0
   ],
+  "sceMusicFwStop": [
+    "MusicFrameworkInterface",
+    0
+  ],
+  "sceMusicFwUnregisterNotifyMessage": [
+    "MusicFrameworkInterface",
+    0
+  ],
   "sceNKWebInitialize": [
     "NKWeb",
     0
@@ -20999,603 +24107,603 @@
     "NKWeb",
     0
   ],
-  "sceNKWebKitUnknown__0QEt8ZQWgg_nid_no_patch": [
+  "JSObjectSetPrivate": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__0YNxcA_duk_nid_no_patch": [
+  "WKBundleBackForwardListGetForwardListCount": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__0ZZzGYxx_I_nid_no_patch": [
+  "WKContextConfigurationSetAlwaysKeepAndReuseSwappedProcesses": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__0rdnkSicqk_nid_no_patch": [
+  "WKContextSetDownloadClient": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__1Ex5GCP8Xs_nid_no_patch": [
+  "WKContextSetProcessModel": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__1FfZ_0sxvQ_nid_no_patch": [
+  "WKDownloadCancel": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__1ObAtzCrYE_nid_no_patch": [
+  "WKErrorCopyLocalizedDescription": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__1n_h4FUu9E_nid_no_patch": [
+  "WKNotificationCopyDir": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__26aZpK535w_nid_no_patch": [
+  "WKNotificationManagerProviderDidUpdateNotificationPolicy": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__2XuBaAXb_4_nid_no_patch": [
+  "WKNotificationPermissionRequestAllow": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__2rTX2KM7Ms_nid_no_patch": [
+  "WKPageCanDelete": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__31dbB3S_6Y_nid_no_patch": [
+  "WKPageLoadFile": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__3p6wRzzzlQ_nid_no_patch": [
+  "WKPageSetCustomTextEncodingName": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__45BiDnCTxw_nid_no_patch": [
+  "WKPreferencesGetApplicationChromeModeEnabled": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__4_GNOUIBt0_nid_no_patch": [
+  "WKPreferencesGetCaptureVideoInUIProcessEnabled": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__4lVmXsIwqM_nid_no_patch": [
+  "WKPreferencesGetLocalFileContentSniffingEnabled": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__5E2YZZIstM_nid_no_patch": [
+  "WKPreferencesResetTestRunnerOverrides": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__5V_UOk8zS4_nid_no_patch": [
+  "WKPreferencesSetAutostartOriginPlugInSnapshottingEnabled": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__63IB3UdMOY_nid_no_patch": [
+  "WKPreferencesSetCanvasUsesAcceleratedDrawing": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__6boXsT6XFA_nid_no_patch": [
+  "WKPreferencesSetContentChangeObserverEnabled": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__79w68212vg_nid_no_patch": [
+  "WKPreferencesSetStandardFontFamily": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__7HpqmfJz48_nid_no_patch": [
+  "WKUserContentExtensionStoreRemove": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__8T1y8Y_lgQ_nid_no_patch": [
+  "WKWebsiteDataStoreHasAppBoundSession": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__8VuTEFp13s_nid_no_patch": [
+  "WKWebsitePoliciesSetAllowedAutoplayQuirks": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__9TKACifR2g_nid_no_patch": [
+  "WKWheelEventMake": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__9ZBRWNf4og_nid_no_patch": [
+  "WTFSetLogChannelLevel": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__9us0nrDaCU_nid_no_patch": [
+  "_ZN3JSC10LinkBuffer8linkCodeERNS_14MacroAssemblerENS_20JITCompilationEffortE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__AIEKk6K05M_nid_no_patch": [
+  "_ZN3JSC13JSSetIterator14finishCreationERNS_2VMEPNS_5JSSetENS_13IterationKindE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Abk7CfTivU_nid_no_patch": [
+  "_ZN3JSC20TypedArrayControllerC2Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__AnsPWo12m8_nid_no_patch": [
+  "_ZN3JSC21MarkedJSValueRefArrayC1EP15OpaqueJSContextj": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__BDqCDede1o_nid_no_patch": [
+  "_ZN3JSC30int52AwareSpeculationFromValueENS_7JSValueE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__BSUP6XSeAw_nid_no_patch": [
+  "_ZN3JSC49throwConstructorCannotBeCalledAsFunctionTypeErrorEPNS_14JSGlobalObjectERNS_10ThrowScopeEPKc": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__BZCJi3OIiQ_nid_no_patch": [
+  "_ZN3JSC4Heap20edenActivityCallbackEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__ByVxWl1pW8_nid_no_patch": [
+  "_ZN3JSC6JSLock12DropAllLocksC2ERNS_2VME": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__CgSI_4D534_nid_no_patch": [
+  "_ZN3JSC9Integrity22auditCellMinimallySlowERNS_2VMEPNS_6JSCellE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__CpPA9_CKUA_nid_no_patch": [
+  "_ZN3JSC9Structure40addPropertyTransitionToExistingStructureEPS0_NS_12PropertyNameEjRi": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__DcUw5YwkSY_nid_no_patch": [
+  "_ZN3WTF13StringBuilder12appendNumberEf": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__DpDBrSZWUc_nid_no_patch": [
+  "_ZN3WTF14FileSystemImpl15openAndLockFileERKNS_6StringENS0_12FileOpenModeENS_9OptionSetINS0_12FileLockModeEEE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__E3D_W4kpl8_nid_no_patch": [
+  "_ZN3WTF15BinarySemaphore6signalEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__EN6MgNmVv4_nid_no_patch": [
+  "_ZN3WTF19addProcessPrivilegeENS_16ProcessPrivilegeE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__ErgockOJwc_nid_no_patch": [
+  "_ZN3WTF21MemoryPressureHandler15setProcessStateENS_18WebsamProcessStateE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__FKudG3uS8A_nid_no_patch": [
+  "_ZN3WTF21RefCountedLeakCounter16suppressMessagesEPKc": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__FWUl_T8yG8_nid_no_patch": [
+  "_ZN3WTF5equalEPKNS_10StringImplES2_": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Fca5Eyr4BU_nid_no_patch": [
+  "_ZN3WTF6Thread5yieldEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__FcvpbbdrZM_nid_no_patch": [
+  "_ZN3WTF9URLParser23maybeCanonicalizeSchemeERKNS_6StringE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__FvUhrQaiJQ_nid_no_patch": [
+  "_ZN7WebCore11DisplayList10DrawGlyphsD0Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__GOwQvxqztE_nid_no_patch": [
+  "_ZN7WebCore11DisplayList10StrokePathD0Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Gp0M0sPj9I_nid_no_patch": [
+  "_ZN7WebCore11DisplayList11ClearShadowD1Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__H5PTMieXNE_nid_no_patch": [
+  "_ZN7WebCore11HistoryItem8formDataEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__H_bnpXdWtk_nid_no_patch": [
+  "_ZN7WebCore11JSDOMWindow9setOpenerERN3JSC14JSGlobalObjectENS1_7JSValueE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__HuPyGuX_jY_nid_no_patch": [
+  "_ZN7WebCore11MediaPlayer13addVideoTrackERNS_17VideoTrackPrivateE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__IMGO_dXHis_nid_no_patch": [
+  "_ZN7WebCore12DOMTokenList6toggleERKN3WTF10AtomStringENS1_8OptionalIbEE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__ImJ026_DAw_nid_no_patch": [
+  "_ZN7WebCore13HTTPHeaderMap3addERKN3WTF6StringES4_": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__IoqHgIw0PM_nid_no_patch": [
+  "_ZN7WebCore14ResourceLoader5startEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__JnngM7WyHI_nid_no_patch": [
+  "_ZN7WebCore14StaticNodeListnaEmPv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Kb7j57jDzs_nid_no_patch": [
+  "_ZN7WebCore14XMLHttpRequestD1Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Kx_IV_21hk_nid_no_patch": [
+  "_ZN7WebCore15AffineTransform9translateERKNS_9FloatSizeE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__LUabdo811U_nid_no_patch": [
+  "_ZN7WebCore15DatabaseManager9singletonEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__LiOmqon2ZI_nid_no_patch": [
+  "_ZN7WebCore15DeferredPromise12callFunctionERN3JSC14JSGlobalObjectENS0_11ResolveModeENS1_7JSValueE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__LoAenYdWlM_nid_no_patch": [
+  "_ZN7WebCore15JSDOMWindowBaseD1Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__LrmM3KN3N8_nid_no_patch": [
+  "_ZN7WebCore16MIMETypeRegistry12pdfMIMETypesEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__MzGFuNN348_nid_no_patch": [
+  "_ZN7WebCore17NowPlayingManagernaEm": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__N6UhRaLrJE_nid_no_patch": [
+  "_ZN7WebCore17PageConfigurationD2Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__NGrXdCa0q8_nid_no_patch": [
+  "_ZN7WebCore18HTMLMarqueeElement14setScrollDelayEj": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__N_GwpCV4yk_nid_no_patch": [
+  "_ZN7WebCore18JSHTMLInputElementC2ERKS0_": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__NiLTGGKF_E_nid_no_patch": [
+  "_ZN7WebCore18PlatformTimeRangesnaEm": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Nqfy8HVG84_nid_no_patch": [
+  "_ZN7WebCore18TextureMapperLayer14paintRecursiveERKNS_25TextureMapperPaintOptionsE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__NuhuZH75ak_nid_no_patch": [
+  "_ZN7WebCore18TextureMapperLayer15setBoundsOriginERKNS_10FloatPointE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__OCxbaKiBUo_nid_no_patch": [
+  "_ZN7WebCore18TextureMapperLayer18setFixedToViewportEb": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__OOjOkuWL6g_nid_no_patch": [
+  "_ZN7WebCore19ResourceRequestBase17removeCredentialsEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__OkTn3_PBxM_nid_no_patch": [
+  "_ZN7WebCore19approximateAsRegionERKNS_11RoundedRectEj": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__PDx3sfB_l4_nid_no_patch": [
+  "_ZN7WebCore20LegacySchemeRegistry33shouldTreatURLSchemeAsCORSEnabledERKN3WTF6StringE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__POsWAWjXo8_nid_no_patch": [
+  "_ZN7WebCore20ResourceHandleClientD0Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__PeIrQMgYpw_nid_no_patch": [
+  "_ZN7WebCore20SVGPathStringBuilderC1Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Q7xLvpc0PA_nid_no_patch": [
+  "_ZN7WebCore21ISOTrackEncryptionBoxC1Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__QL3zQ6ZNy4_nid_no_patch": [
+  "_ZN7WebCore21PlatformKeyboardEvent24disambiguateKeyDownEventENS_13PlatformEvent4TypeEb": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__QqzEnc5c80_nid_no_patch": [
+  "_ZN7WebCore21markerTextForListItemEPNS_7ElementE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__R0GXLrsPM0_nid_no_patch": [
+  "_ZN7WebCore22DefaultFilterOperationD0Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__R2eXISeSvw_nid_no_patch": [
+  "_ZN7WebCore22EmptyFrameLoaderClient35dispatchDidChangeLocationWithinPageEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__RkwSDm5kGU_nid_no_patch": [
+  "_ZN7WebCore22EmptyFrameLoaderClient35dispatchDidClearWindowObjectInWorldERNS_15DOMWrapperWorldE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__RtBREW92M0_nid_no_patch": [
+  "_ZN7WebCore23ApplicationCacheStorage16originsWithCacheEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__S72K_fa2_8_nid_no_patch": [
+  "_ZN7WebCore23ScaleTransformOperation5blendEPKNS_18TransformOperationEdb": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__S7ftAAWhoQ_nid_no_patch": [
+  "_ZN7WebCore24DocumentMarkerController9addMarkerERKNS_11SimpleRangeENS_14DocumentMarker10MarkerTypeERKN3WTF7VariantIJNS6_6StringENS4_13DictationDataENS6_6RefPtrINS_4NodeENS6_13DumbPtrTraitsISB_EEEEEEE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__SHzgUiuQDE_nid_no_patch": [
+  "_ZN7WebCore26Matrix3DTransformOperationC2ERKNS_20TransformationMatrixE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Sgy63JgEgQ_nid_no_patch": [
+  "_ZN7WebCore27PlatformMediaSessionManager30stopAllMediaPlaybackForProcessEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__Sozphy1Wa8_nid_no_patch": [
+  "_ZN7WebCore27TranslateTransformOperationC1ERKNS_6LengthES3_S3_NS_18TransformOperation13OperationTypeE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__TPntL1OK80_nid_no_patch": [
+  "_ZN7WebCore28InspectorFrontendClientLocal11isUnderTestEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__TT_AplhQWA_nid_no_patch": [
+  "_ZN7WebCore28InspectorFrontendClientLocal23stopProfilingJavaScriptEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__TjNmuhxdBQ_nid_no_patch": [
+  "_ZN7WebCore28InspectorFrontendClientLocal8Settings11getPropertyERKN3WTF6StringE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__UKI_MUuiCU_nid_no_patch": [
+  "_ZN7WebCore28InspectorFrontendClientLocalC2EPNS_19InspectorControllerEPNS_4PageESt10unique_ptrINS0_8SettingsESt14default_deleteIS6_EE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__U_nxwdrnDY_nid_no_patch": [
+  "_ZN7WebCore28collectVaryingRequestHeadersEPNS_21NetworkStorageSessionERKNS_15ResourceRequestERKNS_16ResourceResponseE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__VvktcfIouQ_nid_no_patch": [
+  "_ZN7WebCore29isCharacterSmartReplaceExemptEib": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__WS2yRv5aBI_nid_no_patch": [
+  "_ZN7WebCore4Node16addEventListenerERKN3WTF10AtomStringEONS1_3RefINS_13EventListenerENS1_13DumbPtrTraitsIS6_EEEERKNS_11EventTarget23AddEventListenerOptionsE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__XZfnHByVO0_nid_no_patch": [
+  "_ZN7WebCore4Page15setFooterHeightEi": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__YBfWz5udq4_nid_no_patch": [
+  "_ZN7WebCore6Editor16pasteAsPlainTextENS0_20FromMenuOrKeyBindingE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__YPwmEWTZwE_nid_no_patch": [
+  "_ZN7WebCore7Element26scrollIntoViewIfNotVisibleEb": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__YYEOsi3IMk_nid_no_patch": [
+  "_ZN7WebCore7Element27dispatchMouseForceWillBeginEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__YyqQTUIQJQ_nid_no_patch": [
+  "_ZN7WebCore8Document5closeEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__ZgGbFykhls_nid_no_patch": [
+  "_ZN7WebCore8JSDOMURL9toWrappedERN3JSC2VMENS1_7JSValueE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__ZwjLJ74Y38_nid_no_patch": [
+  "_ZN7WebCore8Settings27setLoadsImagesAutomaticallyEb": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown___67uYkhqBU_nid_no_patch": [
+  "_ZN7WebCore9FloatRectC2ERKNS_7IntRectE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown___8RYr2gjrw_nid_no_patch": [
+  "_ZN7WebCore9FrameView11removeChildERNS_6WidgetE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown___BntMcao1o_nid_no_patch": [
+  "_ZN7WebCore9FrameView24forceLayoutForPaginationERKNS_9FloatSizeES3_fNS_19AdjustViewSizeOrNotE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown___R8IXi10PI_nid_no_patch": [
+  "_ZN7WebCore9GLContextD0Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown____7XwmYLnI_nid_no_patch": [
+  "_ZN7WebCore9GLContextnwEm": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown____URPJNZ18_nid_no_patch": [
+  "_ZN7WebCore9JSElementD2Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown___j2h_QO22w_nid_no_patch": [
+  "_ZN9Inspector14InspectorAgentC2ERNS_12AgentContextE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown___wmVyLhgm0_nid_no_patch": [
+  "_ZN9Inspector15InspectorTargetD0Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__b1xwU7aUwU_nid_no_patch": [
+  "_ZN9Inspector17ScriptDebugServer23removeBreakpointActionsEm": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__b5TfVQ3_4s_nid_no_patch": [
+  "_ZN9Inspector18InjectedScriptHost7subtypeEPN3JSC14JSGlobalObjectENS1_7JSValueE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__bDb7iby5NI_nid_no_patch": [
+  "_ZN9Inspector21CSSFrontendDispatchernaEm": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__baqz7ahOng_nid_no_patch": [
+  "_ZN9Inspector21InjectedScriptManagerdaEPv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__bvtn3pCtek_nid_no_patch": [
+  "_ZN9Inspector21InspectorConsoleAgent5resetEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__byORTSkWQo_nid_no_patch": [
+  "_ZN9Inspector21InspectorRuntimeAgent6enableERN3WTF6StringE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__dAwquupevQ_nid_no_patch": [
+  "_ZN9Inspector22HeapFrontendDispatcher13trackingStartEdRKN3WTF6StringE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__dTlroLZao8_nid_no_patch": [
+  "_ZN9Inspector22InspectorDebuggerAgent20setPauseOnAssertionsERN3WTF6StringEb": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__eVN0UdRT8c_nid_no_patch": [
+  "_ZN9Inspector22InspectorDebuggerAgent24continueUntilNextRunLoopERN3WTF6StringE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__fTKZiGqo8E_nid_no_patch": [
+  "_ZN9Inspector22RemoteInspectionTargetD2Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__feeFP8Y2_c_nid_no_patch": [
+  "_ZN9Inspector23CanvasBackendDispatcher6createERNS_17BackendDispatcherEPNS_30CanvasBackendDispatcherHandlerE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__iLBOBrdx5A_nid_no_patch": [
+  "_ZN9Inspector24TargetFrontendDispatchernwEm": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__iLdIVuhDhY_nid_no_patch": [
+  "_ZN9Inspector26LayerTreeBackendDispatcherD0Ev": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__jG4wqqA8yg_nid_no_patch": [
+  "_ZN9Inspector31NetworkBackendDispatcherHandleraSERKS0_": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__jLvgfDA97c_nid_no_patch": [
+  "_ZN9Inspector8Protocol13BindingTraitsINS0_8Timeline13TimelineEventEE26assertValueHasExpectedTypeEPN3WTF8JSONImpl5ValueE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__ji7IBGwnCM_nid_no_patch": [
+  "_ZNK3JSC18PropertyDescriptor12configurableEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__k3JGU_UUXo_nid_no_patch": [
+  "_ZNK3JSC18PropertyDescriptor6setterEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__kX_CdbguB0_nid_no_patch": [
+  "_ZNK3WTF3URL10protocolIsEPKc": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__keSg8ay8cE_nid_no_patch": [
+  "_ZNK7WebCore10FloatPoint15matrixTransformERKNS_20TransformationMatrixE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__lI9zCCS_HQ_nid_no_patch": [
+  "_ZNK7WebCore11CryptoKeyEC9exportRawEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__lwLqZJLo3g_nid_no_patch": [
+  "_ZNK7WebCore11MediaPlayer9userAgentEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__mS029ncrbo_nid_no_patch": [
+  "_ZNK7WebCore11MessagePort5derefEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__mYy22Ucg7Y_nid_no_patch": [
+  "_ZNK7WebCore11WindowProxy6windowEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__nHWcLWOmb4_nid_no_patch": [
+  "_ZNK7WebCore13HTTPHeaderMap12isolatedCopyEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__nSg5kHtXkg_nid_no_patch": [
+  "_ZNK7WebCore14DocumentLoader12mainResourceEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__nc3IouJMEA_nid_no_patch": [
+  "_ZNK7WebCore14SecurityOrigin20isSameSchemeHostPortERKS0_": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__ndmq8LhAjA_nid_no_patch": [
+  "_ZNK7WebCore16HTMLImageElement13naturalHeightEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__nrEMsyYHiw_nid_no_patch": [
+  "_ZNK7WebCore17MouseRelatedEvent1yEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__oJHrfcyJJM_nid_no_patch": [
+  "_ZNK7WebCore22EmptyFrameLoaderClient29generatedMIMETypeForURLSchemeERKN3WTF6StringE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__ovAafdG0O8_nid_no_patch": [
+  "_ZNK7WebCore24MatrixTransformOperation6matrixEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__pWGccNXto8_nid_no_patch": [
+  "_ZNK7WebCore27TranslateTransformOperation5cloneEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__q0GELad_mY_nid_no_patch": [
+  "_ZNK7WebCore27TranslateTransformOperationeqERKNS_18TransformOperationE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__qXuNlEFSRQ_nid_no_patch": [
+  "_ZNK7WebCore4Page14renderTreeSizeEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__qsTbJFS86A_nid_no_patch": [
+  "_ZNK7WebCore5Color9lightenedEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__r0UH41I1dI_nid_no_patch": [
+  "_ZNK7WebCore6Editor8canPasteEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__r8OGkuL4dc_nid_no_patch": [
+  "_ZNK7WebCore6Quirks47shouldAvoidScrollingWhenFocusedContentIsVisibleEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__rFA8ZR_qaI_nid_no_patch": [
+  "_ZNK7WebCore6Widget25convertFromContainingViewERKNS_8IntPointE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__rPvFDsPbXM_nid_no_patch": [
+  "_ZNK7WebCore8Document7fgColorEv": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__r_TJDA2yIM_nid_no_patch": [
+  "_ZNK7WebCore9FloatRect8containsERKS0_": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__sUvE9LF80k_nid_no_patch": [
+  "_ZThn16_N9Inspector21InspectorConsoleAgent6enableERN3WTF6StringE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__suuwfNT5Oc_nid_no_patch": [
+  "_ZThn16_N9Inspector21InspectorRuntimeAgent8evaluateERN3WTF6StringERKS2_PS4_PKbS8_PKiS8_S8_S8_S8_RNS1_6RefPtrINS_8Protocol7Runtime12RemoteObjectENS1_13DumbPtrTraitsISE_EEEERNS1_8OptionalIbEERNSJ_IiEE": [
     "NKWebKit",
     0
   ],
-  "sceNKWebKitUnknown__t_MaTLADe4_nid_no_patch": [
+  "_ZThn16_N9Inspector22InspectorDebuggerAgent19evaluateOnCallFrameERN3WTF6StringERKS2_S5_PS4_PKbS8_S8_S8_S8_S8_RNS1_6RefPtrINS_8Protocol7Runtime12RemoteObjectENS1_13DumbPtrTraitsISC_EEEERNS1_8OptionalIbEERNSH_IiEE": [
     "NKWebKit",
     0
   ],
@@ -21688,6 +24796,10 @@
     1
   ],
   "sceNetGetSockInfo6": [
+    "Net",
+    1
+  ],
+  "sceNetGetStatisticsInfo": [
     "Net",
     1
   ],
@@ -21851,6 +24963,10 @@
     "Net",
     1
   ],
+  "sceNetShowIfconfigWithMemory": [
+    "Net",
+    1
+  ],
   "sceNetShowNetstat": [
     "Net",
     1
@@ -21867,11 +24983,19 @@
     "Net",
     1
   ],
+  "sceNetShowPolicyWithMemory": [
+    "Net",
+    1
+  ],
   "sceNetShowRoute": [
     "Net",
     1
   ],
   "sceNetShowRoute6": [
+    "Net",
+    1
+  ],
+  "sceNetShowRoute6WithMemory": [
     "Net",
     1
   ],
@@ -22363,10 +25487,6 @@
     "Net",
     0
   ],
-  "sceNetGetStatisticsInfo": [
-    "Net",
-    0
-  ],
   "sceNetGetStatisticsInfoInternal": [
     "Net",
     0
@@ -22439,10 +25559,6 @@
     "Net",
     0
   ],
-  "sceNetShowIfconfigWithMemory": [
-    "Net",
-    0
-  ],
   "sceNetShowNetstatExForBuffer": [
     "Net",
     0
@@ -22451,15 +25567,7 @@
     "Net",
     0
   ],
-  "sceNetShowPolicyWithMemory": [
-    "Net",
-    0
-  ],
   "sceNetShowRoute6ForBuffer": [
-    "Net",
-    0
-  ],
-  "sceNetShowRoute6WithMemory": [
     "Net",
     0
   ],
@@ -22543,6 +25651,10 @@
     "NetCtl",
     1
   ],
+  "sceNetCtlCheckCallbackForLibIpcInt": [
+    "NetCtl",
+    1
+  ],
   "sceNetCtlCheckCallbackForNpToolkit": [
     "NetCtl",
     1
@@ -22611,6 +25723,10 @@
     "NetCtl",
     1
   ],
+  "sceNetCtlRegisterCallbackForLibIpcInt": [
+    "NetCtl",
+    1
+  ],
   "sceNetCtlRegisterCallbackForNpToolkit": [
     "NetCtl",
     1
@@ -22632,6 +25748,10 @@
     1
   ],
   "sceNetCtlUnregisterCallback": [
+    "NetCtl",
+    1
+  ],
+  "sceNetCtlUnregisterCallbackForLibIpcInt": [
     "NetCtl",
     1
   ],
@@ -22712,10 +25832,6 @@
     0
   ],
   "sceNetCtlApRestart": [
-    "NetCtl",
-    0
-  ],
-  "sceNetCtlCheckCallbackForLibIpcInt": [
     "NetCtl",
     0
   ],
@@ -22811,10 +25927,6 @@
     "NetCtl",
     0
   ],
-  "sceNetCtlRegisterCallbackForLibIpcInt": [
-    "NetCtl",
-    0
-  ],
   "sceNetCtlScanIpcInt": [
     "NetCtl",
     0
@@ -22824,10 +25936,6 @@
     0
   ],
   "sceNetCtlSetStunWithPaddingFlagIpcInt": [
-    "NetCtl",
-    0
-  ],
-  "sceNetCtlUnregisterCallbackForLibIpcInt": [
     "NetCtl",
     0
   ],
@@ -22931,6 +26039,38 @@
     "Ngs2",
     0
   ],
+  "DestroyHostJobs": [
+    "Ngs2.native",
+    1
+  ],
+  "FlushHostJobs": [
+    "Ngs2.native",
+    1
+  ],
+  "HostJobWorker": [
+    "Ngs2.native",
+    1
+  ],
+  "InitHostJobs": [
+    "Ngs2.native",
+    1
+  ],
+  "JoinHostJobs": [
+    "Ngs2.native",
+    1
+  ],
+  "QueryHostJobs": [
+    "Ngs2.native",
+    1
+  ],
+  "RunRenderJob": [
+    "Ngs2.native",
+    1
+  ],
+  "SubmitHostJobs": [
+    "Ngs2.native",
+    1
+  ],
   "sceNgs2CalcWaveformBlock": [
     "Ngs2.native",
     1
@@ -22956,6 +26096,10 @@
     1
   ],
   "sceNgs2GetWaveformFrameInfo": [
+    "Ngs2.native",
+    1
+  ],
+  "sceNgs2JobSchedulerResetOption": [
     "Ngs2.native",
     1
   ],
@@ -23106,10 +26250,6 @@
   "sceNgs2VoiceRunCommands": [
     "Ngs2.native",
     1
-  ],
-  "sceNgs2JobSchedulerResetOption": [
-    "Ngs2.native",
-    0
   ],
   "sceNgs2ModuleArrayEnumItems": [
     "Ngs2.native",
@@ -23811,6 +26951,590 @@
     "NpCommon",
     1
   ],
+  "_ZN3sce2np10CancelLockC2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10Cancelable10LockCancelEPKciS3_": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10Cancelable7DestroyEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10CancelableC2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10CancelableD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10EventQueue4ctorEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10EventQueue7EnqueueEPKvmj": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10EventQueueC2EP16SceNpAllocatorEx": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10EventQueueD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10MemoryFile8TruncateEl": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10MemoryFileD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np10MemoryFileD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12HttpTemplate19SetAuthInfoCallbackEPFii15SceHttpAuthTypePKcPcS5_iPPhPmPiPvESA_": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12HttpTemplate7DestroyEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12HttpTemplateC2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12HttpTemplateD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12StreamReader4ReadEPNS0_6HandleEPNS0_9StreamCtxEPvmPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12StreamReader7ReadAllEPNS0_6HandleEPvmPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12StreamReader8SkipDataEPNS0_6HandleElPl": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12StreamWriter9WriteDataEPNS0_6HandleEPKvmPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np12WorkerThreadD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np13NpTitleSecret5ClearEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np13NpTitleSecretC2ERK16SceNpTitleSecret": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np13NpTitleSecretC2ERKS1_": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np13RingBufMemory6ExpandEm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np13RingBufMemory6IsInitEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np13RingBufMemory7DestroyEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np13RingBufMemoryD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np14CalloutContextD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np14CalloutContextD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np14JsonDocBuilder12BuildBufSizeEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np14JsonDocBuilderC1ERKNS0_9JsonValueE": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np14JsonDocBuilderC2ERKNS0_9JsonValueE": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np15CancelableScope5BeginEPNS0_6HandleEPKciS5_": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np15CancelableScopeD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np15CancelableScopeD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np16StreamReadBufferD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np16StreamReadBufferD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np18HttpConnectionPool13InvalidateAllEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np18MemoryStreamReaderC1EPKvm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np18MemoryStreamReaderD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np18MemoryStreamWriter5WriteEPNS0_6HandleEPKvmPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np18MemoryStreamWriterD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np18MemoryStreamWriterD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np18MemoryStreamWriterD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np20BufferedStreamReaderD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc10IpmiClient11IsConnectedEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc10IpmiClient7ConnectEPKvm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient10DisconnectEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient11TermServiceEi": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient12AbortRequestEii": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient13CreateRequestEPiiPKvm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient15RegisterServiceEPKNS1_17ServiceClientInfoE": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient17UnregisterServiceEi": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient21CreateRequestForAsyncEPiiPKvm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient21DeleteRequestForAsyncEii": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np3ipc17ServiceIpmiClient7ConnectEPKvm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np4Cond4InitEPKcPNS0_5MutexE": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np4Cond4ctorEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np4CondD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np4CondD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np4PathD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np4Time12GetUserClockEPS1_": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np4Time8AddHoursEl": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np5Mutex7DestroyEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6Handle4InitEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6HandleD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6ObjectdaEPv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6ObjectdaEPvR14SceNpAllocator": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6ObjectdlEPvR16SceNpAllocatorEx": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6ObjectnaEmR16SceNpAllocatorEx": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6ObjectnwEmR16SceNpAllocatorEx": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6Thread4InitEPKcimm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6Thread4dtorEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np6ThreadD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7Callout10IsTimedoutEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7Callout11CalloutFuncEPv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7Callout4StopEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7HttpUriD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7RingBuf14CheckinForReadEm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7RingBuf15CheckoutForReadEPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7RingBuf4dtorEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7RingBufC1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7RingBufD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np7RingBufD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8JsonBool5ClearEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8JsonFileD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8JsonNull5ClearEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8NpCommIdC2ERK20SceNpCommunicationId": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8SelectorD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8WorkItem10SetPendingEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8WorkItem10SetRunningEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8WorkItem6CancelEi": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np8WorkItemD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9EventFlag3SetEm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9EventFlag4OpenEPKc": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9EventFlag4PollEmjPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9EventFlag6CreateEPKcj": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9EventFlag7DestroyEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9EventFlagD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9EventFlagD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9HttpTrans21GetResponseStatusCodeEPNS0_6HandleEPi": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9HttpTrans24GetResponseContentLengthEPNS0_6HandleEPbPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9HttpTransC1EP16SceNpAllocatorEx": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9HttpTransD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9JsonArray12AddItemArrayEPPS1_": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9LocalFile5CloseEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9LocalFile6RemoveEPKc": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9LocalFile8TruncateEl": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9LocalFileC1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9LocalFileD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9NpTitleId5ParseEPS1_PKcm": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9NpTitleIdC2ERK12SceNpTitleId": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9RefObject7ReleaseEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9RefObjectC1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9RefObjectD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9Semaphore4WaitEj": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9Semaphore6CreateEiiPKc": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9SemaphoreD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9WorkQueue11GetItemByIdEi": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9WorkQueue15GetFinishedItemENS0_14WorkItemStatusE": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9WorkQueue4ctorEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2np9WorkQueueD2Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2npeqERK12SceNpTitleIdRKNS0_9NpTitleIdE": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2npeqERKNS0_4TimeES3_": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2npleERKNS0_4TimeERK10SceRtcTick": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2npneERK10SceRtcTickRKNS0_4TimeE": [
+    "NpCommon",
+    0
+  ],
+  "_ZN3sce2npneERKNS0_13NpTitleSecretERK16SceNpTitleSecret": [
+    "NpCommon",
+    0
+  ],
+  "_ZNK3sce2np10EventQueue6IsInitEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZNK3sce2np10JsonNumber6GetNumEPcm": [
+    "NpCommon",
+    0
+  ],
+  "_ZNK3sce2np10JsonString6GetStrEPcm": [
+    "NpCommon",
+    0
+  ],
+  "_ZNK3sce2np10JsonString9GetLengthEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZNK3sce2np4Time18ConvertToPosixTimeEPl": [
+    "NpCommon",
+    0
+  ],
+  "_ZNK3sce2np5Mutex6IsInitEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZNK3sce2np7RingBuf6IsFullEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZNK3sce2np9EventFlag6IsInitEv": [
+    "NpCommon",
+    0
+  ],
+  "_ZThn16_N3sce2np10MemoryFileD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZThn16_N3sce2np9HttpTrans5WriteEPNS0_6HandleEPKvmPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZThn16_N3sce2np9HttpTransD0Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZThn8_N3sce2np10MemoryFile4ReadEPNS0_6HandleEPvmPm": [
+    "NpCommon",
+    0
+  ],
+  "_ZThn8_N3sce2np6HandleD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_ZThn8_N3sce2np9LocalFileD1Ev": [
+    "NpCommon",
+    0
+  ],
+  "_sceNpAllocatorExFree": [
+    "NpCommon",
+    0
+  ],
+  "_sceNpAllocatorExRealloc": [
+    "NpCommon",
+    0
+  ],
+  "_sceNpAllocatorMalloc": [
+    "NpCommon",
+    0
+  ],
+  "_sceNpHeapMalloc": [
+    "NpCommon",
+    0
+  ],
   "sceNpCloseSema": [
     "NpCommon",
     0
@@ -23944,6 +27668,22 @@
     0
   ],
   "sceNpUtilJidToNpId": [
+    "NpCommon",
+    0
+  ],
+  "sceNpUtilParseJid": [
+    "NpCommon",
+    0
+  ],
+  "sceNpUtilXmlEscape": [
+    "NpCommon",
+    0
+  ],
+  "sceNpUtilXmlUnescape": [
+    "NpCommon",
+    0
+  ],
+  "sceNpXmlParse": [
     "NpCommon",
     0
   ],
@@ -27471,6 +31211,10 @@
     "NpManager",
     1
   ],
+  "sceNpWaitAsync": [
+    "NpManager",
+    1
+  ],
   "sceNpAsmAbort": [
     "NpManager",
     0
@@ -28019,9 +31763,9 @@
     "NpManager",
     0
   ],
-  "sceNpWaitAsync": [
-    "NpManager",
-    0
+  "sceNpMatching2AbortContextStart": [
+    "NpMatching2",
+    1
   ],
   "sceNpMatching2ContextStart": [
     "NpMatching2",
@@ -28066,10 +31810,6 @@
   "sceNpMatching2Terminate": [
     "NpMatching2",
     1
-  ],
-  "sceNpMatching2AbortContextStart": [
-    "NpMatching2",
-    0
   ],
   "sceNpMatching2CreateContextA": [
     "NpMatching2",
@@ -28831,6 +32571,66 @@
     "NpSignaling",
     1
   ],
+  "sceNpSignalingActivateConnectionA": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingCancelPeerNetInfo": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingCreateContextA": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetConnectionFromNpId": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetConnectionFromPeerAddress": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetConnectionFromPeerAddressA": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetConnectionInfoA": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetConnectionStatistics": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetConnectionStatus": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetContextOption": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetLocalNetInfo": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetMemoryInfo": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetPeerNetInfo": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetPeerNetInfoA": [
+    "NpSignaling",
+    0
+  ],
+  "sceNpSignalingGetPeerNetInfoResult": [
+    "NpSignaling",
+    0
+  ],
   "sceNpSnsFacebookAbortRequest": [
     "NpSns",
     0
@@ -29447,11 +33247,19 @@
     "NpTrophy2",
     0
   ],
+  "sceNpTrophy2SystemBuildBgImageIconUri": [
+    "NpTrophy2",
+    0
+  ],
   "sceNpTrophy2SystemBuildGroupIconUri": [
     "NpTrophy2",
     0
   ],
   "sceNpTrophy2SystemBuildRewardIconUri": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemBuildTitleIconUri": [
     "NpTrophy2",
     0
   ],
@@ -29487,6 +33295,18 @@
     "NpTrophy2",
     0
   ],
+  "sceNpTrophy2SystemDestroyHandle": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemGetTrophyConf": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemGetTrophyData": [
+    "NpTrophy2",
+    0
+  ],
   "sceNpTrophy2SystemGetTrophyDetails": [
     "NpTrophy2",
     0
@@ -29495,11 +33315,23 @@
     "NpTrophy2",
     0
   ],
+  "sceNpTrophy2SystemGetTrophyGroupData": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemGetTrophyGroupDetails": [
+    "NpTrophy2",
+    0
+  ],
   "sceNpTrophy2SystemGetTrophySetArray": [
     "NpTrophy2",
     0
   ],
   "sceNpTrophy2SystemGetTrophyTitleConf": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemGetTrophyTitleData": [
     "NpTrophy2",
     0
   ],
@@ -29512,6 +33344,22 @@
     0
   ],
   "sceNpTrophy2SystemIsServerAvailable": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemListAllTitles": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemListPlayedTitles": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemListTitlesByNpTitleId": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemNetSyncTitles": [
     "NpTrophy2",
     0
   ],
@@ -29532,6 +33380,18 @@
     0
   ],
   "sceNpTrophy2SystemRemoveUserData": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemRemoveUserDataWithServerData": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemUnregisterTitleSyncedCallback": [
+    "NpTrophy2",
+    0
+  ],
+  "sceNpTrophy2SystemUnregisterTitleUpdateCallback": [
     "NpTrophy2",
     0
   ],
@@ -30275,6 +34135,10 @@
     "NpUniversalDataSystem",
     0
   ],
+  "sceNpUniversalDataSystemIntCloseStream": [
+    "NpUniversalDataSystem",
+    0
+  ],
   "sceNpUniversalDataSystemIntCreateContext": [
     "NpUniversalDataSystem",
     0
@@ -30300,6 +34164,10 @@
     0
   ],
   "sceNpUniversalDataSystemIntDeleteAllRecord": [
+    "NpUniversalDataSystem",
+    0
+  ],
+  "sceNpUniversalDataSystemIntDeleteUserData": [
     "NpUniversalDataSystem",
     0
   ],
@@ -30331,6 +34199,18 @@
     "NpUniversalDataSystem",
     0
   ],
+  "sceNpUniversalDataSystemIntGetNpCommIdByNpTitleId": [
+    "NpUniversalDataSystem",
+    0
+  ],
+  "sceNpUniversalDataSystemIntGetNpTitleIdListByNpCommId": [
+    "NpUniversalDataSystem",
+    0
+  ],
+  "sceNpUniversalDataSystemIntGetObjectState": [
+    "NpUniversalDataSystem",
+    0
+  ],
   "sceNpUniversalDataSystemIntInitialize": [
     "NpUniversalDataSystem",
     0
@@ -30339,7 +34219,23 @@
     "NpUniversalDataSystem",
     0
   ],
+  "sceNpUniversalDataSystemIntOpenObjectsDefinitionConfStream": [
+    "NpUniversalDataSystem",
+    0
+  ],
+  "sceNpUniversalDataSystemIntOpenObjectsDefinitionConfStreamByObjectId": [
+    "NpUniversalDataSystem",
+    0
+  ],
+  "sceNpUniversalDataSystemIntOpenStreamByUri": [
+    "NpUniversalDataSystem",
+    0
+  ],
   "sceNpUniversalDataSystemIntPostRecordData": [
+    "NpUniversalDataSystem",
+    0
+  ],
+  "sceNpUniversalDataSystemIntReadStream": [
     "NpUniversalDataSystem",
     0
   ],
@@ -30483,6 +34379,10 @@
     "NpUtility",
     1
   ],
+  "sceNpLookupCreateTitleCtxA": [
+    "NpUtility",
+    1
+  ],
   "sceNpLookupDeleteRequest": [
     "NpUtility",
     1
@@ -30524,6 +34424,10 @@
     1
   ],
   "sceNpWordFilterCreateTitleCtx": [
+    "NpUtility",
+    1
+  ],
+  "sceNpWordFilterCreateTitleCtxA": [
     "NpUtility",
     1
   ],
@@ -30656,10 +34560,6 @@
     0
   ],
   "sceNpAppLaunchLinkIntInitialize": [
-    "NpUtility",
-    0
-  ],
-  "sceNpLookupCreateTitleCtxA": [
     "NpUtility",
     0
   ],
@@ -30816,10 +34716,6 @@
     0
   ],
   "sceNpUtilityTerm": [
-    "NpUtility",
-    0
-  ],
-  "sceNpWordFilterCreateTitleCtxA": [
     "NpUtility",
     0
   ],
@@ -31271,6 +35167,22 @@
     "OpusSilkEnc",
     0
   ],
+  "sceCloudClientCancelRequestGame": [
+    "PSNowGkp",
+    0
+  ],
+  "sceCloudClientReset": [
+    "PSNowGkp",
+    0
+  ],
+  "sceCloudClientSetAuthCodes": [
+    "PSNowGkp",
+    0
+  ],
+  "sceCloudClientTestConnection": [
+    "PSNowGkp",
+    0
+  ],
   "scePadClose_nid_postfix": [
     "Pad",
     1
@@ -31280,6 +35192,14 @@
     1
   ],
   "scePadDeviceClassParseData": [
+    "Pad",
+    1
+  ],
+  "scePadDisableTriggerEffect": [
+    "Pad",
+    1
+  ],
+  "scePadDisableVibration": [
     "Pad",
     1
   ],
@@ -31327,6 +35247,10 @@
     "Pad",
     1
   ],
+  "scePadIsLightBarBaseBrightnessControllable": [
+    "Pad",
+    1
+  ],
   "scePadIsMoveConnected": [
     "Pad",
     1
@@ -31368,6 +35292,10 @@
     1
   ],
   "scePadSetLightBar": [
+    "Pad",
+    1
+  ],
+  "scePadSetLightBarBaseBrightness": [
     "Pad",
     1
   ],
@@ -31500,14 +35428,6 @@
     0
   ],
   "scePadDisableTransportButtons": [
-    "Pad",
-    0
-  ],
-  "scePadDisableTriggerEffect": [
-    "Pad",
-    0
-  ],
-  "scePadDisableVibration": [
     "Pad",
     0
   ],
@@ -31675,10 +35595,6 @@
     "Pad",
     0
   ],
-  "scePadIsLightBarBaseBrightnessControllable": [
-    "Pad",
-    0
-  ],
   "scePadIsMoveReproductionModel": [
     "Pad",
     0
@@ -31800,10 +35716,6 @@
     0
   ],
   "scePadSetIsCoPilot": [
-    "Pad",
-    0
-  ],
-  "scePadSetLightBarBaseBrightness": [
     "Pad",
     0
   ],
@@ -32109,6 +36021,42 @@
   ],
   "scePatchCheckerTerminate": [
     "PatchCheckerClient",
+    0
+  ],
+  "scePfsGetBlockTableReadCommand": [
+    "Pfs",
+    0
+  ],
+  "scePfsGetHeaderReadCommand": [
+    "Pfs",
+    0
+  ],
+  "scePfsGetPreadBlockRange": [
+    "Pfs",
+    0
+  ],
+  "scePfsGetSingleBlockReadCommand": [
+    "Pfs",
+    0
+  ],
+  "scePfsGetUncompressedSize": [
+    "Pfs",
+    0
+  ],
+  "scePfsGetWorkBufferSize": [
+    "Pfs",
+    0
+  ],
+  "scePfsPread": [
+    "Pfs",
+    0
+  ],
+  "scePfsPreadDecompressBlock": [
+    "Pfs",
+    0
+  ],
+  "scePfsValidate": [
+    "Pfs",
     0
   ],
   "scePlayGoClose": [
@@ -32675,6 +36623,10 @@
     "PlayerSelectionDialog",
     1
   ],
+  "scePlayerSelectionDialogParamInitialize": [
+    "PlayerSelectionDialog",
+    1
+  ],
   "scePlayerSelectionDialogTerminate": [
     "PlayerSelectionDialog",
     1
@@ -32682,10 +36634,6 @@
   "scePlayerSelectionDialogUpdateStatus": [
     "PlayerSelectionDialog",
     1
-  ],
-  "scePlayerSelectionDialogParamInitialize": [
-    "PlayerSelectionDialog",
-    0
   ],
   "scePngDecCreate": [
     "PngDec",
@@ -32779,6 +36727,14 @@
     "PosixForWebKit",
     1
   ],
+  "arc4random_uniform_nid_postfix": [
+    "PosixForWebKit",
+    1
+  ],
+  "closedir_nid_disambig1_nid_postfix": [
+    "PosixForWebKit",
+    1
+  ],
   "fnmatch_nid_postfix": [
     "PosixForWebKit",
     1
@@ -32815,7 +36771,19 @@
     "PosixForWebKit",
     1
   ],
+  "opendir_nid_disambig1_nid_postfix": [
+    "PosixForWebKit",
+    1
+  ],
   "pthread_setname_np_nid_postfix": [
+    "PosixForWebKit",
+    1
+  ],
+  "readdir_nid_disambig1_nid_postfix": [
+    "PosixForWebKit",
+    1
+  ],
+  "readdir_r_nid_disambig1_nid_postfix": [
     "PosixForWebKit",
     1
   ],
@@ -32877,31 +36845,31 @@
   ],
   "scePs2EmuMenuDialogClose": [
     "Ps2EmuMenuDialog",
-    0
+    1
   ],
   "scePs2EmuMenuDialogGetResult": [
     "Ps2EmuMenuDialog",
-    0
+    1
   ],
   "scePs2EmuMenuDialogGetStatus": [
     "Ps2EmuMenuDialog",
-    0
+    1
   ],
   "scePs2EmuMenuDialogInitialize": [
     "Ps2EmuMenuDialog",
-    0
+    1
   ],
   "scePs2EmuMenuDialogOpen": [
     "Ps2EmuMenuDialog",
-    0
+    1
   ],
   "scePs2EmuMenuDialogTerminate": [
     "Ps2EmuMenuDialog",
-    0
+    1
   ],
   "scePs2EmuMenuDialogUpdateStatus": [
     "Ps2EmuMenuDialog",
-    0
+    1
   ],
   "ScePsmMonoArrayAddrWithSize": [
     "Psm",
@@ -33219,6 +37187,18 @@
     "Psml_debug",
     1
   ],
+  "scePsmlMfsrEnableLightWeight": [
+    "Psml_debug",
+    1
+  ],
+  "scePsmlMfsrEnableQuality8K": [
+    "Psml_debug",
+    1
+  ],
+  "scePsmlMfsrEnableSpecularAA": [
+    "Psml_debug",
+    1
+  ],
   "scePsmlMfsrGetContextBufferRequirement800M3_2": [
     "Psml_debug",
     1
@@ -33228,10 +37208,6 @@
     1
   ],
   "scePsmlMfsrGetMipmapBias": [
-    "Psml_debug",
-    1
-  ],
-  "scePsmlMfsrGetSharedResourcesInitRequirement": [
     "Psml_debug",
     1
   ],
@@ -33267,14 +37243,6 @@
     "Psml_debug",
     0
   ],
-  "scePsmlMfsrEnableQuality8K": [
-    "Psml_debug",
-    0
-  ],
-  "scePsmlMfsrEnableSpecularAA": [
-    "Psml_debug",
-    0
-  ],
   "scePsmlMfsrGetContextBufferRequirement1100": [
     "Psml_debug",
     0
@@ -33292,6 +37260,10 @@
     0
   ],
   "scePsmlMfsrGetDispatchMfsrPacket900": [
+    "Psml_debug",
+    0
+  ],
+  "scePsmlMfsrGetSharedResourcesInitRequirement": [
     "Psml_debug",
     0
   ],
@@ -33811,6 +37783,14 @@
     "Remoteplay",
     0
   ],
+  "sceRemoteplayIsRemoteViewering": [
+    "Remoteplay",
+    0
+  ],
+  "sceRemoteplayNotifyCanWakeup": [
+    "Remoteplay",
+    0
+  ],
   "sceRemoteplayNotifyMbusDeviceRegistComplete": [
     "Remoteplay",
     0
@@ -33843,6 +37823,10 @@
     "Remoteplay",
     0
   ],
+  "sceRemoteplayRegistCallback": [
+    "Remoteplay",
+    0
+  ],
   "sceRemoteplayServerLock": [
     "Remoteplay",
     0
@@ -33868,6 +37852,10 @@
     0
   ],
   "sceRemoteplaySetRpMode": [
+    "Remoteplay",
+    0
+  ],
+  "sceRemoteplayUnregistCallback": [
     "Remoteplay",
     0
   ],
@@ -34251,6 +38239,10 @@
     "Rudp",
     1
   ],
+  "sceRudpPollCancel": [
+    "Rudp",
+    1
+  ],
   "sceRudpPollControl": [
     "Rudp",
     1
@@ -34319,10 +38311,6 @@
     "Rudp",
     0
   ],
-  "sceRudpPollCancel": [
-    "Rudp",
-    0
-  ],
   "sceS3daClose": [
     "S3da",
     0
@@ -34342,302 +38330,6 @@
   "sceSaveDataBackup": [
     "SaveData.native",
     1
-  ],
-  "sceSaveDataGetEventResult": [
-    "SaveData.native",
-    1
-  ],
-  "sceSaveDataGetSaveDataMemory2": [
-    "SaveData.native",
-    1
-  ],
-  "sceSaveDataInitialize3": [
-    "SaveData.native",
-    1
-  ],
-  "sceSaveDataSetSaveDataMemory2": [
-    "SaveData.native",
-    1
-  ],
-  "sceSaveDataSetupSaveDataMemory2": [
-    "SaveData.native",
-    1
-  ],
-  "sceSaveDataSyncSaveDataMemory": [
-    "SaveData.native",
-    1
-  ],
-  "sceSaveDataTerminate": [
-    "SaveData.native",
-    1
-  ],
-  "sceSaveDataTransferringMount": [
-    "SaveData.native",
-    1
-  ],
-  "sceSaveDataAbort": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataBindPsnAccount": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataBindPsnAccountForSystemBackup": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataChangeDatabase": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataChangeInternal": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCheckBackupData": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCheckBackupDataForCdlg": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCheckBackupDataInternal": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCheckBackupDataLight": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCheckCloudData": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCheckSaveDataBroken": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCheckSaveDataVersion": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCheckSaveDataVersionLatest": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataClearProgress": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataCreateUploadData": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDebugGetThreadId": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDeleteAllUser": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDeleteBackupData": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDeleteCloudData": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDeleteProspero": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDeleteTitle": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDeleteUser": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDirNameSearchInternal": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataDownload": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetAllSize": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetAppLaunchedUser": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetAutoUploadConditions": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetAutoUploadRequestInfo": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetAutoUploadSetting": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetBoundPsnAccountCount": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetClientThreadPriority": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetCloudQuotaInfo": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetEventInfo": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetMountedSaveDataCount": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetProgress": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetSaveDataCount": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetSaveDataRootDir": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetSaveDataRootPath": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetSaveDataRootUsbPath": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetSavePoint": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataGetUpdatedDataCount": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataInitialize2": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataInitializeForCdlg": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataIsDeletingUsbDb": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataIsMounted": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataManualDelete": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataManualDownload": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataManualUpload": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataMount5": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataMountInternal": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataMountSys": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataRebuildDatabase": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataRegisterEventCallback": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataRestoreBackupData": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataRestoreBackupDataForCdlg": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataRestoreLoadSaveDataMemory": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataSetAutoUploadSetting": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataSetEventInfo": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataSetSaveDataLibraryUser": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataShutdownStart": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataSupportedFakeBrokenStatus": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataSyncCloudList": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataUmountSys": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataUmountWithBackup": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataUnregisterEventCallback": [
-    "SaveData",
-    0
-  ],
-  "sceSaveDataUpload": [
-    "SaveData",
-    0
   ],
   "sceSaveDataCheckIpmiIfSize": [
     "SaveData.native",
@@ -34711,6 +38403,10 @@
     "SaveData.native",
     1
   ],
+  "sceSaveDataGetEventResult": [
+    "SaveData.native",
+    1
+  ],
   "sceSaveDataGetMountInfo": [
     "SaveData.native",
     1
@@ -34723,7 +38419,15 @@
     "SaveData.native",
     1
   ],
+  "sceSaveDataGetSaveDataMemory2": [
+    "SaveData.native",
+    1
+  ],
   "sceSaveDataInitialize": [
+    "SaveData.native",
+    1
+  ],
+  "sceSaveDataInitialize3": [
     "SaveData.native",
     1
   ],
@@ -34755,7 +38459,27 @@
     "SaveData.native",
     1
   ],
+  "sceSaveDataSetSaveDataMemory2": [
+    "SaveData.native",
+    1
+  ],
   "sceSaveDataSetupSaveDataMemory": [
+    "SaveData.native",
+    1
+  ],
+  "sceSaveDataSetupSaveDataMemory2": [
+    "SaveData.native",
+    1
+  ],
+  "sceSaveDataSyncSaveDataMemory": [
+    "SaveData.native",
+    1
+  ],
+  "sceSaveDataTerminate": [
+    "SaveData.native",
+    1
+  ],
+  "sceSaveDataTransferringMount": [
     "SaveData.native",
     1
   ],
@@ -34771,7 +38495,199 @@
     "SaveData.native",
     1
   ],
+  "sceSaveDataAbort": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataBindPsnAccount": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataBindPsnAccountForSystemBackup": [
+    "SaveData.native",
+    0
+  ],
   "sceSaveDataCancel": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataChangeDatabase": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataChangeInternal": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCheckBackupData": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCheckBackupDataForCdlg": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCheckBackupDataInternal": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCheckBackupDataLight": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCheckCloudData": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCheckSaveDataBroken": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCheckSaveDataVersion": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCheckSaveDataVersionLatest": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataClearProgress": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataCreateUploadData": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDebugGetThreadId": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDeleteAllUser": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDeleteBackupData": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDeleteCloudData": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDeleteProspero": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDeleteTitle": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDeleteUser": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDirNameSearchInternal": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataDownload": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetAllSize": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetAppLaunchedUser": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetAutoUploadConditions": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetAutoUploadRequestInfo": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetAutoUploadSetting": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetBoundPsnAccountCount": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetClientThreadPriority": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetCloudQuotaInfo": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetEventInfo": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetMountedSaveDataCount": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetProgress": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetSaveDataCount": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetSaveDataRootDir": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetSaveDataRootPath": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetSaveDataRootUsbPath": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetSavePoint": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataGetUpdatedDataCount": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataInitialize2": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataInitializeForCdlg": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataIsDeletingUsbDb": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataIsMounted": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataManualDelete": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataManualDownload": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataManualUpload": [
     "SaveData.native",
     0
   ],
@@ -34779,7 +38695,79 @@
     "SaveData.native",
     0
   ],
+  "sceSaveDataMount5": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataMountInternal": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataMountSys": [
+    "SaveData.native",
+    0
+  ],
   "sceSaveDataPrepareForTransferring": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataRebuildDatabase": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataRegisterEventCallback": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataRestoreBackupData": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataRestoreBackupDataForCdlg": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataRestoreLoadSaveDataMemory": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataSetAutoUploadSetting": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataSetEventInfo": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataSetSaveDataLibraryUser": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataShutdownStart": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataSupportedFakeBrokenStatus": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataSyncCloudList": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataUmountSys": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataUmountWithBackup": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataUnregisterEventCallback": [
+    "SaveData.native",
+    0
+  ],
+  "sceSaveDataUpload": [
     "SaveData.native",
     0
   ],
@@ -34788,6 +38776,10 @@
     1
   ],
   "sceSaveDataDialogGetResult": [
+    "SaveDataDialog.native",
+    1
+  ],
+  "sceSaveDataDialogGetStatus": [
     "SaveDataDialog.native",
     1
   ],
@@ -34812,10 +38804,6 @@
     1
   ],
   "sceSaveDataDialogTerminate": [
-    "SaveDataDialog.native",
-    1
-  ],
-  "sceSaveDataDialogGetStatus": [
     "SaveDataDialog.native",
     1
   ],
@@ -36431,6 +40419,14 @@
     "SystemLogger2Delivery",
     0
   ],
+  "sceSystemLogger2GameGetTimestamp": [
+    "SystemLogger2Game",
+    0
+  ],
+  "sceSystemLogger2GameSetEvent": [
+    "SystemLogger2Game",
+    0
+  ],
   "sceSystemLogger2NativeQueueClientCheckAndMaskData": [
     "SystemLogger2NativeQueueClient",
     0
@@ -36660,6 +40656,70 @@
     1
   ],
   "sceSystemServiceShowDisplaySafeAreaSettings": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageGetDeviceInfo": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageGetDeviceList": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageGetdentsClose": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageGetdentsOpen": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageGetdentsRead": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageInit": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageIsExist": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageRegisterCallback": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageRegisterCallbackForMapAvailable": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageRegisterCallbackForMapUnavailable": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageRequestMap": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageRequestUnmap": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageTerm": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageUnregisterCallback": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageUnregisterCallbackForMapAvailable": [
+    "SystemService",
+    1
+  ],
+  "sceSystemServiceUsbStorageUnregisterCallbackForMapUnavailable": [
     "SystemService",
     1
   ],
@@ -38607,71 +42667,7 @@
     "SystemService",
     0
   ],
-  "sceSystemServiceUsbStorageGetDeviceInfo": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageGetDeviceList": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageGetdentsClose": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageGetdentsOpen": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageGetdentsRead": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageInit": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageIsExist": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageRegisterCallback": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageRegisterCallbackForMapAvailable": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageRegisterCallbackForMapUnavailable": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageRequestMap": [
-    "SystemService",
-    0
-  ],
   "sceSystemServiceUsbStorageRequestMapWSB": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageRequestUnmap": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageTerm": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageUnregisterCallback": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageUnregisterCallbackForMapAvailable": [
-    "SystemService",
-    0
-  ],
-  "sceSystemServiceUsbStorageUnregisterCallbackForMapUnavailable": [
     "SystemService",
     0
   ],
@@ -40971,6 +44967,14 @@
     "Videodec2",
     0
   ],
+  "sceVideodec2DecodeFirstSlice": [
+    "Videodec2",
+    0
+  ],
+  "sceVideodec2DecodeNextSlice": [
+    "Videodec2",
+    0
+  ],
   "sceVideodec2GetAvcPictureInfo_nid_postfix": [
     "Videodec2",
     0
@@ -41024,6 +45028,10 @@
     0
   ],
   "sceVideodec2QueryLibraryInfo": [
+    "Videodec2",
+    0
+  ],
+  "sceVideodec2SyncAllSlice": [
     "Videodec2",
     0
   ],
@@ -41883,6 +45891,38 @@
     "VorbisDec",
     0
   ],
+  "sceVrHandFinalize": [
+    "VrHand",
+    0
+  ],
+  "sceVrHandGetMesh": [
+    "VrHand",
+    0
+  ],
+  "sceVrHandGetMeshSize": [
+    "VrHand",
+    0
+  ],
+  "sceVrHandGetResult": [
+    "VrHand",
+    0
+  ],
+  "sceVrHandInitialize": [
+    "VrHand",
+    0
+  ],
+  "sceVrHandQueryMemory": [
+    "VrHand",
+    0
+  ],
+  "sceVrHandStart": [
+    "VrHand",
+    0
+  ],
+  "sceVrHandStop": [
+    "VrHand",
+    0
+  ],
   "sceVrServiceDialogClose": [
     "VrServiceDialog",
     1
@@ -42387,10 +46427,6 @@
     "VrTracker2",
     0
   ],
-  "VrTracker2Unknown02": [
-    "VrTracker2",
-    0
-  ],
   "VrTracker2Unknown03": [
     "VrTracker2",
     0
@@ -42408,6 +46444,10 @@
     0
   ],
   "VrTracker2Unknown07": [
+    "VrTracker2",
+    0
+  ],
+  "sceVrTracker2GetRawCameraMeshSize": [
     "VrTracker2",
     0
   ],
@@ -42485,6 +46525,606 @@
   ],
   "sceWkFontConfigGetFontPath": [
     "WkFontConfig",
+    0
+  ],
+  "_ZN3sce3Xml10SimpleDataC1EPKcm": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml10SimpleDataC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml10SimpleDataC2EPKcm": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml10SimpleDataC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml11Initializer10initializeEPKNS0_13InitParameterE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml11Initializer9terminateEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml11InitializerC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml11InitializerC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml11InitializerD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml11InitializerD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml12MemAllocatorC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml12MemAllocatorD0Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml12MemAllocatorD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml12MemAllocatorD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeList10initializeEPKNS0_11InitializerE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeList12addAttributeEPKNS0_6StringES4_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeList5clearEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeList9terminateEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeListC1ERKS1_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeListC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeListC2ERKS1_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeListC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeListD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml13AttributeListD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml18SerializeParameterC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml18SerializeParameterC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilder10initializeEPKNS0_11InitializerE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilder11getDocumentEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilder16setResolveEntityEb": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilder20setSkipIgnorableTextEb": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilder26setSkipIgnorableWhiteSpaceEb": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilder5parseEPKNS0_6StringEb": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilder9terminateEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilderC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilderC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilderD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom15DocumentBuilderD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4Node11appendChildENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4Node11removeChildENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4Node12insertBeforeENS1_6NodeIdES3_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4NodeC1ENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4NodeC1ERKS2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4NodeC2ENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4NodeC2ERKS2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4NodeD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4NodeD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom4NodeaSERKS2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdC1EPvS3_b": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdC2EPvS3_b": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdaSES2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdcvPvEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdeqES2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdeqEi": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdneES2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdneEi": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom6NodeIdntEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document10importNodeENS1_6NodeIdES3_PKS2_S3_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document10initializeEPKNS0_11InitializerE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document10insertNodeENS1_6NodeIdES3_S3_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document11removeChildENS1_6NodeIdES3_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document11resetStatusEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document11setWritableEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document12importParentEPKS2_NS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document12setAttrValueENS1_6NodeIdEPKNS0_6StringES6_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document12setAttributeENS1_6NodeIdEPKNS0_6StringES6_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document13createElementEPKNS0_6StringEPKNS0_13AttributeListES5_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document13recurseDeleteENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document14createTextNodeEPKNS0_6StringE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document15addElementChildENS1_6NodeIdEPKNS0_6StringEPKNS0_13AttributeListES6_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document15removeAttributeENS1_6NodeIdEPKNS0_6StringE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document16removeAttributesENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document16setAttributeListENS1_6NodeIdEPKNS0_13AttributeListE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document7setTextENS1_6NodeIdEPKNS0_6StringE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document9serializeEPKNS0_18SerializeParameterEPNS0_6StringE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8Document9terminateEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8DocumentC1ERKS2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8DocumentC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8DocumentC2ERKS2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8DocumentC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8DocumentD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8DocumentD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8DocumentaSERKS2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeList10initializeEPKNS0_11InitializerE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeList10insertLastENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeList10removeItemENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeList11insertFirstENS1_6NodeIdE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeList5clearEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeList9terminateEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeListC1ERKS2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeListC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeListC2ERKS2_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeListC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeListD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Dom8NodeListD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6Parser10initializeEPKNS0_11InitializerE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6Parser11setUserDataEPv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6Parser16setResolveEntityEb": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6Parser18setDocumentHandlerEPNS1_15DocumentHandlerE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6Parser26setSkipIgnorableWhiteSpaceEb": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6Parser5parseEPKNS0_6StringEb": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6Parser5resetEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6Parser9terminateEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6ParserC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6ParserC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6ParserD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml3Sax6ParserD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4Attr10initializeEPKNS0_11InitializerE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4Attr7setNameEPKNS0_6StringE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4Attr8setValueEPKNS0_6StringE": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4Attr9terminateEv": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4AttrC1ERKS1_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4AttrC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4AttrC2ERKS1_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4AttrC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4AttrD1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4AttrD2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4AttraSERKS1_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml4Util9strResultEi": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringC1EPKc": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringC1EPKcm": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringC1ERKS1_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringC1Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringC2EPKc": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringC2EPKcm": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringC2ERKS1_": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringC2Ev": [
+    "Xml",
+    0
+  ],
+  "_ZN3sce3Xml6StringaSERKS1_": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml13AttributeList11isAvailableEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml13AttributeList12getAttributeEPKNS0_6StringE": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml13AttributeList12getAttributeEj": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml13AttributeList9getLengthEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node11getNodeNameEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node11getNodeTypeEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node11isAvailableEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node12getLastChildEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node12getNodeValueEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node13getAttributesEPNS1_8NodeListE": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node13getAttributesEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node13getChildNodesEPNS1_8NodeListE": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node13getChildNodesEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node13getFirstChildEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node13getParentNodeEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node13hasAttributesEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node13hasChildNodesEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node14getNextSiblingEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom4Node16getOwnerDocumentEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom8Document10getDocRootEv": [
+    "Xml",
+    0
+  ],
+  "_ZNK3sce3Xml3Dom8Document10getSiblingENS1_6NodeIdE": [
+    "Xml",
     0
   ],
   "sceZlibFinalize": [
@@ -42943,6 +47583,10 @@
     "libc",
     1
   ],
+  "_Btowc_nid_postfix": [
+    "libc",
+    1
+  ],
   "_Call_once_nid_postfix": [
     "libc",
     1
@@ -43039,6 +47683,14 @@
     "libc",
     1
   ],
+  "_Fetch_add_8_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_Fetch_and_8_nid_postfix": [
+    "libc",
+    1
+  ],
   "_Fetch_and_seq_cst_1_nid_postfix": [
     "libc",
     1
@@ -43051,6 +47703,10 @@
     "libc",
     1
   ],
+  "_Fetch_or_8_nid_postfix": [
+    "libc",
+    1
+  ],
   "_Fetch_or_seq_cst_1_nid_postfix": [
     "libc",
     1
@@ -43060,6 +47716,10 @@
     1
   ],
   "_Fetch_or_seq_cst_4_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_Fetch_xor_8_nid_postfix": [
     "libc",
     1
   ],
@@ -43243,6 +47903,10 @@
     "libc",
     1
   ],
+  "_Stopfx_nid_postfix": [
+    "libc",
+    1
+  ],
   "_Stoul_nid_postfix": [
     "libc",
     1
@@ -43407,7 +48071,15 @@
     "libc",
     1
   ],
+  "_WStopfx_nid_postfix": [
+    "libc",
+    1
+  ],
   "_WStoul_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_Wctob_nid_postfix": [
     "libc",
     1
   ],
@@ -43556,6 +48228,14 @@
     1
   ],
   "_ZNSt10bad_typeidD2Ev_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_ZNSt10filesystem18_Xfilesystem_errorEPKcRKNS_4pathESt10error_code_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_ZNSt10filesystem18_Xfilesystem_errorEPKcSt10error_code_nid_postfix": [
     "libc",
     1
   ],
@@ -44367,7 +49047,23 @@
     "libc",
     1
   ],
+  "_ZdaPvRKSt9nothrow_t_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_ZdaPvSt11align_val_tRKSt9nothrow_t_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_ZdaPvSt11align_val_t_nid_postfix": [
+    "libc",
+    1
+  ],
   "_ZdaPv_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_ZdaPvmSt11align_val_t_nid_postfix": [
     "libc",
     1
   ],
@@ -44376,6 +49072,10 @@
     1
   ],
   "_ZdlPvRKSt9nothrow_t_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_ZdlPvSt11align_val_tRKSt9nothrow_t_nid_postfix": [
     "libc",
     1
   ],
@@ -44399,11 +49099,23 @@
     "libc",
     1
   ],
+  "_ZnamSt11align_val_tRKSt9nothrow_t_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_ZnamSt11align_val_t_nid_postfix": [
+    "libc",
+    1
+  ],
   "_Znam_nid_postfix": [
     "libc",
     1
   ],
   "_ZnwmRKSt9nothrow_t_nid_postfix": [
+    "libc",
+    1
+  ],
+  "_ZnwmSt11align_val_tRKSt9nothrow_t_nid_postfix": [
     "libc",
     1
   ],
@@ -45871,6 +50583,10 @@
     "libc",
     1
   ],
+  "digittoint_nid_postfix": [
+    "libc",
+    1
+  ],
   "dirname_nid_postfix": [
     "libc",
     1
@@ -46479,6 +51195,10 @@
     "libc",
     1
   ],
+  "ishexnumber_nid_postfix": [
+    "libc",
+    1
+  ],
   "isinf_nid_postfix": [
     "libc",
     1
@@ -46492,6 +51212,10 @@
     1
   ],
   "isnanf_nid_postfix": [
+    "libc",
+    1
+  ],
+  "isnumber_nid_postfix": [
     "libc",
     1
   ],
@@ -47079,6 +51803,10 @@
     "libc",
     1
   ],
+  "reallocarray_nid_postfix": [
+    "libc",
+    1
+  ],
   "reallocf_nid_postfix": [
     "libc",
     1
@@ -47455,6 +52183,126 @@
     "libc",
     1
   ],
+  "stdc_count_ones_uc_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_ones_ui_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_ones_ul_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_ones_ull_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_ones_us_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_zeros_uc_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_zeros_ui_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_zeros_ul_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_zeros_ull_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_count_zeros_us_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_ones_uc_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_ones_ui_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_ones_ul_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_ones_ull_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_ones_us_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_zeros_uc_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_zeros_ui_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_zeros_ul_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_zeros_ull_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_leading_zeros_us_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_ones_uc_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_ones_ui_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_ones_ul_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_ones_ull_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_ones_us_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_zeros_uc_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_zeros_ui_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_zeros_ul_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_zeros_ull_nid_postfix": [
+    "libc",
+    1
+  ],
+  "stdc_trailing_zeros_us_nid_postfix": [
+    "libc",
+    1
+  ],
   "stpcpy_nid_postfix": [
     "libc",
     1
@@ -47631,6 +52479,10 @@
     "libc",
     1
   ],
+  "strtoq_nid_postfix": [
+    "libc",
+    1
+  ],
   "strtoul_nid_postfix": [
     "libc",
     1
@@ -47712,6 +52564,10 @@
     1
   ],
   "timegm_nid_postfix": [
+    "libc",
+    1
+  ],
+  "timingsafe_memcmp_nid_postfix": [
     "libc",
     1
   ],
@@ -48132,6 +52988,34 @@
     0
   ],
   "_ZSt14_Atomic_assertPKcS0__nid_postfix": [
+    "libc",
+    0
+  ],
+  "__std_max_4i_nid_postfix": [
+    "libc",
+    0
+  ],
+  "__std_max_4u_nid_postfix": [
+    "libc",
+    0
+  ],
+  "__std_max_8i_nid_postfix": [
+    "libc",
+    0
+  ],
+  "__std_max_8u_nid_postfix": [
+    "libc",
+    0
+  ],
+  "__std_min_4i_nid_postfix": [
+    "libc",
+    0
+  ],
+  "__std_min_4u_nid_postfix": [
+    "libc",
+    0
+  ],
+  "__std_min_8i_nid_postfix": [
     "libc",
     0
   ],
@@ -48580,6 +53464,34 @@
     1
   ],
   "kqueue_nid_postfix": [
+    "libkernel",
+    1
+  ],
+  "ksem_destroy_nid_postfix": [
+    "libkernel",
+    1
+  ],
+  "ksem_getvalue_nid_postfix": [
+    "libkernel",
+    1
+  ],
+  "ksem_init_nid_postfix": [
+    "libkernel",
+    1
+  ],
+  "ksem_post_nid_postfix": [
+    "libkernel",
+    1
+  ],
+  "ksem_timedwait_nid_postfix": [
+    "libkernel",
+    1
+  ],
+  "ksem_trywait_nid_postfix": [
+    "libkernel",
+    1
+  ],
+  "ksem_wait_nid_postfix": [
     "libkernel",
     1
   ],
@@ -49623,10 +54535,6 @@
     "libkernel",
     1
   ],
-  "sceKernelGetAppInfo": [
-    "libkernel",
-    1
-  ],
   "sceKernelGetAvailableCpumask": [
     "libkernel",
     1
@@ -50427,6 +55335,10 @@
     "libkernel",
     1
   ],
+  "scePthreadMutexattrSetkind": [
+    "libkernel",
+    1
+  ],
   "scePthreadMutexattrSetprioceiling": [
     "libkernel",
     1
@@ -50628,6 +55540,10 @@
     1
   ],
   "sem_reltimedwait_np_nid_postfix": [
+    "libkernel",
+    1
+  ],
+  "sem_setname_nid_postfix": [
     "libkernel",
     1
   ],
@@ -51011,6 +55927,10 @@
     "libkernel",
     0
   ],
+  "sceKernelGetAppInfo": [
+    "libkernel",
+    0
+  ],
   "sceKernelGetProcessAbiType": [
     "libkernel",
     0
@@ -51084,10 +56004,6 @@
     0
   ],
   "sceKernelUnknown19": [
-    "libkernel",
-    0
-  ],
-  "scePthreadMutexattrSetkind": [
     "libkernel",
     0
   ],
@@ -51167,6 +56083,10 @@
     "libkernel_sys",
     1
   ],
+  "kenv_nid_postfix": [
+    "libkernel_sys",
+    1
+  ],
   "kldfind_nid_postfix": [
     "libkernel_sys",
     1
@@ -51179,7 +56099,19 @@
     "libkernel_sys",
     1
   ],
+  "kldstat_nid_postfix": [
+    "libkernel_sys",
+    1
+  ],
+  "kldsym_nid_postfix": [
+    "libkernel_sys",
+    1
+  ],
   "kldunload_nid_postfix": [
+    "libkernel_sys",
+    1
+  ],
+  "lchflags_nid_postfix": [
     "libkernel_sys",
     1
   ],
@@ -51271,6 +56203,10 @@
     "libkernel_sys",
     1
   ],
+  "sceKernelGetCpumodeGame": [
+    "libkernel_sys",
+    1
+  ],
   "sceKernelGetModuleInfoInternal": [
     "libkernel_sys",
     1
@@ -51311,11 +56247,35 @@
     "libkernel_sys",
     1
   ],
+  "sceKernelIsGenuineCEX": [
+    "libkernel_sys",
+    1
+  ],
+  "sceKernelIsGenuineDevKit": [
+    "libkernel_sys",
+    1
+  ],
   "sceKernelIsGenuineKratosCex": [
     "libkernel_sys",
     1
   ],
   "sceKernelIsGenuineN": [
+    "libkernel_sys",
+    1
+  ],
+  "sceKernelIsGenuineTestKit": [
+    "libkernel_sys",
+    1
+  ],
+  "sceKernelIsKratos": [
+    "libkernel_sys",
+    1
+  ],
+  "sceKernelIsProspero": [
+    "libkernel_sys",
+    1
+  ],
+  "sceKernelIsTestKit": [
     "libkernel_sys",
     1
   ],
@@ -51471,6 +56431,14 @@
     "libkernel_sys",
     1
   ],
+  "scePthreadMutexInitForInternalLibc": [
+    "libkernel_sys",
+    1
+  ],
+  "scePthreadMutexattrInitForInternalLibc": [
+    "libkernel_sys",
+    1
+  ],
   "scePthreadResume": [
     "libkernel_sys",
     1
@@ -51615,19 +56583,7 @@
     "libkernel_sys",
     0
   ],
-  "kenv_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
   "kldload_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "kldstat_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "kldsym_nid_postfix": [
     "libkernel_sys",
     0
   ],
@@ -51659,31 +56615,7 @@
     "libkernel_sys",
     0
   ],
-  "ksem_destroy_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "ksem_getvalue_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "ksem_init_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
   "ksem_open_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "ksem_post_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "ksem_timedwait_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "ksem_trywait_nid_postfix": [
     "libkernel_sys",
     0
   ],
@@ -51691,15 +56623,7 @@
     "libkernel_sys",
     0
   ],
-  "ksem_wait_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
   "ktrace_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "lchflags_nid_postfix": [
     "libkernel_sys",
     0
   ],
@@ -52139,10 +57063,6 @@
     "libkernel_sys",
     0
   ],
-  "sceKernelGetCpumodeGame": [
-    "libkernel_sys",
-    0
-  ],
   "sceKernelGetCurrentFanDuty": [
     "libkernel_sys",
     0
@@ -52571,23 +57491,7 @@
     "libkernel_sys",
     0
   ],
-  "sceKernelIsGenuineCEX": [
-    "libkernel_sys",
-    0
-  ],
-  "sceKernelIsGenuineDevKit": [
-    "libkernel_sys",
-    0
-  ],
-  "sceKernelIsGenuineTestKit": [
-    "libkernel_sys",
-    0
-  ],
   "sceKernelIsInSandbox": [
-    "libkernel_sys",
-    0
-  ],
-  "sceKernelIsKratos": [
     "libkernel_sys",
     0
   ],
@@ -52611,15 +57515,7 @@
     "libkernel_sys",
     0
   ],
-  "sceKernelIsProspero": [
-    "libkernel_sys",
-    0
-  ],
   "sceKernelIsPs4Process": [
-    "libkernel_sys",
-    0
-  ],
-  "sceKernelIsTestKit": [
     "libkernel_sys",
     0
   ],
@@ -53039,10 +57935,6 @@
     "libkernel_sys",
     0
   ],
-  "scePthreadMutexInitForInternalLibc": [
-    "libkernel_sys",
-    0
-  ],
   "scePthreadMutexIsowned": [
     "libkernel_sys",
     0
@@ -53052,10 +57944,6 @@
     0
   ],
   "scePthreadMutexattrGetgen": [
-    "libkernel_sys",
-    0
-  ],
-  "scePthreadMutexattrInitForInternalLibc": [
     "libkernel_sys",
     0
   ],
@@ -53084,10 +57972,6 @@
     0
   ],
   "sched_setscheduler_nid_postfix": [
-    "libkernel_sys",
-    0
-  ],
-  "sem_setname_nid_postfix": [
     "libkernel_sys",
     0
   ],

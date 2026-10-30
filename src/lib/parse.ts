@@ -20,7 +20,12 @@ export function postImages(body: string): { src: string; alt: string }[] {
   const text = body.replace(/^(```|~~~)[\s\S]*?^\1/gm, "").replace(/`[^`\n]*`/g, "");
   const found: { src: string; alt: string }[] = [];
   for (const m of text.matchAll(/!\[([^\]]*)\]\(\s*<?(https?:\/\/[^)\s>]+)>?(?:\s+"[^"]*")?\s*\)|<img\b([^>]*)>/gi)) {
-    const attr = (name: string) => m[3]?.match(new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, "i"))?.slice(1).find((v) => v !== undefined);
+    // Values may be quoted or bare (`src=https://...`, as some editors paste them); a bare one ends at a space or "/>".
+    const attr = (name: string) =>
+      m[3]
+        ?.match(new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s"'>]+?)(?=\\s|/?$))`, "i"))
+        ?.slice(1)
+        .find((v) => v !== undefined);
     const src = (m[2] ?? attr("src") ?? "").replace(/&amp;/g, "&");
     const alt = (m[1] ?? attr("alt") ?? "").trim();
     if (/^https?:\/\//i.test(src) && !NOT_SCREENSHOTS.test(src) && !found.some((f) => f.src === src)) found.push({ src, alt });

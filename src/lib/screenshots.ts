@@ -38,11 +38,12 @@ export interface Screenshot {
   gpuVendor: string | null;
 }
 
-/** File-name alt text ("image", "Screenshot 2026-10-19 195751") says nothing; real captions are kept. */
+/** File-name alt text ("image", "Screenshot 2026-10-19 195751", a Snipping Tool "{GUID}") says nothing; real captions are kept. */
 export function caption(alt: string): string | null {
   const text = alt.trim();
   if (!text || /^(image|img|screenshot|captura|снимок|изображение|untitled)[\s_\-\d.:()a-z]*$/i.test(text) || /\.(png|jpe?g|webp|gif)$/i.test(text)) return null;
   if (/^(screenshot|captura de pantalla|bildschirmfoto|snapshot)[\s_\-]*\d/i.test(text)) return null;
+  if (/^\{?[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}\}?$/i.test(text)) return null;
   return text;
 }
 

@@ -1083,9 +1083,9 @@
     "number": 5209,
     "kind": "pr",
     "title": "fix(libSceFont): keep horizontal writing on a single baseline",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/5209",
-    "closedAt": null
+    "closedAt": "2026-10-29T07:43:03Z"
   },
   "5217": {
     "number": 5217,
@@ -1966,6 +1966,14 @@
     "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/6372",
     "closedAt": "2026-10-15T21:58:29Z"
+  },
+  "6412": {
+    "number": 6412,
+    "kind": "pr",
+    "title": "fix(recompiler): defer the TYPE check of a guarded read-only static V#",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/6412",
+    "closedAt": null
   },
   "6414": {
     "number": 6414,
@@ -3195,9 +3203,9 @@
     "number": 9431,
     "kind": "pr",
     "title": "feat(libSceAgcDriver): draw PS4 (GCN) command buffers",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9431",
-    "closedAt": null
+    "closedAt": "2026-10-29T08:31:14Z"
   },
   "9432": {
     "number": 9432,
@@ -3703,6 +3711,14 @@
     "url": "https://github.com/boykopovar/AnyPS5/issues/11205",
     "closedAt": null
   },
+  "11315": {
+    "number": 11315,
+    "kind": "pr",
+    "title": "feat(ngs2): implement custom PitchShift and external render jobs",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/11315",
+    "closedAt": "2026-10-29T11:57:07Z"
+  },
   "11369": {
     "number": 11369,
     "kind": "pr",
@@ -3710,6 +3726,14 @@
     "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11369",
     "closedAt": "2026-10-28T13:49:10Z"
+  },
+  "11469": {
+    "number": 11469,
+    "kind": "issue",
+    "title": "AGC: a fragment shader's T# loaded through a runtime index inside an EXEC-guarded block is read on the CPU, so Sonic the Hedgehog (2006) Recompiled (PPSA99903) stops at \"guest memory is not readable\"",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/issues/11469",
+    "closedAt": null
   },
   "11485": {
     "number": 11485,
@@ -3734,6 +3758,14 @@
     "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11507",
     "closedAt": "2026-10-28T09:14:51Z"
+  },
+  "11562": {
+    "number": 11562,
+    "kind": "issue",
+    "title": "AGC: Sonic the Hedgehog (2006) Recompiled (PPSA99903) draws its stage geometry with stale data unless draws or packet stores are synchronous",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/issues/11562",
+    "closedAt": null
   },
   "11571": {
     "number": 11571,
@@ -3807,6 +3839,22 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/11951",
     "closedAt": null
   },
+  "11995": {
+    "number": 11995,
+    "kind": "pr",
+    "title": "fix(agc): hold small labels behind completions that store guest memory",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/11995",
+    "closedAt": null
+  },
+  "11998": {
+    "number": 11998,
+    "kind": "pr",
+    "title": "fix(agc): accept a non-finite DB_DEPTH_CLEAR until a clear uses it",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/11998",
+    "closedAt": null
+  },
   "12059": {
     "number": 12059,
     "kind": "pr",
@@ -3815,12 +3863,36 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/12059",
     "closedAt": "2026-10-28T09:54:21Z"
   },
+  "12071": {
+    "number": 12071,
+    "kind": "pr",
+    "title": "perf(libc): fetch SSE4a instruction bytes directly within the faulting page",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/12071",
+    "closedAt": null
+  },
   "12123": {
     "number": 12123,
     "kind": "issue",
     "title": "relinker: God of War Ragnarök's bundled libc.prx has an inline _umtx_op wait (syscall 454) with a non-FreeBSD argument layout",
     "state": "open",
     "url": "https://github.com/boykopovar/AnyPS5/issues/12123",
+    "closedAt": null
+  },
+  "12208": {
+    "number": 12208,
+    "kind": "pr",
+    "title": "fix(shader): poison an SRT read below a pointer loaded from memory",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/12208",
+    "closedAt": null
+  },
+  "12923": {
+    "number": 12923,
+    "kind": "pr",
+    "title": "fix(agc): don't release a label wait on a store its queue already took and reset",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/12923",
     "closedAt": null
   }
 }

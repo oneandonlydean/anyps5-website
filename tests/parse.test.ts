@@ -92,6 +92,17 @@ describe("postImages", () => {
     ]);
   });
 
+  it("reads HTML images with unquoted attributes", () => {
+    const body = [
+      "<img width=763 height=454 alt={4D867433-FCEF-4259-B717-30446CAD249B} src=https://github.com/user-attachments/assets/780f090b />",
+      "<img alt=menu src=https://example.com/b.png/>",
+    ].join("\n");
+    expect(postImages(body)).toEqual([
+      { src: "https://github.com/user-attachments/assets/780f090b", alt: "{4D867433-FCEF-4259-B717-30446CAD249B}" },
+      { src: "https://example.com/b.png", alt: "menu" },
+    ]);
+  });
+
   it("skips code, badges, duplicates and non-http sources", () => {
     const body = [
       "```\n![log](https://example.com/in-code.png)\n```",

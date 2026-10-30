@@ -80,6 +80,7 @@ describe("caption", () => {
     ["Captura de pantalla_20261018_1", null],
     ["run1-10-automap-back.png", null],
     ["", null],
+    ["{4D867433-FCEF-4259-B717-30446CAD249B}", null],
     ["Main menu", "Main menu"],
     ["Act 1, rings", "Act 1, rings"],
   ])("%j → %j", (alt, expected) => expect(caption(alt)).toBe(expected));

@@ -57,6 +57,15 @@
       "SteamGridDB"
     ]
   },
+  "PPSA01153": {
+    "checked": "2026-10-29T11:39:33.877Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
   "PPSA01289": {
     "checked": "2026-10-29T05:22:34.965Z",
     "square": "https://image.api.playstation.com/vulcan/img/rnd/202010/1614/TJiBEQMJ9qa93lWBu4sKScY9.png",
@@ -2985,6 +2994,17 @@
     "color": null,
     "credits": []
   },
+  "PPSA98001": {
+    "checked": "2026-10-29T11:39:34.136Z",
+    "square": "https://cdn2.steamgriddb.com/grid/5560665655135c8ebd43c7fa33982fae.png",
+    "cover": "https://cdn2.steamgriddb.com/grid/2c02aa81d598f7969faaee4e1e7d9919.png",
+    "hero": "https://cdn2.steamgriddb.com/hero/ef7141e5a52641b0941128fcbbde8a27.png",
+    "logo": "https://cdn2.steamgriddb.com/logo/6bca76cea8f3c180cd035d70f9bc7b0c.png",
+    "color": "#336998",
+    "credits": [
+      "SteamGridDB"
+    ]
+  },
   "PPSA98512": {
     "checked": "2026-10-29T05:23:06.824Z",
     "square": null,
@@ -3007,6 +3027,15 @@
   },
   "PPSA98766": {
     "checked": "2026-10-29T05:23:17.309Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
+  "PPSA99000": {
+    "checked": "2026-10-29T11:39:33.699Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -3213,6 +3242,15 @@
     "color": null,
     "credits": []
   },
+  "PPSA99793": {
+    "checked": "2026-10-29T11:39:33.891Z",
+    "square": null,
+    "cover": null,
+    "hero": null,
+    "logo": null,
+    "color": null,
+    "credits": []
+  },
   "PPSA99866": {
     "checked": "2026-10-29T05:23:05.444Z",
     "square": null,
@@ -3265,6 +3303,17 @@
     "hero": "https://cdn2.steamgriddb.com/hero/2fc1df7ac6e00ffac3509b070b117ddc.png",
     "logo": "https://cdn2.steamgriddb.com/logo/ce3b5506fc4151c97d646dc6fce8b1f5.png",
     "color": "#3b5c82",
+    "credits": [
+      "SteamGridDB"
+    ]
+  },
+  "PPSA99903": {
+    "checked": "2026-10-29T19:02:15.120Z",
+    "square": "https://cdn2.steamgriddb.com/grid/0e9c3e4954b2b9d017506c4c6e10e45e.png",
+    "cover": "https://cdn2.steamgriddb.com/grid/5b91bbeeac59db4371e96f799b0c0ddd.png",
+    "hero": "https://cdn2.steamgriddb.com/hero/3a8b781906eaa647a820ba901f9dad36.png",
+    "logo": "https://cdn2.steamgriddb.com/logo/1129cb8ba4665189d5a9bd861a2e28b9.png",
+    "color": "#e3a25e",
     "credits": [
       "SteamGridDB"
     ]
