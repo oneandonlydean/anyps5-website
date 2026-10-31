@@ -362,7 +362,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
         crowdRows.map((row, r) =>
           row.length ? (
             <div class="lane" aria-label={r === 0 ? t.home.moreContributors : undefined}>
-              <span class="lane-label">{r === 0 ? t.home.contributors : ""}</span>
               <div class="window">
                 <div class:list={["track", { reverse: r === 1 }]} style={`--duration:${Math.max(row.length * 1.4, 40)}s`}>
                   {[0, 1].map((copy) => (
@@ -418,7 +417,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       {
         laneTesters.length > 0 && (
           <div class="lane testers" aria-label={t.home.testers}>
-            <span class="lane-label">{t.home.testers}</span>
             <div class="window">
               <div class="track" style={`--duration:${Math.max(laneTesters.length * 1.6, 40)}s`}>
                 {[0, 1].map((copy) => (
@@ -1251,6 +1249,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
 
   .crowd {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 6px;
     margin-bottom: clamp(40px, 5vw, 56px);
   }
@@ -1280,19 +1279,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .people {
     padding-bottom: 0;
   }
-  .lane {
-    display: grid;
-    grid-template-columns: 110px minmax(0, 1fr);
-    align-items: center;
-    gap: 16px;
-  }
-  .lane-label {
-    color: var(--faint);
-    font: 500 0.72rem var(--mono);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-align: right;
-  }
   .track {
     display: flex;
     width: max-content;
@@ -1307,9 +1293,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     padding-top: 34px;
     margin-top: -28px;
     mask-image: linear-gradient(to right, transparent, black 60px, black calc(100% - 60px), transparent);
-  }
-  .lane-label {
-    padding-top: 6px;
   }
   .lane:hover .track,
   .lane:focus-within .track {
@@ -1493,12 +1476,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     }
     .rank {
       font-size: 2.2rem;
-    }
-    .lane {
-      grid-template-columns: 1fr;
-    }
-    .lane-label {
-      display: none;
     }
     .status {
       gap: 10px;
