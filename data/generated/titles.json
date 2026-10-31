@@ -139,10 +139,20 @@
     "region": "EP",
     "concept": "10001114"
   },
+  "PPSA02195": {
+    "name": "Trackmania",
+    "region": "EP",
+    "concept": "10001758"
+  },
   "PPSA02225": {
     "name": "Ghost of Tsushima",
     "region": "UP",
     "concept": "235227"
+  },
+  "PPSA02306": {
+    "name": "Spirit of the North: Enhanced Edition",
+    "region": "UP",
+    "concept": "10001854"
   },
   "PPSA02327": {
     "name": "OlliOlli World",
@@ -154,6 +164,11 @@
     "region": "EP",
     "concept": "10000264"
   },
+  "PPSA02508": {
+    "name": "Evil Inside",
+    "region": "EP",
+    "concept": "10002054"
+  },
   "PPSA02530": {
     "name": "PRAGMATA",
     "region": "UP",
@@ -163,6 +178,11 @@
     "name": "Alan Wake 2",
     "region": "EP",
     "concept": "10002065"
+  },
+  "PPSA02629": {
+    "name": "Trek To Yomi",
+    "region": "EP",
+    "concept": "10002134"
   },
   "PPSA02630": {
     "name": "Destruction AllStars™",
@@ -404,6 +424,21 @@
     "region": "EP",
     "concept": "10003386"
   },
+  "PPSA04610": {
+    "name": "ELDEN RING™",
+    "region": "UP",
+    "concept": "10000333"
+  },
+  "PPSA04795": {
+    "name": "KLONOA Phantasy Reverie Series",
+    "region": "EP",
+    "concept": "10003540"
+  },
+  "PPSA04921": {
+    "name": "In Sound Mind",
+    "region": "EP",
+    "concept": "10001487"
+  },
   "PPSA05106": {
     "name": "Severed Steel",
     "region": "EP",
@@ -413,6 +448,11 @@
     "name": "Persona 5 Royal",
     "region": "EP",
     "concept": "10002771"
+  },
+  "PPSA05213": {
+    "name": "Thymesia",
+    "region": "EP",
+    "concept": "10003778"
   },
   "PPSA05324": {
     "name": "Sonic Origins",
@@ -428,6 +468,16 @@
     "name": "Builder's Journey",
     "region": "EP",
     "concept": "10003909"
+  },
+  "PPSA05595": {
+    "name": "Kao the Kangaroo",
+    "region": "UP",
+    "concept": "10003980"
+  },
+  "PPSA05626": {
+    "name": "Fobia - St. Dinfna Hotel",
+    "region": "EP",
+    "concept": "10004006"
   },
   "PPSA05666": {
     "name": "Horizon Call of the Mountain",
@@ -514,6 +564,21 @@
     "region": "UP",
     "concept": "10004604"
   },
+  "PPSA06774": {
+    "name": "ARMORED CORE™ VI FIRES OF RUBICON™",
+    "region": "UP",
+    "concept": "10001815"
+  },
+  "PPSA06829": {
+    "name": "Insomnis",
+    "region": "EP",
+    "concept": "234750"
+  },
+  "PPSA06866": {
+    "name": "Divinity: Original Sin 2 - Definitive Edition",
+    "region": "EP",
+    "concept": "232084"
+  },
   "PPSA06888": {
     "name": "SONIC SUPERSTARS",
     "region": "UP",
@@ -579,6 +644,11 @@
     "region": "HP",
     "concept": "10005076"
   },
+  "PPSA07653": {
+    "name": "Oxide Room 104",
+    "region": "EP",
+    "concept": "10004255"
+  },
   "PPSA07656": {
     "name": "The Grinch: Christmas Adventures",
     "region": "EP",
@@ -589,10 +659,20 @@
     "region": "UP",
     "concept": "232708"
   },
+  "PPSA08056": {
+    "name": "Under The Waves",
+    "region": "UP",
+    "concept": "10005244"
+  },
   "PPSA08102": {
     "name": "Outer Wilds",
     "region": "EP",
     "concept": "229826"
+  },
+  "PPSA08194": {
+    "name": "Asterigos: Curse of the Stars",
+    "region": "EP",
+    "concept": "10005233"
   },
   "PPSA08270": {
     "name": "Eternights",
@@ -624,6 +704,11 @@
     "region": "UP",
     "concept": "217012"
   },
+  "PPSA08710": {
+    "name": "SILENT HILL 2",
+    "region": "UP",
+    "concept": "10005529"
+  },
   "PPSA08766": {
     "name": "Cocoon",
     "region": "EP",
@@ -639,10 +724,20 @@
     "region": "EP",
     "concept": "10005693"
   },
+  "PPSA09196": {
+    "name": "Last Days of Lazarus",
+    "region": "EP",
+    "concept": "10005733"
+  },
   "PPSA09346": {
     "name": "The Last Faith",
     "region": "EP",
     "concept": "10005554"
+  },
+  "PPSA09426": {
+    "name": "Bramble The Mountain King",
+    "region": "EP",
+    "concept": "10004805"
   },
   "PPSA09477": {
     "name": "Quake II",
@@ -684,6 +779,11 @@
     "region": "EP",
     "concept": "10006168"
   },
+  "PPSA10595": {
+    "name": "TEKKEN™8",
+    "region": "UP",
+    "concept": "10006270"
+  },
   "PPSA10737": {
     "name": "Little Nightmares Enhanced Edition",
     "region": "EP",
@@ -698,6 +798,11 @@
     "name": "007 First Light",
     "region": "EP",
     "concept": "10006560"
+  },
+  "PPSA12363": {
+    "name": "GameDEC",
+    "region": "EP",
+    "concept": "10006851"
   },
   "PPSA12544": {
     "name": "Hollow Knight: Silksong",
@@ -758,6 +863,11 @@
     "name": "METAL GEAR SOLID Δ: SNAKE EATER",
     "region": "JP",
     "concept": "10007293"
+  },
+  "PPSA15368": {
+    "name": "Contra: Operation Galuga",
+    "region": "EP",
+    "concept": "10007962"
   },
   "PPSA15388": {
     "name": "High on Life",
@@ -874,6 +984,11 @@
     "region": "UP",
     "concept": "10009456"
   },
+  "PPSA19450": {
+    "name": "Planet of Lana",
+    "region": "EP",
+    "concept": "10009541"
+  },
   "PPSA19591": {
     "name": "Darkest Dungeon II",
     "region": "EP",
@@ -954,6 +1069,11 @@
     "region": "UP",
     "concept": "10010353"
   },
+  "PPSA21480": {
+    "name": "Broken Sword - Shadow of the Templars: Reforged",
+    "region": "UP",
+    "concept": "10008760"
+  },
   "PPSA21564": {
     "name": "ASTRO BOT",
     "region": "UP",
@@ -973,6 +1093,11 @@
     "name": "Vampire Survivors",
     "region": "EB",
     "concept": "10010458"
+  },
+  "PPSA22102": {
+    "name": "Squirrel with a Gun",
+    "region": "UP",
+    "concept": "10010627"
   },
   "PPSA22408": {
     "name": "HOT WHEELS™️ Infinite Rush",
@@ -1014,6 +1139,11 @@
     "region": "JP",
     "concept": "10009075"
   },
+  "PPSA24156": {
+    "name": "My First Gran Turismo®",
+    "region": "UP",
+    "concept": "10011588"
+  },
   "PPSA24191": {
     "name": "Monster Hunter Wilds",
     "region": "HP",
@@ -1048,6 +1178,11 @@
     "name": "Sword Of The Sea",
     "region": "EP",
     "concept": "10011227"
+  },
+  "PPSA25646": {
+    "name": "Tetris® Forever",
+    "region": "UP",
+    "concept": "10012314"
   },
   "PPSA25872": {
     "name": "Terminator 2D: NO FATE",
@@ -1279,6 +1414,11 @@
     "region": "UP",
     "concept": "10017367"
   },
+  "PPSA34114": {
+    "name": "RuneScape: Dragonwilds",
+    "region": "EP",
+    "concept": "10017405"
+  },
   "PPSA34501": {
     "name": "Call of Duty®: Black Ops",
     "region": "UP",
@@ -1288,6 +1428,11 @@
     "name": "CONTROL Resonant",
     "region": "EP",
     "concept": "10017682"
+  },
+  "PPSA34823": {
+    "name": "New Super Lucky's Tale",
+    "region": "EP",
+    "concept": "10000800"
   },
   "PPSA34959": {
     "name": "The King is Watching",

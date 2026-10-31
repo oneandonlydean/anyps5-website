@@ -7,8 +7,8 @@
       "PPSA21564"
     ],
     "created": "2026-10-02T12:30:16Z",
-    "updated": "2026-10-26T21:27:45Z",
-    "comments": 67,
+    "updated": "2026-10-31T14:03:11Z",
+    "comments": 70,
     "reports": [],
     "media": [
       {
@@ -105,8 +105,8 @@
       "PPSA26344"
     ],
     "created": "2026-10-05T14:20:37Z",
-    "updated": "2026-10-30T03:42:43Z",
-    "comments": 84,
+    "updated": "2026-10-31T19:39:17Z",
+    "comments": 89,
     "reports": [],
     "media": [
       {
@@ -407,8 +407,8 @@
       "PPSA04264"
     ],
     "created": "2026-10-07T17:29:49Z",
-    "updated": "2026-10-28T21:10:55Z",
-    "comments": 22,
+    "updated": "2026-10-31T10:28:26Z",
+    "comments": 25,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/1203",
@@ -615,8 +615,8 @@
       "PPSA07631"
     ],
     "created": "2026-10-08T10:17:18Z",
-    "updated": "2026-10-29T07:54:42Z",
-    "comments": 13,
+    "updated": "2026-10-31T15:23:16Z",
+    "comments": 14,
     "reports": [],
     "media": [
       {
@@ -854,8 +854,8 @@
       "PPSA05324"
     ],
     "created": "2026-10-09T05:13:32Z",
-    "updated": "2026-10-10T01:06:32Z",
-    "comments": 5,
+    "updated": "2026-10-31T17:26:11Z",
+    "comments": 6,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/2021",
@@ -1557,8 +1557,8 @@
       "PPSA28416"
     ],
     "created": "2026-10-10T21:52:22Z",
-    "updated": "2026-10-11T20:23:35Z",
-    "comments": 3,
+    "updated": "2026-10-30T09:02:08Z",
+    "comments": 4,
     "reports": [],
     "media": []
   },
@@ -2076,7 +2076,7 @@
       "PPSA99902"
     ],
     "created": "2026-10-12T11:46:32Z",
-    "updated": "2026-10-28T08:20:13Z",
+    "updated": "2026-10-31T20:25:16Z",
     "comments": 0,
     "reports": [],
     "media": []
@@ -2287,8 +2287,8 @@
       "PPSA01317"
     ],
     "created": "2026-10-12T19:11:57Z",
-    "updated": "2026-10-24T18:40:28Z",
-    "comments": 20,
+    "updated": "2026-10-31T20:50:29Z",
+    "comments": 21,
     "reports": [],
     "media": [
       {
@@ -2826,8 +2826,8 @@
       "PPSA18216"
     ],
     "created": "2026-10-13T16:06:03Z",
-    "updated": "2026-10-29T04:02:55Z",
-    "comments": 9,
+    "updated": "2026-10-31T17:57:01Z",
+    "comments": 10,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/5268",
@@ -3132,7 +3132,7 @@
       "PPSA34501"
     ],
     "created": "2026-10-13T18:35:46Z",
-    "updated": "2026-10-23T16:23:02Z",
+    "updated": "2026-10-31T14:07:26Z",
     "comments": 1,
     "reports": [
       {
@@ -3140,7 +3140,7 @@
         "discussion": 5389,
         "author": "alexpournaras",
         "date": "2026-10-13T18:35:46Z",
-        "edited": "2026-10-23T16:23:02Z",
+        "edited": "2026-10-31T14:07:26Z",
         "stage": "Starts",
         "platform": null,
         "gpu": null,
@@ -3186,8 +3186,8 @@
       "PPSA02015"
     ],
     "created": "2026-10-13T19:26:51Z",
-    "updated": "2026-10-22T14:21:11Z",
-    "comments": 5,
+    "updated": "2026-10-31T20:08:13Z",
+    "comments": 6,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/5424#discussioncomment-18935811",
@@ -4959,8 +4959,8 @@
       "PPSA16018"
     ],
     "created": "2026-10-15T20:45:03Z",
-    "updated": "2026-10-15T21:52:47Z",
-    "comments": 2,
+    "updated": "2026-10-31T15:07:56Z",
+    "comments": 3,
     "reports": [],
     "media": []
   },
@@ -5464,8 +5464,8 @@
       "PPSA22408"
     ],
     "created": "2026-10-16T17:02:50Z",
-    "updated": "2026-10-26T08:49:19Z",
-    "comments": 7,
+    "updated": "2026-10-30T10:10:48Z",
+    "comments": 8,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6895",
@@ -5511,8 +5511,8 @@
       "PPSA01907"
     ],
     "created": "2026-10-16T19:59:41Z",
-    "updated": "2026-10-17T18:47:28Z",
-    "comments": 2,
+    "updated": "2026-10-31T16:28:56Z",
+    "comments": 5,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6933",
@@ -6347,7 +6347,7 @@
       "PPSA34547"
     ],
     "created": "2026-10-17T22:25:39Z",
-    "updated": "2026-10-23T21:05:14Z",
+    "updated": "2026-10-31T11:34:18Z",
     "comments": 1,
     "reports": [
       {
@@ -6355,22 +6355,27 @@
         "discussion": 7302,
         "author": "hugodearaujo",
         "date": "2026-10-17T22:25:39Z",
-        "edited": "2026-10-18T12:39:02Z",
-        "stage": "Menus",
+        "edited": "2026-10-31T11:34:18Z",
+        "stage": "Ingame",
         "platform": "linux",
         "gpu": "AMD Radeon RX 9070 XT",
         "gpuVendor": "AMD",
-        "build": "main 6005185ee, alone and with #7300.",
+        "build": "main 6005185ee, alone and with #7300 (first post); main de83e8f270, alone, with #11580, with #11580 and #12458, and with those and #13894 (updates of 2026-10-31).",
         "buildKind": "prs",
         "prs": [
-          7300
+          7300,
+          11580,
+          12458,
+          13894
         ],
         "version": "01.300.300",
-        "shown": "The photosensitivity warning, the Remedy end-user license agreement and privacy policy (they scroll with the right stick and accept with Cross), the display calibration screen with its three rendered reference scenes, and First Time Setup, at about 28 FPS. Cross, the D-pad and…",
+        "shown": "The photosensitivity warning, the Remedy end-user license agreement and privacy policy (they scroll with the right stick and accept with Cross), the display calibration screen with its three rendered reference scenes, and First Time Setup, at about 28 FPS; then the save icon n…",
         "blockers": [
+          11580,
+          12458,
           7300
         ],
-        "blockerText": "None found yet: the runs so far ended on First Time Setup, 7 minutes in, with nothing in the log; what follows it is not tested yet.\n\nNeeded to get here on `main` 6005185ee:\n- #7300 (merged as `582de4cc1`, so current `main` needs nothing else to get here): without it, `sceAmprAprCommandBufferReadFile` returns `0x8002001C` once a 0x400-byte APR command buffer is full, the title only resubmits on `0x80020010`, 116 of its 141 effects are never read, and it dereferences a null effect (`shapeengine.rfx`) 7 s after start (SIGSEGV, nothing in the log)."
+        "blockerText": "On `main` de83e8f270 the title aborts about 64 s after New Game, still loading:\n```\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  compute shader 0x1004159a00: reads or writes a converted float image with 16-bit data, which is not implemented\n```\n#11580 removes that abort (no such line with it). With it, about 115 s after New Game, in the first gameplay scene, the GPU hangs and the context is lost:\n```\namdgpu 0000:03:00.0: ring gfx_0.0.0 timeout, signaled seq=38004368, emitted seq=38004369\nradv/amdgpu: The CS has been cancelled because the context is lost. This context is guilty of a hard recovery.\n[device-fault] last dispatch reached: marker 1924992, program 0x100407a100\n[device-fault] last dispatch finished: marker 1924992, program 0x100407a100\n  what():  AGC graphics: vkQueueSubmit recorder: Vulkan result -4\n```\nThe last marked dispatch finished, so the stuck work came after it (draws and waits carry no marker). Before the hang the log repeats `deferred write-back failed: image table: shader 0x1004138500 stage 2 pc 0x78 selected the descriptor at 0x3c7630180: outside the snapshot` (and its neighbours 0x40 apart), `BDA access failed: address=0x438f4bffc instruction=0x170 bytes=1 stage=4 reason=1`, and one `queue 0x3d WAIT_REG_MEM_64 at 0x1000020160 timed out after 1000ms`. The stuck work is a draw: with `APS5_LOOP_GUARD=65536` there is no hang, and every guard report names one pixel shader, `[gpu] loop guard: the loop exit at pc 0x360c of shader 0x2e8b98100 ran past 65536 evaluations`. That loop (pc 0x3608 to 0x55f0) is a waterfall over EXEC whose key mask is EXEC read as a value before `s_wqm`; with the helper lanes of the whole-quad expansion in that mask, no lane can match and the pass repeats forever. #12458 leaves the helper lanes out of EXEC values there, and with it (no loop guard) the title ran 900 s in gameplay without a hang. The image-table lines above still appear with it.\n\nNeeded to get here on `main` 6005185ee:\n- #7300"
       }
     ],
     "media": []
@@ -6383,7 +6388,7 @@
       "PPSA02572"
     ],
     "created": "2026-10-17T22:25:40Z",
-    "updated": "2026-10-27T12:38:26Z",
+    "updated": "2026-10-30T06:24:02Z",
     "comments": 0,
     "reports": [
       {
@@ -6391,14 +6396,16 @@
         "discussion": 7303,
         "author": "hugodearaujo",
         "date": "2026-10-17T22:25:40Z",
-        "edited": "2026-10-27T12:38:26Z",
+        "edited": "2026-10-30T06:24:02Z",
         "stage": "Menus",
         "platform": "linux",
         "gpu": "AMD Radeon RX 9070 XT",
         "gpuVendor": "AMD",
-        "build": "main 27ad7244d2 and ca0e9557aa, alone and with the pull requests below.",
-        "buildKind": "main",
-        "prs": [],
+        "build": "main 27ad7244d2 and ca0e9557aa, alone and with the pull requests below; main bb04a4f1ea and 102c4f95a2 with #11611 (update of 2026-10-30).",
+        "buildKind": "prs",
+        "prs": [
+          11611
+        ],
         "version": "01.200.007",
         "shown": "The in-engine Remedy logo, then a black screen at 60 FPS that waits for a button (it renders at 3840x2160); Cross opens the end-user license agreement. Audio was not checked (SDL dummy driver).",
         "blockers": [
@@ -6408,7 +6415,7 @@
           11922,
           7300
         ],
-        "blockerText": "On current `main` the title stops about 63 s after start, since #10167:\n\n```\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  sceHttp2SendRequest: HTTP/1.x transport is not implemented not implemented\n```\n\nIts OpenTelemetry exporter sends its first trace batch then, as an HTTP/1.1 POST to an HTTPS server. With #11611 the request goes out but the title stops at 65 s on `sceHttp2: TLS failed; console error mapping is unknown`, because the server's certificate cannot be verified. With #11611 and either #11145 (system certificate roots: the POSTs then complete with 200) or #11922 (the failed handshake returns `0x8095F00C`, as on a PS5, and the exporter retries every 31 s), the title runs to a 600 s limit without stopping.\n\nIt then sits on the end-user license agreement, which says \"Scroll to the bottom to accept\": the right stick, left stick, D-pad, L2 and R2 leave it unchanged in nearly every run, while the same right stick input scrolls CONTROL Resonant's agreement. Once in eight runs (with the pre-#10167 network error put back for HTTP/1.x requests) the agreement scrolled and was accepted, and the title showed its saving notice and brightness calibration. In the four runs that stayed there and that I checked for it, `/app0/data_pack2/prospero/base-en-000.rmdblob` is never opened; in that one run it was. Not understood yet.\n\nOpen pull requests this title needs, in the order it hits them:\n- #11611: HTTP/1.x requests in libSceHttp2.\n- #11145 or #11922: past the TLS failure of that first request.\n\nMerged since the first post: #7300 (as `582de4cc1`, without which the title stops with SIGSEGV 7 s after start).\n\nAlso needed: `APS5_PLAYGO_UNLISTED_CHUNKS=installed`: the dump has neither `sce_sys/playgo-chunk.dat` nor `sce_sys/playgo-scenario.json`, and without the variable it stops at once with `scePlayGo: ... chunk ID 1 cannot be checked`."
+        "blockerText": "On current `main` the title stops about 63 s after start, since #10167:\n\n```\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  sceHttp2SendRequest: HTTP/1.x transport is not implemented not implemented\n```\n\nIts OpenTelemetry exporter sends its first trace batch then, as an HTTP/1.1 POST to an HTTPS server. With #11611 the request goes out but the title stops at 65 s on `sceHttp2: TLS failed; console error mapping is unknown`, because the server's certificate cannot be verified. With #11611 and either #11145 (system certificate roots: the POSTs then complete with 200) or #11922 (the failed handshake returns `0x8095F00C`, as on a PS5, and the exporter retries every 31 s), the title runs to a 600 s limit without stopping.\n\nIt then sits on the end-user license agreement, which says \"Scroll to the bottom to accept\": the right stick, left stick, D-pad, L2 and R2 leave it unchanged in nearly every run, while the same right stick input scrolls CONTROL Resonant's agreement. The input does reach the title: with the right stick held down, `scePadRead` returns `R=(128,255)`, and the D-pad shows as `buttons=0x40`. The agreement waits for the title's preferences, which are never requested. A per-frame trace on `main` bb04a4f1ea + #11611 shows why: the first `sceUserServiceGetEvent` call returns the initial user's LOGIN event, and in that same frame the title signs that user in and makes it the active user before the user's progress restore has finished (it completes about 370 ms later); the preferences are then never requested and the splash state stays without a user.\n\nWith a local diagnostic build that does not queue that initial LOGIN event (`main` 102c4f95a2 + #11611), the title activates the user after the restore, requests its preferences, and the agreement scrolls and is accepted; the privacy policy, the photosensitivity warning and the brightness calibration follow, with no abort in 300 s. `/app0/data_pack2/prospero/base-en-000.rmdblob` is ope"
       }
     ],
     "media": []
@@ -6721,8 +6728,8 @@
       "PPSA28795"
     ],
     "created": "2026-10-18T03:49:05Z",
-    "updated": "2026-10-19T22:51:47Z",
-    "comments": 0,
+    "updated": "2026-10-31T13:48:36Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/7382",
@@ -6826,8 +6833,8 @@
       "PPSA14299"
     ],
     "created": "2026-10-18T08:16:10Z",
-    "updated": "2026-10-30T00:56:00Z",
-    "comments": 2,
+    "updated": "2026-10-31T18:11:07Z",
+    "comments": 5,
     "reports": [],
     "media": []
   },
@@ -6839,7 +6846,7 @@
       "PPSA13960"
     ],
     "created": "2026-10-18T12:38:43Z",
-    "updated": "2026-10-27T03:00:15Z",
+    "updated": "2026-10-31T14:10:10Z",
     "comments": 0,
     "reports": [
       {
@@ -6847,25 +6854,31 @@
         "discussion": 7534,
         "author": "hugodearaujo",
         "date": "2026-10-18T12:38:43Z",
-        "edited": "2026-10-27T03:00:15Z",
-        "stage": "Presents",
+        "edited": "2026-10-31T14:10:10Z",
+        "stage": "Ingame",
         "platform": "linux",
         "gpu": "AMD Radeon RX 9070 XT",
         "gpuVendor": "AMD",
-        "build": "main a120df3486 (the format 36 fix below was also rebuilt and its tests rerun on main abed035468).",
-        "buildKind": "main",
-        "prs": [],
+        "build": "main a120df3486 (the format 36 fix below was also rebuilt and its tests rerun on main abed035468); main 3b32cc7b61 with #8223 and #13248 (update of 2026-10-30); main 16345cad6a with #13248 and #13963 (update of 2026-10-31; #8223 is merged).",
+        "buildKind": "prs",
+        "prs": [
+          8223,
+          13248,
+          13963
+        ],
         "version": "01.007.000",
-        "shown": "Its start-up screens, as before: the photosensitivity warning, the Ubisoft logo, an intro video, the disclaimer and the autosave notice, then a black screen. Frame rate, input and audio were not checked (SDL dummy driver).",
+        "shown": "Its start-up screens, as before: the photosensitivity warning, the Ubisoft logo, an intro video, the disclaimer and the autosave notice, then a black screen. With #8223 and #13248 it goes on past the autosave notice to an \"Update! New Game+ Available\" dialog, which Cross close…",
         "blockers": [
-          8898,
           11691,
           8223,
+          13248,
+          13963,
+          12662,
           7532,
           6343,
           7533
         ],
-        "blockerText": "On `main` a120df3486 the title stops 86 to 91 s after start, since #8898:\n\n```\ncompute shader 0x10b4e03d00: AGC graphics: sampling multisampled color target 0x10e0720000 (960x540, 4 samples, vk format 122) as a 960x540 texture of 4 samples and guest format 36 (vk 98) is not implemented\n```\n\n#11691 fixes it. With #11691 the title stops at 83 s on:\n\n```\nAGC graphics: a CPU read of 0x10dfd20000+0x1fe0000 overlaps multisampled color target 0x10e0720000+0x870000 (4 samples), whose samples are only on the host: guest access to it is not implemented\n```\n\nWith #11691 and #8223 that read passes, and the title stops at 87 s on a partial clear of a 1x storage image whose last 0x200000 bytes cover the 4x target (traced in #8223's thread); no open pull request covers it yet:\n\n```\ncompute shader 0x1000810a00: AGC graphics: a cached image access of 0x10dc1d0000+0x480000 overlaps multisampled color target 0x10dc450000+0x480000 (4 samples), whose samples are only on the host: guest access to it is not implemented\n```\n\nOpen pull requests this title needs, in the order it hits them:\n- #7532: without it, the title sometimes stops with SIGSEGV on the main thread about 3 s after start, right after it opens `/app0/streaminginstall.ini` (twice in five starts today, with builds based on `main` a120df3486).\n- #11691: the format 36 sampling stop above.\n- #8223: the CPU read above.\n\nMerged since the first post: #6343 (kevent read event on descriptor 0) and #7533 (cube descriptors with slices past their last whole cube)."
+        "blockerText": "#11691 (merged) fixed the format 36 sampling stop. On `main` 3b32cc7b61 the title stops at 73 s on a 4x target's memory reused for the 4K display buffer:\n\n```\nAGC graphics: a CPU read of 0x10dfd20000+0x1fe0000 overlaps multisampled color target 0x10e0720000+0x870000 (4 samples), whose samples are only on the host: guest access to it is not implemented\n```\n\n#8223 makes that read pass; then it stops at 73-85 s on a partial clear of a 1x storage image whose last 0x200000 bytes cover a dead 4x target (traced in #8223's thread):\n\n```\ncompute shader 0x1000810a00: AGC graphics: a cached image access of 0x10dc1d0000+0x480000 overlaps multisampled color target 0x10dc450000+0x480000 (4 samples), whose samples are only on the host: guest access to it is not implemented\n```\n\n#13248 counts that storage store as reuse of the dead target. With #8223 and #13248, the title gets past the autosave notice in 12 of 14 runs, shows \"Update! New Game+ Available\", and reaches the Menu Narration screen, at about 1.5 FPS. In the other 2 runs it stopped at 79 s on a delayed write-back of the clear's 1x image over a newer 4x target; #13963 stores those results before the target takes the memory (0 stops in 20 runs with it).\n\nWith #13248 and #13963, in the first real-time scenes after the intro video (197 to 218 s after New Game), 4 runs stopped on three different refusals:\n- 2 runs: `compute shader 0x10b4c8ad00: AGC graphics: native multisample stencil or depth format import is not implemented`, for a D32S8 4x 1920x1080 target with a separate stencil plane and no HTILE (its depth memory was a 1920x1080 storage image before; the stencil plane gets a fill of 0 just before). No open pull request covers a target without HTILE.\n- 1 run: `SPIR-V requires unsupported device capability 42` (`MinLod`, from an `_cl` sample in a graphics shader). #12662 accepts it when the device enables `shaderResourceMinLod`; the one run with it stopped on the refusal above first.\n- 1 run: `compute shader 0x10009c9600: "
       }
     ],
     "media": []
@@ -7263,8 +7276,8 @@
       "PPSA24191"
     ],
     "created": "2026-10-19T16:29:25Z",
-    "updated": "2026-10-24T09:19:07Z",
-    "comments": 3,
+    "updated": "2026-10-30T07:19:21Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/7972",
@@ -7533,7 +7546,7 @@
       "PPSA28101"
     ],
     "created": "2026-10-20T11:18:21Z",
-    "updated": "2026-10-20T11:41:32Z",
+    "updated": "2026-10-31T05:59:48Z",
     "comments": 0,
     "reports": [
       {
@@ -7541,7 +7554,7 @@
         "discussion": 8367,
         "author": "rulesless",
         "date": "2026-10-20T11:18:21Z",
-        "edited": "2026-10-20T11:41:32Z",
+        "edited": "2026-10-31T05:59:48Z",
         "stage": "Ingame",
         "platform": "windows",
         "gpu": "RTX 5060 Ti",
@@ -7552,7 +7565,7 @@
         "version": "01.000.000",
         "shown": "Finally ingame, very low framerate (1-2 fps), some textures colors problem",
         "blockers": [],
-        "blockerText": "/"
+        "blockerText": "[LOG1.0.4.txt](https://github.com/user-attachments/files/34210944/LOG1.0.4.txt)"
       }
     ],
     "media": [
@@ -7608,8 +7621,8 @@
       "PPSA26362"
     ],
     "created": "2026-10-20T11:49:23Z",
-    "updated": "2026-10-22T23:13:17Z",
-    "comments": 1,
+    "updated": "2026-10-31T20:29:36Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/8381",
@@ -7652,6 +7665,27 @@
           9937
         ],
         "blockerText": "None for playing. The band on the title and menu screens is fixed by #9937."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/8381#discussioncomment-19321331",
+        "discussion": 8381,
+        "author": "Longziip",
+        "date": "2026-10-31T20:29:35Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4060",
+        "gpuVendor": "NVIDIA",
+        "build": "main 121b2e37af (Merge pull request #13685), plus the head of #9937 (an AvPlayer-only change) on top. Built with MinGW (GCC from the mingw64 toolchain), Release, relinked with --module-dir Media/Plugins --module-dir Media/Modules.",
+        "buildKind": "prs",
+        "prs": [
+          13685,
+          9937
+        ],
+        "version": "01.000.005",
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": []
@@ -7982,8 +8016,8 @@
       "PPSA02630"
     ],
     "created": "2026-10-20T19:23:24Z",
-    "updated": "2026-10-20T19:23:24Z",
-    "comments": 0,
+    "updated": "2026-10-31T19:10:36Z",
+    "comments": 1,
     "reports": [],
     "media": []
   },
@@ -8093,9 +8127,28 @@
       "PPSA03117"
     ],
     "created": "2026-10-20T21:17:07Z",
-    "updated": "2026-10-20T21:17:07Z",
-    "comments": 0,
-    "reports": [],
+    "updated": "2026-10-31T14:02:11Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/8695#discussioncomment-19315553",
+        "discussion": 8695,
+        "author": "JJenkx",
+        "date": "2026-10-31T14:02:10Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
     "media": []
   },
   {
@@ -8106,9 +8159,28 @@
       "PPSA07286"
     ],
     "created": "2026-10-20T21:22:01Z",
-    "updated": "2026-10-20T21:22:01Z",
-    "comments": 0,
-    "reports": [],
+    "updated": "2026-10-31T13:56:51Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/8698#discussioncomment-19315473",
+        "discussion": 8698,
+        "author": "JJenkx",
+        "date": "2026-10-31T13:56:50Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
     "media": []
   },
   {
@@ -8154,8 +8226,8 @@
       "PPSA14408"
     ],
     "created": "2026-10-20T22:54:55Z",
-    "updated": "2026-10-21T04:34:28Z",
-    "comments": 1,
+    "updated": "2026-10-31T14:37:34Z",
+    "comments": 3,
     "reports": [],
     "media": []
   },
@@ -8232,8 +8304,8 @@
       "PPSA16064"
     ],
     "created": "2026-10-21T03:43:46Z",
-    "updated": "2026-10-21T03:43:46Z",
-    "comments": 0,
+    "updated": "2026-10-31T13:37:01Z",
+    "comments": 2,
     "reports": [],
     "media": []
   },
@@ -8449,8 +8521,8 @@
       "PPSA13899"
     ],
     "created": "2026-10-21T10:19:18Z",
-    "updated": "2026-10-21T10:19:18Z",
-    "comments": 0,
+    "updated": "2026-10-30T21:09:15Z",
+    "comments": 1,
     "reports": [],
     "media": []
   },
@@ -8475,8 +8547,8 @@
       "PPSA02433"
     ],
     "created": "2026-10-21T11:26:49Z",
-    "updated": "2026-10-21T11:34:02Z",
-    "comments": 0,
+    "updated": "2026-10-31T15:04:00Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9065",
@@ -8497,6 +8569,24 @@
         "shown": "Unreal Engine 4 title (../../../Lava/Lava.uproject). Tested through the opening cinematics and into active 3D gameplay on N. Sanity Beach.",
         "blockers": [],
         "blockerText": "None on AMD RDNA hardware (playable in game at 60 FPS).\n\nBlockers on NVIDIA / 32-wide subgroup hardware:\n1. **Wave64 in deferred shading**: Fragment shaders running on 32-lane subgroups clamp cross-lane operations (`SpirvAluEmitterMath.cpp`), causing UE4's cascaded shadow projection and directional lighting evaluation to collapse to zero for opaque G-Buffer passes.\n2. **PCIe host-import latency**: As noted in architecture documentation, host imports of guest memory on NVIDIA's Windows driver incur substantial read stalls during draw submission, capping throughput at single-digit FPS."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9065#discussioncomment-19316432",
+        "discussion": 9065,
+        "author": "alfalfa-star",
+        "date": "2026-10-31T15:04:00Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": [
@@ -8598,8 +8688,8 @@
       "PPSA15645"
     ],
     "created": "2026-10-21T13:38:47Z",
-    "updated": "2026-10-21T13:38:47Z",
-    "comments": 0,
+    "updated": "2026-10-31T15:30:45Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9151",
@@ -8620,6 +8710,24 @@
         "shown": "At 59.94 FPS throughout, three 150-200 s runs show: - the collection title screen (\"PRESS ANY BUTTON TO START\"); - the Pause Menu information dialog; - the language select (English / Français); - inside the emulated DS game, the \"GAME START\" menu (Select / Copy / Delete Data,…",
         "blockers": [],
         "blockerText": "None seen in these runs. The earlier stop on the pad export `n3kSX62fgNo` is gone on current `main`.\n\nAsset note: the title needs `alldata.bin` and `alldata.psb.m` in `/app0`. With a dump that lacks them, it keeps running at 59.94 FPS but only presents black frames; the log shows `open failed path=/app0/system/script/init.nut.m`."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9151#discussioncomment-19316717",
+        "discussion": 9151,
+        "author": "JJenkx",
+        "date": "2026-10-31T15:30:45Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": []
@@ -8703,8 +8811,8 @@
       "PPSA14053"
     ],
     "created": "2026-10-21T18:03:30Z",
-    "updated": "2026-10-21T18:03:30Z",
-    "comments": 0,
+    "updated": "2026-10-30T22:21:41Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9308",
@@ -8808,8 +8916,8 @@
       "PPSA07645"
     ],
     "created": "2026-10-21T21:51:12Z",
-    "updated": "2026-10-21T21:51:12Z",
-    "comments": 0,
+    "updated": "2026-10-31T20:15:01Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9434",
@@ -8832,7 +8940,15 @@
         "blockerText": "None seen in these runs."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/fallen-legion-main121b-combo-20261031.png",
+        "alt": "Combat on plain current main",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9434#discussioncomment-19321165",
+        "author": "JJenkx",
+        "date": "2026-10-31T20:15:01Z"
+      }
+    ]
   },
   {
     "number": 9475,
@@ -8997,8 +9113,8 @@
       "PPSA09809"
     ],
     "created": "2026-10-22T03:45:30Z",
-    "updated": "2026-10-28T11:47:54Z",
-    "comments": 2,
+    "updated": "2026-10-31T12:15:20Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9593",
@@ -10423,8 +10539,8 @@
       "PPSA20052"
     ],
     "created": "2026-10-23T08:52:44Z",
-    "updated": "2026-10-24T13:20:37Z",
-    "comments": 2,
+    "updated": "2026-10-31T11:02:29Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10082",
@@ -10461,6 +10577,24 @@
         "shown": "The previous crash 2 seconds in (sceNetCtlGetResult: service event results are not implemented) is completely resolved.",
         "blockers": [],
         "blockerText": "None observed during boot and menus.\n\nAI-assisted testing and report: yes."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/10082#discussioncomment-19312733",
+        "discussion": 10082,
+        "author": "JJenkx",
+        "date": "2026-10-31T10:53:54Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": []
@@ -10537,8 +10671,8 @@
       "PPSA35169"
     ],
     "created": "2026-10-23T11:03:18Z",
-    "updated": "2026-10-27T13:52:30Z",
-    "comments": 1,
+    "updated": "2026-10-31T13:15:24Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10156",
@@ -10569,7 +10703,7 @@
       "PPSA03016"
     ],
     "created": "2026-10-23T12:49:25Z",
-    "updated": "2026-10-24T05:10:45Z",
+    "updated": "2026-10-31T10:56:47Z",
     "comments": 1,
     "reports": [
       {
@@ -10577,7 +10711,7 @@
         "discussion": 10195,
         "author": "hugodearaujo",
         "date": "2026-10-23T12:49:25Z",
-        "edited": null,
+        "edited": "2026-10-31T10:56:47Z",
         "stage": "Presents",
         "platform": "linux",
         "gpu": "AMD Radeon RX 9070 XT",
@@ -10597,6 +10731,10 @@
         "shown": "The Insomniac Games logo, then a black screen until the stop at 133 s. Nothing needs input up to there.",
         "blockers": [
           9790,
+          9969,
+          13646,
+          7642,
+          10193,
           9424,
           7679,
           6191,
@@ -10604,7 +10742,7 @@
           9137,
           7965
         ],
-        "blockerText": "**On `main` 0c6a5bd593**, each stop with the build that got past the one before it:\n1. `INDEX_BUFFER_SIZE has not been set` (151 s). #9424 fixes it (spiff637's #7679, closed by the open-PR limit).\n2. The #6191 descriptor chain, `ReadConstBuffer@pc=0x8560`, a T# at a fixed offset of a V# loaded through the record pointer (142 s and 146 s). #9457 fixes it.\n3. `ReadConstBuffer@pc=0x8fa0` over `LoadAddressU32@pc=0x8f54`, in the same shader family (131 s). #9790 fixes it ([run](https://github.com/boykopovar/AnyPS5/pull/9790#issuecomment-6352612572)).\n4. `ReadConstBuffer@pc=0x9a50` over `LoadAddressU32@pc=0x9a3c`, later in the same shader (135 s): an array of T#s indexed by data in the V#'s buffer, through a pointer pair one of whose arms is a T#'s first two dwords. `test/sm2-9790-child-key` gets past it.\n5. `GetSamplerResource dword 0 is not a valid runtime value` at `ReadConstBuffer@pc=0x9a9c` over `LoadAddressU32@pc=0x9a20` (133 s): the S# read through the first load of that V#, whose buffer also gives the array's key word ([run](https://github.com/boykopovar/AnyPS5/pull/9790#issuecomment-6365236571)). No fix yet.\n\n**On current `main`** (since #9137) it stops earlier, in its first 40 s, on `sceSystemServiceParamGetInt: registry-backed parameter not implemented`. Parameter 100 answers again since #7965. Parameters 208 and 210, which the title reads next, still throw; no PR or console value covers them.\n\nspiff637 reported the first two stops on PPSA08338, the EU release (01.005.001), on Windows with an RTX 3080, in #7679 and #6191."
+        "blockerText": "**On `main` 16345cad6a (update of 2026-10-30)**, each stop with the build that got past the one before it:\n1. `GetImageResource dword 0 is not a valid runtime value; chain: ReadConstBuffer@pc=0x000084bc(GetBufferResource(LoadAddressU32@pc=0x000084a8(...` (244 s). #9790 or #9969.\n2. With either: a compute dispatch resolves a 22,528-record bindless T# table at once; its ~7,500 textures take 15 GiB of device memory in about 10 s, and the run is stopped by our memory guard at 215-260 s (no present after 72-74 s). Most of that is mip levels above each T#'s `MIN_LOD` that the title never mapped. #13646 leaves them without memory: the peak drops to 9.5 GiB and the title presents again.\n3. With #9790 and #13646: `GetImageResource dword 0 is not a valid runtime value; chain: ReadConstBuffer@pc=0x00009a2c(GetBufferResource(LoadAddressU32@pc=0x00009a18(...` (219 s), the old 0x9a50 shape moved by -0x24. #9969 gets past it.\n4. With #9969 and #13646: `GetSamplerResource dword 0 is not a valid runtime value; chain: ReadConstBuffer@pc=0x00009a78(GetBufferResource(LoadAddressU32@pc=0x000099fc(...` (212-215 s), the old 0x9a9c: the key word is read through a sibling V# of the same record (P+0x50) and indexes a T# array in another one (P+0x10); no open pull request covers it. In some runs, with #9790 or #9969, `ReadConstBuffer@pc=0x00008ec0` comes first instead (149-225 s); its replay shows the same shape in another program (the same block 0xbb8 lower: V# A at P+0x50, key through A, T# array in V# B at P+0x10, S# through A at +0xa0). Across 26 runs with #9790: 13 at 0x9a2c, 10 at 0x8ec0, 3 stalls at about 150 s.\n5. With a local experiment that accepts the sibling-V# key, the shader dispatches with no refusal, and the 22,528-record table 0 (ReadFirstLane-keyed) fills VRAM again (12.7 GiB for the process; stopped by our memory guard at 186 and 248 s). A device-side image table (#7642, #10193) is what would avoid materializing it.\n\nEarlier, **on `main` 0c6a5bd593**, each stop with the bui"
       }
     ],
     "media": []
@@ -10838,8 +10976,8 @@
       "PPSA33655"
     ],
     "created": "2026-10-23T16:12:10Z",
-    "updated": "2026-10-29T00:43:47Z",
-    "comments": 3,
+    "updated": "2026-10-31T18:37:08Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10271",
@@ -11156,37 +11294,41 @@
       "PPSA05110"
     ],
     "created": "2026-10-25T07:00:07Z",
-    "updated": "2026-10-27T15:18:51Z",
-    "comments": 3,
+    "updated": "2026-10-31T19:43:13Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10872",
         "discussion": 10872,
         "author": "thuanquang",
         "date": "2026-10-25T07:00:07Z",
-        "edited": "2026-10-27T15:18:48Z",
+        "edited": "2026-10-31T19:43:08Z",
         "stage": "Ingame",
         "platform": "windows",
         "gpu": "Radeon RX 6700 XT",
         "gpuVendor": "AMD",
-        "build": "- main fe2b52c7e4 (2026-10-27) with no local changes. It includes #10614, #10887 and #10913, and it reaches gameplay.",
-        "buildKind": "patched",
+        "build": "- main 0f302813ce (2026-11-01), with no pull requests merged on top. It reaches gameplay.",
+        "buildKind": "prs",
         "prs": [
-          10614,
-          10887,
-          10913,
           7844
         ],
         "version": "01.000.000",
-        "shown": "- **main fe2b52c7e4**, with no local changes, gets through: - the network prompt, - the title screen and New Game, - the voice language and disclaimer screens, - the opening movie (VP9) and the dialogue after it, - first gameplay with free control: \"Escape from the casino\". -…",
+        "shown": "- **main 0f302813ce**, with no local changes, gets through: - the network prompt, - the title screen and New Game, - the voice language and disclaimer screens, - the opening movie (VP9) and the dialogue after it, - first gameplay with free control: \"Escape from the casino\". -…",
         "blockers": [
           10887,
           10614,
           10913,
           7844,
-          10809
+          9858,
+          11847,
+          9445,
+          13796,
+          6188,
+          10757,
+          6970,
+          9989
         ],
-        "blockerText": "- Nothing stops `main` before the casino gameplay.\n  - Fixed on `main`, all merged 2026-10-26: the 22 missing `sceImeBackend*` exports (#10887; this dump never calls them), the update check (#10614), and the divide by zero at the opening movie (#10913).\n- Frame rate: the CPU-side draw processing above. The work on it is tracked in the comments below.\n- Memory: open #7844 (host import budget, see Memory above) and #10809."
+        "blockerText": "- Nothing stops `main` before the casino gameplay. #10887 (the missing `sceImeBackend` exports), #10614 (the update check) and #10913 (the divide by zero at the opening movie), all merged, removed the three earlier stops.\n- Frame rate: in the casino the median frame takes 94.3 ms on `main` and about 56 ms with #7844, and the GPU is busy 39.0 to 56.5 ms per present (What is shown), against 16.7 ms for 60 fps. On `main`, the smaller default host import budget costs about 38 ms of the median frame (#7844).\n- Memory: the host import budget (#7844).\n\n**Open pull requests we measured on this title.** Exclusive pairs, as described under How it was run. Each change is the median over neighbouring pairs of legs (with it minus without), on the base the line names. In these pairs plain `main` ran this scene at a frame p50 of 89 to 94 ms and `main` with #7844 at 56 to 63 ms, so compare numbers only within a line.\n\nMemory and frame rate:\n- #7844 (Mouhand-Kaddo) raises the default host import budget here from 8172 to 12249 MiB. On `main` `50843f45d9` (2026-10-31; one clean `main` leg between two clean legs with it): frame p50 -37.8 ms, presents per 10 s +65.0, GPU -17.1 ms per present. Peak private memory over the four 620 s legs: 18.35 and 18.74 GiB with it, 21.43 and 21.59 GiB without.\n\nFrame rate:\n- #9858 (Raghav314) makes `CompletePendingCpuWrites` wait only for CPU-completion labels. On `main` `3a2b919816`, without #7844, 4 alternating clean legs (2026-10-30): frame p50 -18.2 ms, presents per 10 s +22.9, GPU -5.2 ms per present. With #7844 in both builds, our earlier numbers on #9858 (2026-10-28) were frame p50 69.1 -> 58.6 and 58.9 ms. #11847 makes the same change, and #9445 includes it.\n- #13796 (ours, draft): the title uses several render surfaces both as 2D and as one-slice 2D arrays, and this keeps one storage image for both, so they are no longer copied between two images. On `main` `aaccd0ba39` with its change, without #7844, 8 alternating clean legs (2026-10-30): fra"
       }
     ],
     "media": []
@@ -11595,7 +11737,7 @@
       "PPSA03747"
     ],
     "created": "2026-10-26T17:38:38Z",
-    "updated": "2026-10-29T19:58:30Z",
+    "updated": "2026-10-31T05:17:36Z",
     "comments": 1,
     "reports": [
       {
@@ -11603,12 +11745,12 @@
         "discussion": 11508,
         "author": "hugodearaujo",
         "date": "2026-10-26T17:38:38Z",
-        "edited": "2026-10-29T19:58:30Z",
+        "edited": "2026-10-31T05:17:36Z",
         "stage": "Ingame",
         "platform": "linux",
         "gpu": "AMD Radeon RX 9070 XT",
         "gpuVendor": "AMD",
-        "build": "main 5bdda3661e with #11506 and #11507 (first post); main efc24518bc with #11506, with and without #12923 (update of 2026-10-29).",
+        "build": "main 5bdda3661e with #11506 and #11507 (first post); main efc24518bc with #11506, with and without #12923 (update of 2026-10-29); main 21668cc9d8 with #11506 (update of 2026-10-31).",
         "buildKind": "prs",
         "prs": [
           11506,
@@ -11616,19 +11758,18 @@
           12923
         ],
         "version": "01.001.010",
-        "shown": "The main menu runs at 60 fps. NEW leads through the loading screen to the intro and the opening cart ride: the forest at 180 s and the arrival in Helgen by 360 s, with the characters and the village drawn, until the 420 s limit of the run; with #12923 runs also reach the chara…",
+        "shown": "On main 21668cc9d8 with #11506, in an 1800 s run: the main menu at 60 fps; NEW leads through the loading screen to the intro and the opening cart ride (8 to 17 presents per second, frame p50 61 to 99 ms), which ends at about 420 s; the character creation at about 510 s; the na…",
         "blockers": [
           11506,
-          11315,
-          12995,
-          12923,
-          8091,
+          4449,
           10347,
           11507,
-          4449,
+          12923,
+          11315,
+          12995,
           12983
         ],
-        "blockerText": "On `main` efc24518bc (with #11506), the title aborts 219 to 303 s after start in 2 of 4 runs with `NGS2: this buffered voice parameter is not implemented`, a throw added by #11315 for voice parameters its new buffered path doesn't capture yet. Before #11315 the runs got past that point. #12995 buffers the setups, waveform blocks and patches Skyrim sends there: on `main` bb04a4f1ea with #11506 and #12923, 2 of 2 runs without it abort (15 and 288 s) and 3 of 3 with it run the full 420 s.\n\nWithout that: speed in the game, about 6 fps (median frame 160 to 200 ms). The graphics queue worker is busy 99% of the time while the GPU is busy about 30 ms per frame; per frame, draws take about 125 ms and memory waits about 88 ms. The host import budget drops to 0 MiB after a `vkAllocateMemory` failure, and about 38 million imports are refused over the run (on `main` 5bdda3661e, before #8091 was merged).\n\nStops on the way, each with the build that got past the one before it:\n1. `NGS2: reverb channel conversion is not implemented`, 19 s after start: the reverb voice has 2 inputs and 8 outputs. Fixed by #10347 (merged).\n2. The New Game loading screen hangs at 140 to 151 s: `ResourceMaterializer::ExtractPlan` → `MayDecide` walks a shared condition once per path for shader 0x122151a400. #11506.\n3. `AGC graphics: guest cube texture descriptor holds fewer than 6 array slices (format 71, 512x512x5, type 11, tile 27, mips 0..0 of 1) (base array 0)` at 155 s: pixel shader 0x121ddc3d00 samples a cube whose descriptor holds five slices. Fixed by #11507 (merged).\n4. The title stops presenting about 200 s after start, at the start of the cart ride, after `[gpu] queue 0x28 WAIT_REG_MEM at 0x112a800020 timed out after 1000ms` and the same on queue 0x0: a label store that queue 0x28 had already taken and reset released its next wait. #12923. Without it the stop came in 4 of 4 runs with #4449 and 2 of 4 without it on `main` c739a47136, and in 1 of 2 on `main` efc24518bc (the other run hit stop 5 "
+        "blockerText": "None on `main` 21668cc9d8 with #11506: no abort, no `not implemented` throw and no label-wait timeout in 1800 s. The limit is speed, and it is not the GPU (busy about 33 ms of a 60 ms present in a traced 15 s in Helgen): compute queue 0x28 waits on a label from queue 0 at each of its submissions, its fill dispatches wait for the GPU before they run (297 of 297 submissions, about 3 s in 10 s), and about a fifth of its fills, of 16 and 64 MiB over 64 KiB registered pieces (larger than the 8 MiB import window), are written by the CPU after the device goes idle. #4449 removes the host import failures there (1084 to 0) without changing the speed.\n\nStops on the way, each with the build that got past the one before it:\n1. `NGS2: reverb channel conversion is not implemented`, 19 s after start: the reverb voice has 2 inputs and 8 outputs. Fixed by #10347 (merged).\n2. The New Game loading screen hangs at 140 to 151 s: `ResourceMaterializer::ExtractPlan` → `MayDecide` walks a shared condition once per path for shader 0x122151a400. #11506.\n3. `AGC graphics: guest cube texture descriptor holds fewer than 6 array slices (format 71, 512x512x5, type 11, tile 27, mips 0..0 of 1) (base array 0)` at 155 s: pixel shader 0x121ddc3d00 samples a cube whose descriptor holds five slices. Fixed by #11507 (merged).\n4. The title stops presenting about 200 s after start, at the start of the cart ride, after `[gpu] queue 0x28 WAIT_REG_MEM at 0x112a800020 timed out after 1000ms` and the same on queue 0x0: a label store that queue 0x28 had already taken and reset released its next wait. Fixed by #12923 (merged). Without it the stop came in 4 of 4 runs with #4449 and 2 of 4 without it on `main` c739a47136, and in 1 of 2 on `main` efc24518bc (the other run hit stop 5 first); with it, no run showed those timeouts or stopped there.\n5. `NGS2: this buffered voice parameter is not implemented`, 11 to 320 s after start on `main` since #11315: the throw #11315 added for voice parameters its buffered path d"
       }
     ],
     "media": []
@@ -11675,8 +11816,8 @@
       "PPSA24263"
     ],
     "created": "2026-10-26T21:56:04Z",
-    "updated": "2026-10-27T06:00:39Z",
-    "comments": 2,
+    "updated": "2026-10-31T20:06:49Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11591",
@@ -11713,9 +11854,56 @@
         "shown": null,
         "blockers": [],
         "blockerText": null
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19320980",
+        "discussion": 11591,
+        "author": "camezaro-intc",
+        "date": "2026-10-31T20:06:49Z",
+        "edited": "2026-10-31T20:13:06Z",
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/frame_50s.png",
+        "alt": "Frame 50s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19320980",
+        "author": "camezaro-intc",
+        "date": "2026-10-31T20:06:49Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/frame_61s.png",
+        "alt": "Frame 61s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19320980",
+        "author": "camezaro-intc",
+        "date": "2026-10-31T20:06:49Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/frame_83s.png",
+        "alt": "Frame 83s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19320980",
+        "author": "camezaro-intc",
+        "date": "2026-10-31T20:06:49Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/frame_94s.png",
+        "alt": "Frame 94s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19320980",
+        "author": "camezaro-intc",
+        "date": "2026-10-31T20:06:49Z"
+      }
+    ]
   },
   {
     "number": 11599,
@@ -12760,8 +12948,8 @@
       "PPSA47770"
     ],
     "created": "2026-10-29T21:55:43Z",
-    "updated": "2026-10-29T21:55:43Z",
-    "comments": 0,
+    "updated": "2026-10-30T14:26:57Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/13019",
@@ -12794,7 +12982,7 @@
       "PPSA02530"
     ],
     "created": "2026-10-30T00:59:01Z",
-    "updated": "2026-10-30T00:59:01Z",
+    "updated": "2026-10-31T14:10:40Z",
     "comments": 0,
     "reports": [
       {
@@ -12802,32 +12990,1067 @@
         "discussion": 13087,
         "author": "hugodearaujo",
         "date": "2026-10-30T00:59:01Z",
-        "edited": null,
+        "edited": "2026-10-31T14:10:40Z",
         "stage": "Ingame",
         "platform": "linux",
         "gpu": "AMD Radeon RX 9070 XT",
         "gpuVendor": "AMD",
-        "build": "main bb04a4f1ea with the open pull requests listed below (and, for the furthest run, an earlier integration build on main e61a7c7e24 with the same fixes).",
-        "buildKind": "main",
-        "prs": [],
+        "build": "main bb04a4f1ea with the open pull requests listed below (and, for the furthest run, an earlier integration build on main e61a7c7e24 with the same fixes); main 8f55414024 with #10935, #10304, #10497, #12898, #4449, #9999 and #11580 (update of 2026-10-31).",
+        "buildKind": "prs",
+        "prs": [
+          10935,
+          10304,
+          10497,
+          12898,
+          4449,
+          9999,
+          11580
+        ],
         "version": "01.200.000",
         "shown": "The title screen, New Game and the difficulty menu, then the opening film (an AvPlayer video; the title plays its audio itself), then the real-time scene after it (astronauts walking in, with the opening credits), a black loading screen of about 2.5 minutes, and the next real-…",
         "blockers": [
+          4449,
+          12081,
+          11580,
+          9999,
           10904,
           10935,
           10304,
           10497,
           12898,
           12954,
-          11580,
           7844,
           6565,
           7446,
           6782
         ],
-        "blockerText": "On `main` bb04a4f1ea with the pull requests below, the loading after the credits ends at about 1314 s with a Vulkan device loss:\n\n```\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  compute shader 0x237cb13000: AGC graphics: vkQueueSubmit recorder: Vulkan result -4; DISPATCH_INDIRECT on queue 0x0, arguments at 0x23b0ca48e0, driver path gpu-side, read-ahead none\n```\n\nThe earlier integration build got past that load to the hangar dialogue. Not investigated yet.\n\nStops on the way, each with the build that got past the one before it:\n1. `scePadOpen` at 5 s (#10904): #10935.\n2. `AGC graphics: guest buffer has no GPU owner` on current `main`: #10304.\n3. `AGC graphics: sample-preserving guest publication of native multisample depth is not implemented` on current `main`: #10497.\n4. The opening film plays in slow motion and the title ends it by its own clock after showing 33 to 73 s of its 245 s: the title takes about one frame per rendered frame at 1-3 FPS, and the decoder only advanced when a frame was taken. #12898 keeps the video at the presentation clock; the film then ends on time (end of file).\n5. The real-time scene after the film stops on one frame, on one of the credits, while rendering goes on and the title still takes input: its sound engine pushes one grain per call from a feeder thread and wakes its renderer after each push, and a blocking `sceAudioOut2ContextPush` returned while the queue was still full, so the mix advanced four grains per rendered frame and the scene, which follows the audio, stalled. #12954; with it the sound engine's context pushes 46.9 grains per second and the scene runs past the credits (also checked with both AudioOut2 contexts on a PipeWire device).\n6. Intermittent: some runs stop at the switch from the film to the real-time scene; cause not found yet.\n\nThe builds also carry #11580, #7844, #6565, #7446 and #6782 from the integration build these runs started from; their individual effect on this title was "
+        "blockerText": "On `main` bb04a4f1ea with the pull requests below, the loading after the credits used to end at about 1314-1359 s with a GPU hang (`ring gfx_0.0.0 timeout` in the kernel log, then `vkQueueSubmit recorder: Vulkan result -4`), with memory still free. The cause is #4449 missing on current `main`: the title maps its direct memory in pieces at scattered memfd offsets, and without that PR 7,000 to 12,000 host imports fail (`host import of ... failed at vkAllocateMemory (-1000072003); falling back to copies`) against 1 with it. With #4449 (merged by hand, it conflicts with `main`) and #12081 (now merged), the title reaches its first gameplay, the \"Basic Movement\" tutorial, about 770 s after New Game, and walks through the hangar area for about 1,000 s more without stopping.\n\nOn `main` 8f55414024 the title also needs #11580: without it, it aborts at 276 s, before the title screen, with `compute shader 0x2111c18500: reads or writes a converted float image with 16-bit data, which is not implemented`. With the whole stack, a 2000 s run from New Game had no abort, hang or kill, and reached the \"Basic Movement\" tutorial at about 1760 s. Walking on from there, our desktop memory guard stopped the run at 1280 s on entering the forklift room (`vram_free=1249 MiB gtt_free=3020 MiB`; the process held 15.5 GiB of VRAM and 11.0 GiB of GTT, of which 9.9 GiB were shared imports, and the device-local heap held 2 GiB of sampled textures and 3.5 GiB of storage images). Presents fell from 8 to 4 per 10 s as memory filled. The process also peaks at 23 to 25 GiB of host memory (RSS) about 80 to 120 s after start, during start-up, then drops to about 7 GiB.\n\nNext limits: memory at 3840x2160 (with #4449 the title's imports hold about 10 GiB of GTT, and VRAM is full during the loading after the credits), speed (about 1-3 FPS), and translucent rectangles and green and red quads over the gameplay scene, which open PR #9999 removes (same save and route: 4 of 9 screenshots show them without it, none "
       }
     ],
+    "media": []
+  },
+  {
+    "number": 13424,
+    "title": "ARMORED CORE VI FIRES OF RUBICON (PPSA06774)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13424",
+    "titleIds": [
+      "PPSA06774"
+    ],
+    "created": "2026-10-30T14:15:00Z",
+    "updated": "2026-10-30T14:15:12Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13424",
+        "discussion": 13424,
+        "author": "Tehshortbus",
+        "date": "2026-10-30T14:15:00Z",
+        "edited": "2026-10-30T14:15:12Z",
+        "stage": "Menus",
+        "platform": "linux",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main da026c7065, no PRs.",
+        "buildKind": "prs",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 13466,
+    "title": "My First Gran Turismo (PPSA24156)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13466",
+    "titleIds": [
+      "PPSA24156"
+    ],
+    "created": "2026-10-30T15:59:14Z",
+    "updated": "2026-10-30T16:00:23Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13466",
+        "discussion": 13466,
+        "author": "ztaxEvador",
+        "date": "2026-10-30T15:59:14Z",
+        "edited": "2026-10-30T16:00:23Z",
+        "stage": "Converts",
+        "platform": "windows",
+        "gpu": "nVidia GeForce RTX 5070",
+        "gpuVendor": "NVIDIA",
+        "build": "AnyPS5 v0.1.3",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.000.000",
+        "shown": "Nothing",
+        "blockers": [],
+        "blockerText": "FAIL: unresolved ELF import CBkVZi9WhVo from libSceHmd2.prx\r\nSearched libraries:\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\app0\\sce_module\\libSceNpCppWebApi.prx.guest.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\app0\\sce_module\\libScePfs.prx.guest.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\app0\\sce_module\\libc.prx.guest.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\app0\\sce_module\\logiWheel.prx.guest.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceAppContent.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceAudioIn.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceAudioOut.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceAvPlayer.native.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceCommonDialog.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceConvertKeycode.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libkernel.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceErrorDialog.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceFiber.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceFont-module.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceFont"
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 13493,
+    "title": "ELDEN RING (PPSA04610)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13493",
+    "titleIds": [
+      "PPSA04610"
+    ],
+    "created": "2026-10-30T16:56:41Z",
+    "updated": "2026-10-30T20:17:43Z",
+    "comments": 3,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13493",
+        "discussion": 13493,
+        "author": "wrocketdev",
+        "date": "2026-10-30T16:56:41Z",
+        "edited": "2026-10-30T16:56:56Z",
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 3060 Ti",
+        "gpuVendor": "NVIDIA",
+        "build": "main at ad2fbd74cd3f with the tessellation cull distance change (#13492), which this title needs.",
+        "buildKind": "prs",
+        "prs": [
+          13492
+        ],
+        "version": "01.017.000",
+        "shown": "The title screen appears within about 20 s at 60 fps with no input. With a keyboard or pad, the game goes through the menu into the first area. The player walked indoors and outdoors in that area; the character, buildings, foliage, particles, fog and sky look correct, and text…",
+        "blockers": [],
+        "blockerText": "No blocker in this short run. Performance: in the measured scene, queue 0x0 spends about 9 of 10 s on packets, mostly `DRAW_INDEX_OFFSET_2` (about 4.7 s for about 108,000 draws, about 1,600 draws per frame), with GPU busy about 90 ms per frame. GPU mutex waits are 3 ms per 10 s and shader recompilation is negligible there. Combat and later areas are untested."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/0a7de849-db96-4459-899e-be4332ae5df7",
+        "alt": "elden-ring-1",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13493#discussioncomment-19298402",
+        "author": "wrocketdev",
+        "date": "2026-10-30T17:01:10Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/b30e6e7f-cb1e-494f-ae6c-ca34fba403c7",
+        "alt": "elden-ring-2",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13493#discussioncomment-19298402",
+        "author": "wrocketdev",
+        "date": "2026-10-30T17:01:10Z"
+      }
+    ]
+  },
+  {
+    "number": 13543,
+    "title": "MihawkOS (PPSA99170)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13543",
+    "titleIds": [
+      "PPSA99170"
+    ],
+    "created": "2026-10-30T17:56:59Z",
+    "updated": "2026-10-31T01:59:53Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13543",
+        "discussion": 13543,
+        "author": "relativespace2K",
+        "date": "2026-10-30T17:56:59Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "AMD Radeon RX 6800 XT",
+        "gpuVendor": "AMD",
+        "build": "main at 76fd1c09e9, and separately the head of #12826 (f2df214461, rebased on 91a69952c1) with a local junction for /mnt/sandbox/PPSA99170_000/app0 and a local sysctl probe.",
+        "buildKind": "patched",
+        "prs": [
+          12826
+        ],
+        "version": null,
+        "shown": "With #12826 applied and /mnt/sandbox/PPSA99170_000/app0 pointed at the title's app0 by a local junction, the title starts and draws its launcher: MihawkOS | FPS: 59.99 (788), the theme list (30 entries), audio open at 48 kHz stereo, its web UI reported on port 6767 and the wal…",
+        "blockers": [
+          12826,
+          11939,
+          13532
+        ],
+        "blockerText": "1. On plain `main` it does not load: it imports `fNoviuIwykc` (`sceKernelAllocateDirectMemoryForApp`) and `cBp0Ad-24LA` (`sceKernelProtectDirectMemoryForPID`) from `libkernel.prx`, and both are declared only in `libkernel_sys.prx`, so the loader stops on an unresolved ELF import. Open PR: #12826.\n2. `sceKernelGetProcessAbiType` is a stub that throws. Open PR: #11939.\n3. It reads `sysctl` {1, 14, 8, 0} (`kern.proc.proc`) while it starts, and the runtime throws on the unsupported MIB, which aborts the title: `sysctl_nid_postfix: unsupported MIB 1.14.8.0`. PR: #13532.\n4. It opens `/mnt/sandbox/PPSA99170_000/app0/assets/` directly, which the runtime does not resolve; without the junction it exits with `Could not find asset path in \"/mnt/sandbox/PPSA99170_000/app0/assets/\"`. No PR yet.\n5. Its launcher needs console payloads (an ELF loader on port 9021, Kstuff, ShadowMountPlus, its `websrv` on 127.0.0.1:8686) and a Wine runtime under `/data/ps5proton`, so the launcher UI is as far as it gets here."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 13561,
+    "title": "Tetris® Forever (PPSA25646)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13561",
+    "titleIds": [
+      "PPSA25646"
+    ],
+    "created": "2026-10-30T18:18:29Z",
+    "updated": "2026-10-30T18:24:45Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13561",
+        "discussion": 13561,
+        "author": "nekotaru-retro",
+        "date": "2026-10-30T18:18:29Z",
+        "edited": "2026-10-30T18:24:45Z",
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070",
+        "gpuVendor": "NVIDIA",
+        "build": "Source build, compiled version -> main (102b7a5cf0ed98dd94d9da76862eb1ee7865a932) , WinLibs GCC 15.2.0 r7.",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.007.000",
+        "shown": "The game works very well in the modes and scenarios I tested (just some 55fps slowdowns on initial load, first 10 secs aprox) . I tried several games in the collection and various options, without encountering gameplay problems or visible graphical glitches.",
+        "blockers": [],
+        "blockerText": "None encountered during the tested gameplay."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/0f646ee5-b575-4be1-a75a-4d6d6b0166d9",
+        "alt": "tetris_forever_working(30-oct-2026)",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13561",
+        "author": "nekotaru-retro",
+        "date": "2026-10-30T18:18:29Z"
+      }
+    ]
+  },
+  {
+    "number": 13709,
+    "title": "Trackmania (PPSA02195)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13709",
+    "titleIds": [
+      "PPSA02195"
+    ],
+    "created": "2026-10-31T01:31:36Z",
+    "updated": "2026-10-31T02:54:14Z",
+    "comments": 0,
+    "reports": [],
+    "media": []
+  },
+  {
+    "number": 13726,
+    "title": "Divinity: Original Sin II Definitive Edition (PPSA06866)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13726",
+    "titleIds": [
+      "PPSA06866"
+    ],
+    "created": "2026-10-31T02:51:36Z",
+    "updated": "2026-10-31T20:13:30Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13726",
+        "discussion": 13726,
+        "author": "XatiX",
+        "date": "2026-10-31T02:51:36Z",
+        "edited": "2026-10-31T20:13:30Z",
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "RTX 5080",
+        "gpuVendor": "NVIDIA",
+        "build": "b0c711fa2620",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.007.000",
+        "shown": "boot, title screen, main menu, Campaign, difficulty, character creation, the origin story scene, the intro cinematic, the level load, then the opening in The Hold: Magister Siwan's dialogue, followed by free play with hotbar and minimap. On 456a530efb, before the speed commits…",
+        "blockers": [
+          13734,
+          13715,
+          13021,
+          10492,
+          13023
+        ],
+        "blockerText": "None stops the title in the tested range. Speed is the main problem now, and it is CPU-bound: the GPU takes about 10 ms per frame, while `Driver.Packet` takes about 19 ms and the committer thread stays busy. See Speed below. Each stop below was only reached after the one before it was passed.\n\n| # | Stop | Status | Tracked by |\n|---|---|---|---|\n| 1 | `sceHttp2SslEnableOption` on a context handle | **Passed with #13734**, tested on the title | #13715, #13734 |\n| 2 | `DB_RENDER_CONTROL` 0x88 stencil copy | Open. Local pass, unverified | No issue or PR |\n| 3 | Native multisample depth publication | Passed with #13021 | #13021 |\n| 4 | `cannot distinguish an unwritten byte…` | Local fix, on the branch | No issue or PR |\n| 5 | Access violation in `nvoglv64.dll`, about 30 to 33 s | **Cause found.** Local fix, on the branch | #10492 describes the same bug |\n| 6 | `guest writes over native multisample depth` and `publication capture` | On the branch, with a known limit | #13023 is related |\n| 7 | Loop on the load after difficulty selection | **Cause found.** Local fix, on the branch | No issue or PR |"
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 13768,
+    "title": "RuneScape: Dragonwilds (PPSA34114)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13768",
+    "titleIds": [
+      "PPSA34114"
+    ],
+    "created": "2026-10-31T05:11:05Z",
+    "updated": "2026-10-31T05:12:44Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13768",
+        "discussion": 13768,
+        "author": "Flamefusion",
+        "date": "2026-10-31T05:11:05Z",
+        "edited": "2026-10-31T05:12:44Z",
+        "stage": "Presents",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+        "gpuVendor": "NVIDIA",
+        "build": "main d3118d1946, built locally. On top of it, in order of the runs below:",
+        "buildKind": "patched",
+        "prs": [
+          13769,
+          11630,
+          11575,
+          11586,
+          11611
+        ],
+        "version": "01.000.005",
+        "shown": "- **Conversion**: relinker --windows --registry eboot.elf converts the title in 408 s with 10 guest modules. - prx/ holds the EOS SDK (eossdk, kitt, kitt_support, kitt_webkit, kitt_data_eos). sce_module/ holds libc, libSceFontGsm, libSceJobManager, libSceNpCppWebApi and libSce…",
+        "blockers": [
+          11580,
+          11630
+        ],
+        "blockerText": "`compute shader ...: reads or writes a converted float image with 16-bit data, which is not implemented`. Open #11580 implements this. I will test with it next and update this thread.\n\nBehind it, `sceHttp2WaitAsync` with `*timeout == 0` from the EOS SDK still needs a console measurement before #11630 can implement it. Without diagnostic 3, the title stops there."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 13786,
+    "title": "Silent Hill 2 (PPSA08710)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13786",
+    "titleIds": [
+      "PPSA08710"
+    ],
+    "created": "2026-10-31T06:18:21Z",
+    "updated": "2026-10-31T17:12:32Z",
+    "comments": 5,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13786",
+        "discussion": 13786,
+        "author": "tharun634",
+        "date": "2026-10-31T06:18:21Z",
+        "edited": null,
+        "stage": "Presents",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 13797,
+    "title": "Planet of Lana (PPSA19450)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13797",
+    "titleIds": [
+      "PPSA19450"
+    ],
+    "created": "2026-10-31T07:05:57Z",
+    "updated": "2026-10-31T07:05:57Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13797",
+        "discussion": 13797,
+        "author": "ashwin280802",
+        "date": "2026-10-31T07:05:57Z",
+        "edited": null,
+        "stage": "Playable",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 5070",
+        "gpuVendor": "NVIDIA",
+        "build": "Source build, compiled version -> perf/agc-heap-mirror-eviction (eadf318a82fae6237f3da7b1337e2b3ff9591838) rebased onto origin/main, MinGW-w64 GCC 15.2.0.",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.010.000",
+        "shown": "The game boots, loads all engine subsystems and FMOD audio banks, and runs smoothly with zero visual anomalies or graphical glitches across extended gameplay.",
+        "blockers": [],
+        "blockerText": "None encountered during the tested gameplay."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 13859,
+    "title": "Tekken.8-PPSA10595",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/13859",
+    "titleIds": [
+      "PPSA10595"
+    ],
+    "created": "2026-10-31T09:54:11Z",
+    "updated": "2026-10-31T09:54:11Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13859",
+        "discussion": 13859,
+        "author": "muhammadraees63",
+        "date": "2026-10-31T09:54:11Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "windows",
+        "gpu": null,
+        "gpuVendor": "NVIDIA",
+        "build": "Latest release (v0.1.4) or newer main branch.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.009.001",
+        "shown": "The game boots, initializes Vulkan, creates the swapchain, and begins shader compilation. However, it crashes to desktop with a black screen before rendering any actual frames.",
+        "blockers": [
+          9356,
+          9387
+        ],
+        "blockerText": "Current blocker\r\n[videoout] presentation failed: AGC graphics: device does not support mesh shaders followed by a fatal abort.\r\n\r\nNote: I have set the environment variable APS5_NO_MESH_SHADER=1, and it is active (confirmed via echo). However, the game still throws this error. The Quadro P1000 is a Pascal architecture GPU which lacks native mesh shaders and fragment shader barycentrics. It appears the tessellation/compute-pass fallback (from PRs #9356 / #9387) is either not triggering correctly on Pascal hardware or is missing from the current build."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14010,
+    "title": "Evil Inside (PPSA02508)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14010",
+    "titleIds": [
+      "PPSA02508"
+    ],
+    "created": "2026-10-31T15:43:26Z",
+    "updated": "2026-10-31T20:38:56Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14010",
+        "discussion": 14010,
+        "author": "JJenkx",
+        "date": "2026-10-31T15:43:26Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584.",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.000.000",
+        "shown": "**On main:** app.elf does not start.",
+        "blockers": [],
+        "blockerText": "`Media/Modules/Il2CppUserAssemblies.prx` lists `PS4sceSystemServiceParamGetInt_plugin.prx` among its needed modules (`app.Il2CppUserAssemblies.prx.guest.prx.needed.json`), but:\n- the package does not contain that file. The extraction was checked against every package member.\n- the module imports no symbol from it. Its registry only has `libSceNet`, `libSceNetCtl`, `libSceRtc`, `libSceSystemService` and `libkernel`.\n\nSo the console evidently boots without it. The relinker treats every dependency that is not a guest module as a host library and keeps it as `DT_NEEDED`, so the Linux loader refuses to start. A simple \"no imports from it\" rule is not safe: across the 30-odd runtimes I have staged, host libraries such as `libkernel.prx`, `libSceAgcDriver.prx` and `libSceRtc.prx` often appear as dependencies with no matching imports. A correct rule also needs to know which host libraries exist, and the relinker can't know that at relink time when `--rpath` is `$ORIGIN/libs`. That is a relinker design question, so I am not proposing a change here."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14013,
+    "title": "Trek To Yomi (PPSA02629)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14013",
+    "titleIds": [
+      "PPSA02629"
+    ],
+    "created": "2026-10-31T15:50:21Z",
+    "updated": "2026-10-31T15:56:38Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14013",
+        "discussion": 14013,
+        "author": "JJenkx",
+        "date": "2026-10-31T15:50:21Z",
+        "edited": null,
+        "stage": "Presents",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, with no extra PRs.",
+        "buildKind": "prs",
+        "prs": [],
+        "version": null,
+        "shown": "| APS5_PLAYGO_UNLISTED_CHUNKS | Result | |---|---| | installed | Before a window, UE4 reports Ran out of memory allocating 5565054976 bytes with alignment 65536 and the process ends with SIGSEGV (exit 139) at 20 s. It is the same size and pattern as Unbound (#10204) and The Pa…",
+        "blockers": [],
+        "blockerText": "Speed: about 1.4 FPS once the cut-scene starts, after about 60 FPS on the first screens. The image is also blotchy; the cut-scene is meant to be black and white. The engine logs no further allocation failure in 294 s."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14019,
+    "title": "Spirit of the North: Enhanced Edition (PPSA02306)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14019",
+    "titleIds": [
+      "PPSA02306"
+    ],
+    "created": "2026-10-31T16:12:38Z",
+    "updated": "2026-10-31T16:12:38Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14019",
+        "discussion": 14019,
+        "author": "JJenkx",
+        "date": "2026-10-31T16:12:38Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, and the same main with #6959 merged in locally (head 327addf79e, merge 19acd6685d).",
+        "buildKind": "patched",
+        "prs": [
+          6959
+        ],
+        "version": "01.000.000",
+        "shown": "The dump has its PlayGo files, so no override is needed. Each run was 300 s: Cross every 12 s from 30 s, then left stick forward from 210 s.",
+        "blockers": [
+          6959,
+          9593
+        ],
+        "blockerText": "None in 300 s with #6959. Without it, the scene is dark: the UE4 layered-target case #6959 fixes, also seen on OCTOPATH TRAVELER II's map (#9593). The frame rate, about 11 FPS, has not been investigated."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14030,
+    "title": "In Sound Mind (PPSA04921)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14030",
+    "titleIds": [
+      "PPSA04921"
+    ],
+    "created": "2026-10-31T16:31:06Z",
+    "updated": "2026-10-31T16:31:06Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14030",
+        "discussion": 14030,
+        "author": "JJenkx",
+        "date": "2026-10-31T16:31:06Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, with no extra PRs.",
+        "buildKind": "prs",
+        "prs": [],
+        "version": null,
+        "shown": "The title renders its first screens at about 37 FPS, then aborts at 44 s, exit 134:",
+        "blockers": [
+          10048
+        ],
+        "blockerText": "`sceAgcGetFusedShaderSize_0080` in `libSceAgc/Misc/src/ShaderFusion.cpp` refuses a geometry half whose `embedded_constant_buffer_size_dqw` is not 0. How the firmware lays out a fused shader that carries an embedded constant buffer is not documented, so the refusal is deliberate. #10048 changes the same fusion code, for the back half's register lists, but not this case."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14031,
+    "title": "Thymesia (PPSA05213)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14031",
+    "titleIds": [
+      "PPSA05213"
+    ],
+    "created": "2026-10-31T16:37:14Z",
+    "updated": "2026-10-31T19:23:09Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14031",
+        "discussion": 14031,
+        "author": "JJenkx",
+        "date": "2026-10-31T16:37:14Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, with no extra PRs.",
+        "buildKind": "prs",
+        "prs": [],
+        "version": null,
+        "shown": "300 s, Cross every 12 s from 30 s, APS5_PLAYGO_UNLISTED_CHUNKS=installed. - The intro story cut-scene with narration subtitles (\"The various kingdoms tried to fend off the sickness…\"). - In-game: the health and stamina bars, the currency counter and the \"Basic Controls\" tutori…",
+        "blockers": [],
+        "blockerText": "Speed: about 55 FPS on the first screens, then 3 to 7 FPS from the cut-scene on. Not investigated yet."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14033,
+    "title": "Kao the Kangaroo (PPSA05595)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14033",
+    "titleIds": [
+      "PPSA05595"
+    ],
+    "created": "2026-10-31T16:41:30Z",
+    "updated": "2026-10-31T16:41:30Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14033",
+        "discussion": 14033,
+        "author": "JJenkx",
+        "date": "2026-10-31T16:41:30Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, with no extra PRs.",
+        "buildKind": "prs",
+        "prs": [],
+        "version": null,
+        "shown": "Cross every 12 s from 30 s. The title runs at about 38 FPS, drops to about 5 FPS after the Cross press at 66 s, and then ends with SIGSEGV at about 75 s, exit 139. There is no AnyPS5 error before it, only the usual vkAllocateMemory (-1000072003) host-import fallbacks.",
+        "blockers": [],
+        "blockerText": "A crash in guest code. Under gdb with the same inputs, it is `SEGV_MAPERR` at address 0 on a game thread, with PC `0x2bac088` in `eboot.elf`. The code there is an array insert: a `memmove` call at `0x2bac07f`, then `mov (%r15),%rax` and a store to `(%rax,%rbx,4)`. The array's data pointer is null, which suggests that an earlier guest allocation returned null or failed. I haven't traced which one."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14035,
+    "title": "Fobia - St. Dinfna Hotel (PPSA05626)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14035",
+    "titleIds": [
+      "PPSA05626"
+    ],
+    "created": "2026-10-31T16:50:36Z",
+    "updated": "2026-10-31T16:50:36Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14035",
+        "discussion": 14035,
+        "author": "JJenkx",
+        "date": "2026-10-31T16:50:36Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, and the same main with #10304 merged in locally (head 31f895cb59, merge a7c0c6c048).",
+        "buildKind": "patched",
+        "prs": [
+          10304
+        ],
+        "version": null,
+        "shown": "300 s, Cross every 12 s from 30 s, left stick forward from 210 s, APS5_PLAYGO_UNLISTED_CHUNKS=installed.",
+        "blockers": [
+          10304
+        ],
+        "blockerText": "None in 300 s with #10304. On `main` alone it is the missing GPU owner of an indirect-dispatch argument buffer, the case #10304 (\"keep buffer owners when a staged address space dissolves\") addresses."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14053,
+    "title": "Contra: Operation Galuga (PPSA15368)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14053",
+    "titleIds": [
+      "PPSA15368"
+    ],
+    "created": "2026-10-31T17:07:49Z",
+    "updated": "2026-10-31T17:07:49Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14053",
+        "discussion": 14053,
+        "author": "JJenkx",
+        "date": "2026-10-31T17:07:49Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "AMD Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "Production main 73f4f7e06e4f210a8c6570e335fd654dc0a86134; actual compiled bank 59fbec354b5c886294a043268be63f4724e04919 adds only a GuestMemory test fixture. No optional production PR or game-byte patch. This is not a run of #6321's production change. The intervening main474 c…",
+        "buildKind": "patched",
+        "prs": [
+          6321
+        ],
+        "version": "01.000.003",
+        "shown": "The title/main menu renders readable text and responds to input. The observed menu FPS counter is around 60; this is not a gameplay or performance comparison. Story Mode → New Game → Normal → Bill → Start can be selected. Audio and PS5 visual fidelity have not been qualified.",
+        "blockers": [
+          14052,
+          14042
+        ],
+        "blockerText": "Intermittent first-stage loading stall / guest allocator crash: https://github.com/boykopovar/AnyPS5/issues/14052. That issue contains the distinct native and debugger observations and full logs. A later debugger run advances into the island scene and closes normally; it does not establish a fix or stability. No required fix PR has been identified yet, and #14042 is not claimed to unblock this title."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14054,
+    "title": "Insomnis (PPSA06829)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14054",
+    "titleIds": [
+      "PPSA06829"
+    ],
+    "created": "2026-10-31T17:09:45Z",
+    "updated": "2026-10-31T17:09:45Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14054",
+        "discussion": 14054,
+        "author": "JJenkx",
+        "date": "2026-10-31T17:09:45Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, and the same main with #6959 merged in locally (head 327addf79e, merge 19acd6685d).",
+        "buildKind": "patched",
+        "prs": [
+          6959
+        ],
+        "version": null,
+        "shown": "300 s, APS5_PLAYGO_UNLISTED_CHUNKS=installed. The language screen confirms with \"Are you sure…?\", and the cursor starts on No. So the inputs are: Cross on English at 90 s, Left at 96 s, Cross at 100 s, then Cross every 12 s, then the left stick forward from 210 s.",
+        "blockers": [
+          6959,
+          14019,
+          6933
+        ],
+        "blockerText": "None in 300 s with #6959. Without it the scene is dark: the UE4 case #6959 fixes, also seen on Spirit of the North (#14019) and Override 2 (#6933)."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14058,
+    "title": "Oxide Room 104 (PPSA07653)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14058",
+    "titleIds": [
+      "PPSA07653"
+    ],
+    "created": "2026-10-31T17:19:44Z",
+    "updated": "2026-10-31T17:19:44Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14058",
+        "discussion": 14058,
+        "author": "JJenkx",
+        "date": "2026-10-31T17:19:44Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, with no extra PRs.",
+        "buildKind": "prs",
+        "prs": [],
+        "version": null,
+        "shown": "The title starts at about 28 FPS, then aborts at 36 s, exit 134, when it first uses compute shader 0x20084d0000. Run with APS5_PLAYGO_UNLISTED_CHUNKS=installed.",
+        "blockers": [
+          12132,
+          7223
+        ],
+        "blockerText": "The shader recompiler cannot resolve an image descriptor read through an address chosen between two constant-buffer reads:\n\n```\ncompute shader 0x20084d0000: shader 0x20084d0000 stage 0: ShaderRecompiler::Recompile: GetImageResource dword 0 is not a valid runtime value; chain: LoadAddressU32@pc=0x00004244(GetAddressResource(Phi(Phi(ReadConstBuffer@pc=0x00000418(GetBufferResource(ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate)), ShiftLeftLogical32(ReadFirstLane(SelectU32(LogicalAnd, IAdd32, LoadBufferU32), Phi(LogicalAnd, LogicalAnd)), Immediate)), Phi(ReadConstBuffer@pc=0x00000418(GetBufferResource(ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate)), ShiftLeftLogical32(ReadFirstLane(SelectU32, Phi), Immediate)), Phi(ReadConstBuffer@pc=0x00000418(GetBufferResource(ReadConst, ReadConst, ReadConst, ReadConst), ShiftLeftLogical32(ReadFirstLane, Immediate)), ReadConstBuffer@pc=0x00003b70(GetBufferResource(LoadAddressU32@pc=0x00003b64, LoadAddressU32@pc=0x00003b64, LoadAddressU32@pc=0x00003b64, LoadAddressU32@pc=0x00003b64), Immediate)))), ReadConstBuffer@pc=0x00000418(GetBufferResource(ReadConst(GetSrtResource, Im …\n```\n\nI also tried two open descriptor-tracking PRs, each merged onto the same `main`. Neither changes the stop:\n- #12132 (`fold descriptor web paths that hold the lane index or texels`): the same error at `pc=0x00003f28`.\n- #7223 (`resolve nested image tables through runtime pointers`): the same error at `pc=0x00004290`."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14061,
+    "title": "Broken Sword - Shadow of the Templars: Reforged (PPSA21480)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14061",
+    "titleIds": [
+      "PPSA21480"
+    ],
+    "created": "2026-10-31T17:20:57Z",
+    "updated": "2026-10-31T17:20:57Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14061",
+        "discussion": 14061,
+        "author": "JJenkx",
+        "date": "2026-10-31T17:20:57Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "AMD Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "Production main 73f4f7e06e4f210a8c6570e335fd654dc0a86134; actual compiled SDK bank 59fbec354b5c886294a043268be63f4724e04919 adds only a GuestMemory test fixture, **no optional production change**. Current main 474030e58424fefdb65e5df9f3820810fbb4553c differs from that producti…",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.110.461",
+        "shown": "- Readable main menu; New Game → Story selection → seven tutorial pages → opening movie renders. I skipped the movie after checking its beginning. - The café exterior renders with protagonist/subtitles. Cursor movement responds to the gamepad injection file. - The game writes…",
+        "blockers": [],
+        "blockerText": "None observed in this short initial-scene check. No required open PR or local production change identified. Later progress remains untested."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14064,
+    "title": "Under The Waves (PPSA08056)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14064",
+    "titleIds": [
+      "PPSA08056"
+    ],
+    "created": "2026-10-31T17:28:51Z",
+    "updated": "2026-10-31T20:24:34Z",
+    "comments": 2,
+    "reports": [],
+    "media": []
+  },
+  {
+    "number": 14067,
+    "title": "Asterigos: Curse of the Stars (PPSA08194)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14067",
+    "titleIds": [
+      "PPSA08194"
+    ],
+    "created": "2026-10-31T17:41:17Z",
+    "updated": "2026-10-31T17:41:17Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14067",
+        "discussion": 14067,
+        "author": "JJenkx",
+        "date": "2026-10-31T17:41:17Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, and the same main with #6959 merged in locally (head 327addf79e, merge 19acd6685d).",
+        "buildKind": "patched",
+        "prs": [
+          6959
+        ],
+        "version": null,
+        "shown": "300 s, Cross every 12 s from 30 s, left stick forward from 210 s.",
+        "blockers": [
+          6959,
+          14019,
+          14054,
+          6933
+        ],
+        "blockerText": "None in 300 s with #6959. Without it the 3D scene is dark: the UE4 case #6959 fixes, also seen today on Spirit of the North (#14019), Insomnis (#14054) and Override 2 (#6933)."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14075,
+    "title": "Last Days of Lazarus (PPSA09196)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14075",
+    "titleIds": [
+      "PPSA09196"
+    ],
+    "created": "2026-10-31T17:57:56Z",
+    "updated": "2026-10-31T17:57:56Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14075",
+        "discussion": 14075,
+        "author": "JJenkx",
+        "date": "2026-10-31T17:57:56Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, with no extra PRs. A second run with #6959 merged in locally is below.",
+        "buildKind": "patched",
+        "prs": [
+          6959
+        ],
+        "version": null,
+        "shown": "300 s, Cross every 12 s from 30 s, left stick forward from 210 s, APS5_PLAYGO_UNLISTED_CHUNKS=installed. - The boot screens run at about 52 to 56 FPS. - In-game, a first-person interior with the centre crosshair, a theatre poster and a doorway. About 6 to 20 FPS, rising to abo…",
+        "blockers": [],
+        "blockerText": "None in 300 s. Speed, about 6 to 20 FPS, has not been investigated."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14077,
+    "title": "Bramble The Mountain King (PPSA09426)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14077",
+    "titleIds": [
+      "PPSA09426"
+    ],
+    "created": "2026-10-31T17:59:21Z",
+    "updated": "2026-10-31T19:32:22Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14077",
+        "discussion": 14077,
+        "author": "JJenkx",
+        "date": "2026-10-31T17:59:21Z",
+        "edited": "2026-10-31T19:32:22Z",
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "AMD Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "Primary report: clean main 474030e58424fefdb65e5df9f3820810fbb4553c, frozen SDK built from that commit. The earlier screening run used production-equivalent main73f with a test-only fixture; that is separate from this controlled pair.",
+        "buildKind": "patched",
+        "prs": [
+          6959
+        ],
+        "version": "01.003.000",
+        "shown": "Main reaches the initial language and gamma screens and then the main menu. Text/input work; English and default gamma0 were selected. The 3D forest background is almost black.",
+        "blockers": [
+          6959
+        ],
+        "blockerText": "#6959 restores visible background illumination in the paired menu observation. A follow-up on the same main474 + #6959 SDK reaches the initial bedroom and responds to movement input. Performance and later gameplay remain unresolved. The PR has [current-main focused Radeon/Vulkan-validation qualification](https://github.com/boykopovar/AnyPS5/pull/6959#issuecomment-6546943096): main6/common tests pass and the candidate adds2 passing feature cases, with zero skips/VUIDs."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/bramble-pr6959-bedroom-20261031.png",
+        "alt": "Initial bedroom after left-stick movement",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14077",
+        "author": "JJenkx",
+        "date": "2026-10-31T17:59:21Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/bramble-main474-menu-20261031.png",
+        "alt": "Main474 menu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14077",
+        "author": "JJenkx",
+        "date": "2026-10-31T17:59:21Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/bramble-pr6959-menu-20261031.png",
+        "alt": "PR6959 menu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14077",
+        "author": "JJenkx",
+        "date": "2026-10-31T17:59:21Z"
+      }
+    ]
+  },
+  {
+    "number": 14082,
+    "title": "Gamedec: Definitive Edition (PPSA12363)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14082",
+    "titleIds": [
+      "PPSA12363"
+    ],
+    "created": "2026-10-31T18:15:57Z",
+    "updated": "2026-10-31T18:15:57Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14082",
+        "discussion": 14082,
+        "author": "JJenkx",
+        "date": "2026-10-31T18:15:57Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, with no extra PRs.",
+        "buildKind": "prs",
+        "prs": [],
+        "version": null,
+        "shown": "Three 300 s runs, APS5_PLAYGO_UNLISTED_CHUNKS=installed. Each lasted until the scheduled close at 292 to 293 s, exit 0, with no driver failure. - The menu renders at about 15 to 18 FPS, after about 50 to 58 FPS on the first screens. - Cross on New Content opens the dialog list…",
+        "blockers": [],
+        "blockerText": "Not identified. I could not drive the menu past New Content with the scripted pad: Down does not move the cursor. That may be the input script, not the emulator."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14093,
+    "title": "Squirrel with a Gun (PPSA22102)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14093",
+    "titleIds": [
+      "PPSA22102"
+    ],
+    "created": "2026-10-31T18:38:28Z",
+    "updated": "2026-10-31T18:38:28Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14093",
+        "discussion": 14093,
+        "author": "JJenkx",
+        "date": "2026-10-31T18:38:28Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, and the same main with #6959 merged in locally (head 327addf79e, merge 19acd6685d).",
+        "buildKind": "patched",
+        "prs": [
+          6959
+        ],
+        "version": null,
+        "shown": "300 s, APS5_PLAYGO_UNLISTED_CHUNKS=installed.",
+        "blockers": [
+          6959,
+          14019,
+          14054,
+          14067
+        ],
+        "blockerText": "- **Input:** the prompt starts on No. My scripted Up then Cross did not start a game, so I did not reach gameplay.\n- **Speed:** about 6 FPS even on the menu, not investigated.\n- **Dark scene:** without #6959 the 3D scene is dark, the UE4 case also seen on Spirit of the North (#14019), Insomnis (#14054) and Asterigos (#14067)."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14099,
+    "title": "New Super Lucky's Tale (PPSA34823)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14099",
+    "titleIds": [
+      "PPSA34823"
+    ],
+    "created": "2026-10-31T18:50:17Z",
+    "updated": "2026-10-31T18:50:17Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14099",
+        "discussion": 14099,
+        "author": "JJenkx",
+        "date": "2026-10-31T18:50:17Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "main 474030e584, with no extra PRs. Four open PRs were each merged onto the same main for the comparison below.",
+        "buildKind": "prs",
+        "prs": [],
+        "version": null,
+        "shown": "compute shader 0x21ecb9200: AGC graphics: a shader buffer access of 0x21fac1000+0x28000 overlaps multisampled color target 0x21fac1000+0x28000 (8 samples), whose samples are only on the host: guest access to it is not implemented",
+        "blockers": [
+          7002,
+          13248,
+          13963,
+          10049
+        ],
+        "blockerText": "A compute buffer write over a multisampled color target whose samples exist only on the host. These PRs, each merged alone onto the same `main`, give the same stop:\n\n| PR | Merge |\n|---|---|\n| #7002, publish native color for read-only shader buffers | `01ec1d7a39` |\n| #13248, claim a multisampled color target that a single-sample storage image store overlaps | `0fc12fa21a` |\n| #13963, store storage results pending under a multisampled color target before it takes the memory | `2fbcc57b1f` |\n| #10049, retire a multisampled color target a write-only storage image overwrites | `d538a6004c` |\n\nWhether this write replaces the target's memory or reads it as well is not established from this run."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 14104,
+    "title": "KLONOA Phantasy Reverie Series (PPSA04795)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/14104",
+    "titleIds": [
+      "PPSA04795"
+    ],
+    "created": "2026-10-31T19:04:23Z",
+    "updated": "2026-10-31T19:04:23Z",
+    "comments": 0,
+    "reports": [],
     "media": []
   }
 ]

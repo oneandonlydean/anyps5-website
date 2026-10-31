@@ -1,6 +1,6 @@
 {
-  "commit": "5ecef095b61e7a406b279c97896f3a8a6fbd6353",
-  "date": "2026-10-30",
+  "commit": "9fe758d7520eb0c33f3df8bef539064b40bd523f",
+  "date": "2026-10-31",
   "isa": "AMD RDNA 2",
   "instructions": {
     "total": 1460,
@@ -82,7 +82,7 @@
       },
       {
         "file": "ControlFlow/src/Structurizer.cpp",
-        "line": 2629,
+        "line": 2631,
         "message": "unsupported CFG"
       },
       {
@@ -472,7 +472,7 @@
       },
       {
         "file": "Recompiler.cpp",
-        "line": 1182,
+        "line": 1184,
         "message": "unsupported prepared vertex format"
       },
       {
@@ -2800,7 +2800,27 @@
     },
     {
       "date": "2026-10-30",
-      "commit": "5ecef095b61e7a406b279c97896f3a8a6fbd6353",
+      "commit": "0c1c001c750fc0e2c07c93533b8e0409df200408",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1456,
+        "translated": 1455
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 199
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 81,
+        "buffer": 80,
+        "host": 68
+      },
+      "throws": 148
+    },
+    {
+      "date": "2026-10-31",
+      "commit": "9fe758d7520eb0c33f3df8bef539064b40bd523f",
       "instructions": {
         "total": 1460,
         "decoded": 1456,

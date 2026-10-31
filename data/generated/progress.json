@@ -1,14 +1,28 @@
 {
   "libraries": {
-    "done": 6833,
-    "total": 15802,
-    "percent": 43.24,
+    "done": 8635,
+    "total": 32934,
+    "percent": 26.22,
     "groups": [
+      {
+        "name": "libCprm",
+        "label": "libCprm",
+        "done": 0,
+        "total": 35,
+        "inert": 0
+      },
       {
         "name": "libSceAbstractStorage",
         "label": "AbstractStorage",
         "done": 0,
-        "total": 110,
+        "total": 131,
+        "inert": 0
+      },
+      {
+        "name": "libSceAbstractTcs",
+        "label": "AbstractTcs",
+        "done": 0,
+        "total": 40,
         "inert": 0
       },
       {
@@ -28,9 +42,9 @@
       {
         "name": "libSceAcm",
         "label": "Acm",
-        "done": 8,
-        "total": 12,
-        "inert": 1
+        "done": 10,
+        "total": 28,
+        "inert": 0
       },
       {
         "name": "libSceAddressSanitizer",
@@ -49,9 +63,9 @@
       {
         "name": "libSceAgcDriver",
         "label": "AgcDriver",
-        "done": 84,
-        "total": 130,
-        "inert": 54
+        "done": 91,
+        "total": 146,
+        "inert": 61
       },
       {
         "name": "libSceAgcVsh",
@@ -61,16 +75,23 @@
         "inert": 0
       },
       {
+        "name": "libSceAjm",
+        "label": "Ajm",
+        "done": 0,
+        "total": 3,
+        "inert": 0
+      },
+      {
         "name": "libSceAjm.native",
         "label": "Ajm.native",
         "done": 31,
-        "total": 45,
+        "total": 52,
         "inert": 5
       },
       {
         "name": "libSceAjmi",
         "label": "Ajmi",
-        "done": 1,
+        "done": 2,
         "total": 2,
         "inert": 0
       },
@@ -91,15 +112,29 @@
       {
         "name": "libSceAppContent",
         "label": "AppContent",
-        "done": 24,
+        "done": 27,
         "total": 36,
+        "inert": 0
+      },
+      {
+        "name": "libSceAppDbShellCoreClient",
+        "label": "AppDbShellCoreClient",
+        "done": 0,
+        "total": 28,
         "inert": 0
       },
       {
         "name": "libSceAppInstUtil",
         "label": "AppInstUtil",
         "done": 0,
-        "total": 117,
+        "total": 132,
+        "inert": 0
+      },
+      {
+        "name": "libSceAsyncStorageInternal",
+        "label": "AsyncStorageInternal",
+        "done": 0,
+        "total": 22,
         "inert": 0
       },
       {
@@ -112,7 +147,7 @@
       {
         "name": "libSceAudio3d",
         "label": "Audio3d",
-        "done": 27,
+        "done": 32,
         "total": 32,
         "inert": 0
       },
@@ -134,28 +169,28 @@
         "name": "libSceAudioOut",
         "label": "AudioOut",
         "done": 68,
-        "total": 159,
+        "total": 192,
         "inert": 5
       },
       {
         "name": "libSceAudioPropagation",
         "label": "AudioPropagation",
         "done": 23,
-        "total": 33,
+        "total": 41,
         "inert": 0
       },
       {
         "name": "libSceAudioSystem",
         "label": "AudioSystem",
         "done": 0,
-        "total": 2,
+        "total": 8,
         "inert": 0
       },
       {
         "name": "libSceAudiodec",
         "label": "Audiodec",
         "done": 6,
-        "total": 6,
+        "total": 8,
         "inert": 0
       },
       {
@@ -197,28 +232,35 @@
         "name": "libSceAvPlayerStreaming",
         "label": "AvPlayerStreaming",
         "done": 0,
-        "total": 33,
+        "total": 34,
         "inert": 0
       },
       {
         "name": "libSceAvSetting",
         "label": "AvSetting",
-        "done": 0,
-        "total": 128,
+        "done": 2,
+        "total": 129,
         "inert": 0
       },
       {
         "name": "libSceAvcap2",
         "label": "Avcap2",
         "done": 0,
-        "total": 7,
+        "total": 42,
+        "inert": 0
+      },
+      {
+        "name": "libSceAvcap2mvr",
+        "label": "Avcap2mvr",
+        "done": 0,
+        "total": 13,
         "inert": 0
       },
       {
         "name": "libSceBackupRestoreUtil",
         "label": "BackupRestoreUtil",
         "done": 0,
-        "total": 16,
+        "total": 21,
         "inert": 0
       },
       {
@@ -232,14 +274,21 @@
         "name": "libSceBemp2sys",
         "label": "Bemp2sys",
         "done": 0,
-        "total": 31,
+        "total": 33,
         "inert": 0
       },
       {
         "name": "libSceBgft",
         "label": "Bgft",
         "done": 0,
-        "total": 101,
+        "total": 103,
+        "inert": 0
+      },
+      {
+        "name": "libSceBgsStorage",
+        "label": "BgsStorage",
+        "done": 0,
+        "total": 17,
         "inert": 0
       },
       {
@@ -253,8 +302,15 @@
         "name": "libSceCamera",
         "label": "Camera",
         "done": 52,
-        "total": 121,
+        "total": 125,
         "inert": 4
+      },
+      {
+        "name": "libSceCdlgAdIdClient",
+        "label": "CdlgAdIdClient",
+        "done": 0,
+        "total": 7,
+        "inert": 0
       },
       {
         "name": "libSceCdlgG2P",
@@ -280,15 +336,22 @@
       {
         "name": "libSceCesCs",
         "label": "CesCs",
-        "done": 240,
+        "done": 261,
         "total": 287,
         "inert": 3
+      },
+      {
+        "name": "libSceCffMgr",
+        "label": "CffMgr",
+        "done": 0,
+        "total": 14,
+        "inert": 0
       },
       {
         "name": "libSceCommonDialog",
         "label": "CommonDialog",
         "done": 2,
-        "total": 16,
+        "total": 28,
         "inert": 0
       },
       {
@@ -309,8 +372,15 @@
         "name": "libSceComposite",
         "label": "Composite",
         "done": 5,
-        "total": 78,
+        "total": 101,
         "inert": 3
+      },
+      {
+        "name": "libSceConnectAccountDialog",
+        "label": "ConnectAccountDialog",
+        "done": 0,
+        "total": 7,
+        "inert": 0
       },
       {
         "name": "libSceContentDelete",
@@ -327,10 +397,17 @@
         "inert": 0
       },
       {
+        "name": "libSceContentListController",
+        "label": "ContentListController",
+        "done": 0,
+        "total": 19,
+        "inert": 0
+      },
+      {
         "name": "libSceContentSearch",
         "label": "ContentSearch",
         "done": 15,
-        "total": 27,
+        "total": 29,
         "inert": 0
       },
       {
@@ -344,14 +421,21 @@
         "name": "libSceCustomMusicAudioOut",
         "label": "CustomMusicAudioOut",
         "done": 0,
-        "total": 5,
+        "total": 10,
         "inert": 0
       },
       {
         "name": "libSceCustomMusicCore",
         "label": "CustomMusicCore",
         "done": 0,
-        "total": 18,
+        "total": 29,
+        "inert": 0
+      },
+      {
+        "name": "libSceCustomMusicPlayReady4",
+        "label": "CustomMusicPlayReady4",
+        "done": 0,
+        "total": 82,
         "inert": 0
       },
       {
@@ -365,7 +449,7 @@
         "name": "libSceDataTransfer",
         "label": "DataTransfer",
         "done": 0,
-        "total": 60,
+        "total": 90,
         "inert": 0
       },
       {
@@ -379,21 +463,21 @@
         "name": "libSceDepth",
         "label": "Depth",
         "done": 0,
-        "total": 38,
+        "total": 39,
         "inert": 0
       },
       {
         "name": "libSceDepth2",
         "label": "Depth2",
         "done": 0,
-        "total": 10,
+        "total": 11,
         "inert": 0
       },
       {
         "name": "libSceDipsw",
         "label": "Dipsw",
         "done": 0,
-        "total": 9,
+        "total": 10,
         "inert": 0
       },
       {
@@ -407,7 +491,7 @@
         "name": "libSceDiscMap",
         "label": "DiscMap",
         "done": 2,
-        "total": 3,
+        "total": 5,
         "inert": 2
       },
       {
@@ -427,9 +511,9 @@
       {
         "name": "libSceEditMp4",
         "label": "EditMp4",
-        "done": 0,
+        "done": 2,
         "total": 9,
-        "inert": 0
+        "inert": 1
       },
       {
         "name": "libSceErrorDialog",
@@ -442,14 +526,14 @@
         "name": "libSceEsvm",
         "label": "Esvm",
         "done": 0,
-        "total": 3,
+        "total": 48,
         "inert": 0
       },
       {
         "name": "libSceEsvmEngine",
         "label": "EsvmEngine",
         "done": 0,
-        "total": 19,
+        "total": 58,
         "inert": 0
       },
       {
@@ -467,10 +551,17 @@
         "inert": 0
       },
       {
+        "name": "libSceFlexContent",
+        "label": "FlexContent",
+        "done": 0,
+        "total": 12,
+        "inert": 0
+      },
+      {
         "name": "libSceFont",
         "label": "Font",
         "done": 143,
-        "total": 196,
+        "total": 240,
         "inert": 0
       },
       {
@@ -481,9 +572,23 @@
         "inert": 1
       },
       {
+        "name": "libSceFontGs",
+        "label": "FontGs",
+        "done": 0,
+        "total": 6,
+        "inert": 0
+      },
+      {
+        "name": "libSceFontGs.native",
+        "label": "FontGs.native",
+        "done": 0,
+        "total": 6,
+        "inert": 0
+      },
+      {
         "name": "libSceFreeType",
         "label": "FreeType",
-        "done": 77,
+        "done": 80,
         "total": 83,
         "inert": 0
       },
@@ -504,7 +609,7 @@
       {
         "name": "libSceFreeTypeOt",
         "label": "FreeTypeOt",
-        "done": 39,
+        "done": 49,
         "total": 148,
         "inert": 0
       },
@@ -523,6 +628,13 @@
         "inert": 0
       },
       {
+        "name": "libSceGLSlimVSH",
+        "label": "GLSlimVSH",
+        "done": 0,
+        "total": 163,
+        "inert": 0
+      },
+      {
         "name": "libSceGameCustomDataDialog",
         "label": "GameCustomDataDialog",
         "done": 7,
@@ -532,7 +644,7 @@
       {
         "name": "libSceGameLiveStreaming",
         "label": "GameLiveStreaming",
-        "done": 21,
+        "done": 22,
         "total": 47,
         "inert": 0
       },
@@ -540,7 +652,7 @@
         "name": "libSceGameUpdate",
         "label": "GameUpdate",
         "done": 7,
-        "total": 7,
+        "total": 8,
         "inert": 0
       },
       {
@@ -551,17 +663,24 @@
         "inert": 0
       },
       {
+        "name": "libSceGifParser",
+        "label": "GifParser",
+        "done": 0,
+        "total": 7,
+        "inert": 0
+      },
+      {
         "name": "libSceGnmDriverForNeoMode",
         "label": "GnmDriverForNeoMode",
         "done": 84,
-        "total": 118,
+        "total": 138,
         "inert": 50
       },
       {
         "name": "libSceGvMp4Parser",
         "label": "GvMp4Parser",
         "done": 0,
-        "total": 5,
+        "total": 24,
         "inert": 0
       },
       {
@@ -575,14 +694,14 @@
         "name": "libSceHmd",
         "label": "Hmd",
         "done": 26,
-        "total": 168,
+        "total": 187,
         "inert": 13
       },
       {
         "name": "libSceHmd2",
         "label": "Hmd2",
         "done": 16,
-        "total": 134,
+        "total": 153,
         "inert": 0
       },
       {
@@ -603,7 +722,7 @@
         "name": "libSceHttp2",
         "label": "Http2",
         "done": 17,
-        "total": 70,
+        "total": 71,
         "inert": 1
       },
       {
@@ -623,29 +742,36 @@
       {
         "name": "libSceIcu",
         "label": "Icu",
-        "done": 21,
-        "total": 120,
+        "done": 28,
+        "total": 2475,
         "inert": 0
       },
       {
         "name": "libSceIdu",
         "label": "Idu",
         "done": 0,
-        "total": 8,
+        "total": 21,
+        "inert": 0
+      },
+      {
+        "name": "libSceImageUtil",
+        "label": "ImageUtil",
+        "done": 0,
+        "total": 10,
         "inert": 0
       },
       {
         "name": "libSceIme",
         "label": "Ime",
         "done": 16,
-        "total": 62,
+        "total": 64,
         "inert": 1
       },
       {
         "name": "libSceImeBackend",
         "label": "ImeBackend",
         "done": 0,
-        "total": 22,
+        "total": 27,
         "inert": 0
       },
       {
@@ -666,7 +792,7 @@
         "name": "libSceIpmi",
         "label": "Ipmi",
         "done": 0,
-        "total": 94,
+        "total": 97,
         "inert": 0
       },
       {
@@ -708,7 +834,7 @@
         "name": "libSceJsc",
         "label": "Jsc",
         "done": 10,
-        "total": 160,
+        "total": 358,
         "inert": 0
       },
       {
@@ -733,30 +859,37 @@
         "inert": 0
       },
       {
+        "name": "libSceJxrParser",
+        "label": "JxrParser",
+        "done": 0,
+        "total": 7,
+        "inert": 0
+      },
+      {
         "name": "libSceKeyboard",
         "label": "Keyboard",
         "done": 8,
-        "total": 26,
+        "total": 28,
         "inert": 0
       },
       {
         "name": "libSceLibcInternal",
         "label": "LibcInternal",
-        "done": 72,
-        "total": 344,
+        "done": 73,
+        "total": 652,
         "inert": 1
       },
       {
         "name": "libSceLibreSsl",
         "label": "LibreSsl",
-        "done": 90,
+        "done": 97,
         "total": 401,
-        "inert": 5
+        "inert": 7
       },
       {
         "name": "libSceLibreSsl3",
         "label": "LibreSsl3",
-        "done": 5,
+        "done": 12,
         "total": 270,
         "inert": 0
       },
@@ -771,7 +904,7 @@
         "name": "libSceLoginMgrServer",
         "label": "LoginMgrServer",
         "done": 0,
-        "total": 30,
+        "total": 37,
         "inert": 0
       },
       {
@@ -785,28 +918,28 @@
         "name": "libSceM4aacEnc",
         "label": "M4aacEnc",
         "done": 0,
-        "total": 17,
+        "total": 18,
         "inert": 0
       },
       {
         "name": "libSceMbus",
         "label": "Mbus",
-        "done": 7,
-        "total": 120,
+        "done": 10,
+        "total": 136,
         "inert": 4
       },
       {
         "name": "libSceMetadataReaderWriter",
         "label": "MetadataReaderWriter",
         "done": 0,
-        "total": 39,
+        "total": 47,
         "inert": 0
       },
       {
         "name": "libSceMouse",
         "label": "Mouse",
         "done": 5,
-        "total": 25,
+        "total": 29,
         "inert": 0
       },
       {
@@ -819,7 +952,7 @@
       {
         "name": "libSceMoveTracker",
         "label": "MoveTracker",
-        "done": 2,
+        "done": 3,
         "total": 18,
         "inert": 2
       },
@@ -848,35 +981,42 @@
         "name": "libSceNKWeb",
         "label": "NKWeb",
         "done": 0,
-        "total": 2,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceNKWebCdlgInjectedBundle",
+        "label": "NKWebCdlgInjectedBundle",
+        "done": 0,
+        "total": 1,
         "inert": 0
       },
       {
         "name": "libSceNKWebKit",
         "label": "NKWebKit",
-        "done": 0,
-        "total": 150,
-        "inert": 0
+        "done": 1150,
+        "total": 11248,
+        "inert": 104
       },
       {
         "name": "libSceNKWebKitRequirements",
         "label": "NKWebKitRequirements",
         "done": 0,
-        "total": 133,
+        "total": 165,
         "inert": 0
       },
       {
         "name": "libSceNet",
         "label": "Net",
         "done": 83,
-        "total": 224,
+        "total": 232,
         "inert": 4
       },
       {
         "name": "libSceNetCtl",
         "label": "NetCtl",
         "done": 42,
-        "total": 85,
+        "total": 105,
         "inert": 12
       },
       {
@@ -897,14 +1037,14 @@
         "name": "libSceNgs2",
         "label": "Ngs2",
         "done": 0,
-        "total": 6,
+        "total": 2,
         "inert": 0
       },
       {
         "name": "libSceNgs2.native",
         "label": "Ngs2.native",
-        "done": 53,
-        "total": 67,
+        "done": 57,
+        "total": 71,
         "inert": 0
       },
       {
@@ -938,21 +1078,21 @@
       {
         "name": "libSceNpCommon",
         "label": "NpCommon",
-        "done": 124,
-        "total": 308,
-        "inert": 0
+        "done": 227,
+        "total": 381,
+        "inert": 10
       },
       {
         "name": "libSceNpCppWebApi",
         "label": "NpCppWebApi",
-        "done": 484,
-        "total": 751,
-        "inert": 282
+        "done": 784,
+        "total": 1225,
+        "inert": 426
       },
       {
         "name": "libSceNpEntitlementAccess",
         "label": "NpEntitlementAccess",
-        "done": 21,
+        "done": 22,
         "total": 25,
         "inert": 14
       },
@@ -981,7 +1121,7 @@
         "name": "libSceNpManager",
         "label": "NpManager",
         "done": 70,
-        "total": 207,
+        "total": 214,
         "inert": 9
       },
       {
@@ -995,7 +1135,14 @@
         "name": "libSceNpPartner001",
         "label": "NpPartner001",
         "done": 3,
-        "total": 3,
+        "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpPartnerSubscription",
+        "label": "NpPartnerSubscription",
+        "done": 0,
+        "total": 2,
         "inert": 0
       },
       {
@@ -1016,7 +1163,7 @@
         "name": "libSceNpRemotePlaySessionSignaling",
         "label": "NpRemotePlaySessionSignaling",
         "done": 0,
-        "total": 10,
+        "total": 14,
         "inert": 0
       },
       {
@@ -1030,7 +1177,14 @@
         "name": "libSceNpSessionSignaling",
         "label": "NpSessionSignaling",
         "done": 18,
-        "total": 26,
+        "total": 31,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpSessionSignalingCrossplay",
+        "label": "NpSessionSignalingCrossplay",
+        "done": 0,
+        "total": 11,
         "inert": 0
       },
       {
@@ -1062,30 +1216,44 @@
         "inert": 0
       },
       {
+        "name": "libSceNpSpeechToText",
+        "label": "NpSpeechToText",
+        "done": 0,
+        "total": 7,
+        "inert": 0
+      },
+      {
         "name": "libSceNpTcs",
         "label": "NpTcs",
         "done": 0,
-        "total": 3,
+        "total": 11,
+        "inert": 0
+      },
+      {
+        "name": "libSceNpTextToSpeech",
+        "label": "NpTextToSpeech",
+        "done": 0,
+        "total": 11,
         "inert": 0
       },
       {
         "name": "libSceNpTrophy",
         "label": "NpTrophy",
-        "done": 12,
-        "total": 97,
+        "done": 17,
+        "total": 110,
         "inert": 0
       },
       {
         "name": "libSceNpTrophy2",
         "label": "NpTrophy2",
         "done": 18,
-        "total": 56,
+        "total": 61,
         "inert": 6
       },
       {
         "name": "libSceNpTus",
         "label": "NpTus",
-        "done": 121,
+        "done": 122,
         "total": 142,
         "inert": 0
       },
@@ -1106,15 +1274,15 @@
       {
         "name": "libSceNpWebApi",
         "label": "NpWebApi",
-        "done": 18,
-        "total": 23,
+        "done": 31,
+        "total": 88,
         "inert": 0
       },
       {
         "name": "libSceNpWebApi2",
         "label": "NpWebApi2",
         "done": 34,
-        "total": 39,
+        "total": 43,
         "inert": 16
       },
       {
@@ -1128,41 +1296,41 @@
         "name": "libSceOpusCeltEnc",
         "label": "OpusCeltEnc",
         "done": 8,
-        "total": 11,
+        "total": 15,
         "inert": 0
       },
       {
         "name": "libSceOpusDec",
         "label": "OpusDec",
         "done": 11,
-        "total": 14,
+        "total": 15,
         "inert": 0
       },
       {
         "name": "libSceOpusSilkEnc",
         "label": "OpusSilkEnc",
         "done": 8,
-        "total": 14,
+        "total": 15,
         "inert": 0
       },
       {
         "name": "libScePSNowGkp",
         "label": "PSNowGkp",
         "done": 0,
-        "total": 4,
+        "total": 9,
         "inert": 0
       },
       {
         "name": "libScePad",
         "label": "Pad",
-        "done": 38,
-        "total": 192,
+        "done": 43,
+        "total": 205,
         "inert": 7
       },
       {
         "name": "libScePadTracker",
         "label": "PadTracker",
-        "done": 0,
+        "done": 1,
         "total": 6,
         "inert": 0
       },
@@ -1183,9 +1351,9 @@
       {
         "name": "libScePlayGo",
         "label": "PlayGo",
-        "done": 19,
-        "total": 21,
-        "inert": 1
+        "done": 23,
+        "total": 24,
+        "inert": 0
       },
       {
         "name": "libScePlayGoDialog",
@@ -1197,7 +1365,7 @@
       {
         "name": "libScePlayReady",
         "label": "PlayReady",
-        "done": 1,
+        "done": 7,
         "total": 50,
         "inert": 0
       },
@@ -1205,14 +1373,21 @@
         "name": "libScePlayReady2",
         "label": "PlayReady2",
         "done": 0,
-        "total": 16,
+        "total": 17,
         "inert": 0
       },
       {
         "name": "libScePlayReady4",
         "label": "PlayReady4",
         "done": 0,
-        "total": 35,
+        "total": 87,
+        "inert": 0
+      },
+      {
+        "name": "libScePlayReady4L",
+        "label": "PlayReady4L",
+        "done": 0,
+        "total": 8,
         "inert": 0
       },
       {
@@ -1241,6 +1416,13 @@
         "label": "PngEnc",
         "done": 4,
         "total": 4,
+        "inert": 0
+      },
+      {
+        "name": "libScePngParser",
+        "label": "PngParser",
+        "done": 0,
+        "total": 7,
         "inert": 0
       },
       {
@@ -1295,23 +1477,30 @@
       {
         "name": "libSceRazorCpu",
         "label": "RazorCpu",
-        "done": 21,
-        "total": 35,
-        "inert": 21
+        "done": 34,
+        "total": 42,
+        "inert": 33
       },
       {
         "name": "libSceRegMgr",
         "label": "RegMgr",
         "done": 3,
-        "total": 65,
+        "total": 74,
+        "inert": 0
+      },
+      {
+        "name": "libSceRemotePlayClientIpc",
+        "label": "RemotePlayClientIpc",
+        "done": 0,
+        "total": 18,
         "inert": 0
       },
       {
         "name": "libSceRemoteplay",
         "label": "Remoteplay",
         "done": 3,
-        "total": 46,
-        "inert": 1
+        "total": 49,
+        "inert": 0
       },
       {
         "name": "libSceResourceArbitrator",
@@ -1324,7 +1513,7 @@
         "name": "libSceRnpsAppMgr",
         "label": "RnpsAppMgr",
         "done": 0,
-        "total": 27,
+        "total": 35,
         "inert": 0
       },
       {
@@ -1345,7 +1534,7 @@
         "name": "libSceRudp",
         "label": "Rudp",
         "done": 28,
-        "total": 34,
+        "total": 35,
         "inert": 0
       },
       {
@@ -1356,10 +1545,17 @@
         "inert": 0
       },
       {
+        "name": "libSceSaveData",
+        "label": "SaveData",
+        "done": 0,
+        "total": 14,
+        "inert": 0
+      },
+      {
         "name": "libSceSaveData.native",
         "label": "SaveData.native",
-        "done": 42,
-        "total": 111,
+        "done": 44,
+        "total": 118,
         "inert": 12
       },
       {
@@ -1387,7 +1583,7 @@
         "name": "libSceShare",
         "label": "Share",
         "done": 17,
-        "total": 17,
+        "total": 23,
         "inert": 10
       },
       {
@@ -1398,10 +1594,17 @@
         "inert": 0
       },
       {
+        "name": "libSceShareInternal.native",
+        "label": "ShareInternal.native",
+        "done": 0,
+        "total": 20,
+        "inert": 0
+      },
+      {
         "name": "libSceSharePlay",
         "label": "SharePlay",
         "done": 5,
-        "total": 20,
+        "total": 25,
         "inert": 0
       },
       {
@@ -1415,7 +1618,7 @@
         "name": "libSceShellUIUtil",
         "label": "ShellUIUtil",
         "done": 0,
-        "total": 6,
+        "total": 7,
         "inert": 0
       },
       {
@@ -1428,7 +1631,7 @@
       {
         "name": "libSceSocialScreen",
         "label": "SocialScreen",
-        "done": 0,
+        "done": 1,
         "total": 11,
         "inert": 0
       },
@@ -1449,8 +1652,8 @@
       {
         "name": "libSceSrcUtl",
         "label": "SrcUtl",
-        "done": 0,
-        "total": 9,
+        "done": 3,
+        "total": 13,
         "inert": 0
       },
       {
@@ -1471,7 +1674,7 @@
         "name": "libSceSysCore",
         "label": "SysCore",
         "done": 0,
-        "total": 72,
+        "total": 84,
         "inert": 0
       },
       {
@@ -1485,14 +1688,14 @@
         "name": "libSceSysmodule",
         "label": "Sysmodule",
         "done": 10,
-        "total": 16,
+        "total": 21,
         "inert": 0
       },
       {
         "name": "libSceSystemGesture",
         "label": "SystemGesture",
         "done": 23,
-        "total": 23,
+        "total": 24,
         "inert": 1
       },
       {
@@ -1506,14 +1709,14 @@
         "name": "libSceSystemLogger2",
         "label": "SystemLogger2",
         "done": 0,
-        "total": 5,
+        "total": 14,
         "inert": 0
       },
       {
         "name": "libSceSystemLogger2Delivery",
         "label": "SystemLogger2Delivery",
         "done": 0,
-        "total": 4,
+        "total": 7,
         "inert": 0
       },
       {
@@ -1527,13 +1730,13 @@
         "name": "libSceSystemLogger2NativeQueueClient",
         "label": "SystemLogger2NativeQueueClient",
         "done": 0,
-        "total": 5,
+        "total": 12,
         "inert": 0
       },
       {
         "name": "libSceSystemService",
         "label": "SystemService",
-        "done": 69,
+        "done": 93,
         "total": 584,
         "inert": 42
       },
@@ -1541,29 +1744,57 @@
         "name": "libSceSystemTts",
         "label": "SystemTts",
         "done": 0,
-        "total": 5,
+        "total": 10,
         "inert": 0
       },
       {
         "name": "libSceTEEClient",
         "label": "TEEClient",
         "done": 0,
-        "total": 10,
+        "total": 15,
         "inert": 0
       },
       {
         "name": "libSceTextToSpeech",
         "label": "TextToSpeech",
         "done": 0,
-        "total": 10,
+        "total": 12,
         "inert": 0
       },
       {
         "name": "libSceTextToSpeech2",
         "label": "TextToSpeech2",
         "done": 8,
-        "total": 8,
+        "total": 14,
         "inert": 8
+      },
+      {
+        "name": "libSceTtsCoreG3Bc",
+        "label": "TtsCoreG3Bc",
+        "done": 0,
+        "total": 18,
+        "inert": 0
+      },
+      {
+        "name": "libSceTtsEngine",
+        "label": "TtsEngine",
+        "done": 0,
+        "total": 11,
+        "inert": 0
+      },
+      {
+        "name": "libSceUgcBgUploaderClient",
+        "label": "UgcBgUploaderClient",
+        "done": 0,
+        "total": 14,
+        "inert": 0
+      },
+      {
+        "name": "libSceUgcServiceS3",
+        "label": "UgcServiceS3",
+        "done": 0,
+        "total": 14,
+        "inert": 0
       },
       {
         "name": "libSceUlt",
@@ -1576,7 +1807,7 @@
         "name": "libSceUpdateService",
         "label": "UpdateService",
         "done": 0,
-        "total": 40,
+        "total": 56,
         "inert": 0
       },
       {
@@ -1590,7 +1821,7 @@
         "name": "libSceUsbStorage",
         "label": "UsbStorage",
         "done": 11,
-        "total": 22,
+        "total": 24,
         "inert": 0
       },
       {
@@ -1611,14 +1842,14 @@
         "name": "libSceUserService",
         "label": "UserService",
         "done": 24,
-        "total": 26,
+        "total": 102,
         "inert": 0
       },
       {
         "name": "libSceVdecCore",
         "label": "VdecCore",
         "done": 0,
-        "total": 20,
+        "total": 21,
         "inert": 0
       },
       {
@@ -1646,7 +1877,14 @@
         "name": "libSceVdecShevc",
         "label": "VdecShevc",
         "done": 0,
-        "total": 7,
+        "total": 13,
+        "inert": 0
+      },
+      {
+        "name": "libSceVdecSvp9",
+        "label": "VdecSvp9",
+        "done": 0,
+        "total": 11,
         "inert": 0
       },
       {
@@ -1667,7 +1905,7 @@
         "name": "libSceVenc",
         "label": "Venc",
         "done": 0,
-        "total": 14,
+        "total": 23,
         "inert": 0
       },
       {
@@ -1702,28 +1940,42 @@
         "name": "libSceVideoNativeExtEssential",
         "label": "VideoNativeExtEssential",
         "done": 0,
-        "total": 5,
+        "total": 6,
         "inert": 0
       },
       {
         "name": "libSceVideoOut",
         "label": "VideoOut",
         "done": 55,
-        "total": 62,
+        "total": 253,
         "inert": 1
+      },
+      {
+        "name": "libSceVideoOutSecondary",
+        "label": "VideoOutSecondary",
+        "done": 0,
+        "total": 2,
+        "inert": 0
       },
       {
         "name": "libSceVideoRecordingP",
         "label": "VideoRecordingP",
         "done": 6,
-        "total": 24,
+        "total": 26,
         "inert": 4
       },
       {
         "name": "libSceVideoStreamingEngine",
         "label": "VideoStreamingEngine",
         "done": 0,
-        "total": 12,
+        "total": 70,
+        "inert": 0
+      },
+      {
+        "name": "libSceVideoStreamingEngineAudioOnly",
+        "label": "VideoStreamingEngineAudioOnly",
+        "done": 0,
+        "total": 4,
         "inert": 0
       },
       {
@@ -1744,7 +1996,7 @@
         "name": "libSceVisionManager",
         "label": "VisionManager",
         "done": 11,
-        "total": 56,
+        "total": 63,
         "inert": 1
       },
       {
@@ -1778,7 +2030,7 @@
       {
         "name": "libSceVrHand",
         "label": "VrHand",
-        "done": 0,
+        "done": 1,
         "total": 8,
         "inert": 0
       },
@@ -1800,7 +2052,7 @@
         "name": "libSceVrTracker",
         "label": "VrTracker",
         "done": 9,
-        "total": 30,
+        "total": 39,
         "inert": 0
       },
       {
@@ -1811,10 +2063,38 @@
         "inert": 75
       },
       {
+        "name": "libSceVsePlugin",
+        "label": "VsePlugin",
+        "done": 0,
+        "total": 34,
+        "inert": 0
+      },
+      {
         "name": "libSceWebBrowserDialog",
         "label": "WebBrowserDialog",
         "done": 10,
-        "total": 13,
+        "total": 14,
+        "inert": 0
+      },
+      {
+        "name": "libSceWebRtc",
+        "label": "WebRtc",
+        "done": 0,
+        "total": 5,
+        "inert": 0
+      },
+      {
+        "name": "libSceWebTransport",
+        "label": "WebTransport",
+        "done": 0,
+        "total": 53,
+        "inert": 0
+      },
+      {
+        "name": "libSceWebmParserMdrw",
+        "label": "WebmParserMdrw",
+        "done": 0,
+        "total": 7,
         "inert": 0
       },
       {
@@ -1827,9 +2107,9 @@
       {
         "name": "libSceXml",
         "label": "Xml",
-        "done": 0,
+        "done": 43,
         "total": 150,
-        "inert": 0
+        "inert": 3
       },
       {
         "name": "libSceZlib",
@@ -1841,36 +2121,64 @@
       {
         "name": "libc",
         "label": "libc",
-        "done": 1460,
-        "total": 1476,
-        "inert": 24
+        "done": 1480,
+        "total": 1496,
+        "inert": 26
+      },
+      {
+        "name": "libfreetype",
+        "label": "libfreetype",
+        "done": 0,
+        "total": 24,
+        "inert": 0
       },
       {
         "name": "libkernel",
         "label": "libkernel",
-        "done": 700,
-        "total": 746,
+        "done": 701,
+        "total": 749,
         "inert": 17
       },
       {
         "name": "libkernel_sys",
         "label": "libkernel_sys",
-        "done": 121,
+        "done": 135,
         "total": 833,
         "inert": 17
+      },
+      {
+        "name": "libkernel_web",
+        "label": "libkernel_web",
+        "done": 0,
+        "total": 43,
+        "inert": 0
       },
       {
         "name": "libmdbg_syscore",
         "label": "libmdbg_syscore",
         "done": 2,
-        "total": 143,
+        "total": 148,
         "inert": 2
+      },
+      {
+        "name": "libwebrtc",
+        "label": "libwebrtc",
+        "done": 4,
+        "total": 412,
+        "inert": 0
+      },
+      {
+        "name": "libwvoec",
+        "label": "libwvoec",
+        "done": 0,
+        "total": 77,
+        "inert": 0
       },
       {
         "name": "ulobjmgr",
         "label": "ulobjmgr",
         "done": 4,
-        "total": 4,
+        "total": 6,
         "inert": 0
       }
     ]

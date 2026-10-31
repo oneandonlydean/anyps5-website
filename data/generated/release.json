@@ -1,68 +1,128 @@
 {
-  "tag": "v0.1.3",
-  "name": "v0.1.3",
-  "url": "https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.3",
-  "published": "2026-10-20T09:31:13Z",
+  "tag": "v0.1.4",
+  "name": "v0.1.4",
+  "url": "https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.4",
+  "published": "2026-10-30T23:09:14Z",
   "assets": [
     {
       "name": "INPUT_MAPPING.md",
-      "size": 9315,
-      "sha256": "fba99505aed606d191bbc20a322d2edf440f4e4d8304a243bf5ea1e84f9ef92c",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/INPUT_MAPPING.md"
+      "size": 15409,
+      "sha256": "da96f966d62009dc911828d26ed2ad653b7a4fb76744ecb52f2903be71569652",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/INPUT_MAPPING.md"
     },
     {
-      "name": "prx-linux-v0.1.3.tar.gz",
-      "size": 101657250,
-      "sha256": "0a4eb4dcfb1321a24faac09d9d8c4a2ba62e58f77764f4b7f7fd9e0f6bdfce3a",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/prx-linux-v0.1.3.tar.gz"
+      "name": "prx-headers-v0.1.4.tar.gz",
+      "size": 402226,
+      "sha256": "51f2b1dc5dfc49dbe325549f6d85126e8adda3007c46e5aea703911b9f674614",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-headers-v0.1.4.tar.gz"
     },
     {
-      "name": "prx-linux-v0.1.3.zip",
-      "size": 102052745,
-      "sha256": "017bdb0e931fa0cdb17f0cea805a824180b88205f5c50f4473550c63a4e811f3",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/prx-linux-v0.1.3.zip"
+      "name": "prx-headers-v0.1.4.zip",
+      "size": 598531,
+      "sha256": "e542b7b45810534bf52b077bdfd98608ea879fc732e922b337e72c41877249e3",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-headers-v0.1.4.zip"
     },
     {
-      "name": "prx-windows-v0.1.3.tar.gz",
-      "size": 96619545,
-      "sha256": "e1d6d3dcd0d0f755a6c0d37ec4cdb7483ce8ffece1e64ef30d32dab542e2f734",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/prx-windows-v0.1.3.tar.gz"
+      "name": "prx-linux-unpatched-v0.1.4.tar.gz",
+      "size": 100511605,
+      "sha256": "028c9538f275bf9823752e6d20823bfe84c24ccdc5ff1ec3328a4c3034795f85",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-linux-unpatched-v0.1.4.tar.gz"
     },
     {
-      "name": "prx-windows-v0.1.3.zip",
-      "size": 96653447,
-      "sha256": "a0d6ce41859368f7be43bb7ceefda8542f9abaaa80f16d157a1847287d46d0e0",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/prx-windows-v0.1.3.zip"
+      "name": "prx-linux-unpatched-v0.1.4.zip",
+      "size": 100869518,
+      "sha256": "21910c5a31febebcec729cb5e1b67207d9ade12c29335f8645745a8c1b6cc9cf",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-linux-unpatched-v0.1.4.zip"
+    },
+    {
+      "name": "prx-linux-v0.1.4.tar.gz",
+      "size": 100587475,
+      "sha256": "805ba3f455924a9fc2ca9dae7b398f9c9d4e4b88b6251d738d64afed98f8e6ef",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-linux-v0.1.4.tar.gz"
+    },
+    {
+      "name": "prx-linux-v0.1.4.zip",
+      "size": 100933342,
+      "sha256": "04ea0a4a51cc93d5aad1c9d558473bd3eea4bf9ef7d17511aa467449b744a27e",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-linux-v0.1.4.zip"
+    },
+    {
+      "name": "prx-windows-unpatched-v0.1.4.tar.gz",
+      "size": 99334193,
+      "sha256": "40b6b4fb14bb63b7f07a2f782f0dfaf1f141f34ed49091d992e6cbd32f994352",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-windows-unpatched-v0.1.4.tar.gz"
+    },
+    {
+      "name": "prx-windows-unpatched-v0.1.4.zip",
+      "size": 99517947,
+      "sha256": "0a4d50bc51909db14f2c82feb683de0bd35b2eabca8e80954d0c1044ebcad222",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-windows-unpatched-v0.1.4.zip"
+    },
+    {
+      "name": "prx-windows-v0.1.4.tar.gz",
+      "size": 95610237,
+      "sha256": "785fbe2dc0092b890b3aa2417ee2742057b3469bf7e82213699125460c0260ff",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-windows-v0.1.4.tar.gz"
+    },
+    {
+      "name": "prx-windows-v0.1.4.zip",
+      "size": 95656458,
+      "sha256": "cbd61c521d555614dbcddc62cdabf45acfe409c520307cdb58732c8486dd0d7a",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/prx-windows-v0.1.4.zip"
+    },
+    {
+      "name": "README.es.md",
+      "size": 3449,
+      "sha256": "33e9d5d36c4dc1b9621e19aecb3bffb76d632fdc83870fa7467c6d50b4484bf9",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/README.es.md"
+    },
+    {
+      "name": "README.pt-BR.md",
+      "size": 3393,
+      "sha256": "3f1b98f6ce6bf950f40930ab55441b5588eeab7b06e06ac02af465440dd4e12f",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/README.pt-BR.md"
+    },
+    {
+      "name": "README.ru.md",
+      "size": 4986,
+      "sha256": "fa5d2195b4e040dda81842a68bfa45b4ba87933a49e117a092dd015f7eadad23",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/README.ru.md"
+    },
+    {
+      "name": "README.zh-CN.md",
+      "size": 2995,
+      "sha256": "a71bc7ed5e2e0307dc933dc911f2d25a3cd5f5e7e9b90af17a82682d2b8383ec",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/README.zh-CN.md"
     },
     {
       "name": "release-notes.md",
-      "size": 233772,
-      "sha256": "7c897054c9500106ef21af27497ecbaf7652f9ba6e8acff131b029bd78fff978",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/release-notes.md"
+      "size": 170355,
+      "sha256": "f9d64274d95a8b61a2f8ae028c0eceaa799f8df83f4b5592d8578bb1a6508da7",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/release-notes.md"
     },
     {
-      "name": "relinker-v0.1.3",
-      "size": 4529672,
-      "sha256": "bd2a959885830e14f091477edf297fc4c3f45b83a29171c47f5719d721fedb45",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/relinker-v0.1.3"
+      "name": "relinker-v0.1.4",
+      "size": 5156888,
+      "sha256": "9e5afd1313520906a9af43c468d6e31a5d2237879a85c0984134d628348e92a8",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/relinker-v0.1.4"
     },
     {
-      "name": "relinker-v0.1.3.exe",
-      "size": 5424392,
-      "sha256": "c0de554bd426c35d3a38b67720879a0ec8dbdb06d89b0360442e45c7c268d021",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/relinker-v0.1.3.exe"
+      "name": "relinker-v0.1.4.exe",
+      "size": 5736372,
+      "sha256": "6f6d49e3613ea7fce859621265068bfd64161a729a8051c83150f2d45ec193e0",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/relinker-v0.1.4.exe"
     },
     {
       "name": "USAGE.md",
-      "size": 65701,
-      "sha256": "7eae16b20eecc81be457582b4a4632455c52a3f8a8971e4615752287cbc3d8f8",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/USAGE.md"
+      "size": 105040,
+      "sha256": "da4b09ac0046f06125284c4bd7f0c6aede9f779c264863bd9aee58b152bf8b8d",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/USAGE.md"
     },
     {
-      "name": "web-v0.1.3.zip",
-      "size": 400889,
-      "sha256": "8e11eebed8f3cf4dce26bcebbca06afe6f377d179ac849b8774830c665b597d8",
-      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/web-v0.1.3.zip"
+      "name": "web-v0.1.4.zip",
+      "size": 457702,
+      "sha256": "8ea31d02134d313597f58ca834b842223bb23183b6bb7ec8a8827e46a8f1902a",
+      "url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.4/web-v0.1.4.zip"
     }
   ]
 }
