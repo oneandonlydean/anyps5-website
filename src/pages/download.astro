@@ -3,6 +3,7 @@ import LocalDate from "../components/LocalDate.astro";
 import Base from "../layouts/Base.astro";
 import { formatBytes, REPO_URL } from "../lib/site";
 import { getRelease, type ReleaseAsset } from "../lib/upstream";
+import { softwareSchema } from "../lib/structured-data";
 
 const release = await getRelease();
 
@@ -56,7 +57,7 @@ const groups: { title: string; text: string; items: { label: string; asset?: Rel
 ];
 ---
 
-<Base title="Download" description="Download the latest AnyPS5 relinker and system libraries for Linux and Windows.">
+<Base title="Download" description="Download the latest AnyPS5 relinker and system libraries for Linux and Windows." schema={[softwareSchema(Astro.site!, release)]}>
   <section class="container page-head">
     <span class="eyebrow">Download</span>
     <h1>Latest release</h1>

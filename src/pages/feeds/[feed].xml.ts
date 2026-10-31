@@ -6,7 +6,8 @@ import { getUpdates, type Update } from "../../lib/updates";
 export const FEEDS = {
   releases: { title: "AnyPS5 releases", subtitle: "New AnyPS5 releases.", pick: (u: Update) => u.kind === "release", limit: 30 },
   progress: { title: "AnyPS5 progress", subtitle: "Every feature, fix and speed-up merged upstream.", pick: (u: Update) => u.kind === "merge", limit: 300 },
-  "progress-daily": { title: "AnyPS5 daily progress", subtitle: "One summary per day of what was merged upstream.", pick: (u: Update) => u.kind === "digest" || u.kind === "week", limit: 60 },
+  "progress-daily": { title: "AnyPS5 daily progress", subtitle: "One summary per day of what was merged upstream.", pick: (u: Update) => u.kind === "digest" || u.kind === "week" || u.kind === "library", limit: 120 },
+  libraries: { title: "AnyPS5 library milestones", subtitle: "System libraries that got their first function, reached half, or were completed.", pick: (u: Update) => u.kind === "library", limit: 100 },
   games: { title: "AnyPS5 game compatibility", subtitle: "Games that reached a new stage.", pick: (u: Update) => u.kind === "stage", limit: 100 },
 } as const;
 

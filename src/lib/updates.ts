@@ -2,7 +2,8 @@ import { getGames } from "./data";
 import { loadGenerated } from "./load";
 import { AREA_LABEL, AREAS, classify, typeLabel, type ClassifiedMerge, type Merge, type MergeArea } from "./merges";
 import { stageRank, type StageOrNone } from "./stages";
-import { getCoverage, getProgressHistory } from "./upstream";
+import { getCoverage, getLibraryHistory, getProgressHistory } from "./upstream";
+import type { MilestoneKind } from "./library-milestones";
 
 /**
  * - stage: a game reached a new stage.
@@ -10,8 +11,9 @@ import { getCoverage, getProgressHistory } from "./upstream";
  * - merge: one user-facing pull request merged upstream (a feature, fix or speed-up).
  * - digest: one day of merges, with what the libraries and shader recompiler gained.
  * - week: a weekly progress summary, for weeks before the merge history starts.
+ * - library: a system library got its first implemented function, reached half, or was completed.
  */
-export type UpdateKind = "stage" | "release" | "merge" | "digest" | "week";
+export type UpdateKind = "stage" | "release" | "merge" | "digest" | "week" | "library";
 
 /** Which feed and page tab an update belongs to. */
 export const CATEGORY: Record<UpdateKind, "games" | "releases" | "progress"> = {
@@ -20,6 +22,7 @@ export const CATEGORY: Record<UpdateKind, "games" | "releases" | "progress"> = {
   merge: "progress",
   digest: "progress",
   week: "progress",
+  library: "progress",
 };
 
 export interface Update {
@@ -38,6 +41,8 @@ export interface Update {
   merge?: { area: MergeArea; type: string; library: string | null; author: string | null; number: number };
   /** On a digest: the day's merges by area, for the page to list. */
   merges?: ClassifiedMerge[];
+  /** On a library milestone: which one. */
+  milestone?: MilestoneKind;
 }
 
 interface ReleaseEntry {
@@ -73,12 +78,13 @@ export function getUpdates(): Promise<Update[]> {
 }
 
 async function build(): Promise<Update[]> {
-  const [games, releases, libraries, coverage, mergeData] = await Promise.all([
+  const [games, releases, libraries, coverage, mergeData, libraryHistory] = await Promise.all([
     getGames(),
     loadGenerated<ReleaseEntry[]>("releases.json", []),
     getProgressHistory(),
     getCoverage(),
     loadGenerated<{ merges: Merge[] }>("merges.json", { merges: [] }),
+    getLibraryHistory(),
   ]);
   const updates: Update[] = [];
   const gameCard = (g: (typeof games)[number]) => ({ slug: g.slug, name: g.name, cover: g.art?.cover ?? g.art?.square ?? null, color: g.art?.color ?? null });
@@ -150,6 +156,20 @@ async function build(): Promise<Update[]> {
       merges: items,
     });
   }
+  // Libraries that got their first function, reached half or were completed, as the site's own record found them.
+  for (const m of libraryHistory?.milestones ?? []) {
+    const counts = `${number.format(m.done)} of ${number.format(m.total)} functions`;
+    updates.push({
+      id: `library:${m.date}:${m.library}`,
+      date: m.date,
+      kind: "library",
+      title: { complete: `${m.library} fully implemented`, half: `${m.library} is now half implemented`, started: `${m.library}: first functions implemented` }[m.kind],
+      text: { complete: `All ${number.format(m.total)} of its declared functions are implemented.`, half: `${counts} implemented.`, started: `${counts} implemented so far.` }[m.kind],
+      url: "/progress#libraries",
+      milestone: m.kind,
+    });
+  }
+
   const firstMergeDay = merges.at(-1)?.mergedAt.slice(0, 10) ?? "9999";
 
   // Before the merge history starts, one digest per week from the progress series.
@@ -184,4 +204,4 @@ async function build(): Promise<Update[]> {
   return updates.sort((a, b) => b.date.localeCompare(a.date) || kindOrder(a) - kindOrder(b) || stageRank(b.stage) - stageRank(a.stage));
 }
 
-const kindOrder = (u: Update) => ["release", "digest", "week", "stage", "merge"].indexOf(u.kind);
+const kindOrder = (u: Update) => ["release", "digest", "week", "library", "stage", "merge"].indexOf(u.kind);

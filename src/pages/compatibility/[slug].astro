@@ -12,7 +12,7 @@ import StageLadder from "../../components/StageLadder.astro";
 import { getGames, getNeeds, getRetest, getScreenshots } from "../../lib/data";
 import type { Game } from "../../lib/resolve";
 import { formatDate, SITE_REPO_URL } from "../../lib/site";
-import { stageSlug } from "../../lib/stages";
+import { STAGES, stageSlug } from "../../lib/stages";
 import { artSrc, artSrcset, PLATFORM_LABEL, reach, regionName, reportKey } from "../../lib/view";
 import { CONFIRMATIONS_NEEDED } from "../../lib/uploads";
 import { gameTheme } from "../../lib/color";
@@ -75,7 +75,18 @@ const rows = [
 const editUrl = game.overlayFile
   ? `${SITE_REPO_URL}/edit/main/data/games/${game.overlayFile}`
   : `${SITE_REPO_URL}/new/main/data/games?filename=${game.slug}.yaml&value=${encodeURIComponent(`title_ids: [${game.titleIds.join(", ")}]\n`)}`;
-const description = `${game.name} on AnyPS5: ${stage ?? "untested"}${onMain ? "" : " with open pull requests"}. Test reports, blockers and progress.`;
+// What a search result shows: how far the game gets in plain words, how well tested that is, and its title ID, which
+// people search by too. The stage's meaning is left out when it would make the text too long to show in full.
+const description = (() => {
+  const ids = game.titleIds.slice(0, 2).join(", ");
+  if (!stage || !rows.length) return `${game.name} (${ids}) has no AnyPS5 test reports yet. Convert it to run natively on Linux or Windows, and report how far it gets.`;
+  const reached = `Can ${game.name} run on PC? On AnyPS5 it reaches ${stage}${onMain ? "" : " with open pull requests"}`;
+  const tested = `${rows.length === 1 ? "1 test report" : `${rows.length} test reports`}, the latest on ${formatDate(rows[0].date)}. ${ids}`;
+  const meaning = STAGES.find((s) => s.name === stage)?.meaning.replace(/\.$/, "");
+  const full = `${reached}: ${meaning?.replace(/^./, (c) => c.toLowerCase())}. ${tested}`;
+  if (meaning && full.length <= 160) return full;
+  return `${reached}. ${tested}`.length <= 160 ? `${reached}. ${tested}` : `${game.name} on AnyPS5: ${stage}. ${tested}`;
+})();
 ---
 
 <Base title={game.name} description={description} image={`/og/${game.slug}.jpg`}>

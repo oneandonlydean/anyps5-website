@@ -11,8 +11,9 @@ import { getCoverage, getProgress, getRelease } from "../../lib/upstream";
 import { getUpdates } from "../../lib/updates";
 import { AREAS } from "../../lib/merges";
 import { loadGenerated } from "../../lib/load";
+import { softwareSchema, websiteSchema } from "../../lib/structured-data";
 import { artSrc, reach } from "../../lib/view";
-import { localePath, strings, type Locale } from "../../i18n";
+import { LOCALES, localePath, strings, type Locale } from "../../i18n";
 
 interface Props {
   locale: Locale;
@@ -91,7 +92,7 @@ const STEP_LINKS = [
 const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
 ---
 
-<Base description={t.meta.description}>
+<Base description={t.meta.description} schema={[websiteSchema(Astro.site!, LOCALES[locale].lang, t.meta.description), softwareSchema(Astro.site!, release)]}>
   <section class="hero">
     <div class="wall" aria-hidden="true">
       {

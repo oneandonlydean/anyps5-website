@@ -21,6 +21,7 @@ const FEEDS = [
   { path: "/feeds/releases.xml", title: "Releases", text: "Each new AnyPS5 release. Good for an announcements channel." },
   { path: "/feeds/progress.xml", title: "Progress", text: "Every feature, fix and speed-up as it is merged, around 160 a day." },
   { path: "/feeds/progress-daily.xml", title: "Daily progress", text: "One summary a day of what was merged and what it added." },
+  { path: "/feeds/libraries.xml", title: "Library milestones", text: "System libraries that get their first function, reach half, or are completed." },
   { path: "/feeds/games.xml", title: "Games", text: "Games that reach a new stage on the compatibility list." },
 ];
 ---
@@ -123,7 +124,7 @@ const FEEDS = [
                       </span>
                     ) : (
                       <span class:list={["thumb icon", u.kind]} aria-hidden="true">
-                        {u.kind === "release" ? "★" : "↗"}
+                        {u.kind === "release" ? "★" : u.kind === "library" ? (u.milestone === "complete" ? "✓" : "◐") : "↗"}
                       </span>
                     )}
                     <span class="copy">
@@ -386,6 +387,10 @@ const FEEDS = [
   .thumb.icon.week {
     background: color-mix(in srgb, var(--accent-2) 16%, var(--surface));
     color: var(--accent-2);
+  }
+  .thumb.icon.library {
+    background: color-mix(in srgb, var(--good) 16%, var(--surface));
+    color: var(--good);
   }
   .copy {
     display: grid;

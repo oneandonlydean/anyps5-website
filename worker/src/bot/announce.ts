@@ -163,7 +163,7 @@ export const announceGames = (ctx: Ctx) =>
   announceFeed(ctx, { path: "/feeds/games.xml", webhook: ctx.env.DISCORD_WEBHOOK_GAMES, key: "games_seen", color: 0x3ddc84 });
 
 /**
- * Yesterday's progress summary, from the site's daily feed. A day's summary keeps changing until the day is over and
+ * Yesterday's progress summary and library milestones, from the site's daily feed. A day's summary keeps changing until the day is over and
  * the site has rebuilt, so a day is posted only from 01:00 UTC the next day, and once.
  */
 export function announceDigest(ctx: Ctx, at = new Date()) {
@@ -175,7 +175,7 @@ export function announceDigest(ctx: Ctx, at = new Date()) {
     webhook: ctx.env.DISCORD_WEBHOOK_DIGEST || ctx.env.DISCORD_WEBHOOK_PROGRESS,
     key: "digest_seen",
     color: 0x37e0c8,
-    ready: (e) => settled(e.id.match(/(?:digest|week):(\d{4}-\d{2}-\d{2})/)?.[1] ?? today),
+    ready: (e) => settled(e.id.match(/(?:digest|week|library):(\d{4}-\d{2}-\d{2})/)?.[1] ?? today),
   });
 }
 

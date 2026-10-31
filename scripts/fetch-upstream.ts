@@ -4,6 +4,7 @@ import { dirname, resolve } from "node:path";
 import { unzipSync } from "fflate";
 import { generated, readJson, root, writeJson } from "./lib/files";
 import { countPeople, type ContributorEntry } from "./lib/contributors";
+import { recordLibraries, type LibraryCounts, type LibraryHistory } from "../src/lib/library-milestones";
 import { rest, restCount } from "./lib/github";
 
 const CONVERTER = resolve(root, "public/convert/app");
@@ -162,11 +163,32 @@ async function publishProgress() {
         progress.libraries.groups.flatMap((g) => [...g.done_names.map((n) => [n, [g.label, 1]]), ...g.todo_names.map((n) => [n, [g.label, 0]])]),
       ),
     ),
+    publishLibraryHistory(Object.fromEntries(slim(progress.libraries).groups.map((g) => [g.label, [g.done, g.total]]))),
     writeJson(
       generated("progress-history.json"),
       history.map((d) => ({ date: d.date, libraries: { done: d.libraries.done, total: d.libraries.total } })),
     ),
   ]);
+}
+
+/**
+ * Adds today's per-library counts to the site's record of them (see library-milestones.ts). The record lives on the
+ * deployed site, since CI keeps nothing between runs, so it starts from the published copy and falls back to the local
+ * one. A site that is unreachable stops the refresh, rather than starting the record over and losing its milestones.
+ */
+async function publishLibraryHistory(libraries: LibraryCounts) {
+  const site = process.env.SITE_API ?? process.env.SITE_URL ?? "https://anyps5-demo.deanisa.ninja";
+  let history = await readJson<LibraryHistory | null>(generated("library-history.json"), null);
+  const response = await fetch(new URL("/library-history.json", site));
+  if (response.ok) {
+    const published = (await response.json()) as LibraryHistory | null;
+    if (published && (!history || published.latest.date >= history.latest.date)) history = published;
+  } else if (response.status !== 404) {
+    throw new Error(`library history: ${site} answered ${response.status}`);
+  }
+  history = recordLibraries(history, new Date().toISOString().slice(0, 10), libraries);
+  await writeJson(generated("library-history.json"), history);
+  console.log(`library history: ${history.milestones.length} milestones since ${history.previous?.date ?? history.latest.date}`);
 }
 
 /** Recent releases, for the updates page and feed. */

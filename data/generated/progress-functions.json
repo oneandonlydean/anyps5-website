@@ -5423,6 +5423,110 @@
     "AppDbShellCoreClient",
     0
   ],
+  "libSceAppInstUtilUnknown_2WQuFX8yYXg_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_4vqRxwpIE1M_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_9QIC1kZpSG4_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_K73u2VX0JFo_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_LsUZe38RhCs_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_N6H7LMfZD5Q_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_NXqdUFpinmo_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_QMjuGVPtjUY_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_R_minus_OUApMZ1d8_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_T9h6l8bFKGE_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_X5Q7QxodFcg_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_XWjOLtdgxa4_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_Y_plus_ln_minus_TkY_plus_hA_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_Zv_plus_26GDSKcQ_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_ecad2GAw55Y_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_gFlBHjtrMDI_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_gP27iU_plus_aZFw_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_grC16befiso_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_j80u95nZ_plus_3A_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_j9qjbjMifhQ_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_pbYNtR2enrY_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_qn0aziKw_minus_kE_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_qxjCWxg8ki4_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_vZ1SWJ0y4mo_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_xV7MhF_plus_9AQk_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
+  "libSceAppInstUtilUnknown_yYVV_minus_f0zoWY_nid_no_patch": [
+    "AppInstUtil",
+    0
+  ],
   "sceAppInstUtilAppAllowDownloadInstall": [
     "AppInstUtil",
     0
@@ -7384,12 +7488,8 @@
     1
   ],
   "sceAudiodecGetAjmContext": [
-    "Audiodec",
-    0
-  ],
-  "sceAudiodecUnregisterCodec": [
-    "Audiodec",
-    0
+    "Audiodec.native",
+    1
   ],
   "sceAudiodecClearContextEx": [
     "Audiodec.native",
@@ -7444,6 +7544,10 @@
     0
   ],
   "sceAudiodecTerminate": [
+    "Audiodec.native",
+    0
+  ],
+  "sceAudiodecUnregisterCodec": [
     "Audiodec.native",
     0
   ],
@@ -7766,6 +7870,118 @@
   "sceAvSettingTerm": [
     "AvSetting",
     1
+  ],
+  "libSceAvSettingUnknown_0BKuKlQG8zE_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_0mMgouCMXQ4_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_0vwiTglFTz4_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_7kywfNahIbw_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_A143jTEYkNw_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_DtJ45BO7LtY_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_Dxe4ybR_minus_NaM_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_GYAho0we28c_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_Iv3zoMND6xU_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_JUxonNYB9xk_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_JlZQqZOsTMQ_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_MNZaRdvvdU4_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_V_minus_IcK9eokeE_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown__plus_QkxEV_plus_rZws_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_bM9VthphLmg_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_bXmd6MGBaNI_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_cANt7oF1VsA_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_cK_plus_dKi9GYYA_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_ftQASJeHi6M_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_kvYuLJa0CyU_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_m1Wi0Yp38v0_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_mp2s52Yr4pc_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_nWFSNYt07Cw_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_nhvN5B5bvyc_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_osJaW_plus_pc9kw_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_s_minus_Egk_plus_i6sAY_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_tIR02KtiDXw_nid_no_patch": [
+    "AvSetting",
+    0
+  ],
+  "libSceAvSettingUnknown_xVRs9kzSP7I_nid_no_patch": [
+    "AvSetting",
+    0
   ],
   "sceAvControlAddCallbacksForLnc": [
     "AvSetting",
@@ -9956,6 +10172,134 @@
     0
   ],
   "_ZNK3sce16CommonDialogUtil6Server14getServerStateEv": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_1IzIqsh2lVE_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_2pswOa0ZQoQ_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_33zrWSbHxcI_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_56KPLy5Uc_minus_w_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_CK_minus_7W3zhCjk_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_Dv1KWHTwGeM_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_KaTogANOP6U_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_MQDTRLwdnrU_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_NKhtpQTUjpY_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_Pl1B1_plus_pzwLM_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_RiJYtG8H1Yk_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_VMUTkgazl40_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_VrN0lR_plus_BJyc_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_W4zcizD4i3I_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_WlSxsADNweU_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_YNi5ipH59bE_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_ZRy0WQp2COs_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_aFrwE9W9faU_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_aX1ZGnOo9vg_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_aztojjv0xT0_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_dQte4n_minus_nQlg_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_e3l9WkmIjyw_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_ht7qLD4xIAU_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_j6vGxXgVnCQ_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_k9wR_plus_1LoaoU_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_lhSjnuF2bzg_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_mCWvwveN2gM_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_qFygU3yA0HE_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_ucY3L5rXqjs_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_vfUweaM01gw_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_yPspG9QpJK4_nid_no_patch": [
+    "CdlgUtilServer",
+    0
+  ],
+  "libSceCdlgUtilServerUnknown_zjj3moy7KpM_nid_no_patch": [
     "CdlgUtilServer",
     0
   ],
@@ -18807,6 +19151,10 @@
     "GnmDriverForNeoMode",
     1
   ],
+  "sceGnmDrawInitToDefaultContextStateInternalCommand": [
+    "GnmDriverForNeoMode",
+    1
+  ],
   "sceGnmDriverInternalRetrieveGnmInterface": [
     "GnmDriverForNeoMode",
     1
@@ -19140,10 +19488,6 @@
     0
   ],
   "sceGnmDrawIndexMultiInstanced": [
-    "GnmDriverForNeoMode",
-    0
-  ],
-  "sceGnmDrawInitToDefaultContextStateInternalCommand": [
     "GnmDriverForNeoMode",
     0
   ],
@@ -37044,6 +37388,602 @@
     0
   ],
   "sceLibcInternalExport6_062_V23qt24VPVs_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_002_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_003_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_004_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_005_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_006_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_007_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_008_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_009_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_010_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_011_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_012_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_013_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_014_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_015_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_016_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_017_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_018_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_019_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_020_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_021_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_022_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_023_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_024_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_025_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_026_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_027_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_028_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_029_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_030_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_031_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_032_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_033_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_034_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_035_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_036_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_037_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_038_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_039_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_040_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_041_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_042_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_043_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_044_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_045_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_046_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_047_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_048_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_049_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_050_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_051_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_052_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_053_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_054_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_055_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_056_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_057_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_058_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_059_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_060_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_061_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_062_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_063_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_064_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_065_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_066_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_067_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_068_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_069_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_070_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_071_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_072_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_073_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_074_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_075_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_076_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_077_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_078_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_079_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_080_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_081_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_082_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_083_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_084_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_085_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_086_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_087_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_088_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_089_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_090_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_091_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_092_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_093_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_094_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_095_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_096_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_097_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_098_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_099_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_100_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_101_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_102_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_103_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_104_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_105_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_106_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_107_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_108_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_109_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_110_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_111_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_112_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_113_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_114_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_115_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_116_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_117_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_118_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_119_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_120_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_121_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_122_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_123_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_124_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_125_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_126_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_127_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_128_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_129_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_130_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_131_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_132_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_133_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_134_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_135_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_136_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_137_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_138_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_139_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_140_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_141_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_142_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_143_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_144_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_145_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_146_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_147_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_148_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_149_nid_no_patch": [
+    "LibcInternal",
+    0
+  ],
+  "sceLibcInternalPending4_150_nid_no_patch": [
     "LibcInternal",
     0
   ],
@@ -87291,6 +88231,110 @@
     "NKWebKit",
     0
   ],
+  "__ubsan_handle_cfi_check_fail_abort_nid_disambig1_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "__ubsan_handle_cfi_check_fail_nid_disambig1_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "deflateBound_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "deflateEnd_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "deflateInit2__nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "deflateReset_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "deflate_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "inflateEnd_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "inflateInit2__nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "inflateReset_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "inflate_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_CreateDecompress_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_calc_output_dimensions_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_consume_input_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_destroy_decompress_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_finish_decompress_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_finish_output_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_has_multiple_scans_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_input_complete_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_read_header_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_read_scanlines_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_resync_to_restart_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_save_markers_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_start_decompress_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_start_output_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "jpeg_std_error_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
   "libSceNKWebKitRequirementsUnknown_1MRhOnElUw4_nid_no_patch": [
     "NKWebKitRequirements",
     0
@@ -87419,43 +88463,91 @@
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_03w8Wi7eD_A_nid_no_patch": [
+  "psl_builtin_file_time_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_0NzQg1z_fGM_nid_no_patch": [
+  "psl_builtin_filename_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_0OeraXVXfzM_nid_no_patch": [
+  "psl_builtin_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_0Uek9fMv9z4_nid_no_patch": [
+  "psl_builtin_outdated_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_0_24WRoyyAg_nid_no_patch": [
+  "psl_builtin_sha1sum_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_0y370_q87ug_nid_no_patch": [
+  "psl_check_version_number_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_1AYeyBFz_eM_nid_no_patch": [
+  "psl_dist_filename_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_2XNpG4ZDT4s_nid_no_patch": [
+  "psl_free_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_3at8rFY_PRk_nid_no_patch": [
+  "psl_free_string_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_4QrIS2z8_EI_nid_no_patch": [
+  "psl_get_version_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_is_cookie_domain_acceptable_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_is_public_suffix2_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_is_public_suffix_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_latest_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_load_file_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_load_fp_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_registrable_domain_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_str_to_utf8lower_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_suffix_count_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_suffix_exception_count_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_suffix_wildcard_count_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "psl_unregistrable_domain_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
@@ -87467,51 +88559,7 @@
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_5xDT5s6gCgg_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_71eCBabjnWU_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_72wZB0MqDcg_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_7Wb0Jv2wCO0_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_8hi6_rkfY2M_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_8y1Cv7BS6dg_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_92RMcC5IfeE_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
   "sceNKWebKitRequirementsUnknown_9DAe2g9wzX4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_9SRRU8yTt04_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_APAcjNNVeDQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_AnQQM55IXDQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_Atq_9b5btSU_nid_no_patch": [
     "NKWebKitRequirements",
     0
   ],
@@ -87523,179 +88571,7 @@
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_EyvrFZ67_fo_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_Fj7T2VY7xg4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_GKOdtyJINIc_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_G_Lq53FSulk_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_Gk_8gCXwG_E_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_H5kLCyRw33Y_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_Hb45BVZ1WVQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_HnfoQSPjI7o_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_I1J4AmgICLM_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_IHQRMDrYqts_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_ILCa64n_L8U_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_IO92NEwJXT8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_IwmVVM5dPhM_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_JvvQKXNn0HQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_K4M0IhFb88Q_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_Kzy7yDwocns_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_L6QRY1pl3xc_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_LbstfuAwMhQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_LferlGyfxiw_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_MM_aVBE7p_A_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_MhdUhQtAIYk_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_NPzB4u7iNOw_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_O1Djg3YeTLU_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_O4uuDAmh9Jk_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
   "sceNKWebKitRequirementsUnknown_P6lAFGsZE9Q_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_PGLtQ31bblg_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_PPOQBfvrMIQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_QLufrpMhxjM_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_QtfzmrF_Gpc_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_ROw6faazl58_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_RZdBACKeudU_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_RguMBf_bBTc_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_RvvvsJ_ilks_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_TPplvBxaj8w_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_V0N1qq7ikUc_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_VCIAd_nrADw_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_VXRQVSn69Ow_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_Vy6tew6SeVU_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_WMpTxKngZOg_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_WOjpm4i__Y4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_WR19W1gFzTc_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_WTOiJ2zqWjk_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_XVx6JyC0Mv4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_XeIRR713LsI_nid_no_patch": [
     "NKWebKitRequirements",
     0
   ],
@@ -87707,143 +88583,7 @@
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_YW0nCl9fJK0_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_Z0pL_Tae6N4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
   "sceNKWebKitRequirementsUnknown__4JKB5YW3Bk_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown__ZY_4CCqv7Y_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown__gJRMHTKjwI_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown__yNC7DPGH2g_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_bEQToAEGGxQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_c6OcNEPqsOE_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_cJl4lpQr_TA_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_dbDvWQUel6A_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_dbR9oqRLeH8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_e9TbTZXq_w8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_etHgBXWnWn8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_f79Y3ZlfBQk_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_f7_5WlpEqp8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_fKk7unahoVM_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_fUEoU29MwzA_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_fqBbFOBcJHU_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_gFXm4KsdCOg_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_gnWUEMlAxZY_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_h6fqSoAmmFQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_hMPqBxgdqd4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_h_wtQ0Jvjh4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_hijfwtuVJT4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_i3EU0fCS8j8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_iWYXKx6f2r4_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_jVg6F_8c6oo_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_kLDgEC1CtLw_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_kgLz9IuqGvA_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_ks4vjG1O3Aw_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_kxmCA67rtog_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_lCU9IGT_MN8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_lMGV4bOhOx8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_mhD00YrjSbg_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_mkmgHfPc6_o_nid_no_patch": [
     "NKWebKitRequirements",
     0
   ],
@@ -87851,103 +88591,303 @@
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_ovdabH7tKu0_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_pHt_cpjRGfI_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_pbUudIEKcm8_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_pzl_F73sa6k_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_q5V1eZmYXKo_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_qRLpm_alR90_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_qfdBMD8tNKs_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_qmDH4PGK8vQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_rymOrz6HZAs_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_sPU6b2LaPqg_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_sPxTZD_Xqdk_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_sUO777nQSTQ_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_t0W8_TBYlXc_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_toXPpb5jhhk_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
-  "sceNKWebKitRequirementsUnknown_u38IZ8Z7qYY_nid_no_patch": [
-    "NKWebKitRequirements",
-    0
-  ],
   "sceNKWebKitRequirementsUnknown_uVoRmKYYtcI_nid_no_patch": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_vYQLyTYE6nw_nid_no_patch": [
+  "sqlite3_bind_blob_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_vcDMMUBBG_g_nid_no_patch": [
+  "sqlite3_bind_double_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_wo6_V7jxzG0_nid_no_patch": [
+  "sqlite3_bind_int64_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_wrb3I3Ze1C8_nid_no_patch": [
+  "sqlite3_bind_int_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_xNxRXaItFE0_nid_no_patch": [
+  "sqlite3_bind_null_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_yB_1wOOpQIU_nid_no_patch": [
+  "sqlite3_bind_parameter_count_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_z_M1pu_ssOM_nid_no_patch": [
+  "sqlite3_bind_text16_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_zsxq8S_s6og_nid_no_patch": [
+  "sqlite3_busy_handler_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
-  "sceNKWebKitRequirementsUnknown_zuQqTYaKNl4_nid_no_patch": [
+  "sqlite3_busy_timeout_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_clear_bindings_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_close_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_blob_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_bytes16_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_bytes_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_decltype_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_double_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_int64_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_int_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_name16_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_text16_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_type_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_column_value_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_create_collation_v2_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_create_function_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_data_count_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_errcode_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_errmsg_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_errstr_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_extended_result_codes_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_finalize_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_get_autocommit_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_initialize_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_interrupt_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_last_insert_rowid_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_next_stmt_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_open_v2_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_prepare_v2_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_reset_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_result_error_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_set_authorizer_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_sql_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_step_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_stmt_busy_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_total_changes_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_user_data_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_value_double_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_value_text16_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_value_type_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_wal_checkpoint_v2_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "sqlite3_wal_hook_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "uncompress_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlByteConsumed_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlCreateMemoryParserCtxt_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlCreatePushParserCtxt_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlCtxtGetLastError_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlCtxtUseOptions_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlDictLookup_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlFreeDoc_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlFreeParserCtxt_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlGetDocEntity_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlGetPredefinedEntity_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlInitParser_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlParseChunk_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlParseContent_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlRegisterInputCallbacks_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlRegisterOutputCallbacks_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlSAX2EndDocument_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlSAX2EntityDecl_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlSAX2InternalSubset_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlSAX2StartDocument_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlStopParser_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlStrdup_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlStrndup_nid_postfix": [
+    "NKWebKitRequirements",
+    0
+  ],
+  "xmlSwitchEncoding_nid_postfix": [
     "NKWebKitRequirements",
     0
   ],
@@ -104935,6 +105875,14 @@
     "Rudp",
     1
   ],
+  "sceRudpFlush": [
+    "Rudp",
+    1
+  ],
+  "sceRudpGetContextBufferStatus": [
+    "Rudp",
+    1
+  ],
   "sceRudpGetContextStatus": [
     "Rudp",
     1
@@ -104944,6 +105892,10 @@
     1
   ],
   "sceRudpGetNumberOfPacketsToRead": [
+    "Rudp",
+    1
+  ],
+  "sceRudpGetRemoteInfo": [
     "Rudp",
     1
   ],
@@ -105027,23 +105979,11 @@
     "Rudp",
     0
   ],
-  "sceRudpFlush": [
-    "Rudp",
-    0
-  ],
-  "sceRudpGetContextBufferStatus": [
-    "Rudp",
-    0
-  ],
   "sceRudpGetLocalInfo": [
     "Rudp",
     0
   ],
   "sceRudpGetOption": [
-    "Rudp",
-    0
-  ],
-  "sceRudpGetRemoteInfo": [
     "Rudp",
     0
   ],
@@ -110987,6 +111927,98 @@
     "UsbStorage",
     1
   ],
+  "libSceUsbStorageUnknown_267oD_minus_IF_plus_8k_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_96s31EeG0LM_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_AIyv_minus_u_minus_8w0s_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_FhdRv3K4EMQ_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_H6axEciG5Gw_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_IgVY6sHaVuE_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_O6_plus_fXKZS62g_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_OhsV6P0FD5A_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_PsB2k0hnCRo_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_W5e8Vxa9OCI_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_W6xoHROgu6w_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_W_plus_CjjL0iEmU_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_XMDFDnkOilA_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_d5QHvMfsCx0_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_dVQFgpSzA2I_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_jjKZ79juYfE_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_jl_plus__plus_fwrnXXI_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_jpS2TJZhsRU_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_jqw6RT84rQI_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_kzxjYuKrhv0_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_rZgSodboauI_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_uXZqnG02MiM_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
+  "libSceUsbStorageUnknown_yct_minus_absP9LM_nid_no_patch": [
+    "UsbStorage",
+    0
+  ],
   "sceUsbStorageCheckSystemDefaultMountPoint": [
     "UsbStorage",
     0
@@ -114225,6 +115257,94 @@
   ],
   "sceVisionManagerWaitResponse": [
     "VisionManager",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_8KzE01OyRog_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_94G0OCEujjA_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_Bw0_minus_YBkPNm4_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_DP4477brt60_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_J3fL2giuM_plus_0_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_J8_minus_VXNQySz0_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_JiBSw3cBh2g_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_KGPZ_plus_BZgXn0_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_K_minus_logS9LtFw_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_MI6xIf_minus_bHXs_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_NS_plus_C_plus_w391Aw_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_OUogBgTPp6E_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_PPt1uQ9zOb8_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_T4s2VWpD9_minus_g_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown__minus_IDFERYOJPs_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_es11O5Z1er4_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_fxgYzL5aGyw_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_hSnmIgcBCMk_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_jtTGYZXUOqE_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_obO4IYwAPtg_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_qUkQKyPORE8_nid_no_patch": [
+    "VnaWebsocket",
+    0
+  ],
+  "libSceVnaWebsocketUnknown_t534VXlYZI8_nid_no_patch": [
+    "VnaWebsocket",
     0
   ],
   "sceVoiceConnectIPortToOPort": [
@@ -128951,175 +130071,175 @@
     "libkernel_sys",
     0
   ],
-  "sceKernelWebUnknown_001_nid_no_patch": [
+  "__freeze_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_002_nid_no_patch": [
+  "__sceKernelGetGPI_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_003_nid_no_patch": [
+  "__sys_debug_init_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_004_nid_no_patch": [
+  "__sys_dl_get_info_2_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_005_nid_no_patch": [
+  "__sys_dl_get_info_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_006_nid_no_patch": [
+  "__sys_dl_get_list_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_007_nid_no_patch": [
+  "__sys_dl_get_metadata_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_008_nid_no_patch": [
+  "__sys_dynlib_get_info2_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_009_nid_no_patch": [
+  "__sys_dynlib_get_info_for_libdbg_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_010_nid_no_patch": [
+  "__sys_dynlib_get_list2_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_011_nid_no_patch": [
+  "__sys_dynlib_get_list_for_libdbg_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_012_nid_no_patch": [
+  "__sys_dynlib_load_prx_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_013_nid_no_patch": [
+  "__sys_get_proc_type_info_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_014_nid_no_patch": [
+  "__sys_is_development_mode_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_015_nid_no_patch": [
+  "__sys_kqueueex_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_016_nid_no_patch": [
+  "__sys_namedobj_create_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_017_nid_no_patch": [
+  "__sys_namedobj_delete_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_018_nid_no_patch": [
+  "__sys_netabort_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_019_nid_no_patch": [
+  "__sys_netcontrol_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_020_nid_no_patch": [
+  "__sys_netgetiflist_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_021_nid_no_patch": [
+  "__sys_netgetsockinfo_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_022_nid_no_patch": [
+  "__sys_opmc_disable_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_023_nid_no_patch": [
+  "__sys_opmc_enable_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_024_nid_no_patch": [
+  "__sys_opmc_get_ctr_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_025_nid_no_patch": [
+  "__sys_opmc_get_hw_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_026_nid_no_patch": [
+  "__sys_opmc_set_ctl_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_027_nid_no_patch": [
+  "__sys_opmc_set_ctr_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_028_nid_no_patch": [
+  "__sys_opmc_set_hw_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_029_nid_no_patch": [
+  "__sys_osem_close_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_030_nid_no_patch": [
+  "__sys_osem_open_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_031_nid_no_patch": [
+  "__sys_randomized_path_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_032_nid_no_patch": [
+  "__sys_rdup_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_033_nid_no_patch": [
+  "__sys_regmgr_call_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_034_nid_no_patch": [
+  "__sys_set_uevt_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_035_nid_no_patch": [
+  "__sys_socketclose_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_036_nid_no_patch": [
+  "__sys_test_debug_rwmem_nid_disambig1_nid_postfix": [
     "libkernel_web",
     0
   ],
-  "sceKernelWebUnknown_037_nid_no_patch": [
+  "__sys_workaround8849_nid_disambig1_nid_postfix": [
+    "libkernel_web",
+    0
+  ],
+  "_execve_nid_disambig1_nid_postfix": [
+    "libkernel_web",
+    0
+  ],
+  "_execvpe_nid_disambig1_nid_postfix": [
+    "libkernel_web",
+    0
+  ],
+  "_wait4_nid_disambig1_nid_postfix": [
+    "libkernel_web",
+    0
+  ],
+  "sceKernelGetPrefixVersion": [
+    "libkernel_web",
+    0
+  ],
+  "sceKernelIccGetThermalAlert": [
     "libkernel_web",
     0
   ],
   "sceKernelWebUnknown_038_nid_no_patch": [
-    "libkernel_web",
-    0
-  ],
-  "sceKernelWebUnknown_039_nid_no_patch": [
-    "libkernel_web",
-    0
-  ],
-  "sceKernelWebUnknown_040_nid_no_patch": [
-    "libkernel_web",
-    0
-  ],
-  "sceKernelWebUnknown_041_nid_no_patch": [
-    "libkernel_web",
-    0
-  ],
-  "sceKernelWebUnknown_042_nid_no_patch": [
-    "libkernel_web",
-    0
-  ],
-  "sceKernelWebUnknown_043_nid_no_patch": [
     "libkernel_web",
     0
   ],
@@ -129130,6 +130250,98 @@
   "sceDebugSetProcessEventCntlFlag": [
     "libmdbg_syscore",
     1
+  ],
+  "libmdbg_syscoreUnknown_63yQzeKlH74_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_9Z4GhOWZL6U_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_AOE76xS3KE8_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_HAuOlaAs6n0_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_KSF5BlhhUwA_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_KnjWLw4OOEg_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_MOLL_minus_OygpCA_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_Wlgt1fK0WIg_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_Y4XKdJ9yi9w_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown__minus_Os5MER7Z6w_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_g0xdmqI4Kfo_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_gRIqTUqqQmo_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_h3hpY6kIB3c_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_hAZNCht1_plus_T0_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_iJTmUN3_plus_2A8_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_iLMtKDbkQwM_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_irUK9RMoEQo_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_mORgO8Woq_plus_E_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_oNkb_plus_v3gFg0_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_oSQ_plus_lkHQhI8_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_og6sdu_minus_o9GE_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_qi6vA_plus_rh1K4_nid_no_patch": [
+    "libmdbg_syscore",
+    0
+  ],
+  "libmdbg_syscoreUnknown_wrKerXOBJ8U_nid_no_patch": [
+    "libmdbg_syscore",
+    0
   ],
   "sceDebugAcquireAndUpdateDebugRegister": [
     "libmdbg_syscore",
@@ -129715,6 +130927,70 @@
     "libmdbg_syscore",
     0
   ],
+  "WebRtcOpus_DisableCbr_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_DisableDtx_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_DisableFec_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_EnableCbr_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_EnableDtx_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_EnableFec_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_Encode_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_EncoderCreate_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_EncoderFree_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_GetBandwidth_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_SetBandwidth_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_SetBitRate_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_SetComplexity_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_SetForceChannels_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_SetMaxPlaybackRate_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "WebRtcOpus_SetPacketLossRate_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
   "_ZN3rtc9ExpFilter5ApplyEff_nid_postfix": [
     "libwebrtc",
     1
@@ -129730,70 +131006,6 @@
   "_ZN6webrtc4rtcp12CommonHeader5ParseEPKhm_nid_postfix": [
     "libwebrtc",
     1
-  ],
-  "WebRtcOpus_DisableCbr_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_DisableDtx_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_DisableFec_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_EnableCbr_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_EnableDtx_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_EnableFec_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_Encode_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_EncoderCreate_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_EncoderFree_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_GetBandwidth_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_SetBandwidth_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_SetBitRate_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_SetComplexity_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_SetForceChannels_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_SetMaxPlaybackRate_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "WebRtcOpus_SetPacketLossRate_nid_postfix": [
-    "libwebrtc",
-    0
   ],
   "WebRtcVad_Create_nid_postfix": [
     "libwebrtc",

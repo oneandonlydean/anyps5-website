@@ -1,8 +1,8 @@
 {
   "libraries": {
-    "done": 8635,
-    "total": 32934,
-    "percent": 26.22,
+    "done": 8656,
+    "total": 33237,
+    "percent": 26.04,
     "groups": [
       {
         "name": "libCprm",
@@ -127,7 +127,7 @@
         "name": "libSceAppInstUtil",
         "label": "AppInstUtil",
         "done": 0,
-        "total": 132,
+        "total": 158,
         "inert": 0
       },
       {
@@ -190,14 +190,14 @@
         "name": "libSceAudiodec",
         "label": "Audiodec",
         "done": 6,
-        "total": 8,
+        "total": 6,
         "inert": 0
       },
       {
         "name": "libSceAudiodec.native",
         "label": "Audiodec.native",
-        "done": 0,
-        "total": 14,
+        "done": 1,
+        "total": 16,
         "inert": 0
       },
       {
@@ -239,7 +239,7 @@
         "name": "libSceAvSetting",
         "label": "AvSetting",
         "done": 2,
-        "total": 129,
+        "total": 157,
         "inert": 0
       },
       {
@@ -330,7 +330,7 @@
         "name": "libSceCdlgUtilServer",
         "label": "CdlgUtilServer",
         "done": 0,
-        "total": 11,
+        "total": 43,
         "inert": 0
       },
       {
@@ -672,7 +672,7 @@
       {
         "name": "libSceGnmDriverForNeoMode",
         "label": "GnmDriverForNeoMode",
-        "done": 84,
+        "done": 85,
         "total": 138,
         "inert": 50
       },
@@ -876,7 +876,7 @@
         "name": "libSceLibcInternal",
         "label": "LibcInternal",
         "done": 73,
-        "total": 652,
+        "total": 801,
         "inert": 1
       },
       {
@@ -1533,7 +1533,7 @@
       {
         "name": "libSceRudp",
         "label": "Rudp",
-        "done": 28,
+        "done": 31,
         "total": 35,
         "inert": 0
       },
@@ -1821,7 +1821,7 @@
         "name": "libSceUsbStorage",
         "label": "UsbStorage",
         "done": 11,
-        "total": 24,
+        "total": 47,
         "inert": 0
       },
       {
@@ -2000,6 +2000,13 @@
         "inert": 1
       },
       {
+        "name": "libSceVnaWebsocket",
+        "label": "VnaWebsocket",
+        "done": 0,
+        "total": 22,
+        "inert": 0
+      },
+      {
         "name": "libSceVoice",
         "label": "Voice",
         "done": 30,
@@ -2157,13 +2164,13 @@
         "name": "libmdbg_syscore",
         "label": "libmdbg_syscore",
         "done": 2,
-        "total": 148,
+        "total": 171,
         "inert": 2
       },
       {
         "name": "libwebrtc",
         "label": "libwebrtc",
-        "done": 4,
+        "done": 20,
         "total": 412,
         "inert": 0
       },
