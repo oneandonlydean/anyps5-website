@@ -39,6 +39,8 @@ export interface Env {
   /** A token allowed to start the site repository's "Update site" workflow, and that repository ("owner/name"). */
   SITE_DISPATCH_TOKEN?: string;
   SITE_REPO?: string;
+  /** How often, in minutes, the Worker asks the site repository to check upstream for changes; unset or 0 turns it off. */
+  SITE_REFRESH_MINUTES?: string;
 }
 
 /** The bot runs only where its database and token key are configured; the demo deploy has neither. */

@@ -8,6 +8,7 @@ import { rest, restCount } from "./lib/github";
 
 const CONVERTER = resolve(root, "public/convert/app");
 const UPSTREAM_PAGES = "https://boykopovar.github.io/AnyPS5";
+/** The converter's core files. Upstream adds modules over time, so others are taken too when they look like web files. */
 const WEB_FILES = ["index.html", "app.css", "app.mjs", "archive.mjs", "batch.mjs", "output-directory.mjs", "worker.mjs", "native/relinker_wasm.mjs", "native/relinker_wasm.wasm"];
 const DOCS = ["USAGE.md", "INPUT_MAPPING.md"];
 const PLATFORMS = ["windows", "linux"] as const;
@@ -53,15 +54,17 @@ async function write(path: string, data: Uint8Array | string) {
 async function publishConverter(release: Release, withLibraries: boolean) {
   const { bytes } = await download(asset(release, `web-${release.tag_name}.zip`));
   const files = unzipSync(bytes);
-  const expected = [...WEB_FILES, "web-release.json"].sort();
-  if (JSON.stringify(Object.keys(files).sort()) !== JSON.stringify(expected)) throw new Error("Unexpected web converter archive layout");
+  const missing = [...WEB_FILES, "web-release.json"].filter((name) => !files[name]);
+  if (missing.length) throw new Error(`Web converter archive is missing ${missing.join(", ")}`);
+  const unsafe = Object.keys(files).filter((name) => !/^(?:[\w.-]+\/)*[\w.-]+\.(?:html|css|m?js|wasm|json)$/.test(name) || name.split("/").includes(".."));
+  if (unsafe.length) throw new Error(`Unexpected entries in the web converter archive: ${unsafe.join(", ")}`);
   const meta = JSON.parse(new TextDecoder().decode(files["web-release.json"]));
   if (meta.tag !== release.tag_name || !/^[0-9a-f]{40}$/.test(meta.revision)) throw new Error("Web converter does not match the release");
 
   // Built in a staging folder and swapped in at the end, so a failed run leaves the previous converter intact.
   const staging = `${CONVERTER}.next`;
   await rm(staging, { recursive: true, force: true });
-  for (const name of WEB_FILES) await write(resolve(staging, name), files[name]);
+  for (const name of Object.keys(files)) if (name !== "web-release.json") await write(resolve(staging, name), files[name]);
   const embedCss = await readFile(resolve(root, "src/styles/converter-embed.css"));
   await write(resolve(staging, "embed.css"), embedCss);
   // Takes the theme from the embedding page before first paint; /convert keeps it in sync afterwards.

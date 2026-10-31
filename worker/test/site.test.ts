@@ -168,6 +168,22 @@ it("asks the site repository to rebuild after an upload, at most once every two 
   expect(JSON.parse(calls[0]!.body)).toMatchObject({ event_type: "site-data-changed" });
 });
 
+it("asks the site repository to check upstream every SITE_REFRESH_MINUTES, and sends held-back rebuilds, without the bot", async () => {
+  const calls = mockFetch({ "POST https://api.github.com/repos/acme/site/dispatches": () => new Response(null, { status: 204 }) });
+  const e = { ...env, SITE_DISPATCH_TOKEN: "dispatch-token", SITE_REPO: "acme/site", SITE_REFRESH_MINUTES: "30", TOKEN_KEY: undefined };
+  const tick = (iso: string) => worker.scheduled!({ scheduledTime: Date.parse(iso), cron: "* * * * *", noRetry() {} } as ScheduledController, e as any);
+  const sent = () => calls.filter((c) => c.url.endsWith("/dispatches")).map((c) => JSON.parse(c.body).event_type);
+
+  await tick("2026-11-01T10:30:00Z");
+  await tick("2026-11-01T10:31:00Z");
+  expect(sent()).toEqual(["scheduled-check"]);
+
+  // An upload held back by the two-minute quiet period goes out on a later minute.
+  await env.SITE_DB!.prepare("INSERT INTO site_kv (key, value) VALUES ('rebuild_at', '0'), ('rebuild_pending', 'upload') ON CONFLICT(key) DO UPDATE SET value = excluded.value").run();
+  await tick("2026-11-01T10:32:00Z");
+  expect(sent()).toEqual(["scheduled-check", "site-data-changed"]);
+});
+
 it("asks which game a report without a title ID was, and accepts the uploader's choice", async () => {
   const cookie = await signIn("tester", 42);
   const report = { ...structuredClone(noTitle), generated: new Date().toISOString().replace(/\.\d+Z$/, "Z") };

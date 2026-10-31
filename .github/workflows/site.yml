@@ -16,8 +16,9 @@ on:
   push:
     branches: [main]
   repository_dispatch:
-    # upstream-updated: upstream pinged after a merge or release; site-data-changed: an upload or maintainer action.
-    types: [upstream-updated, site-data-changed]
+    # upstream-updated: upstream pinged after a merge or release; site-data-changed: an upload or maintainer action;
+    # scheduled-check: the site's Worker, every SITE_REFRESH_MINUTES (GitHub's schedule below runs late or not at all).
+    types: [upstream-updated, site-data-changed, scheduled-check]
   schedule:
     - cron: "23 */3 * * *"
     - cron: "41 4 * * *"
@@ -61,7 +62,7 @@ jobs:
 
       - name: Skip if nothing changed since the last deploy
         id: seen
-        if: github.event_name == 'schedule' && github.event.schedule != env.DAILY
+        if: (github.event_name == 'schedule' && github.event.schedule != env.DAILY) || github.event.action == 'scheduled-check'
         uses: actions/cache/restore@v4
         with:
           path: .deployed

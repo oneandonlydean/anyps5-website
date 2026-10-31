@@ -16,6 +16,7 @@ import { page } from "./bot/pages";
 import { finishSignIn, me, signOut, startSignIn } from "./site/auth";
 import { problem } from "./site/http";
 import { act, queue } from "./site/moderation";
+import { siteCron } from "./site/rebuild";
 import { exportData, reportDetail, upload } from "./site/reports";
 
 const UPSTREAM = "https://boykopovar.github.io/AnyPS5";
@@ -93,6 +94,9 @@ export default {
   },
 
   async scheduled(controller, env) {
-    if (botEnabled(env)) await runCron(env, new Date(controller.scheduledTime));
+    const now = new Date(controller.scheduledTime);
+    // The site's refresh runs with or without the bot; the bot's own minute also flushes held-back rebuilds.
+    await siteCron(env, now);
+    if (botEnabled(env)) await runCron(env, now);
   },
 } satisfies ExportedHandler<Env>;

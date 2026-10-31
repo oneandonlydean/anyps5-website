@@ -19,17 +19,35 @@ export async function requestRebuild(env: Env, reason: string): Promise<void> {
     await setKv(db, "rebuild_pending", reason);
     return;
   }
-  const res = await fetch(`https://api.github.com/repos/${env.SITE_REPO}/dispatches`, {
-    method: "POST",
-    headers: { authorization: `Bearer ${env.SITE_DISPATCH_TOKEN}`, accept: "application/vnd.github+json", "user-agent": "anyps5-website" },
-    body: JSON.stringify({ event_type: "site-data-changed", client_payload: { reason } }),
-  });
-  log("rebuild_requested", { reason, status: res.status });
+  const res = await dispatch(env, "site-data-changed", reason);
   // Only a request GitHub accepted starts the quiet period; a failed one stays pending and is retried.
   if (res.ok) {
     await setKv(db, "rebuild_at", String(nowSeconds()));
     await db.prepare("DELETE FROM site_kv WHERE key = 'rebuild_pending'").run();
   } else await setKv(db, "rebuild_pending", reason);
+}
+
+function dispatch(env: Env, eventType: string, reason: string): Promise<Response> {
+  return fetch(`https://api.github.com/repos/${env.SITE_REPO}/dispatches`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${env.SITE_DISPATCH_TOKEN}`, accept: "application/vnd.github+json", "user-agent": "anyps5-website" },
+    body: JSON.stringify({ event_type: eventType, client_payload: { reason } }),
+  }).then((res) => {
+    log("rebuild_requested", { event: eventType, reason, status: res.status });
+    return res;
+  });
+}
+
+/**
+ * The site's part of the Worker's minute: sends held-back rebuild requests, and every SITE_REFRESH_MINUTES asks the
+ * site repository to check upstream. GitHub's own schedule runs late or not at all; this keeps the site within that
+ * many minutes of upstream. The workflow rebuilds only when something the site shows has changed.
+ */
+export async function siteCron(env: Env, now: Date): Promise<void> {
+  await flushPendingRebuild(env);
+  const every = Number(env.SITE_REFRESH_MINUTES);
+  if (!env.SITE_DISPATCH_TOKEN || !env.SITE_REPO || !(every > 0)) return;
+  if (Math.floor(now.getTime() / 60_000) % every === 0) await dispatch(env, "scheduled-check", `every ${every} minutes`);
 }
 
 /** Sends a rebuild request that was held back by the quiet period, once it has passed. */
