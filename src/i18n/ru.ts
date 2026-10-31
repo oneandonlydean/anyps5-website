@@ -108,6 +108,8 @@ const strings: Strings = {
     contributors: "Участники",
     commits: "Коммиты",
     testers: "Тестировщики",
+    topContributors: "Главные участники",
+    topTesters: "Лучшие тестировщики",
     commitCount: (n: number, formatted: string) => `${formatted} ${plural(n, "коммит", "коммита", "коммитов")}`,
     reportCount: (n: number, formatted: string) => `${formatted} ${plural(n, "отчёт", "отчёта", "отчётов")}`,
     moreContributors: "Другие участники",

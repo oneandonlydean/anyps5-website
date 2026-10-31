@@ -98,6 +98,8 @@ const strings: Strings = {
     contributors: "贡献者",
     commits: "提交",
     testers: "测试者",
+    topContributors: "代码贡献榜",
+    topTesters: "测试贡献榜",
     commitCount: (_n: number, formatted: string) => `${formatted} 次提交`,
     reportCount: (_n: number, formatted: string) => `${formatted} 份报告`,
     moreContributors: "更多贡献者",

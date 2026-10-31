@@ -57,6 +57,9 @@ const commits = commitTotal ?? contributors.reduce((n, c) => n + c.contributions
 const testerCounts = new Map<string, number>();
 for (const g of games) for (const r of g.reports) if (r.author) testerCounts.set(r.author, (testerCounts.get(r.author) ?? 0) + 1);
 const testers = [...testerCounts].sort((a, b) => b[1] - a[1]).map(([login, reports]) => ({ login, reports }));
+// Like the contributors: the six with the most reports get a card, everyone else is in the moving row.
+const topTesters = testers.slice(0, 6);
+const laneTesters = testers.slice(6);
 const avatar = (url: string, size: number) => `${url}${url.includes("?") ? "&" : "?"}s=${size * 2}`;
 const testerAvatar = (login: string, size: number) => `https://github.com/${encodeURIComponent(login)}.png?size=${size * 2}`;
 
@@ -333,6 +336,8 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
 
     {
       leaders.length > 0 && (
+        <>
+        <h3 class="leaders-title reveal">{t.home.topContributors}</h3>
         <ol class="leaders reveal">
           {leaders.map((c, i) => (
             <li>
@@ -348,6 +353,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
             </li>
           ))}
         </ol>
+        </>
       )
     }
 
@@ -383,15 +389,41 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
           ) : null,
         )
       }
+    </div>
+
+    {
+      topTesters.length > 0 && (
+        <>
+          <h3 class="leaders-title reveal">{t.home.topTesters}</h3>
+          <ol class="leaders tester-leaders reveal">
+            {topTesters.map((tester, i) => (
+              <li>
+                <a href={`https://github.com/${encodeURIComponent(tester.login)}`} style={`--share:${(tester.reports / topTesters[0].reports) * 100}%`}>
+                  <span class="rank">{i + 1}</span>
+                  <img src={testerAvatar(tester.login, 56)} alt="" width="56" height="56" loading="lazy" decoding="async" />
+                  <span class="who">
+                    <b>{tester.login}</b>
+                    <span class="muted">{t.home.reportCount(tester.reports, num(tester.reports))}</span>
+                  </span>
+                  <span class="share" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ol>
+        </>
+      )
+    }
+
+    <div class="crowd reveal">
       {
-        testers.length > 0 && (
+        laneTesters.length > 0 && (
           <div class="lane testers" aria-label={t.home.testers}>
             <span class="lane-label">{t.home.testers}</span>
             <div class="window">
-              <div class="track" style={`--duration:${Math.max(testers.length * 1.6, 40)}s`}>
+              <div class="track" style={`--duration:${Math.max(laneTesters.length * 1.6, 40)}s`}>
                 {[0, 1].map((copy) => (
                   <ul aria-hidden={copy === 1 ? "true" : undefined}>
-                    {testers.map((tester) => (
+                    {laneTesters.map((tester) => (
                       <li>
                         <a href={`https://github.com/${encodeURIComponent(tester.login)}`} data-name={`${tester.login} · ${t.home.reportCount(tester.reports, num(tester.reports))}`} tabindex={copy === 1 ? -1 : undefined}>
                           <img src={testerAvatar(tester.login, 40)} alt={copy === 1 ? "" : tester.login} width="40" height="40" loading="lazy" decoding="async" />
@@ -1221,6 +1253,28 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     display: grid;
     gap: 6px;
     margin-bottom: clamp(40px, 5vw, 56px);
+  }
+  .leaders-title {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font: 600 0.78rem / 1.4 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  /* Testers in the stage palette's green, so the two boards read apart. */
+  .tester-leaders a:hover {
+    border-color: color-mix(in srgb, var(--good) 50%, var(--line-strong));
+  }
+  .tester-leaders li:first-child .rank {
+    color: color-mix(in srgb, var(--good) 35%, transparent);
+  }
+  .tester-leaders img {
+    box-shadow:
+      0 0 0 2px var(--surface),
+      0 0 0 4px color-mix(in srgb, var(--good) 45%, transparent);
+  }
+  .tester-leaders .share {
+    background: linear-gradient(90deg, var(--stage-ingame), var(--good));
   }
   /* The last section before the footer, whose own top margin is the gap. */
   .people {

@@ -104,6 +104,8 @@ const en = {
     contributors: "Contributors",
     commits: "Commits",
     testers: "Testers",
+    topContributors: "Top contributors",
+    topTesters: "Top testers",
     commitCount: (n: number, formatted: string) => (n === 1 ? `${formatted} commit` : `${formatted} commits`),
     reportCount: (n: number, formatted: string) => (n === 1 ? `${formatted} report` : `${formatted} reports`),
     moreContributors: "More contributors",

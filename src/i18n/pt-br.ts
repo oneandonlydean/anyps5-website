@@ -98,6 +98,8 @@ const strings: Strings = {
     contributors: "Colaboradores",
     commits: "Commits",
     testers: "Testadores",
+    topContributors: "Principais colaboradores",
+    topTesters: "Principais testers",
     commitCount: (n: number, formatted: string) => (n === 1 ? `${formatted} commit` : `${formatted} commits`),
     reportCount: (n: number, formatted: string) => (n === 1 ? `${formatted} relatório` : `${formatted} relatórios`),
     moreContributors: "Mais colaboradores",
