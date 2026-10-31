@@ -35,7 +35,7 @@ env:
   UPSTREAM: boykopovar/AnyPS5
   DAILY: "41 4 * * *"
   # Where uploads and maintainer actions are read from: the site's own Worker (repository variable SITE_URL).
-  SITE_API: ${{ vars.SITE_URL || 'https://anyps5-demo.deanisa.ninja' }}
+  SITE_API: ${{ vars.SITE_URL || 'https://demo.anyps5.gg' }}
 
 jobs:
   update:

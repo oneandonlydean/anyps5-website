@@ -25,7 +25,7 @@ Reply to "Run report: final answers for the website". Thanks: every point is set
 Uploads are live on the demo site now:
 
 1. Run a game with your branch's build, so it writes `anyps5-report.json`.
-2. Open https://anyps5-demo.deanisa.ninja/report, sign in with GitHub, and upload the file.
+2. Open https://demo.anyps5.gg/report, sign in with GitHub, and upload the file.
 3. The preview shows what was read from the file. A refused file shows up to five reasons, each with the path of the field.
 
 Treat what you upload to the demo as test data: it may be cleared before the site goes live. Two uploads from the same GitHub account only count as one confirmation.

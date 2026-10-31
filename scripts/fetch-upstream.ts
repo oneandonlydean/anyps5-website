@@ -177,7 +177,7 @@ async function publishProgress() {
  * one. A site that is unreachable stops the refresh, rather than starting the record over and losing its milestones.
  */
 async function publishLibraryHistory(libraries: LibraryCounts) {
-  const site = process.env.SITE_API ?? process.env.SITE_URL ?? "https://anyps5-demo.deanisa.ninja";
+  const site = process.env.SITE_API ?? process.env.SITE_URL ?? "https://demo.anyps5.gg";
   let history = await readJson<LibraryHistory | null>(generated("library-history.json"), null);
   const response = await fetch(new URL("/library-history.json", site));
   if (response.ok) {

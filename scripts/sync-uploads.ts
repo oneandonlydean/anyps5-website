@@ -7,7 +7,7 @@ import type { UploadExport } from "../src/lib/uploads";
  */
 
 const OUT = generated("uploads.json");
-const API = process.env.SITE_API ?? process.env.SITE_URL ?? "https://anyps5-demo.deanisa.ninja";
+const API = process.env.SITE_API ?? process.env.SITE_URL ?? "https://demo.anyps5.gg";
 
 async function main() {
   const previous = await readJson<UploadExport | null>(OUT, null);

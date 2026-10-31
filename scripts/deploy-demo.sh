@@ -1,7 +1,7 @@
 #!/bin/sh
 # Builds the site for the demo host and deploys it to Cloudflare. The demo is kept out of search engines.
 set -eu
-export SITE_URL="https://anyps5-demo.deanisa.ninja"
+export SITE_URL="https://demo.anyps5.gg"
 # Refresh the data first, as the Update site workflow does, so a deploy from a laptop never puts older data over the
 # workflow's. SKIP_SYNC=1 skips it, for a quick look at a code change, but only when the data was refreshed in the last
 # 30 minutes: older data would replace whatever the workflow deployed since.

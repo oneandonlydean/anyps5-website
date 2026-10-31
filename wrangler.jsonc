@@ -14,7 +14,11 @@
     // the site's sign-in and API (/auth/*, /api/*), and the Discord bot's endpoints.
     "run_worker_first": ["/convert/app/libraries/*", "/api/*", "/auth/*", "/linked-role", "/discord/callback", "/github/callback", "/interactions"]
   },
-  "routes": [{ "pattern": "anyps5-demo.deanisa.ninja", "custom_domain": true }],
+  // The old demo address stays attached until links to it have moved over; it serves the same site.
+  "routes": [
+    { "pattern": "demo.anyps5.gg", "custom_domain": true },
+    { "pattern": "anyps5-demo.deanisa.ninja", "custom_domain": true }
+  ],
   "observability": { "enabled": true },
   "triggers": { "crons": ["* * * * *"] },
   // The site's own data: GitHub sign-in, uploaded run reports, what maintainers hid. Shared with production, so
@@ -31,7 +35,7 @@
     // Ask the site repository to check upstream this often (minutes); it rebuilds only when something changed.
     "SITE_REFRESH_MINUTES": "30",
     "GITHUB_REPO": "boykopovar/AnyPS5",
-    "BASE_URL": "https://anyps5-demo.deanisa.ninja"
+    "BASE_URL": "https://demo.anyps5.gg"
     // DISCORD_PUBLIC_KEY is a secret here, from the test Discord app.
   },
 
@@ -40,8 +44,8 @@
     // for the cutover steps. Until then this environment is not deployed, and the old gh-worker keeps running.
     "production": {
       "name": "anyps5",
-      // Set to the official domain at cutover, and BASE_URL below to match. Empty so it never takes the demo's domain.
-      "routes": [],
+      // The official domain. Not deployed until cutover; BASE_URL below matches it.
+      "routes": [{ "pattern": "anyps5.gg", "custom_domain": true }],
       "triggers": { "crons": ["* * * * *"] },
       // The gh-worker's existing database, so linked users, merge history and the announcement cursor carry over.
       "d1_databases": [
@@ -59,7 +63,7 @@
         // Ask the site repository to check upstream this often (minutes); it rebuilds only when something changed.
         "SITE_REFRESH_MINUTES": "30",
         "GITHUB_REPO": "boykopovar/AnyPS5",
-        "BASE_URL": "",
+        "BASE_URL": "https://anyps5.gg",
         // Public key from the Discord app's General Information page; verifies slash-command requests.
         "DISCORD_PUBLIC_KEY": "800ef93c85606d8c2e8e6e7552b062c30848b7f469d1936d7c67e9cdead806c2"
       }

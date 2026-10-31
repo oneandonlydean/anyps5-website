@@ -1,9 +1,8 @@
 #!/bin/sh
 # Builds the site for the official domain and deploys the production Worker (site, API and Discord bot). Unlike the
-# demo, it is open to search engines. SITE_URL must be the official address, e.g. SITE_URL=https://anyps5.example.
+# demo, it is open to search engines.
 set -eu
-: "${SITE_URL:?Set SITE_URL to the official site address}"
-export SITE_URL
+export SITE_URL="${SITE_URL:-https://anyps5.gg}"
 npm run build
 cat > dist/_headers <<'HEADERS'
 /*

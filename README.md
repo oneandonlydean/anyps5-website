@@ -1,6 +1,6 @@
 # AnyPS5 website
 
-The official website for [AnyPS5](https://github.com/boykopovar/AnyPS5), which relinks PS5 executables into native Linux and Windows programs. Demo: https://anyps5-demo.deanisa.ninja
+The official website for [AnyPS5](https://github.com/boykopovar/AnyPS5), which relinks PS5 executables into native Linux and Windows programs. Demo: https://demo.anyps5.gg
 
 It has:
 - the browser converter
@@ -148,15 +148,15 @@ Set each secret from the repository root with `npx wrangler secret put <NAME> --
 
 1. **Discord app.** In the [Developer Portal](https://discord.com/developers/applications), create a new application, for example "AnyPS5 (test)".
    - **General Information:** copy the Application ID into `DISCORD_CLIENT_ID` and the Public Key into `DISCORD_PUBLIC_KEY`.
-   - **OAuth2:** copy the Client Secret into `DISCORD_CLIENT_SECRET`, and add the redirect `https://anyps5-demo.deanisa.ninja/discord/callback`.
+   - **OAuth2:** copy the Client Secret into `DISCORD_CLIENT_SECRET`, and add the redirect `https://demo.anyps5.gg/discord/callback`.
    - **Bot:** reset the token and copy it into `DISCORD_BOT_TOKEN`.
-2. **GitHub OAuth app**, for linking GitHub accounts to roles. Create one in [Developer settings](https://github.com/settings/developers) with the callback `https://anyps5-demo.deanisa.ninja/github/callback`. Its Client ID goes in `GITHUB_CLIENT_ID` and a new client secret in `GITHUB_CLIENT_SECRET`. This is separate from the site's sign-in app.
+2. **GitHub OAuth app**, for linking GitHub accounts to roles. Create one in [Developer settings](https://github.com/settings/developers) with the callback `https://demo.anyps5.gg/github/callback`. Its Client ID goes in `GITHUB_CLIENT_ID` and a new client secret in `GITHUB_CLIENT_SECRET`. This is separate from the site's sign-in app.
 3. **GitHub token** for reading pull requests: a [fine-grained token](https://github.com/settings/personal-access-tokens/new) with "Public repositories" read-only access, in `GITHUB_TOKEN`.
 4. **Private channel and webhooks.** In the Discord server, create a channel such as `#bot-test` and make it private (Edit Channel → Permissions → Private Channel). Then go to Edit Channel → Integrations → Webhooks → New Webhook and copy its URL into `DISCORD_WEBHOOK_URL`. To test every kind of post, put the same URL in `DISCORD_WEBHOOK_PROGRESS`, `DISCORD_WEBHOOK_DEV`, `DISCORD_WEBHOOK_RELEASES`, `DISCORD_WEBHOOK_GAMES` and `DISCORD_WEBHOOK_DIGEST` too, or make a channel for each to match production. Without `DISCORD_WEBHOOK_DEV`, `_RELEASES` or `_GAMES`, those posts are skipped.
 5. **Turn it on.** Generate a key with `openssl rand -base64 32` and set it as `TOKEN_KEY`.
 6. **Discord endpoints.** These are checked as you save them, so set them after step 5:
-   - General Information → Interactions Endpoint URL: `https://anyps5-demo.deanisa.ninja/interactions`
-   - General Information → Linked Roles Verification URL: `https://anyps5-demo.deanisa.ninja/linked-role`
+   - General Information → Interactions Endpoint URL: `https://demo.anyps5.gg/interactions`
+   - General Information → Linked Roles Verification URL: `https://demo.anyps5.gg/linked-role`
 7. **Commands and role metadata.** In fish, `read -sx DISCORD_BOT_TOKEN` and `read -x DISCORD_CLIENT_ID` keep the token off screen and out of history. Then run `npm --prefix worker run register-metadata` and `npm --prefix worker run register-commands`.
 8. **Add it to the server.** Open `https://discord.com/oauth2/authorize?client_id=<Application ID>&scope=applications.commands`. Then, to keep `/prs` and `/leaderboard` in the test channel, go to Server Settings → Integrations → the app → turn off "All Channels" and add `#bot-test`.
 9. **Linked role.** Server Settings → Roles → create a role such as "Contributor (test)" → Links → Add requirement → the test app, for example at least 1 merged pull request. Get it from the server menu → Linked Roles, which takes you through Discord and GitHub sign-in.
@@ -213,8 +213,8 @@ This step runs upstream's own `tools/progress.py`, which only reads source files
 
 The production environment in `wrangler.jsonc` is the official site with the bot. It reuses gh-worker's D1 database, so linked members, merge history and the announcement position carry over, and it shares `anyps5-site` with the demo, so uploads carry over too.
 
-1. **Domain:** set `env.production.routes` to the official domain and `BASE_URL` to its address in `wrangler.jsonc`. Set the repository variable `SITE_URL` to the same address.
-2. **Sign-in app:** create the real GitHub OAuth app for sign-in (callback `https://<domain>/auth/github/callback`).
+1. **Domain:** `wrangler.jsonc` already gives production `anyps5.gg` (`env.production.routes` and `BASE_URL`). Set the repository variable `SITE_URL` to `https://anyps5.gg` so the workflow reads uploads from, and deploys for, the live site.
+2. **Sign-in app:** create the real GitHub OAuth app for sign-in (callback `https://anyps5.gg/auth/github/callback`).
 3. **Secrets:** run `npx wrangler secret put <NAME> --env production` for each of these:
    - sign-in and rebuilds: `SITE_GITHUB_CLIENT_ID`, `SITE_GITHUB_CLIENT_SECRET`, `SITE_DISPATCH_TOKEN` (new values; regenerate any shared during testing)
    - the bot: `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`, `DISCORD_BOT_TOKEN`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITHUB_TOKEN`
