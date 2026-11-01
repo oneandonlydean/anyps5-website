@@ -61,11 +61,19 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   if (errors.length) return json({ error: "This report contradicts itself.", issues: errors }, 400);
 
   // A converted game without its metadata has no title ID; the uploader says which game it was.
-  const chosen = new URL(req.url).searchParams.get("titleId");
+  const params = new URL(req.url).searchParams;
+  const chosen = params.get("titleId")?.toUpperCase() ?? null;
   const titleId = report.game.titleId ?? chosen;
   if (!titleId) return json({ error: "This report doesn't say which game it was. Choose the game, then upload again.", needsGame: true }, 400);
-  if (!report.game.titleId && (!TITLE_ID.test(titleId) || (known.titleIds.size > 0 && !known.titleIds.has(titleId)))) {
-    return problem(400, "Choose a game from the compatibility list.");
+  // A chosen game that isn't on the list yet needs its name, and a maintainer checks the two match before it shows.
+  let titleName: string | null = null;
+  if (!report.game.titleId) {
+    if (!TITLE_ID.test(titleId)) return problem(400, "That isn't a title ID. It's four letters and five digits, like PPSA12345.");
+    if (known.titleIds.size > 0 && !known.titleIds.has(titleId)) {
+      titleName = params.get("name")?.trim().slice(0, 120) || null;
+      if (!titleName) return json({ error: "This game isn't on the compatibility list yet. Give its name too.", needsName: true }, 400);
+      flags.push(`A game not on the list yet, named by the uploader: ${titleName} (${titleId}). Check the title ID is that game.`);
+    }
   }
 
   const db = env.SITE_DB!;
@@ -80,9 +88,9 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   try {
     row = await db
     .prepare(
-      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
+      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
     )
-    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1)
+    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName)
     .first<number>("id");
   } catch (err) {
     // The same run sent twice at once: the second insert hits the unique index.
@@ -123,7 +131,7 @@ export interface UploadSummary {
   titleId: string;
   /** The report had no title ID; the uploader chose the game. */
   titleChosen: boolean;
-  /** The game's name as the run report gives it; null when the uploader chose the game. */
+  /** The game's name: as the run report gives it, or as the uploader gave it for a game not on the list yet. */
   name: string | null;
   /** The compatibility list's stage, or null when the run's stage is unknown. */
   stage: string | null;
@@ -147,7 +155,7 @@ export interface UploadSummary {
   stop: { kind: string; reason: string; message: string };
 }
 
-type Row = { id: number; report: string; login: string; github_id: number; created_at: number; title_id: string; title_chosen: number };
+type Row = { id: number; report: string; login: string; github_id: number; created_at: number; title_id: string; title_chosen: number; title_name: string | null };
 
 export function summarise(row: Row): UploadSummary {
   const r = JSON.parse(row.report) as RunReport;
@@ -156,7 +164,7 @@ export function summarise(row: Row): UploadSummary {
     id: row.id,
     titleId: row.title_id,
     titleChosen: row.title_chosen === 1,
-    name: row.title_chosen === 1 ? null : r.game.name?.trim().slice(0, 120) || null,
+    name: row.title_name ?? (row.title_chosen === 1 ? null : r.game.name?.trim().slice(0, 120) || null),
     stage: SITE_STAGE[r.run.stage],
     login: row.login,
     githubId: row.github_id,
@@ -176,7 +184,7 @@ export function summarise(row: Row): UploadSummary {
   };
 }
 
-const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, a.login";
+const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, a.login";
 
 /** Everything the site build needs: visible uploads from accounts in good standing, and what maintainers hid. */
 export async function exportData(_req: Request, env: Env): Promise<Response> {

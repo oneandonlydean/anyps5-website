@@ -6,7 +6,7 @@ export interface UploadSummary {
   titleId: string;
   /** The report had no title ID; the uploader chose the game. */
   titleChosen: boolean;
-  /** The game's name as the run report gives it; null when the uploader chose the game, missing from older exports. */
+  /** The game's name: from the run report, or from the uploader for a game not on the list yet; missing from older exports. */
   name?: string | null;
   /** The compatibility list's stage, or null when the run's stage is unknown. */
   stage: StageOrNone | null;

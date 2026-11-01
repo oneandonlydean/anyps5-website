@@ -29,11 +29,15 @@ const { games } = Astro.props;
     </label>
     <div class="preview" data-preview hidden></div>
     <label class="pick" data-pick hidden>
-      <span>This report doesn't say which game it was. Which game did you run?</span>
+      <span>This report doesn't say which game it was. Which game did you run? If it isn't on the list, type its title ID.</span>
       <input list="upload-games" placeholder="Game name or title ID" autocomplete="off" data-pick-input />
       <datalist id="upload-games">
         {games.map((g) => <option value={`${g.name} (${g.id})`} />)}
       </datalist>
+    </label>
+    <label class="pick" data-pick-name hidden>
+      <span>That game isn't on the list yet. What is it called? A maintainer checks new games before they show.</span>
+      <input placeholder="Game name" maxlength="120" autocomplete="off" data-pick-name-input />
     </label>
     <button type="button" class="button primary" data-send hidden>Upload report</button>
   </div>
@@ -50,6 +54,15 @@ const { games } = Astro.props;
   const result = root.querySelector<HTMLElement>("[data-result]")!;
   const pick = root.querySelector<HTMLElement>("[data-pick]")!;
   const pickInput = root.querySelector<HTMLInputElement>("[data-pick-input]")!;
+  const pickName = root.querySelector<HTMLElement>("[data-pick-name]")!;
+  const pickNameInput = root.querySelector<HTMLInputElement>("[data-pick-name-input]")!;
+  const listed = new Set([...root.querySelectorAll<HTMLOptionElement>("#upload-games option")].map((o) => o.value.match(/\(([A-Z]{4}\d{5})\)$/)?.[1]));
+  // A picked game is sent as its title ID: "Name (PPSA12345)" or a bare ID. One not on the list needs a name too.
+  const chosenId = () => (pick.hidden ? null : (pickInput.value.toUpperCase().match(/\b([A-Z]{4}\d{5})\)?\s*$/)?.[1] ?? null));
+  pickInput.addEventListener("input", () => {
+    const id = chosenId();
+    pickName.hidden = !id || listed.has(id);
+  });
   const MAX = 64 * 1024;
   let body: string | null = null;
 
@@ -120,7 +133,8 @@ const { games } = Astro.props;
       el("span", `Reached ${stage} on ${report.system?.os ?? "an unknown OS"} with ${report.system?.gpu?.vendor ?? "an unknown GPU"}`, "muted"),
     );
     pick.hidden = titleId !== null;
-    pickInput.value = "";
+    pickInput.value = pickNameInput.value = "";
+    pickName.hidden = true;
     preview.hidden = send.hidden = false;
   }
 
@@ -140,16 +154,24 @@ const { games } = Astro.props;
     if (!body) return;
     send.disabled = true;
     result.replaceChildren(el("p", "Uploading…", "muted"));
-    // A picked game is sent as its title ID: "Name (PPSA12345)" or a bare ID.
-    const chosen = pick.hidden ? null : (pickInput.value.toUpperCase().match(/\b([A-Z]{4}\d{5})\)?\s*$/)?.[1] ?? null);
+    const chosen = chosenId();
+    const name = pickName.hidden ? "" : pickNameInput.value.trim();
     if (!pick.hidden && !chosen) {
       send.disabled = false;
-      result.replaceChildren(el("p", "Choose the game from the list first.", "bad"));
+      result.replaceChildren(el("p", "Choose the game from the list, or type its title ID (like PPSA12345).", "bad"));
       return;
     }
+    if (!pickName.hidden && !name) {
+      send.disabled = false;
+      result.replaceChildren(el("p", "Give the game's name too.", "bad"));
+      return;
+    }
+    const query = new URLSearchParams();
+    if (chosen) query.set("titleId", chosen);
+    if (name) query.set("name", name);
     let res: Response;
     try {
-      res = await fetch(`/api/reports${chosen ? `?titleId=${chosen}` : ""}`, { method: "POST", headers: { "content-type": "application/json" }, body });
+      res = await fetch(`/api/reports${query.size ? `?${query}` : ""}`, { method: "POST", headers: { "content-type": "application/json" }, body });
     } catch {
       send.disabled = false;
       result.replaceChildren(el("p", "The site couldn't be reached. Check your connection and try again.", "bad"));
@@ -162,14 +184,16 @@ const { games } = Astro.props;
       const done = el(
         "p",
         data.status === "review"
-          ? "Thanks! Something in this report needs a maintainer to look at it first; it shows once they have."
+          ? name
+            ? "Thanks! A maintainer checks new games first; the game gets its page once they have."
+            : "Thanks! Something in this report needs a maintainer to look at it first; it shows once they have."
           : "Thanks! Your report is in. The game's page shows it after the next update, in a few minutes.",
         "good",
       );
       const link = el("a", `Find ${data.titleId} on the compatibility list`) as HTMLAnchorElement;
       link.href = `/compatibility/?q=${encodeURIComponent(data.titleId)}`;
       result.append(done, link);
-      preview.hidden = send.hidden = pick.hidden = true;
+      preview.hidden = send.hidden = pick.hidden = pickName.hidden = true;
       input.value = "";
       return;
     }
