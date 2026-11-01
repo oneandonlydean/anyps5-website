@@ -167,10 +167,15 @@ const short = (stage: string) => STAGES.find((s) => s.name === stage)?.short ?? 
     font-size: 1.15rem;
   }
   .back {
-    display: inline-block;
-    margin-bottom: 12px;
+    display: block;
+    width: fit-content;
+    margin-bottom: 18px;
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    text-decoration: none;
+  }
+  .back:hover {
+    color: var(--text);
   }
   .stats {
     display: flex;
