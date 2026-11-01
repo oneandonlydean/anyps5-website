@@ -4211,25 +4211,25 @@
     "number": 13715,
     "kind": "issue",
     "title": "PPSA06866: sceHttp2SslEnableOption on a context handle aborts at boot",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/issues/13715",
-    "closedAt": null
+    "closedAt": "2026-10-31T21:51:29Z"
   },
   "13734": {
     "number": 13734,
     "kind": "pr",
     "title": "fix(libSceHttp2): accept SSL options on a context",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/13734",
-    "closedAt": null
+    "closedAt": "2026-10-31T21:51:27Z"
   },
   "13769": {
     "number": 13769,
     "kind": "pr",
     "title": "feat(libkernel): implement sceKernelHasTrinityMode for a base PS5",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/13769",
-    "closedAt": null
+    "closedAt": "2026-10-31T23:54:51Z"
   },
   "13796": {
     "number": 13796,

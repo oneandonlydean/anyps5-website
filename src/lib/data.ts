@@ -24,7 +24,7 @@ async function load(): Promise<Game[]> {
     getCommunity(),
   ]);
   const extra = { uploads: community.uploads, hiddenArt: new Set(community.hidden.art) };
-  return groupGames(threads, overlays, titles)
+  return groupGames(threads, overlays, titles, community.uploads)
     .map((identity) => resolveGame(identity, titles, issues, art, extra))
     .sort((a, b) => stageRank(b.stage) - stageRank(a.stage) || b.updated.localeCompare(a.updated));
 }

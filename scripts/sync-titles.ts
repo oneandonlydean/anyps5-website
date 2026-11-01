@@ -1,12 +1,15 @@
 import { generated, writeJson } from "./lib/files";
 import { loadGenerated, loadOverlays } from "../src/lib/load";
 import type { Thread, Title } from "../src/lib/schema";
+import type { UploadExport } from "../src/lib/uploads";
 
 const LISTS = ["PS5", "PS4"].map((p) => `https://raw.githubusercontent.com/andshrew/PlayStation-Titles/main/${p}_Titles.tsv`);
 
 async function main() {
   const threads = await loadGenerated<Thread[]>("threads.json", []);
-  const wanted = new Set([...threads.flatMap((t) => t.titleIds), ...(await loadOverlays()).flatMap((o) => o.title_ids)]);
+  // Uploaded runs too, so a game first reported by an upload gets its store name (see groupGames).
+  const uploads = (await loadGenerated<UploadExport | null>("uploads.json", null))?.uploads ?? [];
+  const wanted = new Set([...threads.flatMap((t) => t.titleIds), ...(await loadOverlays()).flatMap((o) => o.title_ids), ...uploads.map((u) => u.titleId)]);
   const titles: Record<string, Title> = {};
 
   for (const url of LISTS) {

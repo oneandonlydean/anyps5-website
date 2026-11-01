@@ -1,6 +1,6 @@
 {
-  "commit": "9fe758d7520eb0c33f3df8bef539064b40bd523f",
-  "date": "2026-10-31",
+  "commit": "0e9dc7bc4c9755c3ce803f6bbdff9dc9f25d68bb",
+  "date": "2026-11-01",
   "isa": "AMD RDNA 2",
   "instructions": {
     "total": 1460,
@@ -77,7 +77,7 @@
       },
       {
         "file": "ControlFlow/src/RequestSerializer.cpp",
-        "line": 951,
+        "line": 952,
         "message": "unsupported recompile request serialization version"
       },
       {
@@ -462,17 +462,17 @@
       },
       {
         "file": "Recompiler.cpp",
-        "line": 83,
+        "line": 84,
         "message": "ShaderRecompiler::Recompile: unsupported shader stage"
       },
       {
         "file": "Recompiler.cpp",
-        "line": 269,
+        "line": 271,
         "message": "a merged hull program that calls a fetch subroutine is unsupported"
       },
       {
         "file": "Recompiler.cpp",
-        "line": 1184,
+        "line": 1198,
         "message": "unsupported prepared vertex format"
       },
       {
@@ -2820,7 +2820,27 @@
     },
     {
       "date": "2026-10-31",
-      "commit": "9fe758d7520eb0c33f3df8bef539064b40bd523f",
+      "commit": "8a4fc62318a4b73b6895bf20a024c625efeb7c3b",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1456,
+        "translated": 1455
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 199
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 81,
+        "buffer": 80,
+        "host": 68
+      },
+      "throws": 148
+    },
+    {
+      "date": "2026-11-01",
+      "commit": "0e9dc7bc4c9755c3ce803f6bbdff9dc9f25d68bb",
       "instructions": {
         "total": 1460,
         "decoded": 1456,

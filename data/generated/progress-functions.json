@@ -11619,6 +11619,10 @@
     "CommonDialog",
     0
   ],
+  "sceCompanionHttpdAddHeader": [
+    "CompanionHttpd",
+    1
+  ],
   "sceCompanionHttpdGetEvent": [
     "CompanionHttpd",
     1
@@ -11635,6 +11639,14 @@
     "CompanionHttpd",
     1
   ],
+  "sceCompanionHttpdSetBody": [
+    "CompanionHttpd",
+    1
+  ],
+  "sceCompanionHttpdSetStatus": [
+    "CompanionHttpd",
+    1
+  ],
   "sceCompanionHttpdStart": [
     "CompanionHttpd",
     1
@@ -11642,10 +11654,6 @@
   "sceCompanionHttpdStop": [
     "CompanionHttpd",
     1
-  ],
-  "sceCompanionHttpdAddHeader": [
-    "CompanionHttpd",
-    0
   ],
   "sceCompanionHttpdGet2ndScreenStatus": [
     "CompanionHttpd",
@@ -11664,14 +11672,6 @@
     0
   ],
   "sceCompanionHttpdRegisterRequestCallback2": [
-    "CompanionHttpd",
-    0
-  ],
-  "sceCompanionHttpdSetBody": [
-    "CompanionHttpd",
-    0
-  ],
-  "sceCompanionHttpdSetStatus": [
     "CompanionHttpd",
     0
   ],
@@ -13317,11 +13317,11 @@
   ],
   "__tsan_acquire": [
     "DbgThreadSanitizer",
-    0
+    1
   ],
   "__tsan_release": [
     "DbgThreadSanitizer",
-    0
+    1
   ],
   "_sceDepthCalcHeteroAdjustParam": [
     "Depth",
@@ -16220,6 +16220,10 @@
     1
   ],
   "FT_Get_Sfnt_Name_nid_postfix": [
+    "FreeType",
+    1
+  ],
+  "FT_Get_SubGlyph_Info_nid_postfix": [
     "FreeType",
     1
   ],
@@ -35875,6 +35879,22 @@
     "Keyboard",
     0
   ],
+  "_Mtxdst_nid_postfix": [
+    "LibcInternal",
+    1
+  ],
+  "_Mtxinit_nid_postfix": [
+    "LibcInternal",
+    1
+  ],
+  "_Mtxlock_nid_postfix": [
+    "LibcInternal",
+    1
+  ],
+  "_Mtxunlock_nid_postfix": [
+    "LibcInternal",
+    1
+  ],
   "_ZNSt10filesystem10_Close_dirEPv_nid_postfix": [
     "LibcInternal",
     1
@@ -38743,10 +38763,6 @@
     "LibcInternal",
     0
   ],
-  "sceLibcInternalUnknown_LaPaA6mYA38_nid_no_patch": [
-    "LibcInternal",
-    0
-  ],
   "sceLibcInternalUnknown_LbLiLA2biaI_nid_no_patch": [
     "LibcInternal",
     0
@@ -38871,10 +38887,6 @@
     "LibcInternal",
     0
   ],
-  "sceLibcInternalUnknown_cMwgSSmpE5o_nid_no_patch": [
-    "LibcInternal",
-    0
-  ],
   "sceLibcInternalUnknown_cfpRP3h9F6o_nid_no_patch": [
     "LibcInternal",
     0
@@ -38983,10 +38995,6 @@
     "LibcInternal",
     0
   ],
-  "sceLibcInternalUnknown_pE4Ot3CffW0_nid_no_patch": [
-    "LibcInternal",
-    0
-  ],
   "sceLibcInternalUnknown_pNWIpeE5Wv4_nid_no_patch": [
     "LibcInternal",
     0
@@ -39056,10 +39064,6 @@
     0
   ],
   "sceLibcInternalUnknown_ykNF6P3ZsdA_nid_no_patch": [
-    "LibcInternal",
-    0
-  ],
-  "sceLibcInternalUnknown_z7STeF6abuU_nid_no_patch": [
     "LibcInternal",
     0
   ],
@@ -39188,6 +39192,14 @@
     1
   ],
   "EVP_PKEY_type_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "GENERAL_NAMES_free_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
+  "GENERAL_NAME_free_nid_postfix": [
     "LibreSsl",
     1
   ],
@@ -39992,14 +40004,6 @@
     0
   ],
   "EVP_sha512_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
-  "GENERAL_NAMES_free_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
-  "GENERAL_NAME_free_nid_postfix": [
     "LibreSsl",
     0
   ],
@@ -43235,7 +43239,7 @@
     "NKWeb",
     0
   ],
-  "sceNKWebCdlgInjectedBundleUnknown_001_nid_no_patch": [
+  "WKBundleInitialize_nid_disambig1": [
     "NKWebCdlgInjectedBundle",
     0
   ],
@@ -46996,6 +47000,10 @@
     1
   ],
   "_ZN3WTF6StringC2EPKhj": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN3WTF6Thread5yieldEv": [
     "NKWebKit",
     1
   ],
@@ -55692,10 +55700,6 @@
     0
   ],
   "_ZN3WTF6Thread33setCurrentThreadIsUserInteractiveEi": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN3WTF6Thread5yieldEv": [
     "NKWebKit",
     0
   ],
@@ -97699,6 +97703,466 @@
     "NpManager",
     1
   ],
+  "libSceNpManagerUnknown_095ladq7hQ8_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_0cZdUbbTaMw_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_1I4EiKvohEo_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_2o4V3QCvnfg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_397uJvLrlrM_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_3ikctjJYPtk_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_3sU9cWXBN98_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_4gVqbwFkKGY_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_5FWkeFFM1WI_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_5PZ_plus__minus_JHIT4c_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_5vBBomYPg_plus_s_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_6Xm6QTvYTTg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_6ijl2h7IowA_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_7d3y0wXbeGY_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_81ldjv_minus_ybsA_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_899ScRQvFV0_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_AydqLDpvliU_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_BQA2KNZr2H0_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_DDiKTyHJivk_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_DOzHoIo_plus_UK8_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_Dw8yC2rYpT0_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_ETxHcJD5oXQ_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_EtNn1ccn8Ag_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_FN_plus_wQFzswlE_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_FkASC9R1kx4_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_G6_plus_sdb0fbv8_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_GRp4UNp_minus_eCM_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_Gv4cB8leZaU_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_HZg8fgworHI_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_IIlDaVo7WP4_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_IfxfTgE2NAc_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_JYo9EMmaQ7s_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_Jj4yV5S0Eqw_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_JkRtteRXHYw_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_K2pL81xeJA0_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_K3B_minus__minus_gWssAk_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_L1nYyNP96jo_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_LOWrIw66_plus_LQ_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_LpAjW2_minus_Kc14_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_OCHXnB7YbzM_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_P0MZl8cQW78_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_Q49ghYqIP88_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_QZJ5fC0tP8M_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_Qcfj2Iu7f3U_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_TEoGLlZg_plus_r0_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_TICPek76Nqc_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_ThztfmL2j0Y_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_VCYDmZygruk_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_VGkLQcESh5k_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_VisjSq4l_plus_Aw_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_WNGXUCbdhko_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_WmA5X4w_minus_4Sg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_Wzgnd_plus_m18pQ_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_XbMB_plus_c1klnE_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_XcJr6IO6YVU_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_ZEHVWGnY1vI_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown__minus_1Q057TFjDE_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown__minus_5ZuQ1HlZNY_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown__minus_OrDVMqLIG4_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown__minus_QFXnlDhLNM_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown__plus_JmXFo3Jh6g_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown__plus_RtbJcybMNk_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown__plus_fUJ4QmdNxg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown__plus_pfQKES7Ghc_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_aQaOGIVChN4_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_aqQDBO03Uw4_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_b1nDsAsD4Fo_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_ckzOf3ihNWs_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_dQ8bBTwkMwg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_dg8Hm7kd4lg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_e_minus_J4TWuAGlw_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_enOG3JM_plus_sFE_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_gQygKbb3w6E_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_gg2CzDord9E_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_glO5Roao0_minus_0_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_hABPod2fe5Y_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_hNBwchvmG90_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_hT6stxLyZpg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_hmUTinCeFlQ_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_i8Iq1bRTvBI_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_i9PldiC93Dg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_iC9I_plus_uYJfAw_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_j26eOWbUwwo_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_j6YmS_minus_P2zAA_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_jwp0ATrWM_plus_w_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_kpLofCwJceQ_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_krFzyfMTVKo_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_ksopIxjKA6g_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_lB7tiCkrHcw_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_lQfpsyGl4Nc_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_lTaV2Wd_plus_8YA_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_lekBhfAviCg_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_mMqV4jGYBzE_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_nCZMI3Hdzb4_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_p7wseS6VIsU_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_q7oPgJVIywI_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_s7LodS0Puh8_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_sUonpM7eAg8_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_syPuHCOrl_minus_M_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_tCmBna70C6w_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_tHq7rNTBQp0_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_u4zM1slIDrI_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_ue6sId17JRE_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_ukG_plus_D0QVfuQ_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_uqHeyEjZlpA_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_vWxlv7_minus_lH78_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_v_plus_6TY5GrDHA_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_vsJdqui4uB8_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_wN0tvi6mb3o_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_wfhYv1uGwqE_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_wfjSUV5QuDQ_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_wzijRFAxDnk_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_y2cDXtZoz2s_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_z8eiw8_plus_UfEo_nid_no_patch": [
+    "NpManager",
+    0
+  ],
+  "libSceNpManagerUnknown_zLktx8v2g_plus_Y_nid_no_patch": [
+    "NpManager",
+    0
+  ],
   "npManagerLegacyUnknown_70N4VzVCpQg_nid_no_patch": [
     "NpManager",
     0
@@ -97767,6 +98231,30 @@
     "NpManager",
     0
   ],
+  "sceNpAsmClientExtAbortRequest": [
+    "NpManager",
+    0
+  ],
+  "sceNpAsmClientExtCreateRequest": [
+    "NpManager",
+    0
+  ],
+  "sceNpAsmClientExtDeleteRequest": [
+    "NpManager",
+    0
+  ],
+  "sceNpAsmClientExtGetPlayingTitleNpTitleToken": [
+    "NpManager",
+    0
+  ],
+  "sceNpAsmClientExtInitialize": [
+    "NpManager",
+    0
+  ],
+  "sceNpAsmClientExtTerminate": [
+    "NpManager",
+    0
+  ],
   "sceNpAsmClientGetAppId": [
     "NpManager",
     0
@@ -97792,6 +98280,10 @@
     0
   ],
   "sceNpAsmClientGetNpComInfo2A": [
+    "NpManager",
+    0
+  ],
+  "sceNpAsmClientGetNpComInfo2WithHmac": [
     "NpManager",
     0
   ],
@@ -97999,6 +98491,10 @@
     "NpManager",
     0
   ],
+  "sceNpIntUnregisterCheckCallback": [
+    "NpManager",
+    0
+  ],
   "sceNpManagerIntAddActiveSigninStateCallback": [
     "NpManager",
     0
@@ -98015,6 +98511,10 @@
     "NpManager",
     0
   ],
+  "sceNpManagerIntBindSandbox": [
+    "NpManager",
+    0
+  ],
   "sceNpManagerIntCheckNpAvailability": [
     "NpManager",
     0
@@ -98028,6 +98528,14 @@
     0
   ],
   "sceNpManagerIntCheckNpStateA": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntClearAdultToChildConversionFlag": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntClearBcAccessToken": [
     "NpManager",
     0
   ],
@@ -98052,6 +98560,10 @@
     0
   ],
   "sceNpManagerIntCreateAuthenticationTicket": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntCreateLocalSandboxAdminLoginContext": [
     "NpManager",
     0
   ],
@@ -98107,11 +98619,31 @@
     "NpManager",
     0
   ],
+  "sceNpManagerIntGetAdultToChildConversionFlag": [
+    "NpManager",
+    0
+  ],
   "sceNpManagerIntGetAuthServerErrorFlag": [
     "NpManager",
     0
   ],
+  "sceNpManagerIntGetBcAccessToken": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntGetBcAccessTokenWithCheck": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntGetCachedAccountInfo": [
+    "NpManager",
+    0
+  ],
   "sceNpManagerIntGetClientCredentialAccessToken": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntGetClientCredentialJwtAccessToken": [
     "NpManager",
     0
   ],
@@ -98124,6 +98656,10 @@
     0
   ],
   "sceNpManagerIntGetIssuerId": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntGetLocalSandboxAdminSigninState": [
     "NpManager",
     0
   ],
@@ -98167,6 +98703,14 @@
     "NpManager",
     0
   ],
+  "sceNpManagerIntGetSandboxList": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntGetSandboxState": [
+    "NpManager",
+    0
+  ],
   "sceNpManagerIntGetServerError": [
     "NpManager",
     0
@@ -98176,6 +98720,10 @@
     0
   ],
   "sceNpManagerIntGetSigninTelemetryInfo": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntGetStreamingSandboxSecret": [
     "NpManager",
     0
   ],
@@ -98223,6 +98771,10 @@
     "NpManager",
     0
   ],
+  "sceNpManagerIntGetVshSandboxClientId": [
+    "NpManager",
+    0
+  ],
   "sceNpManagerIntIsSubAccount": [
     "NpManager",
     0
@@ -98251,7 +98803,51 @@
     "NpManager",
     0
   ],
+  "sceNpManagerIntSetStreamingSandboxSecret": [
+    "NpManager",
+    0
+  ],
+  "sceNpManagerIntSignoutLocalSandboxAdmin": [
+    "NpManager",
+    0
+  ],
   "sceNpNotifyPlusFeature": [
+    "NpManager",
+    0
+  ],
+  "sceNpPush2SetDataType": [
+    "NpManager",
+    0
+  ],
+  "sceNpPushSetNpCommunicationId": [
+    "NpManager",
+    0
+  ],
+  "sceNpPushUnsetNpCommunicationId": [
+    "NpManager",
+    0
+  ],
+  "sceNpRegisterGamePresenceCallbackA": [
+    "NpManager",
+    0
+  ],
+  "sceNpSandboxIntAbortRequest": [
+    "NpManager",
+    0
+  ],
+  "sceNpSandboxIntCreateRequest": [
+    "NpManager",
+    0
+  ],
+  "sceNpSandboxIntDeleteRequest": [
+    "NpManager",
+    0
+  ],
+  "sceNpSandboxIntGetStreamingSandboxSecret": [
+    "NpManager",
+    0
+  ],
+  "sceNpSandboxIntSetStreamingSandboxSecret": [
     "NpManager",
     0
   ],
@@ -100183,6 +100779,14 @@
     "NpTus",
     1
   ],
+  "sceNpTssGetData": [
+    "NpTus",
+    1
+  ],
+  "sceNpTssGetDataAsync": [
+    "NpTus",
+    1
+  ],
   "sceNpTssGetSmallStorage": [
     "NpTus",
     1
@@ -100271,6 +100875,14 @@
     "NpTus",
     1
   ],
+  "sceNpTusDeleteMultiSlotDataVUser": [
+    "NpTus",
+    1
+  ],
+  "sceNpTusDeleteMultiSlotDataVUserAsync": [
+    "NpTus",
+    1
+  ],
   "sceNpTusDeleteMultiSlotVariable": [
     "NpTus",
     1
@@ -100335,6 +100947,14 @@
     "NpTus",
     1
   ],
+  "sceNpTusGetDataForCrossSaveVUser": [
+    "NpTus",
+    1
+  ],
+  "sceNpTusGetDataForCrossSaveVUserAsync": [
+    "NpTus",
+    1
+  ],
   "sceNpTusGetDataVUser": [
     "NpTus",
     1
@@ -100347,7 +100967,23 @@
     "NpTus",
     1
   ],
+  "sceNpTusGetFriendsDataStatusA": [
+    "NpTus",
+    1
+  ],
+  "sceNpTusGetFriendsDataStatusAAsync": [
+    "NpTus",
+    1
+  ],
   "sceNpTusGetFriendsDataStatusAsync": [
+    "NpTus",
+    1
+  ],
+  "sceNpTusGetFriendsDataStatusForCrossSave": [
+    "NpTus",
+    1
+  ],
+  "sceNpTusGetFriendsDataStatusForCrossSaveAsync": [
     "NpTus",
     1
   ],
@@ -100355,7 +100991,23 @@
     "NpTus",
     1
   ],
+  "sceNpTusGetFriendsVariableA": [
+    "NpTus",
+    1
+  ],
+  "sceNpTusGetFriendsVariableAAsync": [
+    "NpTus",
+    1
+  ],
   "sceNpTusGetFriendsVariableAsync": [
+    "NpTus",
+    1
+  ],
+  "sceNpTusGetFriendsVariableForCrossSave": [
+    "NpTus",
+    1
+  ],
+  "sceNpTusGetFriendsVariableForCrossSaveAsync": [
     "NpTus",
     1
   ],
@@ -100663,14 +101315,6 @@
     "NpTus",
     1
   ],
-  "sceNpTssGetData": [
-    "NpTus",
-    0
-  ],
-  "sceNpTssGetDataAsync": [
-    "NpTus",
-    0
-  ],
   "sceNpTssGetStorage": [
     "NpTus",
     0
@@ -100684,54 +101328,6 @@
     0
   ],
   "sceNpTusCreateTitleCtx": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusDeleteMultiSlotDataVUser": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusDeleteMultiSlotDataVUserAsync": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetDataForCrossSaveVUser": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetDataForCrossSaveVUserAsync": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetFriendsDataStatusA": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetFriendsDataStatusAAsync": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetFriendsDataStatusForCrossSave": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetFriendsDataStatusForCrossSaveAsync": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetFriendsVariableA": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetFriendsVariableAAsync": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetFriendsVariableForCrossSave": [
-    "NpTus",
-    0
-  ],
-  "sceNpTusGetFriendsVariableForCrossSaveAsync": [
     "NpTus",
     0
   ],
@@ -105059,6 +105655,10 @@
     "RegMgr",
     0
   ],
+  "sceRegMgrLogStart": [
+    "RegMgr",
+    0
+  ],
   "sceRegMgrMemset": [
     "RegMgr",
     0
@@ -105168,10 +105768,6 @@
     0
   ],
   "sceRegMgrToolGetUpdateCnt": [
-    "RegMgr",
-    0
-  ],
-  "sceRegMgrUnknown_001_nid_no_patch": [
     "RegMgr",
     0
   ],
@@ -105851,6 +106447,10 @@
     "Rtc",
     0
   ],
+  "sceRudpAccept": [
+    "Rudp",
+    1
+  ],
   "sceRudpActivate": [
     "Rudp",
     1
@@ -105919,6 +106519,10 @@
     "Rudp",
     1
   ],
+  "sceRudpListen": [
+    "Rudp",
+    1
+  ],
   "sceRudpNetFlush": [
     "Rudp",
     1
@@ -105975,19 +106579,11 @@
     "Rudp",
     1
   ],
-  "sceRudpAccept": [
-    "Rudp",
-    0
-  ],
   "sceRudpGetLocalInfo": [
     "Rudp",
     0
   ],
   "sceRudpGetOption": [
-    "Rudp",
-    0
-  ],
-  "sceRudpListen": [
     "Rudp",
     0
   ],
@@ -108079,6 +108675,10 @@
     "SysCore",
     0
   ],
+  "sceSysUtilSendSystemNotificationWithText": [
+    "SysUtil",
+    1
+  ],
   "sceSysUtilSendAddressingSystemNotification": [
     "SysUtil",
     0
@@ -108144,10 +108744,6 @@
     0
   ],
   "sceSysUtilSendSystemNotificationWithParams": [
-    "SysUtil",
-    0
-  ],
-  "sceSysUtilSendSystemNotificationWithText": [
     "SysUtil",
     0
   ],
@@ -112751,15 +113347,31 @@
     "UserService",
     0
   ],
-  "sceVdecCoreAnalyzeStream": [
-    "VdecCore",
-    0
-  ],
   "sceVdecCoreCreateDecoder": [
     "VdecCore",
-    0
+    1
   ],
   "sceVdecCoreDeleteDecoder": [
+    "VdecCore",
+    1
+  ],
+  "sceVdecCoreMapMemoryBlock": [
+    "VdecCore",
+    1
+  ],
+  "sceVdecCoreQueryComputeResourceInfo": [
+    "VdecCore",
+    1
+  ],
+  "sceVdecCoreQueryFrameBufferInfo": [
+    "VdecCore",
+    1
+  ],
+  "sceVdecCoreQueryInstanceSize": [
+    "VdecCore",
+    1
+  ],
+  "sceVdecCoreAnalyzeStream": [
     "VdecCore",
     0
   ],
@@ -112776,22 +113388,6 @@
     0
   ],
   "sceVdecCoreInitializeComputeResource": [
-    "VdecCore",
-    0
-  ],
-  "sceVdecCoreMapMemoryBlock": [
-    "VdecCore",
-    0
-  ],
-  "sceVdecCoreQueryComputeResourceInfo": [
-    "VdecCore",
-    0
-  ],
-  "sceVdecCoreQueryFrameBufferInfo": [
-    "VdecCore",
-    0
-  ],
-  "sceVdecCoreQueryInstanceSize": [
     "VdecCore",
     0
   ],
@@ -125423,6 +126019,10 @@
     "libkernel",
     1
   ],
+  "sceKernelHasTrinityMode": [
+    "libkernel",
+    1
+  ],
   "sceKernelInstallExceptionHandler": [
     "libkernel",
     1
@@ -129115,10 +129715,6 @@
     "libkernel_sys",
     0
   ],
-  "sceKernelHasTrinityMode": [
-    "libkernel_sys",
-    0
-  ],
   "sceKernelHwGetBdDriveInfo": [
     "libkernel_sys",
     0
@@ -130991,6 +131587,14 @@
     "libwebrtc",
     1
   ],
+  "_ZN3rtc10TimeMicrosEv_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN3rtc10TimeMillisEv_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
   "_ZN3rtc9ExpFilter5ApplyEff_nid_postfix": [
     "libwebrtc",
     1
@@ -131088,14 +131692,6 @@
     0
   ],
   "_ZN3rtc10SentPacketC1Ell_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN3rtc10TimeMicrosEv_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN3rtc10TimeMillisEv_nid_postfix": [
     "libwebrtc",
     0
   ],

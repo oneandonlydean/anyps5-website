@@ -1,7 +1,7 @@
 {
   "libraries": {
-    "done": 8656,
-    "total": 33237,
+    "done": 8695,
+    "total": 33386,
     "percent": 26.04,
     "groups": [
       {
@@ -357,9 +357,9 @@
       {
         "name": "libSceCompanionHttpd",
         "label": "CompanionHttpd",
-        "done": 6,
+        "done": 9,
         "total": 17,
-        "inert": 0
+        "inert": 3
       },
       {
         "name": "libSceCompanionUtil",
@@ -455,9 +455,9 @@
       {
         "name": "libSceDbgThreadSanitizer",
         "label": "DbgThreadSanitizer",
-        "done": 0,
+        "done": 2,
         "total": 2,
-        "inert": 0
+        "inert": 2
       },
       {
         "name": "libSceDepth",
@@ -588,8 +588,8 @@
       {
         "name": "libSceFreeType",
         "label": "FreeType",
-        "done": 80,
-        "total": 83,
+        "done": 81,
+        "total": 84,
         "inert": 0
       },
       {
@@ -875,14 +875,14 @@
       {
         "name": "libSceLibcInternal",
         "label": "LibcInternal",
-        "done": 73,
+        "done": 77,
         "total": 801,
         "inert": 1
       },
       {
         "name": "libSceLibreSsl",
         "label": "LibreSsl",
-        "done": 97,
+        "done": 99,
         "total": 401,
         "inert": 7
       },
@@ -994,7 +994,7 @@
       {
         "name": "libSceNKWebKit",
         "label": "NKWebKit",
-        "done": 1150,
+        "done": 1151,
         "total": 11248,
         "inert": 104
       },
@@ -1121,7 +1121,7 @@
         "name": "libSceNpManager",
         "label": "NpManager",
         "done": 70,
-        "total": 214,
+        "total": 362,
         "inert": 9
       },
       {
@@ -1253,7 +1253,7 @@
       {
         "name": "libSceNpTus",
         "label": "NpTus",
-        "done": 122,
+        "done": 136,
         "total": 142,
         "inert": 0
       },
@@ -1533,7 +1533,7 @@
       {
         "name": "libSceRudp",
         "label": "Rudp",
-        "done": 31,
+        "done": 33,
         "total": 35,
         "inert": 0
       },
@@ -1680,7 +1680,7 @@
       {
         "name": "libSceSysUtil",
         "label": "SysUtil",
-        "done": 0,
+        "done": 1,
         "total": 24,
         "inert": 0
       },
@@ -1848,7 +1848,7 @@
       {
         "name": "libSceVdecCore",
         "label": "VdecCore",
-        "done": 0,
+        "done": 6,
         "total": 21,
         "inert": 0
       },
@@ -2142,15 +2142,15 @@
       {
         "name": "libkernel",
         "label": "libkernel",
-        "done": 701,
-        "total": 749,
-        "inert": 17
+        "done": 702,
+        "total": 750,
+        "inert": 18
       },
       {
         "name": "libkernel_sys",
         "label": "libkernel_sys",
         "done": 135,
-        "total": 833,
+        "total": 832,
         "inert": 17
       },
       {
@@ -2170,7 +2170,7 @@
       {
         "name": "libwebrtc",
         "label": "libwebrtc",
-        "done": 20,
+        "done": 22,
         "total": 412,
         "inert": 0
       },

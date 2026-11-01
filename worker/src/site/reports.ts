@@ -123,6 +123,8 @@ export interface UploadSummary {
   titleId: string;
   /** The report had no title ID; the uploader chose the game. */
   titleChosen: boolean;
+  /** The game's name as the run report gives it; null when the uploader chose the game. */
+  name: string | null;
   /** The compatibility list's stage, or null when the run's stage is unknown. */
   stage: string | null;
   login: string;
@@ -154,6 +156,7 @@ export function summarise(row: Row): UploadSummary {
     id: row.id,
     titleId: row.title_id,
     titleChosen: row.title_chosen === 1,
+    name: row.title_chosen === 1 ? null : r.game.name?.trim().slice(0, 120) || null,
     stage: SITE_STAGE[r.run.stage],
     login: row.login,
     githubId: row.github_id,

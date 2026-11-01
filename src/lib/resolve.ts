@@ -1,5 +1,5 @@
 import type { NamedOverlay } from "./load";
-import type { Art, Issue, Platform, Report, Thread, Title } from "./schema";
+import { TITLE_ID, type Art, type Issue, type Platform, type Report, type Thread, type Title } from "./schema";
 import { stageRank, type StageOrNone } from "./stages";
 import { autoStage, CONFIRMATIONS_NEEDED, type AutoStage, type UploadSummary } from "./uploads";
 
@@ -84,8 +84,12 @@ function storeName(name: string): string {
  * its thread title, else its store name (the store names some different apps alike, and a store concept can cover a
  * whole collection, so neither is trusted over what testers called it). Names only join within a console generation:
  * a PS4 and a PS5 game with one name can be different games.
+ *
+ * Title IDs from uploaded run reports become games too, so a game can be added by uploading a run without a
+ * Discussions thread. One the PlayStation Store doesn't list (homebrew) is named as its run report names it.
  */
-export function groupGames(threads: Thread[], overlays: NamedOverlay[], titles: Record<string, Title>): Identity[] {
+export function groupGames(threads: Thread[], overlays: NamedOverlay[], titles: Record<string, Title>, uploads: { titleId: string; name?: string | null }[] = []): Identity[] {
+  const uploaded = [...new Set(uploads.filter((u) => TITLE_ID.test(u.titleId) && (titles[u.titleId] || u.name)).map((u) => u.titleId))];
   const parent = new Map<string, string>();
   const find = (id: string): string => {
     const p = parent.get(id) ?? id;
@@ -103,7 +107,8 @@ export function groupGames(threads: Thread[], overlays: NamedOverlay[], titles: 
   const name = (value: string | null | undefined, ids: string[]) => ids.forEach((id) => value && !names.has(id) && names.set(id, value));
   overlays.forEach((o) => name(o.name, o.title_ids));
   threads.forEach((t) => name(threadName(t.title), t.titleIds));
-  [...threads.flatMap((t) => t.titleIds), ...overlays.flatMap((o) => o.title_ids)].forEach((id) => name(titles[id] && storeName(titles[id].name), [id]));
+  [...threads.flatMap((t) => t.titleIds), ...overlays.flatMap((o) => o.title_ids), ...uploaded].forEach((id) => name(titles[id] && storeName(titles[id].name), [id]));
+  uploads.forEach((u) => uploaded.includes(u.titleId) && name(u.name, [u.titleId]));
   const firstNamed = new Map<string, string>();
   for (const [id, value] of names) {
     const key = `${id.slice(0, 4)}:${slugify(value)}`;
@@ -129,6 +134,7 @@ export function groupGames(threads: Thread[], overlays: NamedOverlay[], titles: 
     overlay.title_ids.forEach((id) => g.ids.add(id));
     g.overlay = overlay;
   }
+  for (const id of uploaded) group(id).ids.add(id);
 
   const used = new Set<string>();
   return [...groups.values()].map(({ ids, threads, overlay }) => {
@@ -140,6 +146,7 @@ export function groupGames(threads: Thread[], overlays: NamedOverlay[], titles: 
       (oldest && threadName(oldest.title)) ??
       (titles[key] && storeName(titles[key].name)) ??
       oldest?.title.trim() ??
+      names.get(key) ??
       key;
     let slug = slugify(name) || key.toLowerCase();
     if (used.has(slug)) slug = `${slug}-${key.toLowerCase()}`;
@@ -236,7 +243,7 @@ export function resolveGame(
     verified: Boolean(curated && !reportWins && !uploadWins),
     platforms,
     gpuVendors: [...new Set(reports.map((r) => r.gpuVendor).filter((v): v is string => Boolean(v)))],
-    reporters: new Set(reports.map((r) => r.author).filter(Boolean)).size,
+    reporters: new Set([...reports.map((r) => r.author), ...uploads.map((u) => u.login)].filter(Boolean)).size,
     updated,
     note: (!reportWins && curated?.note) || reports.find((r) => r.shown)?.shown || null,
     blockers: openBlockers(blockerNumbers, issues),

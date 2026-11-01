@@ -105,6 +105,29 @@ describe("identity", () => {
     );
     expect(games).toHaveLength(2);
   });
+
+  it("adds games that only uploaded runs report", () => {
+    const titles = { PPSA30001: { name: "Store Game™", region: "UP", concept: null }, PPSA00001: { name: "Game 1", region: "UP", concept: null } };
+    const games = groupGames([thread(1, ["PPSA00001"])], [], titles, [
+      { titleId: "PPSA30001", name: "Name in the report" },
+      { titleId: "PPSA30002", name: "Homebrew Thing" },
+      { titleId: "PPSA30003", name: null },
+      { titleId: "PPSA00001", name: "Already listed" },
+      { titleId: "not-an-id", name: "Nonsense" },
+    ]);
+    expect(games.map((g) => [g.name, g.slug, g.titleIds])).toEqual([
+      ["Game 1", "game-1", ["PPSA00001"]],
+      // The store's name wins over the report's; homebrew goes by the report's; an unlisted ID without a name is left out.
+      ["Store Game", "store-game", ["PPSA30001"]],
+      ["Homebrew Thing", "homebrew-thing", ["PPSA30002"]],
+    ]);
+  });
+
+  it("joins an uploaded regional release to the game of the same name", () => {
+    const titles = { PPSA00001: { name: "Game 1", region: "UP", concept: null }, PPSA00002: { name: "Game 1", region: "EP", concept: null } };
+    const games = groupGames([thread(1, ["PPSA00001"])], [], titles, [{ titleId: "PPSA00002", name: null }]);
+    expect(games.map((g) => g.titleIds)).toEqual([["PPSA00001", "PPSA00002"]]);
+  });
 });
 
 describe("stage", () => {

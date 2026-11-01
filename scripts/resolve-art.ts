@@ -4,6 +4,7 @@ import { vibrantColor } from "../src/lib/color";
 import { loadGenerated, loadOverlays } from "../src/lib/load";
 import { groupGames, type Identity } from "../src/lib/resolve";
 import type { Art, Thread, Title } from "../src/lib/schema";
+import type { UploadExport } from "../src/lib/uploads";
 
 const OUT = generated("art.json");
 const DAY = 86_400_000;
@@ -151,7 +152,8 @@ function isFresh(art: Art | undefined, now: number): boolean {
 async function main() {
   const force = process.argv.includes("--force");
   const titles = await loadGenerated<Record<string, Title>>("titles.json", {});
-  const identities = groupGames(await loadGenerated<Thread[]>("threads.json", []), await loadOverlays(), titles);
+  const uploads = (await loadGenerated<UploadExport | null>("uploads.json", null))?.uploads ?? [];
+  const identities = groupGames(await loadGenerated<Thread[]>("threads.json", []), await loadOverlays(), titles, uploads);
   const cache = await readJson<Record<string, Art>>(OUT, {});
   const now = Date.now();
   const queue = identities.filter((i) => force || !isFresh(cache[i.key], now));

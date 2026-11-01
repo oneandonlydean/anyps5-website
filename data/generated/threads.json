@@ -105,7 +105,7 @@
       "PPSA26344"
     ],
     "created": "2026-10-05T14:20:37Z",
-    "updated": "2026-10-31T19:39:17Z",
+    "updated": "2026-10-31T21:48:33Z",
     "comments": 89,
     "reports": [],
     "media": [
@@ -2076,7 +2076,7 @@
       "PPSA99902"
     ],
     "created": "2026-10-12T11:46:32Z",
-    "updated": "2026-10-31T20:25:16Z",
+    "updated": "2026-11-01T02:10:08Z",
     "comments": 0,
     "reports": [],
     "media": []
@@ -4513,8 +4513,8 @@
       "PPSA10737"
     ],
     "created": "2026-10-15T08:47:18Z",
-    "updated": "2026-10-15T08:47:18Z",
-    "comments": 0,
+    "updated": "2026-10-31T21:21:50Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6275",
@@ -4536,6 +4536,24 @@
           3274
         ],
         "blockerText": "```\n[gpu] driver failure: compute shader 0x2010fa0000: shader 0x2010fa0000 stage 0: ShaderRecompiler::Recompile: computed/data-dependent s_swappc_b64 call target at program counter 0x00001034 is not statically resolvable\n```\n\n3 of 3 runs on `main`: 139 s with a cold shader cache, about 42 s warm. The same stop with #6160 applied.\n\nFrom `agc_shader_replay --asm` on the dumped request, this is the per-lane function-table waterfall of #3274/#4706, except that the table's V# is loaded once, about 0x400 bytes and several branches before the loop:\n\n```\n0x0c08  s_load_dwordx4        s[96:99], s[0:1], 0x10      ; user data u[0:1]\n...\n0x1004  v_readfirstlane_b32   vcc_lo, v70\n0x100c  v_cmpx_eq_u32         vcc_lo, v70\n0x1014  s_lshl_b32            vcc_lo, vcc_lo, 4\n0x1018  s_buffer_load_dwordx4 s[16:19], s[96:99], vcc_lo\n0x1024  s_mov_b32             s14..s17 <- s16..s19\n0x1034  s_swappc_b64          s[14:15], s[14:15]\n0x1048  s_cbranch_execnz      0x1004\n```\n\n`FindTableCalls` (`GraphBuilder.cpp:1454` on d92a8dad3) needs the V# load in the call's block: `findLastWriter` stops at the first branch and `sameBlock(descriptorLoad, index)` fails, so the call is not linked. #6160's change to the writer search (branches past the call) and its constant-address path do not cover it. I found no open issue or pull request for this shape. 346 other shaders are deferred at registration with computed `s_swappc_b64` targets; none of them stops the run before this one."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/6275#discussioncomment-19322026",
+        "discussion": 6275,
+        "author": "zaryabzip",
+        "date": "2026-10-31T21:21:50Z",
+        "edited": null,
+        "stage": "Presents",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": []
@@ -6833,8 +6851,8 @@
       "PPSA14299"
     ],
     "created": "2026-10-18T08:16:10Z",
-    "updated": "2026-10-31T18:11:07Z",
-    "comments": 5,
+    "updated": "2026-10-31T21:45:14Z",
+    "comments": 6,
     "reports": [],
     "media": []
   },
@@ -7393,8 +7411,8 @@
       "PPSA21607"
     ],
     "created": "2026-10-20T00:54:25Z",
-    "updated": "2026-10-20T01:16:53Z",
-    "comments": 0,
+    "updated": "2026-11-01T02:02:18Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/8158",
@@ -7445,6 +7463,27 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/8158",
         "author": "JJenkx",
         "date": "2026-10-20T00:54:25Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/smurfs-aac13934-title-screen.png",
+        "alt": "Title screen with PR13934",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/8158#discussioncomment-19322463",
+        "author": "JJenkx",
+        "date": "2026-10-31T21:56:38Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/smurfs-combined-village-20261031.png",
+        "alt": "Village spawn",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/8158#discussioncomment-19322952",
+        "author": "JJenkx",
+        "date": "2026-10-31T22:35:28Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/smurfs-combined-movement-20261031.png",
+        "alt": "After left-stick-right movement",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/8158#discussioncomment-19322952",
+        "author": "JJenkx",
+        "date": "2026-10-31T22:35:28Z"
       }
     ]
   },
@@ -7518,8 +7557,8 @@
       "PPSA20423"
     ],
     "created": "2026-10-20T05:29:52Z",
-    "updated": "2026-10-20T05:29:52Z",
-    "comments": 0,
+    "updated": "2026-10-31T23:52:35Z",
+    "comments": 1,
     "reports": [],
     "media": [
       {
@@ -8774,8 +8813,8 @@
       "PPSA31162"
     ],
     "created": "2026-10-21T16:57:59Z",
-    "updated": "2026-10-21T16:57:59Z",
-    "comments": 0,
+    "updated": "2026-11-01T01:47:32Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9268",
@@ -10919,8 +10958,8 @@
       "PPSA21406"
     ],
     "created": "2026-10-23T16:03:12Z",
-    "updated": "2026-10-26T03:15:04Z",
-    "comments": 1,
+    "updated": "2026-10-31T21:28:36Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10261",
@@ -13241,7 +13280,7 @@
       "PPSA06866"
     ],
     "created": "2026-10-31T02:51:36Z",
-    "updated": "2026-10-31T20:13:30Z",
+    "updated": "2026-10-31T22:24:34Z",
     "comments": 0,
     "reports": [
       {
@@ -13249,7 +13288,7 @@
         "discussion": 13726,
         "author": "XatiX",
         "date": "2026-10-31T02:51:36Z",
-        "edited": "2026-10-31T20:13:30Z",
+        "edited": "2026-10-31T22:24:34Z",
         "stage": "Ingame",
         "platform": "windows",
         "gpu": "RTX 5080",
@@ -13258,7 +13297,7 @@
         "buildKind": "main",
         "prs": [],
         "version": "01.007.000",
-        "shown": "boot, title screen, main menu, Campaign, difficulty, character creation, the origin story scene, the intro cinematic, the level load, then the opening in The Hold: Magister Siwan's dialogue, followed by free play with hotbar and minimap. On 456a530efb, before the speed commits…",
+        "shown": "in a manual session of 21 minutes on an earlier commit of this work, with no crash and a clean exit, a manual save was written and loaded back, and by the tester's report combat worked and audio appears to work. Saves list correctly with their name, time and version. Before th…",
         "blockers": [
           13734,
           13715,
@@ -13266,7 +13305,7 @@
           10492,
           13023
         ],
-        "blockerText": "None stops the title in the tested range. Speed is the main problem now, and it is CPU-bound: the GPU takes about 10 ms per frame, while `Driver.Packet` takes about 19 ms and the committer thread stays busy. See Speed below. Each stop below was only reached after the one before it was passed.\n\n| # | Stop | Status | Tracked by |\n|---|---|---|---|\n| 1 | `sceHttp2SslEnableOption` on a context handle | **Passed with #13734**, tested on the title | #13715, #13734 |\n| 2 | `DB_RENDER_CONTROL` 0x88 stencil copy | Open. Local pass, unverified | No issue or PR |\n| 3 | Native multisample depth publication | Passed with #13021 | #13021 |\n| 4 | `cannot distinguish an unwritten byte…` | Local fix, on the branch | No issue or PR |\n| 5 | Access violation in `nvoglv64.dll`, about 30 to 33 s | **Cause found.** Local fix, on the branch | #10492 describes the same bug |\n| 6 | `guest writes over native multisample depth` and `publication capture` | On the branch, with a known limit | #13023 is related |\n| 7 | Loop on the load after difficulty selection | **Cause found.** Local fix, on the branch | No issue or PR |"
+        "blockerText": "None stops the title in the tested range. Speed is the main problem now, and it is CPU-bound: on the later save the GPU takes about 16 ms per frame, while `Driver.Packet` takes about 43 ms and the committer thread stays busy. See Speed below. Two picture faults remain, listed under Measured. Each stop below was only reached after the one before it was passed.\n\n| # | Stop | Status | Tracked by |\n|---|---|---|---|\n| 1 | `sceHttp2SslEnableOption` on a context handle | **Fixed on `main`** by #13734, confirmed on this title | #13715 closed, #13734 merged |\n| 2 | `DB_RENDER_CONTROL` 0x88 stencil copy | Open. Local pass, unverified | No issue or PR |\n| 3 | Native multisample depth publication | Passed with #13021 | #13021 |\n| 4 | `cannot distinguish an unwritten byte…` | Local fix, on the branch | No issue or PR |\n| 5 | Access violation in `nvoglv64.dll`, about 30 to 33 s | **Cause found.** Local fix, on the branch | #10492 describes the same bug |\n| 6 | `guest writes over native multisample depth` and `publication capture` | On the branch, with a known limit | #13023 is related |\n| 7 | Loop on the load after difficulty selection | **Cause found.** Local fix, on the branch | No issue or PR |"
       }
     ],
     "media": []
@@ -13419,8 +13458,8 @@
       "PPSA02508"
     ],
     "created": "2026-10-31T15:43:26Z",
-    "updated": "2026-10-31T20:38:56Z",
-    "comments": 1,
+    "updated": "2026-10-31T22:53:17Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14010",
@@ -13451,8 +13490,8 @@
       "PPSA02629"
     ],
     "created": "2026-10-31T15:50:21Z",
-    "updated": "2026-10-31T15:56:38Z",
-    "comments": 1,
+    "updated": "2026-10-31T21:11:57Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14013",
@@ -13586,8 +13625,8 @@
       "PPSA05595"
     ],
     "created": "2026-10-31T16:41:30Z",
-    "updated": "2026-10-31T16:41:30Z",
-    "comments": 0,
+    "updated": "2026-10-31T21:47:36Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14033",
@@ -13796,8 +13835,8 @@
       "PPSA08056"
     ],
     "created": "2026-10-31T17:28:51Z",
-    "updated": "2026-10-31T20:24:34Z",
-    "comments": 2,
+    "updated": "2026-10-31T23:44:10Z",
+    "comments": 3,
     "reports": [],
     "media": []
   },
@@ -13809,8 +13848,8 @@
       "PPSA08194"
     ],
     "created": "2026-10-31T17:41:17Z",
-    "updated": "2026-10-31T17:41:17Z",
-    "comments": 0,
+    "updated": "2026-10-31T22:22:11Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14067",
@@ -14011,8 +14050,8 @@
       "PPSA34823"
     ],
     "created": "2026-10-31T18:50:17Z",
-    "updated": "2026-10-31T18:50:17Z",
-    "comments": 0,
+    "updated": "2026-10-31T21:04:01Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14099",
@@ -14038,7 +14077,15 @@
         "blockerText": "A compute buffer write over a multisampled color target whose samples exist only on the host. These PRs, each merged alone onto the same `main`, give the same stop:\n\n| PR | Merge |\n|---|---|\n| #7002, publish native color for read-only shader buffers | `01ec1d7a39` |\n| #13248, claim a multisampled color target that a single-sample storage image store overlaps | `0fc12fa21a` |\n| #13963, store storage results pending under a multisampled color target before it takes the memory | `2fbcc57b1f` |\n| #10049, retire a multisampled color target a write-only storage image overwrites | `d538a6004c` |\n\nWhether this write replaces the target's memory or reads it as well is not established from this run."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/lucky-pr10893-title-menu.png",
+        "alt": "PR10893 title menu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14099#discussioncomment-19321851",
+        "author": "JJenkx",
+        "date": "2026-10-31T21:04:01Z"
+      }
+    ]
   },
   {
     "number": 14104,
