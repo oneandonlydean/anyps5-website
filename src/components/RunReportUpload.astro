@@ -39,6 +39,13 @@ const { games } = Astro.props;
       <span>That game isn't on the list yet. What is it called? A maintainer checks new games before they show.</span>
       <input placeholder="Game name" maxlength="120" autocomplete="off" data-pick-name-input />
     </label>
+    <fieldset class="reached" data-reached hidden>
+      <legend>How far did you get? The report can only tell up to frames on screen.</legend>
+      <label><input type="radio" name="reached" value="" checked /> Logos, video or loading screens</label>
+      <label><input type="radio" name="reached" value="menus" /> A menu or title screen that responds</label>
+      <label><input type="radio" name="reached" value="ingame" /> Into gameplay</label>
+      <label><input type="radio" name="reached" value="playable" /> Played it start to finish</label>
+    </fieldset>
     <button type="button" class="button primary" data-send hidden>Upload report</button>
   </div>
   <div class="result" data-result role="status" aria-live="polite"></div>
@@ -56,6 +63,8 @@ const { games } = Astro.props;
   const pickInput = root.querySelector<HTMLInputElement>("[data-pick-input]")!;
   const pickName = root.querySelector<HTMLElement>("[data-pick-name]")!;
   const pickNameInput = root.querySelector<HTMLInputElement>("[data-pick-name-input]")!;
+  const reached = root.querySelector<HTMLFieldSetElement>("[data-reached]")!;
+  const reachedValue = () => (reached.hidden ? "" : (reached.querySelector<HTMLInputElement>("input:checked")?.value ?? ""));
   const listed = new Set([...root.querySelectorAll<HTMLOptionElement>("#upload-games option")].map((o) => o.value.match(/\(([A-Z]{4}\d{5})\)$/)?.[1]));
   // A picked game is sent as its title ID: "Name (PPSA12345)" or a bare ID. One not on the list needs a name too.
   const chosenId = () => (pick.hidden ? null : (pickInput.value.toUpperCase().match(/\b([A-Z]{4}\d{5})\)?\s*$/)?.[1] ?? null));
@@ -133,6 +142,9 @@ const { games } = Astro.props;
       el("span", `Reached ${stage} on ${report.system?.os ?? "an unknown OS"} with ${report.system?.gpu?.vendor ?? "an unknown GPU"}`, "muted"),
     );
     pick.hidden = titleId !== null;
+    // Past frames on screen, only the person who played can say how far it got.
+    reached.hidden = report.run?.stage !== "presents";
+    reached.querySelector<HTMLInputElement>('input[value=""]')!.checked = true;
     pickInput.value = pickNameInput.value = "";
     pickName.hidden = true;
     preview.hidden = send.hidden = false;
@@ -169,6 +181,7 @@ const { games } = Astro.props;
     const query = new URLSearchParams();
     if (chosen) query.set("titleId", chosen);
     if (name) query.set("name", name);
+    if (reachedValue()) query.set("reached", reachedValue());
     let res: Response;
     try {
       res = await fetch(`/api/reports${query.size ? `?${query}` : ""}`, { method: "POST", headers: { "content-type": "application/json" }, body });
@@ -193,7 +206,7 @@ const { games } = Astro.props;
       const link = el("a", `Find ${data.titleId} on the compatibility list`) as HTMLAnchorElement;
       link.href = `/compatibility/?q=${encodeURIComponent(data.titleId)}`;
       result.append(done, link);
-      preview.hidden = send.hidden = pick.hidden = pickName.hidden = true;
+      preview.hidden = send.hidden = pick.hidden = pickName.hidden = reached.hidden = true;
       input.value = "";
       return;
     }
@@ -294,6 +307,26 @@ const { games } = Astro.props;
     background: var(--surface);
     color: var(--text);
     font: inherit;
+  }
+  .reached {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 0.88rem;
+  }
+  .reached[hidden] {
+    display: none;
+  }
+  .reached legend {
+    margin-bottom: 4px;
+    padding: 0;
+  }
+  .reached label {
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
   .preview {
     display: grid;

@@ -7,6 +7,11 @@ import { requestRebuild } from "./rebuild";
 const PER_DAY = 30;
 const FACTS_TTL = 600_000;
 const TITLE_ID = /^[A-Z]{4}[0-9]{5}$/;
+/**
+ * A run report records stages up to Presents; whether a menu responds or gameplay is reached takes someone watching.
+ * The uploader can say so for a run that presented frames, and like any upload it counts once someone confirms it.
+ */
+const STATED: Record<string, string> = { menus: "Menus", ingame: "Ingame", playable: "Playable" };
 
 interface Facts extends UpstreamFacts {
   /** Title IDs of games the site knows; empty when unavailable. */
@@ -76,6 +81,11 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
     }
   }
 
+  const reached = params.get("reached");
+  const stated = reached ? (STATED[reached] ?? null) : null;
+  if (reached && !stated) return problem(400, "How far it got is one of menus, ingame or playable.");
+  if (stated && report.run.stage !== "presents") return problem(400, "This run didn't present any frames, so it can't have reached a menu or gameplay.");
+
   const db = env.SITE_DB!;
   const today = await db.prepare("SELECT count(*) AS n FROM uploads WHERE github_id = ? AND created_at > ?").bind(account.github_id, nowSeconds() - 86400).first<number>("n");
   if ((today ?? 0) >= PER_DAY) return problem(429, `At most ${PER_DAY} reports a day. Try again tomorrow.`);
@@ -88,9 +98,9 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   try {
     row = await db
     .prepare(
-      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
+      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name, stated_stage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
     )
-    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName)
+    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName, stated)
     .first<number>("id");
   } catch (err) {
     // The same run sent twice at once: the second insert hits the unique index.
@@ -98,7 +108,7 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
     throw err;
   }
   if (status === "visible") wait(requestRebuild(env, "upload"));
-  return json({ id: row, status, flags, titleId, stage: SITE_STAGE[report.run.stage] }, 201);
+  return json({ id: row, status, flags, titleId, stage: stated ?? SITE_STAGE[report.run.stage] }, 201);
 }
 
 /** The body, or null once it passes `limit` bytes; read as a stream, so an oversized upload is never held in full. */
@@ -133,8 +143,10 @@ export interface UploadSummary {
   titleChosen: boolean;
   /** The game's name: as the run report gives it, or as the uploader gave it for a game not on the list yet. */
   name: string | null;
-  /** The compatibility list's stage, or null when the run's stage is unknown. */
+  /** The compatibility list's stage, or null when the run's stage is unknown: the uploader's, when they gave one. */
   stage: string | null;
+  /** The stage the uploader said the run reached, past what the report records; null when they didn't say. */
+  stated: string | null;
   login: string;
   githubId: number;
   at: string;
@@ -155,7 +167,7 @@ export interface UploadSummary {
   stop: { kind: string; reason: string; message: string };
 }
 
-type Row = { id: number; report: string; login: string; github_id: number; created_at: number; title_id: string; title_chosen: number; title_name: string | null };
+type Row = { id: number; report: string; login: string; github_id: number; created_at: number; title_id: string; title_chosen: number; title_name: string | null; stated_stage: string | null };
 
 export function summarise(row: Row): UploadSummary {
   const r = JSON.parse(row.report) as RunReport;
@@ -165,7 +177,8 @@ export function summarise(row: Row): UploadSummary {
     titleId: row.title_id,
     titleChosen: row.title_chosen === 1,
     name: row.title_name ?? (row.title_chosen === 1 ? null : r.game.name?.trim().slice(0, 120) || null),
-    stage: SITE_STAGE[r.run.stage],
+    stage: row.stated_stage ?? SITE_STAGE[r.run.stage],
+    stated: row.stated_stage,
     login: row.login,
     githubId: row.github_id,
     at: new Date(row.created_at * 1000).toISOString(),
@@ -184,7 +197,7 @@ export function summarise(row: Row): UploadSummary {
   };
 }
 
-const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, a.login";
+const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, u.stated_stage, a.login";
 
 /** Everything the site build needs: visible uploads from accounts in good standing, and what maintainers hid. */
 export async function exportData(_req: Request, env: Env): Promise<Response> {

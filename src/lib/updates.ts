@@ -1,4 +1,5 @@
-import { getGames } from "./data";
+import { getGames, getRetest, getTested, getTrackedGames } from "./data";
+import { buildLabel } from "./builds";
 import { loadGenerated } from "./load";
 import { AREA_LABEL, AREAS, classify, typeLabel, type ClassifiedMerge, type Merge, type MergeArea } from "./merges";
 import { stageRank, type StageOrNone } from "./stages";
@@ -12,8 +13,10 @@ import type { MilestoneKind } from "./library-milestones";
  * - digest: one day of merges, with what the libraries and shader recompiler gained.
  * - week: a weekly progress summary, for weeks before the merge history starts.
  * - library: a system library got its first implemented function, reached half, or was completed.
+ * - regression: a game's newest release got less far than an earlier one.
+ * - retest: a new release is out; the tracked games not yet run on it.
  */
-export type UpdateKind = "stage" | "release" | "merge" | "digest" | "week" | "library";
+export type UpdateKind = "stage" | "release" | "merge" | "digest" | "week" | "library" | "regression" | "retest";
 
 /** Which feed and page tab an update belongs to. */
 export const CATEGORY: Record<UpdateKind, "games" | "releases" | "progress"> = {
@@ -23,6 +26,8 @@ export const CATEGORY: Record<UpdateKind, "games" | "releases" | "progress"> = {
   digest: "progress",
   week: "progress",
   library: "progress",
+  regression: "games",
+  retest: "games",
 };
 
 export interface Update {
@@ -78,13 +83,16 @@ export function getUpdates(): Promise<Update[]> {
 }
 
 async function build(): Promise<Update[]> {
-  const [games, releases, libraries, coverage, mergeData, libraryHistory] = await Promise.all([
+  const [games, releases, libraries, coverage, mergeData, libraryHistory, tested, tracked, retest] = await Promise.all([
     getGames(),
     loadGenerated<ReleaseEntry[]>("releases.json", []),
     getProgressHistory(),
     getCoverage(),
     loadGenerated<{ merges: Merge[] }>("merges.json", { merges: [] }),
     getLibraryHistory(),
+    getTested(),
+    getTrackedGames(),
+    getRetest(),
   ]);
   const updates: Update[] = [];
   const gameCard = (g: (typeof games)[number]) => ({ slug: g.slug, name: g.name, cover: g.art?.cover ?? g.art?.square ?? null, color: g.art?.color ?? null });
@@ -105,6 +113,41 @@ async function build(): Promise<Update[]> {
         stage: event.stage,
         from: previous?.stage,
       });
+    });
+  }
+
+  // A newer release that got less far: posted once per game and release, dated by the result that showed it.
+  for (const g of games) {
+    const regression = tested.get(g.slug)?.regression;
+    if (!regression) continue;
+    const { was, now } = regression;
+    const on = (release: string | null) => buildLabel({ release, exact: false }).replace(/^main after /, "");
+    updates.push({
+      id: `regression:${g.slug}:${now.release}`,
+      date: now.last,
+      kind: "regression",
+      title: `${g.name} reported lower on ${on(now.release)}: ${now.stage}`,
+      text: `It reached ${was.stage} on ${on(was.release)}. That can be a regression or a different setup; another run on the current build would tell.`,
+      url: `/compatibility/${g.slug}#releases`,
+      game: gameCard(g),
+      stage: now.stage,
+      from: was.stage,
+    });
+  }
+
+  // The newest release asks for the tracked games to be run on it, once, listing those not run on it when it came out.
+  const latest = releases.find((r) => !r.prerelease);
+  const notRun = latest ? tracked.filter((g) => !tested.get(g.slug)?.releases.some((r) => r.release === latest.tag)) : [];
+  if (latest && notRun.length) {
+    const ready = notRun.filter((g) => retest.get(g.slug)?.ready);
+    const names = [...ready, ...notRun.filter((g) => !ready.includes(g))].map((g) => g.name);
+    updates.push({
+      id: `retest:${latest.tag}`,
+      date: latest.published,
+      kind: "retest",
+      title: `Retest wanted on ${latest.tag}: ${notRun.length} tracked game${notRun.length === 1 ? "" : "s"}`,
+      text: `Not run on ${latest.tag} yet: ${names.slice(0, 10).join(", ")}${names.length > 10 ? ` and ${names.length - 10} more` : ""}.${ready.length ? ` What stopped ${ready.length === 1 ? ready[0]!.name : `${ready.length} of them`} has been fixed since.` : ""}`,
+      url: "/compatibility/tracked",
     });
   }
 
@@ -204,4 +247,4 @@ async function build(): Promise<Update[]> {
   return updates.sort((a, b) => b.date.localeCompare(a.date) || kindOrder(a) - kindOrder(b) || stageRank(b.stage) - stageRank(a.stage));
 }
 
-const kindOrder = (u: Update) => ["release", "digest", "week", "library", "stage", "merge"].indexOf(u.kind);
+const kindOrder = (u: Update) => ["release", "retest", "digest", "week", "library", "stage", "regression", "merge"].indexOf(u.kind);

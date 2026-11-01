@@ -78,11 +78,14 @@ Nothing on the site is maintained by hand. Each script below writes to `data/gen
 4. **Screenshots:** `sync:screenshots` downloads each posted image once and writes small WebP copies to `public/community/` (not committed).
 5. **Merges:** `sync:merges` keeps the last 30 days of merged upstream pull requests for `/updates`.
 6. **Uploads:** `sync:uploads` reads uploaded run reports and maintainer actions from the Worker's `/api/export`.
-7. **Curation:** `data/games/<slug>.yaml` files override any of the above. See [CONTRIBUTING.md](CONTRIBUTING.md).
-8. **Resolution:** `src/lib/resolve.ts` groups threads into games by title ID. Regional releases with the same name become one game.
+7. **Builds:** `sync:builds` looks up the commit hash in each report's build text, and in each upload, for its date, and the commit each release was cut from (`src/lib/builds.ts`). Each result is then placed on a release: the release itself, or `main` after it. A report naming no known commit falls back to a release named in its text, then to its date. Lookups are cached in `node_modules/.cache/anyps5-builds.json`.
+8. **Curation:** `data/games/<slug>.yaml` files override any of the above. See [CONTRIBUTING.md](CONTRIBUTING.md).
+9. **Resolution:** `src/lib/resolve.ts` groups threads into games by title ID. Regional releases with the same name become one game.
    - The headline stage is the best report on a `main` or release build. Stages reached only with open pull requests show separately.
    - A curated stage wins until a newer report goes further.
    - Uploads count once confirmed (see below).
+10. **History:** `record:compat` adds the day's games per stage to `/compat-history.json`. Like `/library-history.json`, the record lives on the deployed site: each refresh reads it back from `SITE_API`, because CI keeps nothing between runs. `/progress#games` charts it; days before it started are rebuilt from each game's reports.
+11. **Tracked games:** `data/tracked.yaml` lists a fixed set of games, chosen by maintainers, to run on every release. `/compatibility/tracked` shows them release by release. Each game page has a "By release" table, and a newer release that got less far is flagged as a possible regression.
 
 **Progress** (`fetch:upstream` and `fetch:coverage`):
 - **System libraries:** from upstream's `progress.json`. When `UPSTREAM_PROGRESS` is set, the output of upstream's own `tools/progress.py --json` run on `main` is used instead, because upstream's published copy lags whenever its Pages deploy fails (see [Measuring library progress on main](#measuring-library-progress-on-main)).
@@ -104,7 +107,7 @@ Nothing on the site is maintained by hand. Each script below writes to `data/gen
 | `/feeds/releases.xml` | New releases |
 | `/feeds/progress.xml` | Every feature, fix and speed-up merged upstream (about 160 a day) |
 | `/feeds/progress-daily.xml` | One summary per day |
-| `/feeds/games.xml` | Games reaching a new stage |
+| `/feeds/games.xml` | Games reaching a new stage, games reported lower on a newer release, and a call to retest the tracked games on each new release |
 
 ## Run reports and maintainer tools
 
@@ -116,6 +119,7 @@ After a run, AnyPS5 writes `anyps5-report.json` (built by the runtime team on th
   - flags claims that contradict the source code, such as a "missing" function that is implemented. Flagged reports wait for a maintainer.
 
   A run is stored once (by its run id), with at most 30 uploads a day per account. A report without a title ID asks the uploader to choose the game.
+- **How far it got:** a run report can only record stages up to Presents. For a run that presented frames, the uploader can say it reached a menu, gameplay or the end, and that stage is what the upload counts towards.
 - **Confirmations:** an upload moves a game's stage once two accounts reach it, or one account and a Discussions report by someone else. Until then the game page shows "1 of 2 confirmations".
 - **Maintainers:** listed in `MAINTAINERS` in `wrangler.jsonc` by GitHub account id, not login, because logins can be renamed. To find an id, run `gh api users/<login> --jq .id`.
   - On game pages they get hide buttons for screenshots, the cover, backdrop, logo, square art and uploaded reports.

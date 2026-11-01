@@ -81,7 +81,8 @@ jobs:
           npm ci
           npm ci --prefix worker
 
-      # Downloads worth keeping between runs: the upstream clone and ISA (coverage), screenshot copies, OG images.
+      # Downloads worth keeping between runs: the upstream clone and ISA (coverage), screenshot copies, OG images, and
+      # the commits reports were built from (sync:builds).
       - if: steps.seen.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
@@ -89,6 +90,7 @@ jobs:
             node_modules/.cache/anyps5-upstream
             node_modules/.cache/anyps5-isa
             node_modules/.cache/anyps5-og
+            node_modules/.cache/anyps5-builds.json
             public/community
           key: site-cache-${{ github.run_id }}
           restore-keys: site-cache-

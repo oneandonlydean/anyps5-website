@@ -5,9 +5,11 @@ import LineChart from "../components/progress/LineChart.astro";
 import Sparkline from "../components/Sparkline.astro";
 import { getGames, getNeeds, type GameNeeds } from "../lib/data";
 import { formatDate, REPO_URL } from "../lib/site";
-import { getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
+import { getCompatHistory, getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
+import { atLeast, compatSeries } from "../lib/compat-history";
+import { stageRank } from "../lib/stages";
 
-const [progress, libraryHistory, coverage, needs, games] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames()]);
+const [progress, libraryHistory, coverage, needs, games, compatHistory] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames(), getCompatHistory()]);
 const number = new Intl.NumberFormat("en-GB");
 const percent = (done: number, total: number, digits = 2) => `${total ? ((done / total) * 100).toFixed(digits) : "0"}%`;
 
@@ -117,6 +119,38 @@ for (const { item, games: slugs } of missingNeeds) {
   for (const slug of slugs) if (!list.some((g) => g.slug === slug)) list.push({ slug, name: gameName.get(slug) ?? slug });
 }
 const wantedByFunction = Object.fromEntries(missingNeeds.map(({ item, games: slugs }) => [item.name, slugs.length]));
+
+// Games over time: recorded daily since the record started, rebuilt from each game's rises before that.
+const today = new Date().toISOString().slice(0, 10);
+const compat = compatSeries(compatHistory, games.map((g) => g.timeline), today);
+const compatNow = compat.days.at(-1)?.counts ?? {};
+const compatMonthAgo = compat.days.at(-31)?.counts ?? compat.days[0]?.counts ?? {};
+const gameFacts = [
+  { label: "Tested", stage: null },
+  { label: "Presents or better", stage: "Presents" },
+  { label: "Ingame or better", stage: "Ingame" },
+] as const;
+// This week against the week before: what is being done, not only where things stand.
+const DAY = 864e5;
+const end = Date.parse(`${today}T23:59:59Z`);
+const week = (iso: string) => Math.floor((end - Date.parse(iso)) / (7 * DAY));
+const results = games.flatMap((g) => [...g.reports.map((r) => ({ date: r.date, by: r.author })), ...g.uploads.map((u) => ({ date: u.at, by: u.login }))]);
+const firstIngame = games.flatMap((g) => g.timeline.find((e) => stageRank(e.stage) >= stageRank("Ingame"))?.date ?? []);
+const functionsAt = (days: number) => libraryHistory.filter((d) => Date.parse(d.date) <= end - days * DAY).at(-1)?.libraries.done;
+const functionsGained = (from: number, to: number) => {
+  const [a, b] = [functionsAt(to), functionsAt(from)];
+  return a === undefined || b === undefined ? null : b - a;
+};
+const pace = [
+  { label: "Test results", now: results.filter((r) => week(r.date) === 0).length, before: results.filter((r) => week(r.date) === 1).length },
+  {
+    label: "Testers",
+    now: new Set(results.filter((r) => week(r.date) === 0).map((r) => r.by)).size,
+    before: new Set(results.filter((r) => week(r.date) === 1).map((r) => r.by)).size,
+  },
+  { label: "Games newly in game", now: firstIngame.filter((d) => week(d) === 0).length, before: firstIngame.filter((d) => week(d) === 1).length },
+  { label: "Functions implemented", now: functionsGained(0, 7), before: functionsGained(7, 14) },
+];
 ---
 
 <Base title="Progress" description="How much of the PS5 system libraries and the RDNA 2 shader instruction set AnyPS5 implements, measured from its source.">
@@ -127,12 +161,74 @@ const wantedByFunction = Object.fromEntries(missingNeeds.map(({ item, games: slu
       AnyPS5 reimplements the PS5's system libraries and recompiles its GPU shaders. Every number here is measured from the project's source on each build, so nobody keeps these figures by hand.
     </p>
     <nav class="jump" aria-label="On this page">
+      <a href="#games">Games</a>
       <a href="#libraries">System libraries</a>
       <a href="#shaders">Shader recompiler</a>
       <a href="#wanted">Most wanted</a>
       <a href="#method">How it's measured</a>
     </nav>
   </section>
+
+  {
+    compat.days.length > 1 && (
+      <section class="container block" id="games">
+        <div class="card part">
+          <header class="part-head">
+            <div>
+              <span class="eyebrow">Games</span>
+              <h2>
+                <span class="big">{number.format(atLeast(compatNow, "Ingame"))}</span> games reach gameplay
+              </h2>
+              <p class="muted">
+                How many tested games reach each point, day by day: the furthest stage on a main build, as the <a href="/compatibility">compatibility list</a> shows it. The <a href="/compatibility/tracked">tracked games</a> show the same release by release.
+              </p>
+            </div>
+            <dl class="facts">
+              {gameFacts.map((f) => {
+                const change = atLeast(compatNow, f.stage) - atLeast(compatMonthAgo, f.stage);
+                return (
+                  <div>
+                    <dt>{f.label}</dt>
+                    <dd>
+                      {number.format(atLeast(compatNow, f.stage))} {change !== 0 && <small title="Change over 30 days">{change > 0 ? "+" : "−"}{number.format(Math.abs(change))}</small>}
+                    </dd>
+                  </div>
+                );
+              })}
+            </dl>
+          </header>
+          <div class="chart-wrap">
+            <LineChart
+              title="Games by furthest stage"
+              unit="games"
+              dates={compat.days.map((d) => d.date)}
+              series={[
+                { label: "Tested", values: compat.days.map((d) => atLeast(d.counts, null)), color: "var(--faint)", dashed: true },
+                { label: "Presents or better", values: compat.days.map((d) => atLeast(d.counts, "Presents")), color: "var(--stage-presents)" },
+                { label: "Ingame or better", values: compat.days.map((d) => atLeast(d.counts, "Ingame")), color: "var(--stage-ingame)" },
+              ]}
+            />
+            <p class="hint">
+              {compat.rebuiltUntil ? <>Before {formatDate(compat.rebuiltUntil)} the counts are rebuilt from the dates of each game's reports; from then on they are recorded each day.</> : <>Counts are rebuilt from the dates of each game's reports until the site's daily record starts.</>}
+            </p>
+          </div>
+          <div class="pace">
+            <h3>The last 7 days</h3>
+            <dl class="facts">
+              {pace.map((p) => (
+                <div>
+                  <dt>{p.label}</dt>
+                  <dd>
+                    {p.now === null ? "—" : number.format(p.now)} {p.before !== null && <small>{number.format(p.before)} the week before</small>}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   {
     libraries && (
@@ -631,6 +727,24 @@ const wantedByFunction = Object.fromEntries(missingNeeds.map(({ item, games: slu
     margin-top: 28px;
     padding-top: 24px;
     border-top: 1px solid var(--line);
+  }
+  .chart-wrap .hint {
+    margin: 10px 0 0;
+    color: var(--faint);
+    font-size: 0.82rem;
+  }
+  .pace {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .pace h3 {
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+  }
+  .pace small {
+    display: block;
+    margin-top: 2px;
   }
 
   .tiles {

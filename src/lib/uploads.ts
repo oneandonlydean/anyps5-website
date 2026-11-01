@@ -8,8 +8,10 @@ export interface UploadSummary {
   titleChosen: boolean;
   /** The game's name: from the run report, or from the uploader for a game not on the list yet; missing from older exports. */
   name?: string | null;
-  /** The compatibility list's stage, or null when the run's stage is unknown. */
+  /** The compatibility list's stage, or null when the run's stage is unknown: the uploader's, when they gave one. */
   stage: StageOrNone | null;
+  /** The stage the uploader said the run reached (Menus, Ingame, Playable), past what a run report records; missing from older exports. */
+  stated?: StageOrNone | null;
   login: string;
   githubId: number;
   at: string;

@@ -39,9 +39,10 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
       <span class="eyebrow">Game compatibility</span>
       <h1>How far every game gets</h1>
       <p class="lede">Community test reports place every game on an eight-stage ladder, from converting to fully playable.</p>
+      <p class="muted more"><a href="/compatibility/tracked">Tracked games, release by release</a> · <a href="/progress#games">Compatibility over time</a></p>
     </div>
     <dl class="stats">
-      <div><dt>Tracked</dt><dd>{games.length}</dd></div>
+      <div><dt>Listed</dt><dd>{games.length}</dd></div>
       <div><dt>Tested</dt><dd>{tested}</dd></div>
       <div><dt>In game or better</dt><dd>{ingame}</dd></div>
       {synced && <div><dt>Last report</dt><dd class="date"><LocalDate iso={synced} /></dd></div>}

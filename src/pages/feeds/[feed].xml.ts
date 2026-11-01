@@ -8,7 +8,12 @@ export const FEEDS = {
   progress: { title: "AnyPS5 progress", subtitle: "Every feature, fix and speed-up merged upstream.", pick: (u: Update) => u.kind === "merge", limit: 300 },
   "progress-daily": { title: "AnyPS5 daily progress", subtitle: "One summary per day of what was merged upstream.", pick: (u: Update) => u.kind === "digest" || u.kind === "week" || u.kind === "library", limit: 120 },
   libraries: { title: "AnyPS5 library milestones", subtitle: "System libraries that got their first function, reached half, or were completed.", pick: (u: Update) => u.kind === "library", limit: 100 },
-  games: { title: "AnyPS5 game compatibility", subtitle: "Games that reached a new stage.", pick: (u: Update) => u.kind === "stage", limit: 100 },
+  games: {
+    title: "AnyPS5 game compatibility",
+    subtitle: "Games that reached a new stage or were reported lower on a newer release, and calls to retest the tracked games on a new release.",
+    pick: (u: Update) => u.kind === "stage" || u.kind === "regression" || u.kind === "retest",
+    limit: 100,
+  },
 } as const;
 
 export function getStaticPaths() {

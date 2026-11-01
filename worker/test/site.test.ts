@@ -2,6 +2,7 @@ import { env } from "cloudflare:workers";
 import { expect, it } from "vitest";
 import sample from "../../tests/fixtures/run-reports/stop-unsupported-shader.json";
 import noTitle from "../../tests/fixtures/run-reports/missing-metadata-gpu.json";
+import presents from "../../tests/fixtures/run-reports/stop-none.json";
 import worker from "../src/index";
 import { sha256 } from "../src/site/http";
 import { ctx, json, mockFetch } from "./helpers";
@@ -196,6 +197,18 @@ it("asks which game a report without a title ID was, and accepts the uploader's 
   expect(await chosen.json()).toMatchObject({ titleId: "PPSA12345", stage: null });
   const exported = await (await call("/api/export")).json<{ uploads: { titleId: string; titleChosen: boolean; stage: string | null; gpuVendor: string | null; missing: unknown }[] }>();
   expect(exported.uploads[0]).toMatchObject({ titleId: "PPSA12345", titleChosen: true, stage: null, gpuVendor: null });
+});
+
+it("takes how far the tester got past frames on screen, only for a run that presented frames", async () => {
+  const cookie = await signIn("tester", 42);
+  const run = (base: typeof presents | typeof sample) => ({ ...structuredClone(base), generated: new Date().toISOString().replace(/\.\d+Z$/, "Z"), run: { ...base.run, id: runId() } });
+  expect((await post("/api/reports?reached=ingame", run(sample), cookie)).status).toBe(400);
+  expect((await post("/api/reports?reached=boss-fight", run(presents), cookie)).status).toBe(400);
+  const ok = await post("/api/reports?reached=ingame", run(presents), cookie);
+  expect(ok.status).toBe(201);
+  const { id } = await ok.json<{ id: number }>();
+  const exported = await (await call("/api/export")).json<{ uploads: { id: number; stage: string | null; stated: string | null }[] }>();
+  expect(exported.uploads.find((u) => u.id === id)).toMatchObject({ stage: "Ingame", stated: "Ingame" });
 });
 
 it("never returns sign-in anywhere but this site, even with tabs or newlines in the path", async () => {

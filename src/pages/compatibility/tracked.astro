@@ -1,0 +1,287 @@
+---
+import Base from "../../layouts/Base.astro";
+import LocalDate from "../../components/LocalDate.astro";
+import { getBuilds, getRetest, getTested, getTrackedGames } from "../../lib/data";
+import type { ReleaseResult } from "../../lib/builds";
+import { SITE_REPO_URL } from "../../lib/site";
+import { stageRank, stageSlug, STAGES } from "../../lib/stages";
+
+/** Releases shown as columns, newest first. */
+const COLUMNS = 4;
+
+const [games, builds, tested, retest] = await Promise.all([getTrackedGames(), getBuilds(), getTested(), getRetest()]);
+const releases = builds.releases.slice(0, COLUMNS).map((r) => r.tag);
+const rows = games.map((game) => {
+  const results = tested.get(game.slug)!.releases;
+  const cells = releases.map((tag) => results.find((r) => r.release === tag) ?? null);
+  // A cell is lower than the nearest older release with a result: a possible regression.
+  const lower = cells.map((cell, i) => {
+    const older = cells.slice(i + 1).find(Boolean);
+    return Boolean(cell && older && !cell.approximate && stageRank(cell.stage) < stageRank(older.stage));
+  });
+  return { game, cells, lower, retest: retest.get(game.slug)! };
+});
+
+const atLeastIngame = (cell: ReleaseResult | null) => cell !== null && stageRank(cell.stage) >= stageRank("Ingame");
+const totals = releases.map((tag, i) => ({
+  tag,
+  tested: rows.filter((r) => r.cells[i]).length,
+  ingame: rows.filter((r) => atLeastIngame(r.cells[i])).length,
+}));
+const [newest, previous] = totals;
+// Not yet run on the newest release: the ones whose blockers were fixed first, then the longest untested.
+const wanted = rows
+  .filter((r) => !r.cells[0])
+  .sort((a, b) => Number(b.retest.ready) - Number(a.retest.ready) || (a.retest.lastTested ?? "").localeCompare(b.retest.lastTested ?? ""));
+const short = (stage: string) => STAGES.find((s) => s.name === stage)?.short ?? stage;
+---
+
+<Base title="Tracked games" description="A fixed set of PS5 games tested on every AnyPS5 release, to show release by release how far they get and whether anything regressed.">
+  <section class="container page-head">
+    <a class="back" href="/compatibility">← All games</a>
+    <span class="eyebrow">Tracked games</span>
+    <h1>The same games, every release</h1>
+    <p class="lede">
+      The compatibility list shows how far each game has ever got. These {games.length} games are run again on every release, so you can see whether AnyPS5 is gaining ground and catch anything that slips back.
+    </p>
+    {
+      newest && (
+        <dl class="stats">
+          <div>
+            <dt>In game on {newest.tag}</dt>
+            <dd>
+              {newest.ingame} <small>of {games.length}</small>
+            </dd>
+          </div>
+          {previous && (
+            <div>
+              <dt>On {previous.tag}</dt>
+              <dd>
+                {previous.ingame} <small>of {games.length}</small>
+              </dd>
+            </div>
+          )}
+          <div>
+            <dt>Run on {newest.tag} so far</dt>
+            <dd>
+              {newest.tested} <small>of {games.length}</small>
+            </dd>
+          </div>
+        </dl>
+      )
+    }
+  </section>
+
+  <section class="container">
+    <div class="card matrix-card">
+      <div class="table-wrap">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th scope="col">Game</th>
+              {releases.map((tag, i) => (
+                <th scope="col">
+                  {tag}
+                  <span class="muted">{i === 0 ? "and main since" : "and main after"}</span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr>
+                <th scope="row">
+                  <a href={`/compatibility/${row.game.slug}`}>{row.game.name}</a>
+                </th>
+                {row.cells.map((cell, i) =>
+                  cell ? (
+                    <td
+                      class:list={["cell", { approximate: cell.approximate }]}
+                      style={`--tone:var(--stage-${stageSlug(cell.stage)})`}
+                      title={`${cell.stage}: ${cell.results} result${cell.results === 1 ? "" : "s"}${cell.approximate ? ", placed by date" : ""}`}
+                    >
+                      <span class="chip">{short(cell.stage)}</span>
+                      {row.lower[i] && (
+                        <span class="lower" title="Lower than on an earlier release">
+                          ↓<span class="visually-hidden"> lower than before</span>
+                        </span>
+                      )}
+                    </td>
+                  ) : (
+                    <td class="cell empty">{i === 0 ? <a href={`/report?game=${row.game.slug}`}>Test it</a> : <span>—</span>}</td>
+                  ),
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">
+        Each cell is the furthest stage reported on that release or on main before the next one, from Discussions reports and uploaded run reports, placed by the commit they were built from. Faded cells name no commit and are
+        placed by date. ↓ marks a result lower than on an earlier release: a regression, or a different setup.
+      </p>
+    </div>
+  </section>
+
+  {
+    wanted.length > 0 && newest && (
+      <section class="container block">
+        <h2>Not run on {newest.tag} yet</h2>
+        <ul class="wanted">
+          {wanted.map((row) => (
+            <li>
+              <a href={`/compatibility/${row.game.slug}`}>{row.game.name}</a>
+              <span class="muted">
+                {row.retest.ready ? "What stopped it has been fixed since. " : ""}
+                {row.retest.lastTested ? (
+                  <>
+                    Last result <LocalDate iso={row.retest.lastTested} />
+                  </>
+                ) : (
+                  "No results yet"
+                )}
+              </span>
+              <a class="button small" href={`/report?game=${row.game.slug}`}>
+                Report a run
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <section class="container block">
+    <p class="muted">
+      Maintainers choose the set in <a href={`${SITE_REPO_URL}/blob/main/data/tracked.yaml`}><code>data/tracked.yaml</code></a>: a mix of engines, big and small games, homebrew, and games at every stage.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .block {
+    margin-top: 32px;
+  }
+  .block h2 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 36px;
+    margin: 20px 0 0;
+  }
+  .stats dt {
+    color: var(--faint);
+    font: 500 0.7rem/1.4 var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .stats dd {
+    margin: 2px 0 0;
+    font-size: 1.5rem;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+  }
+  .stats small {
+    color: var(--muted);
+    font-size: 0.6em;
+    font-weight: 500;
+  }
+  .matrix-card {
+    padding: clamp(14px, 2.5vw, 24px);
+  }
+  .table-wrap {
+    overflow-x: auto;
+  }
+  .matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 2px;
+    font-size: 0.88rem;
+  }
+  .matrix thead th {
+    padding: 6px 8px;
+    color: var(--muted);
+    font: 600 0.8rem/1.3 var(--mono);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .matrix thead th:first-child {
+    text-align: left;
+  }
+  .matrix thead th span {
+    display: block;
+    font-weight: 400;
+    font-size: 0.7rem;
+  }
+  .matrix tbody th {
+    padding: 6px 8px;
+    font-weight: 500;
+    text-align: left;
+  }
+  .cell {
+    position: relative;
+    min-width: 92px;
+    padding: 6px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--tone) 16%, transparent);
+    text-align: center;
+  }
+  .cell.approximate {
+    opacity: 0.6;
+  }
+  .chip {
+    color: color-mix(in srgb, var(--tone) 70%, var(--text));
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+  :global(:root[data-theme="light"]) .chip {
+    color: color-mix(in srgb, var(--tone) 45%, var(--text));
+  }
+  .lower {
+    margin-left: 4px;
+    color: var(--bad);
+    font-weight: 700;
+  }
+  .cell.empty {
+    background: none;
+    border: 1px dashed var(--line);
+    color: var(--faint);
+    font-size: 0.8rem;
+  }
+  .hint {
+    margin: 14px 0 0;
+    color: var(--faint);
+    font-size: 0.82rem;
+  }
+  .wanted {
+    display: grid;
+    gap: 8px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .wanted li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+  .wanted li > a:first-child {
+    font-weight: 600;
+  }
+  .wanted .button {
+    margin-left: auto;
+  }
+</style>

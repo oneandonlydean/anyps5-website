@@ -124,7 +124,7 @@ const FEEDS = [
                       </span>
                     ) : (
                       <span class:list={["thumb icon", u.kind]} aria-hidden="true">
-                        {u.kind === "release" ? "★" : u.kind === "library" ? (u.milestone === "complete" ? "✓" : "◐") : "↗"}
+                        {u.kind === "release" ? "★" : u.kind === "retest" ? "↻" : u.kind === "library" ? (u.milestone === "complete" ? "✓" : "◐") : "↗"}
                       </span>
                     )}
                     <span class="copy">

@@ -1,4 +1,5 @@
 import { loadGenerated } from "./load";
+import type { CompatHistory } from "./compat-history";
 import type { LibraryHistory } from "./library-milestones";
 
 export interface ReleaseAsset {
@@ -73,6 +74,8 @@ export const getProgress = () => loadGenerated<{ libraries: ProgressPart; shader
 export const getProgressHistory = () => loadGenerated<ProgressDay[]>("progress-history.json", []);
 /** Per-library counts and milestones; null until the first data refresh that records them. */
 export const getLibraryHistory = () => loadGenerated<LibraryHistory | null>("library-history.json", null);
+/** Games per stage by day; null until the first data refresh that records them. */
+export const getCompatHistory = () => loadGenerated<CompatHistory | null>("compat-history.json", null);
 export const getCoverage = () => loadGenerated<Coverage | null>("coverage.json", null);
 /** Function name → [library label, 1 when implemented]. Served per library by /progress/functions.json. */
 export const getFunctions = () => loadGenerated<Record<string, [string, 0 | 1]>>("progress-functions.json", {});

@@ -1,5 +1,6 @@
-// Checks data/games/*.yaml beyond the schema that loadOverlays already enforces.
-import { loadOverlays } from "../src/lib/load";
+// Checks data/games/*.yaml beyond the schema that loadOverlays already enforces, and data/tracked.yaml.
+import { loadGenerated, loadOverlays, loadTracked } from "../src/lib/load";
+import type { Thread } from "../src/lib/schema";
 
 const overlays = await loadOverlays();
 const problems: string[] = [];
@@ -20,8 +21,15 @@ for (const overlay of overlays) {
   }
 }
 
+const tracked = await loadTracked();
+for (const id of new Set(tracked.filter((id, i) => tracked.indexOf(id) !== i))) problems.push(`data/tracked.yaml: ${id} is listed twice`);
+// A tracked game whose thread is gone only drops off the page, so it is a warning rather than a failed check.
+const known = new Set([...(await loadGenerated<Thread[]>("threads.json", [])).flatMap((t) => t.titleIds), ...overlays.flatMap((o) => o.title_ids)]);
+const unknown = tracked.filter((id) => !known.has(id));
+if (known.size && unknown.length) console.warn(`data/tracked.yaml: no game has ${unknown.join(", ")}`);
+
 if (problems.length) {
   console.error(problems.join("\n"));
   process.exit(1);
 }
-console.log(`${overlays.length} game files valid`);
+console.log(`${overlays.length} game files and ${tracked.length} tracked games valid`);

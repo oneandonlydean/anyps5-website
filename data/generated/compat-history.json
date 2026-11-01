@@ -1,0 +1,28 @@
+{
+  "latest": {
+    "date": "2026-11-01",
+    "counts": {
+      "Playable": 5,
+      "Ingame": 63,
+      "Menus": 26,
+      "Presents": 12,
+      "Starts": 17,
+      "Converts": 2,
+      "Not converting": 1
+    }
+  },
+  "days": [
+    {
+      "date": "2026-11-01",
+      "counts": {
+        "Playable": 5,
+        "Ingame": 63,
+        "Menus": 26,
+        "Presents": 12,
+        "Starts": 17,
+        "Converts": 2,
+        "Not converting": 1
+      }
+    }
+  ]
+}

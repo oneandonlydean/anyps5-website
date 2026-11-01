@@ -1,0 +1,26 @@
+# Tracked games: a fixed set run on every release, so the site can show release by release whether AnyPS5 is gaining
+# ground (/compatibility/tracked). Maintainers choose the set: a mix of engines, first-party and indie, homebrew, and
+# games at every stage, ideally ones the regular testers own. One title ID per game; a comment with its name helps.
+#
+# This first list is a starting point picked from the games with the most reports. Replace it freely.
+games:
+  - PPSA03671 # Marvel's Wolverine
+  - PPSA08329 # God of War Ragnarök
+  - PPSA01341 # Demon's Souls
+  - PPSA01325 # Astro's Playroom
+  - PPSA02433 # Crash Bandicoot 4: It's About Time
+  - PPSA30528 # Red Dead Redemption
+  - PPSA04264 # Grand Theft Auto V
+  - PPSA24263 # Call of Duty: Modern Warfare 3
+  - PPSA36082 # Hades II
+  - PPSA12544 # Hollow Knight: Silksong
+  - PPSA20052 # Worms Armageddon: Anniversary Edition
+  - PPSA28319 # Middle Ages Ping Pong (homebrew)
+  - PPSA59322 # ccleste (homebrew)
+  - PPSA02015 # Death Stranding 2: On the Beach
+  - PPSA02225 # Ghost of Tsushima Director's Cut
+  - PPSA06888 # SONIC SUPERSTARS
+  - PPSA20049 # EA SPORTS FC 25
+  - PPSA10737 # Little Nightmares Enhanced Edition
+  - PPSA31246 # RESIDENT EVIL requiem
+  - CUSA03312 # Hasbro Family Fun Pack (PS4)

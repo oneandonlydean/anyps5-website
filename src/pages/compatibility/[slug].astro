@@ -9,7 +9,8 @@ import ReportDialog from "../../components/ReportDialog.astro";
 import MaintainerTools from "../../components/MaintainerTools.astro";
 import StageHistory from "../../components/StageHistory.astro";
 import StageLadder from "../../components/StageLadder.astro";
-import { getGames, getNeeds, getRetest, getScreenshots } from "../../lib/data";
+import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested } from "../../lib/data";
+import { buildLabel, reportBuild, uploadBuild } from "../../lib/builds";
 import type { Game } from "../../lib/resolve";
 import { formatDate, SITE_REPO_URL } from "../../lib/site";
 import { STAGES, stageSlug } from "../../lib/stages";
@@ -26,8 +27,14 @@ const { stage, onMain } = reach(game);
 const needs = (await getNeeds()).get(game.slug);
 const retest = (await getRetest()).get(game.slug)!;
 const shots = (await getScreenshots()).get(game.slug) ?? [];
+const [builds, tested] = await Promise.all([getBuilds(), getTested().then((t) => t.get(game.slug)!)]);
+const firstRelease = builds.releases.at(-1)?.tag;
+const label = (info: { release: string | null; exact: boolean }) => buildLabel(info, firstRelease);
+const since = retest.releasesSince === 0 ? "the current release" : `${retest.releasesSince} release${retest.releasesSince === 1 ? "" : "s"} ago`;
 const freshness = retest.lastTested
-  ? `Last tested ${formatDate(retest.lastTested)} · ${retest.releasesSince === 0 ? "on the current release" : `${retest.releasesSince} release${retest.releasesSince === 1 ? "" : "s"} ago`}`
+  ? retest.lastBuild && retest.lastBuild.basis !== "date"
+    ? `Last tested on ${label(retest.lastBuild)} · ${since}`
+    : `Last tested ${formatDate(retest.lastTested)} · ${retest.releasesSince === 0 ? "on the current release" : since}`
   : null;
 const art = game.art;
 // The page takes its accent colours from the game's art; near-grey art keeps the site's own.
@@ -53,10 +60,12 @@ const rows = [
     os: r.platform as string | null,
     gpuVendor: r.gpuVendor,
     gpu: r.gpu,
-    build: BUILD_LABEL[r.buildKind] as string,
+    // A main build is named by its release; one with pull requests or patches by what it added.
+    build: r.buildKind === "main" || r.buildKind === "unknown" ? (r.build ? label(reportBuild(r, builds)) : BUILD_LABEL[r.buildKind]) : (BUILD_LABEL[r.buildKind] as string),
     buildTitle: r.build ?? undefined,
     by: r.author,
     upload: undefined as number | undefined,
+    stated: false,
   })),
   ...game.uploads.map((u) => ({
     key: `u${u.id}`,
@@ -66,10 +75,11 @@ const rows = [
     os: u.os,
     gpuVendor: u.gpuVendor,
     gpu: u.gpu ?? null,
-    build: u.release ?? u.commit?.slice(0, 7) ?? "—",
+    build: label(uploadBuild(u, builds)),
     buildTitle: u.commit ?? undefined,
     by: u.login as string | null,
     upload: u.id,
+    stated: Boolean(u.stated),
   })),
 ].sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 const editUrl = game.overlayFile
@@ -223,6 +233,50 @@ const description = (() => {
         {needs && <NeedsPanel needs={needs} />}
 
         {
+          tested.releases.length > 0 && (
+            <section class="card panel" id="releases">
+              <h2>By release</h2>
+              {tested.regression && (
+                <p class="regression">
+                  <b>Reported lower on a newer build.</b> On {label({ release: tested.regression.now.release, exact: false })} it reached {tested.regression.now.stage}; on{" "}
+                  {label({ release: tested.regression.was.release, exact: false })} it reached {tested.regression.was.stage}. That can be a regression, or a different setup: another run on the current build would tell.
+                </p>
+              )}
+              <div class="table-wrap">
+                <table class="reports by-release">
+                  <thead>
+                    <tr>
+                      <th>Build</th>
+                      <th>Furthest stage</th>
+                      <th>Results</th>
+                      <th>Latest</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tested.releases.map((r) => (
+                      <tr>
+                        <td class="mono small">
+                          {r.release ? <>{r.release}<span class="muted"> and main after</span></> : label({ release: null, exact: false })}
+                          {r.approximate && <span class="muted" title="These results name no commit or release, so they are placed by their date"> (by date)</span>}
+                        </td>
+                        <td>
+                          <StageBadge stage={r.stage} />
+                        </td>
+                        <td>{r.results}</td>
+                        <td class="nowrap">
+                          <LocalDate iso={r.last} />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p class="hint">Reports on main and uploaded runs, placed by the commit they were built from. Reports that needed open pull requests or patches are left out.</p>
+            </section>
+          )
+        }
+
+        {
           game.reports.filter((r) => r.stage).length > 1 && (
             <section class="card panel">
               <h2>History</h2>
@@ -280,6 +334,7 @@ const description = (() => {
                         </td>
                         <td>
                           <StageBadge stage={row.stage} />
+                          {row.stated && <span class="muted small stated" title="The run report records up to Presents; the tester said how much further it got">as the tester saw it</span>}
                         </td>
                         <td class="system">
                           {row.os && <span class:list={["chip-os", row.os]}>{PLATFORM_LABEL[row.os as keyof typeof PLATFORM_LABEL] ?? row.os}</span>}
@@ -492,6 +547,17 @@ const description = (() => {
   .tag.stale {
     border-color: color-mix(in srgb, var(--warn) 45%, transparent);
     color: var(--warn);
+  }
+  .stated {
+    display: block;
+    margin-top: 2px;
+  }
+  .regression {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid color-mix(in oklab, var(--warn) 45%, transparent);
+    background: color-mix(in oklab, var(--warn) 10%, transparent);
   }
   .retest {
     display: flex;

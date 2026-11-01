@@ -1,7 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { parse } from "yaml";
-import { GameOverlay } from "./schema";
+import { GameOverlay, TITLE_ID } from "./schema";
 
 export const DATA = resolve(process.cwd(), "data");
 
@@ -30,4 +30,13 @@ export async function loadGenerated<T>(name: string, fallback: T): Promise<T> {
     console.warn(`data/generated/${name} is missing: run npm run sync`);
     return fallback;
   }
+}
+
+/** The title IDs in data/tracked.yaml, the games run on every release. */
+export async function loadTracked(): Promise<string[]> {
+  const data = parse(await readFile(resolve(DATA, "tracked.yaml"), "utf8")) as { games?: unknown };
+  const ids = Array.isArray(data?.games) ? data.games : [];
+  const bad = ids.filter((id) => typeof id !== "string" || !TITLE_ID.test(id));
+  if (bad.length) throw new Error(`data/tracked.yaml: not title IDs: ${bad.join(", ")}`);
+  return ids as string[];
 }

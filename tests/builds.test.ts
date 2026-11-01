@@ -1,0 +1,101 @@
+import { describe, expect, it } from "vitest";
+import { buildLabel, commitIn, reportBuild, testedOn, uploadBuild, type BuildData } from "../src/lib/builds";
+import type { Report } from "../src/lib/schema";
+import type { UploadSummary } from "../src/lib/uploads";
+
+const data: BuildData = {
+  releases: [
+    { tag: "v0.1.4", sha: "4".repeat(40), date: "2026-10-30T22:00:00Z", published: "2026-10-30T23:00:00Z" },
+    { tag: "v0.1.3", sha: "3".repeat(40), date: "2026-10-20T07:00:00Z", published: "2026-10-20T09:00:00Z" },
+  ],
+  commits: {
+    "44a59edc3a": { sha: "44a59edc3a" + "0".repeat(30), date: "2026-10-25T00:00:00Z" },
+    "3333333aaa": { sha: "3".repeat(40), date: "2026-10-20T07:00:00Z" },
+    "0a1d0000bc": { sha: "0".repeat(40), date: "2026-10-01T00:00:00Z" },
+    deadbee1: null,
+  },
+};
+
+function report(overrides: Partial<Report>): Report {
+  return {
+    url: "https://github.com/boykopovar/AnyPS5/discussions/1#r",
+    discussion: 1,
+    edited: null,
+    author: "a",
+    date: "2026-10-26T00:00:00Z",
+    stage: "Menus",
+    platform: "linux",
+    gpu: null,
+    gpuVendor: "AMD",
+    build: "main",
+    buildKind: "main",
+    prs: [],
+    version: null,
+    shown: null,
+    blockers: [],
+    blockerText: null,
+    ...overrides,
+  };
+}
+
+describe("commitIn", () => {
+  it("finds the first hash-like word with a digit and a letter", () => {
+    expect(commitIn("main 44a59edc3a with #8847 (12223bf208).")).toBe("44a59edc3a");
+    expect(commitIn("Unmodified main [AFF1F7190DBBE]")).toBe("aff1f7190dbbe");
+    expect(commitIn("main, defaced, 2026-10-14, #12345678")).toBeNull();
+    expect(commitIn(null)).toBeNull();
+  });
+});
+
+describe("placing builds", () => {
+  it("places a known commit as a release itself or main after one", () => {
+    expect(reportBuild(report({ build: "main 3333333aaa" }), data)).toEqual({ release: "v0.1.3", exact: true, basis: "commit" });
+    expect(reportBuild(report({ build: "main 44a59edc3a." }), data)).toEqual({ release: "v0.1.3", exact: false, basis: "commit" });
+    expect(reportBuild(report({ build: "main 0a1d0000bc" }), data)).toEqual({ release: null, exact: false, basis: "commit" });
+  });
+
+  it("falls back to a release named in the text, then to the date", () => {
+    expect(reportBuild(report({ build: "deadbee1 on 0.1.4" }), data)).toEqual({ release: "v0.1.4", exact: true, basis: "release" });
+    expect(reportBuild(report({ build: "main", date: "2026-10-31T00:00:00Z" }), data)).toEqual({ release: "v0.1.4", exact: false, basis: "date" });
+  });
+
+  it("reads an upload's commit and release", () => {
+    const upload = { commit: "44A59EDC3A", release: null, at: "2026-11-01T00:00:00Z" };
+    expect(uploadBuild(upload, data)).toMatchObject({ release: "v0.1.3", basis: "commit" });
+    expect(uploadBuild({ ...upload, commit: "ffffffff1", release: "v0.1.4" }, data)).toMatchObject({ release: "v0.1.4", exact: true });
+  });
+
+  it("names builds", () => {
+    expect(buildLabel({ release: "v0.1.3", exact: true })).toBe("v0.1.3");
+    expect(buildLabel({ release: "v0.1.3", exact: false })).toBe("main after v0.1.3");
+    expect(buildLabel({ release: null, exact: false }, "v0.1.0")).toBe("main before v0.1.0");
+  });
+});
+
+describe("testedOn", () => {
+  const upload = (stage: UploadSummary["stage"], commit: string, at: string) => ({ stage, commit, release: null, at }) as UploadSummary;
+
+  it("groups results by release, newest first, leaving out branch builds", () => {
+    const tested = testedOn(
+      {
+        reports: [
+          report({ build: "main 3333333aaa", stage: "Starts", date: "2026-10-21T00:00:00Z" }),
+          report({ build: "main 44a59edc3a", stage: "Menus" }),
+          report({ build: "main 44a59edc3a with #1", buildKind: "prs", stage: "Playable" }),
+        ],
+        uploads: [upload("Presents", "44a59edc3a", "2026-10-27T00:00:00Z"), upload(null, "44a59edc3a", "2026-10-28T00:00:00Z")],
+      },
+      data,
+    );
+    expect(tested.releases).toEqual([{ release: "v0.1.3", stage: "Menus", results: 3, last: "2026-10-27T00:00:00Z", approximate: false }]);
+    expect(tested.newest).toMatchObject({ source: "upload", stage: "Presents" });
+    expect(tested.regression).toBeNull();
+  });
+
+  it("flags a newer release that got less far, unless it was placed only by date", () => {
+    const reports = [report({ build: "main 44a59edc3a", stage: "Menus" })];
+    const lower = report({ build: "v0.1.4", stage: "Starts", date: "2026-10-31T00:00:00Z" });
+    expect(testedOn({ reports: [...reports, lower], uploads: [] }, data).regression).toMatchObject({ was: { release: "v0.1.3", stage: "Menus" }, now: { release: "v0.1.4", stage: "Starts" } });
+    expect(testedOn({ reports: [...reports, { ...lower, build: "main" }], uploads: [] }, data).regression).toBeNull();
+  });
+});

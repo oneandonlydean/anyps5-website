@@ -1,4 +1,4 @@
-import { loadGenerated, loadOverlays } from "./load";
+import { loadGenerated, loadOverlays, loadTracked } from "./load";
 import { groupGames, resolveGame, type Game } from "./resolve";
 import { matcher, type ErrorSite, type FunctionIndex, type Needs } from "./needs";
 import { existsSync } from "node:fs";
@@ -6,6 +6,7 @@ import { resolve } from "node:path";
 import type { Art, Issue, Report, Shot, Thread, Title } from "./schema";
 import { gameScreenshots, type Screenshot } from "./screenshots";
 import type { UploadExport } from "./uploads";
+import { testedOn, type BuildData, type BuildInfo, type Tested } from "./builds";
 
 /** Uploaded run reports and what maintainers hid, from the site Worker (scripts/sync-uploads.ts). */
 export const getCommunity = () =>
@@ -62,9 +63,35 @@ export function getNeeds(): Promise<Map<string, GameNeeds>> {
   })());
 }
 
+let buildsCache: Promise<BuildData> | undefined;
+
+/** Releases and the commits results were built from (scripts/sync-builds.ts); without them, releases are placed by date. */
+export function getBuilds(): Promise<BuildData> {
+  return (buildsCache ??= (async () => {
+    const data = await loadGenerated<BuildData | null>("builds.json", null);
+    if (data?.releases.length) return data;
+    const releases = await loadGenerated<{ tag: string; published: string }[]>("releases.json", []);
+    return { releases: releases.map((r) => ({ tag: r.tag, sha: "", date: r.published, published: r.published })), commits: data?.commits ?? {} };
+  })());
+}
+
+let testedCache: Promise<Map<string, Tested>> | undefined;
+
+/** Each game's results by release, keyed by game slug. */
+export function getTested(): Promise<Map<string, Tested>> {
+  return (testedCache ??= Promise.all([getGames(), getBuilds()]).then(([games, builds]) => new Map(games.map((g) => [g.slug, testedOn(g, builds)]))));
+}
+
+/** The games in data/tracked.yaml, in its order; a title ID that matches no game is skipped. */
+export async function getTrackedGames(): Promise<Game[]> {
+  const [games, ids] = await Promise.all([getGames(), loadTracked()]);
+  return [...new Set(ids.map((id) => games.find((g) => g.titleIds.includes(id))).filter((g): g is Game => Boolean(g)))];
+}
+
 export interface Retest {
-  /** The newest report's date, and how many releases have come out since. */
+  /** The newest result's date, the build it was on, and how many releases have come out since that build. */
   lastTested: string | null;
+  lastBuild: BuildInfo | null;
   releasesSince: number;
   /** Old enough that the result probably no longer reflects the current build. */
   stale: boolean;
@@ -82,17 +109,16 @@ let retestCache: Promise<Map<string, Retest>> | undefined;
 
 export function getRetest(): Promise<Map<string, Retest>> {
   return (retestCache ??= (async () => {
-    const [games, needs, issues, releases] = await Promise.all([
-      getGames(),
-      getNeeds(),
-      loadGenerated<Record<number, Issue>>("issues.json", {}),
-      loadGenerated<{ published: string }[]>("releases.json", []),
-    ]);
-    const newest = games.flatMap((g) => g.reports.map((r) => r.date)).sort().at(-1) ?? new Date().toISOString();
+    const [games, needs, issues, builds, tested] = await Promise.all([getGames(), getNeeds(), loadGenerated<Record<number, Issue>>("issues.json", {}), getBuilds(), getTested()]);
+    const newest = games.flatMap((g) => [...g.reports.map((r) => r.date), ...g.uploads.map((u) => u.at)]).sort().at(-1) ?? new Date().toISOString();
     const out = new Map<string, Retest>();
     for (const game of games) {
-      const lastTested = game.reports[0]?.date ?? null;
-      const releasesSince = lastTested ? releases.filter((r) => r.published > lastTested).length : 0;
+      // The newest result's build, else the newest report's date (a result on a branch build, or with no stage).
+      const last = tested.get(game.slug)!.newest;
+      const lastTested = last?.date ?? game.reports[0]?.date ?? null;
+      const lastBuild = last?.build ?? null;
+      const index = lastBuild ? builds.releases.findIndex((r) => r.tag === lastBuild.release) : -1;
+      const releasesSince = lastBuild ? (index === -1 ? builds.releases.length : index) : lastTested ? builds.releases.filter((r) => r.published > lastTested).length : 0;
       // Days are counted to the newest report anywhere, not to the build date, so a build from old data stays stable.
       const days = lastTested ? (Date.parse(newest) - Date.parse(lastTested)) / 864e5 : 0;
 
@@ -109,6 +135,7 @@ export function getRetest(): Promise<Map<string, Retest>> {
       const stillOpen = (need?.functions.some((f) => f.status !== "implemented") ?? false) || (need?.errors.length ?? 0) > 0 || named.some((i) => i.state === "open");
       out.set(game.slug, {
         lastTested,
+        lastBuild,
         releasesSince,
         stale: Boolean(lastTested) && (releasesSince >= STALE_RELEASES || days > STALE_DAYS),
         fixed,
