@@ -38,19 +38,14 @@ const FEEDS = [
     <ul>
       {
         FEEDS.map((f) => (
-          <li class="card feed-card">
-            <div>
-              <b>{f.title}</b>
-              <span class="muted">{f.text}</span>
-            </div>
-            <div class="feed-actions">
-              <button type="button" class="button small" data-copy-feed={f.path}>
-                Copy link
-              </button>
-              <a class="feed-open" href={f.path} aria-label={`${f.title} feed`}>
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm-2-7a11 11 0 0 1 11 11h-3a8 8 0 0 0-8-8v-3Zm0-7a18 18 0 0 1 18 18h-3A15 15 0 0 0 3 6V3Z" /></svg>
-              </a>
-            </div>
+          <li class="feed" title={f.text}>
+            <a href={f.path}>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm-2-7a11 11 0 0 1 11 11h-3a8 8 0 0 0-8-8v-3Zm0-7a18 18 0 0 1 18 18h-3A15 15 0 0 0 3 6V3Z" /></svg>
+              {f.title}
+            </a>
+            <button type="button" data-copy-feed={f.path} aria-label={`Copy the ${f.title} feed link`}>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+            </button>
           </li>
         ))
       }
@@ -203,43 +198,42 @@ const FEEDS = [
     font-weight: 600;
   }
   .feeds ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .feed-card {
-    display: grid;
-    gap: 12px;
-    align-content: space-between;
-    padding: 16px;
-  }
-  .feed-card div:first-child {
-    display: grid;
-    gap: 4px;
-  }
-  .feed-card .muted {
-    font-size: 0.85rem;
-    line-height: 1.45;
-  }
-  .feed-actions {
-    display: flex;
+  .feed {
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-  }
-  .feed-open {
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
     border: 1px solid var(--line);
-    border-radius: 50%;
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 0.82rem;
+  }
+  .feed a,
+  .feed button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     color: var(--muted);
   }
-  .feed-open:hover {
-    border-color: var(--line-strong);
+  .feed a {
+    padding: 5px 8px 5px 12px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .feed button {
+    padding: 5px 10px 5px 8px;
+    border: 0;
+    border-left: 1px solid var(--line);
+    background: none;
+    cursor: pointer;
+  }
+  .feed a:hover,
+  .feed button:hover {
     color: var(--text);
   }
 
