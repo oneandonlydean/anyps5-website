@@ -14,11 +14,7 @@
     // the site's sign-in and API (/auth/*, /api/*), and the Discord bot's endpoints.
     "run_worker_first": ["/convert/app/libraries/*", "/api/*", "/auth/*", "/linked-role", "/discord/callback", "/github/callback", "/interactions"]
   },
-  // The old demo address stays attached until links to it have moved over; it serves the same site.
-  "routes": [
-    { "pattern": "demo.anyps5.gg", "custom_domain": true },
-    { "pattern": "anyps5-demo.deanisa.ninja", "custom_domain": true }
-  ],
+  "routes": [{ "pattern": "demo.anyps5.gg", "custom_domain": true }],
   "observability": { "enabled": true },
   "triggers": { "crons": ["* * * * *"] },
   // The site's own data: GitHub sign-in, uploaded run reports, what maintainers hid. Shared with production, so
