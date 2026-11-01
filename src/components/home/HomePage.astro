@@ -77,11 +77,22 @@ const laneTesters = testers.slice(6);
 const avatar = (url: string, size: number) => `${url}${url.includes("?") ? "&" : "?"}s=${size * 2}`;
 const testerAvatar = (login: string, size: number) => `https://github.com/${encodeURIComponent(login)}.png?size=${size * 2}`;
 
-// The libraries a game leans on first, in the order a frame needs them.
-const LIBRARIES = (["libkernel", "libc", "Agc", "AudioOut", "Pad"] as const).map((label) => ({ label, ...t.home.libraryNames[label] }));
-const libraries = LIBRARIES.flatMap((l) => {
-  const group = progress?.libraries.groups.find((g) => g.label === l.label);
-  return group ? [{ ...l, percent: (group.done / group.total) * 100 }] : [];
+// The areas a game leans on first, in the order a frame needs them. Each bar counts every library in its area, so
+// "Graphics" means the whole path to the screen, not only its best-covered library.
+const LIBRARY_AREAS = {
+  libkernel: ["libkernel", "libkernel_sys"],
+  libc: ["libc", "LibcInternal"],
+  Agc: ["Agc", "AgcDriver", "GnmDriverForNeoMode", "VideoOut"],
+  AudioOut: ["AudioOut", "Audio3d", "Audiodec", "AudiodecCpu"],
+  Pad: ["Pad", "PadTracker"],
+} as const;
+const libraries = (Object.keys(LIBRARY_AREAS) as (keyof typeof LIBRARY_AREAS)[]).flatMap((key) => {
+  const groups = (progress?.libraries.groups ?? []).filter((g) => (LIBRARY_AREAS[key] as readonly string[]).includes(g.label));
+  const done = groups.reduce((n, g) => n + g.done, 0);
+  const total = groups.reduce((n, g) => n + g.total, 0);
+  if (!total) return [];
+  const detail = groups.map((g) => `${g.label} ${g.done}/${g.total}`).join(", ");
+  return [{ ...t.home.libraryNames[key], percent: (done / total) * 100, detail }];
 });
 
 const STEP_LINKS = [
@@ -320,7 +331,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
                 <b>{l.name}</b>
                 <span class="muted">{l.role}</span>
               </span>
-              <span class="lib-meter" style={`--value:${l.percent}%`}>
+              <span class="lib-meter" style={`--value:${l.percent}%`} title={l.detail}>
                 <span class="mono">{l.percent.toFixed(0)}%</span>
               </span>
             </li>
