@@ -70,8 +70,8 @@ export function getBuilds(): Promise<BuildData> {
   return (buildsCache ??= (async () => {
     const data = await loadGenerated<BuildData | null>("builds.json", null);
     if (data?.releases.length) return data;
-    const releases = await loadGenerated<{ tag: string; published: string }[]>("releases.json", []);
-    return { releases: releases.map((r) => ({ tag: r.tag, sha: "", date: r.published, published: r.published })), commits: data?.commits ?? {} };
+    const releases = await loadGenerated<{ tag: string; published: string; prerelease?: boolean }[]>("releases.json", []);
+    return { releases: releases.filter((r) => !r.prerelease).map((r) => ({ tag: r.tag, sha: "", date: r.published, published: r.published })), commits: data?.commits ?? {} };
   })());
 }
 

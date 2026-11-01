@@ -7,7 +7,7 @@
 import { QUALIFYING } from "./resolve";
 import type { Report } from "./schema";
 import { stageRank, type StageOrNone } from "./stages";
-import type { UploadSummary } from "./uploads";
+import { autoStage, type UploadSummary } from "./uploads";
 
 export interface BuildData {
   /** Newest first: each release's tag, the commit it was cut from, that commit's date, and when it was published. */
@@ -79,6 +79,8 @@ export interface ReleaseResult {
   release: string | null;
   stage: StageOrNone;
   results: number;
+  /** The oldest and newest result here. */
+  first: string;
   last: string;
   /** Every result here was placed only by its date, so it may belong to a neighbouring release. */
   approximate: boolean;
@@ -97,10 +99,22 @@ export interface Tested {
  * A game's results by release, from Discussions reports on main and uploaded runs. Reports that needed open pull
  * requests or local patches are left out: they weren't on that release. Results whose stage is unknown say nothing.
  */
-export function testedOn(game: { reports: Report[]; uploads: UploadSummary[] }, data: BuildData): Tested {
+export function testedOn(
+  game: { reports: Report[]; uploads: UploadSummary[]; correction?: { stage: StageOrNone; date: string } | null },
+  data: BuildData,
+): Tested {
+  const { correction } = game;
+  // A maintainer's correction caps the reports it overruled.
+  const reportStage = (r: Report & { stage: StageOrNone }) =>
+    correction && r.date.slice(0, 10) <= correction.date && stageRank(r.stage) > stageRank(correction.stage) ? correction.stage : r.stage;
+  const reports = game.reports.filter((r): r is Report & { stage: StageOrNone } => Boolean(r.stage) && QUALIFYING.has(r.buildKind));
+  // How far a run got past presenting is the uploader's word, so it counts only once confirmed.
+  const top = reports.reduce<(typeof reports)[number] | null>((t, r) => (stageRank(reportStage(r)) > stageRank(t ? reportStage(t) : null) ? r : t), null);
+  const { confirmedStage } = autoStage(game.uploads, top ? { stage: reportStage(top), author: top.author } : null);
+  const uploadStage = (u: UploadSummary) => (u.stated && stageRank(u.stated) > stageRank(confirmedStage) ? "Presents" : u.stage);
   const results: BuildResult[] = [
-    ...game.reports.filter((r) => r.stage && QUALIFYING.has(r.buildKind)).map((r) => ({ date: r.date, stage: r.stage!, build: reportBuild(r, data), source: "report" as const, url: r.url })),
-    ...game.uploads.filter((u) => u.stage).map((u) => ({ date: u.at, stage: u.stage!, build: uploadBuild(u, data), source: "upload" as const, url: null })),
+    ...reports.map((r) => ({ date: r.date, stage: reportStage(r), build: reportBuild(r, data), source: "report" as const, url: r.url })),
+    ...game.uploads.filter((u) => u.stage).map((u) => ({ date: u.at, stage: uploadStage(u)!, build: uploadBuild(u, data), source: "upload" as const, url: null })),
   ].sort((a, b) => b.date.localeCompare(a.date));
   const order = (release: string | null) => (release === null ? data.releases.length : data.releases.findIndex((r) => r.tag === release));
   const groups = Map.groupBy(results, (r) => r.build.release);
@@ -109,6 +123,7 @@ export function testedOn(game: { reports: Report[]; uploads: UploadSummary[] }, 
       release,
       stage: list.reduce((top, r) => (stageRank(r.stage) > stageRank(top) ? r.stage : top), list[0]!.stage),
       results: list.length,
+      first: list.at(-1)!.date,
       last: list[0]!.date,
       approximate: list.every((r) => r.build.basis === "date"),
     }))

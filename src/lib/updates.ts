@@ -1,5 +1,4 @@
 import { getGames, getRetest, getTested, getTrackedGames } from "./data";
-import { buildLabel } from "./builds";
 import { loadGenerated } from "./load";
 import { AREA_LABEL, AREAS, classify, typeLabel, type ClassifiedMerge, type Merge, type MergeArea } from "./merges";
 import { stageRank, type StageOrNone } from "./stages";
@@ -121,10 +120,11 @@ async function build(): Promise<Update[]> {
     const regression = tested.get(g.slug)?.regression;
     if (!regression) continue;
     const { was, now } = regression;
-    const on = (release: string | null) => buildLabel({ release, exact: false }).replace(/^main after /, "");
+    const on = (release: string | null) => release ?? "main";
     updates.push({
       id: `regression:${g.slug}:${now.release}`,
-      date: now.last,
+      // Every result on that release is lower, so the first one showed it; later ones don't move the date.
+      date: now.first,
       kind: "regression",
       title: `${g.name} reported lower on ${on(now.release)}: ${now.stage}`,
       text: `It reached ${was.stage} on ${on(was.release)}. That can be a regression or a different setup; another run on the current build would tell.`,

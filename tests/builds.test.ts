@@ -73,7 +73,8 @@ describe("placing builds", () => {
 });
 
 describe("testedOn", () => {
-  const upload = (stage: UploadSummary["stage"], commit: string, at: string) => ({ stage, commit, release: null, at }) as UploadSummary;
+  const upload = (stage: UploadSummary["stage"], commit: string, at: string, extra: Partial<UploadSummary> = {}) =>
+    ({ stage, commit, release: null, at, login: "u", githubId: 1, ...extra }) as UploadSummary;
 
   it("groups results by release, newest first, leaving out branch builds", () => {
     const tested = testedOn(
@@ -87,7 +88,7 @@ describe("testedOn", () => {
       },
       data,
     );
-    expect(tested.releases).toEqual([{ release: "v0.1.3", stage: "Menus", results: 3, last: "2026-10-27T00:00:00Z", approximate: false }]);
+    expect(tested.releases).toEqual([{ release: "v0.1.3", stage: "Menus", results: 3, first: "2026-10-21T00:00:00Z", last: "2026-10-27T00:00:00Z", approximate: false }]);
     expect(tested.newest).toMatchObject({ source: "upload", stage: "Presents" });
     expect(tested.regression).toBeNull();
   });
@@ -97,5 +98,21 @@ describe("testedOn", () => {
     const lower = report({ build: "v0.1.4", stage: "Starts", date: "2026-10-31T00:00:00Z" });
     expect(testedOn({ reports: [...reports, lower], uploads: [] }, data).regression).toMatchObject({ was: { release: "v0.1.3", stage: "Menus" }, now: { release: "v0.1.4", stage: "Starts" } });
     expect(testedOn({ reports: [...reports, { ...lower, build: "main" }], uploads: [] }, data).regression).toBeNull();
+  });
+});
+
+describe("testedOn and unconfirmed or overruled results", () => {
+  const upload = (stated: UploadSummary["stage"], githubId: number) =>
+    ({ stage: stated ?? "Presents", stated, commit: "44a59edc3a", release: null, at: "2026-10-27T00:00:00Z", login: `u${githubId}`, githubId }) as UploadSummary;
+
+  it("counts an uploader's stated stage only once confirmed", () => {
+    expect(testedOn({ reports: [], uploads: [upload("Playable", 1)] }, data).releases[0]!.stage).toBe("Presents");
+    expect(testedOn({ reports: [], uploads: [upload("Playable", 1), upload("Ingame", 2)] }, data).releases[0]!.stage).toBe("Ingame");
+  });
+
+  it("caps reports a maintainer's correction overruled", () => {
+    const reports = [report({ build: "main 44a59edc3a", stage: "Ingame", date: "2026-10-26T00:00:00Z" })];
+    expect(testedOn({ reports, uploads: [], correction: { stage: "Menus", date: "2026-10-28" } }, data).releases[0]!.stage).toBe("Menus");
+    expect(testedOn({ reports, uploads: [], correction: { stage: "Menus", date: "2026-10-25" } }, data).releases[0]!.stage).toBe("Ingame");
   });
 });

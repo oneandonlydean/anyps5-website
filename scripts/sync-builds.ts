@@ -43,7 +43,10 @@ async function main() {
   const now = new Date().toISOString();
   const stale = (c: Cached | undefined) => !c || (!c.found && Date.parse(now) - Date.parse(c.checked) > RETRY_DAYS * 864e5);
 
-  const releases = (await rest<{ tag_name: string; published_at: string; draft: boolean }[]>(`/repos/${REPO.owner}/${REPO.name}/releases?per_page=30`)).filter((r) => !r.draft);
+  // Prereleases aren't releases to test on, as in releases.json.
+  const releases = (await rest<{ tag_name: string; published_at: string; draft: boolean; prerelease: boolean }[]>(`/repos/${REPO.owner}/${REPO.name}/releases?per_page=30`)).filter(
+    (r) => !r.draft && !r.prerelease,
+  );
   const wanted = [
     ...new Set([
       ...threads.flatMap((t) => t.reports.map((r) => commitIn(r.build))),
@@ -55,7 +58,13 @@ async function main() {
   for (const ref of [...releases.map((r) => `tag:${r.tag_name}`), ...wanted]) {
     if (!stale(cache[ref])) continue;
     if (lookups++ >= MAX_LOOKUPS) break;
-    cache[ref] = { found: await lookUp(ref.replace(/^tag:/, "")), checked: now };
+    try {
+      cache[ref] = { found: await lookUp(ref.replace(/^tag:/, "")), checked: now };
+    } catch (error) {
+      // A rate limit or an outage: keep what was found, and the next run carries on from there.
+      console.warn(`builds: stopped looking up commits: ${(error as Error).message}`);
+      break;
+    }
   }
   await mkdir(resolve(root, "node_modules/.cache"), { recursive: true });
   await writeJson(CACHE, cache);

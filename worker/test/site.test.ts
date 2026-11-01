@@ -194,9 +194,10 @@ it("asks which game a report without a title ID was, and accepts the uploader's 
   expect((await post("/api/reports?titleId=not-an-id", report, cookie)).status).toBe(400);
   const chosen = await post("/api/reports?titleId=PPSA12345", report, cookie);
   expect(chosen.status).toBe(201);
-  expect(await chosen.json()).toMatchObject({ titleId: "PPSA12345", stage: null });
-  const exported = await (await call("/api/export")).json<{ uploads: { titleId: string; titleChosen: boolean; stage: string | null; gpuVendor: string | null; missing: unknown }[] }>();
-  expect(exported.uploads[0]).toMatchObject({ titleId: "PPSA12345", titleChosen: true, stage: null, gpuVendor: null });
+  // This Worker has no compatibility list to check the choice against, so a maintainer checks it before it shows.
+  expect(await chosen.json()).toMatchObject({ titleId: "PPSA12345", stage: null, status: "review" });
+  const exported = await (await call("/api/export")).json<{ uploads: unknown[] }>();
+  expect(exported.uploads).toEqual([]);
 });
 
 it("takes how far the tester got past frames on screen, only for a run that presented frames", async () => {

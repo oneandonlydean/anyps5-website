@@ -35,7 +35,8 @@ async function upstreamFacts(env: Env, origin: string): Promise<Facts> {
       };
     }
   } catch {}
-  facts = { at: Date.now(), value };
+  // A failed fetch isn't kept, so the next upload tries again.
+  if (value.titleIds.size) facts = { at: Date.now(), value };
   return value;
 }
 
@@ -74,8 +75,13 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   let titleName: string | null = null;
   if (!report.game.titleId) {
     if (!TITLE_ID.test(titleId)) return problem(400, "That isn't a title ID. It's four letters and five digits, like PPSA12345.");
-    if (known.titleIds.size > 0 && !known.titleIds.has(titleId)) {
-      titleName = params.get("name")?.trim().slice(0, 120) || null;
+    const given = params.get("name")?.trim().slice(0, 120) || null;
+    if (known.titleIds.size === 0) {
+      // The list couldn't be read, so whether the game is on it is unknown: keep any name given and let a maintainer check.
+      titleName = given;
+      flags.push(`Chosen game ${titleId}${given ? ` (named ${given})` : ""}; the compatibility list couldn't be checked. Check the title ID is listed or named.`);
+    } else if (!known.titleIds.has(titleId)) {
+      titleName = given;
       if (!titleName) return json({ error: "This game isn't on the compatibility list yet. Give its name too.", needsName: true }, 400);
       flags.push(`A game not on the list yet, named by the uploader: ${titleName} (${titleId}). Check the title ID is that game.`);
     }

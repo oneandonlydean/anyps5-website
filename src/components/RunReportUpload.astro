@@ -3,12 +3,12 @@ import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
 
 interface Props {
   /** Games on the compatibility list, for reports without a title ID (the uploader picks the game). */
-  games: { name: string; id: string }[];
+  games: { name: string; ids: string[] }[];
 }
 const { games } = Astro.props;
 ---
 
-<section class="card upload" id="upload" data-upload>
+<section class="card upload" id="upload" data-upload data-listed={JSON.stringify(games.flatMap((g) => g.ids))}>
   <div class="intro">
     <h2>Upload a run report</h2>
     <p class="muted">
@@ -32,7 +32,7 @@ const { games } = Astro.props;
       <span>This report doesn't say which game it was. Which game did you run? If it isn't on the list, type its title ID.</span>
       <input list="upload-games" placeholder="Game name or title ID" autocomplete="off" data-pick-input />
       <datalist id="upload-games">
-        {games.map((g) => <option value={`${g.name} (${g.id})`} />)}
+        {games.map((g) => <option value={`${g.name} (${g.ids[0]})`} />)}
       </datalist>
     </label>
     <label class="pick" data-pick-name hidden>
@@ -65,7 +65,8 @@ const { games } = Astro.props;
   const pickNameInput = root.querySelector<HTMLInputElement>("[data-pick-name-input]")!;
   const reached = root.querySelector<HTMLFieldSetElement>("[data-reached]")!;
   const reachedValue = () => (reached.hidden ? "" : (reached.querySelector<HTMLInputElement>("input:checked")?.value ?? ""));
-  const listed = new Set([...root.querySelectorAll<HTMLOptionElement>("#upload-games option")].map((o) => o.value.match(/\(([A-Z]{4}\d{5})\)$/)?.[1]));
+  // Every listed title ID, regional variants too: the list shows only each game's first.
+  const listed = new Set<string>(JSON.parse(root.dataset.listed ?? "[]"));
   // A picked game is sent as its title ID: "Name (PPSA12345)" or a bare ID. One not on the list needs a name too.
   const chosenId = () => (pick.hidden ? null : (pickInput.value.toUpperCase().match(/\b([A-Z]{4}\d{5})\)?\s*$/)?.[1] ?? null));
   pickInput.addEventListener("input", () => {
@@ -122,7 +123,7 @@ const { games } = Astro.props;
   // A quick look in the browser first, so an obviously wrong file is caught before it is sent.
   async function choose(file: File | undefined) {
     result.replaceChildren();
-    preview.hidden = send.hidden = true;
+    preview.hidden = send.hidden = reached.hidden = pick.hidden = pickName.hidden = true;
     body = null;
     if (!file) return;
     if (file.size > MAX) return result.append(el("p", "That file is too big for a run report (64 KB at most).", "bad"));

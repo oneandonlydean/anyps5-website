@@ -18,7 +18,7 @@ const threads = Object.fromEntries(games.map((g) => [g.slug, { name: g.name, thr
 
   <div class="container">
     <div class="report">
-      <RunReportUpload games={games.map((g) => ({ name: g.name, id: g.titleIds[0]! }))} />
+      <RunReportUpload games={games.map((g) => ({ name: g.name, ids: g.titleIds }))} />
 
       <section class="card fallback" data-fallback data-threads={JSON.stringify(threads)}>
         <h2>No report file yet?</h2>
