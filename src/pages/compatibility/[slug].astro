@@ -36,6 +36,8 @@ const freshness = retest.lastTested
     ? `Last tested on ${label(retest.lastBuild)} · ${since}`
     : `Last tested ${formatDate(retest.lastTested)} · ${retest.releasesSince === 0 ? "on the current release" : since}`
   : null;
+// The first paragraph of the note shows; a longer write-up opens on request.
+const [noteLead, ...noteRest] = game.note?.split("\n\n") ?? [];
 const art = game.art;
 // The page takes its accent colours from the game's art; near-grey art keeps the site's own.
 const theme = gameTheme(art?.color);
@@ -213,7 +215,20 @@ const description = (() => {
           (game.note || game.blockers.length > 0) && (
             <section class="card panel">
               <h2>Where it stops</h2>
-              {game.note && <p class="note">{game.note}</p>}
+              {noteLead && <p class="note">{noteLead}</p>}
+              {noteRest.length > 0 && (
+                <details class="note-more">
+                  <summary>Read the rest</summary>
+                  {noteRest.map((p) => (
+                    <p class="note">{p}</p>
+                  ))}
+                </details>
+              )}
+              {game.noteFrom && (
+                <p class="note-from">
+                  <a href={game.noteFrom.url}>{game.noteFrom.author ? `From ${game.noteFrom.author}'s report` : "From the report"} →</a>
+                </p>
+              )}
               {game.blockers.length > 0 && (
                 <ul class="blockers">
                   {game.blockers.map((b) => (
@@ -638,6 +653,24 @@ const description = (() => {
   }
   .note {
     color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  .note-more summary {
+    width: fit-content;
+    color: var(--accent);
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .note-from {
+    margin: 12px 0 0;
+    font-size: 0.85rem;
+  }
+  .note-from a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .note-from a:hover {
+    color: var(--text);
   }
   .blockers {
     display: grid;

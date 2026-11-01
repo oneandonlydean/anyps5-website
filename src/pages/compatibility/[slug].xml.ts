@@ -8,6 +8,9 @@ export async function getStaticPaths() {
   return (await getGames()).map((game) => ({ params: { slug: game.slug }, props: { game } }));
 }
 
+/** The start of what a tester wrote, for a feed entry's summary; the report itself has the rest. */
+const short = (text: string) => (text.length > 280 ? text.slice(0, 279).trimEnd() + "…" : text).replace(/\n\n/g, " ");
+
 /** A feed for one game: every stage it reaches and every new test report, for people following that game. */
 export function GET({ site, props }: APIContext) {
   const game = (props as { game: Game }).game;
@@ -27,7 +30,7 @@ export function GET({ site, props }: APIContext) {
       title: `New report: ${r.stage ?? "no stage"}${system ? ` on ${system}` : ""}`,
       url: r.url,
       date: r.date,
-      summary: [r.author && `By ${r.author}.`, r.shown].filter(Boolean).join(" ") || `A new test report for ${game.name}.`,
+      summary: [r.author && `By ${r.author}.`, r.shown && short(r.shown)].filter(Boolean).join(" ") || `A new test report for ${game.name}.`,
       category: "report",
     };
   });

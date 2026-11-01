@@ -115,3 +115,11 @@ describe("postImages", () => {
     expect(postImages(body)).toEqual([{ src: "https://example.com/a.png", alt: "a" }]);
   });
 });
+
+describe("what is shown", () => {
+  it("keeps every paragraph a tester wrote, not just the start of the first", () => {
+    const long = "Six runs on this commit. ".repeat(20).trim();
+    const body = `### Furthest point\n\nIn game\n\n### What is shown\n\n${long}\n\nThen it  \`hangs\`\non a black screen.\n\n### Current blocker\n\nNone`;
+    expect(parseReport(body, meta)?.shown).toBe(`${long}\n\nThen it hangs on a black screen.`);
+  });
+});

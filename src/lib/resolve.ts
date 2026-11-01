@@ -36,6 +36,10 @@ export interface Game extends Omit<Identity, "overlay"> {
   reporters: number;
   updated: string;
   note: string | null;
+  /** The report the note was taken from; null for a maintainer's note. */
+  noteFrom: { url: string; author: string | null } | null;
+  /** A maintainer's stage, and the day they set it: reports from then or before that claimed more were overruled. */
+  correction: { stage: StageOrNone; date: string } | null;
   blockers: Issue[];
   timeline: TimelineEvent[];
   reports: Report[];
@@ -208,6 +212,7 @@ export function resolveGame(
   const auto = autoStage(uploads, reportWins && top ? { stage: top.stage, author: top.author } : null);
   const uploadWins = auto.confirmedStage !== null && stageRank(auto.confirmedStage) > stageRank(reported);
   const stage = uploadWins ? auto.confirmedStage : reported;
+  const shownBy = reports.find((r) => r.shown);
   const branchTop = best(reports.filter((r) => !QUALIFYING.has(r.buildKind)));
   const branchStage = branchTop && stageRank(branchTop.stage) > stageRank(stage) ? branchTop.stage : null;
 
@@ -245,7 +250,9 @@ export function resolveGame(
     gpuVendors: [...new Set(reports.map((r) => r.gpuVendor).filter((v): v is string => Boolean(v)))],
     reporters: new Set([...reports.map((r) => r.author), ...uploads.map((u) => u.login)].filter(Boolean)).size,
     updated,
-    note: (!reportWins && curated?.note) || reports.find((r) => r.shown)?.shown || null,
+    correction: curated ? { stage: curated.stage, date: curated.date } : null,
+    note: (!reportWins && curated?.note) || shownBy?.shown || null,
+    noteFrom: (!reportWins && curated?.note) || !shownBy ? null : { url: shownBy.url, author: shownBy.author },
     blockers: openBlockers(blockerNumbers, issues),
     timeline: events.sort((a, b) => a.date.localeCompare(b.date)),
     reports,

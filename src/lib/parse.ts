@@ -121,6 +121,8 @@ const FIELD = {
 
 /** Blocker sections can hold whole logs; the start names the stop. */
 const BLOCKER_LIMIT = 2000;
+/** "What is shown" is usually a few sentences, but some testers write up a whole investigation. */
+const SHOWN_LIMIT = 4000;
 
 export interface PostMeta {
   url: string;
@@ -157,7 +159,7 @@ export function parseReport(body: string, meta: PostMeta): Report | null {
     buildKind: commit ? buildKindOf(commit) : "unknown",
     prs: commit ? issueRefs(commit) : [],
     version: field(FIELD.version)?.match(/\d{2}\.\d{3}(?:\.\d{3})?/)?.[0] ?? null,
-    shown: field(FIELD.shown) ? clean(firstParagraph(field(FIELD.shown)!)) : null,
+    shown: field(FIELD.shown) ? paragraphs(field(FIELD.shown)!) : null,
     blockers: issueRefs(blocker),
     blockerText: blocker.trim() ? blocker.trim().slice(0, BLOCKER_LIMIT) : null,
   };
@@ -171,8 +173,15 @@ function firstLine(text: string): string {
   return text.split("\n").find((l) => l.trim())?.trim() ?? "";
 }
 
-function firstParagraph(text: string): string {
-  return text.split(/\n\s*\n/)[0];
+/** What a tester wrote, kept whole up to a limit: paragraphs separated by a blank line, spacing inside them tidied. */
+function paragraphs(text: string): string | null {
+  const kept = text
+    .split(/\n\s*\n/)
+    .map((p) => p.replace(/`/g, "").replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .join("\n\n");
+  if (!kept) return null;
+  return kept.length > SHOWN_LIMIT ? kept.slice(0, SHOWN_LIMIT - 1).trimEnd() + "…" : kept;
 }
 
 function clean(text: string): string {
