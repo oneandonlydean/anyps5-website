@@ -1,3 +1,4 @@
+import { leaderboard, stats } from "./boards";
 import { isSiteCommand, reply, runSiteCommand, suggest, type Option } from "./commands";
 import type { Env, User } from "./env";
 
@@ -6,7 +7,6 @@ const APPLICATION_COMMAND = 2;
 const AUTOCOMPLETE = 4;
 const PONG = 1;
 const EPHEMERAL = 64;
-const LEADERBOARD_SIZE = 10;
 
 interface Interaction {
   type: number;
@@ -33,10 +33,6 @@ async function verified(req: Request, env: Env, body: string): Promise<boolean> 
 const plural = (n: number) => `**${n}** merged pull request${n === 1 ? "" : "s"}`;
 
 const RECENT = 5;
-const PERIODS: Record<string, { days: number; label: string }> = {
-  week: { days: 7, label: "in the last 7 days" },
-  month: { days: 30, label: "in the last 30 days" },
-};
 
 async function prs(env: Env, caller: string, target: string): Promise<Response> {
   const user = await env.DB.prepare("SELECT * FROM users WHERE discord_id = ? AND github_id IS NOT NULL")
@@ -73,37 +69,6 @@ async function prs(env: Env, caller: string, target: string): Promise<Response> 
   });
 }
 
-/** Ranks every author in the merge history, linked to Discord or not. Bots are left out. */
-async function leaderboard(env: Env, periodKey: string | undefined): Promise<Response> {
-  const period = periodKey ? PERIODS[periodKey] : undefined;
-  const since = period ? new Date(Date.now() - period.days * 86400_000).toISOString().slice(0, 19) + "Z" : "";
-  // SQLite takes author_login from the row holding max(merged_at), i.e. the newest login.
-  const { results } = await env.DB.prepare(
-    `SELECT count(*) AS n, max(m.merged_at) AS latest, m.author_login AS login, u.discord_id
-     FROM merges m LEFT JOIN users u ON u.github_id = m.author_id
-     WHERE m.author_id IS NOT NULL AND m.author_login NOT LIKE '%[bot]' AND m.merged_at >= ?
-     GROUP BY m.author_id ORDER BY n DESC, latest DESC LIMIT ?`,
-  )
-    .bind(since, LEADERBOARD_SIZE)
-    .all<{ n: number; login: string; discord_id: string | null }>();
-  if (!results.length) return reply({ content: `No merged pull requests ${period?.label ?? "yet"}.` });
-  return reply({
-    embeds: [
-      {
-        title: `Top contributors to ${env.GITHUB_REPO}`,
-        description: results
-          .map((r, i) => {
-            const github = `[${r.login}](<https://github.com/${r.login}>)`;
-            return `${i + 1}. ${r.discord_id ? `<@${r.discord_id}> (${github})` : github} \u2014 ${plural(r.n)}`;
-          })
-          .join("\n"),
-        color: 0x8250df,
-        footer: { text: period ? `Merged ${period.label}` : "All time" },
-      },
-    ],
-  });
-}
-
 export async function interactions(req: Request, env: Env): Promise<Response> {
   const body = await req.text();
   if (!(await verified(req, env, body))) return new Response("invalid request signature", { status: 401 });
@@ -120,8 +85,10 @@ export async function interactions(req: Request, env: Env): Promise<Response> {
       return prs(env, caller, target);
     }
     if (interaction.data?.name === "leaderboard") {
-      return leaderboard(env, interaction.data.options?.find((o) => o.name === "period")?.value);
+      const option = (name: string) => interaction.data!.options?.find((o) => o.name === name)?.value ?? "";
+      return leaderboard(env, option("board"), option("period"));
     }
+    if (interaction.data?.name === "stats") return stats(env);
   }
   return reply({ content: "Unknown command.", flags: EPHEMERAL });
 }

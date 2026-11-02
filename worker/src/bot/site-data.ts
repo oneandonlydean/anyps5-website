@@ -1,4 +1,7 @@
 import { stageSlug, type StageOrNone } from "../../../src/lib/stages";
+
+/** Stage → games at it, as src/lib/compat-history.ts counts them. */
+export type StageCounts = Partial<Record<StageOrNone, number>>;
 import { baseUrl, type Env } from "./env";
 
 /**
@@ -26,8 +29,28 @@ export interface Download {
 export interface SiteData {
   generated: string;
   games: SiteGame[];
-  libraries: { done: number; total: number; groups: { name: string; done: number; total: number }[] } | null;
-  shaders: { decoded: number; translated: number; total: number } | null;
+  libraries: {
+    done: number;
+    total: number;
+    groups: { name: string; done: number; total: number }[];
+    /** Newest first. */
+    milestones: { date: string; library: string; kind: "started" | "half" | "complete"; done: number; total: number }[];
+  } | null;
+  shaders: {
+    decoded: number;
+    translated: number;
+    total: number;
+    dpp: { total: number; decoded: number };
+    formats: { total: number; sampled: number; buffer: number; host: number };
+    throws: { total: number; areas: { name: string; count: number }[] };
+    untranslated: string[];
+  } | null;
+  /** Games per stage now, a week ago and a month ago. */
+  stages: { now: StageCounts; week: { date: string | null; counts: StageCounts }; month: { date: string | null; counts: StageCounts } };
+  testers: {
+    totals: { testers: number; reports: number; uploads: number; month: number; week: number };
+    people: { login: string; reports: number; uploads: number; games: number; month: number; week: number; last: string }[];
+  };
   wanted: { name: string; library: string; games: string[] }[];
   release: {
     tag: string;

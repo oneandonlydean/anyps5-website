@@ -7,9 +7,9 @@ import { countPeople, type ContributorEntry } from "./lib/contributors";
 import { recordLibraries, type LibraryCounts, type LibraryHistory } from "../src/lib/library-milestones";
 import { rest, restCount } from "./lib/github";
 import { readPublished } from "./lib/published";
+import { UPSTREAM_PAGES } from "../src/lib/site";
 
 const CONVERTER = resolve(root, "public/convert/app");
-const UPSTREAM_PAGES = "https://boykopovar.github.io/AnyPS5";
 /** The converter's core files. Upstream adds modules over time, so others are taken too when they look like web files. */
 const WEB_FILES = ["index.html", "app.css", "app.mjs", "archive.mjs", "batch.mjs", "output-directory.mjs", "worker.mjs", "native/relinker_wasm.mjs", "native/relinker_wasm.wasm"];
 const DOCS = ["USAGE.md", "INPUT_MAPPING.md"];

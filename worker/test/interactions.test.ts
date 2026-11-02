@@ -84,17 +84,20 @@ it("/leaderboard ranks everyone in the history, linked or not, without bots or p
   const all = (await (await send(command("leaderboard", "d1"))).json<any>()).data;
   expect(all.flags).toBeUndefined();
   expect(all.allowed_mentions).toEqual({ parse: [] });
-  expect(all.embeds[0].footer.text).toBe("All time");
+  expect(all.embeds[0].title).toBe("Top contributors · All time");
+  // Bots are left out of the totals and the ranking; a deleted account counts in the merges but not as a contributor.
   expect(all.embeds[0].description).toBe(
-    "1. [bob](<https://github.com/bob>) \u2014 **3** merged pull requests\n" +
-      "2. <@d1> ([alice](<https://github.com/alice>)) \u2014 **2** merged pull requests",
+    "**6** merged · **5** in 30 days · **2** in 7 days · 2 contributors, 2 active this month\n\n" +
+      "🥇 **[bob](<https://github.com/bob>)**\n**3** merged · 3 this month · 0 this week\n" +
+      "🥈 **[alice](<https://github.com/alice>)** <@d1>\n**2** merged · 1 this month · 1 this week",
   );
 
   const period = (value: string) => ({ type: 2, data: { name: "leaderboard", options: [{ name: "period", value }] }, member: { user: { id: "d1" } } });
-  const week = (await (await send(period("week"))).json<any>()).data;
-  expect(week.embeds[0].description).toBe("1. <@d1> ([alice](<https://github.com/alice>)) \u2014 **1** merged pull request");
-  const month = (await (await send(period("month"))).json<any>()).data;
-  expect(month.embeds[0].description.split("\n")).toHaveLength(2);
+  const week = (await (await send(period("week"))).json<any>()).data.embeds[0];
+  expect(week.title).toBe("Top contributors · Last 7 days");
+  expect(week.description.split("\n\n")[1]).toBe("🥇 **[alice](<https://github.com/alice>)** <@d1>\n**1** this week · 2 merged · 1 this month");
+  const month = (await (await send(period("month"))).json<any>()).data.embeds[0];
+  expect(month.description.split("\n\n")[1].split("\n")).toHaveLength(4);
 });
 
 it("/leaderboard copes with an empty history", async () => {

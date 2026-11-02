@@ -7,8 +7,7 @@ import { getGames, getNeeds } from "../lib/data";
 import { openFunctions, tallyWanted, type Needs } from "../lib/needs";
 import { formatDate, REPO_URL } from "../lib/site";
 import { getCompatHistory, getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
-import { atLeast, compatSeries } from "../lib/compat-history";
-import { corrected } from "../lib/resolve";
+import { atLeast, gameSeries } from "../lib/compat-history";
 import { stageRank } from "../lib/stages";
 
 const [progress, libraryHistory, coverage, needs, games, compatHistory] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames(), getCompatHistory()]);
@@ -112,11 +111,9 @@ for (const { item, games: slugs } of missingNeeds) {
 }
 const wantedByFunction = Object.fromEntries(missingNeeds.map(({ item, games: slugs }) => [item.name, slugs.length]));
 
-// Games over time: recorded daily since the record started, rebuilt from each game's rises before that, with the rises a
-// maintainer's correction overruled counted at the corrected stage, as recorded days count them.
+// Games over time: recorded daily since the record started, rebuilt from each game's rises before that.
 const today = new Date().toISOString().slice(0, 10);
-const timelines = games.map((g) => g.timeline.map((e) => ({ ...e, stage: corrected(e.stage, e.date, g.correction) })));
-const compat = compatSeries(compatHistory, timelines, today);
+const compat = gameSeries(games, compatHistory, today);
 const compatNow = compat.days.at(-1)?.counts ?? {};
 // The change over the last 30 days, or since the first report while there are fewer.
 const compatFrom = compat.days.at(-31) ?? compat.days[0];

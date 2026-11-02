@@ -69,25 +69,119 @@ function game(env: Env, data: SiteData, query: string): Response {
   });
 }
 
-function progress(env: Env, data: SiteData): Response {
+const num = (n: number) => n.toLocaleString("en-GB");
+const change = (n: number) => (n > 0 ? `+${num(n)}` : n < 0 ? `−${num(-n)}` : "±0");
+const FRAMES = ["Presents", "Menus", "Ingame", "Playable"];
+const GAMEPLAY = ["Ingame", "Playable"];
+const atStages = (counts: Record<string, number | undefined>, stages: string[]) => stages.reduce((n, s) => n + (counts[s] ?? 0), 0);
+const testedIn = (counts: Record<string, number | undefined>) => Object.entries(counts).reduce((n, [s, c]) => n + (s === "Not converting" ? 0 : (c ?? 0)), 0);
+const STAGE_ORDER = ["Converts", "Loads", "Starts", "First draw", "Presents", "Menus", "Ingame", "Playable"];
+const MILESTONE = { started: "first function", half: "reached half", complete: "complete" } as const;
+
+/** /progress: everything at a glance, or one area in depth. */
+function progress(env: Env, data: SiteData, area: string): Response {
+  if (area === "libraries") return progressLibraries(env, data);
+  if (area === "shaders") return progressShaders(env, data);
+  if (area === "games") return progressGames(env, data);
   const fields = [];
   if (data.libraries) {
     const { done, total } = data.libraries;
-    fields.push({ name: "System libraries", value: `${meter(done, total)}\n${done.toLocaleString("en-GB")} of ${total.toLocaleString("en-GB")} functions`, inline: false });
+    fields.push({ name: "System libraries", value: `${meter(done, total)}\n${num(done)} of ${num(total)} functions`, inline: false });
   }
   if (data.shaders) {
     const { decoded, translated, total } = data.shaders;
     fields.push({ name: "Shader recompiler", value: `${meter(decoded, total)}\n${decoded} of ${total} instructions decode; ${translated} also translate`, inline: false });
   }
-  const tested = data.games.filter((g) => g.stage && g.stage !== "Not converting");
-  const at = (stages: string[]) => tested.filter((g) => stages.includes(g.stage!)).length;
+  const now = data.stages.now;
   fields.push({
     name: "Games",
-    value: `${tested.length} tested · ${at(["Presents", "Menus", "Ingame", "Playable"])} show frames · ${at(["Ingame", "Playable"])} reach gameplay · ${at(["Playable"])} playable`,
+    value: `${testedIn(now)} tested · ${atStages(now, FRAMES)} show frames · ${atStages(now, GAMEPLAY)} reach gameplay · ${now.Playable ?? 0} playable`,
     inline: false,
   });
-  return reply({ embeds: [{ title: "AnyPS5 progress", url: link(env, "/progress"), color: 0x5b9bff, fields, timestamp: data.generated }] });
+  return reply({
+    embeds: [{ title: "AnyPS5 progress", url: link(env, "/progress"), color: 0x5b9bff, fields, footer: { text: "/progress libraries, shaders or games for more" }, timestamp: data.generated }],
+  });
 }
+
+function progressLibraries(env: Env, data: SiteData): Response {
+  const l = data.libraries;
+  if (!l) return unavailable();
+  const groups = l.groups.filter((g) => g.total > 0);
+  const complete = groups.filter((g) => g.done === g.total);
+  const started = groups.filter((g) => g.done > 0 && g.done < g.total);
+  const biggest = [...groups].sort((a, b) => b.total - a.total).slice(0, 8);
+  const nearly = started.filter((g) => g.done / g.total >= 0.8).sort((a, b) => b.done / b.total - a.done / a.total || b.total - a.total).slice(0, 6);
+  const fields = [
+    { name: "Functions", value: `${meter(l.done, l.total)}\n${num(l.done)} implemented of ${num(l.total)} declared`, inline: false },
+    { name: "Libraries", value: `${complete.length} complete · ${started.length} started · ${groups.length - complete.length - started.length} not started · ${groups.length} in all`, inline: false },
+    { name: "Biggest", value: biggest.map((g) => `\`${meter(g.done, g.total, 8)}\` ${g.name} · ${num(g.done)}/${num(g.total)}`).join("\n"), inline: false },
+  ];
+  if (nearly.length) fields.push({ name: "Nearly done", value: nearly.map((g) => `${g.name} · ${g.done}/${g.total}, ${g.total - g.done} to go`).join("\n"), inline: false });
+  if (l.milestones.length) fields.push({ name: "Latest milestones", value: l.milestones.map((m) => `${m.library} ${MILESTONE[m.kind]} · ${when(m.date)}`).join("\n"), inline: false });
+  return reply({ embeds: [{ title: "System libraries", url: link(env, "/progress#libraries"), color: 0x5b9bff, fields, footer: { text: "/library <name> for one library" } }] });
+}
+
+function progressShaders(env: Env, data: SiteData): Response {
+  const sh = data.shaders;
+  if (!sh) return unavailable();
+  const f = sh.formats;
+  const fields = [
+    { name: "Instructions", value: `${meter(sh.decoded, sh.total)}\n${num(sh.decoded)} of ${num(sh.total)} decode · ${num(sh.translated)} also translate`, inline: false },
+    { name: "DPP forms", value: `${meter(sh.dpp.decoded, sh.dpp.total)}\n${sh.dpp.decoded} of ${sh.dpp.total} decode`, inline: false },
+    { name: "Image formats", value: `Sampled ${f.sampled}/${f.total} · Typed buffer ${f.buffer}/${f.total} · Vulkan host ${f.host}/${f.total}`, inline: false },
+    { name: `Unsupported-throw sites (${sh.throws.total})`, value: sh.throws.areas.map((a) => `${a.name} · ${a.count}`).join("\n") || "None", inline: false },
+  ];
+  if (sh.untranslated.length) fields.push({ name: "Decoded, not yet translated", value: sh.untranslated.map((i) => `\`${i}\``).join(", ").slice(0, 1024), inline: false });
+  return reply({ embeds: [{ title: "Shader recompiler", url: link(env, "/progress#shaders"), color: 0x37e0c8, fields, footer: { text: "/progressmap for the full map" } }] });
+}
+
+function progressGames(env: Env, data: SiteData): Response {
+  const { now, week, month } = data.stages;
+  const top = Math.max(1, ...STAGE_ORDER.map((s) => now[s as keyof typeof now] ?? 0));
+  const ladder = STAGE_ORDER.map((s) => {
+    const n = now[s as keyof typeof now] ?? 0;
+    return `\`${"▰".repeat(Math.round((n / top) * 10)).padEnd(10, "▱")}\` ${s} · ${n}`;
+  });
+  const none = now["Not converting"] ?? 0;
+  const since = (then: typeof week, label: string) =>
+    then.date
+      ? `${label}: tested ${change(testedIn(now) - testedIn(then.counts))} · frames ${change(atStages(now, FRAMES) - atStages(then.counts, FRAMES))} · gameplay ${change(atStages(now, GAMEPLAY) - atStages(then.counts, GAMEPLAY))}`
+      : null;
+  const fields = [
+    { name: "Furthest stage reached", value: `${ladder.join("\n")}${none ? `\nNot converting · ${none}` : ""}`, inline: false },
+    { name: "Change", value: [since(week, "Last 7 days"), since(month, `Since ${month.date ? when(month.date) : "the start"}`)].filter(Boolean).join("\n") || "Not enough history yet", inline: false },
+  ];
+  const t = data.tracked;
+  if (t?.games.length) {
+    const run = t.games.filter((g) => g.stage).length;
+    fields.push({ name: `Tracked games on ${t.release}`, value: `${t.games.filter((g) => g.stage && GAMEPLAY.includes(g.stage)).length} of ${t.games.length} reach gameplay · ${run} run so far · \`/tracked\` for the list`, inline: false });
+  }
+  return reply({
+    embeds: [{ title: `${testedIn(now)} games tested, ${atStages(now, GAMEPLAY)} reach gameplay`, url: link(env, "/progress#games"), color: 0x2fcfa6, fields }],
+  });
+}
+
+/** Upstream's library map, rendered to PNG by the site build (src/pages/bot/[image].png.ts). */
+async function progressMap(env: Env, data: SiteData): Promise<Response> {
+  const res = env.ASSETS ? await env.ASSETS.fetch(link(env, "/bot/progress.png"), { method: "HEAD" }) : null;
+  await res?.body?.cancel();
+  if (!res?.ok) return privately(`The map isn't available right now. Upstream has it at <${UPSTREAM_MAP}>.`);
+  return reply({
+    embeds: [
+      {
+        title: "AnyPS5 progress map",
+        url: UPSTREAM_MAP,
+        description: "Every system library function as a square (green: implemented), the shader recompiler's instruction forms, and what is still needed.",
+        // The build time in the address, so Discord fetches the new picture after each site update.
+        image: { url: `${link(env, "/bot/progress.png")}?v=${Date.parse(data.generated)}` },
+        color: 0x2ea043,
+        footer: { text: "From boykopovar.github.io/AnyPS5" },
+        timestamp: data.generated,
+      },
+    ],
+  });
+}
+const UPSTREAM_MAP = "https://boykopovar.github.io/AnyPS5/progress.svg";
 
 const findLibrary = (data: SiteData, query: string) => {
   const q = words(query).replace(/^(lib)?(sce)?/, "");
@@ -254,7 +348,7 @@ async function following(env: Env, data: SiteData, caller: string): Promise<Resp
   return privateLinks(`You follow:\n${list.join("\n")}`);
 }
 
-const SITE_COMMANDS = new Set(["game", "progress", "library", "wanted", "release", "tracked", "report", "faq", "rules", "follow", "unfollow", "following"]);
+const SITE_COMMANDS = new Set(["game", "progress", "progressmap", "library", "wanted", "release", "tracked", "report", "faq", "rules", "follow", "unfollow", "following"]);
 export const isSiteCommand = (name: string) => SITE_COMMANDS.has(name);
 
 export async function runSiteCommand(env: Env, name: string, options: Option[] | undefined, caller: string): Promise<Response> {
@@ -265,7 +359,9 @@ export async function runSiteCommand(env: Env, name: string, options: Option[] |
     case "game":
       return game(env, data, arg("name"));
     case "progress":
-      return progress(env, data);
+      return progress(env, data, arg("area"));
+    case "progressmap":
+      return progressMap(env, data);
     case "library":
       return library(env, data, arg("name"));
     case "wanted":

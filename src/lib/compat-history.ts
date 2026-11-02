@@ -3,6 +3,7 @@
  * stand at each stage, published as /compat-history.json and read back by the next data refresh like the library
  * record (see library-milestones.ts). Days before the record started are rebuilt from the games' timelines.
  */
+import { corrected } from "./resolve";
 import { stageRank, type StageOrNone } from "./stages";
 
 /** Stage → games at it. */
@@ -63,4 +64,17 @@ export function compatSeries(history: CompatHistory | null, timelines: { date: s
   const days = daysBetween(first, today).map((date) => ({ date, counts: recorded.get(date) ?? countStages(stagesOn(timelines, date)) }));
   const rebuiltUntil = history?.days[0]?.date ?? null;
   return { days, rebuiltUntil: rebuiltUntil && rebuiltUntil > first ? rebuiltUntil : null };
+}
+
+/**
+ * The games' series as the site shows it: rebuilt days count the rises a maintainer's correction overruled at the
+ * corrected stage, as recorded days do. The progress page and the Discord bot both use it.
+ */
+export function gameSeries(
+  games: { timeline: { date: string; stage: StageOrNone }[]; correction: { stage: StageOrNone; date: string } | null }[],
+  history: CompatHistory | null,
+  today: string,
+) {
+  const timelines = games.map((g) => g.timeline.map((e) => ({ ...e, stage: corrected(e.stage, e.date, g.correction) })));
+  return compatSeries(history, timelines, today);
 }

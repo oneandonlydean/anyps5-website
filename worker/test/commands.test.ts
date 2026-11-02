@@ -2,7 +2,7 @@ import { env } from "cloudflare:workers";
 import { beforeAll, beforeEach, expect, it } from "vitest";
 import { forgetSiteData, meter, type SiteData } from "../src/bot/site-data";
 import worker from "../src/index";
-import { ctx } from "./helpers";
+import { addUser, ctx } from "./helpers";
 
 const hex = (b: ArrayBuffer) => Array.from(new Uint8Array(b), (x) => x.toString(16).padStart(2, "0")).join("");
 
@@ -21,8 +21,34 @@ const DATA: SiteData = {
     },
     { slug: "astro-playroom", name: "Astro's Playroom", ids: ["PPSA00001"], stage: "Ingame", cover: null, tested: null, blockers: [], thread: "https://github.com/acme/widgets/discussions/8" },
   ],
-  libraries: { done: 50, total: 200, groups: [{ name: "Pad", done: 10, total: 40 }, { name: "libkernel", done: 30, total: 60 }] },
-  shaders: { decoded: 90, translated: 80, total: 100 },
+  libraries: {
+    done: 50,
+    total: 200,
+    groups: [
+      { name: "Pad", done: 10, total: 40 },
+      { name: "libkernel", done: 30, total: 60 },
+      { name: "Rtc", done: 9, total: 10 },
+      { name: "Fiber", done: 1, total: 1 },
+    ],
+    milestones: [{ date: "2026-11-01", library: "Fiber", kind: "complete", done: 1, total: 1 }],
+  },
+  shaders: {
+    decoded: 90,
+    translated: 80,
+    total: 100,
+    dpp: { total: 20, decoded: 19 },
+    formats: { total: 159, sampled: 81, buffer: 80, host: 68 },
+    throws: { total: 148, areas: [{ name: "RdnaDecoder", count: 59 }] },
+    untranslated: ["IMAGE_GATHER8H_PCK"],
+  },
+  stages: { now: { Menus: 1, Ingame: 1, "Not converting": 1 }, week: { date: "2026-10-26", counts: { Menus: 1 } }, month: { date: "2026-10-03", counts: {} } },
+  testers: {
+    totals: { testers: 2, reports: 5, uploads: 1, month: 4, week: 1 },
+    people: [
+      { login: "alice", reports: 4, uploads: 0, games: 3, month: 2, week: 0, last: "2026-10-20T00:00:00Z" },
+      { login: "Bob", reports: 1, uploads: 1, games: 1, month: 2, week: 1, last: "2026-11-01T00:00:00Z" },
+    ],
+  },
   wanted: [{ name: "scePadSetLightBar", library: "Pad", games: ["Astro Bot", "Astro's Playroom"] }],
   release: {
     tag: "v0.1.4",
@@ -151,4 +177,57 @@ it("draws text meters", () => {
   expect(meter(1, 200, 4)).toBe("▱▱▱▱ 0.5%");
   expect(meter(1456, 1460, 4)).toBe("▰▰▰▰ 99.7%");
   expect(meter(4, 4, 4)).toBe("▰▰▰▰ 100%");
+});
+
+it("/progress goes into libraries, shaders or games in depth", async () => {
+  const libraries = (await run("progress", { area: "libraries" })).data.embeds[0];
+  expect(libraries.fields.map((f: any) => f.name)).toEqual(["Functions", "Libraries", "Biggest", "Nearly done", "Latest milestones"]);
+  expect(libraries.fields[1].value).toBe("1 complete · 3 started · 0 not started · 4 in all");
+  expect(libraries.fields[3].value).toBe("Rtc · 9/10, 1 to go");
+  expect(libraries.fields[4].value).toMatch(/^Fiber complete · <t:\d+:D>$/);
+
+  const shaders = (await run("progress", { area: "shaders" })).data.embeds[0];
+  expect(shaders.fields[2].value).toBe("Sampled 81/159 · Typed buffer 80/159 · Vulkan host 68/159");
+  expect(shaders.fields[3]).toMatchObject({ name: "Unsupported-throw sites (148)", value: "RdnaDecoder · 59" });
+  expect(shaders.fields[4].value).toBe("`IMAGE_GATHER8H_PCK`");
+
+  const games = (await run("progress", { area: "games" })).data.embeds[0];
+  expect(games.title).toBe("2 games tested, 1 reach gameplay");
+  expect(games.fields[0].value).toContain("`▰▰▰▰▰▰▰▰▰▰` Menus · 1");
+  expect(games.fields[0].value).toContain("Not converting · 1");
+  expect(games.fields[1].value.split("\n")[0]).toBe("Last 7 days: tested +1 · frames +1 · gameplay +1");
+});
+
+it("/progressmap shows the map the site rendered, or says it isn't there", async () => {
+  const embed = (await run("progressmap")).data.embeds?.[0];
+  expect(embed).toBeUndefined();
+  const withMap = {
+    ...testEnv,
+    ASSETS: { fetch: async (url: string) => (String(url).endsWith("/bot/progress.png") ? new Response(null) : Response.json(data)) } as unknown as Fetcher,
+  };
+  const body = JSON.stringify({ type: 2, data: { name: "progressmap" }, member: { user: { id: "d1" } } });
+  const signature = hex(await crypto.subtle.sign("Ed25519", keys.privateKey, new TextEncoder().encode("1" + body)));
+  const res = await worker.fetch(new Request("https://worker.test/interactions", { method: "POST", headers: { "x-signature-ed25519": signature, "x-signature-timestamp": "1" }, body }) as any, withMap, ctx);
+  const image = (await res.json<any>()).data.embeds[0].image.url;
+  expect(image).toBe(`https://worker.test/bot/progress.png?v=${Date.parse(DATA.generated)}`);
+});
+
+it("/leaderboard testers ranks reporters by period, with linked members named", async () => {
+  await addUser({ discord_id: "d9", github_id: 9, github_login: "bob" });
+  const all = (await run("leaderboard", { board: "testers" })).data.embeds[0];
+  expect(all.title).toBe("Top testers · All time");
+  expect(all.description).toBe(
+    "**6** reports (1 uploaded) · **4** in 30 days · **1** in 7 days · 2 testers\n\n" +
+      "🥇 **[alice](<https://github.com/alice>)**\n**4** reports · 2 this month · 0 this week · 3 games\n" +
+      "🥈 **[Bob](<https://github.com/Bob>)** <@d9>\n**2** reports · 2 this month · 1 this week · 1 game",
+  );
+  const week = (await run("leaderboard", { board: "testers", period: "week" })).data.embeds[0];
+  expect(week.description.split("\n\n")[1].split("\n")).toHaveLength(2);
+});
+
+it("/stats sums up the project", async () => {
+  const embed = (await run("stats")).data.embeds[0];
+  expect(embed.fields.map((f: any) => f.name)).toEqual(["Merged pull requests", "Contributors", "System libraries", "Shader recompiler", "Games", "Testing", "Latest release"]);
+  expect(embed.fields[2].value).toContain("50 implemented of 200 declared functions\n1 of 4 libraries complete, 3 started");
+  expect(embed.fields[4].value).toBe("**2** listed\n2 tested · 1 reach gameplay · 0 playable");
 });
