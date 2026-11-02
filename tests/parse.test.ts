@@ -123,3 +123,10 @@ describe("what is shown", () => {
     expect(parseReport(body, meta)?.shown).toBe(`${long}\n\nThen it hangs on a black screen.`);
   });
 });
+
+describe("what is shown, with a list", () => {
+  it("keeps a list's items one per line and drops emphasis", () => {
+    const body = "### Furthest point\n\nIn game\n\n### What is shown\n\nIt boots.\n\n- **First** run: fine.\n- `Second` run:\n  also fine.\n\n### Current blocker\n\nNone";
+    expect(parseReport(body, meta)?.shown).toBe("It boots.\n\n- First run: fine.\n- Second run: also fine.");
+  });
+});

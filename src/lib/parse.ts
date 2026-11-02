@@ -123,6 +123,8 @@ const FIELD = {
 const BLOCKER_LIMIT = 2000;
 /** "What is shown" is usually a few sentences, but some testers write up a whole investigation. */
 const SHOWN_LIMIT = 4000;
+/** A Markdown list item: "- ", "* ", "• " or "1. ". */
+export const LIST_ITEM = /^(?:[-*•]|\d+[.)])\s+/;
 
 export interface PostMeta {
   url: string;
@@ -173,11 +175,20 @@ function firstLine(text: string): string {
   return text.split("\n").find((l) => l.trim())?.trim() ?? "";
 }
 
-/** What a tester wrote, kept whole up to a limit: paragraphs separated by a blank line, spacing inside them tidied. */
+/**
+ * What a tester wrote, kept whole up to a limit: paragraphs separated by a blank line, a list's items one per line, and
+ * Markdown emphasis and code marks dropped.
+ */
 function paragraphs(text: string): string | null {
   const kept = text
+    .replace(/\*\*|__|`/g, "")
     .split(/\n\s*\n/)
-    .map((p) => p.replace(/`/g, "").replace(/\s+/g, " ").trim())
+    .map((p) => {
+      const lines = p.split("\n").map((l) => l.replace(/\s+/g, " ").trim()).filter(Boolean);
+      if (!lines[0] || !LIST_ITEM.test(lines[0])) return lines.join(" ");
+      // A list: a line that doesn't start an item carries on the one before.
+      return lines.reduce<string[]>((items, l) => (LIST_ITEM.test(l) ? [...items, l] : [...items.slice(0, -1), `${items.at(-1)} ${l}`]), []).join("\n");
+    })
     .filter(Boolean)
     .join("\n\n");
   if (!kept) return null;

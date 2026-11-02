@@ -7,6 +7,7 @@ import NeedsPanel from "../../components/NeedsPanel.astro";
 import Screenshots from "../../components/Screenshots.astro";
 import ReportDialog from "../../components/ReportDialog.astro";
 import MaintainerTools from "../../components/MaintainerTools.astro";
+import NoteBlock from "../../components/NoteBlock.astro";
 import StageHistory from "../../components/StageHistory.astro";
 import StageLadder from "../../components/StageLadder.astro";
 import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested } from "../../lib/data";
@@ -17,6 +18,7 @@ import { STAGES, stageSlug } from "../../lib/stages";
 import { artSrc, artSrcset, PLATFORM_LABEL, reach, regionName, reportKey } from "../../lib/view";
 import { CONFIRMATIONS_NEEDED } from "../../lib/uploads";
 import { gameTheme } from "../../lib/color";
+import { LIST_ITEM } from "../../lib/parse";
 
 export async function getStaticPaths() {
   return (await getGames()).map((game) => ({ params: { slug: game.slug }, props: { game } }));
@@ -40,8 +42,11 @@ const freshness = retest.lastTested
     ? `Last tested on ${label(retest.lastBuild)} · ${since}`
     : `Last tested ${formatDate(retest.lastTested)} · ${retest.releasesSince === 0 ? "on the current release" : since}`
   : null;
-// The first paragraph of the note shows; a longer write-up opens on request.
-const [noteLead, ...noteRest] = game.note?.split("\n\n") ?? [];
+// The first paragraph of the note shows; a longer write-up opens on request. A paragraph of list items is a list.
+const [noteLead, ...noteRest] = (game.note?.split("\n\n") ?? []).map((p) => {
+  const lines = p.split("\n");
+  return lines.length > 1 ? { items: lines.map((l) => l.replace(LIST_ITEM, "")) } : { text: p };
+});
 const art = game.art;
 // The page takes its accent colours from the game's art; near-grey art keeps the site's own.
 const theme = gameTheme(art?.color);
@@ -219,12 +224,12 @@ const description = (() => {
           (game.note || game.blockers.length > 0) && (
             <section class="card panel">
               <h2>Where it stops</h2>
-              {noteLead && <p class="note">{noteLead}</p>}
+              {noteLead && <NoteBlock block={noteLead} />}
               {noteRest.length > 0 && (
                 <details class="note-more">
                   <summary>Read the rest</summary>
-                  {noteRest.map((p) => (
-                    <p class="note">{p}</p>
+                  {noteRest.map((block) => (
+                    <NoteBlock block={block} />
                   ))}
                 </details>
               )}
@@ -655,12 +660,9 @@ const description = (() => {
     color: var(--faint);
     font-size: 0.85rem;
   }
-  .note {
-    color: var(--muted);
-    overflow-wrap: anywhere;
-  }
   .note-more summary {
     width: fit-content;
+    margin-bottom: 4px;
     color: var(--accent);
     font-size: 0.9rem;
     cursor: pointer;

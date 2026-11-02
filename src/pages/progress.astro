@@ -127,7 +127,9 @@ const today = new Date().toISOString().slice(0, 10);
 const timelines = games.map((g) => g.timeline.map((e) => ({ ...e, stage: corrected(e.stage, e.date, g.correction) })));
 const compat = compatSeries(compatHistory, timelines, today);
 const compatNow = compat.days.at(-1)?.counts ?? {};
-const compatMonthAgo = compat.days.at(-31)?.counts ?? compat.days[0]?.counts ?? {};
+// The change over the last 30 days, or since the first report while there are fewer.
+const compatFrom = compat.days.at(-31) ?? compat.days[0];
+const compatMonthAgo = compatFrom?.counts ?? {};
 const gameFacts = [
   { label: "Tested", stage: null },
   { label: "Presents or better", stage: "Presents" },
@@ -186,19 +188,22 @@ const pace = [
                 How many tested games reach each point, day by day: the furthest stage on a main build, as the <a href="/compatibility">compatibility list</a> shows it. The <a href="/compatibility/tracked">tracked games</a> show the same release by release.
               </p>
             </div>
-            <dl class="facts">
-              {gameFacts.map((f) => {
-                const change = atLeast(compatNow, f.stage) - atLeast(compatMonthAgo, f.stage);
-                return (
-                  <div>
-                    <dt>{f.label}</dt>
-                    <dd>
-                      {number.format(atLeast(compatNow, f.stage))} {change !== 0 && <small title="Change over 30 days">{change > 0 ? "+" : "−"}{number.format(Math.abs(change))}</small>}
-                    </dd>
-                  </div>
-                );
-              })}
-            </dl>
+            <div>
+              <dl class="facts">
+                {gameFacts.map((f) => {
+                  const change = atLeast(compatNow, f.stage) - atLeast(compatMonthAgo, f.stage);
+                  return (
+                    <div>
+                      <dt>{f.label}</dt>
+                      <dd>
+                        {number.format(atLeast(compatNow, f.stage))} {change !== 0 && <small>{change > 0 ? "+" : "−"}{number.format(Math.abs(change))}</small>}
+                      </dd>
+                    </div>
+                  );
+                })}
+              </dl>
+              {compatFrom && <p class="facts-since">Change since {formatDate(compatFrom.date)}</p>}
+            </div>
           </header>
           <div class="chart-wrap">
             <LineChart
@@ -691,6 +696,11 @@ const pace = [
     grid-template-columns: repeat(4, auto);
     gap: 6px 28px;
     margin: 0;
+  }
+  .facts-since {
+    margin: 8px 0 0;
+    color: var(--faint);
+    font-size: 0.75rem;
   }
   .facts dt,
   .label {

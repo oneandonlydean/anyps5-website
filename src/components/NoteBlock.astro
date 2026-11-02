@@ -1,0 +1,34 @@
+---
+/** One paragraph of a tester's note: running text, or a list when every line was a list item. */
+interface Props {
+  block: { text?: string; items?: string[] };
+}
+const { block } = Astro.props;
+---
+
+{
+  block.items ? (
+    <ul>
+      {block.items.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  ) : (
+    <p>{block.text}</p>
+  )
+}
+
+<style>
+  p,
+  ul {
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  ul {
+    margin: 0 0 1em;
+    padding-left: 1.2em;
+  }
+  li + li {
+    margin-top: 4px;
+  }
+</style>

@@ -9,7 +9,7 @@ export async function getStaticPaths() {
 }
 
 /** The start of what a tester wrote, for a feed entry's summary; the report itself has the rest. */
-const short = (text: string) => (text.length > 280 ? text.slice(0, 279).trimEnd() + "…" : text).replace(/\n\n/g, " ");
+const short = (text: string) => (text.length > 280 ? text.slice(0, 279).trimEnd() + "…" : text).replace(/\n+/g, " ");
 
 /** A feed for one game: every stage it reaches and every new test report, for people following that game. */
 export function GET({ site, props }: APIContext) {
