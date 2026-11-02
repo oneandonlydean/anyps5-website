@@ -10,6 +10,8 @@ import { findGames, link, links, meter, siteData, stageColor, words, type SiteDa
 const MESSAGE = 4;
 const AUTOCOMPLETE_RESULT = 8;
 const EPHEMERAL = 64;
+/** No link previews under the message: for replies that are lists of links. */
+const SUPPRESS_EMBEDS = 4;
 /** Discord shows at most 25 suggestions. */
 const SUGGESTIONS = 25;
 const FOLLOWS_MAX = 25;
@@ -24,6 +26,7 @@ export interface Option {
 // Mentions in replies render as names but never notify anyone.
 export const reply = (data: Record<string, unknown>) => Response.json({ type: MESSAGE, data: { allowed_mentions: { parse: [] }, ...data } });
 const privately = (content: string) => reply({ content, flags: EPHEMERAL });
+const privateLinks = (content: string) => reply({ content, flags: EPHEMERAL | SUPPRESS_EMBEDS });
 const unavailable = () => privately("The site's data isn't available right now. Try again in a minute.");
 
 const when = (iso: string, style = "D") => `<t:${Math.floor(Date.parse(iso) / 1000)}:${style}>`;
@@ -192,7 +195,7 @@ function report(env: Env, data: SiteData, query: string): Response {
         `- Or upload the \`anyps5-report.json\` AnyPS5 wrote when it stopped: [report page](${link(env, `/report?game=${g.slug}`)}).`,
       ]
     : [`- Post in [Game bring-up](https://github.com/${env.GITHUB_REPO}/discussions/categories/game-bring-up), one thread per game.`, `- Or upload the \`anyps5-report.json\` AnyPS5 wrote when it stopped: [report page](${link(env, "/report")}).`];
-  return privately(lines.join("\n"));
+  return privateLinks(lines.join("\n"));
 }
 
 /** A FAQ answer: one of data/bot.yaml's (`a:topic`) or a question on the site's FAQ page (`q:q1-2`). */
@@ -248,7 +251,7 @@ async function following(env: Env, data: SiteData, caller: string): Promise<Resp
     const g = bySlug.get(slug);
     return g ? `- [${g.name}](${link(env, `/compatibility/${slug}`)}) · ${g.stage ?? "untested"}` : `- ${slug} (no longer listed)`;
   });
-  return privately(`You follow:\n${list.join("\n")}`);
+  return privateLinks(`You follow:\n${list.join("\n")}`);
 }
 
 const SITE_COMMANDS = new Set(["game", "progress", "library", "wanted", "release", "tracked", "report", "faq", "rules", "follow", "unfollow", "following"]);

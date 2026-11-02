@@ -116,7 +116,7 @@ it("/release, /tracked and /report link where to go", async () => {
   expect(tracked.description).toBe("0 of 2 reach gameplay; 1 of 2 have been run on it.");
   expect(tracked.fields[1].value).toBe("Astro's Playroom (what stopped it is fixed)");
   const report = (await run("report", { game: "astro-bot" })).data;
-  expect(report.flags).toBe(64);
+  expect(report.flags).toBe(64 | 4);
   expect(report.content).toContain("https://github.com/acme/widgets/discussions/7");
   expect(report.content).toContain("https://worker.test/report?game=astro-bot");
 });
@@ -149,4 +149,6 @@ it("says so when the site's data can't be read", async () => {
 it("draws text meters", () => {
   expect(meter(1, 4, 8)).toBe("▰▰▱▱▱▱▱▱ 25%");
   expect(meter(1, 200, 4)).toBe("▱▱▱▱ 0.5%");
+  expect(meter(1456, 1460, 4)).toBe("▰▰▰▰ 99.7%");
+  expect(meter(4, 4, 4)).toBe("▰▰▰▰ 100%");
 });

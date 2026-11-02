@@ -88,7 +88,9 @@ export const stageColor = (stage: StageOrNone | null) => STAGE_COLOR[stageSlug(s
 export function meter(done: number, total: number, width = 12): string {
   const share = total ? done / total : 0;
   const filled = Math.round(share * width);
-  return `${"▰".repeat(filled)}${"▱".repeat(width - filled)} ${(share * 100).toFixed(share < 0.1 && share > 0 ? 1 : 0)}%`;
+  // One decimal near either end, so 99.7% doesn't read as complete or 0.4% as nothing.
+  const near = (share > 0 && share < 0.1) || (share > 0.99 && share < 1);
+  return `${"▰".repeat(filled)}${"▱".repeat(width - filled)} ${(Math.floor(share * (near ? 1000 : 100)) / (near ? 10 : 1)).toFixed(near ? 1 : 0)}%`;
 }
 
 /** Plain words for matching what people type against names: lower case, no punctuation. */
