@@ -1,6 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { parse } from "yaml";
+import { z } from "zod";
 import { GameOverlay, TITLE_ID } from "./schema";
 
 export const DATA = resolve(process.cwd(), "data");
@@ -39,4 +40,22 @@ export async function loadTracked(): Promise<string[]> {
   const bad = ids.filter((id) => typeof id !== "string" || !TITLE_ID.test(id));
   if (bad.length) throw new Error(`data/tracked.yaml: not title IDs: ${bad.join(", ")}`);
   return ids as string[];
+}
+
+const BotText = z
+  .object({
+    rules: z.string().default(""),
+    answers: z.array(z.object({ topic: z.string().regex(/^[a-z0-9-]{1,40}$/), title: z.string().min(1).max(100), text: z.string().min(1).max(1800) }).strict()).default([]),
+  })
+  .strict();
+export type BotText = z.infer<typeof BotText>;
+
+/** data/bot.yaml: the server rules and the Discord bot's own answers for /faq. */
+export async function loadBotText(): Promise<BotText> {
+  const result = BotText.safeParse(parse(await readFile(resolve(DATA, "bot.yaml"), "utf8")) ?? {});
+  if (!result.success) throw new Error(`data/bot.yaml: ${result.error.message}`);
+  const topics = result.data.answers.map((a) => a.topic);
+  const twice = topics.filter((t, i) => topics.indexOf(t) !== i);
+  if (twice.length) throw new Error(`data/bot.yaml: topics listed twice: ${twice.join(", ")}`);
+  return result.data;
 }

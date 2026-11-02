@@ -1,15 +1,16 @@
+import { isSiteCommand, reply, runSiteCommand, suggest, type Option } from "./commands";
 import type { Env, User } from "./env";
 
 const PING = 1;
 const APPLICATION_COMMAND = 2;
+const AUTOCOMPLETE = 4;
 const PONG = 1;
-const MESSAGE = 4;
 const EPHEMERAL = 64;
 const LEADERBOARD_SIZE = 10;
 
 interface Interaction {
   type: number;
-  data?: { name: string; options?: { name: string; value: string }[] };
+  data?: { name: string; options?: Option[] };
   member?: { user: { id: string } };
   user?: { id: string };
 }
@@ -28,10 +29,6 @@ async function verified(req: Request, env: Env, body: string): Promise<boolean> 
     return false;
   }
 }
-
-// Mentions in replies render as names but never notify anyone.
-const reply = (data: Record<string, unknown>) =>
-  Response.json({ type: MESSAGE, data: { allowed_mentions: { parse: [] }, ...data } });
 
 const plural = (n: number) => `**${n}** merged pull request${n === 1 ? "" : "s"}`;
 
@@ -115,7 +112,9 @@ export async function interactions(req: Request, env: Env): Promise<Response> {
   if (interaction.type === PING) return Response.json({ type: PONG });
 
   const caller = interaction.member?.user.id ?? interaction.user?.id;
+  if (interaction.type === AUTOCOMPLETE && interaction.data) return suggest(env, interaction.data.name, interaction.data.options, caller);
   if (interaction.type === APPLICATION_COMMAND && caller) {
+    if (interaction.data && isSiteCommand(interaction.data.name)) return runSiteCommand(env, interaction.data.name, interaction.data.options, caller);
     if (interaction.data?.name === "prs") {
       const target = interaction.data.options?.find((o) => o.name === "user")?.value ?? caller;
       return prs(env, caller, target);

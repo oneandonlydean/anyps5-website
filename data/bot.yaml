@@ -1,0 +1,30 @@
+# What the Discord bot says beyond the site's own data. Edit and merge; the bot picks it up after the site rebuilds.
+#
+# - rules: the server rules, shown by /rules. Discord markdown. Empty, /rules says the rules aren't set yet.
+# - answers: short answers for /faq, alongside the questions on the site's FAQ page. A topic is the word people search
+#   for; the title is what the answer is about. Text is Discord markdown, and links to the site can be written as
+#   paths, like [the guide](/docs/guide).
+
+rules: ""
+
+answers:
+  - topic: report
+    title: How do I report how far a game gets?
+    text: >-
+      Post in the game's [Game bring-up](https://github.com/boykopovar/AnyPS5/discussions/categories/game-bring-up)
+      thread, or upload the `anyps5-report.json` AnyPS5 writes when a game stops on [the report page](/report).
+      `/report` links both for one game.
+  - topic: download
+    title: Where do I get AnyPS5?
+    text: >-
+      [The download page](/download) has the relinker and the system libraries for Linux and Windows. Most people only
+      need [the web converter](/convert), which includes everything.
+  - topic: guide
+    title: How do I set it up?
+    text: >-
+      [The setup guide](/docs/guide) goes step by step: dumping a game, converting it, the libraries, and running it.
+  - topic: stages
+    title: What do the stages on the compatibility list mean?
+    text: >-
+      From the bottom: Converts, Loads, Starts, First draw, Presents (logos or loading screens), Menus, Ingame and
+      Playable. [The compatibility list](/compatibility) explains each.

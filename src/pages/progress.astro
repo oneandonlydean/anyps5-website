@@ -3,7 +3,8 @@ import Base from "../layouts/Base.astro";
 import LibraryMap from "../components/progress/LibraryMap.astro";
 import LineChart from "../components/progress/LineChart.astro";
 import Sparkline from "../components/Sparkline.astro";
-import { getGames, getNeeds, type GameNeeds } from "../lib/data";
+import { getGames, getNeeds } from "../lib/data";
+import { openFunctions, tallyWanted, type Needs } from "../lib/needs";
 import { formatDate, REPO_URL } from "../lib/site";
 import { getCompatHistory, getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
 import { atLeast, compatSeries } from "../lib/compat-history";
@@ -99,21 +100,11 @@ const shaderDates = coverage?.history.map((h) => h.date) ?? [];
 
 // What games are waiting on: open functions and errors named in each game's newest blocker, by how many games name them.
 const gameName = new Map(games.map((g) => [g.slug, g.name]));
-function wanted<T>(pick: (n: GameNeeds) => T[], key: (item: T) => string) {
-  const tally = new Map<string, { item: T; games: string[] }>();
-  for (const [slug, n] of needs) {
-    for (const item of pick(n)) {
-      const entry = tally.get(key(item)) ?? { item, games: [] };
-      if (!entry.games.includes(slug)) entry.games.push(slug);
-      tally.set(key(item), entry);
-    }
-  }
-  return [...tally.values()].sort((a, b) => b.games.length - a.games.length || key(a.item).localeCompare(key(b.item)));
-}
-const wantedFunctions = wanted((n) => n.functions.filter((f) => f.status !== "implemented"), (f) => f.name).slice(0, 12);
+const wanted = <T,>(pick: (n: Needs) => T[], key: (item: T) => string) => tallyWanted(needs, pick, key);
+const wantedFunctions = wanted(openFunctions, (f) => f.name).slice(0, 12);
 const wantedErrors = wanted((n) => n.errors, (e) => e.message).slice(0, 10);
 // The same, by library, for the library map's flags and panel.
-const missingNeeds = wanted((n) => n.functions.filter((f) => f.status !== "implemented"), (f) => f.name);
+const missingNeeds = wanted(openFunctions, (f) => f.name);
 const waitingByLibrary: Record<string, { slug: string; name: string }[]> = {};
 for (const { item, games: slugs } of missingNeeds) {
   const list = (waitingByLibrary[item.library] ??= []);

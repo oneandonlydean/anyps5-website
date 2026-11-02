@@ -7,6 +7,8 @@ if (!DISCORD_CLIENT_ID || !DISCORD_BOT_TOKEN) {
 }
 
 const guildOnly = { integration_types: [0], contexts: [0] };
+/** A text option whose suggestions the Worker fills in as people type. */
+const text = (name, description, required) => ({ type: 3, name, description, required, autocomplete: true });
 const res = await fetch(`https://discord.com/api/v10/applications/${DISCORD_CLIENT_ID}/commands`, {
   method: "PUT",
   headers: { authorization: `Bot ${DISCORD_BOT_TOKEN}`, "content-type": "application/json" },
@@ -35,6 +37,19 @@ const res = await fetch(`https://discord.com/api/v10/applications/${DISCORD_CLIE
       ],
       ...guildOnly,
     },
+    // Answered from the site's data (src/pages/bot/data.json.ts, worker/src/bot/commands.ts).
+    { name: "game", description: "A game's stage on the compatibility list", options: [text("name", "Game name or title ID", true)], ...guildOnly },
+    { name: "progress", description: "System library, shader recompiler and game progress", ...guildOnly },
+    { name: "library", description: "One system library's progress, and what games wait on in it", options: [text("name", "Library, like libkernel or Pad", true)], ...guildOnly },
+    { name: "wanted", description: "The missing functions most games are waiting on", ...guildOnly },
+    { name: "release", description: "The latest AnyPS5 release and its downloads", ...guildOnly },
+    { name: "tracked", description: "How the tracked games do on the latest release", ...guildOnly },
+    { name: "report", description: "How to report how far a game gets", options: [text("game", "The game you ran", false)], ...guildOnly },
+    { name: "faq", description: "Answers to common questions", options: [text("topic", "What it's about", true)], ...guildOnly },
+    { name: "rules", description: "The server rules", ...guildOnly },
+    { name: "follow", description: "Get a direct message when a game reaches a new stage", options: [text("game", "Game to follow", true)], ...guildOnly },
+    { name: "unfollow", description: "Stop following a game", options: [text("game", "Game to stop following", true)], ...guildOnly },
+    { name: "following", description: "The games you follow", ...guildOnly },
   ]),
 });
 const body = await res.json();

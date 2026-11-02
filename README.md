@@ -131,7 +131,11 @@ After a run, AnyPS5 writes `anyps5-report.json` (built by the runtime team on th
 The Worker also runs the bot that used to be the separate gh-worker. It runs in the `production` environment, with the live database and secrets. The demo runs a test copy; see below.
 
 - **Linked roles:** members link GitHub and get roles by merged pull request count.
-- **Slash commands:** `/prs` and `/leaderboard`. Register or update them with `npm --prefix worker run register-commands`, and the linked-role metadata with `register-metadata`. Both need `DISCORD_CLIENT_ID` and `DISCORD_BOT_TOKEN` in the environment.
+- **Slash commands.** Register or update them with `npm --prefix worker run register-commands`, and the linked-role metadata with `register-metadata`. Both need `DISCORD_CLIENT_ID` and `DISCORD_BOT_TOKEN` in the environment. Re-run `register-commands` whenever the list changes.
+  - From the merge history: `/prs` and `/leaderboard`.
+  - From the site's data, which the Worker reads from `/bot/data.json` in its own assets (`src/pages/bot/data.json.ts`), so they are as current as the last site build: `/game`, `/progress`, `/library`, `/wanted`, `/release`, `/tracked`, `/report`, `/faq` and `/rules`. Games, libraries and FAQ topics are suggested as you type.
+  - `/follow`, `/unfollow` and `/following`: a member gets a direct message when a game they follow reaches a new stage, up to 10 members per stage rise. Someone who can't be messaged stops following. Direct messages need the bot itself in the server: add the app with the `bot` scope, not only `applications.commands`.
+- **Answers and rules:** `/faq` answers from the site's FAQ page and from `data/bot.yaml`, where maintainers add short answers and the server rules for `/rules`. `npm run validate` checks the file.
 - **Announcements:** every minute it checks for merges, sorted with the same classifier as `/updates` (`src/lib/merges.ts`), and posts each one as it lands. A linked author is pinged. Other mentions in titles and notes never ping.
 
 | Webhook secret | What goes there |
@@ -141,6 +145,10 @@ The Worker also runs the bot that used to be the separate gh-worker. It runs in 
 | `DISCORD_WEBHOOK_RELEASES` | New releases, checked every 5 minutes |
 | `DISCORD_WEBHOOK_GAMES` | Games reaching a new stage, from the site's games feed, every 2 minutes |
 | `DISCORD_WEBHOOK_DIGEST` | Yesterday's progress summary, once a day from 01:00 UTC (falls back to `DISCORD_WEBHOOK_PROGRESS`) |
+| `DISCORD_WEBHOOK_LIBRARIES` | Library milestones (first function, half, complete) as they happen; without it they come with the daily summary |
+| `DISCORD_WEBHOOK_WEEKLY` | A weekly summary from Monday 01:00 UTC: libraries, shaders and games against the week before, what moved up, what was merged (falls back to `DISCORD_WEBHOOK_DIGEST`, then `DISCORD_WEBHOOK_PROGRESS`) |
+
+Release posts link the downloads and sum up what was merged since the release before, from the merge history. A fresh database has no history until `worker/scripts/backfill-merges.mjs` fills it, so `/leaderboard` and those sums start empty without it.
 
 - **Keeping the site current:** when the bot sees a user-facing merge, a release or new bring-up reports, it asks this repository to rebuild. Requests are at most every 2 minutes, and one that comes too soon is kept and sent later. GitHub runs one build at a time and keeps only the newest waiting one, so on a busy day the site is rebuilt about every 10 minutes.
 
@@ -162,7 +170,7 @@ Set each secret from the repository root with `npx wrangler secret put <NAME> --
    - General Information → Interactions Endpoint URL: `https://demo.anyps5.gg/interactions`
    - General Information → Linked Roles Verification URL: `https://demo.anyps5.gg/linked-role`
 7. **Commands and role metadata.** In fish, `read -sx DISCORD_BOT_TOKEN` and `read -x DISCORD_CLIENT_ID` keep the token off screen and out of history. Then run `npm --prefix worker run register-metadata` and `npm --prefix worker run register-commands`.
-8. **Add it to the server.** Open `https://discord.com/oauth2/authorize?client_id=<Application ID>&scope=applications.commands`. Then, to keep `/prs` and `/leaderboard` in the test channel, go to Server Settings → Integrations → the app → turn off "All Channels" and add `#bot-test`.
+8. **Add it to the server.** Open `https://discord.com/oauth2/authorize?client_id=<Application ID>&scope=bot+applications.commands&permissions=0`. The `bot` scope lets it send `/follow` messages; it asks for no permissions. Then, to keep `/prs` and `/leaderboard` in the test channel, go to Server Settings → Integrations → the app → turn off "All Channels" and add `#bot-test`.
 9. **Linked role.** Server Settings → Roles → create a role such as "Contributor (test)" → Links → Add requirement → the test app, for example at least 1 merged pull request. Get it from the server menu → Linked Roles, which takes you through Discord and GitHub sign-in.
 
 What to expect: merges post within a minute or two of landing (upstream merges about 160 a day, so the channel gets busy). A game reaching a new stage posts within about two minutes of the site rebuilding. A release posts within five minutes. The daily summary posts after 01:00 UTC. `npx wrangler tail --env=""` shows the bot's logs. At cutover, the production environment uses the live app and database, and the test app can be deleted.

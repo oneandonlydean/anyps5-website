@@ -99,3 +99,22 @@ export function matcher(functions: FunctionIndex, sites: ErrorSite[]): Matcher {
 function mostSpecific(errors: ErrorNeed[]): ErrorNeed[] {
   return errors.filter((e) => !errors.some((o) => o !== e && o.message.length > e.message.length && o.message.includes(e.message)));
 }
+
+/**
+ * What games are waiting on: the items each game's newest blocker names, with the games naming each, most-named first.
+ * The progress page's most-wanted lists and the Discord bot's /wanted both rank from this.
+ */
+export function tallyWanted<T>(needs: Map<string, Needs>, pick: (n: Needs) => T[], key: (item: T) => string): { item: T; games: string[] }[] {
+  const tally = new Map<string, { item: T; games: string[] }>();
+  for (const [slug, n] of needs) {
+    for (const item of pick(n)) {
+      const entry = tally.get(key(item)) ?? { item, games: [] };
+      if (!entry.games.includes(slug)) entry.games.push(slug);
+      tally.set(key(item), entry);
+    }
+  }
+  return [...tally.values()].sort((a, b) => b.games.length - a.games.length || key(a.item).localeCompare(key(b.item)));
+}
+
+/** A blocker's functions that are still open. */
+export const openFunctions = (n: Needs) => n.functions.filter((f) => f.status !== "implemented");

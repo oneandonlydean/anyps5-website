@@ -26,6 +26,10 @@ export interface Env {
   DISCORD_WEBHOOK_GAMES?: string;
   /** Yesterday's progress summary, once a day; falls back to DISCORD_WEBHOOK_PROGRESS. */
   DISCORD_WEBHOOK_DIGEST?: string;
+  /** Library milestones as they happen; without it they come with the daily summary. */
+  DISCORD_WEBHOOK_LIBRARIES?: string;
+  /** The weekly summary; falls back to DISCORD_WEBHOOK_DIGEST, then DISCORD_WEBHOOK_PROGRESS. */
+  DISCORD_WEBHOOK_WEEKLY?: string;
   TOKEN_KEY: string;
 
   // The site's own features: GitHub sign-in, uploaded run reports, maintainer tools.

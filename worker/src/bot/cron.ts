@@ -1,5 +1,5 @@
 import { flushPendingRebuild, requestRebuild } from "../site/rebuild";
-import { announceDigest, announceGames, announceReleases, classifyPull, mergeMessage, mergeWebhook, watchDiscussions } from "./announce";
+import { announceDigest, announceGames, announceLibraries, announceReleases, announceWeek, classifyPull, mergeMessage, mergeWebhook, watchDiscussions } from "./announce";
 import * as discord from "./discord";
 import { log, makeCtx, now, type Ctx, type Env, type User } from "./env";
 import * as github from "./github";
@@ -30,6 +30,7 @@ const RELEASE_EVERY = 5;
 const GAMES_EVERY = 2;
 const DISCUSSIONS_EVERY = 2;
 const DIGEST_EVERY = 10;
+const WEEK_EVERY = 30;
 
 type Step = [string, (ctx: Ctx) => Promise<void>];
 
@@ -46,6 +47,8 @@ export async function runCron(env: Env, at = new Date()): Promise<void> {
     ...every(RELEASE_EVERY, ["releases", announceReleases]),
     ...every(GAMES_EVERY, ["games", announceGames]),
     ...every(DIGEST_EVERY, ["digest", (c) => announceDigest(c, at)]),
+    ...every(DIGEST_EVERY, ["libraries", announceLibraries]),
+    ...every(WEEK_EVERY, ["week", (c) => announceWeek(c, at)]),
     ...every(DISCUSSIONS_EVERY, ["discussions", watchDiscussions]),
     ["poll", pollMerges],
     ["resync", resync],

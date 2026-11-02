@@ -1,5 +1,5 @@
-// Checks data/games/*.yaml beyond the schema that loadOverlays already enforces, and data/tracked.yaml.
-import { loadGenerated, loadOverlays, loadTracked } from "../src/lib/load";
+// Checks data/games/*.yaml beyond the schema that loadOverlays already enforces, data/tracked.yaml and data/bot.yaml.
+import { loadBotText, loadGenerated, loadOverlays, loadTracked } from "../src/lib/load";
 import type { Thread } from "../src/lib/schema";
 
 const overlays = await loadOverlays();
@@ -28,8 +28,11 @@ const known = new Set([...(await loadGenerated<Thread[]>("threads.json", [])).fl
 const unknown = tracked.filter((id) => !known.has(id));
 if (known.size && unknown.length) console.warn(`data/tracked.yaml: no game has ${unknown.join(", ")}`);
 
+// Throws on anything wrong with it.
+const bot = await loadBotText();
+
 if (problems.length) {
   console.error(problems.join("\n"));
   process.exit(1);
 }
-console.log(`${overlays.length} game files and ${tracked.length} tracked games valid`);
+console.log(`${overlays.length} game files, ${tracked.length} tracked games and ${bot.answers.length} bot answers valid`);

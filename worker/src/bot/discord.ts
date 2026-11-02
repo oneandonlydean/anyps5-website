@@ -104,3 +104,27 @@ export async function postWebhook({ http }: Ctx, label: string, url: string, mes
   await res.body?.cancel();
   if (!res.ok) throw new HttpError(label, res.status);
 }
+
+/**
+ * Sends a member a direct message from the bot. Returns false when Discord refuses it: the member blocks messages from
+ * server members, left every server the bot is in, or the bot isn't in a server with them.
+ */
+export async function directMessage({ env, http }: Ctx, discordId: string, message: Record<string, unknown>): Promise<boolean> {
+  const headers = { authorization: `Bot ${env.DISCORD_BOT_TOKEN}`, "content-type": "application/json" };
+  const open = await http.send("discord dm channel", `${API}/users/@me/channels`, { method: "POST", headers, body: JSON.stringify({ recipient_id: discordId }) });
+  if (!open.ok) {
+    await open.body?.cancel();
+    if (open.status === 400 || open.status === 403 || open.status === 404) return false;
+    throw new HttpError("discord dm channel", open.status);
+  }
+  const { id } = await open.json<{ id: string }>();
+  const sent = await http.send("discord dm", `${API}/channels/${id}/messages`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ allowed_mentions: { parse: [] }, ...message }),
+  });
+  await sent.body?.cancel();
+  if (sent.status === 403) return false;
+  if (!sent.ok) throw new HttpError("discord dm", sent.status);
+  return true;
+}

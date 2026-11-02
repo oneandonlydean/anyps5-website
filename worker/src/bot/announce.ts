@@ -2,6 +2,8 @@ import { AREA_LABEL, classify, typeLabel, type ClassifiedMerge, type MergeArea }
 import * as discord from "./discord";
 import { baseUrl, log, type Ctx, type Env } from "./env";
 import * as github from "./github";
+import { siteData } from "./site-data";
+import { releaseMessage, weekFigures, weekMessage, weekOf, type WeekFigures } from "./summaries";
 
 /**
  * What the bot posts, and where. Merges are sorted with the site's own classifier, so Discord and /updates agree on
@@ -68,19 +70,7 @@ export async function announceReleases(ctx: Ctx): Promise<void> {
   const seen = await kvGet(ctx, "last_release");
   if (seen === release.tag_name) return;
   if (seen !== null) {
-    const notes = (release.body ?? "").trim();
-    await discord.postWebhook(ctx, "discord releases webhook", webhook, {
-      embeds: [
-        {
-          title: `AnyPS5 ${release.name || release.tag_name}`.slice(0, 256),
-          url: release.html_url,
-          description: (notes.length > 1500 ? `${notes.slice(0, 1500)}…` : notes) || undefined,
-          color: 0x5b9bff,
-          fields: [{ name: "Get it", value: `[Download](${baseUrl(ctx.env)}/download) · [Web converter](${baseUrl(ctx.env)}/convert)` }],
-          timestamp: release.published_at,
-        },
-      ],
-    });
+    await discord.postWebhook(ctx, "discord releases webhook", webhook, await releaseMessage(ctx, release));
     log("release_announced", { tag: release.tag_name });
     ctx.changes.add("release");
   }
@@ -120,6 +110,8 @@ interface FeedBridge {
   color: number;
   /** Entries to leave for later, such as a day that is not over yet. */
   ready?: (entry: FeedEntry) => boolean;
+  /** Runs after an entry is posted, such as telling the members who follow its game. */
+  after?: (ctx: Ctx, entry: FeedEntry) => Promise<void>;
 }
 
 /**
@@ -155,12 +147,36 @@ async function announceFeed(ctx: Ctx, bridge: FeedBridge): Promise<void> {
     seen.add(entry.id);
     await remember();
     log("feed_entry_announced", { feed: bridge.path, id: entry.id });
+    await bridge.after?.(ctx, entry);
   }
 }
 
-/** Games that reached a new stage, from the site's games feed. */
+/** Games that reached a new stage, from the site's games feed; members who follow the game get a direct message. */
 export const announceGames = (ctx: Ctx) =>
-  announceFeed(ctx, { path: "/feeds/games.xml", webhook: ctx.env.DISCORD_WEBHOOK_GAMES, key: "games_seen", color: 0x3ddc84 });
+  announceFeed(ctx, { path: "/feeds/games.xml", webhook: ctx.env.DISCORD_WEBHOOK_GAMES, key: "games_seen", color: 0x3ddc84, after: tellFollowers });
+
+/** Direct messages per stage rise. Each takes two requests from the run's budget of about 44. */
+const FOLLOWERS_PER_RISE = 10;
+
+/** Tells the members following a game that it reached a new stage (entry ids look like /updates#stage:<slug>:<stage>). */
+async function tellFollowers(ctx: Ctx, entry: FeedEntry): Promise<void> {
+  const slug = entry.id.match(/#stage:([^:]+):/)?.[1];
+  if (!slug) return;
+  const { results } = await ctx.env.DB.prepare("SELECT discord_id FROM follows WHERE slug = ? ORDER BY created_at").bind(slug).all<{ discord_id: string }>();
+  if (results.length > FOLLOWERS_PER_RISE) log("followers_skipped", { slug, skipped: results.length - FOLLOWERS_PER_RISE });
+  const message = {
+    embeds: [{ title: entry.title.slice(0, 256), url: entry.url, description: `${entry.summary.slice(0, 1500)}
+
+You follow this game. \`/unfollow\` it in the server to stop these.`, color: 0x3ddc84 }],
+  };
+  for (const { discord_id } of results.slice(0, FOLLOWERS_PER_RISE)) {
+    // A member who can't be messaged stops following, so they aren't tried on every rise.
+    if (!(await discord.directMessage(ctx, discord_id, message))) {
+      await ctx.env.DB.prepare("DELETE FROM follows WHERE discord_id = ?").bind(discord_id).run();
+      log("follower_unreachable", { slug });
+    }
+  }
+}
 
 /**
  * Yesterday's progress summary and library milestones, from the site's daily feed. A day's summary keeps changing until the day is over and
@@ -170,13 +186,42 @@ export function announceDigest(ctx: Ctx, at = new Date()) {
   const today = at.toISOString().slice(0, 10);
   const yesterday = new Date(at.getTime() - 864e5).toISOString().slice(0, 10);
   const settled = (day: string) => day < yesterday || (day === yesterday && at.getUTCHours() >= 1);
+  // With a channel of their own, library milestones are posted there as they happen instead.
+  const ownChannel = (e: FeedEntry) => Boolean(ctx.env.DISCORD_WEBHOOK_LIBRARIES) && e.id.includes("#library:");
   return announceFeed(ctx, {
     path: "/feeds/progress-daily.xml",
     webhook: ctx.env.DISCORD_WEBHOOK_DIGEST || ctx.env.DISCORD_WEBHOOK_PROGRESS,
     key: "digest_seen",
     color: 0x37e0c8,
-    ready: (e) => settled(e.id.match(/(?:digest|week|library):(\d{4}-\d{2}-\d{2})/)?.[1] ?? today),
+    ready: (e) => !ownChannel(e) && settled(e.id.match(/(?:digest|week|library):(\d{4}-\d{2}-\d{2})/)?.[1] ?? today),
   });
+}
+
+/** Library milestones as they happen, when they have a channel of their own (otherwise they come with the daily summary). */
+export const announceLibraries = (ctx: Ctx) =>
+  announceFeed(ctx, { path: "/feeds/libraries.xml", webhook: ctx.env.DISCORD_WEBHOOK_LIBRARIES, key: "libraries_seen", color: 0x5b9bff });
+
+/**
+ * The weekly summary, from Monday 01:00 UTC: libraries, shaders and games against the week before, what moved up and
+ * what was merged. The first run only records this week's figures to compare against.
+ */
+export async function announceWeek(ctx: Ctx, at = new Date()): Promise<void> {
+  const webhook = ctx.env.DISCORD_WEBHOOK_WEEKLY || ctx.env.DISCORD_WEBHOOK_DIGEST || ctx.env.DISCORD_WEBHOOK_PROGRESS;
+  if (!webhook) return;
+  const week = weekOf(at);
+  const stored = await kvGet(ctx, "week_figures");
+  const before = stored ? (JSON.parse(stored) as WeekFigures) : null;
+  if (before?.week === week || (before && at.getUTCDay() === 1 && at.getUTCHours() < 1)) return;
+  const data = await siteData(ctx.env);
+  if (!data) return;
+  const now = weekFigures(data, week, at.toISOString());
+  if (before) {
+    const feed = ctx.env.ASSETS ? await ctx.env.ASSETS.fetch(`${baseUrl(ctx.env)}/feeds/games.xml`) : null;
+    const risen = feed?.ok ? parseFeed(await feed.text()).filter((e) => e.id.includes("#stage:") && e.updated > before.at).map((e) => `[${e.title}](${e.url})`) : [];
+    await discord.postWebhook(ctx, "discord weekly webhook", webhook, await weekMessage(ctx, data, now, before, risen));
+    log("week_announced", { week });
+  }
+  await kvSet(ctx, "week_figures", JSON.stringify(now));
 }
 
 /**

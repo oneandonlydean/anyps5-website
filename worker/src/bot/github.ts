@@ -190,6 +190,7 @@ export interface Release {
   html_url: string;
   body: string | null;
   published_at: string;
+  assets?: { name: string; browser_download_url: string; size: number }[];
 }
 
 /** The newest published release (not a draft or pre-release), or null if there is none. */
