@@ -214,10 +214,12 @@ const groups: { title: string; text: string; items: { label: string; asset?: Rel
     gap: 10px;
     margin-top: 18px;
   }
-  .size {
+  /* In a button the size takes the button's own text colour, so it reads on the accent gradient too. */
+  .platform-actions .size {
+    color: inherit;
     font-weight: 500;
   }
-  .size::before {
+  .platform-actions .size::before {
     content: "· ";
   }
   .switch {
@@ -285,7 +287,7 @@ const groups: { title: string; text: string; items: { label: string; asset?: Rel
     font-size: 0.8rem;
     text-overflow: ellipsis;
   }
-  .size {
+  li > .size {
     color: var(--muted);
     font-size: 0.88rem;
     font-variant-numeric: tabular-nums;
