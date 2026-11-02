@@ -97,7 +97,7 @@ async function testers(env: Env, data: SiteData, period: Period): Promise<Respon
       {
         title: `Top testers · ${PERIOD[period]}`,
         url: link(env, "/compatibility"),
-        description: `**${num(totals.reports + totals.uploads)}** reports (${num(totals.uploads)} uploaded) · **${num(totals.month)}** in 30 days · **${num(totals.week)}** in 7 days · ${num(totals.testers)} testers\n\n${lines.join("\n")}`,
+        description: `**${num(totals.reports + totals.uploads)}** reports${totals.uploads ? ` (${num(totals.uploads)} uploaded)` : ""} · **${num(totals.month)}** in 30 days · **${num(totals.week)}** in 7 days · ${num(totals.testers)} testers\n\n${lines.join("\n")}`,
         color: 0x2fcfa6,
         footer: { text: "Bring-up reports and uploaded run reports · /report to add yours" },
       },
