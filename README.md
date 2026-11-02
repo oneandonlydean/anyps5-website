@@ -151,7 +151,7 @@ The demo runs a test copy of the bot with its own Discord app and its own databa
 Set each secret from the repository root with `npx wrangler secret put <NAME> --env=""`, which prompts for the value.
 
 1. **Discord app.** In the [Developer Portal](https://discord.com/developers/applications), create a new application, for example "AnyPS5 (test)".
-   - **General Information:** copy the Application ID into `DISCORD_CLIENT_ID` and the Public Key into `DISCORD_PUBLIC_KEY`.
+   - **General Information:** put the Application ID in `DISCORD_CLIENT_ID` and the Public Key in `DISCORD_PUBLIC_KEY`, under the demo's `vars` in `wrangler.jsonc`. Neither is secret.
    - **OAuth2:** copy the Client Secret into `DISCORD_CLIENT_SECRET`, and add the redirect `https://demo.anyps5.gg/discord/callback`.
    - **Bot:** reset the token and copy it into `DISCORD_BOT_TOKEN`.
 2. **GitHub OAuth app**, for linking GitHub accounts to roles. Create one in [Developer settings](https://github.com/settings/developers) with the callback `https://demo.anyps5.gg/github/callback`. Its Client ID goes in `GITHUB_CLIENT_ID` and a new client secret in `GITHUB_CLIENT_SECRET`. This is separate from the site's sign-in app.

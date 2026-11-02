@@ -31,8 +31,11 @@
     // Ask the site repository to check upstream this often (minutes); it rebuilds only when something changed.
     "SITE_REFRESH_MINUTES": "30",
     "GITHUB_REPO": "boykopovar/AnyPS5",
-    "BASE_URL": "https://demo.anyps5.gg"
-    // DISCORD_PUBLIC_KEY is a secret here, from the test Discord app.
+    "BASE_URL": "https://demo.anyps5.gg",
+    // The test Discord app, "AnyPS5 (test)": its Application ID and the public key that verifies slash-command requests.
+    // Neither is secret; its client secret and bot token are secrets.
+    "DISCORD_CLIENT_ID": "1566680323905953993",
+    "DISCORD_PUBLIC_KEY": "d45c3dbab0d9bcfee04786487d8b0d64c99490ff560d28fd85c58dae1c3bb2be"
   },
 
   "env": {
