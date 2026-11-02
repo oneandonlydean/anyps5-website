@@ -35,7 +35,9 @@
     // The test Discord app, "AnyPS5 (test)": its Application ID and the public key that verifies slash-command requests.
     // Neither is secret; its client secret and bot token are secrets.
     "DISCORD_CLIENT_ID": "1566680323905953993",
-    "DISCORD_PUBLIC_KEY": "d45c3dbab0d9bcfee04786487d8b0d64c99490ff560d28fd85c58dae1c3bb2be"
+    "DISCORD_PUBLIC_KEY": "d45c3dbab0d9bcfee04786487d8b0d64c99490ff560d28fd85c58dae1c3bb2be",
+    // The test bot's GitHub OAuth app, "AnyPS5 bot (test)", for linking GitHub accounts; its client secret is a secret.
+    "GITHUB_CLIENT_ID": "Ov23li1p96PYxfbYBiOk"
   },
 
   "env": {
