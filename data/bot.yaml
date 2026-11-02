@@ -5,7 +5,30 @@
 #   for; the title is what the answer is about. Text is Discord markdown, and links to the site can be written as
 #   paths, like [the guide](/docs/guide).
 
-rules: ""
+rules: |-
+  **1. No piracy, ever.** Do not share, request, or link game files, PKGs, firmware, decryption keys, or proprietary libraries, and don't ask where to find them. AnyPS5 does not include or require any of these. Dump your own games from your own console. **Breaking this rule = instant ban.**
+
+  **2. Be respectful.** No harassment, hate speech, slurs, or personal attacks.
+
+  **3. No ETA or game demands.** This is a volunteer project. Asking "when will X work?" doesn't help. Good compatibility reports do.
+
+  **4. Search before asking.** Check #faq, the docs, and existing posts first.
+
+  **5. Post useful reports.** Include your OS, GPU + driver version, AnyPS5 version/commit, the game, and the full stderr output. If you're using a fork, say so.
+
+  **6. Confirmed bugs go to GitHub Issues.** Discord is for discussion, while GitHub is the source of truth. Bugs that only happen on a fork belong to that fork, not the main repo.
+
+  **7. Keep channels on-topic.** Dev channels are for development, not support.
+
+  **8. Share forks responsibly.** Forks are welcome but link the **public source repo**, not just a download. Binaries must come only from official releases or a fork's own Releases/CI, never file hosts, cloud drives, or DMs. Forks are unofficial and unsupported by the AnyPS5 team, so use them at your own risk. Forks may not be sold, presented as the official project, or distributed without source.
+
+  **9. No NSFW, spam, or self-promotion (excludes AnyPS5 forks).**
+
+  **10. No political discussions.** Please keep political debates, campaigning, and political arguments out of this server. Keep conversations focused on AnyPS5 and the topics of each channel.
+
+  **11. Follow Discord's Terms of Service.** Staff decisions are final.
+
+  **Enforcement:** warning → timeout → kick → ban. Piracy, malware, or hate speech = immediate ban.
 
 answers:
   - topic: report

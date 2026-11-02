@@ -316,7 +316,7 @@ function faqMatches(data: SiteData, query: string) {
 
 function rules(env: Env, data: SiteData): Response {
   if (!data.rules) return privately("The server rules aren't set yet. Maintainers add them in `data/bot.yaml`.");
-  return reply({ embeds: [{ title: "Server rules", description: links(env, data.rules).slice(0, 4000), color: 0x5b9bff }] });
+  return reply({ embeds: [{ title: "📜 AnyPS5 Server Rules", description: links(env, data.rules).slice(0, 4000), color: 0x5b9bff }] });
 }
 
 async function follow(env: Env, data: SiteData, caller: string, query: string): Promise<Response> {
