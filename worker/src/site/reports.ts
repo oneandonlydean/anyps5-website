@@ -6,7 +6,8 @@ import { requestRebuild } from "./rebuild";
 
 const PER_DAY = 30;
 const FACTS_TTL = 600_000;
-const TITLE_ID = /^[A-Z]{4}[0-9]{5}$/;
+/** The title IDs the site lists games under (src/lib/schema.ts): PS5 and PS4 games. */
+const TITLE_ID = /^(PPSA|CUSA)[0-9]{5}$/;
 /**
  * A run report records stages up to Presents; whether a menu responds or gameplay is reached takes someone watching.
  * The uploader can say so for a run that presented frames, and like any upload it counts once someone confirms it.
@@ -74,7 +75,7 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   // A chosen game that isn't on the list yet needs its name, and a maintainer checks the two match before it shows.
   let titleName: string | null = null;
   if (!report.game.titleId) {
-    if (!TITLE_ID.test(titleId)) return problem(400, "That isn't a title ID. It's four letters and five digits, like PPSA12345.");
+    if (!TITLE_ID.test(titleId)) return problem(400, "That isn't a PS5 or PS4 title ID. It's PPSA or CUSA and five digits, like PPSA12345.");
     const given = params.get("name")?.trim().slice(0, 120) || null;
     if (known.titleIds.size === 0) {
       // The list couldn't be read, so whether the game is on it is unknown: keep any name given and let a maintainer check.

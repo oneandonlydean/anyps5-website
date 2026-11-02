@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildLabel, commitIn, reportBuild, testedOn, uploadBuild, type BuildData } from "../src/lib/builds";
+import { buildLabel, commitIn, lowerThan, reportBuild, testedOn, uploadBuild, type BuildData } from "../src/lib/builds";
 import type { Report } from "../src/lib/schema";
 import type { UploadSummary } from "../src/lib/uploads";
 
@@ -108,11 +108,30 @@ describe("testedOn and unconfirmed or overruled results", () => {
   it("counts an uploader's stated stage only once confirmed", () => {
     expect(testedOn({ reports: [], uploads: [upload("Playable", 1)] }, data).releases[0]!.stage).toBe("Presents");
     expect(testedOn({ reports: [], uploads: [upload("Playable", 1), upload("Ingame", 2)] }, data).releases[0]!.stage).toBe("Ingame");
+    // Two say Menus and one of them Ingame too: the Ingame claim counts as the confirmed Menus, not below it.
+    const tested = testedOn({ reports: [], uploads: [upload("Menus", 1), upload("Menus", 2), { ...upload("Ingame", 2), at: "2026-10-28T00:00:00Z" }] }, data);
+    expect(tested.newest?.stage).toBe("Menus");
   });
 
   it("caps reports a maintainer's correction overruled", () => {
     const reports = [report({ build: "main 44a59edc3a", stage: "Ingame", date: "2026-10-26T00:00:00Z" })];
     expect(testedOn({ reports, uploads: [], correction: { stage: "Menus", date: "2026-10-28" } }, data).releases[0]!.stage).toBe("Menus");
     expect(testedOn({ reports, uploads: [], correction: { stage: "Menus", date: "2026-10-25" } }, data).releases[0]!.stage).toBe("Ingame");
+  });
+});
+
+describe("release names and lower results", () => {
+  it("reads 'after vX' as main after that release", () => {
+    expect(reportBuild(report({ build: "main, newer than v0.1.3" }), data)).toEqual({ release: "v0.1.3", exact: false, basis: "release" });
+    expect(reportBuild(report({ build: "the v0.1.3 download" }), data)).toEqual({ release: "v0.1.3", exact: true, basis: "release" });
+  });
+
+  it("calls a release lower against the best of every earlier one", () => {
+    const r = (release: string, stage: Report["stage"], approximate = false) => ({ release, stage: stage!, results: 1, first: "", last: "", approximate });
+    const releases = [r("v0.1.4", "Menus"), r("v0.1.3", "Menus"), r("v0.1.2", "Starts"), r("v0.1.1", "Ingame")];
+    expect(lowerThan(releases, 0)?.release).toBe("v0.1.1");
+    expect(lowerThan(releases, 1)?.release).toBe("v0.1.1");
+    expect(lowerThan(releases, 3)).toBeNull();
+    expect(lowerThan([r("v0.1.4", "Menus", true), ...releases.slice(1)], 0)).toBeNull();
   });
 });

@@ -135,18 +135,21 @@ async function build(): Promise<Update[]> {
     });
   }
 
-  // The newest release asks for the tracked games to be run on it, once, listing those not run on it when it came out.
+  // The newest release asks for the tracked games to be run on it: one entry per release, dated when it came out. Its
+  // text keeps up with which are still to run, and says so once all have been.
   const latest = releases.find((r) => !r.prerelease);
-  const notRun = latest ? tracked.filter((g) => !tested.get(g.slug)?.releases.some((r) => r.release === latest.tag)) : [];
-  if (latest && notRun.length) {
+  if (latest && tracked.length) {
+    const notRun = tracked.filter((g) => !tested.get(g.slug)?.releases.some((r) => r.release === latest.tag));
     const ready = notRun.filter((g) => retest.get(g.slug)?.ready);
     const names = [...ready, ...notRun.filter((g) => !ready.includes(g))].map((g) => g.name);
     updates.push({
       id: `retest:${latest.tag}`,
       date: latest.published,
       kind: "retest",
-      title: `Retest wanted on ${latest.tag}: ${notRun.length} tracked game${notRun.length === 1 ? "" : "s"}`,
-      text: `Not run on ${latest.tag} yet: ${names.slice(0, 10).join(", ")}${names.length > 10 ? ` and ${names.length - 10} more` : ""}.${ready.length ? ` What stopped ${ready.length === 1 ? ready[0]!.name : `${ready.length} of them`} has been fixed since.` : ""}`,
+      title: `Retest the tracked games on ${latest.tag}`,
+      text: notRun.length
+        ? `${notRun.length} of ${tracked.length} not run on it yet: ${names.slice(0, 10).join(", ")}${names.length > 10 ? ` and ${names.length - 10} more` : ""}.${ready.length ? ` What stopped ${ready.length === 1 ? ready[0]!.name : `${ready.length} of them`} has been fixed since.` : ""}`
+        : `All ${tracked.length} have been run on it.`,
       url: "/compatibility/tracked",
     });
   }

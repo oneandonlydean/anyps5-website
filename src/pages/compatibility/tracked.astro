@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import LocalDate from "../../components/LocalDate.astro";
 import { getBuilds, getRetest, getTested, getTrackedGames } from "../../lib/data";
-import type { ReleaseResult } from "../../lib/builds";
+import { lowerThan, type ReleaseResult } from "../../lib/builds";
 import { SITE_REPO_URL } from "../../lib/site";
 import { stageRank, stageSlug, STAGES } from "../../lib/stages";
 
@@ -14,11 +14,8 @@ const releases = builds.releases.slice(0, COLUMNS).map((r) => r.tag);
 const rows = games.map((game) => {
   const results = tested.get(game.slug)!.releases;
   const cells = releases.map((tag) => results.find((r) => r.release === tag) ?? null);
-  // A cell is lower than the nearest older release with a result: a possible regression.
-  const lower = cells.map((cell, i) => {
-    const older = cells.slice(i + 1).find(Boolean);
-    return Boolean(cell && older && !cell.approximate && stageRank(cell.stage) < stageRank(older.stage));
-  });
+  // Lower than an earlier release got, by the same rule as the game page and the feed.
+  const lower = cells.map((cell) => Boolean(cell && lowerThan(results, results.indexOf(cell))));
   return { game, cells, lower, retest: retest.get(game.slug)! };
 });
 
@@ -118,7 +115,7 @@ const short = (stage: string) => STAGES.find((s) => s.name === stage)?.short ?? 
       </div>
       <p class="hint">
         Each cell is the furthest stage reported on that release or on main before the next one, from Discussions reports and uploaded run reports, placed by the commit they were built from. Faded cells name no commit and are
-        placed by date. ↓ marks a result lower than on an earlier release: a regression, or a different setup.
+        placed by date. ↓ marks a result lower than an earlier release reached: a regression, or a different setup.
       </p>
     </div>
   </section>

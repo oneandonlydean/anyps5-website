@@ -60,6 +60,11 @@ export interface Community {
 /** Build kinds whose reports set a game's headline stage. */
 export const QUALIFYING = new Set(["main", "unknown"]);
 
+/** A result from before a maintainer's correction that claimed more than it counts at the corrected stage. */
+export function corrected(stage: StageOrNone, date: string, correction: { stage: StageOrNone; date: string } | null | undefined): StageOrNone {
+  return correction && date.slice(0, 10) <= correction.date && stageRank(stage) > stageRank(correction.stage) ? correction.stage : stage;
+}
+
 export function slugify(text: string): string {
   return text
     .normalize("NFKD")

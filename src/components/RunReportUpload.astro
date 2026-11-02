@@ -68,7 +68,7 @@ const { games } = Astro.props;
   // Every listed title ID, regional variants too: the list shows only each game's first.
   const listed = new Set<string>(JSON.parse(root.dataset.listed ?? "[]"));
   // A picked game is sent as its title ID: "Name (PPSA12345)" or a bare ID. One not on the list needs a name too.
-  const chosenId = () => (pick.hidden ? null : (pickInput.value.toUpperCase().match(/\b([A-Z]{4}\d{5})\)?\s*$/)?.[1] ?? null));
+  const chosenId = () => (pick.hidden ? null : (pickInput.value.toUpperCase().match(/\b((?:PPSA|CUSA)\d{5})\)?\s*$/)?.[1] ?? null));
   pickInput.addEventListener("input", () => {
     const id = chosenId();
     pickName.hidden = !id || listed.has(id);
@@ -212,6 +212,9 @@ const { games } = Astro.props;
       return;
     }
     result.append(el("p", data.error ?? "The upload didn't work. Try again.", "bad"));
+    // The site's list can be newer than this page's: ask for what the server says is missing.
+    if (data.needsName) pickName.hidden = false;
+    if (data.needsGame) pick.hidden = false;
     if (Array.isArray(data.issues)) {
       const list = document.createElement("ul");
       for (const issue of data.issues) list.append(el("li", issue));

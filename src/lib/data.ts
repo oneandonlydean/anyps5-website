@@ -68,10 +68,15 @@ let buildsCache: Promise<BuildData> | undefined;
 /** Releases and the commits results were built from (scripts/sync-builds.ts); without them, releases are placed by date. */
 export function getBuilds(): Promise<BuildData> {
   return (buildsCache ??= (async () => {
-    const data = await loadGenerated<BuildData | null>("builds.json", null);
-    if (data?.releases.length) return data;
-    const releases = await loadGenerated<{ tag: string; published: string; prerelease?: boolean }[]>("releases.json", []);
-    return { releases: releases.filter((r) => !r.prerelease).map((r) => ({ tag: r.tag, sha: "", date: r.published, published: r.published })), commits: data?.commits ?? {} };
+    const [data, releases] = await Promise.all([
+      loadGenerated<BuildData | null>("builds.json", null),
+      loadGenerated<{ tag: string; published: string; prerelease?: boolean }[]>("releases.json", []),
+    ]);
+    // releases.json lists every release; builds.json adds the commit each was cut from, when its lookup has been done.
+    // One without a commit yet is placed by when it was published.
+    const cut = new Map((data?.releases ?? []).map((r) => [r.tag, r]));
+    const known = releases.length ? releases.filter((r) => !r.prerelease).map((r) => cut.get(r.tag) ?? { tag: r.tag, sha: "", date: r.published, published: r.published }) : (data?.releases ?? []);
+    return { releases: known, commits: data?.commits ?? {} };
   })());
 }
 

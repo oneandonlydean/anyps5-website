@@ -4,7 +4,7 @@
  * the release itself, or main after it. A report naming no known commit falls back to a release named in the text, and
  * then to its own date.
  */
-import { QUALIFYING } from "./resolve";
+import { corrected, QUALIFYING } from "./resolve";
 import type { Report } from "./schema";
 import { stageRank, type StageOrNone } from "./stages";
 import { autoStage, type UploadSummary } from "./uploads";
@@ -31,10 +31,14 @@ export function commitIn(text: string | null): string | null {
   return null;
 }
 
-const releaseIn = (text: string | null, data: BuildData) => {
-  const named = (text ?? "").match(/\bv?(\d+\.\d+\.\d+)\b/)?.[1];
-  return named ? data.releases.find((r) => r.tag.replace(/^v/, "") === named) : undefined;
-};
+/** A release named in the text: the build is that release, or main after it when the text says "after", "since" or "newer". */
+function byRelease(text: string | null, data: BuildData): BuildInfo | null {
+  const match = (text ?? "").match(/\bv?(\d+\.\d+\.\d+)\b/);
+  const release = match && data.releases.find((r) => r.tag.replace(/^v/, "") === match[1]);
+  if (!release) return null;
+  const after = /\b(after|since|newer|past|ahead)\b/i.test(text!.slice(0, match.index));
+  return { release: release.tag, exact: !after, basis: "release" };
+}
 
 function byCommit(commit: { sha: string; date: string }, data: BuildData): BuildInfo {
   const same = data.releases.find((r) => r.sha && r.sha === commit.sha);
@@ -48,17 +52,13 @@ export function reportBuild(report: Pick<Report, "build" | "date">, data: BuildD
   const hash = commitIn(report.build);
   const commit = hash ? data.commits[hash] : null;
   if (commit) return byCommit(commit, data);
-  const release = releaseIn(report.build, data);
-  if (release) return { release: release.tag, exact: true, basis: "release" };
-  return byDate(report.date, data);
+  return byRelease(report.build, data) ?? byDate(report.date, data);
 }
 
 export function uploadBuild(upload: Pick<UploadSummary, "commit" | "release" | "at">, data: BuildData): BuildInfo {
   const commit = upload.commit ? data.commits[upload.commit.toLowerCase()] : null;
   if (commit) return byCommit(commit, data);
-  const release = releaseIn(upload.release, data);
-  if (release) return { release: release.tag, exact: true, basis: "release" };
-  return byDate(upload.at, data);
+  return byRelease(upload.release, data) ?? byDate(upload.at, data);
 }
 
 export function buildLabel(info: Pick<BuildInfo, "release" | "exact">, first?: string): string {
@@ -103,15 +103,15 @@ export function testedOn(
   game: { reports: Report[]; uploads: UploadSummary[]; correction?: { stage: StageOrNone; date: string } | null },
   data: BuildData,
 ): Tested {
-  const { correction } = game;
   // A maintainer's correction caps the reports it overruled.
-  const reportStage = (r: Report & { stage: StageOrNone }) =>
-    correction && r.date.slice(0, 10) <= correction.date && stageRank(r.stage) > stageRank(correction.stage) ? correction.stage : r.stage;
+  const reportStage = (r: Report & { stage: StageOrNone }) => corrected(r.stage, r.date, game.correction);
   const reports = game.reports.filter((r): r is Report & { stage: StageOrNone } => Boolean(r.stage) && QUALIFYING.has(r.buildKind));
-  // How far a run got past presenting is the uploader's word, so it counts only once confirmed.
+  // How far a run got past presenting is the uploader's word, so it counts only as far as it is confirmed, and never
+  // below the frames the run report itself recorded.
   const top = reports.reduce<(typeof reports)[number] | null>((t, r) => (stageRank(reportStage(r)) > stageRank(t ? reportStage(t) : null) ? r : t), null);
   const { confirmedStage } = autoStage(game.uploads, top ? { stage: reportStage(top), author: top.author } : null);
-  const uploadStage = (u: UploadSummary) => (u.stated && stageRank(u.stated) > stageRank(confirmedStage) ? "Presents" : u.stage);
+  const uploadStage = (u: UploadSummary) =>
+    u.stated && stageRank(u.stated) > stageRank(confirmedStage) ? (stageRank(confirmedStage) > stageRank("Presents") ? confirmedStage! : "Presents") : u.stage;
   const results: BuildResult[] = [
     ...reports.map((r) => ({ date: r.date, stage: reportStage(r), build: reportBuild(r, data), source: "report" as const, url: r.url })),
     ...game.uploads.filter((u) => u.stage).map((u) => ({ date: u.at, stage: uploadStage(u)!, build: uploadBuild(u, data), source: "upload" as const, url: null })),
@@ -128,8 +128,18 @@ export function testedOn(
       approximate: list.every((r) => r.build.basis === "date"),
     }))
     .sort((a, b) => order(a.release) - order(b.release));
-  const [now, ...earlier] = releases;
-  const was = earlier.reduce<ReleaseResult | null>((top, r) => (stageRank(r.stage) > stageRank(top?.stage) ? r : top), null);
-  const regression = now && was && !now.approximate && stageRank(was.stage) > stageRank(now.stage) ? { was, now } : null;
-  return { releases, newest: results[0] ?? null, regression };
+  const was = releases[0] ? lowerThan(releases, 0) : null;
+  return { releases, newest: results[0] ?? null, regression: was ? { was, now: releases[0]! } : null };
+}
+
+/**
+ * The earlier release that got further than `releases[i]`, newest first: the best of all older ones, when it beat this
+ * one. A release placed only by date isn't compared, as it may belong to a neighbour. The game page, the tracked games
+ * and the feed all ask this, so they agree on what counts as lower.
+ */
+export function lowerThan(releases: ReleaseResult[], i: number): ReleaseResult | null {
+  const now = releases[i]!;
+  if (now.approximate) return null;
+  const was = releases.slice(i + 1).reduce<ReleaseResult | null>((top, r) => (stageRank(r.stage) > stageRank(top?.stage) ? r : top), null);
+  return was && stageRank(was.stage) > stageRank(now.stage) ? was : null;
 }

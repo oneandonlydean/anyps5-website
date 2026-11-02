@@ -10,7 +10,7 @@ import MaintainerTools from "../../components/MaintainerTools.astro";
 import StageHistory from "../../components/StageHistory.astro";
 import StageLadder from "../../components/StageLadder.astro";
 import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested } from "../../lib/data";
-import { buildLabel, reportBuild, uploadBuild } from "../../lib/builds";
+import { buildLabel, reportBuild, uploadBuild, type BuildInfo } from "../../lib/builds";
 import type { Game } from "../../lib/resolve";
 import { formatDate, SITE_REPO_URL } from "../../lib/site";
 import { STAGES, stageSlug } from "../../lib/stages";
@@ -30,6 +30,10 @@ const shots = (await getScreenshots()).get(game.slug) ?? [];
 const [builds, tested] = await Promise.all([getBuilds(), getTested().then((t) => t.get(game.slug)!)]);
 const firstRelease = builds.releases.at(-1)?.tag;
 const label = (info: { release: string | null; exact: boolean }) => buildLabel(info, firstRelease);
+// A row's build: marked when only its date placed it, as it may be a neighbouring release.
+const rowLabel = (info: BuildInfo) => `${label(info)}${info.basis === "date" ? " (by date)" : ""}`;
+// A release's results take in the release and main up to the next one.
+const group = (release: string | null) => (release ? `${release} or main after it` : label({ release: null, exact: false }));
 const since = retest.releasesSince === 0 ? "the current release" : `${retest.releasesSince} release${retest.releasesSince === 1 ? "" : "s"} ago`;
 const freshness = retest.lastTested
   ? retest.lastBuild && retest.lastBuild.basis !== "date"
@@ -63,7 +67,7 @@ const rows = [
     gpuVendor: r.gpuVendor,
     gpu: r.gpu,
     // A main build is named by its release; one with pull requests or patches by what it added.
-    build: r.buildKind === "main" || r.buildKind === "unknown" ? (r.build ? label(reportBuild(r, builds)) : BUILD_LABEL[r.buildKind]) : (BUILD_LABEL[r.buildKind] as string),
+    build: r.buildKind === "main" || r.buildKind === "unknown" ? (r.build ? rowLabel(reportBuild(r, builds)) : BUILD_LABEL[r.buildKind]) : (BUILD_LABEL[r.buildKind] as string),
     buildTitle: r.build ?? undefined,
     by: r.author,
     upload: undefined as number | undefined,
@@ -77,7 +81,7 @@ const rows = [
     os: u.os,
     gpuVendor: u.gpuVendor,
     gpu: u.gpu ?? null,
-    build: label(uploadBuild(u, builds)),
+    build: rowLabel(uploadBuild(u, builds)),
     buildTitle: u.commit ?? undefined,
     by: u.login as string | null,
     upload: u.id,
@@ -253,8 +257,8 @@ const description = (() => {
               <h2>By release</h2>
               {tested.regression && (
                 <p class="regression">
-                  <b>Reported lower on a newer build.</b> On {label({ release: tested.regression.now.release, exact: false })} it reached {tested.regression.now.stage}; on{" "}
-                  {label({ release: tested.regression.was.release, exact: false })} it reached {tested.regression.was.stage}. That can be a regression, or a different setup: another run on the current build would tell.
+                  <b>Reported lower on a newer build.</b> On {group(tested.regression.now.release)} it reached {tested.regression.now.stage}; on{" "}
+                  {group(tested.regression.was.release)} it reached {tested.regression.was.stage}. That can be a regression, or a different setup: another run on the current build would tell.
                 </p>
               )}
               <div class="table-wrap">
