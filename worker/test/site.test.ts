@@ -241,3 +241,11 @@ it("proxies only the converter's archives, as downloads", async () => {
   expect(zip.headers.get("content-type")).toBe("application/octet-stream");
   expect(zip.headers.get("x-content-type-options")).toBe("nosniff");
 });
+
+it("lists the site database's applied migrations, for a deploy to check against", async () => {
+  const res = await call("/api/schema");
+  expect(res.status).toBe(200);
+  const { migrations } = await res.json<{ migrations: string[] }>();
+  expect(migrations[0]).toMatch(/^0001_/);
+  expect(migrations).toContain("0004_stated_stage.sql");
+});

@@ -175,7 +175,7 @@ The demo deploys itself from `.github/workflows/site.yml`:
 - every 3 hours, only when something the site shows changed (while this repository is private; once it's public, run it hourly)
 - daily, regardless
 
-Every deploy first runs the site's and the Worker's tests, and applies the site database's migrations (a warning, not a failure, if the token can't). `ci.yml` runs the same checks on pull requests.
+Every deploy first runs the site's and the Worker's tests, and applies the site database's migrations. If the token can't, the deploy asks the running Worker (`/api/schema`) which migrations the database has, and stops if the new code needs one it lacks. `ci.yml` runs the same checks on pull requests.
 
 **Settings and secrets:**
 

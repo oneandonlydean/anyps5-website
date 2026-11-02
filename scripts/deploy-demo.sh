@@ -24,8 +24,27 @@ cat > dist/_headers <<'HEADERS'
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 HEADERS
-# The site and test bot databases' migrations; needs "D1: Edit" on the Cloudflare token. A failure is reported but doesn't stop
-# the deploy, since most deploys add no migrations.
-npx wrangler d1 migrations apply SITE_DB --remote --env="" || echo "::warning::Could not apply the site database's migrations; check the token has D1 Edit."
+# The site and test bot databases' migrations; needs "D1: Edit" on the Cloudflare token. Without it, the running Worker says
+# which migrations the site database has, and the deploy stops if this code needs one it doesn't: uploads would fail.
+if ! npx wrangler d1 migrations apply SITE_DB --remote --env=""; then
+  schema=$(curl -sS -w '\n%{http_code}' "$SITE_URL/api/schema" || printf '\n000')
+  status=$(printf '%s' "$schema" | tail -n 1)
+  if [ "$status" = 404 ]; then
+    # A Worker from before /api/schema existed: nothing to compare against.
+    echo "::warning::Could not apply the site database's migrations or check them; check the token has D1 Edit."
+  elif [ "$status" != 200 ]; then
+    echo "::error::Could not apply the site database's migrations, and $SITE_URL/api/schema answered $status." && exit 1
+  else
+    missing=""
+    for file in worker/site-migrations/*.sql; do
+      name=$(basename "$file")
+      case "$schema" in *"\"$name\""*) ;; *) missing="$missing $name" ;; esac
+    done
+    if [ -n "$missing" ]; then
+      echo "::error::The site database is missing migrations:$missing. Give the token D1 Edit, or run: npx wrangler d1 migrations apply SITE_DB --remote --env=\"\"" && exit 1
+    fi
+    echo "::warning::Could not apply the site database's migrations, but it has them all; check the token has D1 Edit."
+  fi
+fi
 npx wrangler d1 migrations apply DB --remote --env="" || echo "::warning::Could not apply the test bot database's migrations; check the token has D1 Edit."
 npx wrangler deploy --env=""

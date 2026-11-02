@@ -18,6 +18,7 @@ import { problem } from "./site/http";
 import { act, queue } from "./site/moderation";
 import { siteCron } from "./site/rebuild";
 import { exportData, reportDetail, upload } from "./site/reports";
+import { schema } from "./site/schema";
 
 const UPSTREAM = "https://boykopovar.github.io/AnyPS5";
 const LIBRARIES = "/convert/app/libraries/";
@@ -37,6 +38,7 @@ const SITE_ROUTES: Record<string, (req: Request, env: Env, wait: Wait) => Promis
   "GET /api/me": me,
   "POST /api/reports": upload,
   "GET /api/export": exportData,
+  "GET /api/schema": schema,
   "GET /api/mod/queue": queue,
   "POST /api/mod/action": act,
 };
