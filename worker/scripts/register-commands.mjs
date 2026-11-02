@@ -61,6 +61,12 @@ const res = await fetch(`https://discord.com/api/v10/applications/${DISCORD_CLIE
     { name: "report", description: "How to report how far a game gets", options: [text("game", "The game you ran", false)], ...guildOnly },
     { name: "faq", description: "Answers to common questions", options: [text("topic", "What it's about", true)], ...guildOnly },
     { name: "rules", description: "The server rules", ...guildOnly },
+    {
+      name: "rule",
+      description: "One server rule, to point someone at it",
+      options: [{ type: 4, name: "number", description: "The rule's number", required: true, min_value: 1, autocomplete: true }],
+      ...guildOnly,
+    },
     { name: "follow", description: "Get a direct message when a game reaches a new stage", options: [text("game", "Game to follow", true)], ...guildOnly },
     { name: "unfollow", description: "Stop following a game", options: [text("game", "Game to stop following", true)], ...guildOnly },
     { name: "following", description: "The games you follow", ...guildOnly },

@@ -314,9 +314,30 @@ function faqMatches(data: SiteData, query: string) {
   return q ? all.filter((x) => q.split(" ").every((w) => x.keys.includes(w))) : all;
 }
 
+const NO_RULES = "The server rules aren't set yet. Maintainers add them in `data/bot.yaml`.";
+
 function rules(env: Env, data: SiteData): Response {
-  if (!data.rules) return privately("The server rules aren't set yet. Maintainers add them in `data/bot.yaml`.");
+  if (!data.rules) return privately(NO_RULES);
   return reply({ embeds: [{ title: "📜 AnyPS5 Server Rules", description: links(env, data.rules).slice(0, 4000), color: 0x5b9bff }] });
+}
+
+/** The numbered rules: paragraphs that start with a bold "N. Title". */
+export function numberedRules(text: string | null): { number: number; title: string; text: string }[] {
+  return (text ?? "").split(/\n\s*\n/).flatMap((p) => {
+    const m = p.trim().match(/^\*\*(\d+)\.\s*([\s\S]+?)\*\*\s*([\s\S]*)$/);
+    return m ? [{ number: Number(m[1]), title: m[2]!.trim(), text: m[3]!.trim() }] : [];
+  });
+}
+
+/** /rule <number>: one rule, to point someone at it. */
+function rule(env: Env, data: SiteData, number: string): Response {
+  if (!data.rules) return privately(NO_RULES);
+  const all = numberedRules(data.rules);
+  const found = all.find((r) => r.number === Number(number));
+  if (!found) return privately(`There's no rule ${number.slice(0, 10)}. The rules go from 1 to ${all.length}; \`/rules\` lists them.`);
+  return reply({
+    embeds: [{ title: `Rule ${found.number}: ${found.title}`, description: found.text ? links(env, found.text).slice(0, 4000) : undefined, color: 0x5b9bff, footer: { text: "/rules for all of them" } }],
+  });
 }
 
 async function follow(env: Env, data: SiteData, caller: string, query: string): Promise<Response> {
@@ -348,7 +369,7 @@ async function following(env: Env, data: SiteData, caller: string): Promise<Resp
   return privateLinks(`You follow:\n${list.join("\n")}`);
 }
 
-const SITE_COMMANDS = new Set(["game", "progress", "progressmap", "library", "wanted", "release", "tracked", "report", "faq", "rules", "follow", "unfollow", "following"]);
+const SITE_COMMANDS = new Set(["game", "progress", "progressmap", "library", "wanted", "release", "tracked", "report", "faq", "rules", "rule", "follow", "unfollow", "following"]);
 export const isSiteCommand = (name: string) => SITE_COMMANDS.has(name);
 
 export async function runSiteCommand(env: Env, name: string, options: Option[] | undefined, caller: string): Promise<Response> {
@@ -376,6 +397,8 @@ export async function runSiteCommand(env: Env, name: string, options: Option[] |
       return faq(env, data, arg("topic"));
     case "rules":
       return rules(env, data);
+    case "rule":
+      return rule(env, data, arg("number"));
     case "follow":
       return follow(env, data, caller, arg("game"));
     case "unfollow":
@@ -410,6 +433,18 @@ export async function suggest(env: Env, name: string, options: Option[] | undefi
       }
     } else if (focused.name === "topic") {
       choices = faqMatches(data, typed).map((x) => ({ name: x.title, value: x.value }));
+    } else if (focused.name === "number") {
+      const q = words(typed);
+      // An integer option: the suggestion's value is the number itself.
+      return Response.json({
+        type: AUTOCOMPLETE_RESULT,
+        data: {
+          choices: numberedRules(data.rules)
+            .filter((r) => !q || String(r.number).startsWith(q) || words(r.title).includes(q))
+            .slice(0, SUGGESTIONS)
+            .map((r) => ({ name: `${r.number}. ${r.title}`.slice(0, 100), value: r.number })),
+        },
+      });
     }
   }
   return Response.json({ type: AUTOCOMPLETE_RESULT, data: { choices: choices.slice(0, SUGGESTIONS).map((c) => ({ name: c.name.slice(0, 100), value: c.value.slice(0, 100) })) } });

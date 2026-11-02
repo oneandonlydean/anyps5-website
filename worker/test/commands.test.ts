@@ -231,3 +231,13 @@ it("/stats sums up the project", async () => {
   expect(embed.fields[2].value).toContain("50 implemented of 200 declared functions\n1 of 4 libraries complete, 3 started");
   expect(embed.fields[4].value).toBe("**2** listed\n2 tested · 1 reach gameplay · 0 playable");
 });
+
+it("/rule shows one rule, with rules suggested by number or title", async () => {
+  data.rules = "**1. No piracy, ever.** Do not share game files. **Instant ban.**\n\n**2. Be respectful.** No harassment.\n\n**9. No spam.**\n\n**Enforcement:** warning → ban.";
+  forgetSiteData();
+  expect((await run("rule", { number: "1" })).data.embeds[0]).toMatchObject({ title: "Rule 1: No piracy, ever.", description: "Do not share game files. **Instant ban.**" });
+  expect((await run("rule", { number: "9" })).data.embeds[0]).toMatchObject({ title: "Rule 9: No spam." });
+  expect((await run("rule", { number: "3" })).data.content).toContain("There's no rule 3");
+  const suggested = await send({ type: 4, data: { name: "rule", options: [{ name: "number", type: 4, value: "resp", focused: true }] }, member: { user: { id: "d1" } } });
+  expect(suggested.data.choices).toEqual([{ name: "2. Be respectful.", value: 2 }]);
+});
