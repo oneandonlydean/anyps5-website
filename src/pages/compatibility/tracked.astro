@@ -3,7 +3,6 @@ import Base from "../../layouts/Base.astro";
 import LocalDate from "../../components/LocalDate.astro";
 import { getBuilds, getRetest, getTested, getTrackedGames } from "../../lib/data";
 import { lowerThan, type ReleaseResult } from "../../lib/builds";
-import { SITE_REPO_URL } from "../../lib/site";
 import { stageRank, stageSlug, STAGES } from "../../lib/stages";
 
 /** Releases shown as columns, newest first. */
@@ -150,7 +149,7 @@ const short = (stage: string) => STAGES.find((s) => s.name === stage)?.short ?? 
 
   <section class="container block">
     <p class="muted">
-      Maintainers choose the set in <a href={`${SITE_REPO_URL}/blob/main/data/tracked.yaml`}><code>data/tracked.yaml</code></a>: a mix of engines, big and small games, homebrew, and games at every stage.
+      The maintainers choose the set: a mix of engines, big and small games, homebrew, and games at every stage.
     </p>
   </section>
 </Base>

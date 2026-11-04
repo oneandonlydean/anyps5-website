@@ -13,7 +13,7 @@ import StageLadder from "../../components/StageLadder.astro";
 import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested } from "../../lib/data";
 import { buildLabel, reportBuild, uploadBuild, type BuildInfo } from "../../lib/builds";
 import type { Game } from "../../lib/resolve";
-import { formatDate, SITE_REPO_URL } from "../../lib/site";
+import { DISCORD_URL, formatDate } from "../../lib/site";
 import { STAGES, stageSlug } from "../../lib/stages";
 import { artSrc, artSrcset, PLATFORM_LABEL, reach, regionName, reportKey } from "../../lib/view";
 import { CONFIRMATIONS_NEEDED } from "../../lib/uploads";
@@ -93,9 +93,6 @@ const rows = [
     stated: Boolean(u.stated),
   })),
 ].sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
-const editUrl = game.overlayFile
-  ? `${SITE_REPO_URL}/edit/main/data/games/${game.overlayFile}`
-  : `${SITE_REPO_URL}/new/main/data/games?filename=${game.slug}.yaml&value=${encodeURIComponent(`title_ids: [${game.titleIds.join(", ")}]\n`)}`;
 // What a search result shows: how far the game gets in plain words, how well tested that is, and its title ID, which
 // people search by too. The stage's meaning is left out when it would make the text too long to show in full.
 const description = (() => {
@@ -411,7 +408,7 @@ const description = (() => {
             Follow this game
             <span class="replies">Atom feed</span>
           </a>
-          <a class="button subtle" href={editUrl}>
+          <a class="button subtle" href={DISCORD_URL}>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13 7l4 4" /></svg>
             Suggest a correction
           </a>

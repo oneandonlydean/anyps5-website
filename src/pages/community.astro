@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { DISCORD_URL, DISCUSSIONS_URL, REPO_URL, SITE_REPO_URL } from "../lib/site";
+import { DISCORD_URL, DISCUSSIONS_URL, REPO_URL } from "../lib/site";
 
 const ways = [
   {
@@ -21,8 +21,8 @@ const ways = [
   },
   {
     title: "Curate compatibility",
-    text: "Correct a game's stage, add its blockers or fix its art. Each game is one small YAML file in this site's repository.",
-    links: [{ href: SITE_REPO_URL, label: "Website repository" }],
+    text: "Spotted a wrong stage, a missing blocker or the wrong cover art? Tell the maintainers on Discord and they'll correct it.",
+    links: [{ href: DISCORD_URL, label: "Discord" }],
   },
   {
     title: "Help others",

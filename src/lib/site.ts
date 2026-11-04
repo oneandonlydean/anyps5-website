@@ -3,7 +3,6 @@ export const REPO_URL = "https://github.com/boykopovar/AnyPS5";
 export const UPSTREAM_PAGES = "https://boykopovar.github.io/AnyPS5";
 export const DISCORD_URL = "https://discord.gg/BHFztBPUe";
 export const DISCUSSIONS_URL = `${REPO_URL}/discussions/categories/game-bring-up`;
-export const SITE_REPO_URL = "https://github.com/oneandonlydean/anyps5-website";
 
 /**
  * Main navigation; labels come from the i18n strings under `nav`. `translated` is where an item leads in other
