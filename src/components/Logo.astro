@@ -1,31 +1,24 @@
 ---
+// The mark is traced from src/assets/logo/source.png and filled with currentColor,
+// so it follows the text colour: white on the dark theme, near-black on the light one.
+import mark from "../assets/logo/mark.svg?raw";
+
 interface Props {
   size?: number;
 }
 const { size = 20 } = Astro.props;
 ---
 
-<span class="mark" style={`--size:${size}px`} aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+<span class="mark" style={`--size:${size}px`} aria-hidden="true" set:html={mark} />
 
 <style>
   .mark {
     display: inline-flex;
     align-items: center;
-    gap: calc(var(--size) * 0.16);
+    color: var(--text);
   }
-  i {
-    width: calc(var(--size) * 0.2);
+  .mark :global(svg) {
     height: var(--size);
-    border-radius: calc(var(--size) * 0.06);
-    background: currentColor;
-  }
-  i:nth-child(2) {
-    background: linear-gradient(#84b4ff, var(--accent));
-  }
-  i:nth-child(3) {
-    background: linear-gradient(#6ff0dc, var(--accent-2));
-  }
-  i:last-child {
-    opacity: 0.3;
+    width: auto;
   }
 </style>
