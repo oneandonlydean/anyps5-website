@@ -8,5 +8,6 @@ echo "== refresh started $(date -Is)"
 npm run sync
 npm run fetch:upstream
 npm run fetch:coverage
+npm run fetch:commits
 npm run deploy:demo
 echo "== refresh finished $(date -Is)"

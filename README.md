@@ -45,6 +45,7 @@ The committed `data/generated/` files are enough to build every page. In develop
 | `npm run sync` | Refresh compatibility data: reports, titles, issues, art, screenshots, merges and uploads |
 | `npm run fetch:upstream` | The converter, release info, docs and library progress (`-- --libraries` also fetches the ~100 MB archives) |
 | `npm run fetch:coverage` | Measure the shader recompiler's coverage from upstream source |
+| `npm run fetch:commits` | Count commits per day on upstream `main` for the chart on /progress |
 | `npm run deploy:demo` | Build and deploy the demo to Cloudflare |
 | `npm run deploy:production` | Build and deploy the official site (see [Going live](#going-live)) |
 

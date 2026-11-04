@@ -46,6 +46,24 @@ export async function dailyCommits(): Promise<DayCommit[]> {
   return [...days].map(([date, commit]) => ({ date, commit }));
 }
 
+/** How many commits reachable from `main` were authored on each UTC day, oldest first, with quiet days as zero. */
+export async function commitsPerDay(): Promise<{ date: string; commits: number }[]> {
+  const log = (await git("log", "--format=%aI", "main")).trim();
+  const counts = new Map<string, number>();
+  for (const iso of log ? log.split("\n") : []) {
+    const day = new Date(iso).toISOString().slice(0, 10);
+    counts.set(day, (counts.get(day) ?? 0) + 1);
+  }
+  const days = [...counts.keys()].sort();
+  if (!days.length) return [];
+  const out = [];
+  for (let t = Date.parse(days[0]); t <= Date.parse(days.at(-1)!); t += 864e5) {
+    const date = new Date(t).toISOString().slice(0, 10);
+    out.push({ date, commits: counts.get(date) ?? 0 });
+  }
+  return out;
+}
+
 export async function headCommit(): Promise<DayCommit> {
   const [commit, iso] = (await git("log", "-1", "--format=%H %cI", "main")).trim().split(" ");
   return { commit, date: new Date(iso).toISOString().slice(0, 10) };

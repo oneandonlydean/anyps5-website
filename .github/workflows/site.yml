@@ -104,6 +104,7 @@ jobs:
           npm run sync
           npm run fetch:upstream
           npm run fetch:coverage
+          npm run fetch:commits
 
       # Nothing deploys unless the site and the Worker both pass their checks.
       - name: Test the site and the Worker

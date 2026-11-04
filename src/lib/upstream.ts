@@ -76,6 +76,13 @@ export const getProgressHistory = () => loadGenerated<ProgressDay[]>("progress-h
 export const getLibraryHistory = () => loadGenerated<LibraryHistory | null>("library-history.json", null);
 /** Games per stage by day; null until the first data refresh that records them. */
 export const getCompatHistory = () => loadGenerated<CompatHistory | null>("compat-history.json", null);
+export interface Commits {
+  /** When the counts were taken; the day it falls on is still in progress. */
+  synced: string;
+  days: { date: string; commits: number }[];
+}
+/** Commits on upstream main per UTC day, counted by scripts/fetch-commits.ts. */
+export const getCommits = () => loadGenerated<Commits | null>("commits.json", null);
 export const getCoverage = () => loadGenerated<Coverage | null>("coverage.json", null);
 /** Function name → [library label, 1 when implemented]. Served per library by /progress/functions.json. */
 export const getFunctions = () => loadGenerated<Record<string, [string, 0 | 1]>>("progress-functions.json", {});

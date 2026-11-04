@@ -14,6 +14,7 @@ if [ "${SKIP_SYNC:-}" != 1 ] || [ -z "$fresh" ]; then
   npm run sync
   npm run fetch:upstream
   npm run fetch:coverage
+  npm run fetch:commits
 fi
 npm run build
 cat > dist/_headers <<'HEADERS'

@@ -37,6 +37,7 @@ jobs:
           restore-keys: upstream-
       - name: Measure shader recompiler coverage from upstream source
         run: npm run fetch:coverage
+      - run: npm run fetch:commits
       - uses: actions/cache@v4
         with:
           path: node_modules/.cache/anyps5-og

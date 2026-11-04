@@ -1,16 +1,17 @@
 ---
 import Base from "../layouts/Base.astro";
 import LibraryMap from "../components/progress/LibraryMap.astro";
+import BarChart from "../components/progress/BarChart.astro";
 import LineChart from "../components/progress/LineChart.astro";
 import Sparkline from "../components/Sparkline.astro";
 import { getGames, getNeeds } from "../lib/data";
 import { openFunctions, tallyWanted, type Needs } from "../lib/needs";
 import { formatDate, REPO_URL } from "../lib/site";
-import { getCompatHistory, getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
+import { getCommits, getCompatHistory, getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
 import { atLeast, gameSeries } from "../lib/compat-history";
 import { stageRank } from "../lib/stages";
 
-const [progress, libraryHistory, coverage, needs, games, compatHistory] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames(), getCompatHistory()]);
+const [progress, libraryHistory, coverage, needs, games, compatHistory, commits] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames(), getCompatHistory(), getCommits()]);
 const number = new Intl.NumberFormat("en-GB");
 const percent = (done: number, total: number, digits = 2) => `${total ? ((done / total) * 100).toFixed(digits) : "0"}%`;
 
@@ -144,6 +145,15 @@ const pace = [
   { label: "Games newly in game", now: firstIngame.filter((d) => week(d) === 0).length, before: firstIngame.filter((d) => week(d) === 1).length },
   { label: "Functions implemented", now: functionsGained(0, 7), before: functionsGained(7, 14) },
 ];
+
+// Commits per day on upstream main. The day the counts were taken is still in progress, so it is drawn as partial
+// and left out of the weekly figures.
+const commitDays = commits?.days ?? [];
+const commitsPartial = commitDays.at(-1)?.date === commits?.synced.slice(0, 10);
+const fullDays = commitsPartial ? commitDays.slice(0, -1) : commitDays;
+const commitTotal = commitDays.reduce((n, d) => n + d.commits, 0);
+const commitWeek = (from: number) => fullDays.slice(Math.max(0, fullDays.length - from - 7), fullDays.length - from).reduce((n, d) => n + d.commits, 0);
+const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d) => (!best || d.commits > best.commits ? d : best), undefined);
 ---
 
 <Base title="Progress" description="How much of the PS5 system libraries and the RDNA 2 shader instruction set AnyPS5 implements, measured from its source.">
@@ -155,6 +165,7 @@ const pace = [
     </p>
     <nav class="jump" aria-label="On this page">
       <a href="#games">Games</a>
+      <a href="#commits">Commits</a>
       <a href="#libraries">System libraries</a>
       <a href="#shaders">Shader recompiler</a>
       <a href="#wanted">Most wanted</a>
@@ -220,6 +231,35 @@ const pace = [
                 </div>
               ))}
             </dl>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+
+  {
+    commitDays.length > 1 && (
+      <section class="container block" id="commits">
+        <div class="card part">
+          <header class="part-head">
+            <div>
+              <span class="eyebrow">Development</span>
+              <h2>
+                <span class="big">{number.format(commitTotal)}</span> commits on main
+              </h2>
+              <p class="muted">
+                Every commit on upstream <a href={REPO_URL}>main</a>, counted by the UTC day it was written. Merge commits are included, so the total matches what GitHub shows.
+              </p>
+            </div>
+            <dl class="facts">
+              <div><dt>Last 7 full days</dt><dd>{number.format(commitWeek(0))} <small>{number.format(commitWeek(7))} the week before</small></dd></div>
+              {busiest && <div><dt>Busiest day</dt><dd>{number.format(busiest.commits)} <small>{formatDate(busiest.date)}</small></dd></div>}
+            </dl>
+          </header>
+          <div class="chart-wrap">
+            <BarChart title="Commits per day" unit="commits" dates={commitDays.map((d) => d.date)} values={commitDays.map((d) => d.commits)} partial={commitsPartial} />
+            {commitsPartial && <p class="hint">The faded last bar, {formatDate(commits!.synced.slice(0, 10))}, is counted only up to {commits!.synced.slice(11, 16)} UTC.</p>}
           </div>
         </div>
       </section>
