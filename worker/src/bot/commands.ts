@@ -61,7 +61,8 @@ function game(env: Env, data: SiteData, query: string): Response {
         title: g.name,
         url: link(env, `/compatibility/${g.slug}`),
         color: stageColor(g.stage),
-        thumbnail: g.cover ? { url: g.cover } : undefined,
+        // The game's share picture (cover, name and stage), drawn by the site build for every game.
+        image: { url: `${link(env, `/og/${g.slug}.jpg`)}?v=${Date.parse(data.generated)}` },
         fields,
         footer: { text: "AnyPS5 compatibility list" },
       },
@@ -126,7 +127,7 @@ async function progress(env: Env, data: SiteData, area: string): Promise<Respons
   });
 }
 
-function progressLibraries(env: Env, data: SiteData): Response {
+async function progressLibraries(env: Env, data: SiteData): Promise<Response> {
   const l = data.libraries;
   if (!l) return unavailable();
   const groups = l.groups.filter((g) => g.total > 0);
@@ -141,10 +142,11 @@ function progressLibraries(env: Env, data: SiteData): Response {
   ];
   if (nearly.length) fields.push({ name: "Nearly done", value: nearly.map((g) => `${g.name} · ${g.done}/${g.total}, ${g.total - g.done} to go`).join("\n"), inline: false });
   if (l.milestones.length) fields.push({ name: "Latest milestones", value: l.milestones.map((m) => `${m.library} ${MILESTONE[m.kind]} · ${when(m.date)}`).join("\n"), inline: false });
-  return reply({ embeds: [{ title: "System libraries", url: link(env, "/progress#libraries"), color: 0x5b9bff, fields, footer: { text: "/library <name> for one library" } }] });
+  const embed = { title: "System libraries", url: link(env, "/progress#libraries"), color: 0x5b9bff, fields, footer: { text: "/library <name> for one library" } };
+  return withCard(env, data, "libraries", embed, (name) => ["Functions", "Libraries", "Biggest"].includes(name));
 }
 
-function progressShaders(env: Env, data: SiteData): Response {
+async function progressShaders(env: Env, data: SiteData): Promise<Response> {
   const sh = data.shaders;
   if (!sh) return unavailable();
   const f = sh.formats;
@@ -155,10 +157,11 @@ function progressShaders(env: Env, data: SiteData): Response {
     { name: `Unsupported-throw sites (${sh.throws.total})`, value: sh.throws.areas.map((a) => `${a.name} · ${a.count}`).join("\n") || "None", inline: false },
   ];
   if (sh.untranslated.length) fields.push({ name: "Decoded, not yet translated", value: sh.untranslated.map((i) => `\`${i}\``).join(", ").slice(0, 1024), inline: false });
-  return reply({ embeds: [{ title: "Shader recompiler", url: link(env, "/progress#shaders"), color: 0x37e0c8, fields, footer: { text: "/progressmap for the full map" } }] });
+  const embed = { title: "Shader recompiler", url: link(env, "/progress#shaders"), color: 0x37e0c8, fields, footer: { text: "/progressmap for the full map" } };
+  return withCard(env, data, "shaders", embed, (name) => name !== "Decoded, not yet translated");
 }
 
-function progressGames(env: Env, data: SiteData): Response {
+async function progressGames(env: Env, data: SiteData): Promise<Response> {
   const { now, week, month } = data.stages;
   const top = Math.max(1, ...STAGE_ORDER.map((s) => now[s as keyof typeof now] ?? 0));
   const ladder = STAGE_ORDER.map((s) => {
@@ -179,8 +182,19 @@ function progressGames(env: Env, data: SiteData): Response {
     const run = t.games.filter((g) => g.stage).length;
     fields.push({ name: `Tracked games on ${t.release}`, value: `${t.games.filter((g) => g.stage && GAMEPLAY.includes(g.stage)).length} of ${t.games.length} reach gameplay · ${run} run so far · \`/tracked\` for the list`, inline: false });
   }
+  const embed = { title: `${testedIn(now)} games tested, ${atStages(now, GAMEPLAY)} reach gameplay`, url: link(env, "/progress#games"), color: 0x2fcfa6, fields };
+  return withCard(env, data, "games", embed, (name) => name === "Furthest stage reached");
+}
+
+/**
+ * An in-depth /progress reply with the card the site build drew for it (src/pages/bot/cards/[area].jpg.ts): the
+ * fields the card shows are left out, the rest stay as text. Without the card, the whole embed is text.
+ */
+async function withCard(env: Env, data: SiteData, area: string, embed: { fields: { name: string }[] } & Record<string, unknown>, drawn: (name: string) => boolean): Promise<Response> {
+  if (!(await hasAsset(env, `/bot/cards/${area}.jpg`))) return reply({ embeds: [embed] });
+  const fields = embed.fields.filter((f) => !drawn(f.name));
   return reply({
-    embeds: [{ title: `${testedIn(now)} games tested, ${atStages(now, GAMEPLAY)} reach gameplay`, url: link(env, "/progress#games"), color: 0x2fcfa6, fields }],
+    embeds: [{ ...embed, fields: fields.length ? fields : undefined, image: { url: `${link(env, `/bot/cards/${area}.jpg`)}?v=${Date.parse(data.generated)}` }, timestamp: data.generated }],
   });
 }
 
@@ -201,7 +215,7 @@ async function progressMap(env: Env, data: SiteData): Promise<Response> {
     embeds: [
       {
         title: "AnyPS5 progress map",
-        url: UPSTREAM_MAP,
+        url: `https://github.com/${env.GITHUB_REPO}`,
         description: "Every system library function as a square (green: implemented), the shader recompiler's instruction forms, and what is still needed.",
         // The build time in the address, so Discord fetches the new picture after each site update.
         image: { url: `${link(env, "/bot/progress.png")}?v=${Date.parse(data.generated)}` },

@@ -104,6 +104,7 @@ it("/game shows a game's stage, last test and blockers, by name, title ID or the
     const embed = reply.embeds[0];
     expect(embed.title).toBe("Astro Bot");
     expect(embed.url).toBe("https://worker.test/compatibility/astro-bot");
+    expect(embed.image.url).toBe(`https://worker.test/og/astro-bot.jpg?v=${Date.parse(DATA.generated)}`);
     expect(embed.fields.map((f: any) => f.value)).toEqual(expect.arrayContaining(["Menus", "PPSA01234", expect.stringContaining("main after v0.1.3 · 1 release ago")]));
     expect(embed.fields.at(-1).value).toContain("[#42](https://github.com/acme/widgets/issues/42) VideoOut");
   }
@@ -208,8 +209,9 @@ it("/progressmap shows the map the site rendered, or says it isn't there", async
   const body = JSON.stringify({ type: 2, data: { name: "progressmap" }, member: { user: { id: "d1" } } });
   const signature = hex(await crypto.subtle.sign("Ed25519", keys.privateKey, new TextEncoder().encode("1" + body)));
   const res = await worker.fetch(new Request("https://worker.test/interactions", { method: "POST", headers: { "x-signature-ed25519": signature, "x-signature-timestamp": "1" }, body }) as any, withMap, ctx);
-  const image = (await res.json<any>()).data.embeds[0].image.url;
-  expect(image).toBe(`https://worker.test/bot/progress.png?v=${Date.parse(DATA.generated)}`);
+  const map = (await res.json<any>()).data.embeds[0];
+  expect(map.image.url).toBe(`https://worker.test/bot/progress.png?v=${Date.parse(DATA.generated)}`);
+  expect(map.url).toBe(`https://github.com/${testEnv.GITHUB_REPO}`);
 });
 
 it("/progress shows the card the site drew, with the headline figures as text", async () => {
@@ -224,6 +226,27 @@ it("/progress shows the card the site drew, with the headline figures as text", 
   expect(embed.image.url).toBe(`https://worker.test/bot/progress-card.jpg?v=${Date.parse(DATA.generated)}`);
   expect(embed.description).toBe("**25%** of library functions · **90%** of shader instructions · **1** of 2 games reach gameplay");
   expect(embed.fields).toBeUndefined();
+});
+
+it("/progress in depth shows the area's card, keeping as text only what the card leaves out", async () => {
+  const withCards = {
+    ...testEnv,
+    ASSETS: { fetch: async (url: string) => (String(url).includes("/bot/cards/") ? new Response(null) : Response.json(data)) } as unknown as Fetcher,
+  };
+  const ask = async (area: string) => {
+    const body = JSON.stringify({ type: 2, data: { name: "progress", options: [{ name: "area", value: area }] }, member: { user: { id: "d1" } } });
+    const signature = hex(await crypto.subtle.sign("Ed25519", keys.privateKey, new TextEncoder().encode("1" + body)));
+    const res = await worker.fetch(new Request("https://worker.test/interactions", { method: "POST", headers: { "x-signature-ed25519": signature, "x-signature-timestamp": "1" }, body }) as any, withCards, ctx);
+    return (await res.json<any>()).data.embeds[0];
+  };
+  const libraries = await ask("libraries");
+  expect(libraries.image.url).toBe(`https://worker.test/bot/cards/libraries.jpg?v=${Date.parse(DATA.generated)}`);
+  expect((libraries.fields ?? []).map((f: any) => f.name)).not.toContain("Biggest");
+  const games = await ask("games");
+  expect(games.image.url).toContain("/bot/cards/games.jpg");
+  expect(games.fields.map((f: any) => f.name)).toEqual(["Change", "Tracked games on v0.1.4"]);
+  // Without the card, the same view is all text.
+  expect((await run("progress", { area: "games" })).data.embeds[0].fields[0].name).toBe("Furthest stage reached");
 });
 
 it("/leaderboard testers ranks reporters by period, with linked members named", async () => {

@@ -279,3 +279,177 @@ function drawProgress(card: ProgressCard): Node {
       ),
   );
 }
+
+// The in-depth cards for /progress libraries, shaders and games: the headline on the left, labelled bars on the right.
+
+const LEFT = 330;
+const RIGHT = OG_WIDTH - 2 * PAD - LEFT - 48;
+
+const dateLabel = (date: string) => new Date(`${date}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+
+function frame(label: string, date: string, left: Child[], right: Child[]): Node {
+  return h(
+    "div",
+    { width: OG_WIDTH, height: OG_HEIGHT, boxSizing: "border-box", flexDirection: "column", gap: 28, padding: `40px ${PAD}px`, background: BG, fontFamily: "Geist" },
+    h("div", { justifyContent: "space-between", alignItems: "center" }, brand(label), h("div", { fontSize: 24, color: MUTED }, dateLabel(date))),
+    h(
+      "div",
+      { flex: 1, gap: 48, minHeight: 0 },
+      h("div", { width: LEFT, flexShrink: 0, flexDirection: "column", justifyContent: "space-between" }, ...left),
+      h("div", { width: RIGHT, flexShrink: 0, flexDirection: "column", boxSizing: "border-box", padding: "26px 30px", background: SURFACE, border: `2px solid ${LINE}`, borderRadius: 22 }, ...right),
+    ),
+  );
+}
+
+function headline(eyebrow: string, color: string, big: string, small: string): Node {
+  return h(
+    "div",
+    { flexDirection: "column", gap: 10, width: LEFT },
+    h("div", { alignItems: "center", gap: 12, fontSize: 22, fontWeight: 600, letterSpacing: 2, color: MUTED }, h("div", { width: 12, height: 12, borderRadius: 6, background: color }), eyebrow),
+    h("div", { fontFamily: "Bricolage", fontSize: 104, fontWeight: 800, color: TEXT, lineHeight: 1, letterSpacing: -3, marginTop: 8 }, big),
+    h("div", { fontSize: 26, color: MUTED, lineHeight: 1.3 }, small),
+  );
+}
+
+/** A short list of figures under the headline, each with a coloured dot. */
+const facts = (rows: { color: string; text: string }[]) =>
+  h(
+    "div",
+    { flexDirection: "column", gap: 10, width: LEFT },
+    ...rows.map((r) => h("div", { alignItems: "center", gap: 12, fontSize: 24, color: TEXT }, h("div", { width: 10, height: 10, borderRadius: 5, background: r.color }), r.text)),
+  );
+
+interface Row {
+  label: string;
+  /** Bar length as a share of the track, 0 to 1. */
+  share: number;
+  value: string;
+  color: string;
+}
+
+const NAME = 210;
+const VALUE = 150;
+
+function rows(title: string, items: Row[]): Node[] {
+  const track = RIGHT - 60 - NAME - VALUE - 32;
+  const height = items.length > 7 ? 30 : 36;
+  return [
+    h("div", { fontSize: 24, fontWeight: 600, color: TEXT, marginBottom: 18 }, title),
+    h(
+      "div",
+      { flexDirection: "column", flex: 1, justifyContent: "space-between" },
+      ...items.map((r) =>
+        h(
+          "div",
+          { alignItems: "center", gap: 16, height },
+          h("div", { width: NAME, flexShrink: 0, fontSize: 22, color: TEXT, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }, r.label),
+          h(
+            "div",
+            { width: track, flexShrink: 0, height: 14, borderRadius: 7, background: UNTESTED },
+            h("div", { width: Math.max(r.share > 0 ? 6 : 0, Math.round(r.share * track)), height: 14, borderRadius: 7, background: r.color }),
+          ),
+          h("div", { width: VALUE, flexShrink: 0, justifyContent: "flex-end", fontSize: 22, color: MUTED }, r.value),
+        ),
+      ),
+    ),
+  ];
+}
+
+export interface LibrariesCard {
+  date: string;
+  done: number;
+  total: number;
+  complete: number;
+  started: number;
+  untouched: number;
+  biggest: { name: string; done: number; total: number }[];
+}
+
+export const librariesImage = (card: LibrariesCard) =>
+  cached(card, () =>
+    render(
+      frame(
+        "Libraries",
+        card.date,
+        [
+          headline("SYSTEM LIBRARIES", "#5b9bff", share(card.done, card.total), `${number.format(card.done)} of ${number.format(card.total)} functions implemented`),
+          facts([
+            { color: "#3ddc84", text: `${number.format(card.complete)} libraries complete` },
+            { color: "#5b9bff", text: `${number.format(card.started)} in progress` },
+            { color: UNTESTED, text: `${number.format(card.untouched)} not started` },
+          ]),
+        ],
+        rows(
+          "Biggest libraries",
+          card.biggest.map((l) => ({ label: l.name, share: l.total ? l.done / l.total : 0, value: `${number.format(l.done)} / ${number.format(l.total)}`, color: l.done === l.total ? "#3ddc84" : "#5b9bff" })),
+        ),
+      ),
+    ),
+  );
+
+export interface ShadersCard {
+  date: string;
+  instructions: { total: number; decoded: number; translated: number };
+  dpp: { total: number; decoded: number } | null;
+  formats: { total: number; sampled: number; buffer: number; host: number } | null;
+  throws: { total: number; areas: { name: string; count: number }[] };
+}
+
+export const shadersImage = (card: ShadersCard) => {
+  const { instructions: i, dpp, formats: f, throws } = card;
+  const meterRow = (label: string, done: number, total: number, color: string): Row => ({ label, share: total ? done / total : 0, value: share(done, total), color });
+  return cached(card, () =>
+    render(
+      frame(
+        "Shaders",
+        card.date,
+        [
+          headline("SHADER RECOMPILER", "#37e0c8", share(i.decoded, i.total), `of ${number.format(i.total)} RDNA 2 instructions decode`),
+          facts([
+            { color: "#f5b84a", text: `${number.format(throws.total)} places still stop` },
+            ...throws.areas.slice(0, 3).map((a) => ({ color: UNTESTED, text: `${a.name} · ${number.format(a.count)}` })),
+          ]),
+        ],
+        rows("Coverage", [
+          meterRow("Decode", i.decoded, i.total, "#37e0c8"),
+          meterRow("Translate", i.translated, i.total, "#37e0c8"),
+          ...(dpp ? [meterRow("DPP forms", dpp.decoded, dpp.total, "#37e0c8")] : []),
+          ...(f
+            ? [meterRow("Sampled formats", f.sampled, f.total, "#5b9bff"), meterRow("Buffer formats", f.buffer, f.total, "#5b9bff"), meterRow("Vulkan formats", f.host, f.total, "#5b9bff")]
+            : []),
+        ]),
+      ),
+    ),
+  );
+};
+
+export interface GamesCard {
+  date: string;
+  tested: number;
+  gameplay: number;
+  /** Change in games reaching gameplay over the last 7 days. */
+  week: number | null;
+  /** Games per furthest stage, best first. */
+  stages: { stage: StageOrNone; count: number }[];
+}
+
+export const gamesImage = (card: GamesCard) => {
+  const peak = Math.max(1, ...card.stages.map((s) => s.count));
+  const week = card.week === null ? null : card.week === 0 ? "No change this week" : `${card.week > 0 ? "+" : "−"}${number.format(Math.abs(card.week))} at gameplay this week`;
+  return cached(card, () =>
+    render(
+      frame(
+        "Games",
+        card.date,
+        [
+          headline("GAMES", STAGE_HEX.Ingame, number.format(card.gameplay), `of ${number.format(card.tested)} tested games reach gameplay`),
+          facts([...(week ? [{ color: STAGE_HEX.Ingame, text: week }] : []), { color: STAGE_HEX.Playable, text: `${number.format(card.stages.find((s) => s.stage === "Playable")?.count ?? 0)} playable` }]),
+        ],
+        rows(
+          "Furthest stage reached",
+          card.stages.map((s) => ({ label: s.stage, share: s.count / peak, value: number.format(s.count), color: STAGE_HEX[s.stage] })),
+        ),
+      ),
+    ),
+  );
+};
