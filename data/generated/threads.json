@@ -7,8 +7,8 @@
       "PPSA21564"
     ],
     "created": "2026-10-02T12:30:16Z",
-    "updated": "2026-11-02T02:12:04Z",
-    "comments": 75,
+    "updated": "2026-11-03T17:40:02Z",
+    "comments": 78,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/357#discussioncomment-19340471",
@@ -124,8 +124,8 @@
       "PPSA26344"
     ],
     "created": "2026-10-05T14:20:37Z",
-    "updated": "2026-11-02T03:49:01Z",
-    "comments": 93,
+    "updated": "2026-11-04T03:59:44Z",
+    "comments": 98,
     "reports": [],
     "media": [
       {
@@ -323,6 +323,48 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/675#discussioncomment-19149479",
         "author": "hritikutekar",
         "date": "2026-10-23T16:11:22Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/shahulmubeen-a/AnyPS5/media/yotei-20261104/f12622-huranui-logpile-far-terrain.png",
+        "alt": "Huranui Mill, 11-03, pre-merge build: far terrain white, log pile black",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/675#discussioncomment-19389310",
+        "author": "shahulmubeen-a",
+        "date": "2026-11-04T03:59:43Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/shahulmubeen-a/AnyPS5/media/yotei-20261104/f14885-home-bright-lake-view.png",
+        "alt": "HOME, 11-03, pre-merge build: the lake renders white",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/675#discussioncomment-19389310",
+        "author": "shahulmubeen-a",
+        "date": "2026-11-04T03:59:43Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/shahulmubeen-a/AnyPS5/media/yotei-20261104/f15004-home-black-tear-bar-diagonal.png",
+        "alt": "HOME, 11-03: black tear bars and a diagonal line across the view",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/675#discussioncomment-19389310",
+        "author": "shahulmubeen-a",
+        "date": "2026-11-04T03:59:43Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/shahulmubeen-a/AnyPS5/media/yotei-20261104/f15113-home-sky-dot-pattern.png",
+        "alt": "HOME, 11-03: when a tear fades, a tiled dot pattern on the sky",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/675#discussioncomment-19389310",
+        "author": "shahulmubeen-a",
+        "date": "2026-11-04T03:59:43Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/shahulmubeen-a/AnyPS5/media/yotei-20261104/f12569-huranui-logpile-side.png",
+        "alt": "Huranui, 11-03: the log pile solid black from every angle, cut ends fine",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/675#discussioncomment-19389310",
+        "author": "shahulmubeen-a",
+        "date": "2026-11-04T03:59:43Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/shahulmubeen-a/AnyPS5/media/yotei-20261104/hull-after-home-base-0.png",
+        "alt": "HOME, 11-04, same save, merged build + hull rule (#15680): same spot as the tear shots, no tear, Mount Yotei shaded; the black ground patches remain",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/675#discussioncomment-19389310",
+        "author": "shahulmubeen-a",
+        "date": "2026-11-04T03:59:43Z"
       }
     ]
   },
@@ -703,8 +745,8 @@
       "PPSA28997"
     ],
     "created": "2026-10-08T18:05:56Z",
-    "updated": "2026-10-25T12:58:26Z",
-    "comments": 11,
+    "updated": "2026-11-02T16:50:18Z",
+    "comments": 12,
     "reports": [],
     "media": [
       {
@@ -727,6 +769,13 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/1742",
         "author": "nahshongraham97",
         "date": "2026-10-08T18:05:56Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/af799e74-a38b-4dfd-867d-9dea9f7ff389",
+        "alt": "Captura de tela 2026-11-02 134037",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/1742#discussioncomment-19355956",
+        "author": "ronaldoskydragon-dot",
+        "date": "2026-11-02T16:45:41Z"
       },
       {
         "src": "https://github.com/user-attachments/assets/64ba28c5-d3e7-4abf-96d4-970cff188f46",
@@ -797,6 +846,13 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/1742#discussioncomment-19178047",
         "author": "EagleBearerYS",
         "date": "2026-10-25T12:58:25Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/e50e28cd-9adf-43df-82df-6dffce5552ae",
+        "alt": "Captura de tela 2026-11-02 134833",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/1742#discussioncomment-19356031",
+        "author": "ronaldoskydragon-dot",
+        "date": "2026-11-02T16:50:17Z"
       }
     ]
   },
@@ -808,8 +864,8 @@
       "PPSA36082"
     ],
     "created": "2026-10-09T03:05:28Z",
-    "updated": "2026-10-20T20:14:03Z",
-    "comments": 7,
+    "updated": "2026-11-03T13:15:24Z",
+    "comments": 10,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/1965",
@@ -1092,15 +1148,15 @@
       "PPSA29413"
     ],
     "created": "2026-10-09T11:45:01Z",
-    "updated": "2026-11-02T03:46:30Z",
-    "comments": 14,
+    "updated": "2026-11-02T10:26:52Z",
+    "comments": 15,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/2211",
         "discussion": 2211,
         "author": "exefer",
         "date": "2026-10-09T11:45:01Z",
-        "edited": "2026-10-16T12:48:33Z",
+        "edited": "2026-11-02T10:26:52Z",
         "stage": "Ingame",
         "platform": "linux",
         "gpu": "NVIDIA RTX 3060 Ti",
@@ -1109,7 +1165,7 @@
         "buildKind": "unknown",
         "prs": [],
         "version": null,
-        "shown": "Main menu renders at 35fps; loading screen, intro, and in-game map at 120fps; in-game play at 12fps. UI (dialogs, minimap, controls) mostly intact.",
+        "shown": "Main menu renders at 50fps; loading screen, intro, and in-game map at 120fps; in-game play at 18fps. UI (dialogs, minimap, controls) mostly intact.",
         "blockers": [
           5335
         ],
@@ -1576,10 +1632,32 @@
       "PPSA28416"
     ],
     "created": "2026-10-10T21:52:22Z",
-    "updated": "2026-10-30T09:02:08Z",
-    "comments": 4,
+    "updated": "2026-11-04T01:59:38Z",
+    "comments": 5,
     "reports": [],
-    "media": []
+    "media": [
+      {
+        "src": "https://gist.githubusercontent.com/mrfelek/71914d93556a655b948efcf7e73c8cf6/raw/d3ae6ccdc27976c17188f254e1b6b8371e13031c/ppsa28416-title.png",
+        "alt": "PPSA28416 title screen",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3086#discussioncomment-19387809",
+        "author": "mrfelek",
+        "date": "2026-11-04T01:59:38Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/mrfelek/71914d93556a655b948efcf7e73c8cf6/raw/d3ae6ccdc27976c17188f254e1b6b8371e13031c/ppsa28416-main-menu.png",
+        "alt": "PPSA28416 main menu, without #11346",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3086#discussioncomment-19387809",
+        "author": "mrfelek",
+        "date": "2026-11-04T01:59:38Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/mrfelek/71914d93556a655b948efcf7e73c8cf6/raw/d3ae6ccdc27976c17188f254e1b6b8371e13031c/ppsa28416-in-engine.png",
+        "alt": "PPSA28416 first in-engine scene, without #11346",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3086#discussioncomment-19387809",
+        "author": "mrfelek",
+        "date": "2026-11-04T01:59:38Z"
+      }
+    ]
   },
   {
     "number": 3232,
@@ -1589,8 +1667,8 @@
       "PPSA01325"
     ],
     "created": "2026-10-11T02:40:35Z",
-    "updated": "2026-10-28T08:44:02Z",
-    "comments": 9,
+    "updated": "2026-11-02T17:15:44Z",
+    "comments": 13,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/3232",
@@ -2095,7 +2173,7 @@
       "PPSA99902"
     ],
     "created": "2026-10-12T11:46:32Z",
-    "updated": "2026-11-01T18:01:15Z",
+    "updated": "2026-11-03T16:04:25Z",
     "comments": 0,
     "reports": [],
     "media": []
@@ -3151,7 +3229,7 @@
       "PPSA34501"
     ],
     "created": "2026-10-13T18:35:46Z",
-    "updated": "2026-10-31T14:07:26Z",
+    "updated": "2026-11-02T09:42:11Z",
     "comments": 1,
     "reports": [
       {
@@ -3159,7 +3237,7 @@
         "discussion": 5389,
         "author": "alexpournaras",
         "date": "2026-10-13T18:35:46Z",
-        "edited": "2026-10-31T14:07:26Z",
+        "edited": "2026-11-02T09:42:11Z",
         "stage": "Starts",
         "platform": null,
         "gpu": null,
@@ -3205,9 +3283,36 @@
       "PPSA02015"
     ],
     "created": "2026-10-13T19:26:51Z",
-    "updated": "2026-10-31T20:08:13Z",
+    "updated": "2026-11-02T23:02:31Z",
     "comments": 6,
     "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/5424",
+        "discussion": 5424,
+        "author": "Prophet069",
+        "date": "2026-10-13T19:26:51Z",
+        "edited": "2026-11-02T23:02:31Z",
+        "stage": "Menus",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 3080 Laptop",
+        "gpuVendor": "NVIDIA",
+        "build": "The latest documented run used local code 4ad8dbe5b and checkpoint a10640220900d96e609f7a251a215f198d9fdbb2, based on official main ea2bbefb2b5d1fbe40b3e9e4b6b4bab98f5c80c1 with additional local changes. This is NOT a clean-main compatibility report.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.013.000",
+        "shown": "MainProg/fullgame, AGC and Vulkan execute. The latest documented run reached 317 AGC submissions, 345 completed PM4 dispatches, 224 Vulkan draws, 495 queue submissions and 63 presents. A real window exists, but no recognizable game image, menu or gameplay has been established. Three scaled GPU readbacks were RGB-black; nine representative target samples were unchanged before/after draws and presentation conversion. This does not establish that every full-resolution target pixel is black. Four selected fullscreen draws showed vertex, clipping and fragment invocations. Frame rate, audio and input are not validated.",
+        "blockers": [
+          5426,
+          2965,
+          5430,
+          5415,
+          5417,
+          5418,
+          5419,
+          2961
+        ],
+        "blockerText": "The next evidenced gap is fragment/color output: GPU execution occurs but useful game image content has not been demonstrated. A precise production fix is not yet established. Earlier scratch instruction dc304000 027d00ff was rejected as a FLAT VGPR-pair overflow even though the GFX10 scratch SV operand is one dword. The isolated decoder/IR follow-up #5426 replaces closed #2965; its 14 CPU regressions pass, while PS5 hardware scratch-address results remain unmeasured.\r\n\r\nThe general read-only package-audit extension #5430 adds optional strict provider-mismatch failure to the existing import auditor; all 50 auditor tests passed. It is not a GPU or game-boot fix.\r\n\r\nCurrent generic libc submissions: #5415 (hardware concurrency), #5417 (eight-byte trivial search), #5418 (double nextafter), #5419 (tgammaf). They are tested with synthetic guest-ABI inputs and are not individually claimed to make a clean-main DS2 build boot or render. Prior intake-paused versions #2961-#2965 are closed; the new submissions explicitly identify their predecessors.\r\n\r\nAdditional local changes used by this experimental run include runtime-PRX binding/initialization and absolute module receipts; demand/publication synchronization; telemetry-independent shader-cache keys; smaller host-import prefetch and Windows alias support; bounded BDA residency with synchronous faults; null-heavy bindless compaction and immutable SRT selectors; bounded color probes and Windows memory protection. These changes are not all upstream or submitted in this publication batch. APS5_EXPERIMENTAL_ABSENT_DEPTH_CLEAR remains default-OFF and hardware-unconfirmed; the BDA residency mode is also experimental. No claim is made that these experiments establish correct PS5 GPU semantics."
+      },
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/5424#discussioncomment-18935811",
         "discussion": 5424,
@@ -3551,8 +3656,8 @@
       "PPSA34971"
     ],
     "created": "2026-10-14T00:36:26Z",
-    "updated": "2026-10-14T00:36:26Z",
-    "comments": 0,
+    "updated": "2026-11-02T15:10:00Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/5593",
@@ -3579,7 +3684,22 @@
         "blockerText": "None for playability. Two notes.\n\n**The storage-image hazard is live here**, every frame, on two addresses:\n\n```\n[gpu] storage image 0x23dd70000: guest memory changed while GPU results were pending; keeping the CPU's blocks\n[gpu] storage image 0x2417d0000: guest memory changed while GPU results were pending; keeping the CPU's blocks\n...\n[gpu] storage image 0x2417d0000+0x870000: memory no longer registered; 1 pending ranges dropped\n```\nThat is the same shape as the Silksong threads describe (#1970, `APS5_STORE_AT_FLIP=1`), on the same engine. Nothing visibly wrong was noticed in game, and the switch has not been tried here yet.\n\n**The run needed one tool that is not merged**, the container unwrap (#5588), because the relinker reads a plain ELF and skips SELF with a warning. Everything else is stock `main`.\n\nOne warning worth recording, from the same family as the `missing static shader ABI register 201` stop Silksong lists (#1836): here it is handled and deferred instead of fatal.\n\n```\n[Shaders/ShaderRegistry.cpp:644 operator()] Shader 0x21ac6ce00 could not be prepared at\nregistration (its program address is not in the shader registers); preparing it when it is used\n```"
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://gist.githubusercontent.com/edubox/f6dfe7a142ece2dc04b54d19dda119b5/raw/hk-linux-title-120fps.png",
+        "alt": "Title screen, 119.9 FPS",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/5593#discussioncomment-19353782",
+        "author": "edubox",
+        "date": "2026-11-02T15:10:00Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/f6dfe7a142ece2dc04b54d19dda119b5/raw/hk-linux-intro-120fps.png",
+        "alt": "Intro after starting a new game, 120 FPS",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/5593#discussioncomment-19353782",
+        "author": "edubox",
+        "date": "2026-11-02T15:10:00Z"
+      }
+    ]
   },
   {
     "number": 5600,
@@ -4375,8 +4495,8 @@
       "PPSA23566"
     ],
     "created": "2026-10-14T18:38:42Z",
-    "updated": "2026-10-19T23:07:32Z",
-    "comments": 8,
+    "updated": "2026-11-03T06:23:04Z",
+    "comments": 10,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/5996",
@@ -4429,8 +4549,8 @@
       "PPSA05666"
     ],
     "created": "2026-10-15T04:04:22Z",
-    "updated": "2026-10-19T18:23:19Z",
-    "comments": 8,
+    "updated": "2026-11-02T16:40:58Z",
+    "comments": 9,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6214",
@@ -4467,8 +4587,8 @@
       "PPSA26528"
     ],
     "created": "2026-10-15T08:11:22Z",
-    "updated": "2026-11-01T09:28:38Z",
-    "comments": 10,
+    "updated": "2026-11-03T05:19:38Z",
+    "comments": 17,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6256",
@@ -4996,8 +5116,8 @@
       "PPSA16018"
     ],
     "created": "2026-10-15T20:45:03Z",
-    "updated": "2026-10-31T15:07:56Z",
-    "comments": 3,
+    "updated": "2026-11-02T11:32:42Z",
+    "comments": 4,
     "reports": [],
     "media": []
   },
@@ -5009,8 +5129,8 @@
       "PPSA08270"
     ],
     "created": "2026-10-15T21:04:39Z",
-    "updated": "2026-10-15T21:37:21Z",
-    "comments": 1,
+    "updated": "2026-11-04T02:21:47Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6575",
@@ -5190,8 +5310,8 @@
       "PPSA08766"
     ],
     "created": "2026-10-16T01:49:59Z",
-    "updated": "2026-10-16T15:52:44Z",
-    "comments": 0,
+    "updated": "2026-11-03T10:11:42Z",
+    "comments": 2,
     "reports": [],
     "media": []
   },
@@ -5548,8 +5668,8 @@
       "PPSA01907"
     ],
     "created": "2026-10-16T19:59:41Z",
-    "updated": "2026-10-31T16:28:56Z",
-    "comments": 5,
+    "updated": "2026-11-02T09:55:59Z",
+    "comments": 6,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6933",
@@ -5863,8 +5983,8 @@
       "PPSA02688"
     ],
     "created": "2026-10-17T03:11:11Z",
-    "updated": "2026-11-01T03:53:36Z",
-    "comments": 7,
+    "updated": "2026-11-02T09:41:07Z",
+    "comments": 8,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6996",
@@ -6871,8 +6991,8 @@
       "PPSA14299"
     ],
     "created": "2026-10-18T08:16:10Z",
-    "updated": "2026-10-31T21:45:14Z",
-    "comments": 6,
+    "updated": "2026-11-03T21:47:28Z",
+    "comments": 8,
     "reports": [],
     "media": []
   },
@@ -7157,8 +7277,8 @@
       "PPSA05496"
     ],
     "created": "2026-10-19T14:30:22Z",
-    "updated": "2026-10-27T23:28:07Z",
-    "comments": 1,
+    "updated": "2026-11-02T20:18:34Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/7926",
@@ -7179,7 +7299,22 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/74ff78a6-ce42-4b8b-9605-28425b9470d1",
+        "alt": "b-40s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/7926#discussioncomment-19359703",
+        "author": "XatiX",
+        "date": "2026-11-02T20:18:33Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/818e3a58-7f5a-4ed7-b355-702bed3229d5",
+        "alt": "c-55s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/7926#discussioncomment-19359703",
+        "author": "XatiX",
+        "date": "2026-11-02T20:18:33Z"
+      }
+    ]
   },
   {
     "number": 7941,
@@ -7431,8 +7566,8 @@
       "PPSA21607"
     ],
     "created": "2026-10-20T00:54:25Z",
-    "updated": "2026-11-01T02:02:18Z",
-    "comments": 4,
+    "updated": "2026-11-03T04:26:53Z",
+    "comments": 6,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/8158",
@@ -7577,8 +7712,8 @@
       "PPSA20423"
     ],
     "created": "2026-10-20T05:29:52Z",
-    "updated": "2026-10-31T23:52:35Z",
-    "comments": 1,
+    "updated": "2026-11-02T12:03:42Z",
+    "comments": 4,
     "reports": [],
     "media": [
       {
@@ -7996,8 +8131,8 @@
       "PPSA07923"
     ],
     "created": "2026-10-20T18:24:19Z",
-    "updated": "2026-11-01T05:07:03Z",
-    "comments": 1,
+    "updated": "2026-11-02T20:20:34Z",
+    "comments": 2,
     "reports": [],
     "media": []
   },
@@ -8075,8 +8210,8 @@
       "PPSA02630"
     ],
     "created": "2026-10-20T19:23:24Z",
-    "updated": "2026-10-31T19:10:36Z",
-    "comments": 1,
+    "updated": "2026-11-02T10:36:40Z",
+    "comments": 2,
     "reports": [],
     "media": []
   },
@@ -8088,8 +8223,8 @@
       "PPSA09695"
     ],
     "created": "2026-10-20T20:15:48Z",
-    "updated": "2026-10-21T13:16:16Z",
-    "comments": 1,
+    "updated": "2026-11-02T15:22:02Z",
+    "comments": 4,
     "reports": [],
     "media": []
   },
@@ -8101,8 +8236,8 @@
       "PPSA28002"
     ],
     "created": "2026-10-20T20:38:05Z",
-    "updated": "2026-11-01T22:19:10Z",
-    "comments": 1,
+    "updated": "2026-11-04T06:13:45Z",
+    "comments": 4,
     "reports": [],
     "media": []
   },
@@ -8173,8 +8308,8 @@
       "PPSA02817"
     ],
     "created": "2026-10-20T21:10:42Z",
-    "updated": "2026-10-22T18:01:49Z",
-    "comments": 2,
+    "updated": "2026-11-04T04:04:59Z",
+    "comments": 4,
     "reports": [],
     "media": []
   },
@@ -8285,8 +8420,8 @@
       "PPSA14408"
     ],
     "created": "2026-10-20T22:54:55Z",
-    "updated": "2026-10-31T14:37:34Z",
-    "comments": 3,
+    "updated": "2026-11-04T05:41:53Z",
+    "comments": 7,
     "reports": [],
     "media": []
   },
@@ -8298,8 +8433,8 @@
       "PPSA27623"
     ],
     "created": "2026-10-20T23:24:41Z",
-    "updated": "2026-11-01T23:27:35Z",
-    "comments": 3,
+    "updated": "2026-11-02T10:36:46Z",
+    "comments": 4,
     "reports": [],
     "media": []
   },
@@ -8324,8 +8459,8 @@
       "PPSA05975"
     ],
     "created": "2026-10-21T00:00:39Z",
-    "updated": "2026-10-21T00:00:39Z",
-    "comments": 0,
+    "updated": "2026-11-02T18:39:12Z",
+    "comments": 2,
     "reports": [],
     "media": []
   },
@@ -8337,8 +8472,8 @@
       "PPSA02743"
     ],
     "created": "2026-10-21T00:37:16Z",
-    "updated": "2026-10-21T00:57:45Z",
-    "comments": 1,
+    "updated": "2026-11-02T16:29:01Z",
+    "comments": 6,
     "reports": [],
     "media": []
   },
@@ -8350,8 +8485,8 @@
       "PPSA34008"
     ],
     "created": "2026-10-21T02:45:09Z",
-    "updated": "2026-11-02T00:55:50Z",
-    "comments": 12,
+    "updated": "2026-11-02T22:24:14Z",
+    "comments": 15,
     "reports": [],
     "media": []
   },
@@ -8363,8 +8498,8 @@
       "PPSA16064"
     ],
     "created": "2026-10-21T03:43:46Z",
-    "updated": "2026-10-31T13:37:01Z",
-    "comments": 2,
+    "updated": "2026-11-04T02:00:00Z",
+    "comments": 3,
     "reports": [],
     "media": []
   },
@@ -8455,8 +8590,8 @@
       "PPSA08576"
     ],
     "created": "2026-10-21T09:14:11Z",
-    "updated": "2026-10-27T08:58:20Z",
-    "comments": 1,
+    "updated": "2026-11-03T04:48:52Z",
+    "comments": 2,
     "reports": [],
     "media": [
       {
@@ -8580,8 +8715,8 @@
       "PPSA13899"
     ],
     "created": "2026-10-21T10:19:18Z",
-    "updated": "2026-10-30T21:09:15Z",
-    "comments": 1,
+    "updated": "2026-11-03T06:04:13Z",
+    "comments": 2,
     "reports": [],
     "media": []
   },
@@ -8699,8 +8834,8 @@
       "PPSA02801"
     ],
     "created": "2026-10-21T12:05:57Z",
-    "updated": "2026-10-21T15:09:40Z",
-    "comments": 0,
+    "updated": "2026-11-04T04:05:04Z",
+    "comments": 2,
     "reports": [],
     "media": []
   },
@@ -8870,8 +9005,8 @@
       "PPSA14053"
     ],
     "created": "2026-10-21T18:03:30Z",
-    "updated": "2026-10-30T22:21:41Z",
-    "comments": 2,
+    "updated": "2026-11-03T08:34:38Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9308",
@@ -9051,8 +9186,8 @@
       "PPSA06327"
     ],
     "created": "2026-10-21T22:59:32Z",
-    "updated": "2026-11-01T06:44:17Z",
-    "comments": 1,
+    "updated": "2026-11-02T21:05:45Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9476",
@@ -9125,8 +9260,8 @@
       "PPSA03659"
     ],
     "created": "2026-10-22T02:19:35Z",
-    "updated": "2026-11-01T15:13:54Z",
-    "comments": 1,
+    "updated": "2026-11-03T21:15:18Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9559",
@@ -9209,8 +9344,8 @@
       "PPSA05106"
     ],
     "created": "2026-10-22T03:52:50Z",
-    "updated": "2026-10-29T09:02:17Z",
-    "comments": 5,
+    "updated": "2026-11-03T20:26:28Z",
+    "comments": 9,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9594",
@@ -9259,8 +9394,8 @@
       "PPSA01826"
     ],
     "created": "2026-10-22T04:11:49Z",
-    "updated": "2026-11-01T14:43:40Z",
-    "comments": 11,
+    "updated": "2026-11-02T09:55:58Z",
+    "comments": 12,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9606",
@@ -9776,15 +9911,15 @@
       "PPSA08102"
     ],
     "created": "2026-10-22T11:54:11Z",
-    "updated": "2026-11-01T11:04:14Z",
-    "comments": 1,
+    "updated": "2026-11-03T20:12:38Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9744",
         "discussion": 9744,
         "author": "JJenkx",
         "date": "2026-10-22T11:54:11Z",
-        "edited": null,
+        "edited": "2026-11-03T20:12:38Z",
         "stage": "Ingame",
         "platform": null,
         "gpu": null,
@@ -10146,8 +10281,8 @@
       "PPSA06369"
     ],
     "created": "2026-10-22T21:12:00Z",
-    "updated": "2026-11-01T16:49:29Z",
-    "comments": 6,
+    "updated": "2026-11-02T05:59:01Z",
+    "comments": 8,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9909",
@@ -10450,8 +10585,8 @@
       "PPSA04158"
     ],
     "created": "2026-10-23T05:27:23Z",
-    "updated": "2026-10-23T05:27:23Z",
-    "comments": 0,
+    "updated": "2026-11-04T02:31:35Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10040",
@@ -10548,8 +10683,8 @@
       "PPSA06565"
     ],
     "created": "2026-10-23T08:52:43Z",
-    "updated": "2026-11-01T18:35:08Z",
-    "comments": 8,
+    "updated": "2026-11-02T07:22:02Z",
+    "comments": 9,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10081",
@@ -10698,15 +10833,15 @@
       "PPSA07587"
     ],
     "created": "2026-10-23T11:03:02Z",
-    "updated": "2026-11-01T18:01:35Z",
-    "comments": 4,
+    "updated": "2026-11-03T22:18:09Z",
+    "comments": 5,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10155",
         "discussion": 10155,
         "author": "JJenkx",
         "date": "2026-10-23T11:03:02Z",
-        "edited": null,
+        "edited": "2026-11-03T22:17:18Z",
         "stage": "Starts",
         "platform": "linux",
         "gpu": "Radeon RX 6650 XT",
@@ -10720,7 +10855,22 @@
         "blockerText": "Stays on the key art; cause not found."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/sea-of-stars-main04-new-game-menu-20261103.png",
+        "alt": "New Game menu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/10155",
+        "author": "JJenkx",
+        "date": "2026-10-23T11:03:02Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/sea-of-stars-main04-archivist-20261103.png",
+        "alt": "Opening Archivist dialogue",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/10155",
+        "author": "JJenkx",
+        "date": "2026-10-23T11:03:02Z"
+      }
+    ]
   },
   {
     "number": 10156,
@@ -10730,8 +10880,8 @@
       "PPSA35169"
     ],
     "created": "2026-10-23T11:03:18Z",
-    "updated": "2026-11-02T03:13:47Z",
-    "comments": 3,
+    "updated": "2026-11-02T14:59:53Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10156",
@@ -10978,8 +11128,8 @@
       "PPSA21406"
     ],
     "created": "2026-10-23T16:03:12Z",
-    "updated": "2026-10-31T21:28:36Z",
-    "comments": 2,
+    "updated": "2026-11-03T03:44:27Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10261",
@@ -11035,8 +11185,8 @@
       "PPSA33655"
     ],
     "created": "2026-10-23T16:12:10Z",
-    "updated": "2026-10-31T18:37:08Z",
-    "comments": 4,
+    "updated": "2026-11-04T01:53:43Z",
+    "comments": 5,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10271",
@@ -11080,8 +11230,8 @@
       "PPSA19591"
     ],
     "created": "2026-10-23T22:42:55Z",
-    "updated": "2026-11-01T11:30:46Z",
-    "comments": 7,
+    "updated": "2026-11-03T22:08:04Z",
+    "comments": 10,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10413",
@@ -11114,8 +11264,8 @@
       "PPSA03766"
     ],
     "created": "2026-10-24T00:48:52Z",
-    "updated": "2026-11-01T12:11:10Z",
-    "comments": 3,
+    "updated": "2026-11-03T07:55:43Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10445",
@@ -11270,8 +11420,8 @@
       "PPSA03973"
     ],
     "created": "2026-10-24T11:54:51Z",
-    "updated": "2026-11-01T06:26:28Z",
-    "comments": 5,
+    "updated": "2026-11-02T16:33:14Z",
+    "comments": 10,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10597",
@@ -11894,8 +12044,8 @@
       "PPSA24263"
     ],
     "created": "2026-10-26T21:56:04Z",
-    "updated": "2026-10-31T20:06:49Z",
-    "comments": 3,
+    "updated": "2026-11-04T01:20:11Z",
+    "comments": 7,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11591",
@@ -11950,6 +12100,60 @@
         "shown": null,
         "blockers": [],
         "blockerText": null
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19354660",
+        "discussion": 11591,
+        "author": "camezaro-intc",
+        "date": "2026-11-02T15:47:52Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19355670",
+        "discussion": 11591,
+        "author": "camezaro-intc",
+        "date": "2026-11-02T16:31:57Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19374632",
+        "discussion": 11591,
+        "author": "camezaro-intc",
+        "date": "2026-11-03T13:16:18Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": [
@@ -11980,6 +12184,41 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19320980",
         "author": "camezaro-intc",
         "date": "2026-10-31T20:06:49Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/auto_menu_56s.png",
+        "alt": "Title Screen",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19354660",
+        "author": "camezaro-intc",
+        "date": "2026-11-02T15:47:52Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/auto_menu_62s.png",
+        "alt": "EULA Dialogue",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19358658",
+        "author": "camezaro-intc",
+        "date": "2026-11-02T19:13:40Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/auto_menu_80s.png",
+        "alt": "Setup Flow",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19358658",
+        "author": "camezaro-intc",
+        "date": "2026-11-02T19:13:40Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/auto_menu_86s.png",
+        "alt": "Settings Confirmation",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19358658",
+        "author": "camezaro-intc",
+        "date": "2026-11-02T19:13:40Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/auto_menu_98s.png",
+        "alt": "Main Menu Selection",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19358658",
+        "author": "camezaro-intc",
+        "date": "2026-11-02T19:13:40Z"
       }
     ]
   },
@@ -12438,8 +12677,8 @@
       "PPSA08329"
     ],
     "created": "2026-10-27T22:17:01Z",
-    "updated": "2026-10-29T15:43:08Z",
-    "comments": 10,
+    "updated": "2026-11-02T17:15:46Z",
+    "comments": 11,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/12128",
@@ -13266,8 +13505,8 @@
       "PPSA25646"
     ],
     "created": "2026-10-30T18:18:29Z",
-    "updated": "2026-11-01T10:54:17Z",
-    "comments": 2,
+    "updated": "2026-11-04T00:33:46Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/13561",
@@ -13319,7 +13558,7 @@
       "PPSA06866"
     ],
     "created": "2026-10-31T02:51:36Z",
-    "updated": "2026-11-01T09:21:04Z",
+    "updated": "2026-11-03T21:58:57Z",
     "comments": 0,
     "reports": [
       {
@@ -13327,7 +13566,7 @@
         "discussion": 13726,
         "author": "XatiX",
         "date": "2026-10-31T02:51:36Z",
-        "edited": "2026-11-01T09:21:04Z",
+        "edited": "2026-11-03T21:58:57Z",
         "stage": "Ingame",
         "platform": "windows",
         "gpu": "RTX 5080",
@@ -13345,7 +13584,7 @@
           13023,
           14310
         ],
-        "blockerText": "None stops the title in the tested range. Speed is the main problem now, and it is CPU-bound: on the later save the GPU takes about 16 ms per frame, while `Driver.Packet` takes about 43 ms and the committer thread stays busy. See Speed below. Two picture faults remain, listed under Measured. Each stop below was only reached after the one before it was passed.\n\n| # | Stop | Status | Tracked by |\n|---|---|---|---|\n| 1 | `sceHttp2SslEnableOption` on a context handle | **Fixed on `main`** by #13734, confirmed on this title | #13715 closed, #13734 merged |\n| 2 | `DB_RENDER_CONTROL` 0x88 stencil copy | Open. Local pass, unverified | No issue or PR |\n| 3 | Native multisample depth publication | Passed with #13021 | #13021 |\n| 4 | `cannot distinguish an unwritten byte…` | Local fix, on the branch | No issue or PR |\n| 5 | Access violation in `nvoglv64.dll`, about 30 to 33 s | **Cause found.** Local fix, on the branch | #10492 describes the same bug |\n| 6 | `guest writes over native multisample depth` and `publication capture` | On the branch, with a known limit | #13023 is related |\n| 7 | Loop on the load after difficulty selection | **Cause found.** Fix on the branch and in #14310 | #14310 |"
+        "blockerText": "None stops the title in the tested range. Speed is the main problem now, and it is CPU-bound: on the later save the GPU takes about 16 ms per frame, while `Driver.Packet` takes about 43 ms and the committer thread stays busy. See Speed below. Two picture faults remain, listed under Measured. Each stop below was only reached after the one before it was passed.\n\n| # | Stop | Status | Tracked by |\n|---|---|---|---|\n| 1 | `sceHttp2SslEnableOption` on a context handle | **Fixed on `main`** by #13734, confirmed on this title | #13715 closed, #13734 merged |\n| 2 | `DB_RENDER_CONTROL` 0x88 stencil copy | Open. Local pass, unverified | No issue or PR |\n| 3 | Native multisample depth publication | **Fixed on `main`** by #13021 (merged 2026-11-03) | #13021 merged |\n| 4 | `cannot distinguish an unwritten byte…` | Local fix, on the branch | No issue or PR |\n| 5 | Access violation in `nvoglv64.dll`, about 30 to 33 s | **Fixed on `main`**: the fix was taken into #13021 | #13021 merged; #10492 describes the same bug |\n| 6 | `guest writes over native multisample depth` and `publication capture` | On the branch, with a known limit | #13023 is related |\n| 7 | Loop on the load after difficulty selection | **Fixed on `main`** by #14310. Not yet reached on plain `main`, which stops at blocker 2 | #14310 merged |"
       }
     ],
     "media": []
@@ -13530,8 +13769,8 @@
       "PPSA02629"
     ],
     "created": "2026-10-31T15:50:21Z",
-    "updated": "2026-10-31T21:11:57Z",
-    "comments": 3,
+    "updated": "2026-11-03T17:36:20Z",
+    "comments": 15,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14013",
@@ -13562,8 +13801,8 @@
       "PPSA02306"
     ],
     "created": "2026-10-31T16:12:38Z",
-    "updated": "2026-10-31T16:12:38Z",
-    "comments": 0,
+    "updated": "2026-11-02T09:41:04Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14019",
@@ -13633,8 +13872,8 @@
       "PPSA05213"
     ],
     "created": "2026-10-31T16:37:14Z",
-    "updated": "2026-11-01T06:04:05Z",
-    "comments": 2,
+    "updated": "2026-11-03T13:37:50Z",
+    "comments": 5,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14031",
@@ -13655,7 +13894,22 @@
         "blockerText": "Speed: about 55 FPS on the first screens, then 3 to 7 FPS from the cut-scene on. Not investigated yet."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/thymesia-main5cb-workshop-dialogue-linux-20261102.png",
+        "alt": "Workshop dialogue",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14031#discussioncomment-19363938",
+        "author": "JJenkx",
+        "date": "2026-11-03T01:20:16Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/thymesia-main5cb-workshop-talk-linux-20261102.png",
+        "alt": "Workshop Talk prompt",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14031#discussioncomment-19363938",
+        "author": "JJenkx",
+        "date": "2026-11-03T01:20:16Z"
+      }
+    ]
   },
   {
     "number": 14033,
@@ -13665,8 +13919,8 @@
       "PPSA05595"
     ],
     "created": "2026-10-31T16:41:30Z",
-    "updated": "2026-10-31T21:47:36Z",
-    "comments": 3,
+    "updated": "2026-11-03T23:13:38Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14033",
@@ -13697,8 +13951,8 @@
       "PPSA05626"
     ],
     "created": "2026-10-31T16:50:36Z",
-    "updated": "2026-10-31T16:50:36Z",
-    "comments": 0,
+    "updated": "2026-11-02T17:16:02Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14035",
@@ -13733,8 +13987,8 @@
       "PPSA15368"
     ],
     "created": "2026-10-31T17:07:49Z",
-    "updated": "2026-10-31T17:07:49Z",
-    "comments": 0,
+    "updated": "2026-11-03T13:23:04Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14053",
@@ -13770,8 +14024,8 @@
       "PPSA06829"
     ],
     "created": "2026-10-31T17:09:45Z",
-    "updated": "2026-10-31T17:09:45Z",
-    "comments": 0,
+    "updated": "2026-11-02T10:36:41Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14054",
@@ -13808,8 +14062,8 @@
       "PPSA07653"
     ],
     "created": "2026-10-31T17:19:44Z",
-    "updated": "2026-10-31T17:19:44Z",
-    "comments": 0,
+    "updated": "2026-11-04T02:27:14Z",
+    "comments": 6,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14058",
@@ -13875,8 +14129,8 @@
       "PPSA08056"
     ],
     "created": "2026-10-31T17:28:51Z",
-    "updated": "2026-10-31T23:44:10Z",
-    "comments": 3,
+    "updated": "2026-11-04T02:36:16Z",
+    "comments": 4,
     "reports": [],
     "media": []
   },
@@ -13888,8 +14142,8 @@
       "PPSA08194"
     ],
     "created": "2026-10-31T17:41:17Z",
-    "updated": "2026-10-31T22:22:11Z",
-    "comments": 1,
+    "updated": "2026-11-02T10:36:43Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14067",
@@ -14019,8 +14273,8 @@
       "PPSA12363"
     ],
     "created": "2026-10-31T18:15:57Z",
-    "updated": "2026-10-31T18:15:57Z",
-    "comments": 0,
+    "updated": "2026-11-03T15:43:22Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14082",
@@ -14051,8 +14305,8 @@
       "PPSA22102"
     ],
     "created": "2026-10-31T18:38:28Z",
-    "updated": "2026-10-31T18:38:28Z",
-    "comments": 0,
+    "updated": "2026-11-03T21:34:47Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14093",
@@ -14090,8 +14344,8 @@
       "PPSA34823"
     ],
     "created": "2026-10-31T18:50:17Z",
-    "updated": "2026-10-31T21:04:01Z",
-    "comments": 1,
+    "updated": "2026-11-04T04:18:08Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14099",
@@ -14135,10 +14389,32 @@
       "PPSA04795"
     ],
     "created": "2026-10-31T19:04:23Z",
-    "updated": "2026-10-31T19:04:23Z",
-    "comments": 0,
+    "updated": "2026-11-02T19:20:17Z",
+    "comments": 3,
     "reports": [],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/klonoa-PPSA04795-door-title-20261102.png",
+        "alt": "Door to Phantomile title on the tested integration",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14104#discussioncomment-19357291",
+        "author": "JJenkx",
+        "date": "2026-11-02T17:53:16Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/klonoa-PPSA04795-opening-story-20261102.png",
+        "alt": "KLONOA opening story",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14104#discussioncomment-19358482",
+        "author": "JJenkx",
+        "date": "2026-11-02T19:02:50Z"
+      },
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/klonoa-PPSA04795-gameplay-20261102.png",
+        "alt": "KLONOA scripted gameplay, three stones and enemy encounter",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/14104#discussioncomment-19358752",
+        "author": "JJenkx",
+        "date": "2026-11-02T19:20:17Z"
+      }
+    ]
   },
   {
     "number": 14316,
@@ -14148,8 +14424,8 @@
       "PPSA03568"
     ],
     "created": "2026-11-01T09:54:07Z",
-    "updated": "2026-11-01T09:54:07Z",
-    "comments": 0,
+    "updated": "2026-11-03T05:09:32Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14316",
@@ -14172,6 +14448,159 @@
         "blockerText": null
       }
     ],
+    "media": []
+  },
+  {
+    "number": 15124,
+    "title": "Mortal Kombat 11 (PPSA01619)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15124",
+    "titleIds": [
+      "PPSA01619"
+    ],
+    "created": "2026-11-02T17:39:25Z",
+    "updated": "2026-11-02T17:39:25Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15124",
+        "discussion": 15124,
+        "author": "Gooshy",
+        "date": "2026-11-02T17:39:25Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "AMD Radeon RX 9060 XT",
+        "gpuVendor": "AMD",
+        "build": "main 88795ed44 with local changes (listed under Current blocker), last run on 2026-10-27. The stops below are still in the code on main b28bb7721.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.004",
+        "shown": "With the changes below, fights run and render correctly at 1080p: a player fight (Scorpion against a CPU Sub-Zero on Special Forces Desert Command) runs at about 19 to 21 FPS over several runs. Queue worker 0 is about 98% busy, and the GPU takes about 29 ms per present, so the speed is CPU-bound on draw submission. Menus, character select and the attract-mode fights also run. Audio plays and the pad works.",
+        "blockers": [
+          9489,
+          9789,
+          13492
+        ],
+        "blockerText": "On `main`:\n\n1. **The first fight stops** with `a line polygon mode wider or narrower than one pixel`: the title draws lines with `PA_SU_LINE_CNTL` = 0x10 (two pixels). Fixed by #9489.\n2. **Character select stops presenting** with `color export format 4 into an unsigned integer target is unsupported`, which has been thrown since #9789. The screen freezes, which looks like a dead pad. I keep these exports on the float path locally as a workaround; it is not a correct fix, and I haven't opened a PR for it.\n3. **Some attract-mode fights stop** with `atomic image descriptor uses an unsupported format 11`: a compute pass reduces 16-bit texels with `ImageAtomicUMin32`. I run it locally through an R32_UINT twin of the 16_UINT surface; the PR waits for my open PR limit.\n\nOther local changes:\n\n- Cull distances from tessellation evaluation shaders: now on `main` through #13492.\n- Importing direct memory that spans several backings through one udmabuf list. I haven't checked whether `main`'s run-list import (`d5b768f02` and the commits before it) makes this unnecessary.\n- Performance changes only, which the title doesn't need to run."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 15250,
+    "title": "Ikai (PPSA06584)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15250",
+    "titleIds": [
+      "PPSA06584"
+    ],
+    "created": "2026-11-02T22:14:05Z",
+    "updated": "2026-11-03T10:07:33Z",
+    "comments": 2,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15250",
+        "discussion": 15250,
+        "author": "JJenkx",
+        "date": "2026-11-02T22:14:05Z",
+        "edited": "2026-11-02T22:21:24Z",
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": "Unmodified main 9090972b7e91fd266819cbd77a8b058e177b5682; no extra PRs. The earlier layered-target fix #6959 is merged and included.",
+        "buildKind": "prs",
+        "prs": [
+          6959
+        ],
+        "version": "01.000.000",
+        "shown": "One fresh-save cold-cache run advances from the desk scene through a 3D character cutscene with readable subtitles, then reaches the paint tutorial. Paper, kanji and the brush are visible. Two scripted Cross presses at 60/105 s; no paint or movement input was sent afterward.\n\nNative and harness exit 0 after the planned close at 320.8 s. Late in the run, the window counter reports roughly 14–16 FPS (median 14.78 across 45 samples from 230–320 s). The internal image is 3840×2160, presented in a 974×548 desktop window; requesting 1080p output did not force the internal render target to 1080p. This is one diagnostic run, not a gain comparison or a long-term stability result.\n\n![Paint tutorial on current main](https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/ikai-PPSA06584-main909-paint-tutorial-20261102.png)\n\nThe six later window captures agree with their near-time active X11 readbacks. The first startup comparison flags disagreement and is excluded; v2 corrects the earlier bundle’s aggregate count. Separate desktop captures failed and are not used. Audio, save/reload, successful painting, movement and later gameplay remain untested.",
+        "blockers": [],
+        "blockerText": "No stop at the tested point. Performance remains below real time. Only 10 s performance summaries were obtained: the requested detailed trace window was relative to first present and fell after the close. No detailed-event hotspot or speed gain is claimed."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/ikai-PPSA06584-main909-paint-tutorial-20261102.png",
+        "alt": "Paint tutorial on current main",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15250",
+        "author": "JJenkx",
+        "date": "2026-11-02T22:14:05Z"
+      }
+    ]
+  },
+  {
+    "number": 15328,
+    "title": "Age of Mythology: Retold (PPSA18653)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15328",
+    "titleIds": [
+      "PPSA18653"
+    ],
+    "created": "2026-11-03T00:05:01Z",
+    "updated": "2026-11-04T01:02:04Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15328",
+        "discussion": 15328,
+        "author": "XatiX",
+        "date": "2026-11-03T00:05:01Z",
+        "edited": "2026-11-04T01:02:02Z",
+        "stage": "Menus",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 5080",
+        "gpuVendor": "NVIDIA",
+        "build": "Updated 2026-11-04. A local stack on main 1e658521a0, made of these pull requests and one local copy of #7508, in this order:",
+        "buildKind": "patched",
+        "prs": [
+          7508,
+          15327,
+          15656,
+          15563,
+          15659,
+          15611,
+          15655
+        ],
+        "version": "01.043.000",
+        "shown": "The title screen renders correctly at 3840x2160, with music, at about 0.48 FPS (2.1 s per frame). Earlier runs with only blockers 1 and 2 fixed reached the first-run preferences screen (\"Welcome to Age of Mythology: Retold\") with music, at about 0.14 FPS. At these speeds the first frame stays black for several seconds before the screen appears. Input, menus and play are not tested yet.",
+        "blockers": [
+          15327,
+          15656,
+          15563,
+          7508,
+          15659,
+          15611,
+          15655,
+          5609
+        ],
+        "blockerText": "1. **GPU hang**, fixed by #15327 (open).\n   - The hanging command is a `vkCmdDrawIndirect`. VK_LAYER_LUNARG_crash_diagnostic found it, and Nsight Aftermath reports the device as hung with no active warps.\n   - AnyPS5 read GPU-side indirect draw records in place when the batch ran. The game's \"begin command context\" function (game.exe 0x2175070) resets the per-frame pool that holds the records, filling it with 0xEE. It does this after submitting the command buffer and before the GPU runs it, without waiting on a label, so the draw asked for 0xEEEEEEEE vertices and instances.\n   - A probe that copied the frame slot and the record on the GPU at the draw showed the record already 0xEE while the frame's RELEASE_MEM label had not yet run, so the label path is not involved.\n   - `APS5_NO_HOST_IMPORT=1` or `APS5_NO_GPU_INDIRECT_DRAW=1` also avoid the hang on `main`.\n2. **`clock_gettime: unsupported clock_id 20`**, then `abort()` at about 50 s, fixed with `APS5_FAIL_UNKNOWN_CLOCKS=1` (#15656, open).\n   - The caller is Party.prx (PlayFab Party) at 0x29be26. It builds a timestamp from clock 20 and falls back to `gettimeofday`, then `time(0)`, when the call fails; a sibling function uses clock 0.\n   - No public source names id 20, so by default it keeps throwing. What a PS5 returns for ids 16 to 20 is not measured.\n3. **Speed**: the title runs on one CPU-bound worker thread. The title screen issues about 650 draws per frame, and each binds a bindless image table of about 14,200 entries that the game rewrites in part once per frame.\n\n   Before #15563, every draw resolved every table entry: 5.3 s per frame in `Resources.Complete`, of which worker sampling put 56 % in `ShaderResources::resolveImageTables` and 35 % in the per-entry texture lookup. The existing table reuse never applied (0 reused), because about 1.6 % of each table's entries (about 229) are surfaces in host-imported memory, sampled as views of their storage images, and one such entry kept the whole table from being "
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 15337,
+    "title": "Spirit of the Island (PPSA13934)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15337",
+    "titleIds": [
+      "PPSA13934"
+    ],
+    "created": "2026-11-03T00:36:45Z",
+    "updated": "2026-11-04T01:07:18Z",
+    "comments": 3,
+    "reports": [],
+    "media": []
+  },
+  {
+    "number": 15606,
+    "title": "Dead of Darkness (PPSA28010) on Windows",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15606",
+    "titleIds": [
+      "PPSA28010"
+    ],
+    "created": "2026-11-03T21:28:16Z",
+    "updated": "2026-11-03T21:28:16Z",
+    "comments": 0,
+    "reports": [],
     "media": []
   }
 ]

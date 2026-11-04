@@ -399,6 +399,22 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/2904",
     "closedAt": "2026-10-12T10:46:54Z"
   },
+  "2961": {
+    "number": 2961,
+    "kind": "pr",
+    "title": "feat(libc): export the guest hardware concurrency hint",
+    "state": "closed",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/2961",
+    "closedAt": "2026-10-10T19:05:48Z"
+  },
+  "2965": {
+    "number": 2965,
+    "kind": "pr",
+    "title": "fix(shader): decode GFX10 scratch offsets as one dword",
+    "state": "closed",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/2965",
+    "closedAt": "2026-10-10T19:05:09Z"
+  },
   "3036": {
     "number": 3036,
     "kind": "issue",
@@ -691,9 +707,9 @@
     "number": 4449,
     "kind": "pr",
     "title": "feat(libSceAgcDriver): import scattered direct memory as a dma-buf run list and probe its coherence",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/4449",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:55:20Z"
   },
   "4467": {
     "number": 4467,
@@ -1099,9 +1115,9 @@
     "number": 5217,
     "kind": "issue",
     "title": "Relinked executable lies outside the guest arena, so JITs cannot reserve memory near their code (PS5CEMU-HAR's Azahar)",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/issues/5217",
-    "closedAt": null
+    "closedAt": "2026-11-01T04:05:02Z"
   },
   "5249": {
     "number": 5249,
@@ -1239,6 +1255,38 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/5411",
     "closedAt": "2026-10-13T22:12:27Z"
   },
+  "5415": {
+    "number": 5415,
+    "kind": "pr",
+    "title": "feat(libc): export the guest hardware concurrency hint",
+    "state": "closed",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/5415",
+    "closedAt": "2026-10-14T02:27:11Z"
+  },
+  "5417": {
+    "number": 5417,
+    "kind": "pr",
+    "title": "feat(libc): search eight-byte trivial ranges",
+    "state": "closed",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/5417",
+    "closedAt": "2026-10-14T02:27:05Z"
+  },
+  "5418": {
+    "number": 5418,
+    "kind": "pr",
+    "title": "feat(libc): implement the double nextafter export",
+    "state": "closed",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/5418",
+    "closedAt": "2026-10-14T02:28:59Z"
+  },
+  "5419": {
+    "number": 5419,
+    "kind": "pr",
+    "title": "feat(libc): implement the tgammaf export",
+    "state": "closed",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/5419",
+    "closedAt": "2026-10-14T02:26:58Z"
+  },
   "5425": {
     "number": 5425,
     "kind": "pr",
@@ -1246,6 +1294,22 @@
     "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/5425",
     "closedAt": "2026-10-13T22:14:20Z"
+  },
+  "5426": {
+    "number": 5426,
+    "kind": "pr",
+    "title": "fix(shader): decode GFX10 scratch offsets as one dword",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/5426",
+    "closedAt": "2026-10-23T22:57:41Z"
+  },
+  "5430": {
+    "number": 5430,
+    "kind": "pr",
+    "title": "feat(tools): fail import audits on strict provider mismatches",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/5430",
+    "closedAt": "2026-10-14T12:08:32Z"
   },
   "5437": {
     "number": 5437,
@@ -1739,9 +1803,9 @@
     "number": 6085,
     "kind": "pr",
     "title": "feat(libc): export _FDsign/_Dsign like MSVC CRT (PPSA34015)",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/6085",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:55:26Z"
   },
   "6086": {
     "number": 6086,
@@ -1923,9 +1987,9 @@
     "number": 6300,
     "kind": "pr",
     "title": "feat(agc): import cleared native multisample D32S8 targets and whole HTILE fills",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/6300",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:58:19Z"
   },
   "6304": {
     "number": 6304,
@@ -1947,9 +2011,9 @@
     "number": 6321,
     "kind": "pr",
     "title": "perf(libc): start the guest allocation overlap queries at the range that touches the address",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/6321",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:55:37Z"
   },
   "6335": {
     "number": 6335,
@@ -2099,9 +2163,9 @@
     "number": 6565,
     "kind": "pr",
     "title": "fix(libc): leave a range that a mutation waits for out of new leases",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/6565",
-    "closedAt": null
+    "closedAt": "2026-11-02T16:12:25Z"
   },
   "6570": {
     "number": 6570,
@@ -2291,9 +2355,9 @@
     "number": 6959,
     "kind": "pr",
     "title": "fix(agc): render layered mesh targets within device limits",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/6959",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:55:52Z"
   },
   "6970": {
     "number": 6970,
@@ -2331,9 +2395,9 @@
     "number": 7048,
     "kind": "pr",
     "title": "fix(agc): save the guest bytes of results that become pending over a surface that is no longer fully write-watched",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/pull/7048",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:59:47Z"
   },
   "7060": {
     "number": 7060,
@@ -2403,9 +2467,9 @@
     "number": 7223,
     "kind": "pr",
     "title": "feat(shader): resolve nested image tables through runtime pointers",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/7223",
-    "closedAt": null
+    "closedAt": "2026-11-04T03:57:51Z"
   },
   "7250": {
     "number": 7250,
@@ -2491,17 +2555,25 @@
     "number": 7446,
     "kind": "pr",
     "title": "fix(agc): prepare a draw or dispatch again when the memory it captured changed before it was recorded",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/7446",
+    "closedAt": "2026-11-02T07:55:58Z"
+  },
+  "7508": {
+    "number": 7508,
+    "kind": "pr",
+    "title": "perf(agc): partition relocation runs by tagged address",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/7508",
     "closedAt": null
   },
   "7532": {
     "number": 7532,
     "kind": "pr",
     "title": "fix(linux): enter the guest entry on a main stack at the console's address",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/7532",
-    "closedAt": null
+    "closedAt": "2026-11-03T08:07:52Z"
   },
   "7533": {
     "number": 7533,
@@ -2571,9 +2643,9 @@
     "number": 7658,
     "kind": "pr",
     "title": "feat(libs): the Hmd2 reprojection session",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/7658",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:56:19Z"
   },
   "7660": {
     "number": 7660,
@@ -2643,9 +2715,9 @@
     "number": 7844,
     "kind": "pr",
     "title": "fix(agc): keep at most 4 GiB of the host heap from the host import budget",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/7844",
-    "closedAt": null
+    "closedAt": "2026-11-01T23:29:09Z"
   },
   "7852": {
     "number": 7852,
@@ -2883,9 +2955,9 @@
     "number": 8123,
     "kind": "pr",
     "title": "fix(agc): import multisampled DCC register clears",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/8123",
-    "closedAt": null
+    "closedAt": "2026-11-01T23:29:51Z"
   },
   "8145": {
     "number": 8145,
@@ -3155,9 +3227,9 @@
     "number": 9188,
     "kind": "pr",
     "title": "fix(agc): return a synchronous draw's render target memory to the image pool",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9188",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:57:20Z"
   },
   "9202": {
     "number": 9202,
@@ -3307,9 +3379,9 @@
     "number": 9445,
     "kind": "pr",
     "title": "fix(agc): avoid CPU waits for GPU-ordered labels",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9445",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:57:41Z"
   },
   "9457": {
     "number": 9457,
@@ -3319,13 +3391,21 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/9457",
     "closedAt": null
   },
+  "9489": {
+    "number": 9489,
+    "kind": "pr",
+    "title": "feat(agc): draw line polygon modes at the PA_SU_LINE_CNTL width",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/9489",
+    "closedAt": null
+  },
   "9533": {
     "number": 9533,
     "kind": "pr",
     "title": "fix(agc): import native multisample D32S8 targets with a separate stencil plane and a depth-only HTILE",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9533",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:58:17Z"
   },
   "9551": {
     "number": 9551,
@@ -3363,17 +3443,17 @@
     "number": 9671,
     "kind": "pr",
     "title": "fix(shader): write a GCN v_cmpx result to its VCC or SDST as well as EXEC",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9671",
-    "closedAt": null
+    "closedAt": "2026-11-03T08:09:22Z"
   },
   "9672": {
     "number": 9672,
     "kind": "pr",
     "title": "fix(libSceAgcDriver): sample a PS4 depth buffer through a T# smaller than its padded extent",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9672",
-    "closedAt": null
+    "closedAt": "2026-11-03T16:43:14Z"
   },
   "9673": {
     "number": 9673,
@@ -3387,9 +3467,9 @@
     "number": 9674,
     "kind": "pr",
     "title": "feat(libSceAgcDriver): lay out PS4 textures in tile mode 19 (Thick_1dThick)",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9674",
-    "closedAt": null
+    "closedAt": "2026-11-04T05:33:42Z"
   },
   "9675": {
     "number": 9675,
@@ -3439,6 +3519,14 @@
     "url": "https://github.com/boykopovar/AnyPS5/issues/9783",
     "closedAt": "2026-10-26T11:48:06Z"
   },
+  "9789": {
+    "number": 9789,
+    "kind": "pr",
+    "title": "fix(libSceAgcDriver): export raw 32-bit values into UINT color targets as integers",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/9789",
+    "closedAt": "2026-10-26T11:48:04Z"
+  },
   "9790": {
     "number": 9790,
     "kind": "pr",
@@ -3459,9 +3547,9 @@
     "number": 9858,
     "kind": "pr",
     "title": "perf(agc): wait only for CPU-completion labels before direct consumers",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9858",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:58:55Z"
   },
   "9889": {
     "number": 9889,
@@ -3483,17 +3571,17 @@
     "number": 9891,
     "kind": "pr",
     "title": "fix(agc): decode PS4 texture bases, linear-aligned targets and thin-tiled 3D textures",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9891",
-    "closedAt": null
+    "closedAt": "2026-11-03T22:25:48Z"
   },
   "9892": {
     "number": 9892,
     "kind": "pr",
     "title": "feat(agc): draw PS4 multisampled color targets as host-resident targets",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9892",
-    "closedAt": null
+    "closedAt": "2026-11-04T03:59:02Z"
   },
   "9893": {
     "number": 9893,
@@ -3531,33 +3619,33 @@
     "number": 9898,
     "kind": "pr",
     "title": "perf(agc): keep constant RAM dumps and unregistered labels on the GPU without draining",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9898",
-    "closedAt": null
+    "closedAt": "2026-11-03T19:10:46Z"
   },
   "9899": {
     "number": 9899,
     "kind": "pr",
     "title": "perf(agc): reuse user-data callee links and check a cached raw shader's range once",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9899",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:59:11Z"
   },
   "9904": {
     "number": 9904,
     "kind": "pr",
     "title": "fix(recompiler): accept optional bodies that end the wave through an exit that keeps no lane",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9904",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:59:18Z"
   },
   "9905": {
     "number": 9905,
     "kind": "pr",
     "title": "fix(recompiler): accept optional-body merges of ballot words of the skipped lanes' mask bits",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9905",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:59:24Z"
   },
   "9906": {
     "number": 9906,
@@ -3579,9 +3667,9 @@
     "number": 9937,
     "kind": "pr",
     "title": "fix(avplayer): report the sample aspect ratio in stream and frame info",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9937",
-    "closedAt": null
+    "closedAt": "2026-11-02T07:59:34Z"
   },
   "9945": {
     "number": 9945,
@@ -3651,9 +3739,9 @@
     "number": 10048,
     "kind": "pr",
     "title": "fix(libSceAgc): fuse geometry halves with the back half's register lists",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/10048",
-    "closedAt": null
+    "closedAt": "2026-11-01T04:38:29Z"
   },
   "10049": {
     "number": 10049,
@@ -3699,9 +3787,9 @@
     "number": 10304,
     "kind": "pr",
     "title": "fix(agc): keep buffer owners when a staged address space dissolves",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/10304",
-    "closedAt": null
+    "closedAt": "2026-11-02T08:00:27Z"
   },
   "10347": {
     "number": 10347,
@@ -3763,9 +3851,9 @@
     "number": 10556,
     "kind": "pr",
     "title": "fix(shader): decode a T# with an unset format field as null",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/10556",
-    "closedAt": null
+    "closedAt": "2026-11-03T08:08:38Z"
   },
   "10614": {
     "number": 10614,
@@ -3803,9 +3891,9 @@
     "number": 10904,
     "kind": "issue",
     "title": "PPSA02530 stops at `scePadOpen` with port type 3 or 4 since #10361",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/issues/10904",
-    "closedAt": null
+    "closedAt": "2026-11-02T19:45:13Z"
   },
   "10913": {
     "number": 10913,
@@ -3819,9 +3907,9 @@
     "number": 10935,
     "kind": "pr",
     "title": "fix(libScePad): return an error for unsupported port probes",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/10935",
-    "closedAt": null
+    "closedAt": "2026-11-02T19:45:11Z"
   },
   "11052": {
     "number": 11052,
@@ -3907,9 +3995,9 @@
     "number": 11506,
     "kind": "pr",
     "title": "fix(shader): decide each resource branch condition once per plan",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11506",
-    "closedAt": null
+    "closedAt": "2026-11-02T10:28:47Z"
   },
   "11507": {
     "number": 11507,
@@ -3939,33 +4027,33 @@
     "number": 11575,
     "kind": "pr",
     "title": "feat(http2): deliver redirect callbacks and follow HTTPS redirects",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11575",
-    "closedAt": null
+    "closedAt": "2026-11-02T10:29:06Z"
   },
   "11580": {
     "number": 11580,
     "kind": "pr",
     "title": "fix(shader): load and store 16-bit data of converted packed images",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11580",
-    "closedAt": null
+    "closedAt": "2026-11-02T10:29:11Z"
   },
   "11586": {
     "number": 11586,
     "kind": "pr",
     "title": "feat(http2): deliver TLS certificate verification callbacks",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11586",
-    "closedAt": null
+    "closedAt": "2026-11-03T21:08:47Z"
   },
   "11611": {
     "number": 11611,
     "kind": "pr",
     "title": "feat(http2): support synchronous HTTP/1.0 and HTTP/1.1 requests",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11611",
-    "closedAt": null
+    "closedAt": "2026-11-04T05:33:31Z"
   },
   "11630": {
     "number": 11630,
@@ -3987,17 +4075,17 @@
     "number": 11847,
     "kind": "pr",
     "title": "perf(agc): wait only for CPU-stored completion labels when completing CPU writes",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11847",
-    "closedAt": null
+    "closedAt": "2026-11-03T10:30:44Z"
   },
   "11922": {
     "number": 11922,
     "kind": "pr",
     "title": "fix(libSceHttp2): return the console codes for failed TLS handshakes",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11922",
-    "closedAt": null
+    "closedAt": "2026-11-04T03:58:02Z"
   },
   "11939": {
     "number": 11939,
@@ -4019,9 +4107,9 @@
     "number": 11951,
     "kind": "pr",
     "title": "fix(shader): leave the workgroup memory set out of a compute module's bindings",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11951",
-    "closedAt": null
+    "closedAt": "2026-11-02T13:35:24Z"
   },
   "11995": {
     "number": 11995,
@@ -4075,9 +4163,9 @@
     "number": 12132,
     "kind": "pr",
     "title": "fix(shader): fold descriptor web paths that hold the lane index or texels",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/12132",
-    "closedAt": null
+    "closedAt": "2026-11-03T08:10:05Z"
   },
   "12208": {
     "number": 12208,
@@ -4099,17 +4187,17 @@
     "number": 12662,
     "kind": "pr",
     "title": "feat(agc): apply a T#'s MIN_LOD clamp in the shader without VK_EXT_image_view_min_lod",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/12662",
-    "closedAt": null
+    "closedAt": "2026-11-02T22:35:31Z"
   },
   "12826": {
     "number": 12826,
     "kind": "pr",
     "title": "feat(libkernel): export sceKernelAllocateDirectMemoryForApp and sceKernelProtectDirectMemoryForPID",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/12826",
-    "closedAt": null
+    "closedAt": "2026-11-02T16:14:05Z"
   },
   "12898": {
     "number": 12898,
@@ -4155,9 +4243,9 @@
     "number": 13021,
     "kind": "pr",
     "title": "feat(agc): publish a written native multisample D32S8 surface to its guest planes on a guest read",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/13021",
-    "closedAt": null
+    "closedAt": "2026-11-03T21:08:53Z"
   },
   "13023": {
     "number": 13023,
@@ -4239,13 +4327,21 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/13796",
     "closedAt": null
   },
+  "13883": {
+    "number": 13883,
+    "kind": "pr",
+    "title": "fix(agc): don't pass a label wait on memory its own queue already reset",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/13883",
+    "closedAt": "2026-11-01T05:41:05Z"
+  },
   "13894": {
     "number": 13894,
     "kind": "pr",
     "title": "fix(agc): continue a direct mesh draw past the X group limit in Z",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/13894",
-    "closedAt": null
+    "closedAt": "2026-11-01T09:10:32Z"
   },
   "13963": {
     "number": 13963,
@@ -4269,6 +4365,78 @@
     "title": "Contra: Operation Galuga (PPSA15368): intermittent first-stage loading stall and guest allocator crash",
     "state": "open",
     "url": "https://github.com/boykopovar/AnyPS5/issues/14052",
+    "closedAt": null
+  },
+  "14298": {
+    "number": 14298,
+    "kind": "pr",
+    "title": "feat(libc): report fatal host signals on Linux",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/14298",
+    "closedAt": null
+  },
+  "14302": {
+    "number": 14302,
+    "kind": "pr",
+    "title": "fix(agc): keep a CPU store that rewrote a pending block with its baseline bytes",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/14302",
+    "closedAt": "2026-11-03T08:08:15Z"
+  },
+  "14310": {
+    "number": 14310,
+    "kind": "pr",
+    "title": "fix(libkernel): forward socket calls on sceNetSocket descriptors to libSceNet",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/14310",
+    "closedAt": "2026-11-03T08:08:44Z"
+  },
+  "15327": {
+    "number": 15327,
+    "kind": "pr",
+    "title": "fix(agc): copy GPU-side indirect draw records when the packet is processed",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15327",
+    "closedAt": null
+  },
+  "15563": {
+    "number": 15563,
+    "kind": "pr",
+    "title": "perf(agc): reuse image tables that hold storage-viewed entries",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15563",
+    "closedAt": null
+  },
+  "15611": {
+    "number": 15611,
+    "kind": "pr",
+    "title": "fix(shader): map image-table entries filled with ones to no record",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15611",
+    "closedAt": null
+  },
+  "15655": {
+    "number": 15655,
+    "kind": "pr",
+    "title": "perf(shader): reuse an unwritten image table snapshot read through a pointer",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15655",
+    "closedAt": null
+  },
+  "15656": {
+    "number": 15656,
+    "kind": "pr",
+    "title": "feat(libkernel): fail unknown clock ids 16 to 31 with EINVAL on request",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15656",
+    "closedAt": null
+  },
+  "15659": {
+    "number": 15659,
+    "kind": "pr",
+    "title": "perf(agc): keep a reused image table's cache entries while nothing was erased",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15659",
     "closedAt": null
   }
 }

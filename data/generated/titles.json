@@ -84,6 +84,11 @@
     "region": "UP",
     "concept": "235235"
   },
+  "PPSA01619": {
+    "name": "Mortal Kombat 11",
+    "region": "EP",
+    "concept": "231756"
+  },
   "PPSA01670": {
     "name": "DEATHLOOP",
     "region": "EP",
@@ -308,6 +313,11 @@
     "name": "EA SPORTS™ UFC® 5",
     "region": "EP",
     "concept": "10002788"
+  },
+  "PPSA03568": {
+    "name": "Crimson Spires",
+    "region": "UP",
+    "concept": "10002328"
   },
   "PPSA03647": {
     "name": "3DMiniGolf",
@@ -548,6 +558,11 @@
     "name": "Dusk Diver 2",
     "region": "EP",
     "concept": "10003721"
+  },
+  "PPSA06584": {
+    "name": "Ikai",
+    "region": "UP",
+    "concept": "10004529"
   },
   "PPSA06652": {
     "name": "Hamster Playground",
@@ -819,6 +834,11 @@
     "region": "EP",
     "concept": "10005401"
   },
+  "PPSA13934": {
+    "name": "Spirit of the Island",
+    "region": "EP",
+    "concept": "10004685"
+  },
   "PPSA13960": {
     "name": "Assassin's Creed® Mirage",
     "region": "EP",
@@ -963,6 +983,11 @@
     "name": "ReadyOrNot",
     "region": "UP",
     "concept": "10009213"
+  },
+  "PPSA18653": {
+    "name": "Age of Mythology: Retold",
+    "region": "UP",
+    "concept": "10009260"
   },
   "PPSA19015": {
     "name": "Arcade Game Zone",
@@ -1253,6 +1278,11 @@
     "name": "NINJA GAIDEN: Ragebound",
     "region": "EP",
     "concept": "10013857"
+  },
+  "PPSA28010": {
+    "name": "Dead of Darkness",
+    "region": "UP",
+    "concept": "10013861"
   },
   "PPSA28061": {
     "name": "Earthion",
