@@ -86,14 +86,13 @@ async function cached(inputs: unknown, draw: () => Promise<Buffer>): Promise<Res
   return new Response(new Uint8Array(jpeg), { headers: { "Content-Type": "image/jpeg" } });
 }
 
-const mark = h(
-  "div",
-  { gap: 5, alignItems: "flex-end" },
-  ...["#5b9bff", "#4fb0ee", "#37e0c8", "#8e98ab"].map((color) => h("div", { width: 7, height: 30, borderRadius: 2, background: color })),
-);
+// The logo mark (src/assets/logo/mark.svg), drawn light on the dark cards.
+const markSvg = await readFile(resolve(process.cwd(), "src/assets/logo/mark.svg"), "utf8");
+const markUri = `data:image/svg+xml;base64,${Buffer.from(markSvg.replace('fill="currentColor"', `fill="${TEXT}"`)).toString("base64")}`;
+const mark = () => img(markUri, { width: 33, height: 30 });
 
 const brand = (label: string) =>
-  h("div", { alignItems: "center", gap: 14, fontSize: 28, fontWeight: 600, color: TEXT }, mark, h("div", { fontFamily: "Bricolage", fontWeight: 800 }, "AnyPS5"), h("div", { color: MUTED, fontWeight: 400 }, label));
+  h("div", { alignItems: "center", gap: 14, fontSize: 28, fontWeight: 600, color: TEXT }, mark(), h("div", { fontFamily: "Bricolage", fontWeight: 800 }, "AnyPS5"), h("div", { color: MUTED, fontWeight: 400 }, label));
 
 export interface GameCard {
   name: string;
@@ -179,5 +178,104 @@ async function drawDefault(covers: string[]): Promise<Buffer> {
         ),
       ),
     ),
+  );
+}
+
+export interface ProgressCard {
+  date: string;
+  libraries: { done: number; total: number } | null;
+  shaders: { decoded: number; total: number } | null;
+  /** Games per furthest stage, best first, and how many were tested. */
+  games: { stages: { stage: StageOrNone; count: number }[]; tested: number; gameplay: number };
+  /** Commits on main for each of the last days, oldest first; the last may be a partial day. */
+  commits: { date: string; commits: number }[];
+}
+
+/** The picture for the Discord bot's /progress: the three headline figures and recent commits, sized to read small. */
+export function progressImage(card: ProgressCard): Promise<Response> {
+  return cached(card, () => render(drawProgress(card)));
+}
+
+const SURFACE = "#0c1018";
+const LINE = "#1c2333";
+const number = new Intl.NumberFormat("en-GB");
+/** One decimal near either end, so 99.7% doesn't read as complete or 0.4% as nothing. */
+function share(done: number, total: number): string {
+  const p = total ? (done / total) * 100 : 0;
+  const near = (p > 0 && p < 10) || (p > 99 && p < 100);
+  return `${(Math.floor(p * (near ? 10 : 1)) / (near ? 10 : 1)).toFixed(near ? 1 : 0)}%`;
+}
+
+// Satori sizes flex boxes to their text rather than shrinking them, so widths are worked out here (border-box).
+const PAD = 48;
+const GAP = 20;
+const TILE = Math.floor((OG_WIDTH - 2 * PAD - 2 * GAP) / 3);
+const LEAD = 280;
+const SPARK = OG_WIDTH - 2 * PAD - LEAD - 28;
+
+function tile(eyebrow: string, color: string, big: string, small: string, bar: Node): Node {
+  return h(
+    "div",
+    { width: TILE, boxSizing: "border-box", flexShrink: 0, flexDirection: "column", justifyContent: "space-between", padding: "26px 28px", background: SURFACE, border: `2px solid ${LINE}`, borderRadius: 22 },
+    h("div", { alignItems: "center", gap: 12, fontSize: 22, fontWeight: 600, letterSpacing: 2, color: MUTED }, h("div", { width: 12, height: 12, borderRadius: 6, background: color }), eyebrow),
+    h(
+      "div",
+      { flexDirection: "column", gap: 6 },
+      h("div", { fontFamily: "Bricolage", fontSize: 80, fontWeight: 800, color: TEXT, lineHeight: 1, letterSpacing: -2 }, big),
+      h("div", { fontSize: 24, color: MUTED, lineHeight: 1.25 }, small),
+    ),
+    bar,
+  );
+}
+
+const meterBar = (done: number, total: number, color: string) =>
+  h("div", { height: 14, borderRadius: 7, background: UNTESTED, overflow: "hidden" }, h("div", { width: `${total ? Math.max(1, (done / total) * 100) : 0}%`, height: "100%", background: color, borderRadius: 7 }));
+
+function drawProgress(card: ProgressCard): Node {
+  const { libraries, shaders, games, commits } = card;
+  const stageBar = h(
+    "div",
+    { height: 14, gap: 3, minWidth: 0 },
+    ...games.stages.filter((s) => s.count > 0).map((s) => h("div", { flexGrow: s.count, flexBasis: 0, minWidth: 0, height: "100%", borderRadius: 4, background: STAGE_HEX[s.stage] })),
+  );
+  const peak = Math.max(1, ...commits.map((d) => d.commits));
+  const full = commits.slice(0, -1);
+  const week = full.slice(-7).reduce((n, d) => n + d.commits, 0);
+  return h(
+    "div",
+    { width: OG_WIDTH, height: OG_HEIGHT, boxSizing: "border-box", flexDirection: "column", gap: 24, padding: `40px ${PAD}px`, background: BG, fontFamily: "Geist" },
+    h(
+      "div",
+      { justifyContent: "space-between", alignItems: "center" },
+      brand("Progress"),
+      h("div", { fontSize: 24, color: MUTED }, new Date(`${card.date}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })),
+    ),
+    h(
+      "div",
+      { gap: GAP, flex: 1, minHeight: 0 },
+      libraries
+        ? tile("LIBRARIES", "#5b9bff", share(libraries.done, libraries.total), `${number.format(libraries.done)} of ${number.format(libraries.total)} functions`, meterBar(libraries.done, libraries.total, "#5b9bff"))
+        : null,
+      shaders ? tile("SHADERS", "#37e0c8", share(shaders.decoded, shaders.total), `of ${number.format(shaders.total)} GPU instructions decode`, meterBar(shaders.decoded, shaders.total, "#37e0c8")) : null,
+      tile("GAMES", STAGE_HEX.Ingame, number.format(games.gameplay), `of ${number.format(games.tested)} tested reach gameplay`, stageBar),
+    ),
+    commits.length > 1 &&
+      h(
+        "div",
+        { alignItems: "flex-end", gap: 28, height: 84, flexShrink: 0 },
+        h(
+          "div",
+          { flexDirection: "column", width: LEAD, flexShrink: 0, gap: 2 },
+          h("div", { fontFamily: "Bricolage", fontSize: 44, fontWeight: 800, color: TEXT, lineHeight: 1 }, number.format(week)),
+          h("div", { fontSize: 22, color: MUTED }, "commits in the last 7 days"),
+        ),
+        h(
+          "div",
+          { width: SPARK, flexShrink: 0, height: "100%", alignItems: "flex-end", gap: 4 },
+          ...commits.map((d, i) =>
+            h("div", { width: (SPARK - 4 * (commits.length - 1)) / commits.length, flexShrink: 0, height: `${Math.max(3, (d.commits / peak) * 100)}%`, borderRadius: "4px 4px 0 0", background: "#5b9bff", opacity: i === commits.length - 1 ? 0.35 : 1 }),
+          ),
+        ),
+      ),
   );
 }

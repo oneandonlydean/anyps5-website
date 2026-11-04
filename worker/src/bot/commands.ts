@@ -79,10 +79,33 @@ const STAGE_ORDER = ["Converts", "Loads", "Starts", "First draw", "Presents", "M
 const MILESTONE = { started: "first function", half: "reached half", complete: "complete" } as const;
 
 /** /progress: everything at a glance, or one area in depth. */
-function progress(env: Env, data: SiteData, area: string): Response {
+async function progress(env: Env, data: SiteData, area: string): Promise<Response> {
   if (area === "libraries") return progressLibraries(env, data);
   if (area === "shaders") return progressShaders(env, data);
   if (area === "games") return progressGames(env, data);
+  // The picture the site build draws (src/pages/bot/progress-card.jpg.ts); the text version if it's missing.
+  if (await hasAsset(env, "/bot/progress-card.jpg")) {
+    const now = data.stages.now;
+    const parts = [
+      data.libraries && `**${share(data.libraries.done, data.libraries.total)}** of library functions`,
+      data.shaders && `**${share(data.shaders.decoded, data.shaders.total)}** of shader instructions`,
+      `**${atStages(now, GAMEPLAY)}** of ${testedIn(now)} games reach gameplay`,
+    ].filter(Boolean);
+    return reply({
+      embeds: [
+        {
+          title: "AnyPS5 progress",
+          url: link(env, "/progress"),
+          description: parts.join(" · "),
+          // The build time in the address, so Discord fetches the new picture after each site update.
+          image: { url: `${link(env, "/bot/progress-card.jpg")}?v=${Date.parse(data.generated)}` },
+          color: 0x5b9bff,
+          footer: { text: "/progress libraries, shaders or games for more" },
+          timestamp: data.generated,
+        },
+      ],
+    });
+  }
   const fields = [];
   if (data.libraries) {
     const { done, total } = data.libraries;
@@ -161,11 +184,19 @@ function progressGames(env: Env, data: SiteData): Response {
   });
 }
 
+/** Whether the site build produced one of the bot's pictures. */
+async function hasAsset(env: Env, path: string): Promise<boolean> {
+  const res = env.ASSETS ? await env.ASSETS.fetch(link(env, path), { method: "HEAD" }) : null;
+  await res?.body?.cancel();
+  return Boolean(res?.ok);
+}
+
+/** A share as the meters show it: one decimal near either end. */
+const share = (done: number, total: number) => meter(done, total, 0).trim();
+
 /** Upstream's library map, rendered to PNG by the site build (src/pages/bot/[image].png.ts). */
 async function progressMap(env: Env, data: SiteData): Promise<Response> {
-  const res = env.ASSETS ? await env.ASSETS.fetch(link(env, "/bot/progress.png"), { method: "HEAD" }) : null;
-  await res?.body?.cancel();
-  if (!res?.ok) return privately(`The map isn't available right now. Upstream has it at <${UPSTREAM_MAP}>.`);
+  if (!(await hasAsset(env, "/bot/progress.png"))) return privately(`The map isn't available right now. Upstream has it at <${UPSTREAM_MAP}>.`);
   return reply({
     embeds: [
       {

@@ -212,6 +212,20 @@ it("/progressmap shows the map the site rendered, or says it isn't there", async
   expect(image).toBe(`https://worker.test/bot/progress.png?v=${Date.parse(DATA.generated)}`);
 });
 
+it("/progress shows the card the site drew, with the headline figures as text", async () => {
+  const withCard = {
+    ...testEnv,
+    ASSETS: { fetch: async (url: string) => (String(url).split("?")[0]!.endsWith("/bot/progress-card.jpg") ? new Response(null) : Response.json(data)) } as unknown as Fetcher,
+  };
+  const body = JSON.stringify({ type: 2, data: { name: "progress" }, member: { user: { id: "d1" } } });
+  const signature = hex(await crypto.subtle.sign("Ed25519", keys.privateKey, new TextEncoder().encode("1" + body)));
+  const res = await worker.fetch(new Request("https://worker.test/interactions", { method: "POST", headers: { "x-signature-ed25519": signature, "x-signature-timestamp": "1" }, body }) as any, withCard, ctx);
+  const embed = (await res.json<any>()).data.embeds[0];
+  expect(embed.image.url).toBe(`https://worker.test/bot/progress-card.jpg?v=${Date.parse(DATA.generated)}`);
+  expect(embed.description).toBe("**25%** of library functions · **90%** of shader instructions · **1** of 2 games reach gameplay");
+  expect(embed.fields).toBeUndefined();
+});
+
 it("/leaderboard testers ranks reporters by period, with linked members named", async () => {
   await addUser({ discord_id: "d9", github_id: 9, github_login: "bob" });
   const all = (await run("leaderboard", { board: "testers" })).data.embeds[0];
