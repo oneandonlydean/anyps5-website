@@ -100,6 +100,18 @@ it("/leaderboard ranks everyone in the history, linked or not, without bots or p
   expect(month.description.split("\n\n")[1].split("\n")).toHaveLength(4);
 });
 
+it("GET /api/merges gives the site build the boards, with GitHub logins but no Discord accounts", async () => {
+  await addUser({ discord_id: "d7", github_id: 7, github_login: "carol" });
+  await addMerge(70, 7, "carol", daysAgo(2));
+  await addMerge(71, 7, "carol", daysAgo(50));
+  await addMerge(72, 9, "dependabot[bot]", daysAgo(1));
+  const res = await worker.fetch(new Request("https://worker.test/api/merges") as any, testEnv, ctx);
+  const body = await res.json<any>();
+  expect(body.boards.all.find((r: any) => r.login === "carol")).toEqual({ login: "carol", total: 2, month: 1, week: 1 });
+  expect(JSON.stringify(body)).not.toContain("d7");
+  expect(JSON.stringify(body)).not.toContain("dependabot");
+});
+
 it("/leaderboard copes with an empty history", async () => {
   const { data } = await (await send(command("leaderboard", "d1"))).json<any>();
   expect(data.content).toBe("No merged pull requests yet.");

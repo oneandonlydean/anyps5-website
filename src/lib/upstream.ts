@@ -76,6 +76,20 @@ export const getProgressHistory = () => loadGenerated<ProgressDay[]>("progress-h
 export const getLibraryHistory = () => loadGenerated<LibraryHistory | null>("library-history.json", null);
 /** Games per stage by day; null until the first data refresh that records them. */
 export const getCompatHistory = () => loadGenerated<CompatHistory | null>("compat-history.json", null);
+export interface BoardRow {
+  login: string;
+  total: number;
+  month: number;
+  week: number;
+}
+/** The bot's merge history in figures, from the Worker's GET /api/merges (scripts/sync-board.ts). */
+export interface MergeBoard {
+  generated: string;
+  totals: { total: number; month: number; week: number; people: number; active: number };
+  boards: { all: BoardRow[]; month: BoardRow[]; week: BoardRow[] };
+}
+export const getMergeBoard = () => loadGenerated<MergeBoard | null>("merge-board.json", null);
+
 export interface Commits {
   /** When the counts were taken; the day it falls on is still in progress. */
   synced: string;

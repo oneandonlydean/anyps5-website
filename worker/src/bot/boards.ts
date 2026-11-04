@@ -1,4 +1,4 @@
-import { reply } from "./commands";
+import { reply, withImage } from "./commands";
 import type { Env } from "./env";
 import { link, meter, siteData, type SiteData } from "./site-data";
 
@@ -45,9 +45,9 @@ async function mergeTotals(env: Env) {
     .first<{ total: number; month: number; week: number; people: number; active: number }>())!;
 }
 
-async function contributors(env: Env, period: Period): Promise<Response> {
+/** The top contributors by merged pull requests in a period, newest login per account (accounts can be renamed). */
+async function topContributors(env: Env, period: Period, size = SIZE): Promise<ContributorRow[]> {
   const order = { all: "total", month: "month", week: "week" }[period];
-  // The newest login per account, as accounts can be renamed.
   const { results } = await env.DB.prepare(
     `SELECT (SELECT author_login FROM merges n WHERE n.author_id = m.author_id ORDER BY merged_at DESC LIMIT 1) AS login,
             u.discord_id, count(*) AS total, sum(m.merged_at >= ?1) AS month, sum(m.merged_at >= ?2) AS week, max(m.merged_at) AS latest
@@ -55,8 +55,26 @@ async function contributors(env: Env, period: Period): Promise<Response> {
      WHERE m.author_id IS NOT NULL AND m.author_login NOT LIKE '%[bot]'
      GROUP BY m.author_id HAVING ${order} > 0 ORDER BY ${order} DESC, total DESC, latest DESC LIMIT ?3`,
   )
-    .bind(sinceIso(30), sinceIso(7), SIZE)
+    .bind(sinceIso(30), sinceIso(7), size)
     .all<ContributorRow>();
+  return results;
+}
+
+/**
+ * GET /api/merges: merge totals and the contributor boards, for the site build to draw the leaderboard and /stats
+ * pictures from. Public GitHub figures only: no Discord accounts.
+ */
+export async function mergeBoards(_req: Request, env: Env): Promise<Response> {
+  const [totals, all, month, week] = await Promise.all([mergeTotals(env), topContributors(env, "all"), topContributors(env, "month"), topContributors(env, "week")]);
+  const strip = (rows: ContributorRow[]) => rows.map(({ login, total, month, week }) => ({ login, total, month, week }));
+  return Response.json(
+    { generated: new Date().toISOString(), totals, boards: { all: strip(all), month: strip(month), week: strip(week) } },
+    { headers: { "cache-control": "public, max-age=300" } },
+  );
+}
+
+async function contributors(env: Env, period: Period): Promise<Response> {
+  const results = await topContributors(env, period);
   const t = await mergeTotals(env);
   if (!results.length) return reply({ content: `No merged pull requests ${period === "all" ? "yet" : `in the ${PERIOD[period].toLowerCase()}`}.` });
   const lines = results.map((r, i) => `${rank(i)} ${who(r.login, r.discord_id)}\n${counts({ all: r.total, month: r.month, week: r.week }, period, "merged")}`);
@@ -107,10 +125,10 @@ async function testers(env: Env, data: SiteData, period: Period): Promise<Respon
 
 export async function leaderboard(env: Env, board: string, periodKey: string): Promise<Response> {
   const period: Period = periodKey in PERIOD ? (periodKey as Period) : "all";
-  if (board !== "testers") return contributors(env, period);
+  if (board !== "testers") return withImage(env, `/bot/cards/contributors-${period}.jpg`, await contributors(env, period));
   const data = await siteData(env);
   if (!data) return reply({ content: "The site's data isn't available right now. Try again in a minute.", flags: 64 });
-  return testers(env, data, period);
+  return withImage(env, `/bot/cards/testers-${period}.jpg`, await testers(env, data, period));
 }
 
 /** /stats: the project in numbers. */
@@ -146,5 +164,5 @@ export async function stats(env: Env): Promise<Response> {
     fields.push({ name: "Testing", value: `**${num(tt.reports + tt.uploads)}** reports\n${num(tt.testers)} testers · ${num(tt.month)} reports in 30 days`, inline: true });
     if (data.release) fields.push({ name: "Latest release", value: `[${data.release.name || data.release.tag}](${data.release.url}) · <t:${Math.floor(Date.parse(data.release.published) / 1000)}:R>`, inline: false });
   }
-  return reply({ embeds: [{ title: "AnyPS5 in numbers", url: link(env, "/progress"), color: 0x5b9bff, fields, timestamp: data?.generated }] });
+  return withImage(env, "/bot/cards/stats.jpg", reply({ embeds: [{ title: "AnyPS5 in numbers", url: link(env, "/progress"), color: 0x5b9bff, fields, timestamp: data?.generated }] }));
 }

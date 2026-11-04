@@ -232,33 +232,30 @@ const meterBar = (done: number, total: number, color: string) =>
   h("div", { height: 14, borderRadius: 7, background: UNTESTED, overflow: "hidden" }, h("div", { width: `${total ? Math.max(1, (done / total) * 100) : 0}%`, height: "100%", background: color, borderRadius: 7 }));
 
 function drawProgress(card: ProgressCard): Node {
-  const { libraries, shaders, games, commits } = card;
+  const { libraries, shaders, games } = card;
   const stageBar = h(
     "div",
     { height: 14, gap: 3, minWidth: 0 },
     ...games.stages.filter((s) => s.count > 0).map((s) => h("div", { flexGrow: s.count, flexBasis: 0, minWidth: 0, height: "100%", borderRadius: 4, background: STAGE_HEX[s.stage] })),
   );
+  return tilesCard("Progress", card.date, [
+    libraries
+      ? tile("LIBRARIES", "#5b9bff", share(libraries.done, libraries.total), `${number.format(libraries.done)} of ${number.format(libraries.total)} functions`, meterBar(libraries.done, libraries.total, "#5b9bff"))
+      : null,
+    shaders ? tile("SHADERS", "#37e0c8", share(shaders.decoded, shaders.total), `of ${number.format(shaders.total)} GPU instructions decode`, meterBar(shaders.decoded, shaders.total, "#37e0c8")) : null,
+    tile("GAMES", STAGE_HEX.Ingame, number.format(games.gameplay), `of ${number.format(games.tested)} tested reach gameplay`, stageBar),
+  ], card.commits);
+}
+
+/** Three tiles over a strip of commits per day: the /progress and /stats layout. */
+function tilesCard(label: string, date: string, tiles: Child[], commits: { date: string; commits: number }[]): Node {
   const peak = Math.max(1, ...commits.map((d) => d.commits));
-  const full = commits.slice(0, -1);
-  const week = full.slice(-7).reduce((n, d) => n + d.commits, 0);
+  const week = commits.slice(0, -1).slice(-7).reduce((n, d) => n + d.commits, 0);
   return h(
     "div",
     { width: OG_WIDTH, height: OG_HEIGHT, boxSizing: "border-box", flexDirection: "column", gap: 24, padding: `40px ${PAD}px`, background: BG, fontFamily: "Geist" },
-    h(
-      "div",
-      { justifyContent: "space-between", alignItems: "center" },
-      brand("Progress"),
-      h("div", { fontSize: 24, color: MUTED }, new Date(`${card.date}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })),
-    ),
-    h(
-      "div",
-      { gap: GAP, flex: 1, minHeight: 0 },
-      libraries
-        ? tile("LIBRARIES", "#5b9bff", share(libraries.done, libraries.total), `${number.format(libraries.done)} of ${number.format(libraries.total)} functions`, meterBar(libraries.done, libraries.total, "#5b9bff"))
-        : null,
-      shaders ? tile("SHADERS", "#37e0c8", share(shaders.decoded, shaders.total), `of ${number.format(shaders.total)} GPU instructions decode`, meterBar(shaders.decoded, shaders.total, "#37e0c8")) : null,
-      tile("GAMES", STAGE_HEX.Ingame, number.format(games.gameplay), `of ${number.format(games.tested)} tested reach gameplay`, stageBar),
-    ),
+    h("div", { justifyContent: "space-between", alignItems: "center" }, brand(label), h("div", { fontSize: 24, color: MUTED }, dateLabel(date))),
+    h("div", { gap: GAP, flex: 1, minHeight: 0 }, ...tiles),
     commits.length > 1 &&
       h(
         "div",
@@ -280,6 +277,25 @@ function drawProgress(card: ProgressCard): Node {
   );
 }
 
+export interface StatsCard {
+  date: string;
+  merges: { total: number; month: number; people: number; active: number } | null;
+  testing: { reports: number; month: number; testers: number };
+  games: { listed: number; gameplay: number };
+  commits: { date: string; commits: number }[];
+}
+
+export const statsImage = (card: StatsCard) =>
+  cached(card, () =>
+    render(
+      tilesCard("In numbers", card.date, [
+        card.merges ? tile("MERGED", "#c084fc", number.format(card.merges.total), `pull requests, ${number.format(card.merges.month)} in the last 30 days`, meterBar(card.merges.month, card.merges.total, "#c084fc")) : null,
+        card.merges ? tile("CONTRIBUTORS", "#5b9bff", number.format(card.merges.people), `people, ${number.format(card.merges.active)} active this month`, meterBar(card.merges.active, card.merges.people, "#5b9bff")) : null,
+        tile("TESTING", STAGE_HEX.Ingame, number.format(card.testing.reports), `reports by ${number.format(card.testing.testers)} testers, ${number.format(card.testing.month)} this month`, meterBar(card.testing.month, card.testing.reports, STAGE_HEX.Ingame)),
+      ], card.commits),
+    ),
+  );
+
 // The in-depth cards for /progress libraries, shaders and games: the headline on the left, labelled bars on the right.
 
 const LEFT = 330;
@@ -287,11 +303,12 @@ const RIGHT = OG_WIDTH - 2 * PAD - LEFT - 48;
 
 const dateLabel = (date: string) => new Date(`${date}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
-function frame(label: string, date: string, left: Child[], right: Child[]): Node {
+/** The in-depth layout. A card without a date (one per library) is redrawn only when its figures change. */
+function frame(label: string, date: string | null, left: Child[], right: Child[]): Node {
   return h(
     "div",
     { width: OG_WIDTH, height: OG_HEIGHT, boxSizing: "border-box", flexDirection: "column", gap: 28, padding: `40px ${PAD}px`, background: BG, fontFamily: "Geist" },
-    h("div", { justifyContent: "space-between", alignItems: "center" }, brand(label), h("div", { fontSize: 24, color: MUTED }, dateLabel(date))),
+    h("div", { justifyContent: "space-between", alignItems: "center" }, brand(label), date && h("div", { fontSize: 24, color: MUTED }, dateLabel(date))),
     h(
       "div",
       { flex: 1, gap: 48, minHeight: 0 },
@@ -325,30 +342,57 @@ interface Row {
   share: number;
   value: string;
   color: string;
+  /** A rank shown before the label, like 1 or 🥇. */
+  rank?: string;
+  /** A small round picture before the label (a data URI), like an avatar. */
+  icon?: string | null;
 }
 
 const NAME = 210;
 const VALUE = 150;
+const RANK = 34;
+const ICON = 34;
 
-function rows(title: string, items: Row[]): Node[] {
-  const track = RIGHT - 60 - NAME - VALUE - 32;
+interface RowsOptions {
+  /** Width of the label column. */
+  name?: number;
+  value?: number;
+  /** Smaller labels, for long names like functions. */
+  mono?: boolean;
+}
+
+function rows(title: string, items: Row[], { name = NAME, value = VALUE, mono = false }: RowsOptions = {}): Node[] {
+  const ranked = items.some((r) => r.rank);
+  const pictured = items.some((r) => r.icon !== undefined);
+  const lead = (ranked ? RANK + 16 : 0) + (pictured ? ICON + 16 : 0);
+  const track = RIGHT - 60 - lead - name - value - 32;
   const height = items.length > 7 ? 30 : 36;
   return [
     h("div", { fontSize: 24, fontWeight: 600, color: TEXT, marginBottom: 18 }, title),
     h(
       "div",
-      { flexDirection: "column", flex: 1, justifyContent: "space-between" },
+      // A long list fills the panel; a short one packs from the top.
+      { flexDirection: "column", flex: 1, justifyContent: items.length >= 8 ? "space-between" : "flex-start", gap: items.length >= 8 ? 0 : 18 },
       ...items.map((r) =>
         h(
           "div",
           { alignItems: "center", gap: 16, height },
-          h("div", { width: NAME, flexShrink: 0, fontSize: 22, color: TEXT, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }, r.label),
+          ranked && h("div", { width: RANK, flexShrink: 0, justifyContent: "flex-end", fontSize: 22, fontWeight: 600, color: MUTED }, r.rank ?? ""),
+          pictured &&
+            (r.icon
+              ? img(r.icon, { width: ICON, height: ICON, borderRadius: ICON / 2, flexShrink: 0 })
+              : h("div", { width: ICON, height: ICON, borderRadius: ICON / 2, flexShrink: 0, background: UNTESTED })),
+          h(
+            "div",
+            { width: name, flexShrink: 0, fontSize: mono ? 20 : 22, color: TEXT, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" },
+            r.label,
+          ),
           h(
             "div",
             { width: track, flexShrink: 0, height: 14, borderRadius: 7, background: UNTESTED },
             h("div", { width: Math.max(r.share > 0 ? 6 : 0, Math.round(r.share * track)), height: 14, borderRadius: 7, background: r.color }),
           ),
-          h("div", { width: VALUE, flexShrink: 0, justifyContent: "flex-end", fontSize: 22, color: MUTED }, r.value),
+          h("div", { width: value, flexShrink: 0, justifyContent: "flex-end", fontSize: 22, color: MUTED }, r.value),
         ),
       ),
     ),
@@ -449,6 +493,214 @@ export const gamesImage = (card: GamesCard) => {
           "Furthest stage reached",
           card.stages.map((s) => ({ label: s.stage, share: s.count / peak, value: number.format(s.count), color: STAGE_HEX[s.stage] })),
         ),
+      ),
+    ),
+  );
+};
+
+// Cards for the bot's other commands. Each is drawn at site build; the bot shows it above its live text.
+
+const rankLabel = (i: number) => String(i + 1);
+
+/** A GitHub account's avatar as a data URI, or null. */
+const avatar = (login: string) => imageData(`https://github.com/${encodeURIComponent(login)}.png?size=80`, 80);
+
+export interface BoardCard {
+  date: string;
+  kind: "contributors" | "testers";
+  /** "All time", "Last 30 days" or "Last 7 days". */
+  period: string;
+  total: number;
+  /** What the total counts, after the number: "merged pull requests", "reports". */
+  noun: string;
+  /** How many people the total is from, when known for the period. */
+  people: number | null;
+  rows: { login: string; value: number }[];
+}
+
+export const boardImage = (card: BoardCard) =>
+  cached(card, async () => {
+    const icons = await Promise.all(card.rows.map((r) => avatar(r.login)));
+    const peak = Math.max(1, ...card.rows.map((r) => r.value));
+    const color = card.kind === "contributors" ? "#c084fc" : STAGE_HEX.Ingame;
+    return render(
+      frame(
+        "Leaderboard",
+        card.date,
+        [
+          headline(card.kind === "contributors" ? "CONTRIBUTORS" : "TESTERS", color, number.format(card.total), `${card.noun}, ${card.period.toLowerCase()}`),
+          card.people === null ? null : facts([{ color, text: `${number.format(card.people)} ${card.kind === "contributors" ? "people" : "testers"}` }]),
+        ],
+        rows(
+          `Top ${card.kind} · ${card.period}`,
+          card.rows.map((r, i) => ({ rank: rankLabel(i), icon: icons[i], label: r.login, share: r.value / peak, value: number.format(r.value), color })),
+          { name: 230, value: 90 },
+        ),
+      ),
+    );
+  });
+
+export interface WantedCard {
+  date: string;
+  /** Missing functions games are stuck on, most games first. */
+  functions: { name: string; library: string; games: number }[];
+  /** Games stuck on at least one missing function. */
+  games: number;
+}
+
+export const wantedImage = (card: WantedCard) => {
+  const peak = Math.max(1, ...card.functions.map((f) => f.games));
+  const top = card.functions[0];
+  return cached(card, () =>
+    render(
+      frame(
+        "Most wanted",
+        card.date,
+        [
+          headline("MOST WANTED", "#f5b84a", number.format(card.games), "games are stuck on a missing system function"),
+          top ? facts([{ color: "#f5b84a", text: `Top: ${top.library}` }, { color: UNTESTED, text: `${number.format(top.games)} games wait on it` }]) : null,
+        ],
+        rows(
+          "Missing functions, by games waiting",
+          card.functions.slice(0, 9).map((f) => ({ label: f.name, share: f.games / peak, value: `${number.format(f.games)} game${f.games === 1 ? "" : "s"}`, color: "#f5b84a" })),
+          { name: 330, value: 110, mono: true },
+        ),
+      ),
+    ),
+  );
+};
+
+export interface TrackedCard {
+  date: string;
+  release: string;
+  /** Furthest first; stage null where the game hasn't been run on the release yet. */
+  games: { name: string; stage: StageOrNone | null }[];
+}
+
+export const trackedImage = (card: TrackedCard) => {
+  const ingame = card.games.filter((g) => stageRank(g.stage) >= stageRank("Ingame")).length;
+  const run = card.games.filter((g) => g.stage).length;
+  const top = stageRank("Playable");
+  return cached(card, () =>
+    render(
+      frame(
+        "Tracked games",
+        card.date,
+        [
+          headline(`TRACKED ON ${card.release.toUpperCase()}`, STAGE_HEX.Ingame, `${ingame}/${card.games.length}`, "tracked games reach gameplay"),
+          facts([
+            { color: STAGE_HEX.Playable, text: `${run} of ${card.games.length} run so far` },
+            { color: UNTESTED, text: `${card.games.length - run} still to test` },
+          ]),
+        ],
+        rows(
+          `Furthest stage on ${card.release}`,
+          card.games.slice(0, 10).map((g) => ({ label: g.name, share: g.stage ? stageRank(g.stage) / top : 0, value: g.stage ?? "Not run", color: g.stage ? STAGE_HEX[g.stage] : UNTESTED })),
+          { name: 300, value: 140 },
+        ),
+      ),
+    ),
+  );
+};
+
+export interface ReleaseCard {
+  tag: string;
+  published: string;
+  downloads: { label: string; size: number }[];
+  /** What was merged since the release before, by area; null when that isn't known. */
+  since: { tag: string; areas: { label: string; count: number }[] } | null;
+}
+
+export const releaseImage = (card: ReleaseCard) => {
+  const peak = Math.max(1, ...(card.since?.areas.map((a) => a.count) ?? []));
+  const merged = card.since?.areas.reduce((n, a) => n + a.count, 0) ?? 0;
+  return cached(card, () =>
+    render(
+      frame(
+        "Release",
+        card.published.slice(0, 10),
+        [
+          headline("LATEST RELEASE", "#3ddc84", card.tag, `released ${dateLabel(card.published.slice(0, 10))}`),
+          facts(card.downloads.map((d) => ({ color: "#3ddc84", text: `${d.label} · ${(d.size / 1048576).toFixed(1)} MB` }))),
+        ],
+        card.since && card.since.areas.length
+          ? rows(
+              `${number.format(merged)} changes since ${card.since.tag}`,
+              card.since.areas.map((a) => ({ label: a.label, share: a.count / peak, value: number.format(a.count), color: "#3ddc84" })),
+            )
+          : [h("div", { fontSize: 26, color: MUTED }, "Release notes are on GitHub.")],
+      ),
+    ),
+  );
+};
+
+const GRID_CELLS = 400;
+
+/** The library as squares, green where implemented: one per function, or per few functions in a big library. */
+function functionGrid(done: number, total: number, color: string, note: string | null, height = 300): Child[] {
+  const per = Math.max(1, Math.ceil(total / GRID_CELLS));
+  const cells = Math.ceil(total / per);
+  const lit = Math.round(done / per);
+  const width = RIGHT - 60;
+  const gap = 4;
+  // The biggest square that fits every cell in the area.
+  let size = 40;
+  while (size > 4 && Math.floor((width + gap) / (size + gap)) * Math.floor((height + gap) / (size + gap)) < cells) size--;
+  return [
+    h("div", { fontSize: 24, fontWeight: 600, color: TEXT, marginBottom: 18 }, per === 1 ? "Each square is a function" : `Each square is ${per} functions`),
+    h(
+      "div",
+      { flexWrap: "wrap", gap, width, height, alignContent: "flex-start" },
+      ...Array.from({ length: cells }, (_, i) => h("div", { width: size, height: size, borderRadius: Math.min(6, size / 4), background: i < lit ? color : UNTESTED })),
+    ),
+    note && h("div", { fontSize: 22, color: MUTED, marginTop: 12 }, note),
+  ];
+}
+
+export interface LibraryCard {
+  name: string;
+  done: number;
+  total: number;
+  /** Functions gained since the end of the day before; null without history. */
+  gained: number | null;
+  milestone: string | null;
+  /** Missing functions in this library that games wait on, most games first. */
+  wanted: { name: string; games: number }[];
+}
+
+export const libraryImage = (card: LibraryCard) => {
+  const peak = Math.max(1, ...card.wanted.map((w) => w.games));
+  const complete = card.total > 0 && card.done === card.total;
+  const color = complete ? "#3ddc84" : "#5b9bff";
+  return cached(card, () =>
+    render(
+      frame(
+        "Library",
+        null,
+        [
+          headline(card.name.toUpperCase(), color, share(card.done, card.total), `${number.format(card.done)} of ${number.format(card.total)} functions implemented`),
+          facts([
+            ...(card.gained ? [{ color, text: `+${number.format(card.gained)} since yesterday` }] : []),
+            ...(card.milestone ? [{ color: "#3ddc84", text: card.milestone }] : []),
+            { color: UNTESTED, text: `${number.format(card.total - card.done)} to go` },
+          ]),
+        ],
+        card.wanted.length && card.wanted.length <= 3
+          ? [
+              ...rows(
+                "Games are waiting on",
+                card.wanted.map((w) => ({ label: w.name, share: w.games / peak, value: `${number.format(w.games)} game${w.games === 1 ? "" : "s"}`, color: "#f5b84a" })),
+                { name: 360, value: 110, mono: true },
+              ),
+              ...functionGrid(card.done, card.total, color, null, 150),
+            ]
+          : card.wanted.length
+          ? rows(
+              "Games are waiting on",
+              card.wanted.slice(0, 8).map((w) => ({ label: w.name, share: w.games / peak, value: `${number.format(w.games)} game${w.games === 1 ? "" : "s"}`, color: "#f5b84a" })),
+              { name: 360, value: 110, mono: true },
+            )
+          : functionGrid(card.done, card.total, color, complete ? "Every declared function is implemented." : "No game is stuck on this library right now."),
       ),
     ),
   );

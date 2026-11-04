@@ -10,6 +10,7 @@
 import { runCron } from "./bot/cron";
 import { botEnabled, log, type Env } from "./bot/env";
 import { HttpError } from "./bot/http";
+import { mergeBoards } from "./bot/boards";
 import { interactions } from "./bot/interactions";
 import { discordCallback, githubCallback, linkedRole } from "./bot/link";
 import { page } from "./bot/pages";
@@ -28,6 +29,7 @@ const BOT_ROUTES: Record<string, (req: Request, env: Env) => Promise<Response>> 
   "GET /discord/callback": discordCallback,
   "GET /github/callback": githubCallback,
   "POST /interactions": interactions,
+  "GET /api/merges": mergeBoards,
 };
 
 type Wait = (promise: Promise<unknown>) => void;

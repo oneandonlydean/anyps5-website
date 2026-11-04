@@ -72,12 +72,22 @@ beforeAll(async () => {
   testEnv = {
     ...env,
     DISCORD_PUBLIC_KEY: hex((await crypto.subtle.exportKey("raw", keys.publicKey)) as ArrayBuffer),
-    ASSETS: { fetch: async (url: string) => (String(url).endsWith("/bot/data.json") ? Response.json(data) : new Response("", { status: 404 })) } as unknown as Fetcher,
+    ASSETS: {
+      fetch: async (url: string) => {
+        const path = new URL(String(url)).pathname;
+        if (path === "/bot/data.json") return Response.json(data);
+        return drawn.has(path) ? new Response(null) : new Response("", { status: 404 });
+      },
+    } as unknown as Fetcher,
   };
 });
 
+/** The pictures the site build "drew" for a test. */
+let drawn: Set<string>;
+
 beforeEach(() => {
   data = structuredClone(DATA);
+  drawn = new Set();
   forgetSiteData();
 });
 
@@ -247,6 +257,17 @@ it("/progress in depth shows the area's card, keeping as text only what the card
   expect(games.fields.map((f: any) => f.name)).toEqual(["Change", "Tracked games on v0.1.4"]);
   // Without the card, the same view is all text.
   expect((await run("progress", { area: "games" })).data.embeds[0].fields[0].name).toBe("Furthest stage reached");
+});
+
+it("/wanted, /library and /leaderboard testers show the card the site drew above their text, when there is one", async () => {
+  expect((await run("wanted")).data.embeds[0].image).toBeUndefined();
+  drawn = new Set(["/bot/cards/wanted.jpg", "/bot/cards/testers-all.jpg", "/bot/library/libkernel.jpg"]);
+  const v = `?v=${Date.parse(DATA.generated)}`;
+  const wanted = (await run("wanted")).data.embeds[0];
+  expect(wanted.image.url).toBe(`https://worker.test/bot/cards/wanted.jpg${v}`);
+  expect(wanted.description ?? wanted.fields).toBeTruthy();
+  expect((await run("library", { name: "libkernel" })).data.embeds[0].image.url).toBe(`https://worker.test/bot/library/libkernel.jpg${v}`);
+  expect((await run("leaderboard", { board: "testers" })).data.embeds[0].image.url).toBe(`https://worker.test/bot/cards/testers-all.jpg${v}`);
 });
 
 it("/leaderboard testers ranks reporters by period, with linked members named", async () => {

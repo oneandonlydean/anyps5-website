@@ -1,3 +1,4 @@
+import { librarySlug } from "../../../src/lib/library-slug";
 import { now, type Env } from "./env";
 import { findGames, link, links, meter, siteData, stageColor, words, type SiteData, type SiteGame } from "./site-data";
 
@@ -196,6 +197,20 @@ async function withCard(env: Env, data: SiteData, area: string, embed: { fields:
   return reply({
     embeds: [{ ...embed, fields: fields.length ? fields : undefined, image: { url: `${link(env, `/bot/cards/${area}.jpg`)}?v=${Date.parse(data.generated)}` }, timestamp: data.generated }],
   });
+}
+
+/**
+ * Puts the card the site build drew (src/pages/bot/cards and bot/library) above a reply's first embed, keeping its
+ * text, which stays live. A reply without an embed, or a card that isn't there, is returned as it was.
+ */
+export async function withImage(env: Env, path: string, response: Response): Promise<Response> {
+  const body = await response.clone().json<{ type: number; data: { embeds?: Record<string, unknown>[] } & Record<string, unknown> }>();
+  const embed = body.data.embeds?.[0];
+  if (!embed || !(await hasAsset(env, path))) return response;
+  const data = await siteData(env);
+  const version = data ? Date.parse(data.generated) : Math.floor(Date.now() / 3_600_000);
+  body.data.embeds![0] = { ...embed, thumbnail: undefined, image: { url: `${link(env, path)}?v=${version}` } };
+  return Response.json(body);
 }
 
 /** Whether the site build produced one of the bot's pictures. */
@@ -428,14 +443,16 @@ export async function runSiteCommand(env: Env, name: string, options: Option[] |
       return progress(env, data, arg("area"));
     case "progressmap":
       return progressMap(env, data);
-    case "library":
-      return library(env, data, arg("name"));
+    case "library": {
+      const found = findLibrary(data, arg("name"));
+      return found ? withImage(env, `/bot/library/${librarySlug(found.name)}.jpg`, library(env, data, arg("name"))) : library(env, data, arg("name"));
+    }
     case "wanted":
-      return wanted(env, data);
+      return withImage(env, "/bot/cards/wanted.jpg", wanted(env, data));
     case "release":
-      return release(env, data);
+      return withImage(env, "/bot/cards/release.jpg", release(env, data));
     case "tracked":
-      return tracked(env, data);
+      return withImage(env, "/bot/cards/tracked.jpg", tracked(env, data));
     case "report":
       return report(env, data, arg("game"));
     case "faq":
