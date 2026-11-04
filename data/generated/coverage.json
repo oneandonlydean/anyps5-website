@@ -1,5 +1,5 @@
 {
-  "commit": "c6c89e6a30c56b82013d472b5831215df396f185",
+  "commit": "b611e634f7fc024f0c13e342d96de744448ef1d9",
   "date": "2026-11-04",
   "isa": "AMD RDNA 2",
   "instructions": {
@@ -117,92 +117,92 @@
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1645,
+        "line": 1649,
         "message": "FORCE_DEGAMMA on RGBA8_UINT with mixed sampler states is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1673,
+        "line": 1677,
         "message": "sampling of a converted image through a min or max reduction sampler is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1684,
+        "line": 1688,
         "message": "sampling of a converted image through samplers that disagree is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1698,
+        "line": 1702,
         "message": "unsupported color comparison image instructions"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1715,
+        "line": 1719,
         "message": "comparison sampling of a color texture through a sampler table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1722,
+        "line": 1726,
         "message": "comparison sampling of a color texture through a min or max reduction sampler is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1739,
+        "line": 1743,
         "message": "comparison sampling of a color texture with a border color table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1744,
+        "line": 1748,
         "message": "comparison sampling of a color texture through samplers that disagree is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1791,
+        "line": 1795,
         "message": "buffer descriptor uses an unsupported type"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2114,
+        "line": 2118,
         "message": "image table snapshot has unsupported recursive children"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2516,
+        "line": 2520,
         "message": "a 3D gather of an image table entry is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2517,
+        "line": 2521,
         "message": "a 3D gather of an image without an 8-dword descriptor is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2522,
+        "line": 2526,
         "message": "a 3D gather through a sampler table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2525,
+        "line": 2529,
         "message": "a 3D gather with unnormalized coordinates is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2531,
+        "line": 2535,
         "message": "a 3D gather with a border color table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2532,
+        "line": 2536,
         "message": "a 3D gather of an integer texture with border addressing is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2533,
+        "line": 2537,
         "message": "a 3D gather of a swizzled texture with border addressing is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2535,
+        "line": 2539,
         "message": "a 3D gather through samplers that disagree is not implemented"
       },
       {
@@ -562,7 +562,7 @@
       },
       {
         "file": "SpirvBackend/src/SpirvFlowEmitter.cpp",
-        "line": 838,
+        "line": 839,
         "message": "EmitControlFlow not implemented"
       },
       {
@@ -672,7 +672,7 @@
       },
       {
         "file": "Translation/src/FloatInstructions.cpp",
-        "line": 995,
+        "line": 1019,
         "message": "TranslateFloatInstruction not implemented"
       },
       {
@@ -2930,7 +2930,7 @@
     },
     {
       "date": "2026-11-04",
-      "commit": "c6c89e6a30c56b82013d472b5831215df396f185",
+      "commit": "b611e634f7fc024f0c13e342d96de744448ef1d9",
       "instructions": {
         "total": 1460,
         "decoded": 1456,

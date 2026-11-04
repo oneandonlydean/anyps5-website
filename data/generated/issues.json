@@ -4115,17 +4115,17 @@
     "number": 11995,
     "kind": "pr",
     "title": "fix(agc): hold small labels behind completions that store guest memory",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11995",
-    "closedAt": null
+    "closedAt": "2026-11-04T14:22:03Z"
   },
   "11998": {
     "number": 11998,
     "kind": "pr",
     "title": "fix(agc): accept a non-finite DB_DEPTH_CLEAR until a clear uses it",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11998",
-    "closedAt": null
+    "closedAt": "2026-11-04T14:22:06Z"
   },
   "12059": {
     "number": 12059,
@@ -4139,9 +4139,9 @@
     "number": 12071,
     "kind": "pr",
     "title": "perf(libc): fetch SSE4a instruction bytes directly within the faulting page",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/pull/12071",
-    "closedAt": null
+    "closedAt": "2026-11-04T14:22:10Z"
   },
   "12081": {
     "number": 12081,
@@ -4419,17 +4419,17 @@
     "number": 15655,
     "kind": "pr",
     "title": "perf(shader): reuse an unwritten image table snapshot read through a pointer",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/15655",
-    "closedAt": null
+    "closedAt": "2026-11-04T19:18:38Z"
   },
   "15656": {
     "number": 15656,
     "kind": "pr",
     "title": "feat(libkernel): fail unknown clock ids 16 to 31 with EINVAL on request",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/pull/15656",
-    "closedAt": null
+    "closedAt": "2026-11-04T09:44:06Z"
   },
   "15659": {
     "number": 15659,

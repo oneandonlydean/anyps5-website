@@ -124,8 +124,8 @@
       "PPSA26344"
     ],
     "created": "2026-10-05T14:20:37Z",
-    "updated": "2026-11-04T03:59:44Z",
-    "comments": 98,
+    "updated": "2026-11-04T14:51:57Z",
+    "comments": 99,
     "reports": [],
     "media": [
       {
@@ -745,8 +745,8 @@
       "PPSA28997"
     ],
     "created": "2026-10-08T18:05:56Z",
-    "updated": "2026-11-02T16:50:18Z",
-    "comments": 12,
+    "updated": "2026-11-04T21:27:23Z",
+    "comments": 13,
     "reports": [],
     "media": [
       {
@@ -1632,8 +1632,8 @@
       "PPSA28416"
     ],
     "created": "2026-10-10T21:52:22Z",
-    "updated": "2026-11-04T01:59:38Z",
-    "comments": 5,
+    "updated": "2026-11-04T18:30:08Z",
+    "comments": 7,
     "reports": [],
     "media": [
       {
@@ -1656,6 +1656,27 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/3086#discussioncomment-19387809",
         "author": "mrfelek",
         "date": "2026-11-04T01:59:38Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/mrfelek/71914d93556a655b948efcf7e73c8cf6/raw/58d80065cdacb36d0d202d004009c48ac7614975/ppsa28416-menu-before-after.png",
+        "alt": "PPSA28416 main menu, first post (left) and now (right)",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3086#discussioncomment-19403903",
+        "author": "mrfelek",
+        "date": "2026-11-04T18:30:07Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/mrfelek/71914d93556a655b948efcf7e73c8cf6/raw/58d80065cdacb36d0d202d004009c48ac7614975/ppsa28416-in-engine-before-after.png",
+        "alt": "PPSA28416 first in-engine scene, first post (left) and now (right)",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3086#discussioncomment-19403903",
+        "author": "mrfelek",
+        "date": "2026-11-04T18:30:07Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/mrfelek/71914d93556a655b948efcf7e73c8cf6/raw/58d80065cdacb36d0d202d004009c48ac7614975/ppsa28416-in-engine-black-shadows.png",
+        "alt": "PPSA28416 first race: black shadowed areas and white patches",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3086#discussioncomment-19403903",
+        "author": "mrfelek",
+        "date": "2026-11-04T18:30:07Z"
       }
     ]
   },
@@ -2173,7 +2194,7 @@
       "PPSA99902"
     ],
     "created": "2026-10-12T11:46:32Z",
-    "updated": "2026-11-03T16:04:25Z",
+    "updated": "2026-11-04T20:29:39Z",
     "comments": 0,
     "reports": [],
     "media": []
@@ -2186,8 +2207,8 @@
       "PPSA02225"
     ],
     "created": "2026-10-12T12:26:26Z",
-    "updated": "2026-11-01T17:14:16Z",
-    "comments": 44,
+    "updated": "2026-11-04T16:53:26Z",
+    "comments": 45,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/4461",
@@ -2303,6 +2324,20 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19215730",
         "author": "sktharunbalaji13-cmd",
         "date": "2026-10-27T11:25:19Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/sktharunbalaji13-cmd/AnyPS5/706cf56d9a5f9141f8fd2e71b646906583015d31/ghost-of-tsushima/ram-logo-2026-11-04/got_logo_contact_sheet.png",
+        "alt": "contact sheet",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19402345",
+        "author": "sktharunbalaji13-cmd",
+        "date": "2026-11-04T16:53:25Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/sktharunbalaji13-cmd/AnyPS5/706cf56d9a5f9141f8fd2e71b646906583015d31/ghost-of-tsushima/ram-logo-2026-11-04/frame_034s_blue_logo_start.png",
+        "alt": "34 s: PlayStation logo animation begins",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19402345",
+        "author": "sktharunbalaji13-cmd",
+        "date": "2026-11-04T16:53:25Z"
       }
     ]
   },
@@ -4652,8 +4687,8 @@
       "PPSA10737"
     ],
     "created": "2026-10-15T08:47:18Z",
-    "updated": "2026-11-01T16:42:45Z",
-    "comments": 3,
+    "updated": "2026-11-04T17:50:57Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6275",
@@ -5116,8 +5151,8 @@
       "PPSA16018"
     ],
     "created": "2026-10-15T20:45:03Z",
-    "updated": "2026-11-02T11:32:42Z",
-    "comments": 4,
+    "updated": "2026-11-04T10:31:11Z",
+    "comments": 5,
     "reports": [],
     "media": []
   },
@@ -5983,8 +6018,8 @@
       "PPSA02688"
     ],
     "created": "2026-10-17T03:11:11Z",
-    "updated": "2026-11-02T09:41:07Z",
-    "comments": 8,
+    "updated": "2026-11-04T08:57:36Z",
+    "comments": 9,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6996",
@@ -8968,8 +9003,8 @@
       "PPSA31162"
     ],
     "created": "2026-10-21T16:57:59Z",
-    "updated": "2026-11-01T01:47:32Z",
-    "comments": 1,
+    "updated": "2026-11-04T08:31:49Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9268",
@@ -10585,7 +10620,7 @@
       "PPSA04158"
     ],
     "created": "2026-10-23T05:27:23Z",
-    "updated": "2026-11-04T02:31:35Z",
+    "updated": "2026-11-04T18:47:23Z",
     "comments": 1,
     "reports": [
       {
@@ -13919,8 +13954,8 @@
       "PPSA05595"
     ],
     "created": "2026-10-31T16:41:30Z",
-    "updated": "2026-11-03T23:13:38Z",
-    "comments": 4,
+    "updated": "2026-11-04T12:34:09Z",
+    "comments": 5,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14033",
@@ -14389,8 +14424,8 @@
       "PPSA04795"
     ],
     "created": "2026-10-31T19:04:23Z",
-    "updated": "2026-11-02T19:20:17Z",
-    "comments": 3,
+    "updated": "2026-11-04T10:48:51Z",
+    "comments": 5,
     "reports": [],
     "media": [
       {
@@ -14602,5 +14637,52 @@
     "comments": 0,
     "reports": [],
     "media": []
+  },
+  {
+    "number": 15824,
+    "title": "Disney•Pixar Up (PPSA14378)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15824",
+    "titleIds": [
+      "PPSA14378"
+    ],
+    "created": "2026-11-04T18:03:51Z",
+    "updated": "2026-11-04T21:23:21Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15824",
+        "discussion": 15824,
+        "author": "DonRyuzaki",
+        "date": "2026-11-04T18:03:51Z",
+        "edited": "2026-11-04T21:23:21Z",
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "AMD Radeon RX 7800 XT",
+        "gpuVendor": "AMD",
+        "build": "b11c7bf84f5d2f636ff60166cc3371bd071e24d5 (clean upstream main; no local patches)",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.001",
+        "shown": "Opening video, title and menu rendered. Created profile P1, selected Play, watched the first-level opening cinematic, then reached the playable first-level scene with Carl, Russell and the HUD. Controlled input moved Carl and changed the camera. AnyPS5’s built-in overlay showed 53.5 and 53.0 FPS in the attached first-level screenshots with ANYPS5_FPS_LIMIT=60; these are momentary readings, not a sustained average. Picture and input worked at this point. Audio quality was not checked in this run.",
+        "blockers": [],
+        "blockerText": "No blocker before or at the opening playable area. Later stages, checkpoints and a full level clear were not tested. Visual fidelity has not been compared with console output; the older 31 October run showed geometry artifacts, which were not diagnosed here."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/a03d5336-ac72-401b-b5fe-a556d6d723dc",
+        "alt": "Up first-level gameplay, 53.5 FPS",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15824",
+        "author": "DonRyuzaki",
+        "date": "2026-11-04T18:03:51Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/e934ee0a-1c43-47f6-9493-0ee9be10509c",
+        "alt": "Up first-level gameplay, 53.0 FPS",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15824",
+        "author": "DonRyuzaki",
+        "date": "2026-11-04T18:03:51Z"
+      }
+    ]
   }
 ]

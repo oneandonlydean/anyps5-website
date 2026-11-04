@@ -1889,6 +1889,18 @@
       "PlayStation Store"
     ]
   },
+  "PPSA14378": {
+    "checked": "2026-11-04T21:46:47.971Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202307/2520/c494b3d6a125951f32886c71953f55b933fceb29607b7704.png",
+    "cover": "https://cdn2.steamgriddb.com/grid/85b781c946ba59d04596a9f023fe3f35.png",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202307/2520/437eef11c9874ed71a4a242e2662cc1cef3e810eacb65be8.jpg",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202307/2520/4409725f8d2c3a361b5044f1b46a8bd38e6a657b1b88035f.png",
+    "color": "#97442b",
+    "credits": [
+      "PlayStation Store",
+      "SteamGridDB"
+    ]
+  },
   "PPSA14388": {
     "checked": "2026-10-29T05:22:53.079Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202412/2415/20a4ac05ee2de01aeada79687bb5f344ad0f1aeea72152c8.png",

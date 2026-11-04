@@ -1,7 +1,7 @@
 {
   "libraries": {
-    "done": 9913,
-    "total": 37146,
+    "done": 9954,
+    "total": 37289,
     "percent": 26.69,
     "groups": [
       {
@@ -40,6 +40,13 @@
         "inert": 0
       },
       {
+        "name": "libSceAbstractLocal",
+        "label": "AbstractLocal",
+        "done": 0,
+        "total": 70,
+        "inert": 0
+      },
+      {
         "name": "libSceAbstractStorage",
         "label": "AbstractStorage",
         "done": 0,
@@ -51,6 +58,13 @@
         "label": "AbstractTcs",
         "done": 0,
         "total": 40,
+        "inert": 0
+      },
+      {
+        "name": "libSceAbstractTwitter",
+        "label": "AbstractTwitter",
+        "done": 0,
+        "total": 68,
         "inert": 0
       },
       {
@@ -112,7 +126,7 @@
       {
         "name": "libSceAjm.native",
         "label": "Ajm.native",
-        "done": 31,
+        "done": 32,
         "total": 52,
         "inert": 5
       },
@@ -140,7 +154,7 @@
       {
         "name": "libSceAppContent",
         "label": "AppContent",
-        "done": 26,
+        "done": 27,
         "total": 39,
         "inert": 0
       },
@@ -203,7 +217,7 @@
       {
         "name": "libSceAudioPropagation",
         "label": "AudioPropagation",
-        "done": 23,
+        "done": 30,
         "total": 41,
         "inert": 0
       },
@@ -637,8 +651,8 @@
       {
         "name": "libSceFreeType",
         "label": "FreeType",
-        "done": 93,
-        "total": 99,
+        "done": 95,
+        "total": 100,
         "inert": 0
       },
       {
@@ -659,7 +673,7 @@
         "name": "libSceFreeTypeOt",
         "label": "FreeTypeOt",
         "done": 49,
-        "total": 148,
+        "total": 142,
         "inert": 0
       },
       {
@@ -897,7 +911,7 @@
         "name": "libSceJson",
         "label": "Json",
         "done": 0,
-        "total": 25,
+        "total": 30,
         "inert": 0
       },
       {
@@ -931,16 +945,16 @@
       {
         "name": "libSceLibcInternal",
         "label": "LibcInternal",
-        "done": 92,
-        "total": 1137,
+        "done": 95,
+        "total": 1140,
         "inert": 1
       },
       {
         "name": "libSceLibreSsl",
         "label": "LibreSsl",
-        "done": 164,
+        "done": 172,
         "total": 420,
-        "inert": 8
+        "inert": 9
       },
       {
         "name": "libSceLibreSsl3",
@@ -1085,7 +1099,7 @@
       {
         "name": "libSceNKWebKit",
         "label": "NKWebKit",
-        "done": 1302,
+        "done": 1309,
         "total": 11248,
         "inert": 228
       },
@@ -2282,9 +2296,9 @@
       {
         "name": "libc",
         "label": "libc",
-        "done": 1628,
-        "total": 1647,
-        "inert": 26
+        "done": 1629,
+        "total": 1648,
+        "inert": 25
       },
       {
         "name": "libcairo",
@@ -2324,15 +2338,15 @@
       {
         "name": "libkernel",
         "label": "libkernel",
-        "done": 699,
-        "total": 754,
+        "done": 703,
+        "total": 758,
         "inert": 18
       },
       {
         "name": "libkernel_sys",
         "label": "libkernel_sys",
-        "done": 151,
-        "total": 829,
+        "done": 154,
+        "total": 826,
         "inert": 26
       },
       {
@@ -2352,7 +2366,7 @@
       {
         "name": "libwebrtc",
         "label": "libwebrtc",
-        "done": 60,
+        "done": 64,
         "total": 412,
         "inert": 18
       },

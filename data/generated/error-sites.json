@@ -1,5 +1,5 @@
 {
-  "commit": "c6c89e6a30c56b82013d472b5831215df396f185",
+  "commit": "b611e634f7fc024f0c13e342d96de744448ef1d9",
   "sites": [
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
@@ -8,27 +8,32 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
-      "line": 47,
+      "line": 39,
+      "message": "graphics event triggered without its interrupt data"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
+      "line": 49,
       "message": ": event queue rejected the event"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
-      "line": 58,
+      "line": 60,
       "message": ": invalid event queue"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
-      "line": 61,
+      "line": 63,
       "message": ": event is not registered"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
-      "line": 90,
+      "line": 89,
       "message": ": negative event id"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
-      "line": 97,
+      "line": 96,
       "message": ": negative event id"
     },
     {
@@ -43,22 +48,12 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Query.cpp",
-      "line": 21,
-      "message": ": context id overflow"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Eq/src/Query.cpp",
-      "line": 28,
+      "line": 25,
       "message": ": null or misaligned event"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Query.cpp",
-      "line": 32,
-      "message": ": graphics event type overflow"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Eq/src/Query.cpp",
-      "line": 37,
+      "line": 29,
       "message": ": event type overflow"
     },
     {
@@ -315,6 +310,16 @@
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/Driver/Packets/CommandValidation.cpp",
       "line": 80,
       "message": "AGC driver: … at DWORD …: "
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Execution/src/Driver/Packets/PacketExecution.cpp",
+      "line": 133,
+      "message": "AGC: an interrupting release has no interrupt context dword"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Execution/src/Driver/Packets/PacketExecution.cpp",
+      "line": 135,
+      "message": "AGC: a release asks for typed interrupt context …, which is not delivered as a graphics end-of-pipe event; not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/Driver/Packets/PacketMemory.cpp",
@@ -1088,107 +1093,107 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 703,
+      "line": 704,
       "message": "Vulkan instance function missing: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 713,
+      "line": 714,
       "message": "Vulkan device function missing: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 732,
+      "line": 733,
       "message": "Vulkan dispatch: the LDS of …x…x… workgroups of … bytes each is over maxStorageBufferRange "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 770,
+      "line": 771,
       "message": "Vulkan dispatch: one scratch pool slot of … bytes is over the scratch pool buffer limit of … bytes"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1185,
+      "line": 1186,
       "message": "compute pipeline replay requires ANYPS5_ENABLE_SPIRV_TOOLS=ON"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1323,
+      "line": 1324,
       "message": "Vulkan loader: vkGetInstanceProcAddr missing"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1347,
+      "line": 1348,
       "message": "Vulkan presentation: required instance extension missing: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1362,
+      "line": 1363,
       "message": "vkCreateInstance: Vulkan result "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1452,
+      "line": 1453,
       "message": "Vulkan: no usable device whose name contains ANYPS5_GPU=\\\"…\\\"; devices: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1455,
+      "line": 1456,
       "message": "Vulkan: no Vulkan 1.1 device with graphics, compute and swapchain presentation…Vulkan: no Vulkan 1.1 graphics and compute queue"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 3148,
+      "line": 3151,
       "message": "AGC graphics: an image copy its check allowed was refused: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 4781,
+      "line": 4789,
       "message": "APS5_WATCH_MEMORY takes <hex address>:<hex bytes>[,...]"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 4786,
+      "line": 4794,
       "message": "APS5_WATCH_MEMORY needs APS5_SYNC_DISPATCH=1"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5861,
+      "line": 5869,
       "message": "Vulkan dispatch: invalid SPIR-V"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5866,
+      "line": 5874,
       "message": "Vulkan dispatch: compute push constant range exceeds device limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 6202,
+      "line": 6210,
       "message": "Vulkan dispatch: recipe over a non-reusable template"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 2262,
+      "line": 2265,
       "message": "APS5_PIPELINE_STATS requires VK_KHR_pipeline_executable_properties"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 2265,
+      "line": 2268,
       "message": "APS5_PIPELINE_STATS requires pipelineExecutableInfo"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5550,
+      "line": 5558,
       "message": "Vulkan dispatch: a thread-dimension dispatch has no ShaderData thread limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5555,
+      "line": 5563,
       "message": "Vulkan dispatch: thread-dimension indirect arguments need the argument kernel"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5617,
+      "line": 5625,
       "message": "dispatch overlay has no descriptor set"
     },
     {
@@ -1208,17 +1213,17 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/include/Context.hpp",
-      "line": 296,
+      "line": 297,
       "message": "AGC graphics: missing Vulkan function: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/include/Context.hpp",
-      "line": 311,
+      "line": 312,
       "message": "AGC graphics: required Vulkan memory type is unavailable"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/include/Context.hpp",
-      "line": 293,
+      "line": 294,
       "message": "missing Vulkan device function resolver"
     },
     {
@@ -1648,12 +1653,12 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3198,
+      "line": 3197,
       "message": "AGC graphics: the multisampled depth surface whose samples are put in the guest's order is not resident"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3213,
+      "line": 3212,
       "message": "AGC graphics: the depth surface drawn at custom sample locations is not resident"
     },
     {
@@ -1858,113 +1863,118 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1650,
+      "line": 1645,
       "message": "native multisample depth shadow was not created"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1779,
+      "line": 1774,
       "message": "depth surface storage copies need an active recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1932,
+      "line": 1927,
       "message": "depth plane copy slices exceed its layers"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1933,
+      "line": 1928,
       "message": "a depth plane copy view starts past the slices it was given"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1935,
+      "line": 1930,
       "message": "depth planes of a PS4 layered surface with several mip levels (stored level by level) are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2014,
+      "line": 2009,
       "message": "depth plane copy requires a texture detiler"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2143,
+      "line": 2138,
       "message": "a layered depth storage view's image does not hold its layers"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2150,
+      "line": 2145,
       "message": "depth surface storage copies need an active recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2367,
+      "line": 2366,
       "message": "native multisample depth publication inside a GPU completion is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2368,
+      "line": 2367,
       "message": "recursive native multisample depth publication is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2369,
+      "line": 2368,
       "message": "a previous native multisample depth publication store did not complete"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2376,
+      "line": 2375,
       "message": "sample-preserving guest publication of native multisample depth is not implemented for this owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2379,
+      "line": 2378,
       "message": "native multisample depth publication with an unapplied clear is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2380,
+      "line": 2379,
       "message": "sample-preserving guest publication of native multisample depth requires sampled readback support"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2388,
+      "line": 2387,
       "message": "native multisample depth publication lost its guarded plane"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2394,
+      "line": 2393,
       "message": "native multisample depth publication requires watched accessible guest memory"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2395,
+      "line": 2394,
       "message": "native multisample depth publication over a resident colour target is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2397,
+      "line": 2396,
       "message": "native multisample depth publication over pending storage image writes is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2404,
+      "line": 2403,
       "message": "the native multisample depth owner was released during publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2416,
+      "line": 2415,
       "message": "native multisample depth publication layout differs from its guarded range"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2418,
+      "line": 2417,
       "message": "native multisample depth publication exceeds the device's readback range"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2472,
+      "line": 2471,
       "message": "native multisample depth publication cannot distinguish an unwritten byte from a same-value guest store"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
+      "line": 2480,
+      "message": "guest writes raced native multisample depth publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
@@ -1974,121 +1984,116 @@
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
       "line": 2482,
-      "message": "guest writes raced native multisample depth publication"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2483,
       "message": "native multisample depth ownership changed during publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2491,
+      "line": 2490,
       "message": "guest writes raced native multisample depth publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2941,
+      "line": 2940,
       "message": "invalid multisample depth extent"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2942,
+      "line": 2941,
       "message": "unsupported multisample depth footprint"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2955,
+      "line": 2954,
       "message": "native depth read range overflows"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2978,
+      "line": 2977,
       "message": "sample-preserving guest publication of native multisample depth is not implemented while a multisampled colour target is being acquired"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2984,
+      "line": 2983,
       "message": "sample-preserving guest publication of native multisample depth is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3015,
+      "line": 3014,
       "message": "a native multisample depth attachment was retired while its draw resolved resources"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3024,
+      "line": 3023,
       "message": "native depth release range overflows"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3083,
+      "line": 3082,
       "message": "a constant depth bias on a 16-bit depth target with stencil that the device stores as 32-bit float depth is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3115,
+      "line": 3114,
       "message": "native depth attachment range overflows"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3124,
+      "line": 3123,
       "message": "a native multisample depth attachment over the planes of a host-written owner of another identity is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3195,
+      "line": 3194,
       "message": "the multisampled depth surface whose samples are put in the guest's order cannot be sampled"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3554,
+      "line": 3553,
       "message": "CPU writes raced native multisample depth clear"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3609,
+      "line": 3608,
       "message": "reading sample 0 of a depth surface needs a multisampled descriptor"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3611,
+      "line": 3610,
       "message": "reading sample 0 of a multisampled depth surface whose depth plane is not at the descriptor's address is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3614,
+      "line": 3613,
       "message": "reading sample 0 of a multisampled depth surface whose depth plane is not at the descriptor's address is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3636,
+      "line": 3635,
       "message": "multisample reader overlaps a single-sample depth attachment"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3638,
+      "line": 3637,
       "message": "a native multisampled depth target is sampled only by recorded draws and dispatches"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3646,
+      "line": 3645,
       "message": "native multisample depth fast-clear transition is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3672,
+      "line": 3671,
       "message": "sampling several slices or an integer view of a depth plane that the device stores in another depth format is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3681,
+      "line": 3680,
       "message": "depth planes of a PS4 layered surface with several mip levels (stored level by level) are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3914,
+      "line": 3913,
       "message": "depth planes of a PS4 layered surface with several mip levels (stored level by level) are not implemented"
     },
     {
@@ -2708,212 +2713,212 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 1082,
+      "line": 1093,
       "message": "APS5_WRITE_WATCH_IMPORTS=…: expected probe, watch or unwatch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 3715,
+      "line": 3735,
       "message": "guest allocation mutation cannot wait for an active GPU completion"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 3044,
+      "line": 3064,
       "message": "image mirror range became inaccessible"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 3323,
+      "line": 3343,
       "message": "heap mirror selection exceeds its registered range"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 4765,
+      "line": 4789,
       "message": "guest allocation lease must precede resource registration"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 4931,
+      "line": 4955,
       "message": "a partial heap import has no mirror for its remaining bytes"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5103,
+      "line": 5127,
       "message": "guest memory ownership is frozen for GPU execution"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5104,
+      "line": 5128,
       "message": "empty guest memory range"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5105,
+      "line": 5129,
       "message": "guest memory range overflow"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5139,
+      "line": 5163,
       "message": "no address space to dissolve"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5919,
+      "line": 5943,
       "message": "guest memory was already uploaded"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5954,
+      "line": 5978,
       "message": "image mirrors overlap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5977,
+      "line": 6001,
       "message": "writable guest memory overlaps an immutable snapshot"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5981,
+      "line": 6005,
       "message": "inconsistent overlapping guest snapshots"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5993,
+      "line": 6017,
       "message": "guest GPU allocation size overflow"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6110,
+      "line": 6134,
       "message": "guest memory upload was not prepared"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6450,
+      "line": 6474,
       "message": "GPU copy capture requires APS5_CAPTURE_TRACE"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6452,
+      "line": 6476,
       "message": "GPU buffer copies need an active recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6694,
+      "line": 6718,
       "message": "guest GPU memory is not available"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6695,
+      "line": 6719,
       "message": "invalid guest buffer view"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6697,
+      "line": 6721,
       "message": "guest buffer has no GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6707,
+      "line": 6731,
       "message": "no storage buffer offset alignment"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6708,
+      "line": 6732,
       "message": "a guest buffer view in a GPU owner that does not start at a DWORD boundary is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6714,
+      "line": 6738,
       "message": "guest buffer view starts past its copy"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6718,
+      "line": 6742,
       "message": "rounded up to its view range exceeds"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6719,
+      "line": 6743,
       "message": "guest buffer view exceeds descriptor range limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6727,
+      "line": 6751,
       "message": "guest buffer view range overflow"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6732,
+      "line": 6756,
       "message": "incomplete guest GPU upload"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6734,
+      "line": 6758,
       "message": "GPU address range overflow"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6787,
+      "line": 6811,
       "message": "guest GPU address ranges are not available"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6846,
+      "line": 6870,
       "message": "runtime buffer write has no writable GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6863,
+      "line": 6887,
       "message": "guest GPU address ranges are not available"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6888,
+      "line": 6912,
       "message": "a cached BDA table differs from the ranges of the build that found it"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7031,
+      "line": 7055,
       "message": "written range exceeds its heap mirror"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7050,
+      "line": 7074,
       "message": "guest memory cannot be committed twice or before upload"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7057,
+      "line": 7081,
       "message": "write-back range has no GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7068,
+      "line": 7092,
       "message": "write-back range exceeds its GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7078,
+      "line": 7102,
       "message": "heap mirror write-back has no reference"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7087,
+      "line": 7111,
       "message": "heap mirror readback does not match its write-back"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7103,
+      "line": 7127,
       "message": "write-back range exceeds its GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7124,
+      "line": 7148,
       "message": "write-back range exceeds its GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7260,
+      "line": 7292,
       "message": "staging copies recorded into a recorder that is not the device's"
     },
     {
@@ -4348,52 +4353,57 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 14,
-      "message": "guest sampler descriptor with unnormalized coordinates enables depth comparison, which is not implemented"
+      "line": 15,
+      "message": "guest sampler descriptor uses a mirror-once clamp mode which the device does not support"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
       "line": 16,
+      "message": "guest sampler descriptor with unnormalized coordinates enables depth comparison, which is not implemented"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
+      "line": 18,
       "message": "guest sampler descriptor uses a min or max reduction which the device does not support"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 17,
+      "line": 19,
       "message": "guest sampler descriptor combines a min or max reduction with depth comparison, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 82,
+      "line": 84,
       "message": "guest sampler descriptor must contain 4 dwords"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 87,
+      "line": 89,
       "message": "guest sampler descriptor forces sRGB decoding which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 110,
+      "line": 112,
       "message": "a sampled texture is paired with sampler element …, which its shader does not bind"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 116,
+      "line": 118,
       "message": "a sampled texture whose format … does not support min/max filtering is sampled through a min or max reduction sampler with linear filtering"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 142,
+      "line": 144,
       "message": "a sampled texture is paired with sampler element …, which its shader does not bind"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 143,
+      "line": 145,
       "message": "a sampled texture whose BC swizzle … moves the alpha channel is sampled through an opaque black border, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Sampler.cpp",
-      "line": 151,
+      "line": 153,
       "message": "a cube texture is sampled through a sampler that disables seamless cube filtering, which needs VK_EXT_non_seamless_cube_map"
     },
     {
@@ -4583,712 +4593,712 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1743,
+      "line": 1747,
       "message": "AGC graphics: unknown descriptor role"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1756,
+      "line": 1760,
       "message": "AGC graphics: unknown descriptor kind"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2128,
+      "line": 2132,
       "message": "typed heaps exceed per-stage sampler capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2132,
+      "line": 2136,
       "message": "typed heaps exceed descriptor set sampler capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2702,
+      "line": 2719,
       "message": "AGC graphics: ShaderResources encountered an unknown descriptor type while writing the descriptor set"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2932,
+      "line": 2949,
       "message": "resource content key exceeds vector limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4530,
+      "line": 4585,
       "message": "AGC graphics: descriptor set uses an unsupported descriptor type "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4964,
+      "line": 5019,
       "message": "shader sampler descriptors exceed per-stage limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5192,
+      "line": 5247,
       "message": "AGC graphics: guest texture dimension disagrees with the shader's declared image shape (shape …, dimension …)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5216,
+      "line": 5271,
       "message": "AGC graphics: guest texture sampled with unnormalized coordinates is not a single-layer 1D or 2D view without a minimum LOD clamp, and is neither a single-level view at mip 0 nor read only by image_sample_lz through an S# without minimum LOD or bias, which is not implemented (base level …, levels …, layers …, view type …)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5268,
+      "line": 5323,
       "message": "AGC graphics: guest storage texture dimension disagrees with the shader's declared image shape (shape …, dimension …)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5647,
+      "line": 5702,
       "message": "AGC graphics: guest texture dimension disagrees with the table entry's image shape (shape …, dimension …)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5649,
+      "line": 5704,
       "message": "AGC graphics: the table entry's surface at 0x… (0x… bytes) is not mapped"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 838,
+      "line": 842,
       "message": "only a sampled 1D array is laid out as rows of a 2D image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 842,
+      "line": 846,
       "message": "native multisampled depth comparison sampling is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 852,
+      "line": 856,
       "message": "FMASK depth comparison sampling is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 853,
+      "line": 857,
       "message": "native FMASK array sampling is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 856,
+      "line": 860,
       "message": "compressed FMASK sampling without a matching resident native target is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 862,
+      "line": 866,
       "message": "sampling a native depth surface as a 1D array past maxImageArrayLayers is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1340,
+      "line": 1344,
       "message": "storage image access to a multisampled texture is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1512,
+      "line": 1516,
       "message": "sampled texture keys take eight descriptor words"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1520,
+      "line": 1524,
       "message": "cannot flush textures without a Vulkan device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1531,
+      "line": 1535,
       "message": "cannot clear textures without a Vulkan device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1704,
+      "line": 1708,
       "message": "storage image access to a multisampled texture is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1800,
+      "line": 1804,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1807,
+      "line": 1811,
       "message": "compute resources require a compute shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1835,
+      "line": 1839,
       "message": "shader resources were already completed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1861,
+      "line": 1865,
       "message": "descriptor binding flag count differs from layout"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2125,
+      "line": 2129,
       "message": "typed heaps exceed per-stage resource capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2126,
+      "line": 2130,
       "message": "typed heaps exceed per-stage sampled image capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2127,
+      "line": 2131,
       "message": "typed heaps exceed per-stage storage image capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2131,
+      "line": 2135,
       "message": "typed heaps exceed descriptor set capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2136,
+      "line": 2140,
       "message": "missing compiled shader"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2145,
-      "message": "duplicate runtime image binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
       "line": 2149,
-      "message": "invalid compact shader data size"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2151,
-      "message": "runtime image metadata exceeds shader data"
+      "message": "duplicate runtime image binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
       "line": 2153,
+      "message": "invalid compact shader data size"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2155,
+      "message": "runtime image metadata exceeds shader data"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2157,
       "message": "runtime image resource exceeds its compact layout"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2158,
+      "line": 2162,
       "message": "runtime image metadata has no descriptor elements"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2159,
+      "line": 2163,
       "message": "runtime metadata references an unbound image heap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2160,
+      "line": 2164,
       "message": "runtime metadata exceeds its bound heap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2169,
+      "line": 2173,
       "message": "AGC graphics: registered image range changed after resource capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2178,
+      "line": 2182,
       "message": "shader descriptor set exceeds device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2182,
+      "line": 2198,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2192,
+      "line": 2208,
       "message": "shader descriptors exceed per-stage limits"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2200,
-      "message": "shader descriptors exceed per-stage limits"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2204,
-      "message": "unexpected descriptor set: a shader resource must use its stage's descriptor set"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2207,
-      "message": "image table binding is malformed"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2209,
-      "message": "a stage binds two image tables"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2210,
-      "message": "a stage's image tables disagree on their elements"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
       "line": 2216,
+      "message": "shader descriptors exceed per-stage limits"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2220,
+      "message": "unexpected descriptor set: a shader resource must use its stage's descriptor set"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2223,
+      "message": "image table binding is malformed"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2225,
+      "message": "a stage binds two image tables"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2226,
+      "message": "a stage's image tables disagree on their elements"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2232,
       "message": "duplicate shader binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2222,
+      "line": 2239,
       "message": "image table map binding is malformed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2224,
+      "line": 2241,
       "message": "image table map exceeds the storage buffer range limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2230,
+      "line": 2247,
       "message": "a stage binds two image table maps"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2246,
+      "line": 2263,
       "message": "unsupported descriptor role "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2247,
+      "line": 2264,
       "message": "unsupported descriptor kind … for role …: only StorageBuffer is supported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2248,
+      "line": 2265,
       "message": "read-only descriptors are unsupported because the recompiler emits no NonWritable decoration"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2249,
+      "line": 2266,
       "message": "empty descriptor binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2256,
+      "line": 2273,
       "message": "guest buffer descriptor must contain four DWORDs per array element"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2271,
+      "line": 2288,
       "message": "guest buffer offset lies outside the shader's push constants"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2283,
+      "line": 2300,
       "message": "invalid GDS descriptor contract"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2289,
+      "line": 2306,
       "message": "shader data and flattened SRT descriptors must not be arrays"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2290,
+      "line": 2307,
       "message": "empty shader data descriptor"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2312,
+      "line": 2329,
       "message": "an image table stage has no map"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2314,
+      "line": 2331,
       "message": "image table map is truncated"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2316,
+      "line": 2333,
       "message": "image table map disagrees with its image binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2319,
+      "line": 2336,
       "message": "image table map is truncated"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2335,
+      "line": 2352,
       "message": "image tables need runtimeDescriptorArray, descriptorBindingPartiallyBound and descriptorBindingVariableDescriptorCount, which the device lacks"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2341,
+      "line": 2358,
       "message": "pipeline descriptors exceed device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2490,
+      "line": 2507,
       "message": "described set layouts need the descriptor cache"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2501,
+      "line": 2518,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2565,
+      "line": 2582,
       "message": "cannot update a published descriptor heap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2566,
+      "line": 2583,
       "message": "AGC graphics: registered image range changed after resource preparation"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2587,
+      "line": 2604,
       "message": "image lookups disagree with the descriptor plan"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2589,
+      "line": 2606,
       "message": "AGC graphics: registered image range changed during resource materialization"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2686,
+      "line": 2703,
       "message": "descriptor allocations disagree with compact binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2695,
+      "line": 2712,
       "message": "descriptor allocations disagree with compact binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2700,
+      "line": 2717,
       "message": "descriptor allocations disagree with compact binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2729,
+      "line": 2746,
       "message": "a guest buffer off the storage buffer offset alignment in a shader without shader data is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2731,
+      "line": 2748,
       "message": "guest buffer offset lies outside the shader's data buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2869,
+      "line": 2886,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2929,
+      "line": 2946,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4499,
+      "line": 4554,
       "message": "descriptor binding flag count differs from layout"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4544,
+      "line": 4599,
       "message": "descriptor set exceeds the device's per-set descriptor limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4707,
+      "line": 4762,
       "message": "buffer descriptor must contain four DWORDs"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4709,
+      "line": 4764,
       "message": "buffer descriptor uses an unsupported type"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4717,
+      "line": 4772,
       "message": "shader buffer exceeds descriptor range limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4718,
+      "line": 4773,
       "message": "shader buffer size exceeds host address space"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4720,
+      "line": 4775,
       "message": "shader buffer aliases the render target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4723,
+      "line": 4778,
       "message": "writable shader buffer aliases the index buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4803,
+      "line": 4858,
       "message": "shader data buffer exceeds descriptor range limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4824,
+      "line": 4879,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4833,
+      "line": 4888,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4846,
+      "line": 4901,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4847,
+      "line": 4902,
       "message": "runtime data refresh cannot replace bound resources"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4852,
+      "line": 4907,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4862,
+      "line": 4917,
       "message": "template bindings disagree with the shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4863,
+      "line": 4918,
       "message": "data binding without its buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4866,
+      "line": 4921,
       "message": "template data buffer cannot take the dispatch's words"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4881,
+      "line": 4936,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4925,
+      "line": 4980,
       "message": "empty descriptor binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4928,
+      "line": 4983,
       "message": "typed descriptor heap capacity exceeded"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4932,
+      "line": 4987,
       "message": "resource class disagrees with typed descriptor heap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4933,
+      "line": 4988,
       "message": "typed image heaps require nullDescriptor or placeholder images"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4936,
+      "line": 4991,
       "message": "storage image binding has a non-image role"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4937,
+      "line": 4992,
       "message": "guest storage image descriptors must contain 8 dwords each"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4938,
+      "line": 4993,
       "message": "device texture detiler is unavailable"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4939,
+      "line": 4994,
       "message": "shader storage-image descriptors exceed per-stage limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4947,
+      "line": 5002,
       "message": "unsupported descriptor kind … for role "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4948,
+      "line": 5003,
       "message": "guest image descriptor role disagrees with its kind"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4949,
+      "line": 5004,
       "message": "guest image descriptor size is not a multiple of the binding count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4955,
+      "line": 5010,
       "message": "guest texture descriptor must contain 8 dwords"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4956,
+      "line": 5011,
       "message": "guest image binding is missing an image shape"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4957,
+      "line": 5012,
       "message": "device texture detiler is unavailable"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4958,
+      "line": 5013,
       "message": "device texture cache is unavailable"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4959,
+      "line": 5014,
       "message": "shader sampled-image descriptors exceed per-stage limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4961,
+      "line": 5016,
       "message": "pipeline sampled-image descriptors exceed device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4963,
+      "line": 5018,
       "message": "guest sampler descriptor must contain 4 dwords"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4965,
+      "line": 5020,
       "message": "guest sampler binding is missing depth comparison metadata"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4966,
+      "line": 5021,
       "message": "guest sampler binding has unnormalized coordinate metadata of another size"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4989,
+      "line": 5044,
       "message": "pipeline sampler descriptors exceed device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5161,
+      "line": 5216,
       "message": "guest sampled image binding is missing its image-sampler pairs"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5180,
+      "line": 5235,
       "message": "an S# that holds the LOD at 0 is paired with images of different minimum LODs"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5191,
+      "line": 5246,
       "message": "a 1D array within maxImageArrayLayers was bound as rows of a 2D image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5205,
+      "line": 5260,
       "message": "reading sample 0 of a multisampled texture with a depth comparison through a 2D image is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5221,
+      "line": 5276,
       "message": "a texture of guest format …, which is not sRGB and has no sRGB view, is sampled through a sampler that forces sRGB decoding, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5270,
+      "line": 5325,
       "message": "storage image atomics on a multisampled texture are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5286,
+      "line": 5341,
       "message": "guest storage texture descriptor clamps its minimum LOD above the level it addresses, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5397,
+      "line": 5452,
       "message": "sampler table binding is malformed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5398,
+      "line": 5453,
       "message": "sampler tables need runtimeDescriptorArray and descriptorBindingPartiallyBound, which the device lacks"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5413,
+      "line": 5468,
       "message": "a sampler table entry with an opaque black border needs dynamic texture BC-swizzle pairing, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5414,
+      "line": 5469,
       "message": "a sampler table entry with a border needs dynamic texture numeric-class pairing, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5415,
+      "line": 5470,
       "message": "a sampler table entry that disables seamless cube filtering needs VK_EXT_non_seamless_cube_map because dynamic texture/sampler pairing is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5416,
+      "line": 5471,
       "message": "a sampler table entry with anisotropic ANISO_OVERRIDE needs dynamic texture mip-level pairing, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5441,
+      "line": 5496,
       "message": "pipeline sampler descriptors exceed device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5569,
+      "line": 5624,
       "message": "an image table entry's sampler border color numeric class disagrees with its sampled image class, which needs dynamic pairing and is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5570,
+      "line": 5625,
       "message": "an image table entry paired with anisotropic ANISO_OVERRIDE needs dynamic texture mip-level pairing, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5708,
+      "line": 5763,
       "message": "a sampled image table entry has a minimum LOD clamp, which needs VK_EXT_image_view_min_lod"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5809,
+      "line": 5864,
       "message": "image table map buffer disagrees with the map"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 6185,
+      "line": 6243,
       "message": "draw snapshots require a descriptor cache"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 6207,
+      "line": 6265,
       "message": "draw snapshot descriptor allocation failed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 6212,
+      "line": 6270,
       "message": "draw snapshot descriptor allocation failed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 6244,
+      "line": 6302,
       "message": "draw snapshot writes disagree with their descriptor bindings"
     },
     {
@@ -6183,77 +6193,77 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1524,
+      "line": 1549,
       "message": "AGC graphics: unsupported primitive type "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1589,
+      "line": 1614,
       "message": "a multisampled depth target rasterized without MSAA_ENABLE with Z interpolation or overrasterization (DB_EQAA)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1590,
+      "line": 1615,
       "message": "a multisampled depth target rasterized without MSAA_ENABLE with a sample-mask export"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1631,
+      "line": 1656,
       "message": "AGC graphics: …depth bias or nonstandard rasterization"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1671,
+      "line": 1690,
       "message": "AGC graphics: color export format … is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1673,
+      "line": 1692,
       "message": "AGC graphics: color export format 7 (UINT16_ABGR) into a target that is not unsigned integer is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1829,
+      "line": 1848,
       "message": "AGC graphics: blending into an 8_8 color target with the alternate component order with a factor of the destination alpha, which the target keeps in its second channel, is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1831,
+      "line": 1850,
       "message": "AGC graphics: blending into an 8_8 color target with the alternate component order with a constant color factor, which Vulkan applies to the second channel with the green blend constant instead of the alpha one, is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1838,
+      "line": 1857,
       "message": "AGC graphics: color export format … into … target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1864,
+      "line": 1883,
       "message": "AGC graphics: color export format … into an unsigned integer target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2070,
+      "line": 2089,
       "message": "AGC graphics: no guest texture format matches the color buffer format "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2136,
+      "line": 2155,
       "message": "AGC graphics: PS4 color target tile mode index … is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2183,
+      "line": 2202,
       "message": "AGC graphics: color compression, DCC, endian conversion, nonstandard rounding or color optimization is unsupported (CB_COLOR_INFO 0x"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2281,
+      "line": 2300,
       "message": "AGC graphics: DCC-compressed … color targets are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2458,
+      "line": 2477,
       "message": "AGC graphics: CB resolves of … color targets are unsupported"
     },
     {
@@ -6458,582 +6468,582 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1500,
+      "line": 1525,
       "message": "point lists are only drawn through the vertex and geometry paths"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1508,
+      "line": 1533,
       "message": "rect-list requires vertex routing"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1520,
+      "line": 1545,
       "message": "quad-list requires vertex routing"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1529,
+      "line": 1554,
       "message": "more than eight clip and cull distances are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1533,
+      "line": 1558,
       "message": "COVERED_CENTROID_IS_CENTER with active or unspecified centroid inputs is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1557,
+      "line": 1582,
       "message": "depth bounds without a depth surface"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1558,
+      "line": 1583,
       "message": "depth-conditional color writes are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1567,
+      "line": 1592,
       "message": "dithered alpha-to-coverage requires eight matched raster/DB_EQAA samples and one pixel iteration"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1568,
+      "line": 1593,
       "message": "dithered alpha-to-coverage with custom sample locations is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1571,
+      "line": 1596,
       "message": "DB_ALPHA_TO_MASK 0xe701 requires two matched raster/DB_EQAA samples and one pixel iteration"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1572,
+      "line": 1597,
       "message": "DB_ALPHA_TO_MASK 0xe701 is supported only with the two-sample locations (4,4),(-4,-4) or (-4,4),(4,-4) in every pixel"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1581,
+      "line": 1606,
       "message": "a one-sample depth target under a multisampled rasterizer without MSAA_ENABLE is unsupported for points or lines and with alpha-to-coverage, a sample index input under PS_ITER_SAMPLE, a coverage input, a sample-mask export, or DB_EQAA source Z interpolation or overrasterization"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1588,
+      "line": 1613,
       "message": "multisampled targets rasterized without MSAA_ENABLE are unsupported for points or alpha-to-coverage"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1601,
+      "line": 1626,
       "message": "SAMPLE_COVERAGE in a multisampled pixel shader that runs per sample, or reads sample-rate or ancillary inputs, is unsupported (the input holds the whole pixel's coverage, gl_SampleMaskIn only the invocation's samples)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1603,
+      "line": 1628,
       "message": "the depth target's sample count differs from the rasterizer's"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1607,
+      "line": 1632,
       "message": "a single-sample scan into a multisampled depth target with alpha-to-coverage is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1613,
+      "line": 1638,
       "message": "the depth target's sample count differs from the rasterizer's"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1616,
+      "line": 1641,
       "message": "clip rectangles are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1617,
+      "line": 1642,
       "message": "nonstandard triangle edge rules are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1618,
+      "line": 1643,
       "message": "nonstandard pixel center or vertex quantization is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1665,
+      "line": 1683,
       "message": "additional position exports are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1679,
+      "line": 1698,
       "message": "a one-sample color target under a multisampled rasterizer without MSAA_ENABLE is unsupported with a sample index or coverage input, or a sample-mask export"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1685,
+      "line": 1704,
       "message": "conservative rasterization with centroid interpolation of a draw raised to a multisampled target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1692,
+      "line": 1711,
       "message": "a one-fragment color target's sample count differs from the rasterizer's"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1694,
+      "line": 1713,
       "message": "a color target's sample count differs from the rasterizer's"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1695,
+      "line": 1714,
       "message": "a one-fragment color target is supported only with static DB_EQAA anchors at the depth target's sample count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1709,
+      "line": 1728,
       "message": "color targets with different layer counts are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1711,
+      "line": 1730,
       "message": "layered rendering with a depth target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1749,
+      "line": 1768,
       "message": "inverted viewport depth clamp bounds"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1775,
+      "line": 1794,
       "message": "reserved blend control bits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1783,
+      "line": 1802,
       "message": "blending into an unsigned integer target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1822,
+      "line": 1841,
       "message": "color targets require conflicting blend constants after component swap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1840,
+      "line": 1859,
       "message": "blending into … color target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1843,
+      "line": 1862,
       "message": "partial writes of … color target are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1845,
+      "line": 1864,
       "message": "partial writes of a mipmapped, volume or array … color target are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1849,
+      "line": 1868,
       "message": "a partial write of a multisampled 4_4_4_4 unorm color target under a color logic operation is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1868,
+      "line": 1887,
       "message": "dual-source blending with a MIN or MAX operation is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1875,
+      "line": 1894,
       "message": "blending unclamped normalized color into a multisampled or packed color target is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1876,
+      "line": 1895,
       "message": "blending unclamped normalized color into a color target with a reversed or alternate component order is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1877,
+      "line": 1896,
       "message": "dual-source blending of unclamped normalized color is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1879,
+      "line": 1898,
       "message": "blending unclamped signed normalized color with a write mask that skips a component is not implemented, since the shader rewrites the skipped component through a float and the code -128 would become -127"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1893,
+      "line": 1912,
       "message": "a color logic operation together with blending is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1895,
+      "line": 1914,
       "message": "blending into a color target with a reversed component order through a second source color needs that target to be the shader's only color export"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1897,
+      "line": 1916,
       "message": "dual-source blending needs pixel exports to MRT slots 0 and 1 and color writes to slot 0 alone"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1898,
+      "line": 1917,
       "message": "dual-source blending into a component-swapped color target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1899,
+      "line": 1918,
       "message": "dual-source blending needs the MRT1 export in the MRT0 export format"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1900,
+      "line": 1919,
       "message": "dual-source blending needs the MRT1 export with the MRT0 shader mask"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1905,
+      "line": 1924,
       "message": "alpha-to-coverage needs an MRT0 export format with a floating-point alpha"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1906,
+      "line": 1925,
       "message": "dithered alpha-to-coverage needs an FP16_ABGR or 32_ABGR export"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1907,
+      "line": 1926,
       "message": "alpha-to-coverage into a component-swapped or packed MRT0 target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1930,
+      "line": 1949,
       "message": "only a staged color target has a merge target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1943,
+      "line": 1962,
       "message": "a merged multisampled color target does not start at its surface"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1965,
+      "line": 1984,
       "message": "a merged color target needs an MRT slot below 8 and at most 8 samples"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 1968,
+      "line": 1987,
       "message": "a merged multisampled color target needs per-sample shading"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2077,
+      "line": 2096,
       "message": "linear color targets are not resident"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2119,
+      "line": 2138,
       "message": "GCN color targets with more than eight samples are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2120,
+      "line": 2139,
       "message": "GCN color targets with fewer fragments than samples (EQAA) are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2121,
+      "line": 2140,
       "message": "endian-swapped or linear-general GCN color targets are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2122,
+      "line": 2141,
       "message": "unclamped normalized color is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2124,
+      "line": 2143,
       "message": "GCN color array slices are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2142,
+      "line": 2161,
       "message": "PS4 color target pitch or slice is not padded the way its tile mode pads them"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2151,
+      "line": 2170,
       "message": "PS4 color target fast clear (CMASK) is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2154,
+      "line": 2173,
       "message": "a multisampled GCN color target with fast clear or FMASK compression has no CMASK address"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2176,
+      "line": 2195,
       "message": "color targets with more than eight samples are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2178,
+      "line": 2197,
       "message": "color targets with more fragments than samples are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2184,
+      "line": 2203,
       "message": "unclamped normalized color is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2186,
+      "line": 2205,
       "message": "reserved CB_COLOR_VIEW bits are set"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2189,
+      "line": 2208,
       "message": "the color view ends before its first slice"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2193,
+      "line": 2212,
       "message": "multisampled color mips are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2194,
+      "line": 2213,
       "message": "color view mip exceeds the surface"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2199,
+      "line": 2218,
       "message": "1D color targets taller than one row are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2201,
+      "line": 2220,
       "message": "DCC of mipmapped 3D color targets is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2202,
+      "line": 2221,
       "message": "CMASK fast clears of mipmapped 3D color targets are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2205,
+      "line": 2224,
       "message": "the color view slices are outside the 3D surface"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2209,
+      "line": 2228,
       "message": "the color view slice is beyond the array surface"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2256,
+      "line": 2275,
       "message": "invalid color address extension"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2262,
+      "line": 2281,
       "message": "unsupported display color pipe/bank XOR column bits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2268,
+      "line": 2287,
       "message": "a sliced color target has no swizzle equation"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2282,
+      "line": 2301,
       "message": "truncating (ROUND_MODE) 10_11_11 unorm color targets are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2283,
+      "line": 2302,
       "message": "truncating (ROUND_MODE) 4_4_4_4 unorm color targets are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2284,
+      "line": 2303,
       "message": "rounding (ROUND_MODE 0) 11_11_10 float color targets are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2290,
+      "line": 2309,
       "message": "CMASK fast clears of a 3D or array color target are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2291,
+      "line": 2310,
       "message": "CMASK fast clears need pipe-aligned SW_64KB_Z_X metadata (CB_COLOR_ATTRIB3 FMASK_SW_MODE 24, CMASK_PIPE_ALIGNED)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2293,
+      "line": 2312,
       "message": "CMASK fast clears of texels over 64 bits are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2294,
+      "line": 2313,
       "message": "CMASK fast clears of mipmapped color targets with 8 or 16 bpp are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2298,
+      "line": 2317,
       "message": "CMASK fast clears without a CMASK address are unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2325,
+      "line": 2344,
       "message": "invalid FMASK address extension"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2331,
+      "line": 2350,
       "message": "color targets with fewer fragments than samples (EQAA) are supported only with FMASK (CB_COLOR_INFO COMPRESSION and an FMASK base) and without DCC"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2335,
+      "line": 2354,
       "message": "a compressed one-fragment color target without an FMASK address is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2345,
+      "line": 2364,
       "message": "multisampled DCC targets require pipe-aligned single-layer SW_64KB_R_X"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2347,
+      "line": 2366,
       "message": "multisampled DCC color transforms or lossy modes are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2399,
+      "line": 2418,
       "message": "DB depth copy combined with a stencil copy, clear, resummarize or decompress"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2400,
+      "line": 2419,
       "message": "DB depth copy with depth or stencil tests"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2401,
+      "line": 2420,
       "message": "DB depth copy from a depth plane that is not Z_32_FLOAT"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2403,
+      "line": 2422,
       "message": "DB depth copy from a mipmapped or partially resident depth plane"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2404,
+      "line": 2423,
       "message": "DB depth copy into anything but the red channel of color target 0"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2405,
+      "line": 2424,
       "message": "DB depth copy with color target 0 blending is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2410,
+      "line": 2429,
       "message": "DB depth copy with a sample mask is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2412,
+      "line": 2431,
       "message": "DB depth copy of a sample the depth plane does not have"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2414,
+      "line": 2433,
       "message": "DB depth copy into a color target that is not a single-sample R32 float"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2415,
+      "line": 2434,
       "message": "DB depth copy into a color target of another size"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2432,
+      "line": 2451,
       "message": "CB metadata pass with a nonstandard ROP, dual quads disabled or degamma"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2450,
+      "line": 2469,
       "message": "CB metadata pass over part of a color target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2454,
+      "line": 2473,
       "message": "CB resolve from a target whose sample count differs from the rasterizer's"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2455,
+      "line": 2474,
       "message": "CB resolve into a multisampled target is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2456,
+      "line": 2475,
       "message": "CB resolve into a fast-clear color target is unsupported (the resolve does not update its CMASK)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2457,
+      "line": 2476,
       "message": "CB resolve between different formats or extents is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2469,
+      "line": 2488,
       "message": "CB metadata pass over a single-sample target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2470,
+      "line": 2489,
       "message": "FMASK decompress of a target without a CMASK address"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2472,
+      "line": 2491,
       "message": "CB metadata pass over a multisampled color target, whose texels are on the host, is unsupported (only a CB resolve is modeled)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/State.cpp",
-      "line": 2474,
+      "line": 2493,
       "message": "CB metadata pass over a mipmapped DCC color target, whose keys are not modeled"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 302,
+      "line": 303,
       "message": "AGC graphics: Texture encountered an unknown guest texture dimension"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2785,
+      "line": 2804,
       "message": "AGC graphics: an unknown cause for a storage image unit without saved guest bytes"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3482,
+      "line": 3501,
       "message": "AGC graphics: storage image window has no source"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5187,
+      "line": 5206,
       "message": "APS5_STORE_AT_FLIP=…: expected 1"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5193,
+      "line": 5212,
       "message": "APS5_STORE_AT_LABEL=…: expected 1"
     },
     {
@@ -7043,287 +7053,287 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 312,
+      "line": 313,
       "message": "guest texture descriptor uses a minimum LOD clamp, which needs VK_EXT_image_view_min_lod, or shaderResourceMinLod without graphics pipeline libraries"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 381,
+      "line": 382,
       "message": "comparison sampling requires an R32 float or R16 unorm depth texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 382,
+      "line": 383,
       "message": "comparison sampling does not support 3D depth textures"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 386,
+      "line": 387,
       "message": "device does not support BC compressed textures"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 389,
+      "line": 390,
       "message": "only a sampled 1D array is laid out as rows of a 2D image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 390,
+      "line": 391,
       "message": "a 1D array laid out as rows of a 2D image in a format expanded to RGBA8 is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 391,
+      "line": 392,
       "message": "a block-compressed 1D array laid out as rows of a 2D image is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 392,
+      "line": 393,
       "message": "a 1D array past maxImageArrayLayers viewed at mip levels other than level 0 alone is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 406,
+      "line": 407,
       "message": "texture snapshot size mismatch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 407,
+      "line": 408,
       "message": "a cleared texture needs a plain color format"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 410,
+      "line": 411,
       "message": "detiled texture buffer size overflows"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 415,
+      "line": 416,
       "message": "a 1D array past maxImageArrayLayers whose viewed slices need more than maxImageDimension2D rows is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 422,
+      "line": 423,
       "message": "a texture array with more layers than maxImageArrayLayers is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 651,
+      "line": 652,
       "message": "guest cube texture view holds fewer than 6 array slices"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 733,
+      "line": 734,
       "message": "storage image cannot serve a repacked copy of the sampled texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 767,
+      "line": 768,
       "message": "guest cube texture view holds fewer than 6 array slices"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 790,
+      "line": 791,
       "message": "storage image cannot serve a block copy of the sampled texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 846,
+      "line": 847,
       "message": "storage image cannot serve a depth copy of the sampled texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 882,
+      "line": 883,
       "message": "guest cube texture view holds fewer than 6 array slices"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 913,
+      "line": 914,
       "message": "storage image cannot serve an sRGB copy of the sampled texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 928,
+      "line": 929,
       "message": "guest cube texture view does not contain a multiple of 6 array slices"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1047,
+      "line": 1048,
       "message": "a repacked texture copy needs the texture detiler"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1140,
+      "line": 1141,
       "message": "storage image does not match the sampled texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1151,
+      "line": 1152,
       "message": "guest cube texture view holds fewer than 6 array slices"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1183,
+      "line": 1184,
       "message": "a depth sampled view must retain its own device and image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1237,
+      "line": 1238,
       "message": "AGC graphics: a texture of view format … has no sRGB view for a sampler that forces sRGB decoding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1266,
+      "line": 1267,
       "message": "a base-level view needs a mipmapped 1D, 2D or 2D array texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1390,
+      "line": 1391,
       "message": "guest storage texture format … cannot be used as a storage image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1528,
+      "line": 1529,
       "message": "block-compressed textures cannot be storage images"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1529,
+      "line": 1530,
       "message": "storage texture mip level is outside the texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1538,
+      "line": 1539,
       "message": "a storage image of a PS4 layered surface with several mip levels (stored level by level) is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1544,
+      "line": 1545,
       "message": "storage texture has no committed guest pages"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1569,
+      "line": 1570,
       "message": "a texture array with more layers than maxImageArrayLayers is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1964,
+      "line": 1965,
       "message": "storage texture mip level is outside the texture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 1965,
+      "line": 1966,
       "message": "a first-layer storage view needs a 2D array surface"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2017,
+      "line": 2018,
       "message": "storage image cannot be a color attachment"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2018,
+      "line": 2019,
       "message": "attachment mip exceeds the storage image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2022,
+      "line": 2023,
       "message": "attachment slice is outside the storage image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2023,
+      "line": 2024,
       "message": "attachment layer is outside the storage image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2043,
+      "line": 2044,
       "message": "an RGBA8_SRGB attachment proxy is only modeled for a single-mip 2D R8 surface"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2104,
+      "line": 2105,
       "message": "the storage image has no attachment proxy"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2115,
+      "line": 2116,
       "message": "the storage image has no attachment proxy"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2148,
+      "line": 2149,
       "message": "storage image of format … has no storage view of its UINT format "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2166,
+      "line": 2167,
       "message": "storage image atomics need a surface of one 32-bit component"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2176,
+      "line": 2177,
       "message": "64-bit storage image atomics need a surface of two 32-bit components"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2815,
+      "line": 2834,
       "message": "texture comparison exceeds its snapshot"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2816,
+      "line": 2835,
       "message": "texture comparison has no complete snapshot"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 2822,
+      "line": 2841,
       "message": "texture comparison block count differs"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3225,
+      "line": 3244,
       "message": "storage image window is not tile-block aligned"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3477,
+      "line": 3496,
       "message": "storage image upload selects no unit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3659,
+      "line": 3678,
       "message": "storage image write-back piece lies outside its import segments"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3802,
+      "line": 3821,
       "message": "a storage write-back slab piece is not one window"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 4915,
+      "line": 4934,
       "message": "a write-back's saved guest bytes are pending without a recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5019,
+      "line": 5038,
       "message": "cannot open private image readback file"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5028,
+      "line": 5047,
       "message": "cannot complete private image readback file"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 6437,
+      "line": 6456,
       "message": "storage image borrows no unit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 6751,
+      "line": 6770,
       "message": "a shadowed storage write-back range crosses the end of its import segment"
     },
     {
@@ -9093,372 +9103,372 @@
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1311,
+      "line": 1315,
       "message": "image table: failed to read guest memory at 0x"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1331,
+      "line": 1335,
       "message": "image table: descriptor snapshot did not stabilize"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1536,
+      "line": 1540,
       "message": "uniform fill plan has an invalid word count"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1542,
+      "line": 1546,
       "message": "uniform fill values diverge at runtime"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1549,
+      "line": 1553,
       "message": "runtime user data is smaller than the shader user data count"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1562,
+      "line": 1566,
       "message": "materialization sources are missing buffer descriptors"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1577,
+      "line": 1581,
       "message": "image resource references an unknown descriptor source"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1584,
+      "line": 1588,
       "message": "materialization sources are missing image descriptors"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1589,
+      "line": 1593,
       "message": "image descriptor has an invalid width"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1604,
+      "line": 1608,
       "message": "runtime image descriptor is invalid"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1621,
+      "line": 1625,
       "message": "materialization sources are missing sampler descriptors"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1637,
+      "line": 1641,
       "message": "FORCE_DEGAMMA requires four sampler descriptor words"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1644,
+      "line": 1648,
       "message": "FORCE_DEGAMMA on RGBA8_UINT requires a direct plain biased pixel sample"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1645,
+      "line": 1649,
       "message": "FORCE_DEGAMMA on RGBA8_UINT with mixed sampler states is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1646,
+      "line": 1650,
       "message": "FORCE_DEGAMMA on RGBA8_UINT requires a one-slice volume at mip zero"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1654,
+      "line": 1658,
       "message": "comparison sampling of a color texture is implemented only for floating-point, UNORM and SNORM formats (format …)"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1671,
+      "line": 1675,
       "message": "sampling of a converted image has no sampler descriptor"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1673,
+      "line": 1677,
       "message": "sampling of a converted image through a min or max reduction sampler is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1674,
+      "line": 1678,
       "message": "sampling of a converted image does not implement unnormalized coordinates"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1677,
+      "line": 1681,
       "message": "sampling of a converted image is implemented only with equal point or bilinear minification and magnification filters"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1681,
+      "line": 1685,
       "message": "sampling of a converted image is implemented only with wrap or clamp-to-edge addressing"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1684,
+      "line": 1688,
       "message": "sampling of a converted image through samplers that disagree is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1687,
+      "line": 1691,
       "message": "sampling of a converted image has no paired sampler"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1698,
+      "line": 1702,
       "message": "unsupported color comparison image instructions"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1699,
+      "line": 1703,
       "message": "color comparison requires a single mip level"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1702,
+      "line": 1706,
       "message": "comparison sampling of a color texture is implemented only for 2D, 2D array and cube views"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1707,
+      "line": 1711,
       "message": "comparison sampling of a color texture is implemented only when every view channel is a constant or a color channel"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1711,
+      "line": 1715,
       "message": "comparison sampling of a color texture is implemented only when a view channel selects red"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1715,
+      "line": 1719,
       "message": "comparison sampling of a color texture through a sampler table is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1716,
+      "line": 1720,
       "message": "comparison sampling of a color texture has no sampler descriptor"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1722,
+      "line": 1726,
       "message": "comparison sampling of a color texture through a min or max reduction sampler is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1727,
+      "line": 1731,
       "message": "bilinear cube comparison requires DISABLE_CUBE_WRAP to avoid seamless face filtering"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1733,
+      "line": 1737,
       "message": "comparison sampling of a color texture is implemented only with wrap, clamp-to-edge or clamp-to-border addressing"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1739,
+      "line": 1743,
       "message": "comparison sampling of a color texture with a border color table is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1740,
+      "line": 1744,
       "message": "comparison sampling of a color texture is implemented only with equal point or bilinear minification and magnification filters"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1741,
+      "line": 1745,
       "message": "comparison sampling of a color texture does not implement unnormalized coordinates"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1744,
+      "line": 1748,
       "message": "comparison sampling of a color texture through samplers that disagree is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1747,
+      "line": 1751,
       "message": "comparison sampling of a color texture has no paired sampler"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1791,
+      "line": 1795,
       "message": "buffer descriptor uses an unsupported type"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1793,
+      "line": 1797,
       "message": "buffer ADD_TID is only valid for compute shaders"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1795,
+      "line": 1799,
       "message": "runtime SRT size differs from the static interface"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1801,
+      "line": 1805,
       "message": "samples a converted image through a shader prepared without converted-sample modes"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1806,
+      "line": 1810,
       "message": "samples a 1D array past maxImageArrayLayers through a shader prepared without layer-row modes"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1819,
+      "line": 1823,
       "message": "SRT read at flat offset … reads inaccessible memory but has no guard"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1949,
+      "line": 1953,
       "message": "image table snapshot disagrees with the static tables"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1950,
+      "line": 1954,
       "message": "prepared runtime image modes are missing"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1951,
+      "line": 1955,
       "message": "image table map exceeds its word budget"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 1954,
+      "line": 1958,
       "message": "image table map exceeds its word budget"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2084,
+      "line": 2088,
       "message": "image table snapshot has a truncated map"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2097,
+      "line": 2101,
       "message": "nested image table snapshot has no pointer for each record"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2114,
+      "line": 2118,
       "message": "image table snapshot has unsupported recursive children"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2134,
+      "line": 2138,
       "message": "nested image table captured conflicting values at one pointer"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2140,
+      "line": 2144,
       "message": "nested image table has too many pointers"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2415,
+      "line": 2419,
       "message": "image instruction has no supported runtime modes"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2443,
+      "line": 2447,
       "message": "runtime image descriptor must contain eight dwords"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2444,
+      "line": 2448,
       "message": "prepared runtime image modes are missing"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2516,
+      "line": 2520,
       "message": "a 3D gather of an image table entry is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2517,
+      "line": 2521,
       "message": "a 3D gather of an image without an 8-dword descriptor is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2522,
+      "line": 2526,
       "message": "a 3D gather through a sampler table is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2523,
+      "line": 2527,
       "message": "a 3D gather has no sampler descriptor"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2525,
+      "line": 2529,
       "message": "a 3D gather with unnormalized coordinates is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2531,
+      "line": 2535,
       "message": "a 3D gather with a border color table is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2532,
+      "line": 2536,
       "message": "a 3D gather of an integer texture with border addressing is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2533,
+      "line": 2537,
       "message": "a 3D gather of a swizzled texture with border addressing is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2535,
+      "line": 2539,
       "message": "a 3D gather through samplers that disagree is not implemented"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2538,
+      "line": 2542,
       "message": "a 3D gather has no paired sampler"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2548,
+      "line": 2552,
       "message": "static resource interface requires a completed resource plan"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2581,
+      "line": 2585,
       "message": "static sampled pair is out of range"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2795,
+      "line": 2799,
       "message": "ResourceMaterializer::ExtractPlan requires a completed resource and SRT plan"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2821,
+      "line": 2825,
       "message": "ResourceMaterializer::ExtractPlan resource references an unknown descriptor source"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2828,
+      "line": 2832,
       "message": "ResourceMaterializer::ExtractPlan image references an unknown descriptor source"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2858,
+      "line": 2862,
       "message": "ResourceMaterializer::Materialize requires a completed resource plan"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2861,
+      "line": 2865,
       "message": "ResourceMaterializer::Materialize requires runtime memory access for image tables"
     },
     {
       "file": "core/shader/recompiler/Optimization/src/ResourceMaterializer.cpp",
-      "line": 2911,
+      "line": 2915,
       "message": "runtime resource snapshot did not stabilize"
     },
     {
@@ -10533,7 +10543,7 @@
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/include/SpirvBackend/SpirvModule.hpp",
-      "line": 235,
+      "line": 236,
       "message": "SpirvModule instruction length exceeds maximum SPIR-V word count"
     },
     {
@@ -10688,37 +10698,37 @@
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvFlowEmitter.cpp",
-      "line": 53,
+      "line": 54,
       "message": "SPIR-V control flow block metadata is inconsistent"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvFlowEmitter.cpp",
-      "line": 58,
+      "line": 59,
       "message": "SPIR-V control flow target block is null"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvFlowEmitter.cpp",
-      "line": 63,
+      "line": 64,
       "message": "SPIR-V control flow target block is missing"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvFlowEmitter.cpp",
-      "line": 70,
+      "line": 71,
       "message": "SPIR-V control flow block metadata is inconsistent"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvFlowEmitter.cpp",
-      "line": 73,
+      "line": 74,
       "message": "SPIR-V control flow block is null"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvFlowEmitter.cpp",
-      "line": 80,
+      "line": 81,
       "message": "SPIR-V control flow block has no metadata"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvFlowEmitter.cpp",
-      "line": 838,
+      "line": 839,
       "message": "EmitControlFlow not implemented"
     },
     {
@@ -11368,12 +11378,12 @@
     },
     {
       "file": "core/shader/recompiler/Translation/src/FloatInstructions.cpp",
-      "line": 980,
+      "line": 1004,
       "message": "invalid cube result kind"
     },
     {
       "file": "core/shader/recompiler/Translation/src/FloatInstructions.cpp",
-      "line": 995,
+      "line": 1019,
       "message": "TranslateFloatInstruction not implemented"
     },
     {
