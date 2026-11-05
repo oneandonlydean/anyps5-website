@@ -484,6 +484,12 @@ export async function suggest(env: Env, name: string, options: Option[] | undefi
           .filter((l) => !q || words(l.name).includes(q))
           .sort((a, b) => b.total - a.total)
           .map((l) => ({ name: `${l.name} · ${l.done}/${l.total}`, value: l.name }));
+      } else if (name === "screenshot") {
+        // Only games someone has posted a screenshot of.
+        const shot = new Set(data.screenshots.map((s) => s.slug));
+        choices = findGames(data, typed)
+          .filter((g) => shot.has(g.slug))
+          .map((g) => ({ name: `${g.name} · ${data.screenshots.filter((s) => s.slug === g.slug).length} screenshots`, value: g.slug }));
       } else if (name === "unfollow" && caller) {
         const { results } = await env.DB.prepare("SELECT slug FROM follows WHERE discord_id = ?").bind(caller).all<{ slug: string }>();
         const followed = new Set(results.map((r) => r.slug));

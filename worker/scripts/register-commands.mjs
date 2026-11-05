@@ -70,6 +70,85 @@ const res = await fetch(`https://discord.com/api/v10/applications/${DISCORD_CLIE
     { name: "follow", description: "Get a direct message when a game reaches a new stage", options: [text("game", "Game to follow", true)], ...guildOnly },
     { name: "unfollow", description: "Stop following a game", options: [text("game", "Game to stop following", true)], ...guildOnly },
     { name: "following", description: "The games you follow", ...guildOnly },
+    // community.ts
+    {
+      name: "recent",
+      description: "What changed lately: games that moved, releases and progress",
+      options: [
+        choice("period", "How far back (defaults to the last 7 days)", [
+          ["Last 24 hours", "day"],
+          ["Last 7 days", "week"],
+          ["Last 30 days", "month"],
+        ]),
+        choice("area", "Only one kind of news (defaults to everything)", [
+          ["Everything", "all"],
+          ["Games", "games"],
+          ["Releases", "releases"],
+          ["Progress", "progress"],
+        ]),
+      ],
+      ...guildOnly,
+    },
+    {
+      name: "error",
+      description: "What an error message or a missing function means, and whether it's fixed on main",
+      options: [{ type: 3, name: "text", description: "The error line the game printed, or a function like sceHttp2SendRequest", required: true, max_length: 500 }],
+      ...guildOnly,
+    },
+    {
+      name: "setup",
+      description: "The setup guide in short, one step at a time",
+      options: [
+        choice("step", "One step in more detail (defaults to all of them)", [
+          ["1. Check your PC", "requirements"],
+          ["2. Prepare your dump", "dump"],
+          ["3. Convert the game", "convert"],
+          ["4. Run and play", "run"],
+          ["5. Fix common problems", "troubleshooting"],
+          ["6. Share your results", "report"],
+        ]),
+      ],
+      ...guildOnly,
+    },
+    {
+      name: "games",
+      description: "Games that reach a stage, on any system or on yours",
+      options: [
+        {
+          ...choice("stage", "This stage or further", [
+            ["Playable", "Playable"],
+            ["Ingame", "Ingame"],
+            ["Menus", "Menus"],
+            ["Presents", "Presents"],
+            ["First draw", "First draw"],
+            ["Starts", "Starts"],
+            ["Loads", "Loads"],
+            ["Converts", "Converts"],
+          ]),
+          required: true,
+        },
+        choice("gpu", "Only reports on this GPU", [
+          ["AMD", "AMD"],
+          ["NVIDIA", "NVIDIA"],
+          ["Intel", "Intel"],
+        ]),
+        choice("os", "Only reports on this system", [
+          ["Linux", "linux"],
+          ["Windows", "windows"],
+        ]),
+      ],
+      ...guildOnly,
+    },
+    { name: "screenshot", description: "A community screenshot, from any game or one you pick", options: [text("game", "Only this game", false)], ...guildOnly },
+    {
+      name: "profile",
+      description: "Someone's merged pull requests and test reports, and where they rank",
+      options: [
+        { type: 6, name: "user", description: "Member to look up (defaults to you)", required: false },
+        { type: 3, name: "github", description: "Or a GitHub login, for anyone", required: false, max_length: 39 },
+      ],
+      ...guildOnly,
+    },
   ]),
 });
 const body = await res.json();

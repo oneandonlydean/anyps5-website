@@ -1,6 +1,8 @@
 import { leaderboard, stats } from "./boards";
 import { isSiteCommand, reply, runSiteCommand, suggest, type Option } from "./commands";
+import { error, games, profile, recent, screenshot, setup } from "./community";
 import type { Env, User } from "./env";
+import { siteData } from "./site-data";
 
 const PING = 1;
 const APPLICATION_COMMAND = 2;
@@ -69,6 +71,21 @@ async function prs(env: Env, caller: string, target: string): Promise<Response> 
   });
 }
 
+const COMMUNITY = new Set(["recent", "error", "setup", "games", "screenshot", "profile"]);
+
+/** The commands in community.ts: all but /profile need the site's data. */
+async function community(env: Env, name: string, options: Option[] | undefined, caller: string): Promise<Response> {
+  const arg = (n: string) => options?.find((o) => o.name === n)?.value?.toString().trim() ?? "";
+  const data = await siteData(env);
+  if (name === "profile") return profile(env, data, caller, arg("user"), arg("github"));
+  if (!data) return reply({ content: "The site's data isn't available right now. Try again in a minute.", flags: EPHEMERAL });
+  if (name === "recent") return recent(env, data, arg("period"), arg("area"));
+  if (name === "error") return error(env, data, arg("text"));
+  if (name === "setup") return setup(env, data, arg("step"));
+  if (name === "games") return games(env, data, arg("stage"), arg("gpu"), arg("os"));
+  return screenshot(env, data, arg("game"));
+}
+
 export async function interactions(req: Request, env: Env): Promise<Response> {
   const body = await req.text();
   if (!(await verified(req, env, body))) return new Response("invalid request signature", { status: 401 });
@@ -89,6 +106,7 @@ export async function interactions(req: Request, env: Env): Promise<Response> {
       return leaderboard(env, option("board"), option("period"));
     }
     if (interaction.data?.name === "stats") return stats(env);
+    if (interaction.data && COMMUNITY.has(interaction.data.name)) return community(env, interaction.data.name, interaction.data.options, caller);
   }
   return reply({ content: "Unknown command.", flags: EPHEMERAL });
 }

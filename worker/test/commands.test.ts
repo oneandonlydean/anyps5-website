@@ -1,10 +1,30 @@
 import { env } from "cloudflare:workers";
 import { beforeAll, beforeEach, expect, it } from "vitest";
+import { forgetLookup } from "../src/bot/lookup";
 import { forgetSiteData, meter, type SiteData } from "../src/bot/site-data";
 import worker from "../src/index";
 import { addUser, ctx } from "./helpers";
 
 const hex = (b: ArrayBuffer) => Array.from(new Uint8Array(b), (x) => x.toString(16).padStart(2, "0")).join("");
+
+const ago = (days: number) => new Date(Date.now() - days * 864e5).toISOString();
+
+/** /error's lookup file (src/pages/bot/lookup.json.ts). */
+const LOOKUP = {
+  commit: "abc1234def5678",
+  libraries: ["Http2", "Pad"],
+  functions: [
+    ["sceHttp2SendRequest", 0, 0],
+    ["sceHttp2SendRequestAsync", 0, 0],
+    ["scePadOpen", 1, 1],
+  ],
+  sites: [
+    { file: "core/gpu/Mesh.cpp", line: 12, message: "device does not support mesh shaders" },
+    { file: "core/gpu/Other.cpp", line: 30, message: "device does not support mesh shaders" },
+    { file: "core/gpu/Buffer.cpp", line: 7, message: "guest buffer has no GPU owner" },
+  ],
+  named: { functions: { sceHttp2SendRequest: ["astro-bot"] }, errors: { "device does not support mesh shaders": ["astro-playroom"] } },
+};
 
 const DATA: SiteData = {
   generated: "2026-11-02T00:00:00Z",
@@ -18,8 +38,19 @@ const DATA: SiteData = {
       tested: { date: "2026-10-20T00:00:00Z", build: "main after v0.1.3", releasesSince: 1 },
       blockers: [{ number: 42, kind: "issue", title: "VideoOut: unsupported pixel format", url: "https://github.com/acme/widgets/issues/42" }],
       thread: "https://github.com/acme/widgets/discussions/7",
+      systems: { "linux/NVIDIA": "Menus", "windows/AMD": "Starts" },
     },
-    { slug: "astro-playroom", name: "Astro's Playroom", ids: ["PPSA00001"], stage: "Ingame", cover: null, tested: null, blockers: [], thread: "https://github.com/acme/widgets/discussions/8" },
+    {
+      slug: "astro-playroom",
+      name: "Astro's Playroom",
+      ids: ["PPSA00001"],
+      stage: "Ingame",
+      cover: null,
+      tested: null,
+      blockers: [],
+      thread: "https://github.com/acme/widgets/discussions/8",
+      systems: { "windows/AMD": "Ingame" },
+    },
   ],
   libraries: {
     done: 50,
@@ -58,6 +89,17 @@ const DATA: SiteData = {
     downloads: { linux: { name: "relinker-v0.1.4", url: "https://dl.test/linux", size: 5_000_000 }, windows: null, librariesLinux: null, librariesWindows: null },
   },
   tracked: { release: "v0.1.4", games: [{ slug: "astro-bot", name: "Astro Bot", stage: "Menus", ready: false }, { slug: "astro-playroom", name: "Astro's Playroom", stage: null, ready: true }] },
+  recent: [
+    { kind: "stage", category: "games", date: ago(1), title: "Astro Bot reached Menus", url: "/compatibility/astro-bot", game: "astro-bot" },
+    { kind: "release", category: "releases", date: ago(3), title: "AnyPS5 v0.1.4 released", url: "https://github.com/acme/widgets/releases/tag/v0.1.4", game: null },
+    { kind: "digest", category: "progress", date: ago(0.5), title: "Progress on Wednesday: 115 changes merged", url: "/updates#progress", game: null },
+    { kind: "stage", category: "games", date: ago(20), title: "Astro's Playroom reached Ingame", url: "/compatibility/astro-playroom", game: "astro-playroom" },
+  ],
+  screenshots: [{ slug: "astro-bot", image: "/community/a1-full.webp", author: "alice", url: "https://github.com/acme/widgets/discussions/7#c1", date: "2026-10-20T00:00:00Z", stage: "Menus" }],
+  guide: [
+    { slug: "requirements", step: 1, title: "Check your PC", summary: "A Vulkan GPU and Linux or Windows.", sections: [{ heading: "Graphics", anchor: "graphics", text: "You need **Vulkan 1.1**. See [the FAQ](/faq)." }] },
+    { slug: "dump", step: 2, title: "Prepare your dump", summary: "Decrypted game files.", sections: [] },
+  ],
   faq: [{ id: "q1-2", q: "Is it an emulator?", a: "No. See [the guide](/docs/guide)." }],
   answers: [{ topic: "report", title: "How do I report a game?", text: "Use [the report page](/report)." }],
   rules: null,
@@ -76,6 +118,7 @@ beforeAll(async () => {
       fetch: async (url: string) => {
         const path = new URL(String(url)).pathname;
         if (path === "/bot/data.json") return Response.json(data);
+        if (path === "/bot/lookup.json") return Response.json(LOOKUP);
         return drawn.has(path) ? new Response(null) : new Response("", { status: 404 });
       },
     } as unknown as Fetcher,
@@ -89,6 +132,7 @@ beforeEach(() => {
   data = structuredClone(DATA);
   drawn = new Set();
   forgetSiteData();
+  forgetLookup();
 });
 
 async function send(interaction: unknown): Promise<any> {
@@ -298,4 +342,85 @@ it("/rule shows one rule, with rules suggested by number or title", async () => 
   expect((await run("rule", { number: "3" })).data.content).toContain("There's no rule 3");
   const suggested = await send({ type: 4, data: { name: "rule", options: [{ name: "number", type: 4, value: "resp", focused: true }] }, member: { user: { id: "d1" } } });
   expect(suggested.data.choices).toEqual([{ name: "2. Be respectful.", value: 2 }]);
+});
+
+it("/recent lists what changed by area, for the period and area asked", async () => {
+  const week = (await run("recent")).data.embeds[0];
+  expect(week.title).toBe("What's new · Last 7 days");
+  expect(week.fields.map((f: any) => f.name)).toEqual(["Games · 1", "Releases · 1", "Progress · 1"]);
+  expect(week.fields[0].value).toMatch(/^⬆️ \[Astro Bot reached Menus\]\(https:\/\/worker\.test\/compatibility\/astro-bot\) · <t:\d+:R>$/);
+  expect((await run("recent", { period: "month", area: "games" })).data.embeds[0].fields).toEqual([expect.objectContaining({ name: "Games · 2" })]);
+  expect((await run("recent", { period: "day", area: "releases" })).data.content).toContain("Nothing new in the last 24 hours for releases");
+});
+
+it("/error explains a pasted error line or a function, and whether main has it", async () => {
+  const line = (await run("error", { text: "[gpu] fatal: device does not support mesh shaders (code 3)" })).data.embeds[0];
+  expect(line.description).toContain("[`abc1234`](https://github.com/acme/widgets/commit/abc1234def5678)");
+  expect(line.fields).toEqual([
+    {
+      name: "Error: device does not support mesh shaders",
+      value:
+        "Still in today's source, at [Mesh.cpp:12](https://github.com/acme/widgets/blob/abc1234def5678/core/gpu/Mesh.cpp#L12) and 1 other place.\n" +
+        "Games stopped by it: [Astro's Playroom](https://worker.test/compatibility/astro-playroom)",
+      inline: false,
+    },
+  ]);
+  const fn = (await run("error", { text: "unresolved import sceHttp2SendRequest" })).data.embeds[0].fields[0];
+  expect(fn.name).toBe("sceHttp2SendRequest · Http2");
+  expect(fn.value).toContain("❌ Not implemented on main yet");
+  expect(fn.value).toContain("Named by 1 game: [Astro Bot](https://worker.test/compatibility/astro-bot)");
+  // Part of a function name, and words of a message.
+  expect((await run("error", { text: "Http2SendRequest" })).data.embeds[0].fields.map((f: any) => f.name)).toEqual(["sceHttp2SendRequest · Http2", "sceHttp2SendRequestAsync · Http2"]);
+  expect((await run("error", { text: "scePadOpen" })).data.embeds[0].fields[0].value).toContain("✅ Implemented on main");
+  expect((await run("error", { text: "buffer owner" })).data.embeds[0].fields[0].name).toBe("Error: guest buffer has no GPU owner");
+  expect((await run("error", { text: "the moon is made of cheese" })).data).toMatchObject({ flags: 64, content: expect.stringContaining("Nothing in today's source matches") });
+});
+
+it("/setup gives every step, or one step's sections with links into the guide", async () => {
+  const all = (await run("setup")).data.embeds[0];
+  expect(all.fields.map((f: any) => f.name)).toEqual(["1. Check your PC", "2. Prepare your dump"]);
+  expect(all.fields[0].value).toBe("A Vulkan GPU and Linux or Windows. [Read it](https://worker.test/docs/guide/requirements)");
+  const one = (await run("setup", { step: "requirements" })).data.embeds[0];
+  expect(one).toMatchObject({ title: "Step 1: Check your PC", url: "https://worker.test/docs/guide/requirements", footer: { text: "Next: /setup dump · Prepare your dump" } });
+  expect(one.fields).toEqual([
+    { name: "Graphics", value: "You need **Vulkan 1.1**. See [the FAQ](https://worker.test/faq).\n[More](https://worker.test/docs/guide/requirements#graphics)", inline: false },
+  ]);
+});
+
+it("/games lists games at a stage or further, on the list or on one system", async () => {
+  const menus = (await run("games", { stage: "Menus" })).data.embeds[0];
+  expect(menus.title).toBe("2 games: Menus or further");
+  expect(menus.description).toBe("[Astro's Playroom](https://worker.test/compatibility/astro-playroom) · Ingame\n[Astro Bot](https://worker.test/compatibility/astro-bot) · Menus");
+  expect((await run("games", { stage: "Menus", gpu: "AMD" })).data.embeds[0]).toMatchObject({ title: "1 game: Menus or further on AMD", footer: { text: expect.stringContaining("on that system") } });
+  expect((await run("games", { stage: "Starts", os: "linux" })).data.embeds[0].description).toBe("[Astro Bot](https://worker.test/compatibility/astro-bot) · Menus");
+  expect((await run("games", { stage: "Playable" })).data.content).toBe("No games reach playable yet.");
+});
+
+it("/screenshot posts a community screenshot, and suggests only games that have one", async () => {
+  const shot = (await run("screenshot")).data.embeds[0];
+  expect(shot).toMatchObject({ title: "Astro Bot", image: { url: "https://worker.test/community/a1-full.webp" }, description: "Captured by **alice** · [See the post](https://github.com/acme/widgets/discussions/7#c1) · reported Menus" });
+  expect((await run("screenshot", { game: "astro-playroom" })).data).toMatchObject({ flags: 64, content: expect.stringContaining("No screenshots of **Astro's Playroom** yet") });
+  expect((await typing("screenshot", "game", "astro")).data.choices).toEqual([{ name: "Astro Bot · 1 screenshots", value: "astro-bot" }]);
+});
+
+it("/profile shows contributions and testing, by linked member or GitHub login", async () => {
+  await addUser({ discord_id: "d1", github_id: 1, github_login: "alice" });
+  const merge = (n: number, id: number, login: string, days: number) =>
+    env.DB.prepare("INSERT INTO merges VALUES (?, ?, ?, ?, ?)").bind(n, `PR ${n}`, id, login, ago(days).slice(0, 19) + "Z").run();
+  await merge(1, 1, "alice", 1);
+  await merge(2, 1, "alice", 40);
+  await merge(3, 2, "carol", 2);
+  await merge(4, 2, "carol", 3);
+  await merge(5, 2, "carol", 4);
+  const mine = (await run("profile")).data.embeds[0];
+  expect(mine).toMatchObject({ title: "alice", url: "https://github.com/alice", description: "<@d1>", thumbnail: { url: "https://github.com/alice.png?size=160" } });
+  expect(mine.fields.map((f: any) => f.name)).toEqual(["Contributions", "Testing"]);
+  expect(mine.fields[0].value).toContain("2 merged pull requests](<https://github.com/acme/widgets/pulls?q=");
+  expect(mine.fields[0].value).toContain("#2 of 2 contributors\n1 in the last 30 days · 1 in the last 7");
+  expect(mine.fields[1].value).toContain("**4 reports** on 3 games · #1 of 2 testers");
+  // By login: a tester who isn't linked, and someone with only merges.
+  expect((await run("profile", { github: "bob" })).data.embeds[0].fields.map((f: any) => f.name)).toEqual(["Testing"]);
+  expect((await run("profile", { github: "carol" })).data.embeds[0].fields[0].value).toContain("#1 of 2 contributors");
+  expect((await run("profile", { github: "nobody" })).data).toMatchObject({ flags: 64, content: "No merged pull requests or test reports from **nobody** yet." });
+  expect((await run("profile", {}, "d2")).data).toMatchObject({ flags: 64, content: expect.stringContaining("You haven't linked a GitHub account") });
 });

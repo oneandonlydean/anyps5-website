@@ -18,6 +18,16 @@ export interface SiteGame {
   tested: { date: string; build: string | null; releasesSince: number } | null;
   blockers: { number: number; kind: "issue" | "pr"; title: string; url: string }[];
   thread: string;
+  /** The furthest stage reached on each system that reported one, as "linux/NVIDIA". */
+  systems: Record<string, StageOrNone>;
+}
+
+export interface GuideStep {
+  slug: string;
+  step: number;
+  title: string;
+  summary: string;
+  sections: { heading: string; anchor: string; text: string }[];
 }
 
 export interface Download {
@@ -60,6 +70,11 @@ export interface SiteData {
     downloads: Record<"linux" | "windows" | "librariesLinux" | "librariesWindows", Download | null>;
   } | null;
   tracked: { release: string; games: { slug: string; name: string; stage: StageOrNone | null; ready: boolean }[] } | null;
+  /** The Updates feed's last month without single merges, newest first. */
+  recent: { kind: string; category: "games" | "releases" | "progress"; date: string; title: string; url: string; game: string | null }[];
+  /** Community screenshots: the image is a path on the site. */
+  screenshots: { slug: string; image: string; author: string | null; url: string; date: string; stage: StageOrNone | null }[];
+  guide: GuideStep[];
   faq: { id: string; q: string; a: string }[];
   answers: { topic: string; title: string; text: string }[];
   rules: string | null;

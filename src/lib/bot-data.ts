@@ -1,11 +1,14 @@
+import { readdir, readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import { strings } from "../i18n";
 import { buildLabel } from "./builds";
 import { gameSeries } from "./compat-history";
-import { getBuilds, getGames, getNeeds, getRetest, getTested, getTrackedGames } from "./data";
+import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested, getTrackedGames } from "./data";
 import { loadBotText } from "./load";
 import { openFunctions, tallyWanted } from "./needs";
 import { newReportUrl } from "./site";
-import { stageRank } from "./stages";
+import { stageRank, type StageOrNone } from "./stages";
+import { CATEGORY, getUpdates } from "./updates";
 import { getCompatHistory, getCoverage, getLibraryHistory, getProgress, getRelease } from "./upstream";
 import { artSrc } from "./view";
 
@@ -18,8 +21,10 @@ import { artSrc } from "./view";
 const BLOCKERS_SHOWN = 3;
 const WANTED_SHOWN = 15;
 const MILESTONES_SHOWN = 8;
-const TESTERS_SHOWN = 50;
 const DAY = 864e5;
+/** /recent looks back this far; single merges are left out, as the day's digest covers them. */
+const RECENT_DAYS = 30;
+const RECENT_SHOWN = 80;
 
 /**
  * Who reports how far games get: Discussions reports and uploaded run reports per GitHub account, in total and over the
@@ -51,14 +56,8 @@ function testers(games: Awaited<ReturnType<typeof getGames>>, now: number) {
       month: all.reduce((n, p) => n + p.month, 0),
       week: all.reduce((n, p) => n + p.week, 0),
     },
-    // Enough to rank by any of the three periods.
-    people: [
-      ...new Set([
-        ...[...all].sort((a, b) => b.reports + b.uploads - (a.reports + a.uploads)).slice(0, TESTERS_SHOWN),
-        ...[...all].sort((a, b) => b.month - a.month).slice(0, TESTERS_SHOWN).filter((p) => p.month),
-        ...[...all].sort((a, b) => b.week - a.week).slice(0, TESTERS_SHOWN).filter((p) => p.week),
-      ]),
-    ],
+    // Everyone, most reports first: the leaderboard ranks them by any period, and /profile finds anyone.
+    people: all.sort((a, b) => b.reports + b.uploads - (a.reports + a.uploads) || b.last.localeCompare(a.last)),
   };
 }
 
@@ -71,12 +70,102 @@ const markdown = (html: string) =>
     .replace(/<[^>]+>/g, "")
     .replace(/&(amp|lt|gt|quot|#39);/g, (_, e: string) => ({ amp: "&", lt: "<", gt: ">", quot: '"', "#39": "'" })[e]!);
 
+/** The furthest stage a game reached on each system ("linux/NVIDIA"), from every report and upload, for /games. */
+function systems(game: Awaited<ReturnType<typeof getGames>>[number]): Record<string, StageOrNone> {
+  const out: Record<string, StageOrNone> = {};
+  const add = (os: string | null, vendor: string | null, stage: StageOrNone | null) => {
+    if (!stage || !os || !vendor) return;
+    const key = `${os.toLowerCase()}/${vendor.toUpperCase() === "NVIDIA" || vendor.toUpperCase() === "AMD" ? vendor.toUpperCase() : vendor}`;
+    if (stageRank(stage) > stageRank(out[key] ?? null)) out[key] = stage;
+  };
+  for (const r of game.reports) add(r.platform, r.gpuVendor, r.stage);
+  for (const u of game.uploads) add(u.os, u.gpuVendor, u.stage as StageOrNone | null);
+  return out;
+}
+
+/** A heading's anchor, as Astro writes it (github-slugger's rule). */
+const anchor = (heading: string) =>
+  heading
+    .toLowerCase()
+    .trim()
+    .replace(/[^\p{L}\p{N}\s_-]/gu, "")
+    .replace(/\s/g, "-");
+
+/** MDX prose as Discord markdown: components, HTML and images dropped, site links kept as paths. */
+const plain = (mdx: string) =>
+  mdx
+    .replace(/<[A-Z][\s\S]*?\/>/g, "")
+    .replace(/<\/?[A-Za-z][^>]*>/g, "")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+const SECTION_CHARS = 700;
+
+/**
+ * A guide section's opening, as Discord markdown: its first blocks up to about SECTION_CHARS, and the block after one
+ * that ends in a colon. Tabs and callouts keep their content (the first tab is Linux's); a table becomes a list.
+ */
+function opening(section: string): string {
+  const PLATFORM: Record<string, string> = { linux: "Linux", windows: "Windows", macos: "macOS" };
+  const text = section
+    .split("\n")
+    // A platform tab keeps its name as a label; other component tags go.
+    .map((line) => line.replace(/^\s*<Tab platform="(\w+)">\s*$/, (_, p: string) => `**${PLATFORM[p] ?? p}**`))
+    .filter((line) => !/^\s*<\/?[A-Z][^>]*>\s*$/.test(line))
+    .join("\n")
+    // A table's rows as "- **first cell**: the rest", without its header and divider.
+    .replace(/(?:^\|.*\|\s*$\n?)+/gm, (table) =>
+      table
+        .trim()
+        .split("\n")
+        .slice(2)
+        .map((row) => row.split("|").slice(1, -1).map((c) => c.trim()))
+        .map(([first, ...others]) => `- **${first}**: ${others.join(" · ")}`)
+        .join("\n") + "\n",
+    );
+  const blocks = plain(text).split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+  const out: string[] = [];
+  for (const block of blocks) {
+    const wanted = out.length === 0 || out.at(-1)!.endsWith(":") || out.join("\n\n").length + block.length < SECTION_CHARS;
+    if (!wanted) break;
+    out.push(block);
+  }
+  return out.join("\n\n");
+}
+
+/**
+ * The setup guide's steps (src/content/guide, English), for /setup: each step's summary, and each section's first
+ * paragraph with a link to it. Long answers stay on the site.
+ */
+async function guide() {
+  const dir = resolve(process.cwd(), "src/content/guide");
+  const files = (await readdir(dir)).filter((f) => f.endsWith(".mdx"));
+  const steps = await Promise.all(
+    files.map(async (file) => {
+      const raw = await readFile(resolve(dir, file), "utf8");
+      const front = raw.match(/^---\n([\s\S]*?)\n---\n/);
+      const meta = Object.fromEntries((front?.[1] ?? "").split("\n").map((l) => l.match(/^(\w+):\s*(.*)$/)).filter(Boolean).map((m) => [m![1], m![2]!.replace(/^["']|["']$/g, "")]));
+      const body = raw.slice(front?.[0].length ?? 0);
+      const sections = body
+        .split(/^## /m)
+        .slice(1)
+        .map((part) => {
+          const [heading, ...rest] = part.split("\n");
+          return { heading: heading!.trim(), anchor: anchor(heading!), text: opening(rest.join("\n")) };
+        });
+      return { slug: file.replace(/\.mdx$/, ""), step: Number(meta.step), title: meta.title ?? file, summary: meta.summary ?? "", sections };
+    }),
+  );
+  return steps.sort((a, b) => a.step - b.step);
+}
+
 /** Builds once per site build: the bot's data file and its pictures share it. */
 let built: ReturnType<typeof build> | undefined;
 export const botData = () => (built ??= build());
 
 async function build() {
-  const [games, builds, tested, retest, trackedGames, needs, progress, coverage, release, text, libraryHistory, compatHistory] = await Promise.all([
+  const [games, builds, tested, retest, trackedGames, needs, progress, coverage, release, text, libraryHistory, compatHistory, updates, screenshots, steps] = await Promise.all([
     getGames(),
     getBuilds(),
     getTested(),
@@ -89,6 +178,9 @@ async function build() {
     loadBotText(),
     getLibraryHistory(),
     getCompatHistory(),
+    getUpdates(),
+    getScreenshots(),
+    guide(),
   ]);
   const now = Date.now();
   // Games per stage now, a week ago and a month ago (or the first day there is, while there are fewer).
@@ -115,6 +207,7 @@ async function build() {
         tested: last.lastTested ? { date: last.lastTested, build: last.lastBuild ? buildLabel(last.lastBuild, firstRelease) : null, releasesSince: last.releasesSince } : null,
         blockers: g.blockers.slice(0, BLOCKERS_SHOWN).map((b) => ({ number: b.number, kind: b.kind, title: b.title, url: b.url })),
         thread: g.threads[0]?.url ?? newReportUrl(`${g.name} (${g.titleIds[0]})`),
+        systems: systems(g),
       };
     }),
     libraries: progress && {
@@ -158,6 +251,16 @@ async function build() {
             .sort((a, b) => stageRank(b.stage) - stageRank(a.stage) || a.name.localeCompare(b.name)),
         }
       : null,
+    /** The Updates feed's last month, newest first, for /recent. */
+    recent: updates
+      .filter((u) => u.kind !== "merge" && now - Date.parse(u.date) <= RECENT_DAYS * DAY)
+      .slice(0, RECENT_SHOWN)
+      .map((u) => ({ kind: u.kind, category: CATEGORY[u.kind], date: u.date, title: u.title, url: u.url, game: u.game?.slug ?? null })),
+    /** Community screenshots, for /screenshot: the site's WebP copy, who took it and where it was posted. */
+    screenshots: [...screenshots].flatMap(([slug, list]) =>
+      list.map((s) => ({ slug, image: `/community/${s.id}-full.webp`, author: s.author, url: s.url, date: s.date, stage: s.stage })),
+    ),
+    guide: steps,
     faq: strings("en").faq.groups.flatMap((group, gi) => group.questions.map(({ q, a }, qi) => ({ id: `q${gi + 1}-${qi + 1}`, q, a: markdown(a) }))),
     answers: text.answers,
     rules: text.rules.trim() || null,
