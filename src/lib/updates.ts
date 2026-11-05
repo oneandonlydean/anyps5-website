@@ -41,6 +41,8 @@ export interface Update {
   stage?: StageOrNone;
   /** On a stage rise: the stage the game came up from. */
   from?: StageOrNone;
+  /** On a game's first stage: whether it really is the game's first report, not only its first on main. */
+  first?: boolean;
   /** On a merge: what it changed, and who made it. */
   merge?: { area: MergeArea; type: string; library: string | null; author: string | null; number: number };
   /** On a digest: the day's merges by area, for the page to list. */
@@ -59,6 +61,8 @@ interface ReleaseEntry {
 }
 
 const number = new Intl.NumberFormat("en-GB");
+/** A thread opened this shortly before a game's first result on main still makes that result its first report. */
+const FIRST_REPORT_GRACE = 3 * 864e5;
 const signed = (n: number) => `${n >= 0 ? "+" : "−"}${number.format(Math.abs(n))}`;
 
 /** The Monday that starts a date's week, as YYYY-MM-DD. */
@@ -100,14 +104,25 @@ async function build(): Promise<Update[]> {
 
   for (const g of games) {
     const game = gameCard(g);
+    // The timeline only counts main builds, so its first event is the first result on main. It is the game's first
+    // report only when nothing came before it: no report on another build, and no bring-up thread already open, whose
+    // earlier posts may be tests the site can't read.
+    const earliest = [...g.reports.map((r) => r.date), ...g.threads.map((t) => t.created)].sort()[0];
+    const isFirst = (date: string) => !earliest || Date.parse(date) - Date.parse(earliest) <= FIRST_REPORT_GRACE;
     g.timeline.forEach((event, i) => {
       const previous = g.timeline[i - 1];
+      const first = !previous && isFirst(event.date);
       updates.push({
         id: `stage:${g.slug}:${event.stage}`,
         date: event.date,
         kind: "stage",
-        title: previous ? `${g.name} reaches ${event.stage}` : `${g.name} first tested: ${event.stage}`,
-        text: previous ? `Up from ${previous.stage}.` : "Its first test report.",
+        title: previous ? `${g.name} reaches ${event.stage}` : first ? `${g.name} first tested: ${event.stage}` : `${g.name} reaches ${event.stage} on main`,
+        text: previous
+          ? `Up from ${previous.stage}.`
+          : first
+            ? "Its first test report."
+            : "Its first result on a main build. Earlier reports used patched builds or weren't in the report form.",
+        first: !previous && first,
         url: `/compatibility/${g.slug}`,
         game,
         stage: event.stage,
@@ -210,7 +225,12 @@ async function build(): Promise<Update[]> {
       id: `library:${m.date}:${m.library}`,
       date: m.date,
       kind: "library",
-      title: { complete: `${m.library} fully implemented`, half: `${m.library} is now half implemented`, started: `${m.library}: first functions implemented` }[m.kind],
+      // A library that passed half on its way to 90% or more is called almost complete, not half done.
+      title: {
+        complete: `${m.library} fully implemented`,
+        half: m.done / m.total >= 0.9 ? `${m.library} is almost fully implemented` : `${m.library} is now half implemented`,
+        started: `${m.library}: first functions implemented`,
+      }[m.kind],
       text: { complete: `All ${number.format(m.total)} of its declared functions are implemented.`, half: `${counts} implemented.`, started: `${counts} implemented so far.` }[m.kind],
       url: "/progress#libraries",
       milestone: m.kind,

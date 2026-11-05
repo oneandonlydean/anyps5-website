@@ -33,6 +33,12 @@ const counts = (p: Part) => [p.features.length && t.home.features(p.features.len
 /** A system library keeps its own name; other parts use the page's language. */
 const label = (p: Part) => (p.area === "libraries" ? p.label : t.home.areas[p.area]);
 const share = (done: number, total: number) => (total ? Math.round((done / total) * 100) : 0);
+/**
+ * A milestone's label, by where the library is now: one that passed half on its way to 90% or more reads as almost
+ * complete, not halfway.
+ */
+const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, library?: { done: number; total: number }) =>
+  kind === "half" && library && library.done / library.total >= 0.9 ? t.home.milestone.nearly : t.home.milestone[kind ?? "started"];
 ---
 
 {
@@ -69,7 +75,7 @@ const share = (done: number, total: number) => (total ? Math.round((done / total
                   <>
                     {h.game && <GameArt class="slide-art" name={h.game.name} src={h.game.cover} color={h.game.color} ratio="2/3" widths={[160, 240]} sizes="80px" />}
                     <span class="slide-copy">
-                      <span class="kicker">{h.kind === "regression" ? t.home.reportedLower : h.from ? t.home.upFrom(h.from) : t.home.firstReport}</span>
+                      <span class="kicker">{h.kind === "regression" ? t.home.reportedLower : h.from ? t.home.upFrom(h.from) : h.first ? t.home.firstReport : t.home.firstOnMain}</span>
                       <b class="name">{h.game?.name ?? h.title}</b>
                       {h.stage && <StageBadge stage={h.stage} />}
                       <LocalDate class="when" iso={h.date} />
@@ -84,7 +90,7 @@ const share = (done: number, total: number) => (total ? Math.round((done / total
                   </span>
                 ) : (
                   <span class="slide-copy">
-                    <span class="kicker">{t.home.milestone[h.milestone ?? "started"]}</span>
+                    <span class="kicker">{milestoneLabel(h.milestone, h.library)}</span>
                     <b class="name big">{h.library?.name ?? h.title}</b>
                     {h.library && (
                       <>
@@ -131,6 +137,8 @@ const share = (done: number, total: number) => (total ? Math.round((done / total
                   <li>{t.home.merged(num(d.merged))}</li>
                   {d.functions ? <li class="good">{t.home.functionsGained(signed(d.functions))}</li> : null}
                   {d.shaderForms ? <li class="good">{t.home.shaderGained(signed(d.shaderForms))}</li> : null}
+                  {d.features > 0 && <li>{t.home.features(d.features)}</li>}
+                  {d.speedups > 0 && <li>{t.home.speedups(d.speedups)}</li>}
                   {d.fixes > 0 && <li>{t.home.fixes(d.fixes)}</li>}
                 </ul>
               </div>
@@ -146,7 +154,7 @@ const share = (done: number, total: number) => (total ? Math.round((done / total
                           </>
                         ) : e.kind === "library" ? (
                           <>
-                            <span class="spark" aria-hidden="true">◆</span> <b>{e.library?.name}</b> {t.home.milestone[e.milestone ?? "started"].toLowerCase()}
+                            <span class="spark" aria-hidden="true">◆</span> <b>{e.library?.name}</b> {milestoneLabel(e.milestone, e.library).toLowerCase()}
                           </>
                         ) : (
                           <>

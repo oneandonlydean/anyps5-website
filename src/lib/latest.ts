@@ -1,4 +1,5 @@
-import { AREA_LABEL, type ClassifiedMerge, type MergeArea } from "./merges";
+import { loadGenerated } from "./load";
+import { AREA_LABEL, classify, type ClassifiedMerge, type Merge, type MergeArea } from "./merges";
 import type { StageOrNone } from "./stages";
 import { getCoverage, getProgressHistory } from "./upstream";
 import { getUpdates, type Update } from "./updates";
@@ -20,6 +21,8 @@ export interface Highlight {
   game?: Update["game"];
   stage?: StageOrNone;
   from?: StageOrNone;
+  /** A game's first stage that really is its first report, not only its first on main. */
+  first?: boolean;
   milestone?: Update["milestone"];
   library?: Update["library"];
 }
@@ -44,13 +47,17 @@ export interface Part {
 export interface Day {
   /** A UTC day, YYYY-MM-DD. */
   date: string;
+  /** Every pull request merged that day, tests, docs and tooling included, as GitHub counts them. */
   merged: number;
+  /** Of those, by conventional-commit type, in any part of the project. */
+  features: number;
+  speedups: number;
   /** Library functions implemented that day, when the day's record and the one before exist. */
   functions: number | null;
   /** Shader instruction forms that newly decode. */
   shaderForms: number | null;
   events: Highlight[];
-  /** The parts with features or speed-ups, most features first. */
+  /** The parts with features or speed-ups, most features first. User-facing parts only: tools and docs are left out. */
   parts: Part[];
   fixes: number;
 }
@@ -91,14 +98,21 @@ export function getLatest() {
 }
 
 async function build() {
-  const [updates, progress, coverage] = await Promise.all([getUpdates(), getProgressHistory(), getCoverage()]);
+  const [updates, progress, coverage, mergeData] = await Promise.all([
+    getUpdates(),
+    getProgressHistory(),
+    getCoverage(),
+    loadGenerated<{ merges: Merge[] }>("merges.json", { merges: [] }),
+  ]);
+  // Every merge, for the day's totals; the parts below list only the user-facing ones.
+  const allByDay = Map.groupBy(mergeData.merges.map((m) => classify(m)), (m) => m.mergedAt.slice(0, 10));
   const newest = updates[0]?.date ?? new Date().toISOString();
   const since = Date.parse(newest) - HIGHLIGHT_DAYS * 864e5;
 
   const highlights: Highlight[] = updates
     .filter((u) => (u.kind === "release" || u.kind === "stage" || u.kind === "regression" || (u.kind === "library" && u.milestone !== "started")) && Date.parse(u.date) >= since)
     .slice(0, HIGHLIGHTS)
-    .map((u) => ({ id: u.id, kind: u.kind as Highlight["kind"], date: u.date, title: u.title, text: u.text, url: u.url, game: u.game, stage: u.stage, from: u.from, milestone: u.milestone, library: u.library }));
+    .map((u) => ({ id: u.id, kind: u.kind as Highlight["kind"], date: u.date, title: u.title, text: u.text, url: u.url, game: u.game, stage: u.stage, from: u.from, first: u.first, milestone: u.milestone, library: u.library }));
 
   const merges = updates.flatMap((u) => (u.kind === "digest" ? (u.merges ?? []) : []));
   const byDay = days(merges);
@@ -117,6 +131,8 @@ async function build() {
     .slice(0, TIMELINE_DAYS)
     .map((date) => {
       const items = byDay.get(date)!;
+      const all = allByDay.get(date) ?? items;
+      const typed = (type: string) => all.filter((m) => m.type === type).length;
       const parts = new Map<string, Part>();
       for (const m of items) {
         const { key, label } = partOf(m);
@@ -129,7 +145,9 @@ async function build() {
       }
       return {
         date,
-        merged: items.length,
+        merged: all.length,
+        features: typed("feat"),
+        speedups: typed("perf"),
         functions: delta(functionDays, date),
         shaderForms: delta(shaderDays, date),
         events: highlights.filter((h) => h.date.slice(0, 10) === date),
@@ -137,7 +155,7 @@ async function build() {
           .filter((p) => p.features.length || p.speedups.length)
           // Parts outside the system libraries are rarer and tend to be bigger steps, so they lead on a tie.
           .sort((a, b) => b.features.length - a.features.length || b.speedups.length - a.speedups.length || Number(b.area !== "libraries") - Number(a.area !== "libraries")),
-        fixes: items.filter((m) => m.type !== "feat" && m.type !== "perf").length,
+        fixes: typed("fix"),
       };
     });
 
