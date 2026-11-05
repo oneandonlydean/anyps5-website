@@ -45,8 +45,9 @@ export interface Update {
   merge?: { area: MergeArea; type: string; library: string | null; author: string | null; number: number };
   /** On a digest: the day's merges by area, for the page to list. */
   merges?: ClassifiedMerge[];
-  /** On a library milestone: which one. */
+  /** On a library milestone: which one, and the library's functions then. */
   milestone?: MilestoneKind;
+  library?: { name: string; done: number; total: number };
 }
 
 interface ReleaseEntry {
@@ -213,6 +214,7 @@ async function build(): Promise<Update[]> {
       text: { complete: `All ${number.format(m.total)} of its declared functions are implemented.`, half: `${counts} implemented.`, started: `${counts} implemented so far.` }[m.kind],
       url: "/progress#libraries",
       milestone: m.kind,
+      library: { name: m.library, done: m.done, total: m.total },
     });
   }
 
