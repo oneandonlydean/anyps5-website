@@ -1,5 +1,28 @@
 ---
 import Base from "../layouts/Base.astro";
+import StageBadge from "../components/StageBadge.astro";
+import { getGames } from "../lib/data";
+import { stageRank } from "../lib/stages";
+import { reach } from "../lib/view";
+
+// Bring-up threads the site reads no report from: written free-form rather than in the form's layout, so the game
+// gets no stage from them. Games with no stage at all first, then the busiest threads.
+const unread = (await getGames())
+  .flatMap((game) => game.threads.filter((t) => t.reports.length === 0).map((thread) => ({ game, thread, stage: reach(game) })))
+  .sort((a, b) => Number(Boolean(a.stage.stage)) - Number(Boolean(b.stage.stage)) || b.thread.comments - a.thread.comments || stageRank(a.stage.stage) - stageRank(b.stage.stage));
+const today = new Date().toISOString().slice(0, 10);
+/** A curated file to start from, for data/games/<slug>.yaml. */
+const curatedFile = (g: (typeof unread)[number]["game"]) =>
+  [
+    `# data/games/${g.slug}.yaml`,
+    `title_ids: [${g.titleIds.join(", ")}]`,
+    `name: ${JSON.stringify(g.name)}`,
+    "curated:",
+    "  stage: Menus # what the thread shows; see CONTRIBUTING.md for the stages",
+    `  date: ${today}`,
+    "  note: ",
+    "  verified_by: ",
+  ].join("\n");
 ---
 
 <Base title="Moderation" description="Tools for AnyPS5 maintainers." unsearchable noindex>
@@ -37,6 +60,37 @@ import Base from "../layouts/Base.astro";
         </form>
         <p class="hint">A blocked account can't upload, and its reports disappear from the site.</p>
         <ul class="list" data-list="blocked"></ul>
+      </section>
+      <section class="card panel">
+        <h2>Threads the site can't read <span class="muted count">{unread.length}</span></h2>
+        <p class="hint">
+          Bring-up threads written free-form instead of in the report form's layout, so the site reads no stage from them. Read the thread, then add a curated file in
+          <code>data/games/</code> with the copied template. A game with a stage here got it from another thread or an upload.
+        </p>
+        <ul class="list unread">
+          {
+            unread.map(({ game, thread, stage }) => (
+              <li>
+                <div class="row">
+                  <a href={thread.url}>
+                    <b>{thread.title}</b>
+                  </a>
+                  {stage.stage ? <StageBadge stage={stage.stage} onMain={stage.onMain} /> : <span class="status review">No stage</span>}
+                  {game.overlayFile && <span class="status">Curated</span>}
+                </div>
+                <p class="small muted">
+                  {thread.comments} {thread.comments === 1 ? "comment" : "comments"} · {thread.media.length} {thread.media.length === 1 ? "screenshot" : "screenshots"} · updated{" "}
+                  {thread.updated.slice(0, 10)} · <a href={`/compatibility/${game.slug}`}>game page</a>
+                </p>
+                <div class="actions">
+                  <button type="button" class="button small" data-copy={curatedFile(game)}>
+                    Copy curated file
+                  </button>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
       </section>
       <section class="card panel">
         <h2>Recent actions</h2>
@@ -162,6 +216,18 @@ import Base from "../layouts/Base.astro";
   });
 
   load();
+
+  // A curated file template for an unread thread, to paste into data/games/.
+  for (const button of root.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy!);
+        document.dispatchEvent(new CustomEvent("toast", { detail: "Curated file copied" }));
+      } catch {
+        document.dispatchEvent(new CustomEvent("toast", { detail: "Copying was blocked" }));
+      }
+    });
+  }
 </script>
 
 <style>
