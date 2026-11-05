@@ -1,0 +1,308 @@
+---
+import Base from "../../layouts/Base.astro";
+// The definitions Discord gets, so this page lists exactly what is registered.
+import { COMMANDS } from "../../../worker/scripts/commands.mjs";
+
+/**
+ * Every Discord bot command and what it does, for maintainers. Not linked from anywhere and kept out of search; hand
+ * out the address. Names, descriptions and options come from worker/scripts/commands.mjs; the notes below add what a
+ * maintainer needs to know about each.
+ */
+
+interface Choice {
+  name: string;
+  value: string;
+}
+interface CommandOption {
+  type: number;
+  name: string;
+  description: string;
+  required?: boolean;
+  choices?: Choice[];
+}
+interface Command {
+  name: string;
+  description: string;
+  options?: CommandOption[];
+}
+
+type Reply = "picture" | "text";
+interface Note {
+  group: (typeof GROUPS)[number][0];
+  reply: Reply;
+  /** Only the person who ran it sees the answer. */
+  private?: boolean;
+  /** Answered from the site's data, so as current as the last site build; otherwise live. */
+  live?: boolean;
+  text: string;
+}
+
+const GROUPS = [
+  ["games", "Games", "The compatibility list, from the bot."],
+  ["progress", "Progress and news", "How far AnyPS5 has come, and what changed."],
+  ["people", "People", "Contributors and testers."],
+  ["help", "Help and the server", "Answers for newcomers, and the server rules."],
+] as const;
+
+const NOTES: Record<string, Note> = {
+  game: { group: "games", reply: "picture", text: "Stage, title IDs, last test and what stops it, with the game's picture. Games are suggested as you type." },
+  games: {
+    group: "games",
+    reply: "text",
+    text: "Games at a stage or further. With a GPU or OS it uses only reports on that system, so a game can show a different stage there than on the list.",
+  },
+  screenshot: { group: "games", reply: "picture", text: "A random community screenshot, crediting who took it. Only games with screenshots are suggested. Hide a bad one from Moderation." },
+  report: { group: "games", reply: "text", private: true, text: "Points to the game's bring-up thread and the run report upload page." },
+  follow: {
+    group: "games",
+    reply: "text",
+    private: true,
+    live: true,
+    text: "A direct message when the game reaches a new stage. Up to 25 games each; the member needs direct messages from server members allowed.",
+  },
+  unfollow: { group: "games", reply: "text", private: true, live: true, text: "Stops those messages. Only followed games are suggested." },
+  following: { group: "games", reply: "text", private: true, live: true, text: "The games someone follows, with their stages now." },
+  progress: { group: "progress", reply: "picture", text: "Everything at a glance, or libraries, shaders or games in depth. Each has its own picture." },
+  progressmap: { group: "progress", reply: "picture", text: "Upstream's progress map of every library function, as an image." },
+  library: { group: "progress", reply: "picture", text: "One system library's progress and the games waiting on it. Libraries are suggested as you type." },
+  wanted: { group: "progress", reply: "picture", text: "The missing functions most games are stuck on, as on the progress page." },
+  release: { group: "progress", reply: "picture", text: "The latest release and its downloads." },
+  tracked: { group: "progress", reply: "picture", text: "How the tracked games do on the latest release, and which haven't been run on it." },
+  recent: {
+    group: "progress",
+    reply: "text",
+    text: "The Updates page for the last day, week or month: stage changes, releases, daily progress and library milestones. Single merges are left out; the daily summary covers them.",
+  },
+  stats: { group: "progress", reply: "picture", text: "The project in numbers: merges, contributors, testing, libraries and shaders." },
+  leaderboard: {
+    group: "people",
+    reply: "picture",
+    live: true,
+    text: "Contributors by merged pull requests, or testers by reports and uploads, for all time, 30 days or 7 days. Linked members show their Discord name, without being pinged.",
+  },
+  profile: {
+    group: "people",
+    reply: "text",
+    live: true,
+    text: "Someone's merged pull requests and test reports, and where they rank in each. Works for a linked member, or anyone by GitHub login.",
+  },
+  prs: { group: "people", reply: "text", private: true, live: true, text: "A linked member's merged pull request count and latest merges." },
+  setup: { group: "help", reply: "text", text: "The setup guide in short: all six steps, or one step's sections with commands and links. Edits to the guide reach the bot at the next build." },
+  error: {
+    group: "help",
+    reply: "text",
+    text: "Paste the line a game printed, or a function name. It says whether main implements the function, where the source raises the error, and which games it stops. When nothing matches, only the asker sees that.",
+  },
+  faq: { group: "help", reply: "text", text: "Answers from the site's FAQ and from data/bot.yaml. Topics are suggested as you type." },
+  rules: { group: "help", reply: "text", text: "The server rules, from data/bot.yaml." },
+  rule: { group: "help", reply: "text", text: "One rule by number, to point someone at it. Rules are suggested by number or title." },
+};
+
+const commands = COMMANDS as Command[];
+/** Within a group, commands in the order of NOTES, so related ones sit together. */
+const ORDER = Object.keys(NOTES);
+const missing = commands.filter((c) => !NOTES[c.name]).map((c) => c.name);
+if (missing.length) throw new Error(`src/pages/moderate/bot.astro has no notes for /${missing.join(", /")}`);
+
+const usage = (c: Command) => [`/${c.name}`, ...(c.options ?? []).map((o) => (o.required ? `<${o.name}>` : `[${o.name}]`))].join(" ");
+const kind = (o: CommandOption) => (o.type === 6 ? "a member" : o.type === 4 ? "a number" : o.choices ? o.choices.map((c) => c.name).join(", ") : "text");
+
+const POSTS = [
+  ["Merges", "Each merged feature, fix or speed-up goes to the progress channel; anything else to the dev channel, if one is set. A linked author is pinged."],
+  ["Releases", "A new release, once, in the releases channel."],
+  ["Games", "A game reaching a new stage, in the games channel. Members following it get a direct message."],
+  ["Daily summary", "Yesterday's progress, posted after 01:00 UTC, with library milestones unless they have a channel of their own."],
+  ["Weekly summary", "From Monday 01:00 UTC: libraries, shaders and games against the week before, what moved up and what was merged."],
+] as const;
+---
+
+<Base title="Discord bot commands" description="Every AnyPS5 Discord bot command, for maintainers." unsearchable noindex>
+  <section class="container page-head">
+    <span class="eyebrow">Maintainers</span>
+    <h1>Discord bot commands</h1>
+    <p class="lede">All {commands.length} slash commands, what each answers with, and who sees the answer. This page isn't linked from the site; share the address with maintainers.</p>
+    <ul class="legend">
+      <li><span class="tag picture">Picture</span> answers with a card drawn at each site build</li>
+      <li><span class="tag private">Only you</span> only the person who ran it sees the answer</li>
+      <li><span class="tag live">Live</span> answered from the bot's own records; the rest are as current as the last site build</li>
+    </ul>
+  </section>
+
+  <div class="container groups">
+    {
+      GROUPS.map(([key, title, intro]) => (
+        <section class="card group" id={key}>
+          <h2>{title}</h2>
+          <p class="muted">{intro}</p>
+          <dl>
+            {commands
+              .filter((c) => NOTES[c.name]!.group === key)
+              .sort((a, b) => ORDER.indexOf(a.name) - ORDER.indexOf(b.name))
+              .map((c) => {
+                const note = NOTES[c.name]!;
+                return (
+                  <div class="command" id={c.name}>
+                    <dt>
+                      <code>{usage(c)}</code>
+                      <span class="tags">
+                        {note.reply === "picture" && <span class="tag picture">Picture</span>}
+                        {note.private && <span class="tag private">Only you</span>}
+                        {note.live && <span class="tag live">Live</span>}
+                      </span>
+                    </dt>
+                    <dd>
+                      <p>{note.text}</p>
+                      {c.options && c.options.length > 0 && (
+                        <ul class="options">
+                          {c.options.map((o) => (
+                            <li>
+                              <code>{o.name}</code>
+                              <span class="muted">{o.required ? "required" : "optional"}</span> {o.description}
+                              {(o.choices || o.type !== 3) && <span class="muted"> · {kind(o)}</span>}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </dd>
+                  </div>
+                );
+              })}
+          </dl>
+        </section>
+      ))
+    }
+
+    <section class="card group" id="posts">
+      <h2>What the bot posts by itself</h2>
+      <p class="muted">Each kind goes to its own channel when one is set, otherwise to the bot's main channel.</p>
+      <dl>
+        {
+          POSTS.map(([name, text]) => (
+            <div class="command">
+              <dt>
+                <b>{name}</b>
+              </dt>
+              <dd>
+                <p>{text}</p>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="card group" id="maintaining">
+      <h2>Changing the bot</h2>
+      <ul class="steps">
+        <li><b>FAQ answers and rules</b> live in <code>data/bot.yaml</code>. Each rule is a paragraph that starts with its bold number and title, like <code>**3. Title.** Text</code>. They reach the bot at the next site build.</li>
+        <li><b>Command names, descriptions and options</b> live in <code>worker/scripts/commands.mjs</code>. After changing them, deploy first, then register them again with <code>npm --prefix worker run register-commands</code>, which needs the bot token. This page updates from the same file.</li>
+        <li><b>Pictures and answers</b> are rebuilt with the site, on every push and whenever upstream changes. Messages already posted keep their old picture.</li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .groups {
+    display: grid;
+    gap: 20px;
+    padding-bottom: 96px;
+  }
+  .group {
+    padding: clamp(20px, 3vw, 28px);
+  }
+  .group h2 {
+    margin: 0 0 4px;
+  }
+  .group > .muted {
+    margin: 0 0 12px;
+  }
+  dl {
+    display: grid;
+    margin: 0;
+  }
+  .command {
+    display: grid;
+    grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+    gap: 6px 24px;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 96px;
+  }
+  dt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  dt code {
+    font-size: 0.86rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  dd {
+    margin: 0;
+  }
+  dd p {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .tag {
+    padding: 1px 8px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tag.picture {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+    color: var(--accent);
+  }
+  .tag.private {
+    border-color: color-mix(in srgb, var(--warn) 50%, var(--line));
+    color: var(--warn);
+  }
+  .tag.live {
+    border-color: color-mix(in srgb, var(--good) 50%, var(--line));
+    color: var(--good);
+  }
+  .options {
+    display: grid;
+    gap: 4px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.85rem;
+  }
+  .options code {
+    margin-right: 6px;
+  }
+  .steps {
+    display: grid;
+    gap: 10px;
+    margin: 8px 0 0;
+    padding-left: 18px;
+    font-size: 0.92rem;
+  }
+  @media (max-width: 640px) {
+    .command {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
