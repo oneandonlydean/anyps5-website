@@ -33,7 +33,8 @@ const [builds, tested] = await Promise.all([getBuilds(), getTested().then((t) =>
 const firstRelease = builds.releases.at(-1)?.tag;
 const label = (info: { release: string | null; exact: boolean }) => buildLabel(info, firstRelease);
 // A row's build: marked when only its date placed it, as it may be a neighbouring release.
-const rowLabel = (info: BuildInfo) => `${label(info)}${info.basis === "date" ? " (by date)" : ""}`;
+const rowLabel = (info: BuildInfo) => label(info);
+const BY_DATE = "The report names no commit or release, so its build is placed by its date";
 // A release's results take in the release and main up to the next one.
 const group = (release: string | null) => (release ? `${release} or main after it` : label({ release: null, exact: false }));
 const since = retest.releasesSince === 0 ? "the current release" : `${retest.releasesSince} release${retest.releasesSince === 1 ? "" : "s"} ago`;
@@ -73,6 +74,7 @@ const rows = [
     gpu: r.gpu,
     // A main build is named by its release; one with pull requests or patches by what it added.
     build: r.buildKind === "main" || r.buildKind === "unknown" ? (r.build ? rowLabel(reportBuild(r, builds)) : BUILD_LABEL[r.buildKind]) : (BUILD_LABEL[r.buildKind] as string),
+    byDate: (r.buildKind === "main" || r.buildKind === "unknown") && Boolean(r.build) && reportBuild(r, builds).basis === "date",
     buildTitle: r.build ?? undefined,
     by: r.author,
     upload: undefined as number | undefined,
@@ -87,6 +89,7 @@ const rows = [
     gpuVendor: u.gpuVendor,
     gpu: u.gpu ?? null,
     build: rowLabel(uploadBuild(u, builds)),
+    byDate: uploadBuild(u, builds).basis === "date",
     buildTitle: u.commit ?? undefined,
     by: u.login as string | null,
     upload: u.id,
@@ -275,7 +278,7 @@ const description = (() => {
                   </thead>
                   <tbody>
                     {tested.releases.map((r) => (
-                      <tr>
+                      <tr data-report={r.latest} title="Open the newest report on this build">
                         <td class="mono small">
                           {r.release ? <>{r.release}<span class="muted"> and main after</span></> : label({ release: null, exact: false })}
                           {r.approximate && <span class="muted" title="These results name no commit or release, so they are placed by their date"> (by date)</span>}
@@ -283,9 +286,14 @@ const description = (() => {
                         <td>
                           <StageBadge stage={r.stage} />
                         </td>
-                        <td>{r.results}</td>
+                        <td class="results">
+                          {r.results}
+                          <span class="phone-only"> {r.results === 1 ? "result" : "results"}</span>
+                        </td>
                         <td class="nowrap">
-                          <LocalDate iso={r.last} />
+                          <a href={`?report=${r.latest}`} data-open aria-haspopup="dialog">
+                            <LocalDate iso={r.last} />
+                          </a>
                         </td>
                       </tr>
                     ))}
@@ -355,24 +363,35 @@ const description = (() => {
                         </td>
                         <td>
                           <StageBadge stage={row.stage} />
-                          {row.stated && <span class="muted small stated" title="The run report records up to Presents; the tester said how much further it got">as the tester saw it</span>}
+                          {row.stated && <span class="muted small stated" title="The run report itself records up to Presents; the tester said it got this far. It counts once another tester confirms it.">unconfirmed</span>}
                         </td>
                         <td class="system">
-                          {row.os && <span class:list={["chip-os", row.os]}>{PLATFORM_LABEL[row.os as keyof typeof PLATFORM_LABEL] ?? row.os}</span>}
-                          {row.gpuVendor && <span class:list={["chip-gpu", row.gpuVendor.toLowerCase()]}>{row.gpuVendor}</span>}
+                          {(row.os || row.gpuVendor) && (
+                            <span class="chips">
+                              {row.os && <span class:list={["chip-os", row.os]}>{PLATFORM_LABEL[row.os as keyof typeof PLATFORM_LABEL] ?? row.os}</span>}
+                              {row.gpuVendor && <span class:list={["chip-gpu", row.gpuVendor.toLowerCase()]}>{row.gpuVendor}</span>}
+                            </span>
+                          )}
                           {row.gpu && row.gpu !== row.gpuVendor && <span class="gpu-model">{row.gpu.replace(new RegExp(`^${row.gpuVendor ?? ""}\\s*`, "i"), "")}</span>}
                           {!row.os && !row.gpuVendor && !row.gpu && "—"}
                         </td>
-                        <td class="mono small" title={row.buildTitle}>
-                          {row.build}
-                        </td>
-                        <td class="muted by" data-upload-id={row.upload}>
-                          {row.by ?? "—"}
-                          {row.upload !== undefined && (
-                            <span class="source" title="A run report uploaded on this site">
-                              Run report
+                        <td class="build" title={row.buildTitle}>
+                          <span class="mono small">{row.build}</span>
+                          {row.byDate && (
+                            <span class="muted small by-date" title={BY_DATE}>
+                              by date
                             </span>
                           )}
+                        </td>
+                        <td class="muted by" data-upload-id={row.upload}>
+                          <span class="who">
+                            {row.by ?? "—"}
+                            {row.upload !== undefined && (
+                              <span class="source" title="A run report uploaded on this site">
+                                Run report
+                              </span>
+                            )}
+                          </span>
                         </td>
                       </tr>
                     ))}
@@ -571,7 +590,8 @@ const description = (() => {
   }
   .stated {
     display: block;
-    margin-top: 2px;
+    margin-top: 4px;
+    white-space: nowrap;
   }
   .regression {
     margin: 0 0 12px;
@@ -734,13 +754,10 @@ const description = (() => {
     padding: 8px 12px;
     font-size: 0.9rem;
   }
-  .system {
-    min-width: 200px;
-  }
   .chip-os,
   .chip-gpu {
     display: inline-block;
-    margin: 0 4px 2px 0;
+    margin: 0;
     padding: 1px 8px;
     border: 1px solid var(--line-strong);
     border-radius: 999px;
@@ -761,9 +778,30 @@ const description = (() => {
     border-color: color-mix(in srgb, #0071c5 55%, var(--line));
     color: color-mix(in srgb, #3aa0ff 65%, var(--text));
   }
+  .chips {
+    display: flex;
+    gap: 4px;
+    white-space: nowrap;
+  }
   .gpu-model {
+    display: block;
+    margin-top: 4px;
     color: var(--muted);
     font-size: 0.82rem;
+  }
+  .build .mono {
+    white-space: nowrap;
+  }
+  .by-date {
+    display: block;
+    margin-top: 2px;
+  }
+  /* The name, with its "Run report" tag (and a maintainer's Hide) stacked under it, so the column stays narrow. */
+  .who {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
   .timeline {
     display: grid;
@@ -843,7 +881,6 @@ const description = (() => {
     opacity: 0.4;
   }
   .by .source {
-    margin-left: 8px;
     padding: 1px 7px;
     border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
     border-radius: 999px;
@@ -858,6 +895,75 @@ const description = (() => {
     gap: 8px 10px;
     margin: 0 0 14px;
     font-size: 0.88rem;
+  }
+  .phone-only {
+    display: none;
+  }
+  /* On a phone each report is a small card instead of a row too wide for the screen. */
+  @media (max-width: 600px) {
+    .reports thead {
+      display: none;
+    }
+    .reports tbody tr {
+      display: grid;
+      align-items: center;
+      gap: 8px 12px;
+      padding: 12px 8px;
+      border-top: 1px solid var(--line);
+    }
+    .reports tbody td {
+      padding: 0;
+      border: 0;
+    }
+    .reports:not(.by-release) tbody tr {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: "date stage" "system system" "build by";
+    }
+    .reports:not(.by-release) td:nth-child(1) {
+      grid-area: date;
+    }
+    .reports:not(.by-release) td:nth-child(2) {
+      grid-area: stage;
+      justify-self: end;
+      text-align: right;
+    }
+    .reports:not(.by-release) td:nth-child(3) {
+      grid-area: system;
+    }
+    .reports:not(.by-release) td:nth-child(4) {
+      grid-area: build;
+    }
+    .reports:not(.by-release) td:nth-child(5) {
+      grid-area: by;
+      justify-self: end;
+      text-align: right;
+    }
+    .reports .who {
+      align-items: flex-end;
+    }
+    .reports .stated {
+      margin-top: 2px;
+    }
+    .by-release tbody tr {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-areas: "build build build" "stage results latest";
+    }
+    .by-release td:nth-child(1) {
+      grid-area: build;
+    }
+    .by-release td:nth-child(2) {
+      grid-area: stage;
+    }
+    .by-release td:nth-child(3) {
+      grid-area: results;
+      color: var(--muted);
+    }
+    .by-release td:nth-child(4) {
+      grid-area: latest;
+    }
+    .phone-only {
+      display: inline;
+    }
   }
   .report-hint {
     margin: 12px 0 0;

@@ -146,7 +146,7 @@ const strings: Strings = {
     title: "常见问题",
     eyebrow: "常见问题",
     heading: "大家常问的问题",
-    lede: '这里是简短回答。详细的内容在<a href="/docs/guide">安装指南</a>里，想找人聊就去 <a href="https://discord.gg/BHFztBPUe">Discord</a>。',
+    lede: '这里是简短回答。详细的内容在<a href="/docs/guide">安装指南</a>里，想找人聊就去 <a href="https://discord.gg/x9naWVzC6A">Discord</a>。',
     description: "关于 AnyPS5 的常见问题解答：它是什么、是不是模拟器、硬件要求、Steam Deck、macOS，以及游戏为什么会卡住。",
     groups: [
       {
@@ -221,7 +221,7 @@ const strings: Strings = {
         questions: [
           {
             q: "我能怎么帮忙？",
-            a: '测试游戏并<a href="/report">报告结果</a>，崩溃也算：每份报告都会让兼容性列表更准确，并告诉开发者下一步该修什么。如果你会写 C++，<a href="/progress#wanted">最受期待</a>列表和<a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">贡献指南</a>都是不错的起点。有问题欢迎到 <a href="https://discord.gg/BHFztBPUe">Discord</a> 来问。',
+            a: '测试游戏并<a href="/report">报告结果</a>，崩溃也算：每份报告都会让兼容性列表更准确，并告诉开发者下一步该修什么。如果你会写 C++，<a href="/progress#wanted">最受期待</a>列表和<a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">贡献指南</a>都是不错的起点。有问题欢迎到 <a href="https://discord.gg/x9naWVzC6A">Discord</a> 来问。',
           },
           {
             q: "某个游戏的条目信息有误，怎么修正？",

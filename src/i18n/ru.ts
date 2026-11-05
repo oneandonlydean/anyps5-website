@@ -158,7 +158,7 @@ const strings: Strings = {
     eyebrow: "FAQ",
     heading: "Частые вопросы",
     /** HTML. */
-    lede: 'Здесь короткие ответы. Длинные — в <a href="/docs/guide">руководстве</a>, а живые люди — в <a href="https://discord.gg/BHFztBPUe">Discord</a>.',
+    lede: 'Здесь короткие ответы. Длинные — в <a href="/docs/guide">руководстве</a>, а живые люди — в <a href="https://discord.gg/x9naWVzC6A">Discord</a>.',
     description: "Ответы на частые вопросы об AnyPS5: что это такое, эмулятор ли это, какое нужно железо, Steam Deck, macOS и почему игра останавливается.",
     /** Answers are HTML. */
     groups: [
@@ -234,7 +234,7 @@ const strings: Strings = {
         questions: [
           {
             q: "Чем я могу помочь?",
-            a: 'Тестируйте игры и <a href="/report">отправляйте результаты</a>, включая вылеты: каждый отчёт уточняет список совместимости и показывает разработчикам, что чинить дальше. Если вы пишете на C++, начните со списка <a href="/progress#wanted">самого нужного</a> и <a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">руководства для участников</a>. С вопросами приходите в <a href="https://discord.gg/BHFztBPUe">Discord</a>.',
+            a: 'Тестируйте игры и <a href="/report">отправляйте результаты</a>, включая вылеты: каждый отчёт уточняет список совместимости и показывает разработчикам, что чинить дальше. Если вы пишете на C++, начните со списка <a href="/progress#wanted">самого нужного</a> и <a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">руководства для участников</a>. С вопросами приходите в <a href="https://discord.gg/x9naWVzC6A">Discord</a>.',
           },
           {
             q: "Данные об игре неверны. Как их исправить?",

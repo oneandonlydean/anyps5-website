@@ -39,6 +39,10 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
       <span class="eyebrow">Game compatibility</span>
       <h1>How far every game gets</h1>
       <p class="lede">Community test reports place every game on an eight-stage ladder, from converting to fully playable.</p>
+      <div class="intro-actions">
+        <a class="button primary" href="/report">Report a test run</a>
+        <a class="button" href="/report#new-game">Add a missing game</a>
+      </div>
       <p class="muted more"><a href="/compatibility/tracked">Tracked games, release by release</a> · <a href="/progress#games">Compatibility over time</a></p>
     </div>
     <dl class="stats">
@@ -410,6 +414,12 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   .intro .lede {
     max-width: 560px;
     margin: 0;
+  }
+  .intro-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0 14px;
   }
   .stats {
     display: flex;

@@ -1,7 +1,7 @@
 export const REPO_URL = "https://github.com/boykopovar/AnyPS5";
 /** Upstream's GitHub Pages: the converter, release manifest, progress data and library map. */
 export const UPSTREAM_PAGES = "https://boykopovar.github.io/AnyPS5";
-export const DISCORD_URL = "https://discord.gg/BHFztBPUe";
+export const DISCORD_URL = "https://discord.gg/x9naWVzC6A";
 export const DISCUSSIONS_URL = `${REPO_URL}/discussions/categories/game-bring-up`;
 
 /**

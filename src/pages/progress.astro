@@ -679,6 +679,8 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
   }
   .block {
     display: grid;
+    /* minmax(0, …): a long unbreakable library name must not widen the card past a phone's screen. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 16px;
     padding-bottom: clamp(40px, 6vw, 72px);
   }
@@ -1157,53 +1159,8 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
   }
   @media (max-width: 860px) {
     .throws-grid,
-    .wanted-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-  .wanted {
-    display: grid;
-    gap: 10px;
-    margin: 12px 0 0;
-    padding: 0;
-    list-style: none;
-    counter-reset: wanted;
-  }
-  .wanted li {
-    position: relative;
-    display: grid;
-    gap: 4px;
-    padding: 10px 14px 10px 44px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--bg);
-    font-size: 0.86rem;
-    counter-increment: wanted;
-  }
-  .wanted li::before {
-    content: counter(wanted);
-    position: absolute;
-    left: 14px;
-    top: 10px;
-    color: var(--faint);
-    font: 600 0.8rem var(--mono);
-  }
-  .wanted code {
-    overflow-wrap: anywhere;
-  }
-  .wanted .message {
-    border: 0;
-    padding: 0;
-    background: none;
-    font-size: 0.82rem;
-  }
-  .games {
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-
-  .method-grid {
+    .wanted-grid,
+    .method-grid {
       grid-template-columns: 1fr;
     }
     .facts {

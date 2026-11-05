@@ -84,11 +84,11 @@ describe("testedOn", () => {
           report({ build: "main 44a59edc3a", stage: "Menus" }),
           report({ build: "main 44a59edc3a with #1", buildKind: "prs", stage: "Playable" }),
         ],
-        uploads: [upload("Presents", "44a59edc3a", "2026-10-27T00:00:00Z"), upload(null, "44a59edc3a", "2026-10-28T00:00:00Z")],
+        uploads: [upload("Presents", "44a59edc3a", "2026-10-27T00:00:00Z", { id: 7 }), upload(null, "44a59edc3a", "2026-10-28T00:00:00Z")],
       },
       data,
     );
-    expect(tested.releases).toEqual([{ release: "v0.1.3", stage: "Menus", results: 3, first: "2026-10-21T00:00:00Z", last: "2026-10-27T00:00:00Z", approximate: false }]);
+    expect(tested.releases).toEqual([{ release: "v0.1.3", stage: "Menus", results: 3, first: "2026-10-21T00:00:00Z", last: "2026-10-27T00:00:00Z", latest: "u7", approximate: false }]);
     expect(tested.newest).toMatchObject({ source: "upload", stage: "Presents" });
     expect(tested.regression).toBeNull();
   });
@@ -127,7 +127,7 @@ describe("release names and lower results", () => {
   });
 
   it("calls a release lower against the best of every earlier one", () => {
-    const r = (release: string, stage: Report["stage"], approximate = false) => ({ release, stage: stage!, results: 1, first: "", last: "", approximate });
+    const r = (release: string, stage: Report["stage"], approximate = false) => ({ release, stage: stage!, results: 1, first: "", last: "", latest: "", approximate });
     const releases = [r("v0.1.4", "Menus"), r("v0.1.3", "Menus"), r("v0.1.2", "Starts"), r("v0.1.1", "Ingame")];
     expect(lowerThan(releases, 0)?.release).toBe("v0.1.1");
     expect(lowerThan(releases, 1)?.release).toBe("v0.1.1");

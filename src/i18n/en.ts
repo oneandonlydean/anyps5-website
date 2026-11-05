@@ -155,7 +155,7 @@ const en = {
     eyebrow: "FAQ",
     heading: "Questions people ask",
     /** HTML. */
-    lede: 'The short answers. The <a href="/docs/guide">setup guide</a> has the long ones, and <a href="https://discord.gg/BHFztBPUe">Discord</a> has people.',
+    lede: 'The short answers. The <a href="/docs/guide">setup guide</a> has the long ones, and <a href="https://discord.gg/x9naWVzC6A">Discord</a> has people.',
     description: "Answers to common questions about AnyPS5: what it is, whether it is an emulator, hardware, Steam Deck, macOS, and why a game stops.",
     /** Answers are HTML. */
     groups: [
@@ -231,7 +231,7 @@ const en = {
         questions: [
           {
             q: "How can I help?",
-            a: 'Test games and <a href="/report">report the results</a>, including crashes: every report makes the compatibility list more accurate and shows developers what to fix next. If you write C++, the <a href="/progress#wanted">most wanted</a> list and the <a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">contributing guide</a> are good places to start. Questions are welcome on <a href="https://discord.gg/BHFztBPUe">Discord</a>.',
+            a: 'Test games and <a href="/report">report the results</a>, including crashes: every report makes the compatibility list more accurate and shows developers what to fix next. If you write C++, the <a href="/progress#wanted">most wanted</a> list and the <a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">contributing guide</a> are good places to start. Questions are welcome on <a href="https://discord.gg/x9naWVzC6A">Discord</a>.',
           },
           {
             q: "A game's entry is wrong. How do I fix it?",

@@ -9,9 +9,9 @@ interface Props {
 }
 
 /**
- * A moment, printed in UTC for search engines and readers without JavaScript, and rewritten into the visitor's own
- * timezone by the script in Base.astro, with UTC in its tooltip. Only for real moments (a release, a report, an upload): daily figures are UTC
- * days and stay as they are.
+ * A moment (a release, a report, an upload), printed in UTC and rewritten into the page's language by the script in
+ * Base.astro. Without `time` it shows the UTC day, the same day the Updates page, the charts and the bot cards give it;
+ * with `time` it shows the visitor's own timezone. The tooltip has the exact moment, locally and in UTC.
  */
 const { iso, time = false, class: className } = Astro.props;
 // A bare day ("2026-10-29") is a calendar date, not a moment: moving it to another timezone would shift the day.

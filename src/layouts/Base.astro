@@ -115,16 +115,18 @@ const graph = [
     <Footer />
     <div class="toast" role="status" aria-live="polite" data-toast></div>
     <script>
-      // Dates from <LocalDate>, rewritten from UTC into the visitor's timezone, in the page's language (British date
-      // order for English, as the rest of the site writes dates). Hovering one gives the exact moment, in UTC too.
+      // Dates from <LocalDate>, rewritten in the page's language (British date order for English, as the rest of the
+      // site writes dates). A bare date stays the UTC day, so it matches the Updates days, the charts and the bot
+      // cards, which all count UTC days; a date with a time of day is shown in the visitor's timezone. Hovering
+      // either gives the exact moment, locally and in UTC.
       const lang = document.documentElement.lang === "en" ? "en-GB" : document.documentElement.lang || undefined;
       const day = { day: "numeric", month: "short", year: "numeric" } as const;
       const clock = { hour: "2-digit", minute: "2-digit" } as const;
       const local = {
-        date: new Intl.DateTimeFormat(lang, day),
         time: new Intl.DateTimeFormat(lang, { ...day, ...clock, timeZoneName: "short" }),
       };
       const utc = {
+        date: new Intl.DateTimeFormat(lang, { ...day, timeZone: "UTC" }),
         time: new Intl.DateTimeFormat(lang, { ...day, ...clock, timeZone: "UTC" }),
       };
       const inUtc = new Intl.DateTimeFormat().resolvedOptions().timeZone === "UTC" || new Date().getTimezoneOffset() === 0;
@@ -133,7 +135,7 @@ const graph = [
         if (Number.isNaN(date.getTime())) continue;
         const exactUtc = `${utc.time.format(date)} UTC`;
         if (el.dataset.local === "time") el.textContent = inUtc ? exactUtc : local.time.format(date);
-        else el.textContent = local.date.format(date);
+        else el.textContent = utc.date.format(date);
         el.title = inUtc ? exactUtc : `${local.time.format(date)}\n${exactUtc}`;
       }
     </script>

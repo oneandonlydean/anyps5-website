@@ -146,7 +146,7 @@ const strings: Strings = {
     title: "Perguntas frequentes",
     eyebrow: "FAQ",
     heading: "Perguntas que o pessoal faz",
-    lede: 'As respostas curtas. O <a href="/docs/guide">guia de instalação</a> tem as longas, e o <a href="https://discord.gg/BHFztBPUe">Discord</a> tem gente para conversar.',
+    lede: 'As respostas curtas. O <a href="/docs/guide">guia de instalação</a> tem as longas, e o <a href="https://discord.gg/x9naWVzC6A">Discord</a> tem gente para conversar.',
     description: "Respostas para dúvidas comuns sobre o AnyPS5: o que é, se é um emulador, hardware, Steam Deck, macOS e por que um jogo para.",
     groups: [
       {
@@ -221,7 +221,7 @@ const strings: Strings = {
         questions: [
           {
             q: "Como posso ajudar?",
-            a: 'Teste jogos e <a href="/report">relate os resultados</a>, inclusive os travamentos: cada relatório deixa a lista de compatibilidade mais precisa e mostra aos desenvolvedores o que corrigir em seguida. Se você programa em C++, a lista dos <a href="/progress#wanted">mais procurados</a> e o <a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">guia de contribuição</a> são bons pontos de partida. Dúvidas são bem-vindas no <a href="https://discord.gg/BHFztBPUe">Discord</a>.',
+            a: 'Teste jogos e <a href="/report">relate os resultados</a>, inclusive os travamentos: cada relatório deixa a lista de compatibilidade mais precisa e mostra aos desenvolvedores o que corrigir em seguida. Se você programa em C++, a lista dos <a href="/progress#wanted">mais procurados</a> e o <a href="https://github.com/boykopovar/AnyPS5/blob/main/CONTRIBUTING.md">guia de contribuição</a> são bons pontos de partida. Dúvidas são bem-vindas no <a href="https://discord.gg/x9naWVzC6A">Discord</a>.',
           },
           {
             q: "A página de um jogo está errada. Como corrijo?",

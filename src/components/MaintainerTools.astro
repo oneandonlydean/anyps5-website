@@ -113,7 +113,9 @@ const { gameKey } = Astro.props;
     right: 6px;
     z-index: 2;
   }
+  /* On its own line under the uploader's name, so the name and its "Run report" tag stay together. */
   :global([data-upload-id] .mod-hide) {
-    margin-left: 8px;
+    display: block;
+    margin-top: 6px;
   }
 </style>

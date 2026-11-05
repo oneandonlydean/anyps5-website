@@ -192,6 +192,13 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     box-shadow: 0 20px 40px -16px rgb(0 0 0 / 0.5);
     list-style: none;
   }
+  /* On a phone the globe sits near the left edge, so the menu opens rightwards to stay on screen. */
+  @media (max-width: 640px) {
+    .lang-menu {
+      right: auto;
+      left: 0;
+    }
+  }
   .lang-menu a {
     display: block;
     padding: 8px 12px;

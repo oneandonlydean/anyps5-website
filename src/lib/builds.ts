@@ -8,6 +8,7 @@ import { corrected, QUALIFYING } from "./resolve";
 import type { Report } from "./schema";
 import { stageRank, type StageOrNone } from "./stages";
 import { autoStage, type UploadSummary } from "./uploads";
+import { reportKey } from "./view";
 
 export interface BuildData {
   /** Newest first: each release's tag, the commit it was cut from, that commit's date, and when it was published. */
@@ -72,6 +73,8 @@ export interface BuildResult {
   build: BuildInfo;
   source: "report" | "upload";
   url: string | null;
+  /** Opens this result in the game page's report window. */
+  key: string;
 }
 
 /** A game's results on one release: the release itself and main up to the next one. */
@@ -82,6 +85,8 @@ export interface ReleaseResult {
   /** The oldest and newest result here. */
   first: string;
   last: string;
+  /** The newest result's key, so the row can open it. */
+  latest: string;
   /** Every result here was placed only by its date, so it may belong to a neighbouring release. */
   approximate: boolean;
 }
@@ -113,8 +118,8 @@ export function testedOn(
   const uploadStage = (u: UploadSummary) =>
     u.stated && stageRank(u.stated) > stageRank(confirmedStage) ? (stageRank(confirmedStage) > stageRank("Presents") ? confirmedStage! : "Presents") : u.stage;
   const results: BuildResult[] = [
-    ...reports.map((r) => ({ date: r.date, stage: reportStage(r), build: reportBuild(r, data), source: "report" as const, url: r.url })),
-    ...game.uploads.filter((u) => u.stage).map((u) => ({ date: u.at, stage: uploadStage(u)!, build: uploadBuild(u, data), source: "upload" as const, url: null })),
+    ...reports.map((r) => ({ date: r.date, stage: reportStage(r), build: reportBuild(r, data), source: "report" as const, url: r.url, key: reportKey(r) })),
+    ...game.uploads.filter((u) => u.stage).map((u) => ({ date: u.at, stage: uploadStage(u)!, build: uploadBuild(u, data), source: "upload" as const, url: null, key: `u${u.id}` })),
   ].sort((a, b) => b.date.localeCompare(a.date));
   const order = (release: string | null) => (release === null ? data.releases.length : data.releases.findIndex((r) => r.tag === release));
   const groups = Map.groupBy(results, (r) => r.build.release);
@@ -125,6 +130,7 @@ export function testedOn(
       results: list.length,
       first: list.at(-1)!.date,
       last: list[0]!.date,
+      latest: list[0]!.key,
       approximate: list.every((r) => r.build.basis === "date"),
     }))
     .sort((a, b) => order(a.release) - order(b.release));
