@@ -35,7 +35,11 @@ const areas = LIBRARY_AREAS.map((name) => {
   const all = libraries.filter((l) => l.area === name).sort((a, b) => b.total - a.total);
   const done = all.reduce((n, l) => n + l.done, 0);
   const total = all.reduce((n, l) => n + l.total, 0);
-  return { name, all, big: all.filter((l) => l.total >= SMALL), small: all.filter((l) => l.total < SMALL), done, total };
+  // Small libraries are listed most complete first, then alphabetically.
+  const small = all
+    .filter((l) => l.total < SMALL)
+    .sort((a, b) => b.done / b.total - a.done / a.total || a.label.localeCompare(b.label, "en", { sensitivity: "base" }));
+  return { name, all, big: all.filter((l) => l.total >= SMALL), small, done, total };
 })
   .filter((a) => a.total > 0)
   .sort((a, b) => b.total - a.total);

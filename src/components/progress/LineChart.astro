@@ -68,7 +68,7 @@ const data = JSON.stringify({ dates: dates.map((d) => `${formatDate(d)} UTC`), s
     }
   </figcaption>
   <div class="plot">
-    <div class="y" aria-hidden="true">
+    <div class="y" aria-hidden="true" style={`--label:${Math.max(...ticks.map((t) => number.format(t).length))}ch`}>
       {ticks.map((t) => <span style={`bottom:${(t / top) * 100}%`}>{number.format(t)}</span>)}
     </div>
     <div class="area">
@@ -193,9 +193,11 @@ const data = JSON.stringify({ dates: dates.map((d) => `${formatDate(d)} UTC`), s
     grid-template-rows: 200px auto;
     column-gap: 10px;
   }
+  /* As wide as the longest label, in the labels' own font, so none of them hangs outside the card's padding. */
   .y {
     position: relative;
-    min-width: 3ch;
+    min-width: var(--label, 3ch);
+    font: 0.72rem var(--mono);
   }
   .y span {
     position: absolute;

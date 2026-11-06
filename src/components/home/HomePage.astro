@@ -490,7 +490,16 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     z-index: -2;
     will-change: transform;
     background:
-      linear-gradient(to bottom, var(--bg), transparent 14%, transparent 86%, var(--bg)),
+      /* Top and bottom: eased into the page's colour, and solid before the edge, so the wall never ends on a line. */
+      linear-gradient(
+        to bottom,
+        var(--bg),
+        transparent 14%,
+        transparent 64%,
+        color-mix(in srgb, var(--bg) 55%, transparent) 78%,
+        color-mix(in srgb, var(--bg) 88%, transparent) 88%,
+        var(--bg) 95%
+      ),
       linear-gradient(to left, var(--bg), transparent 12%),
       /* The wall shows dimmed across the whole width, and darkest behind the text, which starts where the page's
          content column does. */
