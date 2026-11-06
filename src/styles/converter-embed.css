@@ -52,3 +52,10 @@ main {
 .button {
   border-radius: 999px;
 }
+
+/* Until something is chosen, the note under the settings only repeats the drop zone's heading ("Choose one folder or
+   one or more ZIP files to get started"), so it stays blank; it still holds its space, so the Convert button doesn't
+   move once the note has something to say. */
+.converter:has(#selection[hidden]) #ready-note {
+  visibility: hidden;
+}
