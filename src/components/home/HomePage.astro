@@ -211,16 +211,13 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     </div>
     <ol class="steps">
       {
-        steps.map((s, i) => (
+        steps.map((s) => (
           <li class="step card reveal">
-            <div class="step-top">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d={s.icon} />
-                </svg>
-              </span>
-              <span class="index">0{i + 1}</span>
-            </div>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d={s.icon} />
+              </svg>
+            </span>
             <h3>{s.title}</h3>
             <p class="muted">{s.text}</p>
             <a href={s.href}>
@@ -784,14 +781,9 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     border-color: var(--line-strong);
     transform: translateY(-3px);
   }
-  .step-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-  }
   .icon {
     display: grid;
+    margin-bottom: 28px;
     place-items: center;
     width: 46px;
     height: 46px;
@@ -799,11 +791,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     border-radius: 13px;
     background: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent) 30%, transparent), color-mix(in srgb, var(--accent) 6%, var(--surface)));
     color: var(--accent-strong);
-    box-shadow: 0 8px 24px -12px var(--accent);
-  }
-  .index {
-    color: var(--faint);
-    font: 500 0.85rem var(--mono);
   }
   .steps a {
     font-weight: 600;
