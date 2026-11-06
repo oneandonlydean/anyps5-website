@@ -123,7 +123,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       </div>
       <ul class="facts" aria-label={t.home.atAGlance}>
         {/* The first fact is the project's stage: it points to the section that explains it. */}
-        {t.home.facts.map((fact, i) => (i === 0 ? <li class="early"><a href="#start">{fact}</a></li> : <li>{fact}</li>))}
+        {t.home.facts.map((fact, i) => (i === 0 ? <li class="early">{fact}</li> : <li>{fact}</li>))}
       </ul>
     </div>
   </section>
@@ -597,13 +597,9 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     height: 8px;
     margin-inline: 3px;
   }
-  .facts li.early a {
+  .facts li.early {
     color: var(--warn);
     font-weight: 600;
-    text-decoration: none;
-  }
-  .facts li.early a:hover {
-    text-decoration: underline;
   }
 
   .start {
