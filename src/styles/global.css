@@ -45,7 +45,8 @@
   --gutter: clamp(16px, 4vw, 32px);
   --shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 20px 40px -24px rgb(0 0 0 / 0.6);
   --highlight: rgb(255 255 255 / 0.06);
-  --grain-opacity: 0.05;
+  /* Film grain as a tile with its strength built in, so any layer can carry it (body::before, the home page's hero). */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --gradient: linear-gradient(100deg, var(--accent), var(--accent-2));
 }
@@ -89,7 +90,7 @@
     0 4px 12px -4px rgb(16 24 40 / 0.06),
     0 22px 44px -28px rgb(29 64 150 / 0.28);
   --highlight: rgb(255 255 255 / 0.9);
-  --grain-opacity: 0.025;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
 }
 
 *,
@@ -125,15 +126,15 @@ body {
 }
 
 /* Film grain on the page's background keeps its large dark gradients from banding. It sits behind the content rather
-   than over it: an overlay above everything had to be blended again over every moving thing, every frame. */
+   than over it: an overlay above everything had to be blended again over every moving thing, every frame. A layer that
+   paints the page's colour over it (the home page's hero fades) adds var(--grain) again, so the two meet without a seam. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: var(--grain-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: var(--grain);
 }
 
 main {

@@ -490,6 +490,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     z-index: -2;
     will-change: transform;
     background:
+      var(--grain),
       /* Top and bottom: eased into the page's colour, and solid before the edge, so the wall never ends on a line. */
       linear-gradient(
         to bottom,
@@ -1302,7 +1303,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       opacity: 0.35;
     }
     .hero::before {
-      background: linear-gradient(to bottom, color-mix(in srgb, var(--bg) 40%, transparent), var(--bg) 85%);
+      background: var(--grain), linear-gradient(to bottom, color-mix(in srgb, var(--bg) 40%, transparent), var(--bg) 85%);
     }
     .status {
       margin-top: 0;
