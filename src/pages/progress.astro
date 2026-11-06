@@ -568,7 +568,7 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
               </p>
             </div>
           </header>
-          <div class="wanted-grid">
+          <div class="wanted-grid" style={`--rows:${Math.max(wantedFunctions.length, wantedErrors.length)}`}>
             {wantedFunctions.length > 0 && (
               <div>
                 <p class="label">System functions</p>
@@ -1125,15 +1125,26 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
     color: var(--bad);
   }
 
+  /* The two lists share their rows, so each card is as tall as the one beside it and the columns line up. */
   .wanted-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    gap: 10px 32px;
+  }
+  .wanted-grid > div {
+    display: grid;
+    grid-row: span calc(var(--rows) + 1);
+    grid-template-rows: subgrid;
+  }
+  .wanted-grid .label {
+    margin-bottom: 2px;
   }
   .wanted {
     display: grid;
+    grid-row: span var(--rows);
+    grid-template-rows: subgrid;
     gap: 10px;
-    margin: 12px 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
     counter-reset: wanted;
@@ -1192,6 +1203,15 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
     .wanted-grid,
     .method-grid {
       grid-template-columns: 1fr;
+    }
+    /* Stacked, the lists keep their own heights. */
+    .wanted-grid > div,
+    .wanted {
+      grid-row: auto;
+      grid-template-rows: none;
+    }
+    .wanted-grid {
+      row-gap: 32px;
     }
     .facts {
       grid-template-columns: repeat(2, auto);
