@@ -917,6 +917,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   }
   .feature {
     position: relative;
+    container-type: inline-size;
     display: flex;
     align-items: flex-end;
     min-height: 230px;
@@ -981,6 +982,15 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .feature h3 {
     margin: 0;
     font-size: 1.2rem;
+  }
+  /* A card too narrow for both side by side puts the logo above, with the stage under it on the right. */
+  @container (max-width: 560px) {
+    .feature-copy {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .feature-stage {
+      justify-self: end;
+    }
   }
   /* The stage's name and its bar share one pill. */
   .feature-stage {
