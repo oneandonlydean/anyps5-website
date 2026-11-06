@@ -984,16 +984,25 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     font-size: 1.2rem;
   }
   /*
-   * A card too narrow for both side by side puts the logo above, with the stage pill under it across the card: every
-   * pill the same size, its bar taking what the label leaves, so a longer label (Ingame PR) doesn't push it askew.
+   * A card too narrow for both side by side puts the logo above, with the stage pill centred under it. Every pill there
+   * is one fixed size: the label gets room for the longest one (First draw PR) and the bar starts after it, so pills
+   * and bars line up across the row whatever the label. On a card narrower than the pill, the bar gives way.
    */
   @container (max-width: 460px) {
     .feature-copy {
       grid-template-columns: minmax(0, 1fr);
     }
+    .feature-stage {
+      justify-self: center;
+      width: 244px;
+      max-width: 100%;
+    }
+    .feature-stage :global(.badge) {
+      width: 124px;
+    }
     .feature-stage :global(.bar) {
-      flex: 1;
-      width: auto;
+      flex: 0 1 96px;
+      min-width: 0;
     }
   }
   /* The stage's name and its bar share one pill. */
