@@ -52,7 +52,7 @@ const en = {
     setupGuide: "Setup guide",
     compatibility: "Compatibility",
     atAGlance: "At a glance",
-    facts: ["Early development", "Free and open source", "Converts on your device", "Linux and Windows"],
+    facts: ["Early development", "Free and open source", "Linux and Windows"],
     status: "Project status",
     libraries: "System libraries",
     librariesOf: (done: string, total: string) => `${done} of ${total} functions`,

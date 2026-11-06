@@ -56,7 +56,7 @@ const strings: Strings = {
     setupGuide: "Руководство",
     compatibility: "Совместимость",
     atAGlance: "Коротко",
-    facts: ["Ранняя разработка", "Бесплатно и с открытым кодом", "Конвертация на вашем устройстве", "Linux и Windows"],
+    facts: ["Ранняя разработка", "Бесплатно и с открытым кодом", "Linux и Windows"],
     status: "Состояние проекта",
     libraries: "Системные библиотеки",
     librariesOf: (done: string, total: string) => `функций: ${done} из ${total}`,

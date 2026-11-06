@@ -46,7 +46,7 @@ const strings: Strings = {
     setupGuide: "安装指南",
     compatibility: "兼容性",
     atAGlance: "一览",
-    facts: ["早期开发中", "免费开源", "在你自己的设备上转换", "支持 Linux 和 Windows"],
+    facts: ["早期开发中", "免费开源", "支持 Linux 和 Windows"],
     status: "项目状态",
     libraries: "系统库",
     librariesOf: (done: string, total: string) => `已实现 ${done} / ${total} 个函数`,

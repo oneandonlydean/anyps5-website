@@ -47,7 +47,7 @@ const strings: Strings = {
     setupGuide: "Guía de instalación",
     compatibility: "Compatibilidad",
     atAGlance: "En resumen",
-    facts: ["En desarrollo temprano", "Libre y de código abierto", "Convierte en tu dispositivo", "Linux y Windows"],
+    facts: ["En desarrollo temprano", "Libre y de código abierto", "Linux y Windows"],
     status: "Estado del proyecto",
     libraries: "Bibliotecas del sistema",
     librariesOf: (done: string, total: string) => `${done} de ${total} funciones`,
