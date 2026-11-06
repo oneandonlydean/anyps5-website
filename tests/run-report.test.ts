@@ -71,12 +71,18 @@ describe("autoStage", () => {
   const discussion = (stage: UploadSummary["stage"], author = "someone-else") => ({ stage, author });
 
   it("needs two accounts, or one plus a Discussions report", () => {
-    expect(autoStage([up(1, "Presents")], null)).toEqual({ furthest: { stage: "Presents", confirmations: 1, confirmed: false }, confirmedStage: null });
+    expect(autoStage([up(1, "Presents")], null)).toEqual({ furthest: { stage: "Presents", confirmations: 1, confirmed: false, verifiedBy: null }, confirmedStage: null });
     expect(autoStage([up(1, "Presents"), up(1, "Presents")], null).confirmedStage).toBeNull();
-    expect(autoStage([up(1, "Presents"), up(2, "First draw")], null)).toEqual({ furthest: { stage: "Presents", confirmations: 1, confirmed: false }, confirmedStage: "First draw" });
+    expect(autoStage([up(1, "Presents"), up(2, "First draw")], null)).toEqual({ furthest: { stage: "Presents", confirmations: 1, confirmed: false, verifiedBy: null }, confirmedStage: "First draw" });
     expect(autoStage([up(1, "Presents")], discussion("Menus")).confirmedStage).toBe("Presents");
     expect(autoStage([], discussion("Menus"))).toEqual({ furthest: null, confirmedStage: null });
     expect(autoStage([up(1, null as never), up(2, null as never)], null)).toEqual({ furthest: null, confirmedStage: null });
+  });
+
+  it("counts one upload a maintainer verified, as far as it got", () => {
+    const verified = { ...up(1, "First draw"), verifiedBy: "maintainer" };
+    expect(autoStage([verified], null)).toEqual({ furthest: { stage: "First draw", confirmations: 1, confirmed: true, verifiedBy: "maintainer" }, confirmedStage: "First draw" });
+    expect(autoStage([verified, up(2, "Presents")], null).confirmedStage).toBe("First draw");
   });
 
   it("doesn't let someone confirm their own upload with their own Discussions report", () => {

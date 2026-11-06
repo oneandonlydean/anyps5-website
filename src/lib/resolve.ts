@@ -268,14 +268,17 @@ export function resolveGame(
   };
 }
 
-/** When uploads confirmed a stage: the upload that brought the count to two (or the first, with a Discussions report). */
+/**
+ * When uploads confirmed a stage: the upload that brought the count to two (or the first, with a Discussions report),
+ * or the first one a maintainer verified.
+ */
 function confirmedAt(uploads: UploadSummary[], stage: StageOrNone, top: Report | null): string {
   const reaching = uploads.filter((u) => u.stage !== null && stageRank(u.stage) >= stageRank(stage)).sort((a, b) => a.at.localeCompare(b.at));
   const accounts = new Set<number>();
   const needed = stageRank(top?.stage) >= stageRank(stage) ? CONFIRMATIONS_NEEDED - 1 : CONFIRMATIONS_NEEDED;
   for (const u of reaching) {
     accounts.add(u.githubId);
-    if (accounts.size >= needed) return u.at;
+    if (accounts.size >= needed || u.verifiedBy) return u.at;
   }
   return reaching.at(-1)!.at;
 }

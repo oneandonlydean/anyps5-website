@@ -190,10 +190,21 @@ describe("uploads", () => {
   it("shows one upload as pending, and moves the stage once a second account confirms it", () => {
     const one = resolveWith([upload(1, "Presents", "2026-10-20T00:00:00Z")]);
     expect(one.stage).toBe("Starts");
-    expect(one.autoStage).toEqual({ stage: "Presents", confirmations: 1, confirmed: false });
+    expect(one.autoStage).toEqual({ stage: "Presents", confirmations: 1, confirmed: false, verifiedBy: null });
     const two = resolveWith([upload(1, "Presents", "2026-10-20T00:00:00Z"), upload(2, "Presents", "2026-10-22T00:00:00Z")]);
     expect(two.stage).toBe("Presents");
     expect(two.timeline.at(-1)).toEqual({ date: "2026-10-22T00:00:00Z", stage: "Presents", url: null, source: "uploads" });
+  });
+
+  it("moves the stage on one upload a maintainer verified, from when it was uploaded", () => {
+    const verified = resolveWith([{ ...upload(1, "Presents", "2026-10-20T00:00:00Z"), verifiedBy: "maintainer" } as never]);
+    expect(verified.stage).toBe("Presents");
+    expect(verified.autoStage).toEqual({ stage: "Presents", confirmations: 1, confirmed: true, verifiedBy: "maintainer" });
+    expect(verified.timeline.at(-1)).toEqual({ date: "2026-10-20T00:00:00Z", stage: "Presents", url: null, source: "uploads" });
+    // A verified upload confirms only as far as it got; a further unverified one still waits.
+    const further = resolveWith([{ ...upload(1, "Presents", "2026-10-20T00:00:00Z"), verifiedBy: "maintainer" } as never, upload(2, "Ingame", "2026-10-21T00:00:00Z")]);
+    expect(further.stage).toBe("Presents");
+    expect(further.autoStage).toMatchObject({ stage: "Ingame", confirmed: false, verifiedBy: null });
   });
 
   it("drops art a maintainer hid", () => {

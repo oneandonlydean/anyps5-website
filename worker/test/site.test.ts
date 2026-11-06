@@ -259,6 +259,26 @@ it("refuses a frame-time file from another run, and flags a GPU named differentl
   expect(await flagged.json()).toMatchObject({ status: "review" });
 });
 
+it("lets a maintainer verify one upload so it counts alone, and take it back", async () => {
+  const tester = await signIn("tester", 42);
+  const maintainer = await signIn("maint", 7);
+  const flagged = fresh();
+  flagged.anyps5.modified = true;
+  const { id } = await (await post("/api/reports", flagged, tester)).json<{ id: number }>();
+  const act = (action: string, cookie: string) => post("/api/mod/action", { action, kind: "upload", target: String(id) }, cookie);
+  expect((await act("verify", tester)).status).toBe(403);
+  expect((await act("verify", maintainer)).status).toBe(200);
+  // Verifying approves too, and the export says who verified it.
+  const exported = await (await call("/api/export")).json<{ uploads: { id: number; verifiedBy: string | null }[] }>();
+  expect(exported.uploads.find((u) => u.id === id)?.verifiedBy).toBe("maint");
+  expect((await act("verify", maintainer)).status).toBe(404);
+  const queue = await (await call("/api/mod/queue", { cookie: maintainer })).json<{ log: { action: string }[] }>();
+  expect(queue.log[0]?.action).toBe("verify");
+  expect((await act("unverify", maintainer)).status).toBe(200);
+  const after = await (await call("/api/export")).json<{ uploads: { id: number; verifiedBy: string | null }[] }>();
+  expect(after.uploads.find((u) => u.id === id)?.verifiedBy).toBeNull();
+});
+
 it("never returns sign-in anywhere but this site, even with tabs or newlines in the path", async () => {
   for (const sneaky of ["/%09/evil.example", "/%0a/evil.example", "//evil.example", "/\\evil.example", "https://evil.example/"]) {
     const start = await call(`/auth/github?return=${sneaky}`);
@@ -294,5 +314,5 @@ it("lists the site database's applied migrations, for a deploy to check against"
   expect(res.status).toBe(200);
   const { migrations } = await res.json<{ migrations: string[] }>();
   expect(migrations[0]).toMatch(/^0001_/);
-  expect(migrations).toContain("0005_bench.sql");
+  expect(migrations).toContain("0006_verified.sql");
 });

@@ -32,6 +32,8 @@ export interface UploadSummary {
   stop: { kind: string; reason: string; message: string };
   /** Measured from the run's frame-time file; null when it came without one, missing from older exports. */
   perf?: UploadPerf | null;
+  /** The maintainer who checked this run and verified it; it then counts on its own. Missing from older exports. */
+  verifiedBy?: string | null;
 }
 
 /** Frame-time figures of an upload (worker/src/site/reports.ts); the dialog loads the rest with the report. */
@@ -59,8 +61,10 @@ export interface AutoStage {
   stage: StageOrNone;
   /** Distinct accounts whose uploads reached it, plus one if a Discussions report did too. */
   confirmations: number;
-  /** Two confirmations: enough to count toward the game's stage. */
+  /** Two confirmations, or a maintainer's verification: enough to count toward the game's stage. */
   confirmed: boolean;
+  /** The maintainer who verified an upload reaching this stage; null when none did. */
+  verifiedBy: string | null;
 }
 
 /** Confirmations needed before uploads move a game's stage. */
@@ -68,8 +72,8 @@ export const CONFIRMATIONS_NEEDED = 2;
 
 /**
  * Where a game's uploads put it. A stage counts once two different accounts reached it, or one account and a
- * Discussions report did; the furthest such stage is confirmed. The furthest stage reached at all is shown as
- * pending with its confirmation count.
+ * Discussions report did, or a maintainer checked an upload that reached it and verified it; the furthest such stage
+ * is confirmed. The furthest stage reached at all is shown as pending with its confirmation count.
  */
 export function autoStage(
   uploads: UploadSummary[],
@@ -83,8 +87,9 @@ export function autoStage(
   const discussionStage = discussion && !(discussion.author && uploaders.has(discussion.author.toLowerCase())) ? discussion.stage : null;
   const confirmationsAt = (stage: StageOrNone) =>
     new Set(staged.filter((u) => stageRank(u.stage) >= stageRank(stage)).map((u) => u.githubId)).size + (stageRank(discussionStage) >= stageRank(stage) ? 1 : 0);
+  const verifierAt = (stage: StageOrNone) => staged.find((u) => u.verifiedBy && stageRank(u.stage) >= stageRank(stage))?.verifiedBy ?? null;
   const stages = [...new Set(staged.map((u) => u.stage))].sort((a, b) => stageRank(b) - stageRank(a));
   const top = stages[0]!;
-  const confirmedStage = stages.find((s) => confirmationsAt(s) >= CONFIRMATIONS_NEEDED) ?? null;
-  return { furthest: { stage: top, confirmations: confirmationsAt(top), confirmed: confirmedStage === top }, confirmedStage };
+  const confirmedStage = stages.find((s) => confirmationsAt(s) >= CONFIRMATIONS_NEEDED || verifierAt(s) !== null) ?? null;
+  return { furthest: { stage: top, confirmations: confirmationsAt(top), confirmed: confirmedStage === top, verifiedBy: verifierAt(top) }, confirmedStage };
 }

@@ -32,8 +32,23 @@ const setBlocked = async (env: Env, login: string, blocked: number) =>
       .run()
   ).meta.changes ?? 0) > 0;
 
+/** Verifying also approves: a maintainer who checked the run vouches for it. */
+const setVerified = async (env: Env, target: string, by: string | null) =>
+  ((
+    await env.SITE_DB!.prepare(
+      by
+        ? "UPDATE uploads SET verified_by = ?, verified_at = ?, status = 'visible' WHERE id = ? AND status != 'hidden' AND verified_by IS NULL"
+        : "UPDATE uploads SET verified_by = ?, verified_at = ? WHERE id = ? AND verified_by IS NOT NULL",
+    )
+      .bind(by, by ? nowSeconds() : null, Number(target))
+      .run()
+  ).meta.changes ?? 0) > 0;
+
 const ACTIONS: Record<string, Action> = {
   approve: { kinds: ["upload"], apply: (env, _k, target) => setUpload(env, target, "visible") },
+  // Counts the upload as confirmed on its own, without a second tester.
+  verify: { kinds: ["upload"], apply: (env, _k, target, by) => setVerified(env, target, by) },
+  unverify: { kinds: ["upload"], apply: (env, _k, target) => setVerified(env, target, null) },
   hide: {
     kinds: ["upload", "screenshot", "art"],
     apply: async (env, kind, target, by, reason) => (kind === "upload" ? setUpload(env, target, "hidden") : (await hide(env, kind, target, by, reason), true)),

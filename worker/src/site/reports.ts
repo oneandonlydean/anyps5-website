@@ -225,6 +225,8 @@ export interface UploadSummary {
   stop: { kind: string; reason: string; message: string };
   /** Measured from the run's frame-time file; null when it came without one. */
   perf: UploadPerf | null;
+  /** The maintainer who checked this run and verified it: it counts toward the game's stage on its own. */
+  verifiedBy: string | null;
 }
 
 /** The frame-time figures the compatibility pages use; the dialog loads the rest with the report. */
@@ -253,6 +255,7 @@ type Row = {
   title_name: string | null;
   stated_stage: string | null;
   bench: string | null;
+  verified_by: string | null;
 };
 
 function perf(bench: string | null): UploadPerf | null {
@@ -288,10 +291,11 @@ export function summarise(row: Row): UploadSummary {
     truncated: { functions: r.truncated.functions, unsupported: r.truncated.unsupported },
     stop: { kind: r.stop.kind, reason: r.stop.reason, message: r.stop.message },
     perf: perf(row.bench),
+    verifiedBy: row.verified_by,
   };
 }
 
-const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, u.stated_stage, u.bench, a.login";
+const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, u.stated_stage, u.bench, u.verified_by, a.login";
 
 /** Everything the site build needs: visible uploads from accounts in good standing, and what maintainers hid. */
 export async function exportData(_req: Request, env: Env): Promise<Response> {

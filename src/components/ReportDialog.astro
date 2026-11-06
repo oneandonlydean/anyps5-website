@@ -398,6 +398,7 @@ const data = {
       const r = detail?.report;
       const login = summary.login;
       const tags: Child[] = [
+        summary.verifiedBy ? tag(`Verified by ${summary.verifiedBy}`, "A maintainer checked this run; it counts toward the game's stage on its own") : null,
         summary.recovered ? tag("Recovered", "Written at the next start, after the run ended uncleanly") : null,
         r?.run.incomplete ? tag("Incomplete", "The run ended before the report was finished") : null,
         summary.titleChosen ? tag("Game chosen by uploader", "The report had no title ID; the uploader chose this game") : null,

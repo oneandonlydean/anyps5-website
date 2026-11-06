@@ -330,7 +330,9 @@ const description = (() => {
             game.autoStage && (
               <p class="upload-status">
                 <StageBadge stage={game.autoStage.stage} />
-                {game.autoStage.confirmed ? (
+                {game.autoStage.confirmed && game.autoStage.verifiedBy && game.autoStage.confirmations < CONFIRMATIONS_NEEDED ? (
+                  <span>An uploaded run report reached this, checked and verified by maintainer {game.autoStage.verifiedBy}.</span>
+                ) : game.autoStage.confirmed ? (
                   <span>Uploaded run reports reached this, confirmed by {game.autoStage.confirmations} {game.autoStage.confirmations === 1 ? "report" : "reports"}.</span>
                 ) : (
                   <span class="muted">

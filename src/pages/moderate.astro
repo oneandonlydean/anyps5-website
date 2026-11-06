@@ -37,7 +37,7 @@ const curatedFile = (g: (typeof unread)[number]["game"]) =>
     <div data-panels hidden>
       <section class="card panel">
         <h2>Needs review <span class="muted count" data-review-count></span></h2>
-        <p class="hint">Reports the consistency checks flagged. They don't count until approved.</p>
+        <p class="hint">Reports the consistency checks flagged. They don't count until approved. Verify a report you checked yourself and it counts toward the game's stage without waiting for a second tester.</p>
         <ul class="list" data-list="review"></ul>
       </section>
       <section class="card panel">
@@ -101,7 +101,7 @@ const curatedFile = (g: (typeof unread)[number]["game"]) =>
 </Base>
 
 <script>
-  type Upload = { id: number; titleId: string; stage: string | null; login: string; at: string; os: string | null; gpuVendor: string | null; status: string; flags: string[]; stop?: { kind: string; message: string | null } };
+  type Upload = { id: number; titleId: string; stage: string | null; login: string; at: string; os: string | null; gpuVendor: string | null; status: string; flags: string[]; verifiedBy?: string | null; stop?: { kind: string; message: string | null } };
   type Queue = { review: Upload[]; recent: Upload[]; blocked: string[]; hidden: { kind: string; target: string; reason: string | null; by_login: string }[]; log: { action: string; kind: string; target: string; by_login: string; created_at: number }[] };
 
   const root = document.querySelector<HTMLElement>("[data-mod]")!;
@@ -145,11 +145,16 @@ const curatedFile = (g: (typeof unread)[number]["game"]) =>
       el("span", `${u.login} · ${new Date(u.at).toLocaleString()}`, "muted"),
       el("span", u.status, `status ${u.status}`),
     );
+    if (u.verifiedBy) head.append(el("span", `verified by ${u.verifiedBy}`, "status verified"));
     item.append(head);
     if (u.stop?.message) item.append(el("p", `${u.stop.kind}: ${u.stop.message}`, "muted small"));
     for (const flag of u.flags) item.append(el("p", flag, "flag small"));
     const actions = el("div", "", "actions");
     if (u.status === "review") actions.append(button("Approve", () => act("approve", "upload", String(u.id))));
+    // Verifying vouches for the run: it counts toward the game's stage without a second tester.
+    if (u.status !== "hidden" && !u.verifiedBy)
+      actions.append(button("Verify", () => confirm(`Verify ${u.login}'s run of ${u.titleId}? It counts toward the game's stage (${u.stage ?? "unknown"}) without a second tester.`) && act("verify", "upload", String(u.id))));
+    if (u.verifiedBy) actions.append(button("Unverify", () => act("unverify", "upload", String(u.id))));
     if (u.status !== "hidden") actions.append(button("Hide", () => act("hide", "upload", String(u.id))));
     else actions.append(button("Unhide", () => act("unhide", "upload", String(u.id))));
     actions.append(button(`Block ${u.login}`, () => confirm(`Block ${u.login}? Their reports disappear from the site.`) && act("block", "account", u.login)));
@@ -292,6 +297,9 @@ const curatedFile = (g: (typeof unread)[number]["game"]) =>
   }
   .list :global(.status.review) {
     color: var(--warn);
+  }
+  .list :global(.status.verified) {
+    color: var(--good);
   }
   .list :global(.actions) {
     display: flex;
