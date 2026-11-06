@@ -3,7 +3,6 @@ import GameArt from "../GameArt.astro";
 import LocalDate from "../LocalDate.astro";
 import StageBadge from "../StageBadge.astro";
 import { getLatest, type Change, type Part } from "../../lib/latest";
-import { BUILT_AT } from "../../lib/site";
 import { localePath, strings, type Locale } from "../../i18n";
 
 interface Props {
@@ -11,7 +10,7 @@ interface Props {
 }
 
 /**
- * The home page's "Latest": a slider of headline events (releases, games moving up, libraries completing), then a
+ * The home page's "Latest": a slider of games that moved, then a
  * timeline of the last few days where each day names what was built, part by part, linked to its pull requests.
  */
 const { locale } = Astro.props;
@@ -19,8 +18,11 @@ const t = strings(locale);
 const lang = locale === "en" ? "en-GB" : locale;
 const num = (n: number) => n.toLocaleString(lang);
 const signed = (n: number) => `${n > 0 ? "+" : ""}${num(n)}`;
-const { highlights, days } = await getLatest();
-const today = BUILT_AT.toISOString().slice(0, 10);
+const latest = await getLatest();
+// The landing page's slider shows games only (moving up, first results, reported lower): releases and library
+// milestones mean little to someone new, and have their place in the timeline and on /updates.
+const highlights = latest.highlights.filter((h) => h.kind === "stage" || h.kind === "regression");
+const { days } = latest;
 const dayName = (day: string, style: "short" | "long") =>
   new Date(`${day}T00:00:00Z`).toLocaleDateString(lang, { weekday: style, day: "numeric", month: "short", timeZone: "UTC" });
 
@@ -32,7 +34,6 @@ const changes = (p: Part) => [...p.features.map((c) => ({ ...c, fast: false })),
 const counts = (p: Part) => [p.features.length && t.home.features(p.features.length), p.speedups.length && t.home.speedups(p.speedups.length)].filter(Boolean).join(" · ");
 /** A system library keeps its own name; other parts use the page's language. */
 const label = (p: Part) => (p.area === "libraries" ? p.label : t.home.areas[p.area]);
-const share = (done: number, total: number) => (total ? Math.round((done / total) * 100) : 0);
 /**
  * A milestone's label, by where the library is now: one that passed half on its way to 90% or more reads as almost
  * complete, not halfway.
@@ -50,16 +51,6 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
           {t.home.latest}
         </span>
         <div class="head-tools">
-          {highlights.length > 1 && (
-            <span class="arrows">
-              <button type="button" class="arrow" aria-label={t.home.previous} data-slide="-1">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
-              </button>
-              <button type="button" class="arrow" aria-label={t.home.next} data-slide="1">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
-              </button>
-            </span>
-          )}
           <a class="all" href={localePath(locale, "/updates")}>
             {t.home.allUpdates} <span aria-hidden="true">→</span>
           </a>
@@ -69,42 +60,15 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
       {highlights.length > 0 && (
         <ul class="rail" data-rail aria-label={t.home.highlights}>
           {highlights.map((h) => (
-            <li class:list={["slide", h.kind, h.milestone]}>
+            <li class:list={["slide", h.kind]}>
               <a href={h.url}>
-                {h.kind === "stage" || h.kind === "regression" ? (
-                  <>
-                    {h.game && <GameArt class="slide-art" name={h.game.name} src={h.game.cover} color={h.game.color} ratio="2/3" widths={[160, 240]} sizes="80px" />}
-                    <span class="slide-copy">
-                      <span class="kicker">{h.kind === "regression" ? t.home.reportedLower : h.from ? t.home.upFrom(h.from) : h.first ? t.home.firstReport : t.home.firstOnMain}</span>
-                      <b class="name">{h.game?.name ?? h.title}</b>
-                      {h.stage && <StageBadge stage={h.stage} />}
-                      <LocalDate class="when" iso={h.date} />
-                    </span>
-                  </>
-                ) : h.kind === "release" ? (
-                  <span class="slide-copy">
-                    <span class="kicker">★ {t.home.newRelease}</span>
-                    <b class="name big">{h.title.replace(/^AnyPS5 | released$/g, "")}</b>
-                    <span class="text">{h.text}</span>
-                    <LocalDate class="when" iso={h.date} />
-                  </span>
-                ) : (
-                  <span class="slide-copy">
-                    <span class="kicker">{milestoneLabel(h.milestone, h.library)}</span>
-                    <b class="name big">{h.library?.name ?? h.title}</b>
-                    {h.library && (
-                      <>
-                        <span class="meter" aria-hidden="true">
-                          <i style={`width:${share(h.library.done, h.library.total)}%`} />
-                        </span>
-                        <span class="text">
-                          {t.home.functionsOf(num(h.library.done), num(h.library.total))} · {share(h.library.done, h.library.total)}%
-                        </span>
-                      </>
-                    )}
-                    <LocalDate class="when" iso={h.date} />
-                  </span>
-                )}
+                {h.game && <GameArt class="slide-art" name={h.game.name} src={h.game.cover} color={h.game.color} ratio="2/3" widths={[160, 240]} sizes="80px" />}
+                <span class="slide-copy">
+                  <span class="kicker">{h.kind === "regression" ? t.home.reportedLower : h.from ? t.home.upFrom(h.from) : h.first ? t.home.firstReport : t.home.firstOnMain}</span>
+                  <b class="name">{h.game?.name ?? h.title}</b>
+                  {h.stage && <StageBadge stage={h.stage} />}
+                  <LocalDate class="when" iso={h.date} />
+                </span>
               </a>
             </li>
           ))}
@@ -113,13 +77,12 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
 
       {days.length > 0 && (
         <div class="timeline">
-          <div class="days" role="tablist" aria-label={t.home.whatLanded}>
-            <span class="days-label">{t.home.whatLanded}</span>
+          <div class="days" role="tablist" aria-label={t.home.timeline}>
+            <span class="days-label">{t.home.timeline}</span>
             {days.map((d, i) => (
               <button type="button" class="day" role="tab" id={`day-tab-${d.date}`} aria-controls={`day-${d.date}`} aria-selected={i === 0 ? "true" : "false"} data-day={d.date}>
                 <span class="day-name">
                   {dayName(d.date, "short")}
-                  {d.date === today && <span class="now">{t.home.soFar}</span>}
                 </span>
                 <span class="day-sum">
                   {t.home.merged(num(d.merged))}
@@ -227,29 +190,58 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
 
 <script>
   for (const root of document.querySelectorAll<HTMLElement>("[data-latest]")) {
-    // The slider: arrows move by about a card's width; the rail itself scrolls by touch, wheel and keyboard.
+    // The slider scrolls by touch, wheel, trackpad and keyboard, and with a mouse by dragging. Each edge fades only
+    // while there are more cards past it.
     const rail = root.querySelector<HTMLElement>("[data-rail]");
-    const arrows = root.querySelectorAll<HTMLButtonElement>("[data-slide]");
-    // Each edge fades only while there are more cards past it, and the arrows switch off at the ends.
     const update = () => {
       if (!rail) return;
-      const atStart = rail.scrollLeft <= 2;
-      const atEnd = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
-      rail.toggleAttribute("data-more-before", !atStart);
-      rail.toggleAttribute("data-at-end", atEnd);
-      if (arrows.length) {
-        arrows[0]!.disabled = atStart;
-        arrows[1]!.disabled = atEnd;
-      }
+      rail.toggleAttribute("data-more-before", rail.scrollLeft > 2);
+      rail.toggleAttribute("data-at-end", rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2);
     };
-    for (const arrow of arrows) {
-      arrow.addEventListener("click", () => {
-        const slide = rail?.querySelector<HTMLElement>(".slide");
-        rail?.scrollBy({ left: Number(arrow.dataset.slide) * ((slide?.offsetWidth ?? 280) + 12) * 2, behavior: "smooth" });
-      });
-    }
     rail?.addEventListener("scroll", update, { passive: true });
     update();
+
+    // Dragging with a mouse: snapping is off while the rail follows the pointer, and a drag of more than a few pixels
+    // doesn't also open the card it started on.
+    let drag: { x: number; left: number; moved: boolean } | null = null;
+    let dragged = false;
+    rail?.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      drag = { x: e.clientX, left: rail.scrollLeft, moved: false };
+      dragged = false;
+    });
+    rail?.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x;
+      if (!drag.moved && Math.abs(dx) < 5) return;
+      if (!drag.moved) {
+        drag.moved = true;
+        rail.setPointerCapture(e.pointerId);
+        rail.dataset.dragging = "";
+      }
+      rail.scrollLeft = drag.left - dx;
+    });
+    const end = () => {
+      if (!drag || !rail) return;
+      dragged = drag.moved;
+      drag = null;
+      if (!dragged) return;
+      // Snapping back on, the rail settles on the nearest card.
+      const left = rail.scrollLeft;
+      delete rail.dataset.dragging;
+      rail.scrollLeft = left;
+    };
+    rail?.addEventListener("pointerup", end);
+    rail?.addEventListener("pointercancel", end);
+    rail?.addEventListener("click", (e) => {
+      if (dragged) {
+        e.preventDefault();
+        e.stopPropagation();
+        dragged = false;
+      }
+    }, true);
+    // Links and images would otherwise start the browser's own drag-and-drop.
+    rail?.addEventListener("dragstart", (e) => e.preventDefault());
 
     // The timeline: one day at a time.
     const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-day]")];
@@ -317,31 +309,6 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     align-items: center;
     gap: 14px;
   }
-  .arrows {
-    display: flex;
-    gap: 6px;
-  }
-  .arrow {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--line-strong);
-    border-radius: 50%;
-    background: var(--surface);
-    color: var(--text);
-    cursor: pointer;
-    transition:
-      border-color 0.2s,
-      opacity 0.2s;
-  }
-  .arrow:hover:not(:disabled) {
-    border-color: var(--accent);
-  }
-  .arrow:disabled {
-    opacity: 0.35;
-    cursor: default;
-  }
   .all {
     color: var(--accent);
     font-size: 0.88rem;
@@ -381,6 +348,16 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
   }
   .rail[data-at-end] {
     --fade-end: 0px;
+  }
+  @media (pointer: fine) {
+    .rail {
+      cursor: grab;
+    }
+  }
+  .rail[data-dragging] {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
   }
   .rail::-webkit-scrollbar {
     display: none;
@@ -440,58 +417,13 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     -webkit-line-clamp: 2;
   }
   /* A game's name always takes its two lines, so the stage badges under one- and two-line names line up. */
-  .name:not(.big) {
+  .name {
     min-height: 2.5em;
-  }
-  .name.big {
-    font: 700 1.45rem/1.1 var(--display);
-    letter-spacing: -0.02em;
-    overflow-wrap: anywhere;
-  }
-  .text {
-    color: var(--muted);
-    font-size: 0.82rem;
-    line-height: 1.4;
   }
   .slide :global(.when) {
     margin-top: auto;
     color: var(--faint);
     font-size: 0.76rem;
-  }
-  /* A release: the accent, and a glow behind it. */
-  .release a {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-    background:
-      radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 60%),
-      var(--surface);
-  }
-  .release .kicker {
-    color: var(--accent);
-  }
-  /* A library milestone: green when it is complete. */
-  .library a {
-    background:
-      radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--good) 14%, transparent), transparent 60%),
-      var(--surface);
-  }
-  .library .kicker {
-    color: var(--good);
-  }
-  .library.half .kicker {
-    color: var(--accent-2);
-  }
-  .meter {
-    width: 100%;
-    height: 6px;
-    border-radius: 3px;
-    background: var(--line);
-    overflow: hidden;
-  }
-  .meter i {
-    display: block;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, var(--accent-2), var(--good));
   }
   .regression .kicker {
     color: var(--warn);
@@ -574,14 +506,6 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     flex-wrap: wrap;
     align-items: center;
     gap: 6px;
-    font-weight: 600;
-  }
-  .now {
-    padding: 0 7px;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--accent-2) 16%, transparent);
-    color: var(--accent-2);
-    font-size: 0.68rem;
     font-weight: 600;
   }
   .day-sum {

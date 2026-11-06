@@ -902,10 +902,11 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     font-weight: 600;
   }
 
+  /* The button sits on the heading's baseline, not on the bottom of its margin. */
   .row {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-end;
+    align-items: last baseline;
     justify-content: space-between;
     gap: 20px;
     max-width: none;
