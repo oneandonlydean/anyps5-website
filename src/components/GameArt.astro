@@ -8,14 +8,18 @@ interface Props {
   ratio: "2/3" | "1/1" | "16/9";
   widths: number[];
   sizes: string;
+  /** Loads at once and first: art that is on screen as the page opens. */
   eager?: boolean;
+  /** When to load, if not by eager: the home page's moving wall loads every cover at once, since lazy loading can miss
+      art that slides into view. */
+  loading?: "eager" | "lazy";
   class?: string;
   /** On a list: a view-transition-name applied only while navigating to or from the page this art links to. */
   navTransitionName?: string;
   /** On a detail page: a view-transition-name applied only when the other page has art with that name (see Base.astro). */
   peerTransitionName?: string;
 }
-const { name, src, color, ratio, widths, sizes, eager = false, class: className, navTransitionName, peerTransitionName } = Astro.props;
+const { name, src, color, ratio, widths, sizes, eager = false, loading, class: className, navTransitionName, peerTransitionName } = Astro.props;
 const [w, h] = ratio.split("/").map(Number);
 const width = widths.at(-1)!;
 const tint = color ?? `hsl(${hue(name)} 45% 32%)`;
@@ -41,7 +45,7 @@ const initials =
         width={width}
         height={Math.round((width * h) / w)}
         alt=""
-        loading={eager ? "eager" : "lazy"}
+        loading={loading ?? (eager ? "eager" : "lazy")}
         fetchpriority={eager ? "high" : undefined}
         decoding="async"
       />
