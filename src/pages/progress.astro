@@ -992,16 +992,24 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
     font-size: 0.78rem;
   }
 
+  /* One row, always: a pill can't wrap gracefully, so on a phone it scrolls sideways instead. */
   .chips {
     display: flex;
-    flex-wrap: wrap;
     gap: 4px;
+    max-width: 100%;
     padding: 3px;
+    overflow-x: auto;
     border: 1px solid var(--line);
     border-radius: 999px;
     background: var(--surface);
+    scrollbar-width: none;
+  }
+  .chips::-webkit-scrollbar {
+    display: none;
   }
   .chips button {
+    flex: none;
+    white-space: nowrap;
     height: 32px;
     padding: 0 12px;
     border: 0;

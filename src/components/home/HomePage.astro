@@ -1287,10 +1287,12 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .join > div:first-child {
     flex: 1 1 360px;
   }
+  /* Kept together beside the text; on a phone they drop below it and wrap if they must. */
   .join .links {
     display: flex;
-    flex: none;
+    flex: 0 1 auto;
     flex-wrap: wrap;
+    max-width: 100%;
     gap: 10px;
   }
   .button.discord {

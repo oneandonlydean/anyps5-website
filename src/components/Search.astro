@@ -24,6 +24,12 @@
 
   const dialog = document.querySelector<HTMLDialogElement>("[data-search]")!;
   const input = dialog.querySelector<HTMLInputElement>("[data-search-input]")!;
+  // The full placeholder is cut off on a phone; there it just says what the box is for.
+  const narrow = matchMedia("(max-width: 520px)");
+  const full = input.placeholder;
+  const fit = () => (input.placeholder = narrow.matches ? "Search…" : full);
+  fit();
+  narrow.addEventListener("change", fit);
   const list = dialog.querySelector<HTMLElement>("[data-search-results]")!;
   const state = dialog.querySelector<HTMLElement>("[data-search-state]")!;
   let pagefind: Promise<Pagefind | null> | undefined;
