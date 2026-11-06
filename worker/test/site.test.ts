@@ -5,6 +5,7 @@ import noTitle from "../../tests/fixtures/run-reports/missing-metadata-gpu.json"
 import presents from "../../tests/fixtures/run-reports/stop-none.json";
 import worker from "../src/index";
 import { sha256 } from "../src/site/http";
+import { gzip, makeBench, steady } from "../../tests/fixtures/bench";
 import { ctx, json, mockFetch } from "./helpers";
 
 const SITE = "https://worker.test";
@@ -35,6 +36,16 @@ const call = (path: string, init: RequestInit & { cookie?: string; origin?: stri
 };
 const post = (path: string, body: unknown, cookie?: string, origin?: string | null) =>
   call(path, { method: "POST", body: typeof body === "string" ? body : JSON.stringify(body), cookie, origin, headers: { "content-type": "application/json" } });
+/** A report and its frame-time file, as the upload form sends them. */
+const postWithBench = (path: string, report: unknown, bench: Uint8Array | null, cookie?: string) => {
+  const form = new FormData();
+  form.set("report", new Blob([JSON.stringify(report)], { type: "application/json" }), "anyps5-report.json");
+  if (bench) form.set("bench", new Blob([bench as Uint8Array<ArrayBuffer>]), "aps5-bench-40f2a9c3d1b7-1234.json.gz");
+  return call(path, { method: "POST", body: form, cookie });
+};
+// The presents fixture ran 303 s past its first frame and presented 12580 frames: a warm-up and nine 40 fps intervals fit.
+const fitting = (gpu = "AMD Radeon RX 6800 (RADV NAVI21)") => gzip(makeBench(10, (n) => (n === 0 ? steady(20) : steady(40)), { gpu }));
+const freshPresents = () => ({ ...structuredClone(presents), generated: new Date().toISOString().replace(/\.\d+Z$/, "Z"), run: { ...presents.run, id: runId() } });
 
 it("signs in with GitHub and keeps only a hashed session", async () => {
   const start = await call("/auth/github?return=/compatibility/hades-ii");
@@ -205,11 +216,47 @@ it("takes how far the tester got past frames on screen, only for a run that pres
   const run = (base: typeof presents | typeof sample) => ({ ...structuredClone(base), generated: new Date().toISOString().replace(/\.\d+Z$/, "Z"), run: { ...base.run, id: runId() } });
   expect((await post("/api/reports?reached=ingame", run(sample), cookie)).status).toBe(400);
   expect((await post("/api/reports?reached=boss-fight", run(presents), cookie)).status).toBe(400);
-  const ok = await post("/api/reports?reached=ingame", run(presents), cookie);
+  const ok = await postWithBench("/api/reports?reached=ingame", run(presents), await fitting(), cookie);
   expect(ok.status).toBe(201);
   const { id } = await ok.json<{ id: number }>();
   const exported = await (await call("/api/export")).json<{ uploads: { id: number; stage: string | null; stated: string | null }[] }>();
   expect(exported.uploads.find((u) => u.id === id)).toMatchObject({ stage: "Ingame", stated: "Ingame" });
+});
+
+it("needs the frame-time file of a run that presented frames, and measures the frame rate from it", async () => {
+  const cookie = await signIn("tester", 42);
+  const needs = await post("/api/reports", freshPresents(), cookie);
+  expect(needs.status).toBe(400);
+  expect(await needs.json()).toMatchObject({ needsBench: true });
+  // A run that never presented needs none, in either form.
+  expect((await postWithBench("/api/reports", fresh(), null, cookie)).status).toBe(201);
+
+  const ok = await postWithBench("/api/reports", freshPresents(), await fitting(), cookie);
+  expect(ok.status).toBe(201);
+  // The report says 41.5; the frame times say 40.
+  const { id, fps } = await ok.json<{ id: number; fps: number }>();
+  expect(fps).toBe(40);
+  const exported = await (await call("/api/export")).json<{ uploads: { id: number; perf: unknown }[] }>();
+  expect(exported.uploads.find((u) => u.id === id)?.perf).toMatchObject({ fps: 40, low1: 40, stutters: 0, comparable: true, resolutions: ["1920x1080"] });
+  const detail = await (await call(`/api/reports/${id}`)).json<{ bench: { warmup: { fps: number }; intervals: unknown[] } }>();
+  expect(detail.bench.warmup.fps).toBe(20);
+  expect(detail.bench.intervals).toHaveLength(10);
+  const stored = await env.SITE_DB!.prepare("SELECT bench FROM uploads WHERE id = ?").bind(id).first<string>("bench");
+  expect(stored).not.toContain("frame_us");
+
+  // The same file can't be attached to another report.
+  expect((await postWithBench("/api/reports", freshPresents(), await fitting(), cookie)).status).toBe(409);
+});
+
+it("refuses a frame-time file from another run, and flags a GPU named differently", async () => {
+  const cookie = await signIn("tester", 42);
+  const other = await postWithBench("/api/reports", freshPresents(), await gzip(makeBench(10, () => steady(40), { title_id: "PPSA99999" })), cookie);
+  expect(other.status).toBe(400);
+  expect(await other.json()).toMatchObject({ error: "This frame-time file isn't from this run.", needsBench: true });
+  const broken = await postWithBench("/api/reports", freshPresents(), new TextEncoder().encode("{}"), cookie);
+  expect(await broken.json()).toMatchObject({ error: "This isn't a valid AnyPS5 frame-time file." });
+  const flagged = await postWithBench("/api/reports", freshPresents(), await fitting("NVIDIA GeForce RTX 4080"), cookie);
+  expect(await flagged.json()).toMatchObject({ status: "review" });
 });
 
 it("never returns sign-in anywhere but this site, even with tabs or newlines in the path", async () => {
@@ -247,5 +294,5 @@ it("lists the site database's applied migrations, for a deploy to check against"
   expect(res.status).toBe(200);
   const { migrations } = await res.json<{ migrations: string[] }>();
   expect(migrations[0]).toMatch(/^0001_/);
-  expect(migrations).toContain("0004_stated_stage.sql");
+  expect(migrations).toContain("0005_bench.sql");
 });

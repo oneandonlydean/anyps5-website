@@ -1,3 +1,4 @@
+import { benchRequired, benchStats, checkBench, MAX_BENCH_BYTES, readBench, type BenchStats } from "../../../src/lib/bench";
 import { checkReport, MAX_REPORT_BYTES, SITE_STAGE, validateRunReport, type RunReport, type UpstreamFacts } from "../../../src/lib/run-report";
 import type { Env } from "../bot/env";
 import { currentAccount } from "./auth";
@@ -41,19 +42,48 @@ async function upstreamFacts(env: Env, origin: string): Promise<Facts> {
   return value;
 }
 
+/** Room for the two parts' headers and boundaries of a multipart upload. */
+const FORM_OVERHEAD = 16_384;
+
 /**
  * Takes a run report from a signed-in account: at most 64 KiB, valid against the run report schema, consistent, and
- * stored once per run. A report without a title ID needs `?titleId=` naming the game the uploader chose.
+ * stored once per run. A report without a title ID needs `?titleId=` naming the game the uploader chose. The body is
+ * the report as JSON, or a form with the report as `report` and its frame-time file (aps5-bench-….json.gz) as `bench`;
+ * a run that presented frames for a minute needs the second, and the site's frame rate comes from it.
  */
 export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>) => void): Promise<Response> {
   if (!sameOrigin(req)) return problem(403, "Cross-site request refused.");
   const account = await currentAccount(req, env);
   if (!account) return problem(401, "Sign in with GitHub to upload a report.");
   if (account.blocked) return problem(403, "This account can't upload reports.");
-  const tooBig = () => problem(413, "A run report is at most 64 KB.");
-  if (Number(req.headers.get("content-length") ?? 0) > MAX_REPORT_BYTES) return tooBig();
-  const bytes = await readLimited(req, MAX_REPORT_BYTES);
-  if (!bytes) return tooBig();
+  const form = (req.headers.get("content-type") ?? "").toLowerCase().startsWith("multipart/form-data");
+  const limit = form ? MAX_REPORT_BYTES + MAX_BENCH_BYTES + FORM_OVERHEAD : MAX_REPORT_BYTES;
+  const tooBig = () => problem(413, form ? "A run report is at most 64 KB, and its frame-time file at most 8 MB." : "A run report is at most 64 KB.");
+  if (Number(req.headers.get("content-length") ?? 0) > limit) return tooBig();
+  const body = await readLimited(req, limit);
+  if (!body) return tooBig();
+
+  let bytes: Uint8Array = body;
+  let benchBytes: Uint8Array | null = null;
+  if (form) {
+    let parts: FormData;
+    try {
+      parts = await new Response(body, { headers: { "content-type": req.headers.get("content-type")! } }).formData();
+    } catch {
+      return problem(400, "The upload couldn't be read. Try again.");
+    }
+    const part = async (name: string) => {
+      const value = parts.get(name) as unknown;
+      if (value === null) return null;
+      return typeof value === "string" ? new TextEncoder().encode(value) : new Uint8Array(await (value as Blob).arrayBuffer());
+    };
+    const report = await part("report");
+    if (!report) return problem(400, "The upload has no run report. Choose the anyps5-report.json AnyPS5 wrote.");
+    if (report.length > MAX_REPORT_BYTES) return problem(413, "A run report is at most 64 KB.");
+    bytes = report;
+    benchBytes = await part("bench");
+    if (benchBytes && benchBytes.length > MAX_BENCH_BYTES) return problem(413, "A frame-time file is at most 8 MB.");
+  }
 
   let data: unknown;
   try {
@@ -66,6 +96,25 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   const known = await upstreamFacts(env, new URL(req.url).origin);
   const { errors, flags } = checkReport(report, known);
   if (errors.length) return json({ error: "This report contradicts itself.", issues: errors }, 400);
+
+  // The frame rate is measured from the frame times, never taken from the report.
+  let bench: { stats: BenchStats; digest: string } | null = null;
+  if (benchBytes?.length) {
+    const read = await readBench(benchBytes);
+    if (!read.bench) return json({ error: "This isn't a valid AnyPS5 frame-time file.", issues: read.issues, needsBench: true }, 400);
+    const matched = checkBench(report, read.bench);
+    if (matched.errors.length) return json({ error: "This frame-time file isn't from this run.", issues: matched.errors, needsBench: true }, 400);
+    flags.push(...matched.flags);
+    bench = { stats: benchStats(read.bench), digest: await sha256(read.text) };
+  } else if (benchRequired(report)) {
+    return json(
+      {
+        error: "This run presented frames, so it needs its frame-time file too: the aps5-bench-….json.gz AnyPS5 writes when started with APS5_TRACE_SUMMARY_EVERY=30 APS5_TRACE_BENCH=1.",
+        needsBench: true,
+      },
+      400,
+    );
+  }
 
   // A converted game without its metadata has no title ID; the uploader says which game it was.
   const params = new URL(req.url).searchParams;
@@ -100,22 +149,24 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   const stored = JSON.stringify(report);
   const digest = await sha256(stored);
   if (await db.prepare("SELECT 1 FROM uploads WHERE digest = ? OR run_id = ?").bind(digest, report.run.id).first()) return problem(409, "This run was already uploaded.");
+  if (bench && (await db.prepare("SELECT 1 FROM uploads WHERE bench_digest = ?").bind(bench.digest).first()))
+    return problem(409, "This frame-time file was already uploaded with another report.");
   const status = flags.length ? "review" : "visible";
   let row: number | null;
   try {
     row = await db
     .prepare(
-      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name, stated_stage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
+      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name, stated_stage, bench, bench_digest) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
     )
-    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName, stated)
+    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName, stated, bench ? JSON.stringify(bench.stats) : null, bench?.digest ?? null)
     .first<number>("id");
   } catch (err) {
-    // The same run sent twice at once: the second insert hits the unique index.
+    // The same run or frame-time file sent twice at once: the second insert hits a unique index.
     if (String(err).includes("UNIQUE")) return problem(409, "This run was already uploaded.");
     throw err;
   }
   if (status === "visible") wait(requestRebuild(env, "upload"));
-  return json({ id: row, status, flags, titleId, stage: stated ?? SITE_STAGE[report.run.stage] }, 201);
+  return json({ id: row, status, flags, titleId, stage: stated ?? SITE_STAGE[report.run.stage], fps: bench?.stats.measured.fps ?? null }, 201);
 }
 
 /** The body, or null once it passes `limit` bytes; read as a stream, so an oversized upload is never held in full. */
@@ -172,9 +223,44 @@ export interface UploadSummary {
   /** Entries the runtime dropped from each list to keep the file small. */
   truncated: { functions: number; unsupported: number };
   stop: { kind: string; reason: string; message: string };
+  /** Measured from the run's frame-time file; null when it came without one. */
+  perf: UploadPerf | null;
 }
 
-type Row = { id: number; report: string; login: string; github_id: number; created_at: number; title_id: string; title_chosen: number; title_name: string | null; stated_stage: string | null };
+/** The frame-time figures the compatibility pages use; the dialog loads the rest with the report. */
+export interface UploadPerf {
+  fps: number;
+  low1: number;
+  p99Ms: number;
+  stutters: number;
+  /** Measured seconds, warm-up left out. */
+  seconds: number;
+  gpuBusyPct: number;
+  cap: number | null;
+  resolutions: string[];
+  /** Neither profiled nor built from modified sources: fit to compare with other runs. */
+  comparable: boolean;
+}
+
+type Row = {
+  id: number;
+  report: string;
+  login: string;
+  github_id: number;
+  created_at: number;
+  title_id: string;
+  title_chosen: number;
+  title_name: string | null;
+  stated_stage: string | null;
+  bench: string | null;
+};
+
+function perf(bench: string | null): UploadPerf | null {
+  if (!bench) return null;
+  const s = JSON.parse(bench) as BenchStats;
+  const m = s.measured;
+  return { fps: m.fps, low1: m.low1, p99Ms: m.frameMs.p99, stutters: m.stutters, seconds: m.seconds, gpuBusyPct: m.gpuBusyPct, cap: m.cap, resolutions: s.resolutions, comparable: s.comparable };
+}
 
 export function summarise(row: Row): UploadSummary {
   const r = JSON.parse(row.report) as RunReport;
@@ -201,10 +287,11 @@ export function summarise(row: Row): UploadSummary {
     unsupported: r.coverage.unsupported ? r.shaders.unsupported.slice(0, 20).map(instruction) : null,
     truncated: { functions: r.truncated.functions, unsupported: r.truncated.unsupported },
     stop: { kind: r.stop.kind, reason: r.stop.reason, message: r.stop.message },
+    perf: perf(row.bench),
   };
 }
 
-const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, u.stated_stage, a.login";
+const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, u.stated_stage, u.bench, a.login";
 
 /** Everything the site build needs: visible uploads from accounts in good standing, and what maintainers hid. */
 export async function exportData(_req: Request, env: Env): Promise<Response> {
@@ -245,7 +332,15 @@ export async function reportDetail(_req: Request, env: Env, id: number): Promise
     .first<Row>();
   if (!row) return problem(404, "No report with that number.");
   return json(
-    { id: row.id, titleId: row.title_id, titleChosen: row.title_chosen === 1, login: row.login, at: new Date(row.created_at * 1000).toISOString(), report: JSON.parse(row.report) },
+    {
+      id: row.id,
+      titleId: row.title_id,
+      titleChosen: row.title_chosen === 1,
+      login: row.login,
+      at: new Date(row.created_at * 1000).toISOString(),
+      report: JSON.parse(row.report),
+      bench: row.bench ? JSON.parse(row.bench) : null,
+    },
     200,
     { "cache-control": "public, max-age=300" },
   );

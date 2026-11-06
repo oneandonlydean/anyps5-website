@@ -13,7 +13,8 @@ const { games } = Astro.props;
     <h2>Upload a run report</h2>
     <p class="muted">
       When a game stops, AnyPS5 writes <code>anyps5-report.json</code> next to it: how far it got, what it was missing, and why it stopped. Drop it here and your
-      result goes on the compatibility list. A new stage counts once {CONFIRMATIONS_NEEDED} people have seen it, or one upload and a Discussions report agree.
+      result goes on the compatibility list. A run that showed frames for a minute or more also needs its frame-time file, so the site measures the frame rate
+      itself: start the game with <code>APS5_TRACE_SUMMARY_EVERY=30 APS5_TRACE_BENCH=1</code> and AnyPS5 writes <code>aps5-bench-….json.gz</code> as well. A new stage counts once {CONFIRMATIONS_NEEDED} people have seen it, or one upload and a Discussions report agree.
     </p>
   </div>
 
@@ -22,12 +23,26 @@ const { games } = Astro.props;
   </div>
 
   <div class="drop" data-drop hidden>
-    <input type="file" accept=".json,application/json" id="report-file" data-file />
+    <input type="file" accept=".json,.gz,application/json,application/gzip" id="report-file" multiple data-file />
     <label for="report-file">
       <b>Choose anyps5-report.json</b>
-      <span class="muted">or drop it here</span>
+      <span class="muted">or drop it here, with its aps5-bench-….json.gz</span>
     </label>
     <div class="preview" data-preview hidden></div>
+    <div class="bench" data-bench hidden>
+      <input type="file" accept=".gz,.json,application/gzip,application/json" id="bench-file" data-bench-file />
+      <label for="bench-file">
+        <b data-bench-label>Choose the frame-time file</b>
+        <span class="muted">aps5-bench-….json.gz, from the same run</span>
+      </label>
+      <p class="muted note" data-bench-help>
+        This run showed frames, so the site measures its frame rate from the time between frames instead of taking the report's average. Start the game with
+        <code>APS5_TRACE_SUMMARY_EVERY=30 APS5_TRACE_BENCH=1</code>, play for a few minutes, and AnyPS5 writes the file in the working directory, or in <code
+          >APS5_TRACE_DIR</code
+        >. It holds frame times and your hardware, no game data.
+      </p>
+      <div class="preview" data-bench-preview hidden></div>
+    </div>
     <label class="pick" data-pick hidden>
       <span>This report doesn't say which game it was. Which game did you run? If it isn't on the list, type its title ID.</span>
       <input list="upload-games" placeholder="Game name or title ID" autocomplete="off" data-pick-input />
@@ -52,6 +67,8 @@ const { games } = Astro.props;
 </section>
 
 <script>
+  import { benchRequired, benchStats, checkBench, MAX_BENCH_BYTES, readBench } from "../lib/bench";
+
   const root = document.querySelector<HTMLElement>("[data-upload]")!;
   const account = root.querySelector<HTMLElement>("[data-account]")!;
   const drop = root.querySelector<HTMLElement>("[data-drop]")!;
@@ -64,6 +81,10 @@ const { games } = Astro.props;
   const pickName = root.querySelector<HTMLElement>("[data-pick-name]")!;
   const pickNameInput = root.querySelector<HTMLInputElement>("[data-pick-name-input]")!;
   const reached = root.querySelector<HTMLFieldSetElement>("[data-reached]")!;
+  const benchBox = root.querySelector<HTMLElement>("[data-bench]")!;
+  const benchInput = root.querySelector<HTMLInputElement>("[data-bench-file]")!;
+  const benchLabel = root.querySelector<HTMLElement>("[data-bench-label]")!;
+  const benchPreview = root.querySelector<HTMLElement>("[data-bench-preview]")!;
   const reachedValue = () => (reached.hidden ? "" : (reached.querySelector<HTMLInputElement>("input:checked")?.value ?? ""));
   // Every listed title ID, regional variants too: the list shows only each game's first.
   const listed = new Set<string>(JSON.parse(root.dataset.listed ?? "[]"));
@@ -75,6 +96,10 @@ const { games } = Astro.props;
   });
   const MAX = 64 * 1024;
   let body: string | null = null;
+  let report: any = null;
+  // The frame-time file, once it has been read and fits the report.
+  let bench: File | null = null;
+  let benchNeeded = false;
 
   const el = (tag: string, text: string, className?: string) => {
     const node = document.createElement(tag);
@@ -120,15 +145,28 @@ const { games } = Astro.props;
     .then(showAccount)
     .catch(() => showAccount({ signedIn: false, signInAvailable: false }));
 
+  // The frame-time file is named aps5-bench-….json.gz; anything else dropped with it is taken as the report.
+  const isBench = (file: File) => /^aps5-bench-/i.test(file.name) || file.name.toLowerCase().endsWith(".gz");
+  async function chooseFiles(files: File[]) {
+    const report = files.find((f) => !isBench(f));
+    const frames = files.find(isBench);
+    if (report) await choose(report);
+    if (frames) {
+      if (!body) return result.replaceChildren(el("p", "Choose the run report first, then its frame-time file.", "bad"));
+      await chooseBench(frames);
+    }
+  }
+
   // A quick look in the browser first, so an obviously wrong file is caught before it is sent.
   async function choose(file: File | undefined) {
     result.replaceChildren();
-    preview.hidden = send.hidden = reached.hidden = pick.hidden = pickName.hidden = true;
-    body = null;
+    preview.hidden = send.hidden = reached.hidden = pick.hidden = pickName.hidden = benchBox.hidden = benchPreview.hidden = true;
+    body = report = bench = null;
+    benchInput.value = "";
+    benchLabel.textContent = "Choose the frame-time file";
     if (!file) return;
     if (file.size > MAX) return result.append(el("p", "That file is too big for a run report (64 KB at most).", "bad"));
     const text = await file.text();
-    let report: any;
     try {
       report = JSON.parse(text);
     } catch {
@@ -148,10 +186,48 @@ const { games } = Astro.props;
     reached.querySelector<HTMLInputElement>('input[value=""]')!.checked = true;
     pickInput.value = pickNameInput.value = "";
     pickName.hidden = true;
+    // Only a run that showed frames has frame times; one that did for a minute must send them.
+    benchNeeded = benchRequired(report);
+    benchBox.hidden = report.run?.stage !== "presents";
     preview.hidden = send.hidden = false;
   }
 
-  input.addEventListener("change", () => choose(input.files?.[0]));
+  /** Reads the frame-time file here as the site will, and shows what it measures. */
+  async function chooseBench(file: File | undefined) {
+    bench = null;
+    benchPreview.hidden = true;
+    if (!file) return;
+    benchLabel.textContent = file.name;
+    const bad = (text: string, issues: string[] = []) => {
+      benchPreview.replaceChildren(el("span", text, "bad"), ...issues.map((i) => el("span", i, "muted")));
+      benchPreview.hidden = false;
+    };
+    if (file.size > MAX_BENCH_BYTES) return bad("That file is too big for a frame-time file (8 MB at most).");
+    const read = await readBench(new Uint8Array(await file.arrayBuffer()));
+    if (!read.bench) return bad("That isn't a valid AnyPS5 frame-time file.", read.issues);
+    let matched: { errors: string[]; flags: string[] };
+    try {
+      matched = checkBench(report, read.bench);
+    } catch {
+      matched = { errors: [], flags: [] };
+    }
+    if (matched.errors.length) return bad("This frame-time file isn't from this run.", matched.errors);
+    const s = benchStats(read.bench);
+    const m = s.measured;
+    const minutes = m.seconds >= 90 ? `${Math.round(m.seconds / 60)} min` : `${Math.round(m.seconds)} s`;
+    benchPreview.replaceChildren(
+      el("b", `${m.fps.toFixed(1)} fps measured over ${minutes}`),
+      el("span", `1% low ${m.low1.toFixed(1)} fps · ${m.stutters} stutter${m.stutters === 1 ? "" : "s"} · ${s.resolutions.join(", ")}`, "muted"),
+      ...(s.includesWarmup ? [el("span", "Only the first interval, which includes shader compilation. A longer run measures better.", "muted")] : []),
+      ...(s.comparable ? [] : [el("span", "Profiled or modified build: shown, but not compared with other runs.", "muted")]),
+      ...matched.flags.map((f) => el("span", f, "muted")),
+    );
+    benchPreview.hidden = false;
+    bench = file;
+  }
+
+  input.addEventListener("change", () => chooseFiles([...(input.files ?? [])]));
+  benchInput.addEventListener("change", () => chooseBench(benchInput.files?.[0]));
   drop.addEventListener("dragover", (event) => {
     event.preventDefault();
     drop.classList.add("over");
@@ -160,11 +236,15 @@ const { games } = Astro.props;
   drop.addEventListener("drop", (event) => {
     event.preventDefault();
     drop.classList.remove("over");
-    choose(event.dataTransfer?.files[0]);
+    chooseFiles([...(event.dataTransfer?.files ?? [])]);
   });
 
   send.addEventListener("click", async () => {
     if (!body) return;
+    if (benchNeeded && !bench) {
+      result.replaceChildren(el("p", "This run showed frames for a minute or more, so it needs its frame-time file too.", "bad"));
+      return;
+    }
     send.disabled = true;
     result.replaceChildren(el("p", "Uploading…", "muted"));
     const chosen = chosenId();
@@ -185,7 +265,10 @@ const { games } = Astro.props;
     if (reachedValue()) query.set("reached", reachedValue());
     let res: Response;
     try {
-      res = await fetch(`/api/reports${query.size ? `?${query}` : ""}`, { method: "POST", headers: { "content-type": "application/json" }, body });
+      const form = new FormData();
+      form.set("report", new Blob([body], { type: "application/json" }), "anyps5-report.json");
+      if (bench) form.set("bench", bench, bench.name);
+      res = await fetch(`/api/reports${query.size ? `?${query}` : ""}`, { method: "POST", body: form });
     } catch {
       send.disabled = false;
       result.replaceChildren(el("p", "The site couldn't be reached. Check your connection and try again.", "bad"));
@@ -206,15 +289,17 @@ const { games } = Astro.props;
       );
       const link = el("a", `Find ${data.titleId} on the compatibility list`) as HTMLAnchorElement;
       link.href = `/compatibility/?q=${encodeURIComponent(data.titleId)}`;
+      if (typeof data.fps === "number") done.append(` Measured at ${data.fps.toFixed(1)} fps.`);
       result.append(done, link);
-      preview.hidden = send.hidden = pick.hidden = pickName.hidden = reached.hidden = true;
-      input.value = "";
+      preview.hidden = send.hidden = pick.hidden = pickName.hidden = reached.hidden = benchBox.hidden = true;
+      input.value = benchInput.value = "";
       return;
     }
     result.append(el("p", data.error ?? "The upload didn't work. Try again.", "bad"));
     // The site's list can be newer than this page's: ask for what the server says is missing.
     if (data.needsName) pickName.hidden = false;
     if (data.needsGame) pick.hidden = false;
+    if (data.needsBench) benchBox.hidden = false;
     if (Array.isArray(data.issues)) {
       const list = document.createElement("ul");
       for (const issue of data.issues) list.append(el("li", issue));
@@ -294,6 +379,20 @@ const { games } = Astro.props;
     outline: 2px solid var(--accent);
     outline-offset: 4px;
   }
+  .bench {
+    display: grid;
+    gap: 8px;
+    width: 100%;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+  .bench[hidden] {
+    display: none;
+  }
+  .bench .note {
+    margin: 0;
+    font-size: 0.84rem;
+  }
   .pick {
     display: grid;
     gap: 6px;
@@ -344,7 +443,8 @@ const { games } = Astro.props;
   .result :global(.good) {
     color: var(--good);
   }
-  .result :global(.bad) {
+  .result :global(.bad),
+  .preview :global(.bad) {
     color: var(--bad);
   }
   .result :global(ul) {

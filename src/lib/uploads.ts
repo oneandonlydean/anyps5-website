@@ -30,6 +30,22 @@ export interface UploadSummary {
   unsupported: string[] | null;
   truncated: { functions: number; unsupported: number };
   stop: { kind: string; reason: string; message: string };
+  /** Measured from the run's frame-time file; null when it came without one, missing from older exports. */
+  perf?: UploadPerf | null;
+}
+
+/** Frame-time figures of an upload (worker/src/site/reports.ts); the dialog loads the rest with the report. */
+export interface UploadPerf {
+  fps: number;
+  low1: number;
+  p99Ms: number;
+  stutters: number;
+  seconds: number;
+  gpuBusyPct: number;
+  cap: number | null;
+  resolutions: string[];
+  /** Neither profiled nor built from modified sources: fit to compare with other runs. */
+  comparable: boolean;
 }
 
 export interface UploadExport {
