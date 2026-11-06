@@ -243,9 +243,12 @@ const FEEDS = [
   .timeline > * {
     max-width: 900px;
   }
+  /* One row always: a pill-shaped bar that wraps looks broken, so on a narrow phone it scrolls sideways instead. */
   .chips {
     display: inline-flex;
-    flex-wrap: wrap;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
     gap: 4px;
     margin-bottom: 28px;
     padding: 3px;
@@ -254,8 +257,10 @@ const FEEDS = [
     background: var(--surface);
   }
   .chips button {
+    flex: none;
     height: 34px;
-    padding: 0 14px;
+    padding: 0 clamp(10px, 3vw, 14px);
+    white-space: nowrap;
     border: 0;
     border-radius: 999px;
     background: none;

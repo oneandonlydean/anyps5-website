@@ -395,6 +395,13 @@ pre {
   white-space: nowrap;
 }
 
+/* While the theme switches, the page cross-fades as a whole (Header.astro); element transitions would lag behind it. */
+:root[data-theme-switching] *,
+:root[data-theme-switching] *::before,
+:root[data-theme-switching] *::after {
+  transition: none !important;
+}
+
 /* Pages cross-fade, and elements that share a view-transition-name (a game's cover, its art) glide between pages. */
 @view-transition {
   navigation: auto;

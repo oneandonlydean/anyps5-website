@@ -65,21 +65,28 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
 </header>
 
 <script>
+  // The whole page changes theme in one cross-fade, as long as a page change takes, instead of each element fading its
+  // own colours at its own speed. Element transitions are off for the switch, so nothing lags behind the fade.
   document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
-    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
-    document.documentElement.dataset.theme = next;
-    try {
-      localStorage.setItem("theme", next);
-    } catch {}
-    document.dispatchEvent(new CustomEvent("themechange", { detail: next }));
+    const root = document.documentElement;
+    const next = root.dataset.theme === "light" ? "dark" : "light";
+    const apply = () => {
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem("theme", next);
+      } catch {}
+      document.dispatchEvent(new CustomEvent("themechange", { detail: next }));
+    };
+    root.dataset.themeSwitching = "";
+    const done = () => requestAnimationFrame(() => delete root.dataset.themeSwitching);
+    if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(apply).finished.finally(done);
+    else {
+      apply();
+      done();
+    }
   });
 
-  // Close the language menu on a click elsewhere.
   const languages = document.querySelector<HTMLDetailsElement>(".lang");
-  document.addEventListener("click", (event) => {
-    if (languages?.open && !languages.contains(event.target as Node)) languages.open = false;
-  });
-
   const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const mobile = document.getElementById("mobile-nav");
   const setMenu = (open: boolean) => {
@@ -87,6 +94,12 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     if (mobile) mobile.hidden = !open;
   };
   toggle?.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
+  // A click anywhere else closes the language menu and the phone menu.
+  document.addEventListener("click", (event) => {
+    const target = event.target as Node;
+    if (languages?.open && !languages.contains(target)) languages.open = false;
+    if (mobile && !mobile.hidden && !mobile.contains(target) && !toggle?.contains(target)) setMenu(false);
+  });
   // Escape closes the menu, and so does widening the window to where the full navigation shows.
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && mobile && !mobile.hidden) {

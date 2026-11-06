@@ -140,6 +140,16 @@ const graph = [
       }
     </script>
     <script>
+      // Links to other sites open in a new tab, so the site stays open behind them. Set as the link is followed, so it
+      // covers links that scripts add later too.
+      document.addEventListener("click", (event) => {
+        const link = (event.target as Element).closest?.("a[href]");
+        if (!(link instanceof HTMLAnchorElement) || link.target || link.hasAttribute("download")) return;
+        if (!/^https?:$/.test(link.protocol) || link.origin === location.origin) return;
+        link.target = "_blank";
+        link.relList.add("noopener");
+      });
+
       // A small confirmation toast. Anything can show one with: document.dispatchEvent(new CustomEvent("toast", { detail: "Copied" })).
       const toast = document.querySelector<HTMLElement>("[data-toast]")!;
       let hide: ReturnType<typeof setTimeout> | undefined;

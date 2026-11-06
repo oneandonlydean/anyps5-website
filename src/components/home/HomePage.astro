@@ -1154,11 +1154,14 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .track.reverse {
     animation-direction: reverse;
   }
-  /* The window clips the endless row and fades it at both ends; padding leaves room for the name tags. */
+  /* The window clips the endless row and fades it at both ends; padding leaves room for the name tags above and the
+     hovered avatar's ring below. */
   .window {
     overflow: hidden;
     padding-top: 34px;
+    padding-bottom: 6px;
     margin-top: -28px;
+    margin-bottom: -6px;
     mask-image: linear-gradient(to right, transparent, black 60px, black calc(100% - 60px), transparent);
   }
   .lane:hover .track,
@@ -1245,9 +1248,18 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     .pulse {
       animation: none;
     }
+    /* Without motion the rows stand still and wrap, so everyone shows without a scrollbar (Windows turns this on
+       whenever its animation effects are off). */
     .window {
-      overflow-x: auto;
+      overflow: visible;
       mask-image: none;
+    }
+    .track {
+      width: auto;
+    }
+    .track ul {
+      flex-wrap: wrap;
+      padding: 0;
     }
     .track ul[aria-hidden] {
       display: none;
