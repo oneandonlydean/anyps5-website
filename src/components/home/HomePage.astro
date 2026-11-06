@@ -455,11 +455,10 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     display: grid;
     grid-template-columns: repeat(10, minmax(150px, 1fr));
     gap: 14px;
-    /* Kept cheap to draw, as it moves for as long as the page is open: a flat tilt rather than a 3D one, no mask, and
-       each column on its own layer, so a frame only shifts the columns instead of redrawing (and re-masking) the whole
-       wall. That matters most without GPU acceleration, where every redraw is CPU work. The fades are drawn over it
-       by .hero::before. */
-    transform: rotate(-8deg) scale(1.1);
+    /* Kept cheap to draw, as it moves for as long as the page is open: upright columns (a tilted wall made every frame
+       resample the rotated covers, the page's biggest cost), no mask, and each column on its own layer, so a frame only
+       shifts the columns instead of redrawing the whole wall. That matters most without GPU acceleration, where every
+       redraw is CPU work. The fades are drawn over it by .hero::before. */
     opacity: 0.9;
   }
   .column {
@@ -1320,7 +1319,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     .wall {
       inset: -20% -30% auto -10%;
       height: 140%;
-      transform: rotate(-8deg) scale(1.08);
       opacity: 0.35;
     }
     .hero::before {
