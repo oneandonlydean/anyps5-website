@@ -6,7 +6,7 @@ import StageBadge from "../StageBadge.astro";
 import StageBar from "../StageBar.astro";
 import Latest from "./Latest.astro";
 import { getGames } from "../../lib/data";
-import { DISCORD_ICON, DISCORD_URL, REPO_URL } from "../../lib/site";
+import { DISCORD_ICON, DISCORD_URL, GITHUB_ICON, REPO_URL } from "../../lib/site";
 import { STAGES, stageRank, stageSlug } from "../../lib/stages";
 import { getCoverage, getProgress, getRelease } from "../../lib/upstream";
 import { loadGenerated } from "../../lib/load";
@@ -427,7 +427,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       <div class="links">
         <a class="button primary discord" href={DISCORD_URL}><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d={DISCORD_ICON} /></svg>{t.home.discord}</a>
         <a class="button" href="/report">{t.home.reportRun}</a>
-        <a class="button ghost" href={REPO_URL}>{t.home.github}</a>
+        <a class="button ghost" href={REPO_URL}><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d={GITHUB_ICON} /></svg>{t.home.github}</a>
       </div>
     </div>
   </section>
