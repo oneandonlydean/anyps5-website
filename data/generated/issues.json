@@ -647,6 +647,14 @@
     "url": "https://github.com/boykopovar/AnyPS5/issues/4054",
     "closedAt": "2026-10-16T23:53:44Z"
   },
+  "4246": {
+    "number": 4246,
+    "kind": "issue",
+    "title": "libSceNgs2.native: custom rack module id 0x20 (PitchShift) is not implemented (Trails in the Sky 2nd Chapter, PPSA35169)",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/issues/4246",
+    "closedAt": null
+  },
   "4248": {
     "number": 4248,
     "kind": "pr",
@@ -3363,9 +3371,9 @@
     "number": 9432,
     "kind": "pr",
     "title": "feat(libSceGnmDriver): build PS4 command buffers and submit them",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9432",
-    "closedAt": null
+    "closedAt": "2026-11-06T09:44:08Z"
   },
   "9433": {
     "number": 9433,
@@ -3475,9 +3483,9 @@
     "number": 9675,
     "kind": "pr",
     "title": "feat(libSceAgcDriver): render into one array slice of a PS4 color target",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9675",
-    "closedAt": null
+    "closedAt": "2026-11-06T09:15:34Z"
   },
   "9676": {
     "number": 9676,
@@ -4099,9 +4107,9 @@
     "number": 11950,
     "kind": "pr",
     "title": "feat(libSceHttp2): bind cookie boxes to templates and requests",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/11950",
-    "closedAt": null
+    "closedAt": "2026-11-05T16:52:25Z"
   },
   "11951": {
     "number": 11951,
@@ -4150,6 +4158,14 @@
     "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/12081",
     "closedAt": "2026-10-29T20:20:46Z"
+  },
+  "12089": {
+    "number": 12089,
+    "kind": "issue",
+    "title": "Mafia: The Old Country (PPSA14299): a 873,515-word compute pipeline takes 37 s on AMD and Unreal's 120 s render-thread watchdog ends the title",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/issues/12089",
+    "closedAt": null
   },
   "12123": {
     "number": 12123,
@@ -4355,9 +4371,9 @@
     "number": 14042,
     "kind": "pr",
     "title": "fix(agc): reset the import OOM streak after other allocation errors",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/14042",
-    "closedAt": null
+    "closedAt": "2026-11-05T23:14:35Z"
   },
   "14052": {
     "number": 14052,
@@ -4365,6 +4381,14 @@
     "title": "Contra: Operation Galuga (PPSA15368): intermittent first-stage loading stall and guest allocator crash",
     "state": "open",
     "url": "https://github.com/boykopovar/AnyPS5/issues/14052",
+    "closedAt": null
+  },
+  "14119": {
+    "number": 14119,
+    "kind": "pr",
+    "title": "fix(libSceNgs2): follow the PS4 module for mastering output maps and 3, 4, 5, 7 channels",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/14119",
     "closedAt": null
   },
   "14298": {
@@ -4391,12 +4415,52 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/14310",
     "closedAt": "2026-11-03T08:08:44Z"
   },
+  "14379": {
+    "number": 14379,
+    "kind": "pr",
+    "title": "feat(ngs2): allow the custom UserFx module on custom sampler racks",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/14379",
+    "closedAt": "2026-11-06T02:48:15Z"
+  },
+  "14870": {
+    "number": 14870,
+    "kind": "pr",
+    "title": "fix(shader): declare compute invocation builtins used by lowering",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/14870",
+    "closedAt": null
+  },
   "15327": {
     "number": 15327,
     "kind": "pr",
     "title": "fix(agc): copy GPU-side indirect draw records when the packet is processed",
     "state": "open",
     "url": "https://github.com/boykopovar/AnyPS5/pull/15327",
+    "closedAt": null
+  },
+  "15443": {
+    "number": 15443,
+    "kind": "pr",
+    "title": "fix(agc): import a depth plane aliased by a cleared R32F target",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15443",
+    "closedAt": null
+  },
+  "15446": {
+    "number": 15446,
+    "kind": "pr",
+    "title": "fix(agc): accept a stored refill of a pending HTILE clear",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15446",
+    "closedAt": null
+  },
+  "15478": {
+    "number": 15478,
+    "kind": "pr",
+    "title": "feat(shader): link a table call through a user-data buffer descriptor",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/15478",
     "closedAt": null
   },
   "15563": {
@@ -4437,6 +4501,14 @@
     "title": "perf(agc): keep a reused image table's cache entries while nothing was erased",
     "state": "open",
     "url": "https://github.com/boykopovar/AnyPS5/pull/15659",
+    "closedAt": null
+  },
+  "16025": {
+    "number": 16025,
+    "kind": "pr",
+    "title": "feat(agc): draw DB stencil copies with a driver pixel program",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/16025",
     "closedAt": null
   }
 }

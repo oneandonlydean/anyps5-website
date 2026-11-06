@@ -169,6 +169,11 @@
     "region": "EP",
     "concept": "10000264"
   },
+  "PPSA02453": {
+    "name": "Subnautica",
+    "region": "EP",
+    "concept": "232883"
+  },
   "PPSA02508": {
     "name": "Evil Inside",
     "region": "EP",
@@ -404,6 +409,11 @@
     "region": "EP",
     "concept": "10003123"
   },
+  "PPSA04181": {
+    "name": "Hoa",
+    "region": "UP",
+    "concept": "10002508"
+  },
   "PPSA04246": {
     "name": "Heavenly Bodies",
     "region": "UP",
@@ -418,6 +428,11 @@
     "name": "RESIDENT EVIL 2",
     "region": "UP",
     "concept": "229500"
+  },
+  "PPSA04334": {
+    "name": "FATAL FRAME: Maiden of Black Water",
+    "region": "UP",
+    "concept": "10003261"
   },
   "PPSA04354": {
     "name": "TOEM",
@@ -609,6 +624,11 @@
     "region": "EP",
     "concept": "10004736"
   },
+  "PPSA07053": {
+    "name": "Coffee Talk Episode 2: Hibiscus & Butterfly",
+    "region": "EP",
+    "concept": "10004780"
+  },
   "PPSA07057": {
     "name": "CoffeeTalk",
     "region": "EP",
@@ -638,6 +658,11 @@
     "name": "Resident Evil 4",
     "region": "EP",
     "concept": "10004473"
+  },
+  "PPSA07550": {
+    "name": "MediEvil: Resurrection",
+    "region": "UP",
+    "concept": "10005032"
   },
   "PPSA07582": {
     "name": "Ship of Fools",
@@ -744,6 +769,11 @@
     "region": "EP",
     "concept": "10005733"
   },
+  "PPSA09232": {
+    "name": "Ghost Song",
+    "region": "EP",
+    "concept": "10005004"
+  },
   "PPSA09346": {
     "name": "The Last Faith",
     "region": "EP",
@@ -783,6 +813,11 @@
     "name": "Ghostrunner 2",
     "region": "UP",
     "concept": "10005977"
+  },
+  "PPSA10050": {
+    "name": "Saga of Sins",
+    "region": "UP",
+    "concept": "10006028"
   },
   "PPSA10112": {
     "name": "SILENT HILL: The Short Message",
@@ -934,6 +969,16 @@
     "region": "HP",
     "concept": "10008356"
   },
+  "PPSA16645": {
+    "name": "7 Days To Die - Console Edition",
+    "region": "UP",
+    "concept": "10008451"
+  },
+  "PPSA17019": {
+    "name": "The 7th Guest VR",
+    "region": "EP",
+    "concept": "10008625"
+  },
   "PPSA17217": {
     "name": "Jurassic Park Classic Games Collection",
     "region": "UP",
@@ -1059,10 +1104,20 @@
     "region": "EP",
     "concept": "10009923"
   },
+  "PPSA20591": {
+    "name": "Poppy Playtime: Chapter 1",
+    "region": "EP",
+    "concept": "10009028"
+  },
   "PPSA20612": {
     "name": "DRAGON QUEST III HD-2D Remake",
     "region": "UP",
     "concept": "10010018"
+  },
+  "PPSA20955": {
+    "name": "The Exit 9",
+    "region": "UB",
+    "concept": "10010148"
   },
   "PPSA21112": {
     "name": "Tevi",
@@ -1149,6 +1204,11 @@
     "region": "HB",
     "concept": "10010944"
   },
+  "PPSA23126": {
+    "name": "Palworld",
+    "region": "UP",
+    "concept": "10011027"
+  },
   "PPSA23276": {
     "name": "The Exit 8",
     "region": "JP",
@@ -1198,6 +1258,11 @@
     "name": "Dreamcore",
     "region": "UB",
     "concept": "10011875"
+  },
+  "PPSA24944": {
+    "name": "Platform8",
+    "region": "JP",
+    "concept": "10011971"
   },
   "PPSA25009": {
     "name": "Blue Prince",
@@ -1253,6 +1318,11 @@
     "name": "NHL 26",
     "region": "UP",
     "concept": "10012851"
+  },
+  "PPSA26917": {
+    "name": "Mandragora: Whispers of the Witch Tree",
+    "region": "HP",
+    "concept": "10004736"
   },
   "PPSA27305": {
     "name": "Goosebumps: Terror in Little Creek",
@@ -1429,10 +1499,20 @@
     "region": "EB",
     "concept": "10016571"
   },
+  "PPSA32802": {
+    "name": "FATAL FRAME II: Crimson Butterfly REMAKE",
+    "region": "JP",
+    "concept": "10016680"
+  },
   "PPSA33655": {
     "name": "BLUE REFLECTION Quartet",
     "region": "JP",
     "concept": "10017140"
+  },
+  "PPSA33802": {
+    "name": "マイリトルパピー",
+    "region": "UB",
+    "concept": "10015164"
   },
   "PPSA34008": {
     "name": "Mortal Shell II",

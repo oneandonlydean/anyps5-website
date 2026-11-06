@@ -7,8 +7,8 @@
       "PPSA21564"
     ],
     "created": "2026-10-02T12:30:16Z",
-    "updated": "2026-11-03T17:40:02Z",
-    "comments": 78,
+    "updated": "2026-11-05T23:47:25Z",
+    "comments": 79,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/357#discussioncomment-19340471",
@@ -423,8 +423,8 @@
       "PPSA22520"
     ],
     "created": "2026-10-06T20:33:35Z",
-    "updated": "2026-10-23T23:43:52Z",
-    "comments": 7,
+    "updated": "2026-11-05T06:43:25Z",
+    "comments": 8,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/966",
@@ -443,9 +443,42 @@
         "shown": "In game and playable at 60 FPS. Music, ambience, panning and reverb seemingly match the PC release, and the jump reverb matches a PS5 recording within about 0.5 dB over its first 120 ms.",
         "blockers": [],
         "blockerText": "None known on Windows with NVIDIA on current `main`. The `_Thrd_id` stop that [MarcZX10](https://github.com/boykopovar/AnyPS5/discussions/966#discussioncomment-19118484) asked about is covered by the open pull request above and did not reproduce on `main` in the 2026-10-22 and 2026-10-23 runs. Linux on a Radeon RX 5500 XT runs at about 35 FPS according to the last report in the table."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/966#discussioncomment-19413086",
+        "discussion": 966,
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:43:25Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The title menu (new game / options) at 33 s, then gameplay: the starting room with the pillars and fireflies at 123 s, and a cave room with ladders and water at 168 s; the Options screen also opened and responded. Steady at 59.93 FPS by AnyPS5's title counter (10,887 frames); the first frame came after 12 s. The log has no \"not implemented\" line.",
+        "blockers": [],
+        "blockerText": null
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/7f40ddc2-e287-4448-aba0-7384b3a47bd2",
+        "alt": "ANIMAL WELL starting area on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/966#discussioncomment-19413086",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:43:25Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/4b4745fa-0388-42a3-9834-7ea6a9553d0c",
+        "alt": "ANIMAL WELL cave room on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/966#discussioncomment-19413086",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:43:25Z"
+      }
+    ]
   },
   {
     "number": 1142,
@@ -864,8 +897,8 @@
       "PPSA36082"
     ],
     "created": "2026-10-09T03:05:28Z",
-    "updated": "2026-11-03T13:15:24Z",
-    "comments": 10,
+    "updated": "2026-11-05T12:29:18Z",
+    "comments": 13,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/1965",
@@ -904,9 +937,42 @@
         "shown": "Six runs on this commit, three per arm, each with a 300 s deadline, scripted pad input with a frame classifier, and frame dumps every tenth frame (APS5_DUMP_FRAMES=5400, APS5_DUMP_FRAMES_EVERY=10). Every run booted, loaded the save, reached the hub, walked to an NPC, closed a conversation, walked into the training area and landed attacks. All six passed every milestone, exited 0, and no log line matched SIGSEGV, abort, fatal, assert or Error:.\n\n- Original executable, 512 MiB upload pool: 3 of 3 runs. ap-m17-01, ap-m17b-01, ap-m17b-02.\n- Same with the 768 MiB upload pool: 3 of 3 runs. ap-m17p3-01, ap-m17p3-02, ap-m17p3-03. The byte patch is the one #6206 proposes for the relinker patch file and #6314 implements; main does not have that mechanism, so it was written into app.elf by hand (one byte at file 0x290414, 0x20000000 -> 0x30000000).\n\nSo the pool patch is not needed for this route on this machine: 3 of 3 without it. That is not a proof that it is unnecessary in general — it is one host, one save, one route, and three runs.\n\nTwo earlier attempts on the patched directory failed in my test runner before the game was started (0.1 s), so they count for nothing here and were replaced by ap-m17p3-*.\n\nShader caches. One run per arm started with no cache entries for this build's key and wrote them (0 hits, 191 misses, 191 writes); it booted and reached the hub like the others. The other two runs per arm read the cache (189 to 191 hits, 0 misses). So the cold-start upload-pool overflow this thread describes did not reproduce in these two cold runs. That is one cold start per arm, not a claim that cold starts are fixed.\n\nWhat the scripted play reached, in seconds from the start of the scripted input (a few seconds after launch) for ap-m17b-01: title 16.9, save select 20.8, hub 30.9, NPC prompt 37.6, conversation closed 51.0, training area 78.8, first landed hit 81.3. Across the six runs the hub came at 28.7-32.3 s, the closed conversation at 48.8-51.9 s and the first hit at 81.0-91.0 s. A hit is the game's own hit-point and hit counter, read by an added game script (see How it was run), not a picture: the dummy's hit points fell 1320 -> 1260 with hits: 3 in ap-m17b-01.\n\nFrame rate. The rate is the fps field of the present lines, which is the rate the window title shows: a two-second window, one line after the first present and every 30 presents after that. It is not a per-frame interval. Each cell is the mean over the present lines of the scripted state in that run.\n\n| state | ap-m17-01 (cold cache) | ap-m17b-01 | ap-m17b-02 | |---|---|---|---| | title | 59.9 | 59.9 | 59.9 | | save select | 46.3 | 59.9 | 59.9 | | hub, on entry | 59.9 | 60.0 | 59.9 | | hub, standing | 59.9 | 59.9 | 59.9 | | hub, walking to the NPC | 59.9 | 58.5 | 56.4 | | talking to the NPC | 54.6 | 49.8 | 47.6 | | conversation | 45.8 | 41.7 | 39.7 | | walking to the training area | 44.2 | 43.6 | 41.9 | | attacking the dummy | 50.2 | 53.7 | 46.4 | | idle in the training area, to the deadline | 50.4 | 49.0 | 47.4 | | whole run | 50.1 | 49.1 | 47.8 |\n\n| state | ap-m17p3-01 (cold cache) | ap-m17p3-02 | ap-m17p3-03 | |---|---|---|---| | title | 59.9 | 59.9 | 59.9 | | save select | 59.9 | 59.9 | 59.9 | | hub, on entry | 55.9 | 59.7 | 60.0 | | hub, standing | 59.9 | 59.9 | 59.9 | | hub, walking to the NPC | 59.9 | 57.6 | 59.4 | | talking to the NPC | 52.3 | 48.0 | 53.3 | | conversation | 46.6 | 41.0 | 47.5 | | walking to the training area | 45.0 | 42.2 | 45.4 | | attacking the dummy | 50.7 | 46.4 | 56.2 | | idle in the training area, to the deadline | 53.5 | 51.9 | 54.5 | | whole run | 52.2 | 50.7 | 53.3 |\n\nThe six runs above ran with the swapchain in FIFO, the default (ANYPS5_PRESENT_MODE unset). With ANYPS5_PRESENT_MODE=immediate the hub still holds 59.9, so the 60 is not the swapchain's vsync; I have not checked where it comes from. One immediate run went the whole way (53.2 mean, hub 59.9-60.0, attacking 52.7, training-area idle 54.3); the second died with SIGSEGV afte…",
         "blockers": [],
         "blockerText": "None in the six FIFO runs. One of the two `ANYPS5_PRESENT_MODE=immediate` runs crashed while loading the hub (above); not diagnosed. The cold-start overflow is not shown fixed: two cold runs booted, which is not a sample."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/1965#discussioncomment-19418116",
+        "discussion": 1965,
+        "author": "ycbuzi",
+        "date": "2026-11-05T12:29:18Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The title screen (Play / Options, Melinoe and the logo, version text top right) at 119.89 FPS by AnyPS5's title counter, then in game in the Erebus forest: Melinoe with her weapon, the HP and magick bars (10/30, 10/50), the boon slots on the left, the gold counter and the forest drawn with its lighting. 19.48 FPS by the title counter at the end of the run (4,782 frames); the first frame came after 33 s. The log has no \"not implemented\" line. This copy is 01.006.000, the original release (no backport).",
+        "blockers": [],
+        "blockerText": "Frame rate: about 19 FPS in the forest, with the window maximized at the end of the run."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/7ef7d5c9-6fb5-4d2e-957f-2c4da2e36f89",
+        "alt": "Hades II title screen on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/1965#discussioncomment-19418116",
+        "author": "ycbuzi",
+        "date": "2026-11-05T12:29:18Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/2515dfcb-a577-4597-8239-0182e391a9aa",
+        "alt": "Hades II in the Erebus forest on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/1965#discussioncomment-19418116",
+        "author": "ycbuzi",
+        "date": "2026-11-05T12:29:18Z"
+      }
+    ]
   },
   {
     "number": 1996,
@@ -1729,8 +1795,8 @@
       "PPSA03355"
     ],
     "created": "2026-10-11T02:47:38Z",
-    "updated": "2026-11-02T02:13:19Z",
-    "comments": 3,
+    "updated": "2026-11-05T06:26:47Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/3234",
@@ -1749,9 +1815,42 @@
         "shown": "From the main menu, pressing Cross every 4 s from 60 s reaches the House of Hades hall. The picture there looks right, and the log has no error line over 420 s. Movement and combat were not tested here because the input was Cross only. Sound was not tested.",
         "blockers": [],
         "blockerText": "None known."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3234#discussioncomment-19412856",
+        "discussion": 3234,
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:26:47Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The House of Hades at 85 s (39 FPS), then a run in Tartarus: Zagreus fighting with the sword, the health bar (42/50), Death Defiance and the boon slots drawn, 39-42 FPS by AnyPS5's title counter (8,816 frames); the first frame came after 18 s. The log has no \"not implemented\" line. A screen overlay from another program covered the left edge of the second capture; that part is blurred.",
+        "blockers": [],
+        "blockerText": "Frame rate (about 40 FPS in Tartarus)."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/0793cdaf-20b5-4005-97b9-b98d4675287c",
+        "alt": "Hades House of Hades on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3234#discussioncomment-19412856",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:26:47Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/e658886c-99af-472c-988e-3fd19d8ef20d",
+        "alt": "Hades Tartarus combat on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3234#discussioncomment-19412856",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:26:47Z"
+      }
+    ]
   },
   {
     "number": 3413,
@@ -2194,7 +2293,7 @@
       "PPSA99902"
     ],
     "created": "2026-10-12T11:46:32Z",
-    "updated": "2026-11-04T20:29:39Z",
+    "updated": "2026-11-05T18:43:04Z",
     "comments": 0,
     "reports": [],
     "media": []
@@ -2207,8 +2306,8 @@
       "PPSA02225"
     ],
     "created": "2026-10-12T12:26:26Z",
-    "updated": "2026-11-04T16:53:26Z",
-    "comments": 45,
+    "updated": "2026-11-06T06:49:37Z",
+    "comments": 51,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/4461",
@@ -2338,6 +2437,48 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19402345",
         "author": "sktharunbalaji13-cmd",
         "date": "2026-11-04T16:53:25Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/sktharunbalaji13-cmd/AnyPS5/773ca0b4d4140dd4854209b890e693e919f5c315/ghost-of-tsushima/lowmem-2026-11-05/memory_and_frames.png",
+        "alt": "memory and frames over time, both runs",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19410400",
+        "author": "sktharunbalaji13-cmd",
+        "date": "2026-11-05T02:44:44Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/sktharunbalaji13-cmd/AnyPS5/773ca0b4d4140dd4854209b890e693e919f5c315/ghost-of-tsushima/lowmem-2026-11-05/timelapse_fix.png",
+        "alt": "time-lapse with the change",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19410400",
+        "author": "sktharunbalaji13-cmd",
+        "date": "2026-11-05T02:44:44Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/sktharunbalaji13-cmd/AnyPS5/773ca0b4d4140dd4854209b890e693e919f5c315/ghost-of-tsushima/lowmem-2026-11-05/timelapse_pr15296.png",
+        "alt": "time-lapse with #15296 alone",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19410400",
+        "author": "sktharunbalaji13-cmd",
+        "date": "2026-11-05T02:44:44Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/sktharunbalaji13-cmd/AnyPS5/773ca0b4d4140dd4854209b890e693e919f5c315/ghost-of-tsushima/lowmem-2026-11-05/frame_034s_playstation_studios.jpg",
+        "alt": "34 s: the PlayStation Studios intro",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19410400",
+        "author": "sktharunbalaji13-cmd",
+        "date": "2026-11-05T02:44:44Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/de8f22ae-6f11-4a90-b441-02d0842020c0",
+        "alt": "GoT_logo_result_latest_FULL_c11_20261106_111316",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19433605",
+        "author": "sktharunbalaji13-cmd",
+        "date": "2026-11-06T05:54:37Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/7f3d9444-ffc4-45fd-9822-2153d7b22463",
+        "alt": "Screenshot 2026-11-06 112118",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/4461#discussioncomment-19433605",
+        "author": "sktharunbalaji13-cmd",
+        "date": "2026-11-06T05:54:37Z"
       }
     ]
   },
@@ -3318,8 +3459,8 @@
       "PPSA02015"
     ],
     "created": "2026-10-13T19:26:51Z",
-    "updated": "2026-11-02T23:02:31Z",
-    "comments": 6,
+    "updated": "2026-11-06T08:00:19Z",
+    "comments": 7,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/5424",
@@ -3477,8 +3618,8 @@
       "PPSA03671"
     ],
     "created": "2026-10-13T22:02:05Z",
-    "updated": "2026-10-20T22:02:28Z",
-    "comments": 10,
+    "updated": "2026-11-06T09:28:31Z",
+    "comments": 12,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/5516",
@@ -3951,10 +4092,44 @@
       "PPSA85300"
     ],
     "created": "2026-10-14T08:25:34Z",
-    "updated": "2026-10-19T07:16:37Z",
-    "comments": 3,
-    "reports": [],
-    "media": []
+    "updated": "2026-11-05T05:37:24Z",
+    "comments": 4,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/5732#discussioncomment-19412292",
+        "discussion": 5732,
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:37:24Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The setup pages are drawn in full, with the text, buttons, hints and the VLC logo that the first post found missing: \"Welcome to VLC\" with the language grid at 27 s, then (after pressing Cross) the third page, \"Playback\", with Audio language, Subtitle language and Sound output and the Continue / Back / Skip hints. 119.87 FPS by AnyPS5's title counter (21,899 frames); the first frame came after 6 s. The language names in Arabic, Japanese, Korean and Chinese are drawn as tiny unreadable marks while the Latin ones are fine, so the non-Latin fonts look missing here. The log has no \"not implemented\" line.",
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/5db3c2f3-8e68-4711-8df2-3d586b21e9fb",
+        "alt": "VLC welcome page on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/5732#discussioncomment-19412292",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:37:24Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/c0e0a693-ae7d-4e84-8a5d-bf9bcfad99e2",
+        "alt": "VLC setup Playback page on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/5732#discussioncomment-19412292",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:37:24Z"
+      }
+    ]
   },
   {
     "number": 5744,
@@ -4312,8 +4487,8 @@
       "PPSA47402"
     ],
     "created": "2026-10-14T16:16:24Z",
-    "updated": "2026-10-25T19:34:42Z",
-    "comments": 1,
+    "updated": "2026-11-05T20:06:07Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/5932",
@@ -5471,8 +5646,8 @@
       "PPSA04354"
     ],
     "created": "2026-10-16T09:38:20Z",
-    "updated": "2026-10-16T09:38:20Z",
-    "comments": 0,
+    "updated": "2026-11-05T06:58:03Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6752",
@@ -5491,6 +5666,24 @@
         "shown": "Playable 60FPS <img width=\"2640\" height=\"1688\" alt=\"TOEM\" src=\"https://github.com/user-attachments/assets/7755fc18-4165-4617-9353-85b66180b6e4\" />",
         "blockers": [],
         "blockerText": null
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/6752#discussioncomment-19413330",
+        "discussion": 6752,
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:58:02Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "In game: the Oaklaville square with the shop and the town sign at 115 s, then the bus stop scene with the clock, the photo counter (9/256), the backpack and the camera prompt at the end of the run. Drawn correctly, 52-60 FPS by AnyPS5's title counter (10,101 frames, 59.94 at the end); the first frame came after 3 s. The log has no \"not implemented\" line.",
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": [
@@ -5500,6 +5693,20 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/6752",
         "author": "mohammad-alosta",
         "date": "2026-10-16T09:38:20Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/0c2169df-371b-4b0f-94f4-a9fa7da0cbf2",
+        "alt": "TOEM Oaklaville on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/6752#discussioncomment-19413330",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:58:02Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/a281c543-4f62-4429-94f6-13848f4b434c",
+        "alt": "TOEM bus stop on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/6752#discussioncomment-19413330",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:58:02Z"
       }
     ]
   },
@@ -6921,8 +7128,8 @@
       "PPSA28795"
     ],
     "created": "2026-10-18T03:49:05Z",
-    "updated": "2026-10-31T13:48:36Z",
-    "comments": 1,
+    "updated": "2026-11-04T22:37:12Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/7382",
@@ -6959,8 +7166,8 @@
       "PPSA36591"
     ],
     "created": "2026-10-18T03:51:13Z",
-    "updated": "2026-10-18T03:51:13Z",
-    "comments": 0,
+    "updated": "2026-11-06T09:46:01Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/7384",
@@ -7734,8 +7941,8 @@
       "PPSA02632"
     ],
     "created": "2026-10-20T04:49:14Z",
-    "updated": "2026-10-20T07:15:02Z",
-    "comments": 1,
+    "updated": "2026-11-06T01:21:11Z",
+    "comments": 2,
     "reports": [],
     "media": []
   },
@@ -8077,8 +8284,8 @@
       "PPSA23276"
     ],
     "created": "2026-10-20T17:34:48Z",
-    "updated": "2026-10-20T18:57:30Z",
-    "comments": 0,
+    "updated": "2026-11-05T05:03:04Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/8587",
@@ -8097,6 +8304,24 @@
         "shown": "The title starts in the first hallway without any input; I got through it and around two corners. Audio plays and the DualSense controls work. Video output is 3840x2160. Rendering has three problems:\n\n- Objects pop in and out: the wall vents and the fire alarm next to the right-hand recess appear and disappear between frames while the camera barely moves (screenshots 1 and 2, taken about 2 s apart). Frame dumps (APS5_DUMP_FRAMES, every 5th frame, no input) show the fire alarm in about 2 of every 8 dumps in some runs and in almost none in others, with the same build and settings, so it depends on timing.\n- Black wall sections: the recess in the right wall and part of the end of the hall render as solid black in every run and frame dump. Which pieces are missing depends on where the camera points.\n- Black corridor after the second corner: after the second corner, everything except the ceiling is black; no walls, floor or props are drawn (screenshot 3).\n\nThe title issues no occlusion-query sample dumps: the [samples] counters stay at 0 queued and 0 recorded at once in every run, and the CPU path (dumpSampleCounters) is never reached. So occlusion queries are not the cause of the popping. APS5_STORE_AT_FLIP=1 with APS5_NO_SAMPLED_FROM_STORAGE=1 does not bring the black sections back and drops the frame rate to about 3 FPS.\n\nHallway with warm caches (APS5_TRACE_SUMMARY_EVERY=10, APS5_PROFILE_DRAW=1, APS5_PIPELINE_JOURNAL_THREADS=16): 67-68 presents per 10 s, frame p50 about 150 ms, GPU busy about 96 ms per present. Queue worker 0x0 is 99 % busy and 0x20 about 65 %. Driver.Packet takes about 244 ms per frame, of which Driver.Packet.dispatch is about 124 ms.\n\nPer 10 s: - Queue 0x0: DISPATCH_DIRECT x15000 4113 ms, DRAW_INDIRECT x401 1037 ms - Queue 0x20: DISPATCH_INDIRECT x2891 2724 ms, WAIT_REG_MEM x9334 1916 ms\n\nQueue 0x20 also logs WAIT_REG_MEM ... timed out after 1000ms during loading.\n\nWith empty caches, the first run compiles a 552,414-word compute pipeline in 55.4 s, and the first frame appears after about 99 s.",
         "blockers": [],
         "blockerText": "Rendering: objects popping in and out, black wall sections, and a black corridor after the second corner. Frame rate is about 6.7 FPS, bound by both the GPU (mostly compute dispatches) and queue worker 0x0."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/8587#discussioncomment-19411932",
+        "discussion": 8587,
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:03:03Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The first hallway, from 91 s to the end of the run with the camera still, at 7.27 to 7.43 FPS by AnyPS5's title counter (825 frames in all); the first frame came after 24 s. On this NVIDIA card more of the hallway is black than in the RX 9070 XT report above: the ceiling panels, the fluorescent lights, the yellow \"Exit 8\" sign and the tiled pillar with its door on the right are drawn, but the whole left wall and the floor are solid black, in every capture of the run. The log has no \"not implemented\" line.",
+        "blockers": [],
+        "blockerText": "Rendering: large parts of the first hallway (left wall, floor) draw black on NVIDIA, beyond the black wall sections reported above; about 7 FPS."
       }
     ],
     "media": [
@@ -8120,6 +8345,13 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/8587",
         "author": "BunnyFl",
         "date": "2026-10-20T17:34:48Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/90730a2f-53f3-41b7-b867-292eeba16aa1",
+        "alt": "The Exit 8 first hallway on main b11c7bf84f, NVIDIA",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/8587#discussioncomment-19411932",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:03:03Z"
       }
     ]
   },
@@ -8258,8 +8490,8 @@
       "PPSA09695"
     ],
     "created": "2026-10-20T20:15:48Z",
-    "updated": "2026-11-02T15:22:02Z",
-    "comments": 4,
+    "updated": "2026-11-06T06:14:00Z",
+    "comments": 5,
     "reports": [],
     "media": []
   },
@@ -8271,8 +8503,8 @@
       "PPSA28002"
     ],
     "created": "2026-10-20T20:38:05Z",
-    "updated": "2026-11-04T06:13:45Z",
-    "comments": 4,
+    "updated": "2026-11-05T20:32:03Z",
+    "comments": 5,
     "reports": [],
     "media": []
   },
@@ -8343,8 +8575,8 @@
       "PPSA02817"
     ],
     "created": "2026-10-20T21:10:42Z",
-    "updated": "2026-11-04T04:04:59Z",
-    "comments": 4,
+    "updated": "2026-11-05T20:32:01Z",
+    "comments": 5,
     "reports": [],
     "media": []
   },
@@ -8468,8 +8700,8 @@
       "PPSA27623"
     ],
     "created": "2026-10-20T23:24:41Z",
-    "updated": "2026-11-02T10:36:46Z",
-    "comments": 4,
+    "updated": "2026-11-05T12:10:19Z",
+    "comments": 6,
     "reports": [],
     "media": []
   },
@@ -8520,8 +8752,8 @@
       "PPSA34008"
     ],
     "created": "2026-10-21T02:45:09Z",
-    "updated": "2026-11-02T22:24:14Z",
-    "comments": 15,
+    "updated": "2026-11-06T08:29:40Z",
+    "comments": 16,
     "reports": [],
     "media": []
   },
@@ -8533,8 +8765,8 @@
       "PPSA16064"
     ],
     "created": "2026-10-21T03:43:46Z",
-    "updated": "2026-11-04T02:00:00Z",
-    "comments": 3,
+    "updated": "2026-11-05T22:13:42Z",
+    "comments": 4,
     "reports": [],
     "media": []
   },
@@ -8869,8 +9101,8 @@
       "PPSA02801"
     ],
     "created": "2026-10-21T12:05:57Z",
-    "updated": "2026-11-04T04:05:04Z",
-    "comments": 2,
+    "updated": "2026-11-05T20:32:06Z",
+    "comments": 3,
     "reports": [],
     "media": []
   },
@@ -9003,8 +9235,8 @@
       "PPSA31162"
     ],
     "created": "2026-10-21T16:57:59Z",
-    "updated": "2026-11-04T08:31:49Z",
-    "comments": 3,
+    "updated": "2026-11-05T15:46:29Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9268",
@@ -9187,8 +9419,8 @@
       "PPSA18391"
     ],
     "created": "2026-10-21T22:59:17Z",
-    "updated": "2026-11-01T12:24:58Z",
-    "comments": 1,
+    "updated": "2026-11-05T05:59:12Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9475",
@@ -9209,9 +9441,42 @@
         "shown": "In a 180 s run from a fresh save with Cross pressed every 15 s, it shows the publisher logo, then the opening room scene with both characters drawn and the dialog subtitles advancing (\"Would you describe this dream to me?\", \"I can smell the damp and moldy air.\"). The window title reports 59.94 FPS from 20 s to the end, with no driver stop.\n\nOnly Cross was scripted, so movement, later scenes, saving and audio were not checked.",
         "blockers": [],
         "blockerText": "None seen in this run."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9475#discussioncomment-19412520",
+        "discussion": 9475,
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:59:11Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "Past the opening scene into exploration: at 69 s the two characters walking along a run-down apartment corridor with the \"ENTER\" prompt over a door, and at the end of the run the player in another room by a wall panel with the \"EXAMINE\" prompt. The curved-screen filter, sprites and backgrounds are drawn, steady at 59.94-59.96 FPS by AnyPS5's title counter (10,792 frames); the first frame came after 3 s. The log has no \"not implemented\" line.",
+        "blockers": [],
+        "blockerText": null
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/170fa9bb-9a83-43be-8f06-b2c5b05476fe",
+        "alt": "Afterdream apartment corridor on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9475#discussioncomment-19412520",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:59:11Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/9a17e855-dd0a-4ef3-9935-8d00b6466d42",
+        "alt": "Afterdream examine prompt on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9475#discussioncomment-19412520",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:59:11Z"
+      }
+    ]
   },
   {
     "number": 9476,
@@ -9342,8 +9607,8 @@
       "PPSA09809"
     ],
     "created": "2026-10-22T03:45:30Z",
-    "updated": "2026-10-31T12:15:20Z",
-    "comments": 3,
+    "updated": "2026-11-05T05:17:29Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9593",
@@ -9367,9 +9632,35 @@
           8091
         ],
         "blockerText": "The host import budget collapse makes it about 3 FPS on `main`; #8091 removes it. Getting past the settings screen needs a different input, not yet tried."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9593#discussioncomment-19412113",
+        "discussion": 9593,
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:17:28Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The \"Initial Settings\" screen for the whole run after the first frame: text language (English), voices (English ticked), the map brightness slider with its two preview images, and the Restore Default Settings / Confirm prompts, all drawn correctly. 56.00 FPS by AnyPS5's title counter (9,479 frames), against the about 3 FPS on this screen reported above on earlier main. The log has no \"not implemented\" or driver failure line. Nothing was pressed, so the run does not go past this screen.",
+        "blockers": [],
+        "blockerText": null
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/8326f8ee-3efd-4046-a91f-2a685ab3e993",
+        "alt": "OCTOPATH TRAVELER II Initial Settings on main b11c7bf84f, NVIDIA",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9593#discussioncomment-19412113",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:17:28Z"
+      }
+    ]
   },
   {
     "number": 9594,
@@ -9507,8 +9798,8 @@
       "PPSA06652"
     ],
     "created": "2026-10-22T05:45:01Z",
-    "updated": "2026-11-01T13:21:32Z",
-    "comments": 3,
+    "updated": "2026-11-05T19:08:19Z",
+    "comments": 6,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9639",
@@ -9946,15 +10237,15 @@
       "PPSA08102"
     ],
     "created": "2026-10-22T11:54:11Z",
-    "updated": "2026-11-03T20:12:38Z",
-    "comments": 3,
+    "updated": "2026-11-06T10:03:33Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9744",
         "discussion": 9744,
         "author": "JJenkx",
         "date": "2026-10-22T11:54:11Z",
-        "edited": "2026-11-03T20:12:38Z",
+        "edited": "2026-11-05T00:34:25Z",
         "stage": "Ingame",
         "platform": null,
         "gpu": null,
@@ -10086,8 +10377,8 @@
       "PPSA59322"
     ],
     "created": "2026-10-22T15:04:49Z",
-    "updated": "2026-10-23T13:24:14Z",
-    "comments": 2,
+    "updated": "2026-11-05T03:12:41Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9788",
@@ -10128,6 +10419,24 @@
         "shown": null,
         "blockers": [],
         "blockerText": null
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9788#discussioncomment-19410700",
+        "discussion": 9788,
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:12:41Z",
+        "edited": "2026-11-05T03:49:02Z",
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "A level when the run ends: Madeline on the left ledge, the key, a chest and the spikes, steady at 119.87 FPS by AnyPS5's title counter (21,892 frames).",
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": [
@@ -10137,6 +10446,13 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9788#discussioncomment-19133540",
         "author": "ryanc2112",
         "date": "2026-10-22T21:58:37Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/36b4a15b-a1af-41f6-9f48-e289e67fe2d4",
+        "alt": "ccleste (PPSA59322) on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9788#discussioncomment-19410700",
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:12:41Z"
       }
     ]
   },
@@ -10284,8 +10600,8 @@
       "PPSA27616"
     ],
     "created": "2026-10-22T20:52:48Z",
-    "updated": "2026-11-01T07:16:08Z",
-    "comments": 1,
+    "updated": "2026-11-06T04:39:25Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9901",
@@ -10304,9 +10620,42 @@
         "shown": "In a 180 s run from a fresh save with Cross pressed every 15 s and a held stick input, it reaches the first playable corridor (the workshop, with the \"New Objective: Discover Joey's Secret\" card). The 30 s and 60 s captures are almost entirely white with yellow edges. I can't tell from this run whether that is the intended look of that screen. The window title reports about 14 FPS early, 49 FPS once, then 8.5 to 9 FPS in the corridor to the end, with no driver stop.\n\nOnly Cross and one held stick input were scripted, so movement, saving and audio were not checked, and the low FPS was not investigated.",
         "blockers": [],
         "blockerText": "None seen in this run (low FPS in the first corridor)."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9901#discussioncomment-19411693",
+        "discussion": 9901,
+        "author": "ycbuzi",
+        "date": "2026-11-05T04:40:04Z",
+        "edited": "2026-11-05T04:42:02Z",
+        "stage": "Menus",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "At 24 s the loading screen is drawn correctly (the sepia studio scene, the photosensitivity warning, \"Refilling Ink Machine...\" and the progress bar). From 70 s to the end of the run the screen is almost entirely white with yellow edges: only fragments of the logo, the title text and the side text show, mirrored around the middle, at about 55 FPS by AnyPS5's title counter (8,643 frames in all). This matches the \"almost entirely white with yellow edges\" captures in the first post here, now on Windows with an NVIDIA card. An earlier run on this PC (2026-11-02, older main) showed the same picture with \"✕ SELECT\" prompts in its corners, so it is the main menu. On this same PC and with the same save data (unchanged since 2026-10-29), the menu rendered correctly on plain main 16954551ed (the sepia logo with Bendy, BEGIN and OPTIONS), and it has been white in every run since 2026-11-02 on newer main, so this looks like a regression between 16954551ed and b11c7bf84f. I have not bisected it yet.",
+        "blockers": [],
+        "blockerText": "The menu renders almost white (see above); the log has no \"not implemented\" line."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/5659d166-a95e-4426-818f-44d008f690d9",
+        "alt": "Bendy and the Ink Machine loading screen on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9901#discussioncomment-19411693",
+        "author": "ycbuzi",
+        "date": "2026-11-05T04:40:04Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/42f04532-40da-4b59-8b57-53d99c27ce07",
+        "alt": "Bendy and the Ink Machine menu drawn almost white on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9901#discussioncomment-19411693",
+        "author": "ycbuzi",
+        "date": "2026-11-05T04:40:04Z"
+      }
+    ]
   },
   {
     "number": 9909,
@@ -10523,8 +10872,8 @@
       "PPSA07057"
     ],
     "created": "2026-10-22T23:58:55Z",
-    "updated": "2026-10-24T13:57:18Z",
-    "comments": 1,
+    "updated": "2026-11-05T04:57:14Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9956",
@@ -10561,9 +10910,35 @@
         "shown": "- Full boot into the profile name creation screen (\"What's your name? Barista\").\n- Confirming with the controller Options button advances into the game.\n- Character sprites, typewriter dialogue, localization strings, and audio play smoothly with no crashes or graphical defects observed.",
         "blockers": [],
         "blockerText": "None observed.\n\nAI-assisted testing and report: yes."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9956#discussioncomment-19411864",
+        "discussion": 9956,
+        "author": "ycbuzi",
+        "date": "2026-11-05T04:57:14Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The title screen from 27 s to the end of the run: the COFFEE TALK logo over the pixel-art city skyline at dusk, with the clouds moving between captures and \"PRESS ANY BUTTON\" at the bottom, steady at 119.86 FPS by AnyPS5's title counter (19,093 frames); the first frame came after 6 s. The log has no \"unable to load\" or \"not implemented\" line. Nothing was pressed, so whether the menu responds was not checked.",
+        "blockers": [],
+        "blockerText": null
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/c190df3e-8106-46fd-af75-0a992abe63b2",
+        "alt": "Coffee Talk title screen on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9956#discussioncomment-19411864",
+        "author": "ycbuzi",
+        "date": "2026-11-05T04:57:14Z"
+      }
+    ]
   },
   {
     "number": 9981,
@@ -10836,8 +11211,8 @@
       "PPSA27624"
     ],
     "created": "2026-10-23T11:03:00Z",
-    "updated": "2026-11-01T19:30:46Z",
-    "comments": 3,
+    "updated": "2026-11-05T05:08:29Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10154",
@@ -10856,9 +11231,35 @@
         "shown": "From a fresh save with Cross pressed every 15 s, the window title reports 52, 50 and 49 FPS at 20 to 56 s, then 14 FPS at 74 s. It stops 90 s in:\n\n[gpu] driver failure: shader 0x211584900 stage 1: reserved prepared vertex component selector\n\nI found no open PR or issue for this message.",
         "blockers": [],
         "blockerText": "AGC driver: `reserved prepared vertex component selector` for a vertex-stage shader."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/10154#discussioncomment-19411974",
+        "discussion": 10154,
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:08:29Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The main menu from 24 s to the end of the run: the BENDY AND THE DARK REVIVAL logo, BEGIN, the \"✕ Select\" prompt and the animated background, drawn correctly and steady at 59.94 FPS by AnyPS5's title counter (9,739 frames); the first frame came after 3 s. No driver failure or FATAL line in the log. Nothing was pressed, so this run does not reach the gameplay where the driver failures above happen.",
+        "blockers": [],
+        "blockerText": null
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/ca2ba938-fc3d-4b19-b425-59bf8ef52fde",
+        "alt": "Bendy and the Dark Revival main menu on main b11c7bf84f, NVIDIA",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/10154#discussioncomment-19411974",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:08:29Z"
+      }
+    ]
   },
   {
     "number": 10155,
@@ -11220,8 +11621,8 @@
       "PPSA33655"
     ],
     "created": "2026-10-23T16:12:10Z",
-    "updated": "2026-11-04T01:53:43Z",
-    "comments": 5,
+    "updated": "2026-11-05T22:32:41Z",
+    "comments": 6,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10271",
@@ -11556,26 +11957,26 @@
       "PPSA05110"
     ],
     "created": "2026-10-25T07:00:07Z",
-    "updated": "2026-10-31T19:43:13Z",
-    "comments": 4,
+    "updated": "2026-11-05T04:30:49Z",
+    "comments": 5,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/10872",
         "discussion": 10872,
         "author": "thuanquang",
         "date": "2026-10-25T07:00:07Z",
-        "edited": "2026-10-31T19:43:08Z",
+        "edited": "2026-11-05T04:30:47Z",
         "stage": "Ingame",
         "platform": "windows",
         "gpu": "Radeon RX 6700 XT",
         "gpuVendor": "AMD",
-        "build": "- main 0f302813ce (2026-11-01), with no pull requests merged on top. It reaches gameplay.",
+        "build": "- main b11c7bf84f (2026-11-05), with no pull requests merged on top. It reaches gameplay. It includes #7844, merged on 2026-11-01.",
         "buildKind": "prs",
         "prs": [
           7844
         ],
         "version": "01.000.000",
-        "shown": "- main 0f302813ce, with no local changes, gets through:\n- the network prompt,\n- the title screen and New Game,\n- the voice language and disclaimer screens,\n- the opening movie (VP9) and the dialogue after it,\n- first gameplay with free control: \"Escape from the casino\".\n- Checked on 2026-11-01: no stop in 780 s, with the gameplay HUD on screen 330 s after New Game.\n- Picture: two casino frames from this run, read back at 960x540, look right.\n- Under the Khronos validation layer, a run to the title screen on 2026-10-26 (main d2b3ee3bcc with #10887, #10614, #10913 and #7844) reported one VUID: VUID-VkPipelineColorBlendStateCreateInfo-pAttachments-00605, because independentBlend is not enabled. #6782 (open) enables it.\n- Output is 3840x2160, although both displays here are 1920x1080. The title picks that size itself: it imports no VideoOut call that reports the resolution. An earlier version of this post said the output follows the display.\n- Frame rate in the casino, from exclusive runs (the GPU to itself, our other work paused):\n- main 50843f45d9 (one clean leg): 105.6 presents per 10 s (about 10.6 fps), frame p50 94.3 ms, slowest frame in the 4 s window 109.0 ms, GPU busy 56.5 ms per present.\n- The same main with #7844 merged (two legs): 169.8 and 171.4 presents per 10 s (about 17 fps), frame p50 56.4 and 56.5 ms, slowest frame 97.3 and 78.2 ms, GPU busy 39.7 and 39.0 ms per present.\n- Frame rate before the casino, only from the 2026-11-01 main run, which shared the PC with other work, so it is not a speed measurement: the title screen and the first 30 s after New Game ran at about 5 to 7 fps (53 to 67 presents per 10 s), and from then until the casino at 60 fps.\n- Memory: on main 0f302813ce, one instance peaks at 21.17 GiB of private memory over the 780 s run, which ends in the casino.\n- In the four 620 s legs of the 2026-10-31 pairs, which also end in the casino, main 50843f45d9 peaked at 21.43 and 21.59 GiB, and the same main with #7844 at 18.35 and 18.74 GiB.\n- On main, the default host import budget (8172 MiB here) is full before the title screen, and one 768 MiB import is refused: host import budget: 8128 MiB live of 8172 MiB (the default; ...); 1 imports (768 MiB) refused so far. Later uses of a refused range go through CPU copies.\n- #7844 raises the default to 12249 MiB here. With it, one 1984 MiB import is still refused, at 11443 MiB live.\n- Input: works (injected pad input).\n- Audio: not checked.\n- Beyond the casino escape: not reached yet. Scripted input has not got past it, and no stop is known there.",
+        "shown": "- main b11c7bf84f, with no local changes, gets through:\n- the network prompt,\n- the title screen and New Game,\n- the voice language and disclaimer screens,\n- the opening movie (VP9) and the dialogue after it,\n- first gameplay with free control: \"Escape from the casino\".\n- Checked on 2026-11-05: no stop in 780 s, with the gameplay HUD on screen 134 s after New Game. On 2026-11-01, main 0f302813ce also ran 780 s with no stop.\n- Picture: two casino frames from this run, read back at 960x540, look right.\n- Under the Khronos validation layer, a run to the title screen on 2026-10-26 (main d2b3ee3bcc with #10887, #10614, #10913 and #7844) reported one VUID: VUID-VkPipelineColorBlendStateCreateInfo-pAttachments-00605, because independentBlend is not enabled. #6782 (open) enables it.\n- Output is 3840x2160, although both displays here are 1920x1080. The title picks that size itself: it imports no VideoOut call that reports the resolution. An earlier version of this post said the output follows the display.\n- Frame rate in the casino, from exclusive runs (the GPU to itself, our other work paused):\n- main 50843f45d9 (one clean leg): 105.6 presents per 10 s (about 10.6 fps), frame p50 94.3 ms, slowest frame in the 4 s window 109.0 ms, GPU busy 56.5 ms per present.\n- The same main with #7844 merged (two legs): 169.8 and 171.4 presents per 10 s (about 17 fps), frame p50 56.4 and 56.5 ms, slowest frame 97.3 and 78.2 ms, GPU busy 39.7 and 39.0 ms per present.\n- Frame rate before the casino, only from the 2026-11-01 main run (0f302813ce), which shared the PC with other work, so it is not a speed measurement: the title screen and the first 30 s after New Game ran at about 5 to 7 fps (53 to 67 presents per 10 s), and from then until the casino at 60 fps.\n- Memory: on main b11c7bf84f, one instance peaks at 17.93 GiB of private memory over the 780 s run, which ends in the casino. On 2026-11-01, before #7844 merged, main 0f302813ce peaked at 21.17 GiB on the same route.\n- In the four 620 s legs of the 2026-10-31 pairs, which also end in the casino, main 50843f45d9 peaked at 21.43 and 21.59 GiB, and the same main with #7844 at 18.35 and 18.74 GiB.\n- Before #7844, the default host import budget (8172 MiB here) was full before the title screen, and one 768 MiB import was refused: host import budget: 8128 MiB live of 8172 MiB (the default; ...); 1 imports (768 MiB) refused so far. Later uses of a refused range go through CPU copies.\n- #7844 raises the default to 12249 MiB here. On main b11c7bf84f, one 1984 MiB import is still refused, at 11443 MiB live.\n- Input: works (injected pad input).\n- Audio: not checked.\n- Beyond the casino escape: not reached yet. Scripted input has not got past it, and no stop is known there.",
         "blockers": [
           10887,
           10614,
@@ -11590,7 +11991,7 @@
           6970,
           9989
         ],
-        "blockerText": "- Nothing stops `main` before the casino gameplay. #10887 (the missing `sceImeBackend` exports), #10614 (the update check) and #10913 (the divide by zero at the opening movie), all merged, removed the three earlier stops.\n- Frame rate: in the casino the median frame takes 94.3 ms on `main` and about 56 ms with #7844, and the GPU is busy 39.0 to 56.5 ms per present (What is shown), against 16.7 ms for 60 fps. On `main`, the smaller default host import budget costs about 38 ms of the median frame (#7844).\n- Memory: the host import budget (#7844).\n\n**Open pull requests we measured on this title.** Exclusive pairs, as described under How it was run. Each change is the median over neighbouring pairs of legs (with it minus without), on the base the line names. In these pairs plain `main` ran this scene at a frame p50 of 89 to 94 ms and `main` with #7844 at 56 to 63 ms, so compare numbers only within a line.\n\nMemory and frame rate:\n- #7844 (Mouhand-Kaddo) raises the default host import budget here from 8172 to 12249 MiB. On `main` `50843f45d9` (2026-10-31; one clean `main` leg between two clean legs with it): frame p50 -37.8 ms, presents per 10 s +65.0, GPU -17.1 ms per present. Peak private memory over the four 620 s legs: 18.35 and 18.74 GiB with it, 21.43 and 21.59 GiB without.\n\nFrame rate:\n- #9858 (Raghav314) makes `CompletePendingCpuWrites` wait only for CPU-completion labels. On `main` `3a2b919816`, without #7844, 4 alternating clean legs (2026-10-30): frame p50 -18.2 ms, presents per 10 s +22.9, GPU -5.2 ms per present. With #7844 in both builds, our earlier numbers on #9858 (2026-10-28) were frame p50 69.1 -> 58.6 and 58.9 ms. #11847 makes the same change, and #9445 includes it.\n- #13796 (ours, draft): the title uses several render surfaces both as 2D and as one-slice 2D arrays, and this keeps one storage image for both, so they are no longer copied between two images. On `main` `aaccd0ba39` with its change, without #7844, 8 alternating clean legs (2026-10-30): fra"
+        "blockerText": "- Nothing stops `main` before the casino gameplay. #10887 (the missing `sceImeBackend` exports), #10614 (the update check) and #10913 (the divide by zero at the opening movie), all merged, removed the three earlier stops.\n- Frame rate: in the casino the median frame took about 56 ms with #7844 (94.3 ms without it), and the GPU is busy about 39 ms per present (What is shown), against 16.7 ms for 60 fps.\n- Memory: with #7844 merged, one 1984 MiB host import is still refused at the 12249 MiB default.\n\n**Open pull requests we measured on this title.** Exclusive pairs, as described under How it was run. Each change is the median over neighbouring pairs of legs (with it minus without), on the base the line names. In these pairs plain `main` ran this scene at a frame p50 of 89 to 94 ms and `main` with #7844 at 56 to 63 ms, so compare numbers only within a line.\n\nMemory and frame rate (merged on 2026-11-01):\n- #7844 (Mouhand-Kaddo) raises the default host import budget here from 8172 to 12249 MiB. On `main` `50843f45d9` (2026-10-31; one clean `main` leg between two clean legs with it): frame p50 -37.8 ms, presents per 10 s +65.0, GPU -17.1 ms per present. Peak private memory over the four 620 s legs: 18.35 and 18.74 GiB with it, 21.43 and 21.59 GiB without.\n\nFrame rate:\n- #9858 (Raghav314) makes `CompletePendingCpuWrites` wait only for CPU-completion labels. On `main` `3a2b919816`, without #7844, 4 alternating clean legs (2026-10-30): frame p50 -18.2 ms, presents per 10 s +22.9, GPU -5.2 ms per present. With #7844 in both builds, our earlier numbers on #9858 (2026-10-28) were frame p50 69.1 -> 58.6 and 58.9 ms. #11847 makes the same change, and #9445 includes it.\n- #13796 (ours, draft): the title uses several render surfaces both as 2D and as one-slice 2D arrays, and this keeps one storage image for both, so they are no longer copied between two images. On `main` `aaccd0ba39` with its change, without #7844, 8 alternating clean legs (2026-10-30): frame p50 -3.2 ms (lower in "
       }
     ],
     "media": []
@@ -11759,8 +12160,8 @@
       "PPSA28495"
     ],
     "created": "2026-10-25T18:28:24Z",
-    "updated": "2026-10-25T18:28:24Z",
-    "comments": 0,
+    "updated": "2026-11-05T07:35:56Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11114",
@@ -11779,6 +12180,24 @@
         "shown": "- First boot: no stop. It opens on the first-run settings screen (18–24 fps); its \"Done\" is the Options button.\n- Title and creation: after the settings, the title screen (the book) and character creation render correctly: body type, appearance and the favourite-food page. Creation runs at about 7 fps; peak private memory was about 10 GB.\n- Name prompt: character creation then asks for a name through the IME dialog. On main that dialog takes text from the PC keyboard only, so with just a controller the prompt can't be finished. A controller on-screen keyboard for the IME dialog is being prepared.\n- Speed: a profile shows the game bound by the AGC committer (about 93 % busy, ~30,000 commits per 10 s), not by per-draw lookups.\n\n![The title book on main 63a863d3b0](https://raw.githubusercontent.com/EagleBearerYS/AnyPS5/223aeabd3c6a1bfb766617b92c207088e63bd097/discussions/bring-up/PPSA28495/2026-10-25/01-title-book.png) ![Character creation on main 63a863d3b0](https://raw.githubusercontent.com/EagleBearerYS/AnyPS5/223aeabd3c6a1bfb766617b92c207088e63bd097/discussions/bring-up/PPSA28495/2026-10-25/02-character-creation.png)",
         "blockers": [],
         "blockerText": "The name prompt with a controller only (the IME dialog takes host keyboard text). No crash or refusal so far."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11114#discussioncomment-19413841",
+        "discussion": 11114,
+        "author": "ycbuzi",
+        "date": "2026-11-05T07:35:55Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The same point as the first post, on newer main and faster: the title screen (the book) at 133 s at 41.06 FPS, then character creation on its voice page (six voice types, the character sprite on its pedestal, the L1/R1 tabs and button hints) at 40.89 FPS by AnyPS5's title counter (4,967 frames), against the 18-24 FPS reported above. This copy's text is Traditional Chinese. The log has no \"not implemented\" line.",
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": [
@@ -11795,6 +12214,20 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11114",
         "author": "EagleBearerYS",
         "date": "2026-10-25T18:28:24Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/c10aca8d-790b-4df8-9daa-fcc3488f6635",
+        "alt": "OCTOPATH TRAVELER 0 title book on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11114#discussioncomment-19413841",
+        "author": "ycbuzi",
+        "date": "2026-11-05T07:35:55Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/9fa1e237-daaa-4a4d-b47a-9443780c4693",
+        "alt": "OCTOPATH TRAVELER 0 character creation on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11114#discussioncomment-19413841",
+        "author": "ycbuzi",
+        "date": "2026-11-05T07:35:55Z"
       }
     ]
   },
@@ -11806,8 +12239,8 @@
       "PPSA98766"
     ],
     "created": "2026-10-25T19:34:51Z",
-    "updated": "2026-10-25T19:34:51Z",
-    "comments": 0,
+    "updated": "2026-11-05T03:17:39Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11147",
@@ -11830,9 +12263,35 @@
         "shown": "The controller test screen (\"CONTROLLER CONNECTED\") at 59.9 FPS (APS5_VIDEOOUT_TELEMETRY_DIR).\n\nWith a real Xbox Series X|S controller over USB (Microsoft, VID 0x045E PID 0x0B12), 60 s of manual input: the log shows Pad: connected game controller (slot 0): Controller (type 2, sensors accel=0 gyro=0, touchpads=0, led=0, trigger rumble=1), and the telemetry recorded 1896 pad changes covering all 16 buttons (Cross, Circle, Square, Triangle, L1, R1, L2, R2, L3, R3, Options, the four D-pad directions, and Touchpad from View), both sticks over their full 0-255 range on both axes, and both triggers over 0-255. DriftCheck draws both stick circles (circularity 7.9 % left, 9.6 % right), reports the rest test as 0.6 % OK, and shows the analog triggers (e.g. L2 231, R2 235 with the L2/R2 buttons lit). Touchpad positions, motion sensors and the light bar stay empty, as the Xbox controller has none of them.\n\nEarlier runs with simulated input through APS5_PAD_INPUT_FILE showed the same screen and inputs. No stop and no error in 20-60 s runs; the only log line of note is the optional /app0/build-label.txt it looks for and doesn't need. Rumble was not checked. The Windows catalog run in #5745 reached the same screen.",
         "blockers": [],
         "blockerText": "none on this tree. On macOS the title needs the open macOS PRs listed on #1, since `main` doesn't build the libraries there yet."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11147#discussioncomment-19410772",
+        "discussion": 11147,
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:17:39Z",
+        "edited": "2026-11-05T03:48:50Z",
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The DualSense tester screen at 59.98 FPS by AnyPS5's title counter (10,879 frames): \"CONTROLLER CONNECTED\", both stick panels with their X/Y, distance and circularity readouts and the traced stick circles, the button grid, the touchpad box and live accelerometer and gyro values (Y 0.97 for gravity).",
+        "blockers": [],
+        "blockerText": null
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/8ab4549d-89c7-46ec-8493-24c5f39892e2",
+        "alt": "DriftCheck (PPSA98766) on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11147#discussioncomment-19410772",
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:17:39Z"
+      }
+    ]
   },
   {
     "number": 11206,
@@ -12079,8 +12538,8 @@
       "PPSA24263"
     ],
     "created": "2026-10-26T21:56:04Z",
-    "updated": "2026-11-04T01:20:11Z",
-    "comments": 7,
+    "updated": "2026-11-06T05:40:42Z",
+    "comments": 8,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11591",
@@ -12189,6 +12648,24 @@
         "shown": null,
         "blockers": [],
         "blockerText": null
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "discussion": 11591,
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": [
@@ -12254,6 +12731,62 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19358658",
         "author": "camezaro-intc",
         "date": "2026-11-02T19:13:40Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/mw3_visible_intro.png",
+        "alt": "Intro Splash",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/mw3_visible_offline_dialog.png",
+        "alt": "Offline Dialog",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/mw3_visible_campaign_entry.png",
+        "alt": "Campaign Entry",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/mw3_visible_campaign_mission_select.png",
+        "alt": "Mission Select",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/mw3_visible_hq_menu_return.png",
+        "alt": "HQ Menu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/mw3_visible_multiplayer_tile.png",
+        "alt": "Multiplayer Tile",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/mw3_visible_local_mp_lobby.png",
+        "alt": "Local MP Lobby",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/camezaro-intc/AnyPS5/assets/mw3-screenshots/mw3_visible_mp_lobby_options.png",
+        "alt": "Lobby Options",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11591#discussioncomment-19433424",
+        "author": "camezaro-intc",
+        "date": "2026-11-06T05:40:42Z"
       }
     ]
   },
@@ -12265,8 +12798,8 @@
       "PPSA31246"
     ],
     "created": "2026-10-26T22:19:34Z",
-    "updated": "2026-10-29T21:43:36Z",
-    "comments": 13,
+    "updated": "2026-11-05T00:08:51Z",
+    "comments": 14,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11599",
@@ -12486,8 +13019,8 @@
       "PPSA04075"
     ],
     "created": "2026-10-26T22:39:12Z",
-    "updated": "2026-10-28T21:35:17Z",
-    "comments": 1,
+    "updated": "2026-11-06T08:03:53Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11609",
@@ -12506,6 +13039,24 @@
         "shown": "Three runs of 360 s each, from no save data, with scripted pad input (Cross, Cross, Cross, Down, one press every 3 s). Across the three runs the dumped frames (one every 300 presents, so not every screen in every run) show the logos, the animated intro, the title, file and mode select, character select and the manga-style opening cutscene, and all three runs then reach the first level, the classroom, with the HUD shown and the player at different spots in later frames. No run stopped, and no log has an is not implemented line.\n\n- Frame rate: 564-600 presents per 10 s from the third 10 s window on (401-415 in the first).\n- Not checked: audio, and play beyond the first minutes of the classroom level.",
         "blockers": [],
         "blockerText": "None found in these runs."
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11609#discussioncomment-19435399",
+        "discussion": 11609,
+        "author": "Biologisten",
+        "date": "2026-11-06T08:03:53Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "NVIDIA GeForce RTX 2060 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main ea443a1546ca04f66d15ebf17b0fd4d98d75f7e6, no pull requests or tracked local changes on top. origin/main matches this commit.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "02.000.000",
+        "shown": "Three runs of 360 s each, from no save data. Runs 1 and 2 used the scripted pad timeline (Cross, Cross, Cross, Down, one press every 3 s; 120 events). Run 3 was hand-played on a physical Nintendo Switch Pro Controller with no scripted input, to vary the input coverage. Run 3 confirms playability into the first level.\n\nRuns 1–2's dumped frames (one every 300 presents) show the fnord/Arc System Works card, the WayForward logo, the animated intro and MISAKO cut-in, the River City Girls title, file select, mode select and character select with Kyoko. Their frames stop at character select, and their logs contain no further non-present entries after 200 s. All three runs hit the 360 s time cap; none crashed, and no log has an is not implemented line.\n\nRun 3 goes further: the same opening logos and title, then file select, character select, settings (audio, language, subtitles, voice, blood, screen shake, damage numbers), mode select, the manga-style opening cutscene, the classroom with the HUD and tutorial prompts, hallway/locker fights, loading screens, the gym/locker area, a screen labelled BOSS STAGE, and a level-up to level 2 back in the classroom. That is the furthest point reached in these runs.\n\n- Frame rate: 443–444 presents per 10 s in the first window; 578–600 per 10 s from the third window on (run 1 578–600, run 2 580–600, run 3 579–600). Total dropped presents: 50 / 19 / 15 across the runs, all no free swapchain image; no crash. The shader cache was warm from a 90 s smoke run before the measured runs, so the first window is not a cold-cache number.\n- Not checked: audio (the controller-speaker fallback was muted with APS5_PAD_SPEAKER_FALLBACK_DB=mute), 2P/co-op, and play beyond the first level.",
+        "blockers": [],
+        "blockerText": "None found in these runs. In runs 1–2 the scripted sequence left the game at character select (their captured frames end there); run 3 entered the classroom normally, so that is a limitation of the scripted input, not a game blocker."
       }
     ],
     "media": [
@@ -12515,6 +13066,20 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11609",
         "author": "BunnyFl",
         "date": "2026-10-26T22:39:12Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/4380f0f2-4452-44f2-9940-7bae973c6e62",
+        "alt": "run3-sheet-a",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11609#discussioncomment-19435399",
+        "author": "Biologisten",
+        "date": "2026-11-06T08:03:53Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/5279dce2-cfd1-4742-8a69-a7dd53c23944",
+        "alt": "run3-sheet-b",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/11609#discussioncomment-19435399",
+        "author": "Biologisten",
+        "date": "2026-11-06T08:03:53Z"
       }
     ]
   },
@@ -13593,15 +14158,15 @@
       "PPSA06866"
     ],
     "created": "2026-10-31T02:51:36Z",
-    "updated": "2026-11-03T21:58:57Z",
-    "comments": 0,
+    "updated": "2026-11-05T12:05:18Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/13726",
         "discussion": 13726,
         "author": "XatiX",
         "date": "2026-10-31T02:51:36Z",
-        "edited": "2026-11-03T21:58:57Z",
+        "edited": "2026-11-05T12:05:18Z",
         "stage": "Ingame",
         "platform": "windows",
         "gpu": "RTX 5080",
@@ -13614,15 +14179,44 @@
         "blockers": [
           13734,
           13715,
+          16025,
           13021,
           10492,
           13023,
           14310
         ],
-        "blockerText": "None stops the title in the tested range. Speed is the main problem now, and it is CPU-bound: on the later save the GPU takes about 16 ms per frame, while `Driver.Packet` takes about 43 ms and the committer thread stays busy. See Speed below. Two picture faults remain, listed under Measured. Each stop below was only reached after the one before it was passed.\n\n| # | Stop | Status | Tracked by |\n|---|---|---|---|\n| 1 | `sceHttp2SslEnableOption` on a context handle | **Fixed on `main`** by #13734, confirmed on this title | #13715 closed, #13734 merged |\n| 2 | `DB_RENDER_CONTROL` 0x88 stencil copy | Open. Local pass, unverified | No issue or PR |\n| 3 | Native multisample depth publication | **Fixed on `main`** by #13021 (merged 2026-11-03) | #13021 merged |\n| 4 | `cannot distinguish an unwritten byte…` | Local fix, on the branch | No issue or PR |\n| 5 | Access violation in `nvoglv64.dll`, about 30 to 33 s | **Fixed on `main`**: the fix was taken into #13021 | #13021 merged; #10492 describes the same bug |\n| 6 | `guest writes over native multisample depth` and `publication capture` | On the branch, with a known limit | #13023 is related |\n| 7 | Loop on the load after difficulty selection | **Fixed on `main`** by #14310. Not yet reached on plain `main`, which stops at blocker 2 | #14310 merged |"
+        "blockerText": "None stops the title in the tested range. Speed is the main problem now, and it is CPU-bound: on the later save the GPU takes about 16 ms per frame, while `Driver.Packet` takes about 43 ms and the committer thread stays busy. See Speed below. Two picture faults remain, listed under Measured. Each stop below was only reached after the one before it was passed.\n\n| # | Stop | Status | Tracked by |\n|---|---|---|---|\n| 1 | `sceHttp2SslEnableOption` on a context handle | **Fixed on `main`** by #13734, confirmed on this title | #13715 closed, #13734 merged |\n| 2 | `DB_RENDER_CONTROL` 0x88 stencil copy | Open. Proposed in #16025 with tests; with it, plain `main` stops at blocker 4 | #16025 |\n| 3 | Native multisample depth publication | **Fixed on `main`** by #13021 (merged 2026-11-03) | #13021 merged |\n| 4 | `cannot distinguish an unwritten byte…` | Local fix, on the branch. The next stop on `main` with #16025, about 19 s after launch | No issue or PR |\n| 5 | Access violation in `nvoglv64.dll`, about 30 to 33 s | **Fixed on `main`**: the fix was taken into #13021 | #13021 merged; #10492 describes the same bug |\n| 6 | `guest writes over native multisample depth` and `publication capture` | On the branch, with a known limit | #13023 is related |\n| 7 | Loop on the load after difficulty selection | **Fixed on `main`** by #14310. Not yet reached on plain `main`, which stops at blocker 2 | #14310 merged |"
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13726#discussioncomment-19413627",
+        "discussion": 13726,
+        "author": "ycbuzi",
+        "date": "2026-11-05T07:20:54Z",
+        "edited": null,
+        "stage": "Presents",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "The loading screen with the cast art, \"Loading\" and a gameplay tip, and the progress bar, at 41.45 FPS by AnyPS5's title counter at 39 s (1,145 frames). The title then aborts 85 s after start (3,038 frames in all) with what(): DB_RENDER_CONTROL depth copy, resummarize or decompress is unsupported (register 0x0 = 0x00000088), then FATAL: abort() (SIGABRT).",
+        "blockers": [
+          6304
+        ],
+        "blockerText": "AGC: a draw with `DB_RENDER_CONTROL = 0x00000088` (a depth copy, resummarize or decompress) is not supported. #6304 reported the same check with `0x00000084` for Call of Duty: Black Ops and is closed; this title uses a different value of the register, so it still stops here. I found no open issue or PR for `0x88`."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/85eeb007-1efe-4367-9328-f31e421c0f83",
+        "alt": "Divinity Original Sin 2 loading screen on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/13726#discussioncomment-19413627",
+        "author": "ycbuzi",
+        "date": "2026-11-05T07:20:54Z"
+      }
+    ]
   },
   {
     "number": 13768,
@@ -13873,8 +14467,8 @@
       "PPSA04921"
     ],
     "created": "2026-10-31T16:31:06Z",
-    "updated": "2026-10-31T16:31:06Z",
-    "comments": 0,
+    "updated": "2026-11-06T06:23:25Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14030",
@@ -14379,8 +14973,8 @@
       "PPSA34823"
     ],
     "created": "2026-10-31T18:50:17Z",
-    "updated": "2026-11-04T04:18:08Z",
-    "comments": 3,
+    "updated": "2026-11-06T10:10:27Z",
+    "comments": 7,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14099",
@@ -14682,6 +15276,747 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/15824",
         "author": "DonRyuzaki",
         "date": "2026-11-04T18:03:51Z"
+      }
+    ]
+  },
+  {
+    "number": 15961,
+    "title": "Ghost Song (PPSA09232)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15961",
+    "titleIds": [
+      "PPSA09232"
+    ],
+    "created": "2026-11-05T03:23:47Z",
+    "updated": "2026-11-05T03:48:38Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15961",
+        "discussion": 15961,
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:23:47Z",
+        "edited": "2026-11-05T03:48:38Z",
+        "stage": "Ingame",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "Gameplay when the run ends, at 52.01 FPS by AnyPS5's title counter (9,971 frames): the Deadsuit standing in the opening forest beside a crashed white ship, the health and energy bars with the module icon at the top left, glowing flora and small creatures, and the subtitle line \"Deadsuit: ...\". The log has no \"not implemented\" line for the whole run.",
+        "blockers": [
+          11575,
+          11586,
+          11611
+        ],
+        "blockerText": "None in this run. On earlier `main` it stopped during startup in libSceHttp2 (`sceHttp2SendRequest` over HTTP/1.x, and before that the redirect and certificate callbacks); #11575, #11586 and #11611 are merged and it now gets past that."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/101e16e1-3489-412d-a789-72e7b1ee233a",
+        "alt": "Ghost Song (PPSA09232) on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15961",
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:23:47Z"
+      }
+    ]
+  },
+  {
+    "number": 15966,
+    "title": "Saga of Sins (PPSA10050)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15966",
+    "titleIds": [
+      "PPSA10050"
+    ],
+    "created": "2026-11-05T03:50:42Z",
+    "updated": "2026-11-05T03:50:42Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15966",
+        "discussion": 15966,
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:50:42Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.000",
+        "shown": "The title screen (\"Press ✕ to start!\" over the stained-glass art) at 24 s, then the opening story told in stained-glass panels with narration, then the first scene in a church hall at the end of the run: the hero and a red-robed figure, with Ulric's dialogue scroll (\"I received word your campaign\") waiting for ✕. 59.94 FPS on the title and in the story, 54.91 FPS in the hall scene by AnyPS5's title counter (10,593 frames in all). The log has no \"not implemented\" line.\n\n<img width=\"866\" height=\"518\" alt=\"Saga of Sins title screen on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/c0ee885e-64a0-495d-8035-830e8883462b\" /> <img width=\"1440\" height=\"1032\" alt=\"Saga of Sins story scene on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/4b1457a3-c3ce-4381-9395-0adb3771b9d7\" />",
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/c0ee885e-64a0-495d-8035-830e8883462b",
+        "alt": "Saga of Sins title screen on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15966",
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:50:42Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/4b1457a3-c3ce-4381-9395-0adb3771b9d7",
+        "alt": "Saga of Sins story scene on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15966",
+        "author": "ycbuzi",
+        "date": "2026-11-05T03:50:42Z"
+      }
+    ]
+  },
+  {
+    "number": 15968,
+    "title": "FATAL FRAME: Maiden of Black Water (PPSA04334)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15968",
+    "titleIds": [
+      "PPSA04334"
+    ],
+    "created": "2026-11-05T04:10:25Z",
+    "updated": "2026-11-05T04:10:25Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15968",
+        "discussion": 15968,
+        "author": "ycbuzi",
+        "date": "2026-11-05T04:10:25Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.004",
+        "shown": "Nothing: the title aborts 6 s after start, before its first frame, so there is no screenshot. The log ends with [libc] unhandled exception 'St13runtime_error', what(): NGS2: custom mastering racks with modules are not implemented, then FATAL: abort() (SIGABRT).",
+        "blockers": [
+          8039,
+          14119
+        ],
+        "blockerText": "`libSceNgs2.native`: `core/libs/prx/libSceNgs2.native/src/Custom.cpp:68` throws \"NGS2: custom mastering racks with modules are not implemented\" while the title sets up its audio. PROJECT ZERO: Mask of the Lunar Eclipse (PPSA10278) stops on the same line. #8039 tracks other NGS2 custom-rack gaps (module ids, rack id 0x4003); #14119 (open) reworks NGS2 mastering output, and I have not tested whether it covers this."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 15972,
+    "title": "Subnautica (PPSA02453)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15972",
+    "titleIds": [
+      "PPSA02453"
+    ],
+    "created": "2026-11-05T04:51:54Z",
+    "updated": "2026-11-05T04:51:54Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15972",
+        "discussion": 15972,
+        "author": "ycbuzi",
+        "date": "2026-11-05T04:51:54Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.022.394",
+        "shown": "The title screen from about 70 s to the end of the run: the SUBNAUTICA logo over an animated ocean and sky, with \"Press\" and a button prompt in the middle and the build string \"May-2025 82394\" at the top right. 58.86 FPS at 72 s and 46.78 FPS at the end by AnyPS5's title counter (6,369 frames in all); the first frame came after 6 s. The log has no \"not implemented\" line. Nothing was pressed, so whether the menu responds was not checked.\n\n<img width=\"866\" height=\"518\" alt=\"Subnautica title screen on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/df50e3aa-ae9f-48c0-b29a-cdc949f0a21a\" />",
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/df50e3aa-ae9f-48c0-b29a-cdc949f0a21a",
+        "alt": "Subnautica title screen on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15972",
+        "author": "ycbuzi",
+        "date": "2026-11-05T04:51:54Z"
+      }
+    ]
+  },
+  {
+    "number": 15976,
+    "title": "FATAL FRAME II: Crimson Butterfly REMAKE (PPSA32802)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15976",
+    "titleIds": [
+      "PPSA32802"
+    ],
+    "created": "2026-11-05T05:32:15Z",
+    "updated": "2026-11-05T05:32:15Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15976",
+        "discussion": 15976,
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:32:15Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.002.002",
+        "shown": "Only 4 frames are presented in the whole run, and every capture (11, from about 2 to 10 minutes in) is black, so there is no picture to show. The title aborts after 588 s with [libc] unhandled exception 'St13runtime_error', what(): NGS2: custom module id 0x17 is not implemented, then FATAL: abort() (SIGABRT).",
+        "blockers": [
+          8039,
+          4246,
+          14379,
+          15968
+        ],
+        "blockerText": "`libSceNgs2.native`: `core/libs/prx/libSceNgs2.native/src/Custom.cpp:87` throws \"NGS2: custom module id 0x17 is not implemented\" when the title builds a custom rack. I found no issue or open PR for module 0x17: #8039 tracks custom-rack module ids 0x15/0x19/0x1b/0x23, #4246 module 0x20, and the open #14379 adds UserFx (0x19) on custom sampler racks. FATAL FRAME: Maiden of Black Water (#15968) and PROJECT ZERO: Mask of the Lunar Eclipse stop on another NGS2 custom-rack gap (\"custom mastering racks with modules\")."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 15980,
+    "title": "The Exit 9 (PPSA20955)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15980",
+    "titleIds": [
+      "PPSA20955"
+    ],
+    "created": "2026-11-05T05:54:30Z",
+    "updated": "2026-11-05T05:54:30Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15980",
+        "discussion": 15980,
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:54:30Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.000",
+        "shown": "The main menu (PLAY and OPTIONS over a dim station corridor with a vending machine) at 33 s, then in game after choosing PLAY: a white-tiled corridor with the yellow tactile strip, walls, floor and lighting drawn, at the end of the run. 1.4 FPS on the menu and 3.39 FPS in game by AnyPS5's title counter (606 frames in all); the first frame came after 12 s. The log has no \"not implemented\" line.\n\n<img width=\"866\" height=\"518\" alt=\"The Exit 9 main menu on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/1b89b3bb-6e33-42c8-bc48-e44bb0af16b6\" /> <img width=\"866\" height=\"518\" alt=\"The Exit 9 in game on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/90d79b1f-a2a1-41e9-a43c-721caeb1810f\" />",
+        "blockers": [
+          12089
+        ],
+        "blockerText": "Frame rate (about 3 FPS in game). On the first run after relinking, with an empty shader cache, the title stopped itself after 251 s with Unreal's \"GameThread timed out waiting for RenderThread after 120.00 secs\" (`guest abort() (int 0x45)`) while the render thread was compiling a few very large shaders (8-15 MiB each in the shader-disk-cache counters); with those shaders cached the next run got past it. #12089 describes the same Unreal watchdog on another title."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/1b89b3bb-6e33-42c8-bc48-e44bb0af16b6",
+        "alt": "The Exit 9 main menu on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15980",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:54:30Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/90d79b1f-a2a1-41e9-a43c-721caeb1810f",
+        "alt": "The Exit 9 in game on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15980",
+        "author": "ycbuzi",
+        "date": "2026-11-05T05:54:30Z"
+      }
+    ]
+  },
+  {
+    "number": 15983,
+    "title": "Platform 8 (PPSA24944)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15983",
+    "titleIds": [
+      "PPSA24944"
+    ],
+    "created": "2026-11-05T06:02:07Z",
+    "updated": "2026-11-05T06:02:07Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15983",
+        "discussion": 15983,
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:02:07Z",
+        "edited": null,
+        "stage": "Starts",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.003.000",
+        "shown": "One frame is presented, then the title crashes 61 s after start, before the first capture, so there is no picture. Just before the crash the log shows the save data mounted and read (/savedata0/ue4savegame.dpx.sav), the DualSense audio port opened and a few storage-texture uploads; then FATAL: unhandled exception 0xc0000005, a write of 0x0000000000000000 at Platform 8.exe+0x3c1f17.",
+        "blockers": [],
+        "blockerText": "A null write in the title's own code on its main thread, `Platform 8.exe+0x3c1f17` (frame chain `+0x36170f`, `+0x36372a`, `+0x362c4e`, `+0x363f0d`, `+0x3117934`, `+0x2be8a51`, `+0x29fdf67`, ...). The log has no \"not implemented\" line before it; I have not found which earlier call returned the null. The same studio's The Exit 8 (Unreal too) runs on this `main`."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 15984,
+    "title": "Hoa (PPSA04181)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15984",
+    "titleIds": [
+      "PPSA04181"
+    ],
+    "created": "2026-11-05T06:07:59Z",
+    "updated": "2026-11-05T06:07:59Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15984",
+        "discussion": 15984,
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:07:59Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.002",
+        "shown": "The opening with Hoa sailing a leaf across a lake at 69 s, then the first meadow at the end of the run: Hoa in mid-air among the giant yellow flowers, with a beetle and bees around. The hand-painted backgrounds, sprites and lighting are drawn, steady at 59.94-59.95 FPS by AnyPS5's title counter (9,812 frames); the first frame came after 3 s. The log has no \"not implemented\" line.\n\n<img width=\"1440\" height=\"1032\" alt=\"Hoa sailing a leaf on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/41369d56-7528-44f6-960c-1c0528d4ee09\" /> <img width=\"1440\" height=\"1032\" alt=\"Hoa in the first meadow on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/c13d6b85-f943-4255-8af5-5ac6978348f8\" />",
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/41369d56-7528-44f6-960c-1c0528d4ee09",
+        "alt": "Hoa sailing a leaf on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15984",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:07:59Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/c13d6b85-f943-4255-8af5-5ac6978348f8",
+        "alt": "Hoa in the first meadow on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15984",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:07:59Z"
+      }
+    ]
+  },
+  {
+    "number": 15987,
+    "title": "Poppy Playtime: Chapter 1 (PPSA20591)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15987",
+    "titleIds": [
+      "PPSA20591"
+    ],
+    "created": "2026-11-05T06:19:55Z",
+    "updated": "2026-11-05T06:19:55Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15987",
+        "discussion": 15987,
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:19:55Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.002",
+        "shown": "The main menu (PLAY and SETTINGS over the Playtime Co. factory) at 33 s at 60.04 FPS, then in game after choosing PLAY: the factory lobby with the \"WELCOME!\" desk and the Huggy Wuggy figure, the Security and Gift Shop signs, posters and the crosshair, at the end of the run at 24.43 FPS by AnyPS5's title counter (5,209 frames in all); the first frame came after 12 s. The log has no \"not implemented\" line.\n\n<img width=\"866\" height=\"518\" alt=\"Poppy Playtime main menu on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/ee490e07-1b81-4806-91aa-fe7274468a06\" /> <img width=\"1440\" height=\"1032\" alt=\"Poppy Playtime factory lobby on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/9a778045-f733-417d-9130-298071f69bac\" />",
+        "blockers": [],
+        "blockerText": "Frame rate in game (about 24 FPS in the lobby)."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/ee490e07-1b81-4806-91aa-fe7274468a06",
+        "alt": "Poppy Playtime main menu on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15987",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:19:55Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/9a778045-f733-417d-9130-298071f69bac",
+        "alt": "Poppy Playtime factory lobby on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15987",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:19:55Z"
+      }
+    ]
+  },
+  {
+    "number": 15991,
+    "title": "7 Days To Die - Console Edition (PPSA16645)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15991",
+    "titleIds": [
+      "PPSA16645"
+    ],
+    "created": "2026-11-05T06:53:16Z",
+    "updated": "2026-11-05T06:53:16Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15991",
+        "discussion": 15991,
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:53:16Z",
+        "edited": null,
+        "stage": "Presents",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.320.002",
+        "shown": "The publisher logo (THE FUN PIMPS, with the pre-release notice under it) from 24 s to the end of the run, and no frame after it: AnyPS5's title counter stops at 665 frames from about 114 s on (it read 110 FPS while drawing). The title's own log (/download0/7DaysToDie/BacktraceLogs/Player-*.log) and AnyPS5's log both end 13.3 s in, right after [DeviceGamePrefs] Applying game prefs from /app0/Media/gameprefs_PS5.xml and ApplyAllOptions streaming budget 2500 MB; nothing is logged after that, and the process keeps running. No not implemented, crash or driver failure line.\n\n<img width=\"866\" height=\"518\" alt=\"7 Days To Die publisher logo on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/78f3af91-1fb6-402b-9cf8-f97e064f47da\" />",
+        "blockers": [],
+        "blockerText": "A hang 13 s in, right after the title applies its options; I have not found what it waits on."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/78f3af91-1fb6-402b-9cf8-f97e064f47da",
+        "alt": "7 Days To Die publisher logo on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15991",
+        "author": "ycbuzi",
+        "date": "2026-11-05T06:53:16Z"
+      }
+    ]
+  },
+  {
+    "number": 15995,
+    "title": "Mandragora: Whispers of the Witch Tree (PPSA26917)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/15995",
+    "titleIds": [
+      "PPSA26917"
+    ],
+    "created": "2026-11-05T07:30:13Z",
+    "updated": "2026-11-05T07:30:13Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15995",
+        "discussion": 15995,
+        "author": "ycbuzi",
+        "date": "2026-11-05T07:30:13Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.006.002",
+        "shown": "The engine and publisher logos at 58.83 FPS, then character creation: the Vindicator class with the character model, Basic Stats, the damage profile, the starting skill (Smite), \"Enter name\" and the Cancel / Next and button hints, all drawn. Character creation runs at only 5.41 FPS by AnyPS5's title counter (7,289 frames in all). The log has no \"not implemented\" line.\n\n<img width=\"866\" height=\"518\" alt=\"Mandragora logos on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/2b4fc2e5-0674-4a0f-b0fd-9cf4f144ecf6\" /> <img width=\"1440\" height=\"1032\" alt=\"Mandragora character creation on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/e3cc80d3-951e-4a29-aacd-88cff8e2e87a\" />",
+        "blockers": [],
+        "blockerText": "Frame rate: about 5 FPS in character creation."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/2b4fc2e5-0674-4a0f-b0fd-9cf4f144ecf6",
+        "alt": "Mandragora logos on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15995",
+        "author": "ycbuzi",
+        "date": "2026-11-05T07:30:13Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/e3cc80d3-951e-4a29-aacd-88cff8e2e87a",
+        "alt": "Mandragora character creation on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/15995",
+        "author": "ycbuzi",
+        "date": "2026-11-05T07:30:13Z"
+      }
+    ]
+  },
+  {
+    "number": 16001,
+    "title": "Coffee Talk Episode 2: Hibiscus & Butterfly (PPSA07053)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/16001",
+    "titleIds": [
+      "PPSA07053"
+    ],
+    "created": "2026-11-05T08:03:13Z",
+    "updated": "2026-11-05T08:03:13Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16001",
+        "discussion": 16001,
+        "author": "ycbuzi",
+        "date": "2026-11-05T08:03:13Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04), with no pull requests or local changes on top. The executable was converted by that commit's relinker on the day of the run.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.120.000",
+        "shown": "In game: the cafe with its shelves, the rain outside the window, the counter and the phone, recipe notes and AUTO / FFWD hints, then a customer (a police officer) at the counter with the Barista's dialogue box. Drawn correctly at 119.86 FPS by AnyPS5's title counter (20,426 frames); the first frame came after 3 s. The log has no \"not implemented\" line.\n\n<img width=\"866\" height=\"518\" alt=\"Coffee Talk Episode 2 the cafe on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/c863b046-7365-438d-8b01-8b1f8e0d586a\" /> <img width=\"866\" height=\"518\" alt=\"Coffee Talk Episode 2 a customer conversation on main b11c7bf84f\" src=\"https://github.com/user-attachments/assets/b0aa069e-7e48-4493-83f6-9b6f01b788d5\" />",
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/c863b046-7365-438d-8b01-8b1f8e0d586a",
+        "alt": "Coffee Talk Episode 2 the cafe on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16001",
+        "author": "ycbuzi",
+        "date": "2026-11-05T08:03:13Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/b0aa069e-7e48-4493-83f6-9b6f01b788d5",
+        "alt": "Coffee Talk Episode 2 a customer conversation on main b11c7bf84f",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16001",
+        "author": "ycbuzi",
+        "date": "2026-11-05T08:03:13Z"
+      }
+    ]
+  },
+  {
+    "number": 16329,
+    "title": "Palworld (PPSA23126) — bring-up progress and low gameplay FPS",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/16329",
+    "titleIds": [
+      "PPSA23126"
+    ],
+    "created": "2026-11-06T09:44:03Z",
+    "updated": "2026-11-06T09:44:03Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16329",
+        "discussion": 16329,
+        "author": "edubox",
+        "date": "2026-11-06T09:44:03Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "main b11c7bf84f (2026-11-04) plus #11630 (5e4115e64a, feat/http2-async-completions) for the runtime libraries. The executable and its modules were converted with that tree's relinker; no other pull requests or local changes.",
+        "buildKind": "patched",
+        "prs": [
+          11630
+        ],
+        "version": "01.102.999",
+        "shown": "Captures at 25 s, 110 s and 185 s of a 200 s run. The title reaches gameplay at 5-6 FPS. The only error in the log is the offline login dialog [ERRORDIALOG] error_code=0x80550006 user_id=254 at 12.5 s; it does not stop the title from reaching gameplay. A shorter 125 s profiling run (APS5_PROFILE_DRAW=1) presented 60 FPS while loading and 15-20 FPS in the later scenes.\n\n![25 s](https://gist.githubusercontent.com/edubox/0d877a95bf4ce5895ccd73f6fa77b051/raw/01-25s.png)\n\n![110 s](https://gist.githubusercontent.com/edubox/0d877a95bf4ce5895ccd73f6fa77b051/raw/02-110s.png)\n\n![185 s](https://gist.githubusercontent.com/edubox/0d877a95bf4ce5895ccd73f6fa77b051/raw/03-185s.png)",
+        "blockers": [],
+        "blockerText": "No hard stop. The title reaches gameplay, but at 5-6 FPS. The offline login returns `SCE_NP_ERROR_SIGNED_OUT` (`0x80550006`), so online features are unavailable. Performance is the limiting factor."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://gist.githubusercontent.com/edubox/0d877a95bf4ce5895ccd73f6fa77b051/raw/01-25s.png",
+        "alt": "25 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16329",
+        "author": "edubox",
+        "date": "2026-11-06T09:44:03Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/0d877a95bf4ce5895ccd73f6fa77b051/raw/02-110s.png",
+        "alt": "110 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16329",
+        "author": "edubox",
+        "date": "2026-11-06T09:44:03Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/0d877a95bf4ce5895ccd73f6fa77b051/raw/03-185s.png",
+        "alt": "185 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16329",
+        "author": "edubox",
+        "date": "2026-11-06T09:44:03Z"
+      }
+    ]
+  },
+  {
+    "number": 16330,
+    "title": "7th Guest (PPSA17019) — bring-up progress and black loading stop",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/16330",
+    "titleIds": [
+      "PPSA17019"
+    ],
+    "created": "2026-11-06T09:46:33Z",
+    "updated": "2026-11-06T09:46:33Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16330",
+        "discussion": 16330,
+        "author": "edubox",
+        "date": "2026-11-06T09:46:33Z",
+        "edited": null,
+        "stage": "Presents",
+        "platform": "linux",
+        "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "Runtime libraries from .anyps5-work/wt-7th at 526667e9cb4 (main plus #15478); the executable was converted from the same worktree on 2026-11-03. The AGC fixes #15443 and #15446 are not in this build.",
+        "buildKind": "prs",
+        "prs": [
+          15478,
+          15443,
+          15446
+        ],
+        "version": "01.006.000",
+        "shown": "The window shows a black loading screen and the title aborts after 3.6 s with AGC graphics: native multisample depth or HTILE aliases a multisampled colour target whose samples are only on the host. The captures are at 1.6 s, 4 s and 12 s; the first is the loading screen and the other two are after the abort.\n\n![1.6 s](https://gist.githubusercontent.com/edubox/3bfa83101732ce707fac188d418db4d2/raw/01-2s.png)\n\n![4 s](https://gist.githubusercontent.com/edubox/3bfa83101732ce707fac188d418db4d2/raw/02-4s.png)\n\n![12 s](https://gist.githubusercontent.com/edubox/3bfa83101732ce707fac188d418db4d2/raw/03-12s.png)",
+        "blockers": [
+          15443,
+          15446
+        ],
+        "blockerText": "The aliased-depth gap. With #15443 (`fix/agc-aliased-uniform-depth`) and #15446 (`fix/agc-repeat-htile-clear`) the stop moves one step forward to `AGC graphics: sample-preserving guest publication of native multisample depth is not implemented` (log `new-7th-review/run.log`, 2026-11-03); no frames are presented in either state."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://gist.githubusercontent.com/edubox/3bfa83101732ce707fac188d418db4d2/raw/01-2s.png",
+        "alt": "1.6 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16330",
+        "author": "edubox",
+        "date": "2026-11-06T09:46:33Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/3bfa83101732ce707fac188d418db4d2/raw/02-4s.png",
+        "alt": "4 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16330",
+        "author": "edubox",
+        "date": "2026-11-06T09:46:33Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/3bfa83101732ce707fac188d418db4d2/raw/03-12s.png",
+        "alt": "12 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16330",
+        "author": "edubox",
+        "date": "2026-11-06T09:46:33Z"
+      }
+    ]
+  },
+  {
+    "number": 16331,
+    "title": "Medievil (PPSA07550) — bring-up progress and crash on the opening cinematic transition",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/16331",
+    "titleIds": [
+      "PPSA07550"
+    ],
+    "created": "2026-11-06T09:50:27Z",
+    "updated": "2026-11-06T09:50:27Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16331",
+        "discussion": 16331,
+        "author": "edubox",
+        "date": "2026-11-06T09:50:27Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": "linux",
+        "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "Runtime libraries from main plus #14870 (594674bfe3a, fix/shader-compute-builtins), built on 2026-11-02 (libs-14870). The executable was converted with the project's relinker; no other pull requests or local changes.",
+        "buildKind": "patched",
+        "prs": [
+          14870
+        ],
+        "version": "01.000.003",
+        "shown": "Captures at 12 s, 30 s and 44 s of the opening titles and cinematic. The title aborts at 45.66 s with AGC graphics: last provoking vertex is unsupported for triangle fans assembled for a geometry program. The tester reproduces the same stop by pressing skip, and a run with no input also aborts at the same point. No FPS measurement was recorded in these runs.\n\n![12 s](https://gist.githubusercontent.com/edubox/e1a4123b13e9b8f927bd59c3ae68d069/raw/01-12s.png)\n\n![30 s](https://gist.githubusercontent.com/edubox/e1a4123b13e9b8f927bd59c3ae68d069/raw/02-30s.png)\n\n![44 s](https://gist.githubusercontent.com/edubox/e1a4123b13e9b8f927bd59c3ae68d069/raw/03-44s.png)",
+        "blockers": [],
+        "blockerText": "The geometry program assembled for triangle fans with last-vertex provoking: `last provoking vertex is unsupported for triangle fans assembled for a geometry program`. It happens on the transition after the opening cinematic, before the menu."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://gist.githubusercontent.com/edubox/e1a4123b13e9b8f927bd59c3ae68d069/raw/01-12s.png",
+        "alt": "12 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16331",
+        "author": "edubox",
+        "date": "2026-11-06T09:50:27Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/e1a4123b13e9b8f927bd59c3ae68d069/raw/02-30s.png",
+        "alt": "30 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16331",
+        "author": "edubox",
+        "date": "2026-11-06T09:50:27Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/e1a4123b13e9b8f927bd59c3ae68d069/raw/03-44s.png",
+        "alt": "44 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16331",
+        "author": "edubox",
+        "date": "2026-11-06T09:50:27Z"
+      }
+    ]
+  },
+  {
+    "number": 16332,
+    "title": "My Little Puppy (PPSA33802) — bring-up progress and playable gameplay",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/16332",
+    "titleIds": [
+      "PPSA33802"
+    ],
+    "created": "2026-11-06T09:54:59Z",
+    "updated": "2026-11-06T09:54:59Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16332",
+        "discussion": 16332,
+        "author": "edubox",
+        "date": "2026-11-06T09:54:59Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+        "gpuVendor": "NVIDIA",
+        "build": "Runtime libraries from main plus #14870 (594674bfe3a, fix/shader-compute-builtins), built on 2026-11-02 (libs-14870). The executable was converted with the project's relinker; no other pull requests or local changes.",
+        "buildKind": "patched",
+        "prs": [
+          14870
+        ],
+        "version": "02.010.000",
+        "shown": "Captures at 20 s, 60 s and 110 s of a 120 s run. The tester played the title and observed about 60 FPS with occasional drops. The log records handled guest signal exceptions (signal=0x1e) that do not stop the title; no unhandled exception or unimplemented path appears.\n\n![20 s](https://gist.githubusercontent.com/edubox/92380db62191ed10a44f30c903e7130e/raw/01-20s.png)\n\n![60 s](https://gist.githubusercontent.com/edubox/92380db62191ed10a44f30c903e7130e/raw/02-60s.png)\n\n![110 s](https://gist.githubusercontent.com/edubox/92380db62191ed10a44f30c903e7130e/raw/03-110s.png)",
+        "blockers": [],
+        "blockerText": "None for basic gameplay. The remaining limitation is the occasional frame-rate drop."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://gist.githubusercontent.com/edubox/92380db62191ed10a44f30c903e7130e/raw/01-20s.png",
+        "alt": "20 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16332",
+        "author": "edubox",
+        "date": "2026-11-06T09:54:59Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/92380db62191ed10a44f30c903e7130e/raw/02-60s.png",
+        "alt": "60 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16332",
+        "author": "edubox",
+        "date": "2026-11-06T09:54:59Z"
+      },
+      {
+        "src": "https://gist.githubusercontent.com/edubox/92380db62191ed10a44f30c903e7130e/raw/03-110s.png",
+        "alt": "110 s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/16332",
+        "author": "edubox",
+        "date": "2026-11-06T09:54:59Z"
       }
     ]
   }

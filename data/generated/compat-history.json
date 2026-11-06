@@ -1,12 +1,12 @@
 {
   "latest": {
-    "date": "2026-11-04",
+    "date": "2026-11-06",
     "counts": {
       "Playable": 5,
-      "Ingame": 63,
-      "Menus": 27,
+      "Ingame": 69,
+      "Menus": 30,
       "Presents": 12,
-      "Starts": 17,
+      "Starts": 16,
       "Converts": 2,
       "Not converting": 1
     }
@@ -56,6 +56,30 @@
         "Menus": 27,
         "Presents": 12,
         "Starts": 17,
+        "Converts": 2,
+        "Not converting": 1
+      }
+    },
+    {
+      "date": "2026-11-05",
+      "counts": {
+        "Playable": 5,
+        "Ingame": 67,
+        "Menus": 31,
+        "Presents": 12,
+        "Starts": 16,
+        "Converts": 2,
+        "Not converting": 1
+      }
+    },
+    {
+      "date": "2026-11-06",
+      "counts": {
+        "Playable": 5,
+        "Ingame": 69,
+        "Menus": 30,
+        "Presents": 12,
+        "Starts": 16,
         "Converts": 2,
         "Not converting": 1
       }

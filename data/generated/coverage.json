@@ -1,6 +1,6 @@
 {
-  "commit": "b611e634f7fc024f0c13e342d96de744448ef1d9",
-  "date": "2026-11-04",
+  "commit": "7513ca5e585cfa53fe31f7de791a6578fc0f5349",
+  "date": "2026-11-06",
   "isa": "AMD RDNA 2",
   "instructions": {
     "total": 1460,
@@ -18,15 +18,15 @@
     "host": 68
   },
   "throws": {
-    "total": 154,
+    "total": 152,
     "areas": [
       {
         "name": "RdnaDecoder",
-        "count": 58
+        "count": 57
       },
       {
         "name": "Translation",
-        "count": 46
+        "count": 45
       },
       {
         "name": "Optimization",
@@ -213,7 +213,7 @@
       {
         "file": "RdnaDecoder/src/RdnaImageOpDecoder.cpp",
         "line": 170,
-        "message": "throw UnsupportedInstructionError(message);"
+        "message": "MIMG"
       },
       {
         "file": "RdnaDecoder/src/RdnaImageOpDecoder.cpp",
@@ -277,53 +277,48 @@
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 995,
-        "message": "DS swizzle FFT mode is not supported"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 1002,
+        "line": 999,
         "message": "DS write exchange of one location through both offsets is not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 1009,
+        "line": 1006,
         "message": "DS write addtid data1 operand is not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 1020,
+        "line": 1017,
         "message": "DS read addtid data operands are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 1046,
+        "line": 1043,
         "message": "DS src2 operation with the offset taken from the address is not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaScalarOpDecoder.cpp",
         "line": 77,
-        "message": "unsupported SOP1 opcode "
+        "message": "unsupported SOP1 opcode …SOP1"
       },
       {
         "file": "RdnaDecoder/src/RdnaScalarOpDecoder.cpp",
         "line": 134,
-        "message": "unsupported SOP2 opcode "
+        "message": "unsupported SOP2 opcode …SOP2"
       },
       {
         "file": "RdnaDecoder/src/RdnaScalarOpDecoder.cpp",
         "line": 158,
-        "message": "unsupported SOPC opcode "
+        "message": "unsupported SOPC opcode …SOPC"
       },
       {
         "file": "RdnaDecoder/src/RdnaScalarOpDecoder.cpp",
         "line": 191,
-        "message": "unsupported SOPK opcode "
+        "message": "unsupported SOPK opcode …SOPK"
       },
       {
         "file": "RdnaDecoder/src/RdnaScalarOpDecoder.cpp",
         "line": 234,
-        "message": "unsupported SOPP opcode "
+        "message": "unsupported SOPP opcode …SOPP"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
@@ -342,172 +337,172 @@
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1197,
+        "line": 1199,
         "message": "VOP1 SDWA output modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1282,
+        "line": 1284,
         "message": "DPP modifier is not supported for opcode…DPP8 modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1287,
+        "line": 1289,
         "message": "VOP1 DPP integer source modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1378,
+        "line": 1380,
         "message": "VOP2 SDWA output modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1381,
+        "line": 1383,
         "message": "VOP2 SDWA source modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1389,
+        "line": 1391,
         "message": "VOP2 SDWA modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1392,
+        "line": 1394,
         "message": "VOP2 SDWA destination selector is not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1395,
+        "line": 1397,
         "message": "VOP2 SDWA source selector is not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1400,
+        "line": 1402,
         "message": "VOP2 SDWA source modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1483,
+        "line": 1485,
         "message": "DPP modifier is not supported for opcode…DPP8 modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1492,
+        "line": 1494,
         "message": "VOP2 DPP integer source modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1673,
+        "line": 1675,
         "message": "VOPC DPP modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1813,
+        "line": 1815,
         "message": "VOP3P integer dot source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1998,
+        "line": 2000,
         "message": "VOP3 perm-lane op_sel bits are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2007,
+        "line": 2009,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2013,
+        "line": 2015,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2019,
+        "line": 2021,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2027,
+        "line": 2029,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2033,
+        "line": 2035,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2039,
+        "line": 2041,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2045,
+        "line": 2047,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2051,
+        "line": 2053,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2057,
+        "line": 2059,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2063,
+        "line": 2065,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2073,
+        "line": 2075,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2079,
+        "line": 2081,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2084,
+        "line": 2086,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2097,
+        "line": 2099,
         "message": "VOP3 interpolation modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2138,
+        "line": 2140,
         "message": "VOP3 interpolation modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2283,
+        "line": 2285,
         "message": "VOPC SDWA modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2485,
+        "line": 2487,
         "message": "VOP3P integer clamp is not implemented"
       },
       {
         "file": "Recompiler.cpp",
-        "line": 84,
+        "line": 86,
         "message": "ShaderRecompiler::Recompile: unsupported shader stage"
       },
       {
         "file": "Recompiler.cpp",
-        "line": 274,
+        "line": 276,
         "message": "a merged hull program that calls a fetch subroutine is unsupported"
       },
       {
         "file": "Recompiler.cpp",
-        "line": 1222,
+        "line": 1224,
         "message": "unsupported prepared vertex format"
       },
       {
@@ -717,17 +712,12 @@
       },
       {
         "file": "Translation/src/MemoryInstructions/MemoryInstructionDispatch.cpp",
-        "line": 149,
-        "message": "buffer_atomic_csub without glc is not supported, at pc "
-      },
-      {
-        "file": "Translation/src/MemoryInstructions/MemoryInstructionDispatch.cpp",
-        "line": 245,
+        "line": 242,
         "message": "global_atomic_csub without glc is not supported, at pc "
       },
       {
         "file": "Translation/src/MemoryInstructions/MemoryInstructionDispatch.cpp",
-        "line": 707,
+        "line": 704,
         "message": "TranslateMemoryInstruction not implemented"
       },
       {
@@ -2930,7 +2920,7 @@
     },
     {
       "date": "2026-11-04",
-      "commit": "b611e634f7fc024f0c13e342d96de744448ef1d9",
+      "commit": "c6a0b0beec0c97ca321b7599aa3b8b9d8eaffc3c",
       "instructions": {
         "total": 1460,
         "decoded": 1456,
@@ -2947,6 +2937,46 @@
         "host": 68
       },
       "throws": 154
+    },
+    {
+      "date": "2026-11-05",
+      "commit": "495b960d4bb38d87327cc4ace7ff754ed33fc98c",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1456,
+        "translated": 1455
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 199
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 81,
+        "buffer": 80,
+        "host": 68
+      },
+      "throws": 152
+    },
+    {
+      "date": "2026-11-06",
+      "commit": "7513ca5e585cfa53fe31f7de791a6578fc0f5349",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1456,
+        "translated": 1455
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 199
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 81,
+        "buffer": 80,
+        "host": 68
+      },
+      "throws": 152
     }
   ]
 }
