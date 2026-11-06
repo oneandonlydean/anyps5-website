@@ -113,7 +113,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
         ))
       }
     </div>
-    <div class="glow" aria-hidden="true"></div>
     <div class="container hero-copy">
       {release && <a class="release" href={release.url}><b>{release.tag}</b> {t.home.latestRelease} · <LocalDate iso={release.published} /> <span aria-hidden="true">→</span></a>}
       <h1 set:html={t.home.headline.replace("<em>", '<span class="gradient-text">').replace("</em>", "</span>")} />
@@ -432,9 +431,11 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
 </Base>
 
 <script>
-  // The cover wall stops moving while it's scrolled out of view, so it costs nothing further down the page.
-  const hero = document.querySelector<HTMLElement>("[data-hero]");
-  if (hero) new IntersectionObserver(([entry]) => hero.toggleAttribute("data-offscreen", !entry.isIntersecting)).observe(hero);
+  // The cover wall and the avatar rows stop moving while they're scrolled out of view, so they cost nothing there.
+  const offscreen = new IntersectionObserver((entries) => {
+    for (const entry of entries) (entry.target as HTMLElement).toggleAttribute("data-offscreen", !entry.isIntersecting);
+  });
+  document.querySelectorAll("[data-hero], .lane").forEach((el) => offscreen.observe(el));
 </script>
 
 <style>
@@ -481,11 +482,13 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       transform: translateY(-50%);
     }
   }
+  /* The fades over the wall. Static, so on a layer of its own it is drawn once and only composited as the wall moves. */
   .hero::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -2;
+    will-change: transform;
     background:
       linear-gradient(to bottom, var(--bg), transparent 14%, transparent 86%, var(--bg)),
       linear-gradient(to left, var(--bg), transparent 12%),
@@ -498,29 +501,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
         color-mix(in srgb, var(--bg) 85%, transparent) calc(max(0px, (100% - var(--width)) / 2) + 560px),
         transparent calc(max(0px, (100% - var(--width)) / 2) + 900px)
       );
-  }
-  /* A faint grid and a coloured glow behind the headline. */
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(700px 480px at 20% 45%, black, transparent 75%);
-    opacity: 0.5;
-  }
-  .glow {
-    position: absolute;
-    left: -10%;
-    top: 10%;
-    z-index: -1;
-    width: 760px;
-    height: 560px;
-    background:
-      radial-gradient(closest-side at 40% 45%, color-mix(in srgb, var(--accent) 26%, transparent), transparent),
-      radial-gradient(closest-side at 70% 65%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent);
-    pointer-events: none;
   }
   .hero-copy {
     padding-block: 72px;
@@ -1149,6 +1129,10 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     display: flex;
     width: max-content;
     animation: slide var(--duration) linear infinite;
+    will-change: transform;
+  }
+  .lane[data-offscreen] .track {
+    animation-play-state: paused;
   }
   .track.reverse {
     animation-direction: reverse;
