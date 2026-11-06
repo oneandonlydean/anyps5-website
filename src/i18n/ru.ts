@@ -35,6 +35,7 @@ const strings: Strings = {
     community: "Сообщество",
     webConverter: "Веб-конвертер",
     updates: "Новости",
+    feeds: "Ленты",
     documentation: "Документация",
     faq: "Вопросы и ответы",
     build: "Сборка из исходников",

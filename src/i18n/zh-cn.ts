@@ -26,6 +26,7 @@ const strings: Strings = {
     community: "社区",
     webConverter: "网页转换器",
     updates: "动态",
+    feeds: "订阅源",
     documentation: "文档",
     faq: "常见问题",
     build: "从源码构建",

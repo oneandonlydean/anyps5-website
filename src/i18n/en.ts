@@ -31,6 +31,7 @@ const en = {
     community: "Community",
     webConverter: "Web converter",
     updates: "Updates",
+    feeds: "Feeds",
     documentation: "Documentation",
     faq: "FAQ",
     build: "Build from source",

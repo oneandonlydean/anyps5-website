@@ -1,0 +1,94 @@
+---
+import Base from "../../layouts/Base.astro";
+
+/** The site's Atom feeds, for feed readers and Discord feed bots. Each one is built by updates.xml.ts or [feed].xml.ts. */
+const FEEDS = [
+  { path: "/updates.xml", title: "All updates", text: "Releases, games that moved up a stage and library milestones, in one feed." },
+  { path: "/feeds/releases.xml", title: "Releases", text: "Each new AnyPS5 release. Good for an announcements channel." },
+  { path: "/feeds/games.xml", title: "Games", text: "Games that reach a new stage on the compatibility list." },
+  { path: "/feeds/libraries.xml", title: "Library milestones", text: "System libraries that get their first function, reach half, or are completed." },
+  { path: "/feeds/progress-daily.xml", title: "Daily progress", text: "One summary a day of what was merged and what it added." },
+  { path: "/feeds/progress.xml", title: "Progress", text: "Every feature, fix and speed-up as it is merged, around 160 a day." },
+];
+---
+
+<Base title="Feeds" description="Atom feeds of AnyPS5 releases, games, library milestones and daily progress, for feed readers and Discord.">
+  <section class="container page-head">
+    <span class="eyebrow">Feeds</span>
+    <h1>Follow along</h1>
+    <p class="lede">
+      Add one of these to a feed reader, or to a Discord feed bot to post into a channel. Each is an Atom feed; the same news is on <a href="/updates">Updates</a>.
+    </p>
+  </section>
+
+  <section class="container">
+    <ul class="feeds">
+      {
+        FEEDS.map((f) => (
+          <li class="card feed">
+            <div>
+              <h2>{f.title}</h2>
+              <p class="muted">{f.text}</p>
+              <code>{f.path}</code>
+            </div>
+            <div class="actions">
+              <button type="button" class="button" data-copy-feed={f.path} aria-label={`Copy the ${f.title} feed link`}>
+                Copy link
+              </button>
+              <a class="button ghost" href={f.path}>Open</a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy-feed]")) {
+    button.addEventListener("click", async () => {
+      const url = new URL(button.dataset.copyFeed!, location.origin).href;
+      try {
+        await navigator.clipboard.writeText(url);
+        document.dispatchEvent(new CustomEvent("toast", { detail: "Feed link copied" }));
+      } catch {
+        document.dispatchEvent(new CustomEvent("toast", { detail: url }));
+      }
+    });
+  }
+</script>
+
+<style>
+  .feeds {
+    display: grid;
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 0 96px;
+    padding: 0;
+    list-style: none;
+  }
+  .feed {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 24px;
+    padding: 20px 22px;
+  }
+  .feed h2 {
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+  }
+  .feed p {
+    margin: 0 0 8px;
+    font-size: 0.9rem;
+  }
+  .feed code {
+    color: var(--faint);
+    font-size: 0.8rem;
+  }
+  .actions {
+    display: flex;
+    gap: 8px;
+  }
+</style>

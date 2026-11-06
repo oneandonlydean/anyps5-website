@@ -27,6 +27,7 @@ const strings: Strings = {
     community: "Comunidad",
     webConverter: "Conversor web",
     updates: "Novedades",
+    feeds: "Feeds",
     documentation: "Documentación",
     faq: "Preguntas frecuentes",
     build: "Compilar desde el código fuente",

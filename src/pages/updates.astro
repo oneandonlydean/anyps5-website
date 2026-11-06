@@ -18,40 +18,15 @@ const listed = new Set(days.slice(0, LISTED_DAYS).map(([day]) => day));
 const count = (category: string) => updates.filter((u) => CATEGORY[u.kind] === category).length;
 const merges = all.filter((u) => u.kind === "merge").length;
 
-const FEEDS = [
-  { path: "/feeds/releases.xml", title: "Releases", text: "Each new AnyPS5 release. Good for an announcements channel." },
-  { path: "/feeds/progress.xml", title: "Progress", text: "Every feature, fix and speed-up as it is merged, around 160 a day." },
-  { path: "/feeds/progress-daily.xml", title: "Daily progress", text: "One summary a day of what was merged and what it added." },
-  { path: "/feeds/libraries.xml", title: "Library milestones", text: "System libraries that get their first function, reach half, or are completed." },
-  { path: "/feeds/games.xml", title: "Games", text: "Games that reach a new stage on the compatibility list." },
-];
 ---
 
-<Base title="Updates" description="New releases, games that moved up a stage, and every fix merged into AnyPS5, with feeds for each.">
+<Base title="Updates" description="New releases, games that moved up a stage, and every fix merged into AnyPS5.">
   <section class="container page-head">
     <span class="eyebrow">Updates</span>
     <h1>What's new</h1>
     <p class="lede">Releases, games that moved up the ladder, and what was merged each day: {merges.toLocaleString("en-GB")} features, fixes and speed-ups in the last 30 days.</p>
   </section>
 
-  <section class="container feeds" aria-labelledby="feeds-title">
-    <h2 id="feeds-title" class="feeds-title">Follow in Discord or a feed reader</h2>
-    <ul>
-      {
-        FEEDS.map((f) => (
-          <li class="feed" title={f.text}>
-            <a href={f.path}>
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm-2-7a11 11 0 0 1 11 11h-3a8 8 0 0 0-8-8v-3Zm0-7a18 18 0 0 1 18 18h-3A15 15 0 0 0 3 6V3Z" /></svg>
-              {f.title}
-            </a>
-            <button type="button" data-copy-feed={f.path} aria-label={`Copy the ${f.title} feed link`}>
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
-            </button>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
 
   <section class="container timeline" data-updates>
     <div class="chips" role="group" aria-label="Show">
@@ -175,17 +150,6 @@ const FEEDS = [
     (event.currentTarget as HTMLElement).remove();
   });
 
-  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy-feed]")) {
-    button.addEventListener("click", async () => {
-      const url = new URL(button.dataset.copyFeed!, location.origin).href;
-      try {
-        await navigator.clipboard.writeText(url);
-        document.dispatchEvent(new CustomEvent("toast", { detail: "Feed link copied" }));
-      } catch {
-        document.dispatchEvent(new CustomEvent("toast", { detail: url }));
-      }
-    });
-  }
 </script>
 
 <style>
@@ -193,55 +157,6 @@ const FEEDS = [
   .thumb :global(.mark) {
     color: inherit;
   }
-  .feeds {
-    margin-bottom: 40px;
-  }
-  .feeds-title {
-    margin: 0 0 12px;
-    color: var(--muted);
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-  .feeds ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .feed {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--surface);
-    font-size: 0.82rem;
-  }
-  .feed a,
-  .feed button {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--muted);
-  }
-  .feed a {
-    padding: 5px 8px 5px 12px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .feed button {
-    padding: 5px 10px 5px 8px;
-    border: 0;
-    border-left: 1px solid var(--line);
-    background: none;
-    cursor: pointer;
-  }
-  .feed a:hover,
-  .feed button:hover {
-    color: var(--text);
-  }
-
   .timeline {
     padding-bottom: 96px;
   }
