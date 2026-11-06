@@ -105,7 +105,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     <div class="wall" aria-hidden="true">
       {
         columns.map((column, c) => (
-          <div class="column" style={`--speed:${60 + c * 9}s;--offset:${c % 2 ? -50 : 0}%`}>
+          <div class="column" style={`--speed:${60 + c * 9}s;--phase:${c % 2 ? 0.5 : 0}`}>
             {[...column, ...column].map((g, i) => (
               <GameArt name={g.name} src={g.art!.cover} color={g.art!.color} ratio="2/3" widths={[240, 360]} sizes="180px" eager={i < 3 && c >= 5} loading="eager" />
             ))}
@@ -466,8 +466,10 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     display: grid;
     gap: 14px;
     align-content: start;
+    /* Each column holds its covers twice and drifts up by one set, so it loops without a seam. Odd columns start half a
+       loop in: a negative delay staggers them, where shifting them would run them out of covers before the loop ends. */
     animation: drift var(--speed) linear infinite;
-    translate: 0 var(--offset);
+    animation-delay: calc(var(--speed) * var(--phase) * -1);
     will-change: transform;
   }
   .hero[data-offscreen] .column {
