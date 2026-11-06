@@ -83,16 +83,21 @@ const anchor = (group: number, question: number) => `q${group + 1}-${question + 
   summary::-webkit-details-marker {
     display: none;
   }
+  /* A chevron: pointing down while the answer is closed, up while it is open. */
   summary::after {
-    content: "+";
+    content: "";
     flex: none;
-    color: var(--faint);
-    font-size: 1.3rem;
-    font-weight: 400;
-    transition: transform 0.2s var(--ease);
+    width: 8px;
+    height: 8px;
+    margin: -4px 4px 0;
+    border-right: 2px solid var(--faint);
+    border-bottom: 2px solid var(--faint);
+    transform: rotate(45deg);
+    transition: transform 0.2s var(--ease), margin 0.2s var(--ease);
   }
   details[open] summary::after {
-    transform: rotate(45deg);
+    margin-top: 4px;
+    transform: rotate(-135deg);
   }
   summary:hover {
     background: var(--raised);
