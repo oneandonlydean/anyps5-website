@@ -143,7 +143,6 @@ const en = {
     joinTitle: "Join in",
     joinText: "Test a game and tell us how far it got, pick up something from the most-wanted list, or just come and say hi.",
     discord: "Join the Discord",
-    reportRun: "Upload a run report",
     github: "GitHub repository",
   },
   guide: {

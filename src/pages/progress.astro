@@ -10,9 +10,8 @@ import { formatDate, REPO_URL } from "../lib/site";
 import { getCommits, getCompatHistory, getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
 import { atLeast, gameSeries } from "../lib/compat-history";
 import { stageRank } from "../lib/stages";
-import { MAP_SOURCE, progressMap } from "../lib/progress-map";
 
-const [progress, libraryHistory, coverage, needs, games, compatHistory, commits, functionMap] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames(), getCompatHistory(), getCommits(), progressMap()]);
+const [progress, libraryHistory, coverage, needs, games, compatHistory, commits] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames(), getCompatHistory(), getCommits()]);
 const number = new Intl.NumberFormat("en-GB");
 const percent = (done: number, total: number, digits = 2) => `${total ? ((done / total) * 100).toFixed(digits) : "0"}%`;
 
@@ -292,15 +291,6 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
             <span style={`width:${(libraries.done / libraries.total) * 100}%`} />
           </div>
           <LibraryMap groups={libraries.groups} waiting={waitingByLibrary} wanted={wantedByFunction} />
-          {functionMap && (
-            <figure class="chart-wrap function-map" id="function-map">
-              <h3>Every function, one square each</h3>
-              <a href="/bot/progress.png" aria-label="Open the function map at full size">
-                <img src="/bot/progress.png" width={functionMap.width} height={functionMap.height} loading="lazy" decoding="async" alt={`Upstream's map of all ${number.format(libraries.total)} system library functions as small squares, grouped by library: green ones are implemented, grey ones are still missing.`} />
-              </a>
-              <figcaption class="muted">Green is implemented, grey is still missing. Open it to zoom in. Drawn from <a href={MAP_SOURCE}>upstream's progress map</a> at each update.</figcaption>
-            </figure>
-          )}
           {libraryHistory.length > 1 && (
             <div class="chart-wrap">
               <LineChart
@@ -780,26 +770,6 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
     margin-top: 28px;
     padding-top: 24px;
     border-top: 1px solid var(--line);
-  }
-  .function-map {
-    margin-inline: 0;
-  }
-  .function-map h3 {
-    margin: 0 0 14px;
-    font-size: 1rem;
-  }
-  /* Upstream draws the map on its own dark ground, so it sits in a dark frame in both themes. */
-  .function-map img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: #0d1117;
-  }
-  .function-map figcaption {
-    margin-top: 10px;
-    font-size: 0.86rem;
   }
   .chart-wrap .hint {
     margin: 10px 0 0;

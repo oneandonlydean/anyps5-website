@@ -136,7 +136,6 @@ const strings: Strings = {
     joinTitle: "一起来",
     joinText: "测试一款游戏并分享结果，从最受期待列表里挑点事做，或者来聊聊天。",
     discord: "加入 Discord",
-    reportRun: "提交测试报告",
     github: "GitHub 仓库",
   },
   guide: {

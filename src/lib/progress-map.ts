@@ -4,12 +4,12 @@ import { UPSTREAM_PAGES } from "./site";
 
 /**
  * Upstream's library map (progress.svg: every system library function as a square, green when implemented) as a PNG,
- * drawn once per build. Served at /bot/progress.png for the bot's /progressmap (Discord doesn't show SVG) and shown on
- * /progress. Null when upstream can't be reached, so both leave it out.
+ * drawn once per build. Served at /bot/progress.png for the bot's /progressmap, since Discord doesn't show SVG. Null when
+ * upstream can't be reached, so the build leaves it out.
  */
 
-export const MAP_SOURCE = `${UPSTREAM_PAGES}/progress.svg`;
-export const MAP_WIDTH = 2000;
+const MAP_SOURCE = `${UPSTREAM_PAGES}/progress.svg`;
+const MAP_WIDTH = 2000;
 
 let map: Promise<{ png: Buffer; width: number; height: number } | null> | undefined;
 

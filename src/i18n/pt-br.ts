@@ -136,7 +136,6 @@ const strings: Strings = {
     joinTitle: "Participe",
     joinText: "Teste um jogo e compartilhe o resultado, escolha algo da lista dos mais procurados ou venha bater um papo.",
     discord: "Entre no Discord",
-    reportRun: "Relatar um teste",
     github: "Repositório no GitHub",
   },
   guide: {
