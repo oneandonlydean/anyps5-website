@@ -1069,9 +1069,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     font: 800 3rem / 1 var(--display);
     letter-spacing: -0.04em;
   }
-  .leaders li:first-child .rank {
-    color: color-mix(in srgb, var(--accent) 35%, transparent);
-  }
   .leaders img {
     flex: none;
     width: 56px;
@@ -1113,9 +1110,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   /* Testers in the stage palette's green, so the two boards read apart. */
   .tester-leaders a:hover {
     border-color: color-mix(in srgb, var(--good) 50%, var(--line-strong));
-  }
-  .tester-leaders li:first-child .rank {
-    color: color-mix(in srgb, var(--good) 35%, transparent);
   }
   .tester-leaders img {
     box-shadow:
@@ -1225,21 +1219,15 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     translate: -50% 0;
   }
   @media (prefers-reduced-motion: reduce) {
-    .pulse {
-      animation: none;
-    }
-    /* Without motion the rows stand still and wrap, so everyone shows without a scrollbar (Windows turns this on
-       whenever its animation effects are off). */
+    /* Without motion (Windows turns this on whenever its animation effects are off), each row stands still as one
+       line that scrolls sideways, with no scrollbar showing; the faded edges say there is more. */
     .window {
-      overflow: visible;
-      mask-image: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
     }
-    .track {
-      width: auto;
-    }
-    .track ul {
-      flex-wrap: wrap;
-      padding: 0;
+    .window::-webkit-scrollbar {
+      display: none;
     }
     .track ul[aria-hidden] {
       display: none;

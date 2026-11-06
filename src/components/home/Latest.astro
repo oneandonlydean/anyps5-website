@@ -45,7 +45,6 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     <section class="container latest" aria-label={t.home.latestUpdates} data-latest>
       <div class="head">
         <span class="label">
-          <i class="pulse" aria-hidden="true" />
           {t.home.latest}
         </span>
         <div class="head-tools">
@@ -285,22 +284,6 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     font: 500 0.72rem var(--mono);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-  }
-  .pulse {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent-2);
-    animation: pulse 2.4s var(--ease) infinite;
-  }
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-2) 60%, transparent);
-    }
-    70%,
-    100% {
-      box-shadow: 0 0 0 7px transparent;
-    }
   }
   .head-tools {
     display: flex;
@@ -725,11 +708,6 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     }
     .parts {
       grid-template-columns: minmax(0, 1fr);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .pulse {
-      animation: none;
     }
   }
 </style>

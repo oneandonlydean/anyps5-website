@@ -25,6 +25,9 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     </nav>
 
     <div class="tools">
+      <button class="icon" type="button" aria-label={t.nav.search} data-search-open>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      </button>
       <details class="lang">
         <summary class="icon" aria-label={t.nav.language}>
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg>
@@ -39,9 +42,6 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
           ))}
         </ul>
       </details>
-      <button class="icon" type="button" aria-label={t.nav.search} data-search-open>
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
-      </button>
       <a class="icon" href={DISCORD_URL} aria-label="Discord">
         <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d={DISCORD_ICON} /></svg>
       </a>
