@@ -79,7 +79,7 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     };
     root.dataset.themeSwitching = "";
     const done = () => requestAnimationFrame(() => delete root.dataset.themeSwitching);
-    if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(apply).finished.finally(done);
+    if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(apply).finished.then(done, done);
     else {
       apply();
       done();

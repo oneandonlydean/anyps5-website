@@ -199,10 +199,11 @@ const viewer = shots.map((s) => ({
         update();
         (opening ? photo : img).style.viewTransitionName = "shot";
       });
-      transition.finished.finally(() => {
+      const unname = () => {
         img.style.viewTransitionName = "";
         photo.style.viewTransitionName = "";
-      });
+      };
+      transition.finished.then(unname, unname);
     };
 
     // Opens with the full image: waits for it, but never more than a moment, so a slow connection still opens promptly.

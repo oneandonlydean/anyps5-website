@@ -52,10 +52,12 @@
     const input = ["wheel", "touchmove", "keydown", "pointerdown"];
     const options = { capture: true, passive: true };
     input.forEach((type) => addEventListener(type, skip, options));
-    e.viewTransition.finished.finally(() => input.forEach((type) => removeEventListener(type, skip, options)));
+    const stop = () => input.forEach((type) => removeEventListener(type, skip, options));
+    e.viewTransition.finished.then(stop, stop);
     // Entrance animations would fight the morph; pages skip them when this class is set.
     document.documentElement.classList.add("vt-arrived");
-    e.viewTransition.finished.finally(clear);
+    // Not finally(): a transition the browser aborts ("invalid state") rejects, and that would surface as an uncaught error.
+    e.viewTransition.finished.then(clear, clear);
     const from = self.navigation?.activation?.from?.url;
     if (from && !name(from) && vt && peer(vt)) arrival = { from, vt };
   });
