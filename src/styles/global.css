@@ -395,6 +395,14 @@ pre {
   white-space: nowrap;
 }
 
+/* A count after a heading ("Test reports 12"): the headings' tight letter spacing makes a plain space look cramped. */
+h2 > .count {
+  margin-inline-start: 0.3em;
+  font-weight: 500;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
 /* While the theme switches, the page cross-fades as a whole (Header.astro); element transitions would lag behind it. */
 :root[data-theme-switching] *,
 :root[data-theme-switching] *::before,
