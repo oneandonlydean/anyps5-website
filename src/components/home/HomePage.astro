@@ -983,13 +983,17 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     margin: 0;
     font-size: 1.2rem;
   }
-  /* A card too narrow for both side by side puts the logo above, with the stage under it on the right. */
+  /*
+   * A card too narrow for both side by side puts the logo above, with the stage pill under it across the card: every
+   * pill the same size, its bar taking what the label leaves, so a longer label (Ingame PR) doesn't push it askew.
+   */
   @container (max-width: 460px) {
     .feature-copy {
       grid-template-columns: minmax(0, 1fr);
     }
-    .feature-stage {
-      justify-self: end;
+    .feature-stage :global(.bar) {
+      flex: 1;
+      width: auto;
     }
   }
   /* The stage's name and its bar share one pill. */
@@ -1006,8 +1010,10 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     width: clamp(72px, 9vw, 120px);
   }
   .feature :global(.badge) {
+    flex: none;
     background: none;
     color: #fff;
+    white-space: nowrap;
   }
   .feature :global(.bar i:not(.on):not(.branch)) {
     background: rgb(255 255 255 / 0.18);
