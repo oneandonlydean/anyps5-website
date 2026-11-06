@@ -655,12 +655,25 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     gap: 10px;
     margin-inline: calc(var(--gutter) * -1);
     padding: 12px var(--gutter);
-    transition: background-color 0.2s;
   }
-  /* A backdrop only while pinned under the header, so the cards scroll behind it; at rest it sits on the page. */
-  .toolbar.stuck {
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(12px);
+  /*
+   * A backdrop only while pinned under the header, so the cards scroll behind it; at rest it sits on the page. It
+   * spans the window and matches the header's glass, so the two read as one bar.
+   */
+  .toolbar::before {
+    content: "";
+    position: absolute;
+    inset: 0 calc(50% - 50vw);
+    z-index: -1;
+    border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: saturate(1.4) blur(14px);
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .toolbar.stuck::before {
+    opacity: 1;
   }
   .toolbar-sentinel {
     height: 1px;
