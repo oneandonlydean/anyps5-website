@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import StageBadge from "../components/StageBadge.astro";
 import GameArt from "../components/GameArt.astro";
+import Logo from "../components/Logo.astro";
 import { formatDate } from "../lib/site";
 import { AREA_LABEL, AREAS, typeLabel } from "../lib/merges";
 import { CATEGORY, getUpdates, type Update } from "../lib/updates";
@@ -119,7 +120,7 @@ const FEEDS = [
                       </span>
                     ) : (
                       <span class:list={["thumb icon", u.kind]} aria-hidden="true">
-                        {u.kind === "release" ? "★" : u.kind === "retest" ? "↻" : u.kind === "library" ? (u.milestone === "complete" ? "✓" : "◐") : "↗"}
+                        {u.kind === "release" ? <Logo size={16} /> : u.kind === "retest" ? "↻" : u.kind === "library" ? (u.milestone === "complete" ? "✓" : "◐") : "↗"}
                       </span>
                     )}
                     <span class="copy">
@@ -188,6 +189,10 @@ const FEEDS = [
 </script>
 
 <style>
+  /* A release's icon is the AnyPS5 mark, in the icon's colour. */
+  .thumb :global(.mark) {
+    color: inherit;
+  }
   .feeds {
     margin-bottom: 40px;
   }

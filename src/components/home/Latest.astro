@@ -1,5 +1,6 @@
 ---
 import GameArt from "../GameArt.astro";
+import Logo from "../Logo.astro";
 import LocalDate from "../LocalDate.astro";
 import StageBadge from "../StageBadge.astro";
 import { getLatest, type Change, type Part } from "../../lib/latest";
@@ -118,7 +119,7 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
                           </>
                         ) : (
                           <>
-                            <span class="spark" aria-hidden="true">★</span> <b>{e.title}</b>
+                            <span class="spark release" aria-hidden="true"><Logo size={12} /></span> <b>{e.title}</b>
                           </>
                         )}
                       </a>
@@ -551,6 +552,14 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
   }
   .spark {
     color: var(--good);
+  }
+  .spark.release {
+    color: var(--accent);
+  }
+  .spark :global(.mark) {
+    display: inline-flex;
+    color: inherit;
+    vertical-align: -1px;
   }
   .parts {
     display: grid;
