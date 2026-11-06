@@ -873,7 +873,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   }
   .list-head,
   .games.list :global(.body) {
-    grid-template-columns: minmax(0, 1.5fr) minmax(150px, 1fr) minmax(0, 1.2fr) 110px;
+    grid-template-columns: minmax(0, 1.5fr) minmax(180px, 1fr) minmax(0, 1.2fr) 110px;
     gap: 20px;
   }
   .list-head {
@@ -937,10 +937,15 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     color: var(--faint);
     font-size: 0.74rem;
   }
+  /* The badge gets a fixed column as wide as the widest one ("First draw" with its PR tag), so every row's bar starts and
+     ends at the same place whatever the stage is called. */
   .games.list :global(.stage) {
-    grid-template-columns: minmax(60px, 1fr) auto;
+    grid-template-columns: minmax(32px, 1fr) 8.5rem;
     align-items: center;
     gap: 12px;
+  }
+  .games.list :global(.stage .badge) {
+    justify-self: start;
   }
   .games.list :global(.systems) {
     display: flex;
