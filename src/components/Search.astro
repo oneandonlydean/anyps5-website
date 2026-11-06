@@ -7,7 +7,6 @@
   <form method="dialog" class="bar">
     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
     <input type="search" placeholder="Search games, the guide and docs" aria-label="Search" autocomplete="off" data-search-input />
-    <kbd>Esc</kbd>
   </form>
   <ul class="results" role="listbox" data-search-results></ul>
   <p class="state" data-search-state>Type to search</p>
@@ -84,6 +83,8 @@
       state.textContent = "Type to search";
       return;
     }
+    // The index loads on the first search, which can take a moment.
+    state.textContent = list.childElementCount ? "" : "Searching…";
     const engine = await load();
     if (run !== latest) return;
     if (!engine) {
@@ -164,12 +165,6 @@
     color: var(--text);
     font: inherit;
     font-size: 1.05rem;
-  }
-  kbd {
-    padding: 2px 6px;
-    border: 1px solid var(--line-strong);
-    border-radius: 5px;
-    font-size: 0.72rem;
   }
   .results {
     overflow: auto;

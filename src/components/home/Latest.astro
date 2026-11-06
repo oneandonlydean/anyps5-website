@@ -230,11 +230,17 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     // The slider: arrows move by about a card's width; the rail itself scrolls by touch, wheel and keyboard.
     const rail = root.querySelector<HTMLElement>("[data-rail]");
     const arrows = root.querySelectorAll<HTMLButtonElement>("[data-slide]");
+    // Each edge fades only while there are more cards past it, and the arrows switch off at the ends.
     const update = () => {
       if (!rail) return;
-      const end = rail.scrollWidth - rail.clientWidth - 2;
-      arrows[0]!.disabled = rail.scrollLeft <= 2;
-      arrows[1]!.disabled = rail.scrollLeft >= end;
+      const atStart = rail.scrollLeft <= 2;
+      const atEnd = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
+      rail.toggleAttribute("data-more-before", !atStart);
+      rail.toggleAttribute("data-at-end", atEnd);
+      if (arrows.length) {
+        arrows[0]!.disabled = atStart;
+        arrows[1]!.disabled = atEnd;
+      }
     };
     for (const arrow of arrows) {
       arrow.addEventListener("click", () => {
@@ -243,7 +249,7 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
       });
     }
     rail?.addEventListener("scroll", update, { passive: true });
-    if (arrows.length) update();
+    update();
 
     // The timeline: one day at a time.
     const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-day]")];
@@ -364,8 +370,17 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     scroll-padding-inline: var(--gutter);
     scrollbar-width: none;
     overscroll-behavior-x: contain;
-    /* Cards fade out at the edge instead of being cut, which also says there are more. */
-    mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
+    /* Cards fade out at an edge instead of being cut, which also says there are more that way (the script marks
+       the ends; without it, only the right edge fades). */
+    --fade-start: 0px;
+    --fade-end: 56px;
+    mask-image: linear-gradient(90deg, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
+  }
+  .rail[data-more-before] {
+    --fade-start: 56px;
+  }
+  .rail[data-at-end] {
+    --fade-end: 0px;
   }
   .rail::-webkit-scrollbar {
     display: none;
