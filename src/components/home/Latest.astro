@@ -18,11 +18,9 @@ const t = strings(locale);
 const lang = locale === "en" ? "en-GB" : locale;
 const num = (n: number) => n.toLocaleString(lang);
 const signed = (n: number) => `${n > 0 ? "+" : ""}${num(n)}`;
-const latest = await getLatest();
 // The landing page's slider shows games only (moving up, first results, reported lower): releases and library
 // milestones mean little to someone new, and have their place in the timeline and on /updates.
-const highlights = latest.highlights.filter((h) => h.kind === "stage" || h.kind === "regression");
-const { days } = latest;
+const { games: highlights, days } = await getLatest();
 const dayName = (day: string, style: "short" | "long") =>
   new Date(`${day}T00:00:00Z`).toLocaleDateString(lang, { weekday: style, day: "numeric", month: "short", timeZone: "UTC" });
 

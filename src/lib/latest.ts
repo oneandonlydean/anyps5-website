@@ -64,6 +64,8 @@ export interface Day {
 
 const HIGHLIGHT_DAYS = 21;
 const HIGHLIGHTS = 14;
+/** Games in the slider: the newest results, however far back that reaches, so a quiet week still fills it. */
+const GAME_SLIDES = 14;
 const TIMELINE_DAYS = 4;
 
 /** "libSceFreeType" → "FreeType", as the progress page names libraries; "libkernel" and "libc" stay as they are. */
@@ -91,7 +93,7 @@ function days(merges: ClassifiedMerge[]): Map<string, ClassifiedMerge[]> {
   return out;
 }
 
-let cache: Promise<{ highlights: Highlight[]; days: Day[] }> | undefined;
+let cache: Promise<{ highlights: Highlight[]; games: Highlight[]; days: Day[] }> | undefined;
 
 export function getLatest() {
   return (cache ??= build());
@@ -109,10 +111,14 @@ async function build() {
   const newest = updates[0]?.date ?? new Date().toISOString();
   const since = Date.parse(newest) - HIGHLIGHT_DAYS * 864e5;
 
-  const highlights: Highlight[] = updates
+  const toHighlight = (u: (typeof updates)[number]): Highlight => ({ id: u.id, kind: u.kind as Highlight["kind"], date: u.date, title: u.title, text: u.text, url: u.url, game: u.game, stage: u.stage, from: u.from, first: u.first, milestone: u.milestone, library: u.library });
+  // Headline events of the last few weeks, which the timeline marks on their days.
+  const highlights = updates
     .filter((u) => (u.kind === "release" || u.kind === "stage" || u.kind === "regression" || (u.kind === "library" && u.milestone !== "started")) && Date.parse(u.date) >= since)
     .slice(0, HIGHLIGHTS)
-    .map((u) => ({ id: u.id, kind: u.kind as Highlight["kind"], date: u.date, title: u.title, text: u.text, url: u.url, game: u.game, stage: u.stage, from: u.from, first: u.first, milestone: u.milestone, library: u.library }));
+    .map(toHighlight);
+  // The slider shows games only, chosen on their own rather than out of the events above.
+  const games = updates.filter((u) => u.kind === "stage" || u.kind === "regression").slice(0, GAME_SLIDES).map(toHighlight);
 
   const merges = updates.flatMap((u) => (u.kind === "digest" ? (u.merges ?? []) : []));
   const byDay = days(merges);
@@ -159,5 +165,5 @@ async function build() {
       };
     });
 
-  return { highlights, days: timeline };
+  return { highlights, games, days: timeline };
 }
