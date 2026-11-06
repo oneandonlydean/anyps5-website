@@ -366,14 +366,7 @@ const description = (() => {
                           {row.stated && <span class="muted small stated" title="The run report itself records up to Presents; the tester said it got this far. It counts once another tester confirms it.">unconfirmed</span>}
                         </td>
                         <td class="system">
-                          {(row.os || row.gpuVendor) && (
-                            <span class="chips">
-                              {row.os && <span class:list={["chip-os", row.os]}>{PLATFORM_LABEL[row.os as keyof typeof PLATFORM_LABEL] ?? row.os}</span>}
-                              {row.gpuVendor && <span class:list={["chip-gpu", row.gpuVendor.toLowerCase()]}>{row.gpuVendor}</span>}
-                            </span>
-                          )}
-                          {row.gpu && row.gpu !== row.gpuVendor && <span class="gpu-model">{row.gpu.replace(new RegExp(`^${row.gpuVendor ?? ""}\\s*`, "i"), "")}</span>}
-                          {!row.os && !row.gpuVendor && !row.gpu && "—"}
+                          {[row.os && (PLATFORM_LABEL[row.os as keyof typeof PLATFORM_LABEL] ?? row.os), row.gpuVendor].filter(Boolean).join(" · ") || "—"}
                         </td>
                         <td class="build" title={row.buildTitle}>
                           <span class="mono small">{row.build}</span>
@@ -402,7 +395,6 @@ const description = (() => {
               <p class="muted">No structured reports yet. The discussion thread may still have notes.</p>
             )
           }
-          {rows.length > 0 && <p class="report-hint muted">Select a report to see everything it says.</p>}
         </section>
         <ReportDialog game={game.name} reports={game.reports} uploads={game.uploads} />
       </div>
@@ -755,41 +747,6 @@ const description = (() => {
     padding: 8px 12px;
     font-size: 0.9rem;
   }
-  .chip-os,
-  .chip-gpu {
-    display: inline-block;
-    margin: 0;
-    padding: 1px 8px;
-    border: 1px solid var(--line-strong);
-    border-radius: 999px;
-    font-size: 0.74rem;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-  /* GPU vendors in their brand hues, with the name always shown. */
-  .chip-gpu.amd {
-    border-color: color-mix(in srgb, #ed1c24 50%, var(--line));
-    color: color-mix(in srgb, #ff5a5f 70%, var(--text));
-  }
-  .chip-gpu.nvidia {
-    border-color: color-mix(in srgb, #76b900 50%, var(--line));
-    color: color-mix(in srgb, #8fd400 65%, var(--text));
-  }
-  .chip-gpu.intel {
-    border-color: color-mix(in srgb, #0071c5 55%, var(--line));
-    color: color-mix(in srgb, #3aa0ff 65%, var(--text));
-  }
-  .chips {
-    display: flex;
-    gap: 4px;
-    white-space: nowrap;
-  }
-  .gpu-model {
-    display: block;
-    margin-top: 4px;
-    color: var(--muted);
-    font-size: 0.82rem;
-  }
   .build .mono {
     white-space: nowrap;
   }
@@ -870,6 +827,10 @@ const description = (() => {
   }
   .nowrap {
     white-space: nowrap;
+  }
+  /* The whole row opens the report, so its date needs no underline to say it's a link. */
+  .reports a[data-open] {
+    text-decoration: none;
   }
   .reports tbody tr {
     cursor: pointer;
@@ -965,10 +926,6 @@ const description = (() => {
     .phone-only {
       display: inline;
     }
-  }
-  .report-hint {
-    margin: 12px 0 0;
-    font-size: 0.8rem;
   }
   .small {
     font-size: 0.8rem;
