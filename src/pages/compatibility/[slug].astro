@@ -695,17 +695,21 @@ const description = (() => {
   .note-from a:hover {
     color: var(--text);
   }
+  /* The tags share one column, as wide as the widest in the list, so every number and title starts at the same place. */
   .blockers {
     display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 10px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
   .blockers li {
-    display: flex;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
     align-items: baseline;
-    gap: 12px;
+    column-gap: 12px;
     padding: 12px 14px;
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
@@ -724,7 +728,7 @@ const description = (() => {
     font-size: 0.85em;
   }
   .state {
-    flex: none;
+    justify-self: start;
     padding: 2px 8px;
     border-radius: 999px;
     font: 600 0.7rem/1.5 var(--mono);
