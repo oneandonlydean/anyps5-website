@@ -322,19 +322,21 @@ const data = {
       const end = points.at(-1)!.start + points.at(-1)!.seconds;
       const x = (t: number) => ((t - start) / Math.max(end - start, 1)) * W;
       const y = (fps: number) => H - (fps / top) * H;
-      // Each interval drawn at its middle, so a single interval is still a point.
-      const xy = points.map((p) => [x(p.start + p.seconds / 2), y(p.fps)] as const);
-      const line = xy.map(([px, py], i) => `${i ? "L" : "M"}${px.toFixed(1)},${py.toFixed(1)}`).join("");
+      // A step for each interval: its rate held from its start to its end.
+      const line = points.map((p, i) => `${i ? "L" : "M"}${x(p.start).toFixed(1)},${y(p.fps).toFixed(1)}H${x(p.start + p.seconds).toFixed(1)}`).join("");
       const chart = svg("svg", { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: "none", class: "rd-fps-plot", role: "img", "aria-label": `Frames per second over the session, from ${Math.min(...points.map((p) => p.fps))} to ${Math.max(...points.map((p) => p.fps))}` });
-      for (const t of [30, 60, 120]) if (t < top) chart.append(svg("line", { x1: 0, x2: W, y1: y(t), y2: y(t), class: "rd-fps-grid" }));
+      const grid = [30, 60, 120].filter((t) => t < top * 0.92 && t > top * 0.08);
+      for (const t of grid) chart.append(svg("line", { x1: 0, x2: W, y1: y(t), y2: y(t), class: "rd-fps-grid" }));
       chart.append(
-        svg("path", { d: `${line}L${xy.at(-1)![0].toFixed(1)},${H}L${xy[0]![0].toFixed(1)},${H}Z`, class: "rd-fps-area" }),
+        svg("path", { d: `${line}V${H}H0Z`, class: "rd-fps-area" }),
         svg("path", { d: line, class: "rd-fps-line" }),
       );
       const cross = svg("line", { x1: 0, x2: 0, y1: 0, y2: H, class: "rd-fps-cross", visibility: "hidden" });
       chart.append(cross);
       const tip = el("div", { className: "rd-fps-tip", hidden: true });
-      const wrap = el("div", { className: "rd-fps" }, el("div", { className: "rd-fps-axis" }, el("span", {}, `${Math.round(top)} fps`), el("span", {}, "0")), chart, tip);
+      const axis = el("div", { className: "rd-fps-axis" }, el("span", {}, `${Math.round(top)} fps`), el("span", {}, "0"));
+      for (const t of grid) axis.append(el("span", { className: "rd-fps-tick", style: `top: ${((y(t) / H) * 100).toFixed(1)}%` }, String(t)));
+      const wrap = el("div", { className: "rd-fps" }, axis, chart, tip);
       wrap.append(el("div", { className: "rd-scale" }, el("span", {}, seconds(start)), el("span", {}, seconds(end))));
       chart.addEventListener("pointermove", (event) => {
         const box = chart.getBoundingClientRect();
@@ -385,7 +387,7 @@ const data = {
           ["CPU", b.host.cpu ? `${b.host.cpu}${b.host.cpuThreads ? ` · ${plural(b.host.cpuThreads, "thread")}` : ""}` : null],
           ["Memory", mib ? `${number.format(Math.round(mib / 1024))} GiB` : null],
           ["Not compared", b.comparable ? null : [b.profiled.length ? `Profiled with ${b.profiled.join(", ")}` : null, b.dirty ? "built from modified sources" : null].filter(Boolean).join("; ")],
-          ["Settings", Object.keys(b.env).length ? el("span", { className: "mono" }, Object.entries(b.env).map(([k, v]) => `${k}=${v}`).join(" ")) : null],
+          ["Settings", Object.keys(b.env).length ? el("span", { className: "mono rd-env" }, ...Object.entries(b.env).map(([k, v]) => el("span", {}, `${k}=${v}`))) : null],
         ]),
       );
     }
@@ -868,6 +870,16 @@ const data = {
     color: var(--faint);
     font-size: 0.72rem;
     font-variant-numeric: tabular-nums;
+  }
+  .report-dialog :global(.rd-fps-tick) {
+    position: absolute;
+    right: 8px;
+    transform: translateY(-50%);
+  }
+  .report-dialog :global(.rd-env) {
+    display: grid;
+    font-size: 0.8rem;
+    overflow-wrap: anywhere;
   }
   .report-dialog :global(.rd-fps-plot) {
     display: block;

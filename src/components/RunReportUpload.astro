@@ -196,6 +196,7 @@ const { games } = Astro.props;
   async function chooseBench(file: File | undefined) {
     bench = null;
     benchPreview.hidden = true;
+    result.replaceChildren();
     if (!file) return;
     benchLabel.textContent = file.name;
     const bad = (text: string, issues: string[] = []) => {
