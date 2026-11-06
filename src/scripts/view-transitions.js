@@ -45,6 +45,14 @@
     const vt = store((s) => s.getItem(KEY));
     store((s) => s.removeItem(KEY));
     if (!e.viewTransition) return;
+    // The transition's layers are drawn over the page and don't scroll with it, so scrolling during it would leave the
+    // morphing art floating over the content. Any wheel, touch drag, key or press ends it at once instead. Not "scroll":
+    // going back restores the scroll position, which fires it without the visitor doing anything.
+    const skip = () => e.viewTransition.skipTransition();
+    const input = ["wheel", "touchmove", "keydown", "pointerdown"];
+    const options = { capture: true, passive: true };
+    input.forEach((type) => addEventListener(type, skip, options));
+    e.viewTransition.finished.finally(() => input.forEach((type) => removeEventListener(type, skip, options)));
     // Entrance animations would fight the morph; pages skip them when this class is set.
     document.documentElement.classList.add("vt-arrived");
     e.viewTransition.finished.finally(clear);
