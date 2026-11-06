@@ -26,8 +26,10 @@ const num = (n: number) => n.toLocaleString(locale === "en" ? "en-GB" : locale);
 const [games, release, progress, coverage] = await Promise.all([getGames(), getRelease(), getProgress(), getCoverage()]);
 const shaders = coverage && { percent: (coverage.instructions.decoded / coverage.instructions.total) * 100 };
 const byReach = [...games].sort((a, b) => stageRank(reach(b).stage) - stageRank(reach(a).stage) || b.updated.localeCompare(a.updated));
-const wall = byReach.filter((g) => g.art?.cover).slice(0, 36);
-const columns = [0, 1, 2, 3, 4, 5].map((c) => wall.filter((_, i) => i % 6 === c));
+// Ten columns, so the wall reaches across even a wide screen.
+const WALL_COLUMNS = 10;
+const wall = byReach.filter((g) => g.art?.cover).slice(0, WALL_COLUMNS * 6);
+const columns = Array.from({ length: WALL_COLUMNS }, (_, c) => wall.filter((_, i) => i % WALL_COLUMNS === c));
 const featured = byReach.filter((g) => g.art?.hero).slice(0, 6);
 const tested = games.filter((g) => reach(g).stage);
 const ingame = games.filter((g) => stageRank(reach(g).stage) >= stageRank("Ingame")).length;
@@ -105,7 +107,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
         columns.map((column, c) => (
           <div class="column" style={`--speed:${60 + c * 9}s;--offset:${c % 2 ? -50 : 0}%`}>
             {[...column, ...column].map((g, i) => (
-              <GameArt name={g.name} src={g.art!.cover} color={g.art!.color} ratio="2/3" widths={[240, 360]} sizes="180px" eager={i < 3 && c < 4} />
+              <GameArt name={g.name} src={g.art!.cover} color={g.art!.color} ratio="2/3" widths={[240, 360]} sizes="180px" eager={i < 3 && c >= 5} />
             ))}
           </div>
         ))
@@ -447,10 +449,10 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   }
   .wall {
     position: absolute;
-    inset: -10% -6% -10% 34%;
+    inset: -10% -6%;
     z-index: -3;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(10, minmax(150px, 1fr));
     gap: 14px;
     /* Kept cheap to draw, as it moves for as long as the page is open: a flat tilt rather than a 3D one, no mask, and
        each column on its own layer, so a frame only shifts the columns instead of redrawing (and re-masking) the whole
@@ -487,7 +489,15 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     background:
       linear-gradient(to bottom, var(--bg), transparent 14%, transparent 86%, var(--bg)),
       linear-gradient(to left, var(--bg), transparent 12%),
-      linear-gradient(90deg, var(--bg) 30%, color-mix(in srgb, var(--bg) 60%, transparent) 55%, transparent 80%);
+      /* The wall shows dimmed across the whole width, and darkest behind the text, which starts where the page's
+         content column does. */
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--bg) 70%, transparent) 0,
+        color-mix(in srgb, var(--bg) 92%, transparent) max(0px, (100% - var(--width)) / 2),
+        color-mix(in srgb, var(--bg) 85%, transparent) calc(max(0px, (100% - var(--width)) / 2) + 560px),
+        transparent calc(max(0px, (100% - var(--width)) / 2) + 900px)
+      );
   }
   /* A faint grid and a coloured glow behind the headline. */
   .hero::after {
