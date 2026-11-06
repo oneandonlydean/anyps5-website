@@ -66,7 +66,7 @@ const strings: Strings = {
         `目前 ${total} 款中有 ${playable} 款可玩，很多在菜单前就停住了。`,
       ownTitle: "你需要自己的 PS5 和游戏",
       ownText: "从你自己的 PS5 上导出（dump）游戏。我们不提供游戏或工具。",
-      easyTitle: "最简单：网页转换器",
+      easyTitle: "网页转换器",
       easyText: "无需安装，文件不会离开你的电脑。",
       helpTitle: "测试也有帮助",
       helpText: "告诉我们游戏运行到哪一步，开发者就知道该修什么。",
@@ -93,7 +93,7 @@ const strings: Strings = {
     fixes: (n: number) => `修复 ${n} 项`,
     speedup: "提速",
     more: (n: number) => `还有 ${n} 项`,
-    moreParts: (n: number) => `另有 ${n} 个部分有改动`,
+    showAllChanges: "显示全部改动",
     howItWorks: "工作原理",
     stepsTitle: "从主机到 PC，只需三步",
     steps: [

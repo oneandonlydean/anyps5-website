@@ -166,7 +166,7 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
               </div>
               {d.parts.length > PARTS_SHOWN && (
                 <details class="rest">
-                  <summary>{t.home.moreParts(d.parts.length - PARTS_SHOWN)}</summary>
+                  <summary>{t.home.showAllChanges}</summary>
                   <ul class="rest-list">
                     {d.parts.slice(PARTS_SHOWN).map((p) => (
                       <li class={p.area}>

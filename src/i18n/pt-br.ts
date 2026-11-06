@@ -66,7 +66,7 @@ const strings: Strings = {
         `${playable} de ${total} até agora. Muitos param antes do menu.`,
       ownTitle: "Você precisa do seu PS5 e do jogo",
       ownText: "Copie (faça o dump) do jogo a partir de um PS5 seu. Não fornecemos jogos nem ferramentas.",
-      easyTitle: "O jeito mais fácil: o conversor web",
+      easyTitle: "O conversor web",
       easyText: "Nada para instalar, e seus arquivos não saem do seu PC.",
       helpTitle: "Testar ainda ajuda",
       helpText: "Conte até onde seu jogo chega, e os desenvolvedores saberão o que corrigir.",
@@ -93,7 +93,7 @@ const strings: Strings = {
     fixes: (n: number) => (n === 1 ? "1 correção" : `${n} correções`),
     speedup: "Mais rápido",
     more: (n: number) => `+${n} mais`,
-    moreParts: (n: number) => (n === 1 ? "mais 1 parte mudou" : `mais ${n} partes mudaram`),
+    showAllChanges: "Mostrar todas as mudanças",
     howItWorks: "Como funciona",
     stepsTitle: "Três passos do seu console até o seu PC",
     steps: [

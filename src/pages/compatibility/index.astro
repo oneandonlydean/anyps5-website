@@ -105,7 +105,8 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
       }
     </div>
 
-    <div class="toolbar">
+    <div class="toolbar-sentinel" aria-hidden="true" data-toolbar-sentinel></div>
+    <div class="toolbar" data-toolbar>
       <label class="search">
         <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
         <span class="visually-hidden">Search games</span>
@@ -203,6 +204,11 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
 </Base>
 
 <script>
+  // The toolbar is pinned once the line just above it has scrolled under the header (64px).
+  const toolbar = document.querySelector<HTMLElement>("[data-toolbar]");
+  const sentinel = document.querySelector<HTMLElement>("[data-toolbar-sentinel]");
+  if (toolbar && sentinel)
+    new IntersectionObserver(([entry]) => toolbar.classList.toggle("stuck", !entry!.isIntersecting && entry!.boundingClientRect.top < 64), { rootMargin: "-64px 0px 0px 0px" }).observe(sentinel);
   const grid = document.querySelector<HTMLElement>("[data-games]")!;
   const cards = [...grid.querySelectorAll<HTMLAnchorElement>(".game")];
   const search = document.querySelector<HTMLInputElement>("input[name=q]")!;
@@ -649,8 +655,16 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     gap: 10px;
     margin-inline: calc(var(--gutter) * -1);
     padding: 12px var(--gutter);
+    transition: background-color 0.2s;
+  }
+  /* A backdrop only while pinned under the header, so the cards scroll behind it; at rest it sits on the page. */
+  .toolbar.stuck {
     background: color-mix(in srgb, var(--bg) 88%, transparent);
     backdrop-filter: blur(12px);
+  }
+  .toolbar-sentinel {
+    height: 1px;
+    margin-bottom: -1px;
   }
   .search {
     display: flex;

@@ -67,7 +67,7 @@ const strings: Strings = {
         `${playable} de ${total} por ahora. Muchos se detienen antes del menú.`,
       ownTitle: "Necesitas tu propia PS5 y tu juego",
       ownText: "Copia (vuelca) el juego desde una PS5 tuya. No ofrecemos juegos ni herramientas.",
-      easyTitle: "Lo más fácil: el conversor web",
+      easyTitle: "El conversor web",
       easyText: "Sin instalar nada, y tus archivos no salen de tu PC.",
       helpTitle: "Probarlo sigue ayudando",
       helpText: "Cuéntanos hasta dónde llega tu juego y los desarrolladores sabrán qué arreglar.",
@@ -94,7 +94,7 @@ const strings: Strings = {
     fixes: (n: number) => (n === 1 ? "1 corrección" : `${n} correcciones`),
     speedup: "Más rápido",
     more: (n: number) => `+${n} más`,
-    moreParts: (n: number) => (n === 1 ? "1 parte más cambió" : `${n} partes más cambiaron`),
+    showAllChanges: "Mostrar todos los cambios",
     howItWorks: "Cómo funciona",
     stepsTitle: "Tres pasos de tu consola a tu PC",
     steps: [

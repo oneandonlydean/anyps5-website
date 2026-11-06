@@ -1268,8 +1268,13 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .join p {
     margin: 0;
   }
+  /* The text gives way so the buttons sit beside it, and drop below only once it would be too narrow to read. */
+  .join > div:first-child {
+    flex: 1 1 360px;
+  }
   .join .links {
     display: flex;
+    flex: none;
     flex-wrap: wrap;
     gap: 10px;
   }
