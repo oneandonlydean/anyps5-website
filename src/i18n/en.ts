@@ -47,7 +47,7 @@ const en = {
     latestRelease: "Latest release",
     /** HTML: the word in <em> gets the gradient. */
     headline: "PS5 games, running <em>natively</em> on PC.",
-    lede: "AnyPS5 rewrites a PS5 game's executable so it runs as a normal Linux or Windows program, on the console's system libraries rebuilt from scratch. No emulator in between.",
+    lede: "AnyPS5 rewrites a PS5 game's executable to run natively on Linux or Windows, using rebuilt system libraries. No emulator in between.",
     openConverter: "Open the converter",
     setupGuide: "Setup guide",
     compatibility: "Compatibility",
