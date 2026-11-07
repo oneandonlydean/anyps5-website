@@ -247,7 +247,7 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
             <div>
               <span class="eyebrow">Development</span>
               <h2>
-                <span class="big">{number.format(commitTotal)}</span> commits on main
+                <span class="big">{number.format(commitTotal)}</span> commits
               </h2>
               <p class="muted">
                 Every commit on upstream <a href={REPO_URL}>main</a>, counted by the UTC day it was written. Merge commits are included, so the total matches what GitHub shows.
@@ -771,19 +771,13 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
     background: var(--good);
   }
   .chart-wrap {
-    margin-top: 28px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
+    margin-top: 52px;
   }
   .timeline-wrap {
-    margin-top: 28px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
+    margin-top: 52px;
   }
   .pace {
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
+    margin-top: 44px;
   }
   .pace h3 {
     margin: 0 0 12px;
@@ -1077,9 +1071,7 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
     color: var(--on-accent);
   }
   .descriptors {
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
+    margin-top: 44px;
   }
   .descriptors ul {
     display: flex;
