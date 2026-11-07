@@ -105,6 +105,24 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
       }
     </div>
 
+    {/* Collapsed until opened: the key to the stage bars, just above the search and the grid they explain. */}
+    <details class="legend card">
+      <summary>What the stages mean</summary>
+      <ol>
+        {
+          STAGES.map((s) => (
+            <li style={`--tone:var(--stage-${stageSlug(s.name)})`}>
+              <b>{s.name}</b>
+              <span class="muted">{s.meaning}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="muted">
+        A striped segment means the game gets further with open pull requests or local patches than on <code>main</code>. “Main builds only” hides that progress.
+      </p>
+    </details>
+
     <div class="toolbar-sentinel" aria-hidden="true" data-toolbar-sentinel></div>
     <div class="toolbar" data-toolbar>
       <label class="search">
@@ -183,23 +201,6 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
       <p class="muted">Tested a game that isn't listed? Share how far it got.</p>
       <a class="button primary" href="/report">Report a test run</a>
     </div>
-
-    <details class="legend card">
-      <summary>What the stages mean</summary>
-      <ol>
-        {
-          STAGES.map((s) => (
-            <li style={`--tone:var(--stage-${stageSlug(s.name)})`}>
-              <b>{s.name}</b>
-              <span class="muted">{s.meaning}</span>
-            </li>
-          ))
-        }
-      </ol>
-      <p class="muted">
-        A striped segment means the game gets further with open pull requests or local patches than on <code>main</code>. “Main builds only” hides that progress.
-      </p>
-    </details>
   </section>
 </Base>
 
@@ -1000,7 +1001,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   }
 
   .legend {
-    margin-top: 48px;
+    margin-top: 24px;
     padding: 4px 24px;
   }
   .legend summary {
@@ -1019,6 +1020,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   }
   .legend li {
     display: grid;
+    align-content: start;
     gap: 2px;
     padding-left: 16px;
     border-left: 3px solid var(--tone);
