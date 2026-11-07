@@ -1,4 +1,4 @@
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/inter/opsz.css";
 @import "@fontsource-variable/geist-mono";
 @import "@fontsource-variable/bricolage-grotesque/opsz.css";
 
@@ -35,7 +35,7 @@
   --stage-playable: #3cc8f0;
   --stage-untested: #2a3142;
 
-  --font: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   /* Headings and big numbers; its optical-size axis tightens the letterforms as the size grows. */
   --display: "Bricolage Grotesque Variable", var(--font);
   --mono: "Geist Mono Variable", ui-monospace, "Cascadia Mono", monospace;
@@ -249,14 +249,6 @@ pre {
   font: 500 0.75rem/1 var(--mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-}
-
-.eyebrow::before {
-  content: "";
-  width: 18px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.7;
 }
 
 .lede {
