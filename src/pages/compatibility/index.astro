@@ -454,9 +454,17 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
   }
+  /* The date is smaller than the counts, so it sits at the bottom of their line, raised to the same baseline: in
+     Bricolage Grotesque a line-height-1 baseline is 0.17em above the line's bottom, 0.30rem for the counts and 0.18rem
+     for the date. */
   .stats .date {
+    display: flex;
+    align-items: flex-end;
+    height: 1.75rem;
+    padding-bottom: 0.12rem;
+    box-sizing: border-box;
     font-size: 1.05rem;
-    line-height: 1.7rem;
+    line-height: 1;
     white-space: nowrap;
   }
 
