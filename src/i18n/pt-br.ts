@@ -65,7 +65,7 @@ const strings: Strings = {
       easyTitle: "O conversor web",
       easyText: "Nada para instalar, e seus arquivos não saem do seu PC.",
       helpTitle: "Testar ainda ajuda",
-      helpText: "Conte até onde seu jogo chega.",
+      helpText: "Envie um relatório, mesmo após travar.",
       checkGame: "Meu jogo funciona?",
     },
     latest: "Novidades",
