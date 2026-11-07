@@ -1,4 +1,5 @@
 ---
+import StateIcon from "../../components/StateIcon.astro";
 import LocalDate from "../../components/LocalDate.astro";
 import Base from "../../layouts/Base.astro";
 import GameArt from "../../components/GameArt.astro";
@@ -197,10 +198,8 @@ const description = (() => {
                 <ul class="blockers branch-prs">
                   {game.branch.prs.slice(0, BRANCH_PRS_SHOWN).map((p) => (
                     <li>
-                      <span class:list={["state", "pr", p.state]}>{p.state === "open" ? "Open PR" : p.state === "merged" ? "Merged since" : "Closed"}</span>
-                      <a href={p.url}>
-                        <span class="num">#{p.number}</span> {p.title}
-                      </a>
+                      <StateIcon state={p.state} />
+                      <a href={p.url}>{p.title}</a>
                     </li>
                   ))}
                 </ul>
@@ -210,9 +209,6 @@ const description = (() => {
                   {game.branch.prs.length > BRANCH_PRS_SHOWN && <>And {game.branch.prs.length - BRANCH_PRS_SHOWN} more{game.branch.patched ? ", " : "."} </>}
                   {game.branch.patched && <>{game.branch.prs.length > BRANCH_PRS_SHOWN ? "plus" : "Plus"} local changes listed in the report.</>}
                 </p>
-              )}
-              {!game.branch.patched && game.branch.prs.length > 0 && game.branch.prs.every((p) => p.state === "merged") && (
-                <p class="hint">All of these have merged since, so <code>main</code> may get there now. A new run would show it.</p>
               )}
             </div>
           )}
@@ -235,17 +231,15 @@ const description = (() => {
               )}
               {game.noteFrom && (
                 <p class="note-from">
-                  <a href={game.noteFrom.url}>{game.noteFrom.author ? `From ${game.noteFrom.author}'s report` : "From the report"} →</a>
+                  <a href={game.noteFrom.url}>{game.noteFrom.author ? `Open ${game.noteFrom.author}'s report` : "Open the report"} →</a>
                 </p>
               )}
               {game.blockers.length > 0 && (
                 <ul class="blockers">
                   {game.blockers.map((b) => (
                     <li>
-                      <span class:list={["state", b.kind]}>{b.kind === "pr" ? "Open PR" : "Open issue"}</span>
-                      <a href={b.url}>
-                        <span class="num">#{b.number}</span> {b.title}
-                      </a>
+                      <StateIcon state={b.kind === "pr" ? "open" : "issue"} />
+                      <a href={b.url}>{b.title}</a>
                     </li>
                   ))}
                 </ul>
@@ -686,7 +680,7 @@ const description = (() => {
   .note-from a:hover {
     color: var(--text);
   }
-  /* The tags share one column, as wide as the widest in the list, so every number and title starts at the same place. */
+  /* The state icons share one column, so every title starts at the same place. */
   .blockers {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
@@ -699,7 +693,7 @@ const description = (() => {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
-    align-items: baseline;
+    align-items: center;
     column-gap: 12px;
     padding: 12px 14px;
     border: 1px solid var(--line);
@@ -712,31 +706,6 @@ const description = (() => {
   }
   .blockers a:hover {
     color: var(--accent);
-  }
-  .num {
-    color: var(--faint);
-    font-family: var(--mono);
-    font-size: 0.85em;
-  }
-  .state {
-    justify-self: start;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font: 600 0.7rem/1.5 var(--mono);
-    background: color-mix(in srgb, var(--bad) 15%, transparent);
-    color: var(--bad);
-  }
-  .state.pr {
-    background: color-mix(in srgb, var(--good) 15%, transparent);
-    color: var(--good);
-  }
-  .state.pr.merged {
-    background: color-mix(in srgb, var(--accent) 15%, transparent);
-    color: var(--accent);
-  }
-  .state.pr.closed {
-    background: color-mix(in srgb, var(--faint) 15%, transparent);
-    color: var(--faint);
   }
   .branch-prs {
     margin-top: 12px;

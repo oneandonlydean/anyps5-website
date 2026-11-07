@@ -1,0 +1,66 @@
+---
+/**
+ * A pull request's or issue's state as a small icon in its state's colour, in place of a text tag. The state's name
+ * stays readable to screen readers and shows as a tooltip.
+ */
+interface Props {
+  state: "open" | "merged" | "closed" | "issue";
+}
+
+const { state } = Astro.props;
+const LABELS = { open: "Open pull request", merged: "Merged pull request", closed: "Closed pull request", issue: "Open issue" };
+const label = LABELS[state];
+---
+
+<span class:list={["state-icon", state]} role="img" aria-label={label} title={label}>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    {
+      state === "open" ? (
+        <>
+          <circle cx="18" cy="18" r="3" />
+          <circle cx="6" cy="6" r="3" />
+          <path d="M13 6h3a2 2 0 0 1 2 2v7M6 9v12" />
+        </>
+      ) : state === "merged" ? (
+        <>
+          <circle cx="18" cy="18" r="3" />
+          <circle cx="6" cy="6" r="3" />
+          <path d="M6 21V9a9 9 0 0 0 9 9" />
+        </>
+      ) : state === "closed" ? (
+        <>
+          <circle cx="6" cy="6" r="3" />
+          <circle cx="18" cy="18" r="3" />
+          <path d="M6 9v12M21 3l-6 6M21 9l-6-6M18 11.5V15" />
+        </>
+      ) : (
+        <>
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+        </>
+      )
+    }
+  </svg>
+</span>
+
+<style>
+  /* GitHub's own state colours: green open, purple merged, red closed, green open issue. */
+  .state-icon {
+    --open: #1a7f37;
+    --merged: #8250df;
+    --closed: #cf222e;
+    display: inline-flex;
+    color: var(--open);
+  }
+  :global(:root:not([data-theme="light"])) .state-icon {
+    --open: #3fb950;
+    --merged: #ab7df8;
+    --closed: #f85149;
+  }
+  .merged {
+    color: var(--merged);
+  }
+  .closed {
+    color: var(--closed);
+  }
+</style>
