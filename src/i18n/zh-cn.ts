@@ -36,7 +36,7 @@ const strings: Strings = {
     lastUpdated: "最后更新",
     dataFrom: "数据来自 AnyPS5",
     legal:
-      "AnyPS5 是一个独立项目，与 Sony Interactive Entertainment 无关，也未获其授权或认可。“PlayStation”和“PS5”是 Sony Interactive Entertainment Inc. 的商标。游戏美术素材归各自发行商所有，图片来自 PlayStation Store 和 SteamGridDB。AnyPS5 不包含也不分发任何受版权保护的软件、固件或密钥。",
+      "AnyPS5 是独立项目，与索尼互动娱乐（Sony Interactive Entertainment）无关，也未获其授权或认可；“PlayStation”和“PS5”是其商标。游戏图片归各自发行商所有。AnyPS5 不包含任何受版权保护的软件、固件或密钥。",
   },
   home: {
     headline: "PS5 游戏，在 PC 上<em>原生</em>运行。",

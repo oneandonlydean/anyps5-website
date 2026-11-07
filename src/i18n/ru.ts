@@ -45,7 +45,7 @@ const strings: Strings = {
     lastUpdated: "Обновлено",
     dataFrom: "данные из AnyPS5",
     legal:
-      "AnyPS5 — независимый проект, не связанный с Sony Interactive Entertainment и не одобренный ею. «PlayStation» и «PS5» — товарные знаки Sony Interactive Entertainment Inc. Обложки игр принадлежат их издателям и взяты из PlayStation Store и SteamGridDB. AnyPS5 не содержит и не распространяет защищённое авторским правом ПО, прошивки или ключи.",
+      "AnyPS5 — независимый проект, не связанный с Sony Interactive Entertainment и не одобренный ею, владелицей знаков «PlayStation» и «PS5». Обложки игр принадлежат издателям. AnyPS5 не содержит защищённых ПО, прошивок или ключей.",
   },
   home: {
     /** HTML: the word in <em> gets the gradient. */

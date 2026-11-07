@@ -41,7 +41,7 @@ const en = {
     lastUpdated: "Last updated",
     dataFrom: "data from AnyPS5",
     legal:
-      "AnyPS5 is an independent project, not affiliated with, authorised or endorsed by Sony Interactive Entertainment. “PlayStation” and “PS5” are trademarks of Sony Interactive Entertainment Inc. Game artwork belongs to its publishers and is shown from the PlayStation Store and SteamGridDB. AnyPS5 does not include or distribute copyrighted software, firmware or keys.",
+      "AnyPS5 is an independent project, not affiliated with, authorised or endorsed by Sony Interactive Entertainment, which owns the “PlayStation” and “PS5” trademarks. Game artwork belongs to its publishers. AnyPS5 includes no copyrighted software, firmware or keys.",
   },
   home: {
     /** HTML: the word in <em> gets the gradient. */

@@ -37,7 +37,7 @@ const strings: Strings = {
     lastUpdated: "Última actualización",
     dataFrom: "datos de AnyPS5",
     legal:
-      "AnyPS5 es un proyecto independiente, sin afiliación con Sony Interactive Entertainment ni autorizado o respaldado por ella. «PlayStation» y «PS5» son marcas comerciales de Sony Interactive Entertainment Inc. Las ilustraciones de los juegos pertenecen a sus editores y se muestran desde PlayStation Store y SteamGridDB. AnyPS5 no incluye ni distribuye software, firmware ni claves protegidos por derechos de autor.",
+      "AnyPS5 es un proyecto independiente, sin relación, autorización ni respaldo de Sony Interactive Entertainment, titular de las marcas «PlayStation» y «PS5». Las imágenes de los juegos pertenecen a sus editores. AnyPS5 no incluye software, firmware ni claves con derechos de autor.",
   },
   home: {
     headline: "Juegos de PS5 funcionando <em>de forma nativa</em> en PC.",
