@@ -23,7 +23,7 @@ const ticks = Array.from({ length: Math.round(top / step) + 1 }, (_, i) => i * s
 const n = dates.length;
 const centre = (i: number) => ((i + 0.5) / n) * 100;
 const labels = n > 2 ? [0, Math.floor((n - 1) / 2), n - 1] : dates.map((_, i) => i);
-const data = JSON.stringify({ dates: dates.map((d) => `${formatDate(d)} UTC`), values, partial });
+const data = JSON.stringify({ dates: dates.map((d) => formatDate(d)), values, partial });
 ---
 
 <figure class="chart" data-bar-chart={data} data-unit={unit} style={`--gap:${n > 120 ? 1 : 2}px`}>

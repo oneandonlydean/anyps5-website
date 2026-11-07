@@ -568,9 +568,10 @@ const waitingTitle = (n: number) => `${n} ${n === 1 ? "game is" : "games are"} w
     right: 5px;
     bottom: 4px;
   }
+  /* Rounded like the library tiles it sits on. */
   .library-map :global(.flag) {
     padding: 0 5px;
-    border-radius: 999px;
+    border-radius: 5px;
     background: var(--warn);
     color: #1a1000;
     font: 700 0.64rem/1.5 var(--mono);

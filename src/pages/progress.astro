@@ -285,7 +285,7 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
               <div><dt>Implemented</dt><dd>{number.format(libraries.done)}</dd></div>
               <div><dt>Missing</dt><dd>{number.format(libraries.total - libraries.done)}</dd></div>
               <div><dt>No-op bodies</dt><dd title="Implemented functions that only discard their arguments and return a constant">{number.format(inert)}</dd></div>
-              <div><dt>Complete libraries</dt><dd>{complete} <small>of {libraries.groups.length}</small></dd></div>
+              <div><dt>Completed</dt><dd>{complete} <small>of {libraries.groups.length}</small></dd></div>
             </dl>
           </header>
           <div class="meter" role="img" aria-label={`${percent(libraries.done, libraries.total)} implemented`}>
@@ -501,7 +501,7 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
             <div>
               <h3>Image formats</h3>
               <p class="muted">
-                Every format value a texture or buffer descriptor can name, and which layers handle it: the recompiler can <b>sample</b> it, read or write it as a typed <b>buffer</b>, and the graphics driver maps it to a <b>Vulkan</b> texture format.
+                Every format a descriptor can name: whether the recompiler can <b>sample</b> it or use it as a typed <b>buffer</b>, and whether the driver maps it to <b>Vulkan</b>.
               </p>
             </div>
             <div class="chips" role="group" aria-label="Show formats" data-format-filter>

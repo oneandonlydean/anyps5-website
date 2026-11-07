@@ -48,7 +48,7 @@ function path(values: (number | null)[]) {
 
 const labels = dates.length > 2 ? [0, Math.floor((dates.length - 1) / 2), dates.length - 1] : dates.map((_, i) => i);
 // Each point is a UTC day (the day's last measurement), not a moment, so it isn't moved into the visitor's timezone.
-const data = JSON.stringify({ dates: dates.map((d) => `${formatDate(d)} UTC`), series: series.map((s) => ({ label: s.label, values: s.values, color: s.color })) });
+const data = JSON.stringify({ dates: dates.map((d) => formatDate(d)), series: series.map((s) => ({ label: s.label, values: s.values, color: s.color })) });
 ---
 
 <figure class="chart" data-chart={data} data-unit={unit}>
@@ -140,7 +140,7 @@ const data = JSON.stringify({ dates: dates.map((d) => `${formatDate(d)} UTC`), s
         const swatch = document.createElement("i");
         swatch.style.background = s.color;
         const value = s.values[i];
-        row.append(swatch, `${s.label}: ${value === null ? "not measured" : number.format(value)} ${value === null ? "" : chart.dataset.unit}`);
+        row.append(swatch, `${s.label}: ${value === null ? "not measured" : number.format(value)}`);
         tip.append(row);
       }
       tip.style.left = `${left}%`;
