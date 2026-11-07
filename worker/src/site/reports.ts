@@ -1,7 +1,7 @@
 import { benchRequired, benchStats, checkBench, MAX_BENCH_BYTES, readBench, type BenchStats } from "../../../src/lib/bench";
 import { checkReport, MAX_REPORT_BYTES, SITE_STAGE, validateRunReport, type RunReport, type UpstreamFacts } from "../../../src/lib/run-report";
 import type { Env } from "../bot/env";
-import { currentAccount } from "./auth";
+import { currentAccount, isMaintainer } from "./auth";
 import { json, nowSeconds, problem, sameOrigin, sha256 } from "./http";
 import { requestRebuild } from "./rebuild";
 
@@ -151,22 +151,30 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   if (await db.prepare("SELECT 1 FROM uploads WHERE digest = ? OR run_id = ?").bind(digest, report.run.id).first()) return problem(409, "This run was already uploaded.");
   if (bench && (await db.prepare("SELECT 1 FROM uploads WHERE bench_digest = ?").bind(bench.digest).first()))
     return problem(409, "This frame-time file was already uploaded with another report.");
-  const status = flags.length ? "review" : "visible";
+  // A maintainer's own run is approved and confirmed as it arrives, so it moves the game's stage without a second
+  // tester. Any flags are still stored, so the queue shows what was noticed.
+  const confirmedBy = isMaintainer(env, account) ? account.login : null;
+  const status = flags.length && !confirmedBy ? "review" : "visible";
   let row: number | null;
   try {
     row = await db
     .prepare(
-      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name, stated_stage, bench, bench_digest) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
+      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name, stated_stage, bench, bench_digest, verified_by, verified_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
     )
-    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName, stated, bench ? JSON.stringify(bench.stats) : null, bench?.digest ?? null)
+    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName, stated, bench ? JSON.stringify(bench.stats) : null, bench?.digest ?? null, confirmedBy, confirmedBy ? nowSeconds() : null)
     .first<number>("id");
   } catch (err) {
     // The same run or frame-time file sent twice at once: the second insert hits a unique index.
     if (String(err).includes("UNIQUE")) return problem(409, "This run was already uploaded.");
     throw err;
   }
+  if (confirmedBy)
+    await db
+      .prepare("INSERT INTO moderation_log (action, kind, target, reason, by_login, created_at) VALUES ('verify', 'upload', ?, ?, ?, ?)")
+      .bind(String(row), "A maintainer's own upload", confirmedBy, nowSeconds())
+      .run();
   if (status === "visible") wait(requestRebuild(env, "upload"));
-  return json({ id: row, status, flags, titleId, stage: stated ?? SITE_STAGE[report.run.stage], fps: bench?.stats.measured.fps ?? null }, 201);
+  return json({ id: row, status, verified: confirmedBy !== null, flags, titleId, stage: stated ?? SITE_STAGE[report.run.stage], fps: bench?.stats.measured.fps ?? null }, 201);
 }
 
 /** The body, or null once it passes `limit` bytes; read as a stream, so an oversized upload is never held in full. */

@@ -281,7 +281,9 @@ const { games } = Astro.props;
     if (res.ok) {
       const done = el(
         "p",
-        data.status === "review"
+        data.verified
+          ? "Thanks! As a maintainer's report it's approved and confirmed already. The game's page and progress update after the next site update, in a few minutes."
+          : data.status === "review"
           ? name
             ? "Thanks! A maintainer checks new games first; the game gets its page once they have."
             : "Thanks! Something in this report needs a maintainer to look at it first; it shows once they have."

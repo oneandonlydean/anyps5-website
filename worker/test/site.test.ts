@@ -279,6 +279,31 @@ it("lets a maintainer verify one upload so it counts alone, and take it back", a
   expect(after.uploads.find((u) => u.id === id)?.verifiedBy).toBeNull();
 });
 
+it("approves and confirms a maintainer's own upload as it arrives, even when flagged", async () => {
+  const maintainer = await signIn("maint", 7);
+  const flagged = fresh();
+  flagged.anyps5.modified = true;
+  const res = await post("/api/reports", flagged, maintainer);
+  expect(res.status).toBe(201);
+  const { id, status, verified, flags } = await res.json<{ id: number; status: string; verified: boolean; flags: string[] }>();
+  expect(status).toBe("visible");
+  expect(verified).toBe(true);
+  // What was noticed is still kept for the record.
+  expect(flags.length).toBeGreaterThan(0);
+  const exported = await (await call("/api/export")).json<{ uploads: { id: number; verifiedBy: string | null }[] }>();
+  expect(exported.uploads.find((u) => u.id === id)?.verifiedBy).toBe("maint");
+  const queue = await (await call("/api/mod/queue", { cookie: maintainer })).json<{ review: { id: number }[]; log: { action: string; target: string; by_login: string }[] }>();
+  expect(queue.review.some((u) => u.id === id)).toBe(false);
+  expect(queue.log[0]).toMatchObject({ action: "verify", target: String(id), by_login: "maint" });
+
+  // Anyone else's flagged upload still waits for review, unconfirmed.
+  const tester = await signIn("tester", 42);
+  const other = fresh();
+  other.anyps5.modified = true;
+  const theirs = await (await post("/api/reports", other, tester)).json<{ status: string; verified: boolean }>();
+  expect(theirs).toMatchObject({ status: "review", verified: false });
+});
+
 it("never returns sign-in anywhere but this site, even with tabs or newlines in the path", async () => {
   for (const sneaky of ["/%09/evil.example", "/%0a/evil.example", "//evil.example", "/\\evil.example", "https://evil.example/"]) {
     const start = await call(`/auth/github?return=${sneaky}`);
