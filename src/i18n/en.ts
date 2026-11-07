@@ -44,13 +44,11 @@ const en = {
       "AnyPS5 is an independent project, not affiliated with, authorised or endorsed by Sony Interactive Entertainment. “PlayStation” and “PS5” are trademarks of Sony Interactive Entertainment Inc. Game artwork belongs to its publishers and is shown from the PlayStation Store and SteamGridDB. AnyPS5 does not include or distribute copyrighted software, firmware or keys.",
   },
   home: {
-    latestRelease: "Latest release",
     /** HTML: the word in <em> gets the gradient. */
     headline: "PS5 games, running <em>natively</em> on PC.",
     lede: "AnyPS5 rewrites a PS5 game's executable to run natively on Linux or Windows, using rebuilt system libraries. No emulator in between.",
     openConverter: "Open the converter",
     setupGuide: "Setup guide",
-    compatibility: "Compatibility",
     atAGlance: "At a glance",
     facts: ["Early development", "Free and open source", "Linux and Windows"],
     status: "Project status",

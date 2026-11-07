@@ -48,13 +48,11 @@ const strings: Strings = {
       "AnyPS5 — независимый проект, не связанный с Sony Interactive Entertainment и не одобренный ею. «PlayStation» и «PS5» — товарные знаки Sony Interactive Entertainment Inc. Обложки игр принадлежат их издателям и взяты из PlayStation Store и SteamGridDB. AnyPS5 не содержит и не распространяет защищённое авторским правом ПО, прошивки или ключи.",
   },
   home: {
-    latestRelease: "Последний релиз",
     /** HTML: the word in <em> gets the gradient. */
     headline: "Игры с PS5 — <em>нативно</em> на ПК.",
     lede: "AnyPS5 перекомпоновывает исполняемые файлы PS5 в нативные программы для Linux и Windows, которые работают с заново написанными системными библиотеками. Без эмулятора и без отдельного процесса-среды.",
     openConverter: "Открыть конвертер",
     setupGuide: "Руководство",
-    compatibility: "Совместимость",
     atAGlance: "Коротко",
     facts: ["Ранняя разработка", "Бесплатно и с открытым кодом", "Linux и Windows"],
     status: "Состояние проекта",

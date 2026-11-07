@@ -39,12 +39,10 @@ const strings: Strings = {
       "AnyPS5 是一个独立项目，与 Sony Interactive Entertainment 无关，也未获其授权或认可。“PlayStation”和“PS5”是 Sony Interactive Entertainment Inc. 的商标。游戏美术素材归各自发行商所有，图片来自 PlayStation Store 和 SteamGridDB。AnyPS5 不包含也不分发任何受版权保护的软件、固件或密钥。",
   },
   home: {
-    latestRelease: "最新版本",
     headline: "PS5 游戏，在 PC 上<em>原生</em>运行。",
     lede: "AnyPS5 把 PS5 可执行文件重新链接成原生的 Linux 和 Windows 程序，调用的是重新实现的系统库。不是模拟器，也没有额外的运行时进程。",
     openConverter: "打开转换器",
     setupGuide: "安装指南",
-    compatibility: "兼容性",
     atAGlance: "一览",
     facts: ["早期开发中", "免费开源", "支持 Linux 和 Windows"],
     status: "项目状态",

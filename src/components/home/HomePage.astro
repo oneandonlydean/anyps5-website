@@ -114,13 +114,12 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       }
     </div>
     <div class="container hero-copy">
-      {release && <a class="release" href={release.url}><b>{release.tag}</b> {t.home.latestRelease} · <LocalDate iso={release.published} /> <span aria-hidden="true">→</span></a>}
       <h1 set:html={t.home.headline.replace("<em>", '<span class="gradient-text">').replace("</em>", "</span>")} />
       <p class="lede">{t.home.lede}</p>
       <div class="ctas">
-        <a class="button primary" href="/convert">{t.home.openConverter}</a>
+        <a class="button primary" href="/download">{t.nav.download}{release && <span class="version">{release.tag}</span>}</a>
         <a class="button ghost" href={local("/docs/guide")}>{t.home.setupGuide}</a>
-        <a class="button ghost" href="/compatibility">{t.home.compatibility}</a>
+        <a class="button ghost" href="/convert">{t.nav.converter}</a>
       </div>
       <ul class="facts" aria-label={t.home.atAGlance}>
         {/* The first fact is the project's stage: it points to the section that explains it. */}
@@ -514,31 +513,12 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .hero-copy > * {
     max-width: 640px;
   }
-  .release {
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 28px;
-    padding: 5px 14px 5px 5px;
-    border: 1px solid var(--line-strong);
+  /* The latest release's tag, carried in the Download button. */
+  .version {
+    padding: 2px 8px;
     border-radius: 999px;
-    background: color-mix(in srgb, var(--surface) 88%, transparent);
-    box-shadow: inset 0 1px 0 var(--highlight);
-    color: var(--muted);
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .release b {
-    padding: 3px 9px;
-    border-radius: 999px;
-    background: var(--gradient);
-    color: var(--on-accent);
-    font: 600 0.78rem var(--mono);
-  }
-  .release:hover {
-    border-color: var(--faint);
-    color: var(--text);
+    background: rgb(0 0 0 / 0.16);
+    font: 600 0.74rem var(--mono);
   }
   .hero h1 {
     font-size: clamp(2.8rem, 7vw, 5.6rem);
