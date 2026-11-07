@@ -122,7 +122,7 @@ const description = (() => {
       <div class="container hero-inner" data-vt-with={art?.hero ? `hero-${game.slug}` : undefined}>
         <GameArt class="cover" name={game.name} src={art?.cover ?? art?.square ?? null} color={art?.color} ratio="2/3" widths={[240, 360, 480]} sizes="240px" eager peerTransitionName={`cover-${game.slug}`} />
         <div class="headline">
-          <a class="back" href="/compatibility">← All games</a>
+          <a class="back" href="/compatibility" data-back>← All games</a>
           {
             art?.logo ? (
               <h1 class="logo">
@@ -1012,6 +1012,33 @@ const description = (() => {
     .hero :global(.cover) {
       flex-basis: auto;
       width: 132px;
+      margin-bottom: 20px;
+    }
+    /* The back link leads the hero on a phone, above the cover, instead of sitting between the cover and the title. */
+    .hero-inner {
+      gap: 0;
+    }
+    .headline {
+      display: contents;
+    }
+    .back {
+      order: -1;
     }
   }
 </style>
+
+<script>
+  // Arriving from the games list, "All games" goes back to it rather than opening it afresh, so the list comes back
+  // where it was left: same scroll position and filters, without a reload.
+  const back = document.querySelector<HTMLAnchorElement>("a[data-back]");
+  back?.addEventListener("click", (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    const nav = (self as any).navigation;
+    const previous = nav?.canGoBack ? nav.entries()[nav.currentEntry.index - 1]?.url : document.referrer;
+    if (!previous) return;
+    const from = new URL(previous, location.href);
+    if (from.origin !== location.origin || from.pathname.replace(/\/$/, "") !== "/compatibility") return;
+    e.preventDefault();
+    history.back();
+  });
+</script>
