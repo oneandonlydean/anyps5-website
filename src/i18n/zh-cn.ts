@@ -116,7 +116,7 @@ const strings: Strings = {
     furthestTitle: "已经跑得很远的游戏",
     allGames: (n: string) => `全部 ${n} 款游戏`,
     peopleTitle: "打造 AnyPS5 的人们",
-    peopleText: "每一次提交、每一份测试报告都在推动游戏向前，崩溃的那些也不例外。",
+    peopleText: "每次提交和测试，哪怕崩溃，都在推动游戏向前。",
     contributors: "贡献者",
     commits: "提交",
     testers: "测试者",

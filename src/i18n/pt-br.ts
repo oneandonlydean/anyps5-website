@@ -116,7 +116,7 @@ const strings: Strings = {
     furthestTitle: "Jogos que já vão bem longe",
     allGames: (n: string) => `Todos os ${n} jogos`,
     peopleTitle: "As pessoas que constroem o AnyPS5",
-    peopleText: "Cada commit e cada relatório de teste faz um jogo avançar, inclusive os testes que travam.",
+    peopleText: "Cada commit e cada teste, mesmo um travamento, faz um jogo avançar.",
     contributors: "Colaboradores",
     commits: "Commits",
     testers: "Testadores",

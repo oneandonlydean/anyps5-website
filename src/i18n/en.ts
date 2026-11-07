@@ -123,7 +123,7 @@ const en = {
     furthestTitle: "Games that already go a long way",
     allGames: (n: string) => `All ${n} games`,
     peopleTitle: "The people building AnyPS5",
-    peopleText: "Every commit and every test run pushes a game a little further. Even the crashes help.",
+    peopleText: "Every commit and test run, even a crash, moves a game further.",
     contributors: "Contributors",
     commits: "Commits",
     testers: "Testers",
