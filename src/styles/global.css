@@ -148,7 +148,7 @@ img {
   max-width: 100%;
 }
 
-/* Links are coloured, not underlined; the underline shows on hover. */
+/* Links are coloured, never underlined. */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -158,7 +158,6 @@ a {
 
 a:hover {
   color: var(--accent-strong);
-  text-decoration: underline;
 }
 
 h1,
