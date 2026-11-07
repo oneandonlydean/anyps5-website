@@ -59,3 +59,62 @@ main {
 .converter:has(#selection[hidden]) #ready-note {
   visibility: hidden;
 }
+
+/* A failed run: a calm card with the message up front, and the report for bug reports folded away beneath it.
+   (Upstream draws it as one red block in monospace with the report open below.) */
+.error {
+  --bad: #ff6b81;
+  position: relative;
+  padding: 14px 18px 14px 50px;
+  border: 1px solid color-mix(in srgb, var(--bad) 35%, var(--line));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bad) 8%, var(--surface));
+  color: var(--text);
+  font: 500 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  white-space: normal;
+}
+
+:root[data-theme="light"] .error {
+  --bad: #d43552;
+}
+
+.error::before {
+  content: "!";
+  position: absolute;
+  top: 13px;
+  left: 16px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bad) 18%, transparent);
+  color: var(--bad);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.error details {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.error summary {
+  width: fit-content;
+  color: var(--muted);
+}
+
+.error summary:hover {
+  color: var(--text);
+}
+
+.error pre {
+  margin: 10px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--sunken);
+  color: var(--muted);
+  line-height: 1.6;
+}

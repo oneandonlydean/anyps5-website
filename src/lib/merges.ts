@@ -16,7 +16,7 @@ export const AREA_LABEL: Record<MergeArea, string> = {
   gpu: "GPU driver",
   shader: "Shader recompiler",
   relinker: "Relinker",
-  converter: "Web converter",
+  converter: "Converter",
   project: "Tools and docs",
 };
 

@@ -6,10 +6,10 @@ const release = await getRelease();
 const APP = "/convert/app/index.html";
 ---
 
-<Base title="Web converter" description="Convert a PS5 game you own into a native Linux or Windows program, right in your browser. Your files never leave your device.">
+<Base title="Converter" description="Convert a PS5 game you own into a native Linux or Windows program, right in your browser. Your files never leave your device.">
   <section class="container head">
     <div>
-      <span class="eyebrow">Web converter{release && ` · ${release.tag}`}</span>
+      <span class="eyebrow">Converter{release && ` · ${release.tag}`}</span>
       <h1>Convert in your browser</h1>
       <p class="lede">Choose your dump's folder or ZIP and pick Windows or Linux. Conversion runs on your device, and the result already includes the system libraries.</p>
     </div>
@@ -22,7 +22,7 @@ const APP = "/convert/app/index.html";
 
   <section class="container">
     <div class="frame">
-      <iframe src={APP} title="AnyPS5 web converter" data-converter></iframe>
+      <iframe src={APP} title="AnyPS5 converter" data-converter></iframe>
     </div>
     <p class="after muted">
       Converting does not mean a game runs. Check the <a href="/compatibility">compatibility list</a> for known blockers. Prefer a full-page view?{" "}
