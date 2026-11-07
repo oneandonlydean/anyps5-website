@@ -134,7 +134,7 @@ const en = {
     moreContributors: "More contributors",
     everyone: "Everyone on GitHub",
     joinTitle: "Join us",
-    joinText: "Test a game and tell us how far it got, pick up something from the most-wanted list, or just come and say hi.",
+    joinText: "Test games, take on a most-wanted task, or just say hi.",
     discord: "Join the Discord",
     github: "GitHub repository",
   },

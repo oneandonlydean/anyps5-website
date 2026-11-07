@@ -127,7 +127,7 @@ const strings: Strings = {
     moreContributors: "Mais colaboradores",
     everyone: "Todo mundo no GitHub",
     joinTitle: "Participe",
-    joinText: "Teste um jogo e compartilhe o resultado, escolha algo da lista dos mais procurados ou venha bater um papo.",
+    joinText: "Teste jogos, pegue uma tarefa pendente ou venha dar um oi.",
     discord: "Entre no Discord",
     github: "Repositório no GitHub",
   },

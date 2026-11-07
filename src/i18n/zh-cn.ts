@@ -127,7 +127,7 @@ const strings: Strings = {
     moreContributors: "更多贡献者",
     everyone: "在 GitHub 上查看所有人",
     joinTitle: "一起来",
-    joinText: "测试一款游戏并分享结果，从最受期待列表里挑点事做，或者来聊聊天。",
+    joinText: "测试游戏、认领任务，或者来打个招呼。",
     discord: "加入 Discord",
     github: "GitHub 仓库",
   },
