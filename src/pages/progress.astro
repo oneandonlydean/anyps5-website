@@ -254,13 +254,12 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
               </p>
             </div>
             <dl class="facts">
-              <div><dt>Last 7 full days</dt><dd>{number.format(commitWeek(0))} <small>{number.format(commitWeek(7))} the week before</small></dd></div>
+              <div><dt>Last 7 days</dt><dd>{number.format(commitWeek(0))} <small>{number.format(commitWeek(7))} the week before</small></dd></div>
               {busiest && <div><dt>Busiest day</dt><dd>{number.format(busiest.commits)} <small>{formatDate(busiest.date)}</small></dd></div>}
             </dl>
           </header>
           <div class="chart-wrap">
             <BarChart title="Commits per day" unit="commits" dates={commitDays.map((d) => d.date)} values={commitDays.map((d) => d.commits)} partial={commitsPartial} />
-            {commitsPartial && <p class="hint">The faded last bar, {formatDate(commits!.synced.slice(0, 10))}, is counted only up to {commits!.synced.slice(11, 16)} UTC.</p>}
           </div>
           {/* What those days' merges built, day by day. */}
           <div class="timeline-wrap">
@@ -780,11 +779,6 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
     margin-top: 28px;
     padding-top: 24px;
     border-top: 1px solid var(--line);
-  }
-  .chart-wrap .hint {
-    margin: 10px 0 0;
-    color: var(--faint);
-    font-size: 0.82rem;
   }
   .pace {
     margin-top: 24px;
