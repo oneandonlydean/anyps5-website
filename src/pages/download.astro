@@ -44,15 +44,6 @@ const groups: { title: string; text: string; items: { label: string; asset?: Rel
       { label: "Windows · tar.gz", asset: find(/^prx-windows-.*\.tar\.gz$/) },
     ],
   },
-  {
-    title: "Documentation",
-    text: "The reference documents for this release.",
-    items: [
-      { label: "Usage", asset: find(/^USAGE\.md$/) },
-      { label: "Input mapping", asset: find(/^INPUT_MAPPING\.md$/) },
-      { label: "Release notes", asset: find(/^release-notes\.md$/) },
-    ],
-  },
 ];
 ---
 
@@ -62,8 +53,8 @@ const groups: { title: string; text: string; items: { label: string; asset?: Rel
     <h1>Latest release</h1>
     {
       release ? (
-        <p class="lede">
-          <a href={release.url}>{release.tag}</a>, published <LocalDate iso={release.published} />. Most people only need the <a href="/convert">web converter</a>, which already
+        <p class="lede release">
+          <a href={release.url}>{release.tag}</a>, published <LocalDate iso={release.published} />. Most people only need the <a href="/convert">converter</a>, which already
           includes everything below.
         </p>
       ) : (
@@ -236,6 +227,13 @@ const groups: { title: string; text: string; items: { label: string; asset?: Rel
     .platform {
       flex-direction: column;
     }
+  }
+  /* The release line's links read as part of the sentence: coloured, underlined only on hover. */
+  .release a {
+    text-decoration: none;
+  }
+  .release a:hover {
+    text-decoration: underline;
   }
   .groups {
     display: grid;

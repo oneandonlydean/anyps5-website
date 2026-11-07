@@ -152,7 +152,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
             <small>%</small>
           </b>
           <span class="meter" style={`--value:${shaders.percent}%`} />
-          <span class="muted">{t.home.shadersOf(num(coverage!.throws.total))}</span>
+          <span class="muted">{t.home.shadersOf}</span>
         </a>
       )
     }
@@ -175,7 +175,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   <section class="container start" id="start" aria-labelledby="start-title">
     <div class="start-card card reveal">
       <div class="start-intro">
-        <span class="eyebrow">{t.home.start.eyebrow}</span>
         <h2 id="start-title">{t.home.start.title}</h2>
         <p class="muted">{t.home.start.text}</p>
         <div class="start-ctas">
@@ -207,7 +206,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
 
   <section class="container section">
     <div class="section-head reveal">
-      <span class="eyebrow">{t.home.howItWorks}</span>
       <h2>{t.home.stepsTitle}</h2>
     </div>
     <ol class="steps">
@@ -232,7 +230,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
 
   <section class="container section native">
     <div class="native-copy reveal">
-      <span class="eyebrow">{t.home.notEmulator}</span>
       <h2>{t.home.nativeTitle}</h2>
       <p class="muted">{t.home.nativeText}</p>
       <a class="button" href="/progress">{t.home.libraryProgress}</a>
@@ -271,7 +268,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       <section class="container section">
         <div class="section-head row reveal">
           <div>
-            <span class="eyebrow">{t.home.furthest}</span>
             <h2>{t.home.furthestTitle}</h2>
           </div>
           <a class="button" href="/compatibility">
@@ -305,7 +301,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   <section class="container section people" aria-labelledby="people-title">
     <div class="people-head reveal">
       <div>
-        <span class="eyebrow">{t.home.communityEyebrow}</span>
         <h2 id="people-title">{t.home.peopleTitle}</h2>
         <p class="muted">{t.home.peopleText}</p>
       </div>
@@ -617,6 +612,8 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .start-card {
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    /* The intro sits level with the middle of the points beside it. */
+    align-items: center;
     gap: clamp(24px, 4vw, 48px);
     padding: clamp(24px, 4vw, 40px);
     border-color: color-mix(in srgb, var(--warn) 35%, var(--line));
@@ -624,11 +621,8 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--warn) 9%, transparent), transparent 55%),
       var(--surface);
   }
-  .start-intro .eyebrow {
-    color: var(--warn);
-  }
   .start-intro h2 {
-    margin: 10px 0 14px;
+    margin: 0 0 14px;
   }
   .start-intro p {
     margin: 0;
@@ -682,6 +676,14 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   @media (max-width: 560px) {
     .start-points {
       grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  /* On a phone the two pills stack as one column as wide as the longer label, so both match in width and height. */
+  @media (max-width: 560px) {
+    .start-ctas {
+      display: grid;
+      grid-template-columns: minmax(0, max-content);
+      justify-content: start;
     }
   }
 
@@ -1341,6 +1343,12 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     }
   }
   @media (max-width: 560px) {
+    /* Same as the start card's pills: one column, both as wide as the longer label. */
+    .join .links {
+      display: grid;
+      grid-template-columns: minmax(0, max-content);
+      justify-content: start;
+    }
     .leaders {
       grid-template-columns: 1fr 1fr;
       gap: 10px;

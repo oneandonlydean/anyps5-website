@@ -1,6 +1,7 @@
 ---
 import Article from "../../layouts/Article.astro";
-import { localizeLinks, localePath, strings, type Locale } from "../../i18n";
+import StepList from "./StepList.astro";
+import { localizeLinks, strings, type Locale } from "../../i18n";
 import { getSteps, guideNav } from "../../lib/guide";
 
 interface Props {
@@ -13,67 +14,6 @@ const steps = await getSteps(locale);
 ---
 
 <Article title={t.title} eyebrow={t.eyebrow} lede={t.lede} nav={guideNav(steps, locale)}>
-  <ol class="steps">
-    {
-      steps.map((s) => (
-        <li>
-          <a href={localePath(locale, `/docs/guide/${s.slug}`)}>
-            <span class="num">{s.entry.data.step}</span>
-            <span>
-              <strong>{s.entry.data.title}</strong>
-              <span class="muted">{s.entry.data.summary}</span>
-            </span>
-          </a>
-        </li>
-      ))
-    }
-  </ol>
+  <StepList steps={steps} locale={locale} />
   <p class="muted" set:html={localizeLinks(t.already, locale)} />
 </Article>
-
-<style>
-  .steps {
-    display: grid;
-    gap: 10px;
-    margin: 0 0 32px;
-    padding: 0;
-    list-style: none;
-  }
-  .steps li + li {
-    margin: 0;
-  }
-  .steps a {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 18px;
-    align-items: center;
-    padding: 18px 20px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--surface);
-    color: var(--text);
-    text-decoration: none;
-    transition: border-color 0.15s;
-  }
-  .steps a:hover {
-    border-color: var(--accent);
-  }
-  .steps strong,
-  .steps .muted {
-    display: block;
-  }
-  .steps .muted {
-    font-size: 0.92rem;
-    line-height: 1.5;
-  }
-  .num {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--accent) 14%, transparent);
-    color: var(--accent);
-    font: 600 1rem var(--mono);
-  }
-</style>

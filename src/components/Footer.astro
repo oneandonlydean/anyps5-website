@@ -23,16 +23,6 @@ const columns = [
     ],
   },
   {
-    title: t.footer.learn,
-    links: [
-      { href: local("/docs/guide"), label: t.nav.guide },
-      { href: "/docs", label: t.footer.documentation },
-      { href: local("/faq"), label: t.footer.faq },
-      { href: `${REPO_URL}/blob/main/docs/dev/BUILD.md`, label: t.footer.build },
-      { href: `${REPO_URL}/blob/main/CONTRIBUTING.md`, label: t.footer.contributing },
-    ],
-  },
-  {
     title: t.footer.community,
     links: [
       { href: DISCORD_URL, label: "Discord" },
@@ -91,7 +81,7 @@ const columns = [
   }
   .grid {
     display: grid;
-    grid-template-columns: 1.6fr repeat(3, 1fr);
+    grid-template-columns: 1.6fr repeat(2, 1fr);
     gap: 40px;
     padding-block: 56px 40px;
   }

@@ -8,10 +8,19 @@ const { locale, path } = parsePath(Astro.url.pathname);
 const t = strings(locale);
 const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
 const nav = NAV.map(({ href, key, translated }) => ({
+  key,
   href: localePath(locale, locale !== DEFAULT_LOCALE && translated ? translated : href),
   label: t.nav[key],
-  current: isCurrent(href),
+  current: isCurrent(href) || (key === "docs" && isCurrent("/faq")),
 }));
+// "Quickstart & learn" opens a menu of the guide, docs, FAQ and contributor pages instead of linking to one page.
+const learn = [
+  { href: localePath(locale, "/docs/guide"), label: t.nav.guide, current: isCurrent("/docs/guide") },
+  { href: "/docs", label: t.footer.documentation, current: isCurrent("/docs") && !isCurrent("/docs/guide") },
+  { href: localePath(locale, "/faq"), label: t.footer.faq, current: isCurrent("/faq") },
+  { href: `${REPO_URL}/blob/main/docs/dev/BUILD.md`, label: t.footer.build, current: false },
+  { href: `${REPO_URL}/blob/main/CONTRIBUTING.md`, label: t.footer.contributing, current: false },
+];
 // Each language's version of this page, or that language's home page when this page is English only.
 const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, name: LOCALES[l].name, href: localePath(l, isTranslated(path) ? path : "/") }));
 ---
@@ -21,7 +30,27 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     <a class="brand" href={localePath(locale, "/")} aria-label={t.nav.home}><Logo size={18} /> AnyPS5</a>
 
     <nav class="nav" aria-label="Main">
-      {nav.map(({ href, label, current }) => <a href={href} aria-current={current ? "page" : undefined}>{label}</a>)}
+      {
+        nav.map(({ key, href, label, current }) =>
+          key === "docs" ? (
+            <details class="learn">
+              <summary data-current={current ? "" : undefined}>
+                {label}
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <ul class="menu-list">
+                {learn.map((l) => (
+                  <li>
+                    <a href={l.href} aria-current={l.current ? "page" : undefined}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <a href={href} aria-current={current ? "page" : undefined}>{label}</a>
+          ),
+        )
+      }
     </nav>
 
     <div class="tools">
@@ -32,7 +61,7 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
         <summary class="icon" aria-label={t.nav.language}>
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg>
         </summary>
-        <ul class="lang-menu">
+        <ul class="lang-menu menu-list">
           {languages.map((l) => (
             <li>
               <a href={l.href} hreflang={LOCALES[l.locale].lang} lang={LOCALES[l.locale].lang} aria-current={l.locale === locale ? "true" : undefined}>
@@ -60,7 +89,20 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
   <Search />
 
   <nav id="mobile-nav" class="mobile" aria-label="Main" hidden>
-    {nav.map(({ href, label, current }) => <a href={href} aria-current={current ? "page" : undefined}>{label}</a>)}
+    {
+      nav.map(({ key, href, label, current }) =>
+        key === "docs" ? (
+          <div class="mobile-group">
+            <p>{label}</p>
+            {learn.map((l) => (
+              <a href={l.href} aria-current={l.current ? "page" : undefined}>{l.label}</a>
+            ))}
+          </div>
+        ) : (
+          <a href={href} aria-current={current ? "page" : undefined}>{label}</a>
+        ),
+      )
+    }
   </nav>
 </header>
 
@@ -86,7 +128,7 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     }
   });
 
-  const languages = document.querySelector<HTMLDetailsElement>(".lang");
+  const menus = [...document.querySelectorAll<HTMLDetailsElement>(".lang, .learn")];
   const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const mobile = document.getElementById("mobile-nav");
   const setMenu = (open: boolean) => {
@@ -97,17 +139,22 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
   // A click anywhere else closes the language menu and the phone menu.
   document.addEventListener("click", (event) => {
     const target = event.target as Node;
-    if (languages?.open && !languages.contains(target)) languages.open = false;
+    for (const menu of menus) if (menu.open && !menu.contains(target)) menu.open = false;
     if (mobile && !mobile.hidden && !mobile.contains(target) && !toggle?.contains(target)) setMenu(false);
   });
   // Escape closes the menu, and so does widening the window to where the full navigation shows.
   document.addEventListener("keydown", (event) => {
+    const open = event.key === "Escape" && menus.find((menu) => menu.open);
+    if (open) {
+      open.open = false;
+      open.querySelector("summary")?.focus();
+    }
     if (event.key === "Escape" && mobile && !mobile.hidden) {
       setMenu(false);
       toggle?.focus();
     }
   });
-  matchMedia("(min-width: 881px)").addEventListener("change", (event) => event.matches && setMenu(false));
+  matchMedia("(min-width: 1000px)").addEventListener("change", (event) => event.matches && setMenu(false));
 </script>
 
 <style>
@@ -158,6 +205,43 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     color: var(--text);
     background: var(--raised);
   }
+  .learn {
+    position: relative;
+  }
+  .learn summary {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 10px 8px 12px;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    white-space: nowrap;
+    list-style: none;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+  .learn summary::-webkit-details-marker {
+    display: none;
+  }
+  .learn summary:hover,
+  .learn[open] summary,
+  .learn summary[data-current] {
+    color: var(--text);
+    background: var(--raised);
+  }
+  .learn summary svg {
+    transition: rotate 0.2s;
+  }
+  .learn[open] summary svg {
+    rotate: 180deg;
+  }
+  .learn .menu-list {
+    left: 0;
+    right: auto;
+    min-width: 220px;
+  }
   .tools {
     display: flex;
     gap: 2px;
@@ -190,7 +274,7 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
   .lang summary::-webkit-details-marker {
     display: none;
   }
-  .lang-menu {
+  .menu-list {
     position: absolute;
     right: 0;
     top: calc(100% + 8px);
@@ -212,7 +296,7 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
       left: 0;
     }
   }
-  .lang-menu a {
+  .menu-list a {
     display: block;
     padding: 8px 12px;
     border-radius: 6px;
@@ -220,10 +304,10 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     font-size: 0.9rem;
     text-decoration: none;
   }
-  .lang-menu a:hover {
+  .menu-list a:hover {
     background: var(--surface);
   }
-  .lang-menu a[aria-current] {
+  .menu-list a[aria-current] {
     color: var(--accent);
     font-weight: 600;
   }
@@ -242,7 +326,22 @@ const languages = (Object.keys(LOCALES) as Locale[]).map((l) => ({ locale: l, na
     color: var(--text);
     background: var(--raised);
   }
-  @media (max-width: 880px) {
+  .mobile-group {
+    display: grid;
+    gap: 2px;
+    margin-block: 6px;
+    padding-block: 6px;
+    border-block: 1px solid var(--line);
+  }
+  .mobile-group p {
+    margin: 0;
+    padding: 8px 12px 4px;
+    color: var(--faint);
+    font: 500 0.72rem/1 var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 999px) {
     .nav {
       display: none;
     }

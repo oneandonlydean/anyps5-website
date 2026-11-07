@@ -22,8 +22,7 @@ const signed = (n: number) => `${n > 0 ? "+" : ""}${num(n)}`;
 // The landing page's slider shows games only (moving up, first results, reported lower): releases and library
 // milestones mean little to someone new, and have their place in the timeline and on /updates.
 const { games: highlights, days } = await getLatest();
-const dayName = (day: string, style: "short" | "long") =>
-  new Date(`${day}T00:00:00Z`).toLocaleDateString(lang, { weekday: style, day: "numeric", month: "short", timeZone: "UTC" });
+const dayName = (day: string) => new Date(`${day}T00:00:00Z`).toLocaleDateString(lang, { day: "numeric", month: "short", timeZone: "UTC" });
 
 /** Parts shown at first in a day; the rest fold away. */
 const PARTS_SHOWN = 6;
@@ -80,11 +79,10 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
             {days.map((d, i) => (
               <button type="button" class="day" role="tab" id={`day-tab-${d.date}`} aria-controls={`day-${d.date}`} aria-selected={i === 0 ? "true" : "false"} data-day={d.date}>
                 <span class="day-name">
-                  {dayName(d.date, "short")}
+                  {dayName(d.date)}
                 </span>
                 <span class="day-sum">
                   {t.home.merged(num(d.merged))}
-                  {d.functions ? ` · ${signed(d.functions)}` : ""}
                 </span>
               </button>
             ))}
@@ -93,7 +91,7 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
           {days.map((d, i) => (
             <div class="panel" role="tabpanel" id={`day-${d.date}`} aria-labelledby={`day-tab-${d.date}`} hidden={i !== 0}>
               <div class="panel-head">
-                <h3>{dayName(d.date, "long")}</h3>
+                <h3>{dayName(d.date)}</h3>
                 <ul class="stats">
                   <li>{t.home.merged(num(d.merged))}</li>
                   {d.functions ? <li class="good">{t.home.functionsGained(signed(d.functions))}</li> : null}
