@@ -14,7 +14,7 @@ const en = {
     compatibility: "Compatibility",
     converter: "Converter",
     guide: "Setup guide",
-    docs: "Quickstart & learn",
+    docs: "Quickstart & Learn",
     progress: "Progress",
     download: "Download",
     search: "Search (Ctrl+K)",
