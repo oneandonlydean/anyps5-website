@@ -65,7 +65,7 @@ const strings: Strings = {
       easyTitle: "网页转换器",
       easyText: "无需安装，文件不会离开你的电脑。",
       helpTitle: "测试也有帮助",
-      helpText: "告诉我们游戏运行到哪一步，开发者就知道该修什么。",
+      helpText: "告诉我们游戏运行到哪一步。",
       checkGame: "我的游戏能运行吗？",
     },
     latest: "最新",

@@ -72,7 +72,7 @@ const en = {
       easyTitle: "The converter",
       easyText: "Nothing to install, and your files stay on your PC.",
       helpTitle: "Testing still helps",
-      helpText: "Tell us how far your game gets, and developers know what to fix.",
+      helpText: "Tell us how far your game gets.",
       checkGame: "Is my game supported?",
     },
     latest: "Latest",
