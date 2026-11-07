@@ -1,0 +1,484 @@
+---
+import Logo from "../Logo.astro";
+import StageBadge from "../StageBadge.astro";
+import { getLatest, type Change, type Part } from "../../lib/latest";
+import { strings, type Locale } from "../../i18n";
+
+interface Props {
+  locale?: Locale;
+}
+
+/**
+ * The last few days of development, one day at a time: what was merged, the milestones reached, and what each part
+ * gained, linked to its pull requests. On /progress, under Development.
+ */
+const { locale = "en" } = Astro.props;
+const t = strings(locale);
+const lang = locale === "en" ? "en-GB" : locale;
+const num = (n: number) => n.toLocaleString(lang);
+const signed = (n: number) => `${n > 0 ? "+" : ""}${num(n)}`;
+const { days } = await getLatest();
+const dayName = (day: string) => new Date(`${day}T00:00:00Z`).toLocaleDateString(lang, { day: "numeric", month: "short", timeZone: "UTC" });
+
+/** Parts shown at first in a day; the rest fold away. */
+const PARTS_SHOWN = 6;
+/** Changes shown at first in a part. */
+const CHANGES_SHOWN = 3;
+const changes = (p: Part) => [...p.features.map((c) => ({ ...c, fast: false })), ...p.speedups.map((c) => ({ ...c, fast: true }))];
+const counts = (p: Part) => [p.features.length && t.home.features(p.features.length), p.speedups.length && t.home.speedups(p.speedups.length)].filter(Boolean).join(" · ");
+/** A system library keeps its own name; other parts use the page's language. */
+const label = (p: Part) => (p.area === "libraries" ? p.label : t.home.areas[p.area]);
+/**
+ * A milestone's label, by where the library is now: one that passed half on its way to 90% or more reads as almost
+ * complete, not halfway.
+ */
+const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, library?: { done: number; total: number }) =>
+  kind === "half" && library && library.done / library.total >= 0.9 ? t.home.milestone.nearly : t.home.milestone[kind ?? "started"];
+---
+
+{
+  days.length > 0 && (
+    <div class="timeline" data-timeline>
+      <div class="days" role="tablist" aria-label={t.home.timeline}>
+        <span class="days-label">{t.home.timeline}</span>
+        {days.map((d, i) => (
+          <button type="button" class="day" role="tab" id={`day-tab-${d.date}`} aria-controls={`day-${d.date}`} aria-selected={i === 0 ? "true" : "false"} data-day={d.date}>
+            <span class="day-name">
+              {dayName(d.date)}
+            </span>
+            <span class="day-sum">
+              {t.home.merged(num(d.merged))}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {days.map((d, i) => (
+        <div class="panel" role="tabpanel" id={`day-${d.date}`} aria-labelledby={`day-tab-${d.date}`} hidden={i !== 0}>
+          <div class="panel-head">
+            <h3>{dayName(d.date)}</h3>
+            <ul class="stats">
+              <li>{t.home.merged(num(d.merged))}</li>
+              {d.functions ? <li class="good">{t.home.functionsGained(signed(d.functions))}</li> : null}
+              {d.shaderForms ? <li class="good">{t.home.shaderGained(signed(d.shaderForms))}</li> : null}
+              {d.features > 0 && <li>{t.home.features(d.features)}</li>}
+              {d.speedups > 0 && <li>{t.home.speedups(d.speedups)}</li>}
+              {d.fixes > 0 && <li>{t.home.fixes(d.fixes)}</li>}
+            </ul>
+          </div>
+
+          {d.events.length > 0 && (
+            <ul class="events">
+              {d.events.map((e) => (
+                <li>
+                  <a href={e.url}>
+                    {e.kind === "stage" && e.stage ? (
+                      <>
+                        <b>{e.game?.name}</b> <StageBadge stage={e.stage} />
+                      </>
+                    ) : e.kind === "library" ? (
+                      <>
+                        <span class="spark" aria-hidden="true">◆</span> <b>{e.library?.name}</b> {milestoneLabel(e.milestone, e.library).toLowerCase()}
+                      </>
+                    ) : (
+                      <>
+                        <span class="spark release" aria-hidden="true"><Logo size={12} /></span> <b>{e.title}</b>
+                      </>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div class="parts">
+            {d.parts.slice(0, PARTS_SHOWN).map((p) => (
+              <article class:list={["part", p.area]}>
+                <header>
+                  <i class="dot" aria-hidden="true" />
+                  <b>{label(p)}</b>
+                  <span class="count">{counts(p)}</span>
+                </header>
+                <ul>
+                  {changes(p)
+                    .slice(0, CHANGES_SHOWN)
+                    .map((c) => (
+                      <li>
+                        {c.fast && <span class="fast">{t.home.speedup}</span>}
+                        <a href={c.url}>{c.summary}</a>
+                      </li>
+                    ))}
+                </ul>
+                {changes(p).length > CHANGES_SHOWN && (
+                  <details>
+                    <summary>{t.home.more(changes(p).length - CHANGES_SHOWN)}</summary>
+                    <ul>
+                      {changes(p)
+                        .slice(CHANGES_SHOWN)
+                        .map((c) => (
+                          <li>
+                            {c.fast && <span class="fast">{t.home.speedup}</span>}
+                            <a href={c.url}>{c.summary}</a>
+                          </li>
+                        ))}
+                    </ul>
+                  </details>
+                )}
+              </article>
+            ))}
+          </div>
+          {d.parts.length > PARTS_SHOWN && (
+            <details class="rest">
+              <summary>{t.home.showAllChanges}</summary>
+              <ul class="rest-list">
+                {d.parts.slice(PARTS_SHOWN).map((p) => (
+                  <li class={p.area}>
+                    <i class="dot" aria-hidden="true" />
+                    <b>{label(p)}</b>
+                    <span>{changes(p).map((c: Change) => c.summary).join(" · ")}</span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>("[data-timeline]")) {
+    // The timeline: one day at a time.
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-day]")];
+    const show = (tab: HTMLButtonElement) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        root.querySelector<HTMLElement>(`#day-${t.dataset.day}`)!.hidden = !on;
+      }
+    };
+    tabs.forEach((tab, i) => {
+      tab.tabIndex = i === 0 ? 0 : -1;
+      tab.addEventListener("click", () => show(tab));
+      tab.addEventListener("keydown", (e) => {
+        const step = e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : e.key === "ArrowUp" || e.key === "ArrowLeft" ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        const next = tabs[(i + step + tabs.length) % tabs.length]!;
+        show(next);
+        next.focus();
+      });
+    });
+  }
+</script>
+
+<style>
+  .timeline {
+    display: grid;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    gap: 16px;
+  }
+  .days {
+    position: relative;
+    display: grid;
+    align-content: start;
+    align-self: start;
+    gap: 4px;
+  }
+  .days-label {
+    margin: 4px 0 8px 12px;
+    color: var(--faint);
+    font: 500 0.68rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .day {
+    position: relative;
+    display: grid;
+    gap: 2px;
+    padding: 10px 12px 10px 34px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+  }
+  .day::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 9px;
+    height: 9px;
+    border: 2px solid var(--line-strong);
+    border-radius: 50%;
+    background: var(--bg);
+  }
+  /* The line from each day's dot to the next one's. */
+  .day:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 28px;
+    bottom: -19px;
+    left: 21px;
+    width: 1px;
+    background: var(--line-strong);
+  }
+  .day:hover {
+    color: var(--text);
+  }
+  .day[aria-selected="true"] {
+    border-color: var(--line);
+    background: var(--surface);
+    color: var(--text);
+  }
+  .day[aria-selected="true"]::before {
+    border-color: var(--accent-2);
+    background: var(--accent-2);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-2) 20%, transparent);
+  }
+  .day-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+  .day-sum {
+    color: var(--faint);
+    font-size: 0.78rem;
+  }
+  .panel {
+    padding: clamp(16px, 2.4vw, 22px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .panel-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 16px;
+  }
+  .panel-head h3 {
+    margin: 0;
+    font: 700 1.2rem var(--display);
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.84rem;
+  }
+  .stats li {
+    font-variant-numeric: tabular-nums;
+  }
+  .stats .good {
+    color: var(--good);
+  }
+  .events {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .events a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px 4px 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.82rem;
+    text-decoration: none;
+  }
+  .events a:hover {
+    border-color: var(--line-strong);
+  }
+  .spark {
+    color: var(--good);
+  }
+  .spark.release {
+    color: var(--accent);
+  }
+  .spark :global(.mark) {
+    display: inline-flex;
+    color: inherit;
+    vertical-align: -1px;
+  }
+  .parts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .part {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+  }
+  .part header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px 8px;
+    margin-bottom: 8px;
+  }
+  .part header b {
+    font-size: 0.92rem;
+    overflow-wrap: anywhere;
+  }
+  .count {
+    flex: none;
+    margin-left: auto;
+    color: var(--faint);
+    font-size: 0.74rem;
+  }
+  .part ul {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .part li {
+    position: relative;
+    padding-left: 12px;
+    font-size: 0.84rem;
+    line-height: 1.4;
+  }
+  .part li::before {
+    content: "";
+    position: absolute;
+    top: 0.6em;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--area);
+  }
+  .part li a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .part li a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .fast {
+    margin-right: 6px;
+    padding: 0 6px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--warn) 16%, transparent);
+    color: var(--warn);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .part details {
+    margin-top: 6px;
+  }
+  .part details ul {
+    margin-top: 6px;
+  }
+  summary {
+    width: fit-content;
+    color: var(--accent);
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .rest {
+    margin-top: 12px;
+  }
+  .rest-list {
+    display: grid;
+    gap: 8px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .rest-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 8px;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .rest-list b {
+    color: var(--text);
+  }
+  .dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--area);
+  }
+  .rest-list .dot {
+    align-self: center;
+  }
+  .libraries {
+    --area: var(--accent);
+  }
+  .gpu {
+    --area: var(--warn);
+  }
+  .shader {
+    --area: var(--accent-2);
+  }
+  .relinker {
+    --area: #b07cf2;
+  }
+  .converter {
+    --area: var(--good);
+  }
+  .project {
+    --area: var(--faint);
+  }
+
+  @media (max-width: 820px) {
+    .timeline {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    /* The days become a row of chips above the panel. */
+    .days {
+      display: flex;
+      gap: 8px;
+      margin: 0 calc(var(--gutter) * -1);
+      padding: 0 var(--gutter) 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .days-label,
+    .day::before,
+    .day::after {
+      display: none;
+    }
+    .day {
+      flex: none;
+      padding: 8px 12px;
+      border-color: var(--line);
+    }
+    .parts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

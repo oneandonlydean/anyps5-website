@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import LibraryMap from "../components/progress/LibraryMap.astro";
 import BarChart from "../components/progress/BarChart.astro";
+import Timeline from "../components/progress/Timeline.astro";
 import LineChart from "../components/progress/LineChart.astro";
 import Sparkline from "../components/Sparkline.astro";
 import { getGames, getNeeds } from "../lib/data";
@@ -260,6 +261,10 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
           <div class="chart-wrap">
             <BarChart title="Commits per day" unit="commits" dates={commitDays.map((d) => d.date)} values={commitDays.map((d) => d.commits)} partial={commitsPartial} />
             {commitsPartial && <p class="hint">The faded last bar, {formatDate(commits!.synced.slice(0, 10))}, is counted only up to {commits!.synced.slice(11, 16)} UTC.</p>}
+          </div>
+          {/* What those days' merges built, day by day. */}
+          <div class="timeline-wrap">
+            <Timeline />
           </div>
         </div>
       </section>
@@ -767,6 +772,11 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
     background: var(--good);
   }
   .chart-wrap {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .timeline-wrap {
     margin-top: 28px;
     padding-top: 24px;
     border-top: 1px solid var(--line);
