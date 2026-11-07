@@ -235,9 +235,8 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
   .day:hover {
     color: var(--text);
   }
+  /* The selected day is marked by its green dot and white text, with no box around it. */
   .day[aria-selected="true"] {
-    border-color: var(--line);
-    background: var(--surface);
     color: var(--text);
   }
   .day[aria-selected="true"]::before {
@@ -475,6 +474,10 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
       flex: none;
       padding: 8px 12px;
       border-color: var(--line);
+    }
+    /* On a phone the dots are hidden, so the chosen chip keeps a filled background. */
+    .day[aria-selected="true"] {
+      background: var(--surface);
     }
     .parts {
       grid-template-columns: minmax(0, 1fr);
