@@ -458,7 +458,7 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
             </div>
           </header>
           <div class="throws-grid">
-            <LineChart title="Unsupported cases over time" unit="cases" dates={shaderDates} series={[{ label: "Unsupported cases", values: coverage.history.map((h) => h.throws), color: "var(--accent)" }]} />
+            <LineChart title="Unsupported cases over time" hideTitle unit="cases" dates={shaderDates} series={[{ label: "Unsupported cases", values: coverage.history.map((h) => h.throws), color: "var(--accent)" }]} />
             <div>
               <p class="label">By component</p>
               <ul class="areas">
@@ -473,7 +473,7 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
             </div>
           </div>
           <details class="sites" data-pagefind-ignore>
-            <summary>All {coverage.throws.total} cases, by file</summary>
+            <summary>All {coverage.throws.total} cases</summary>
             <div class="sites-list">
               {throwsByFile.map(([file, sites]) => (
                 <section>

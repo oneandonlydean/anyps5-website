@@ -115,7 +115,7 @@ const strings: Strings = {
       Pad: { name: "Entrada", role: "Mandos" },
     },
     furthestTitle: "Juegos que ya llegan lejos",
-    allGames: (n: string) => `Los ${n} juegos`,
+    allGames: "Ver todos los juegos",
     peopleTitle: "Las personas que hacen AnyPS5",
     peopleText: "Cada commit y cada prueba, incluso un cierre, hace avanzar un juego.",
     contributors: "Colaboradores",

@@ -124,7 +124,7 @@ const strings: Strings = {
       Pad: { name: "Ввод", role: "Геймпады" },
     },
     furthestTitle: "Игры, которые уже далеко продвинулись",
-    allGames: (n: string) => `Все игры (${n})`,
+    allGames: "Показать все игры",
     peopleTitle: "Люди, которые делают AnyPS5",
     peopleText: "Каждый коммит и тест, даже с вылетом, продвигает игру.",
     contributors: "Участники",

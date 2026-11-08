@@ -114,7 +114,7 @@ const strings: Strings = {
       Pad: { name: "输入", role: "手柄" },
     },
     furthestTitle: "已经跑得很远的游戏",
-    allGames: (n: string) => `全部 ${n} 款游戏`,
+    allGames: "查看全部游戏",
     peopleTitle: "打造 AnyPS5 的人们",
     peopleText: "每次提交和测试，哪怕崩溃，都在推动游戏向前。",
     contributors: "贡献者",

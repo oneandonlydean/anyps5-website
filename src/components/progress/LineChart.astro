@@ -14,9 +14,11 @@ interface Props {
   dates: string[];
   series: Series[];
   unit: string;
+  /** Leave the title off the screen when the section heading already says it; it still names the chart for screen readers. */
+  hideTitle?: boolean;
 }
 
-const { title, dates, series, unit } = Astro.props;
+const { title, dates, series, unit, hideTitle = false } = Astro.props;
 const number = new Intl.NumberFormat("en-GB");
 
 // A y-scale from zero to a round number just above the largest value.
@@ -52,21 +54,25 @@ const data = JSON.stringify({ dates: dates.map((d) => formatDate(d)), series: se
 ---
 
 <figure class="chart" data-chart={data} data-unit={unit}>
-  <figcaption>
-    <span class="title">{title}</span>
-    {
-      series.length > 1 && (
-        <span class="legend">
-          {series.map((s) => (
-            <span>
-              <i class:list={{ dashed: s.dashed }} style={`--color:${s.color}`} />
-              {s.label}
-            </span>
-          ))}
-        </span>
-      )
-    }
-  </figcaption>
+  {
+    (!hideTitle || series.length > 1) && (
+      <figcaption>
+      {!hideTitle && <span class="title">{title}</span>}
+      {
+        series.length > 1 && (
+          <span class="legend">
+            {series.map((s) => (
+              <span>
+                <i class:list={{ dashed: s.dashed }} style={`--color:${s.color}`} />
+                {s.label}
+              </span>
+            ))}
+          </span>
+        )
+      }
+      </figcaption>
+    )
+  }
   <div class="plot">
     <div class="y" aria-hidden="true" style={`--label:${Math.max(...ticks.map((t) => number.format(t).length))}ch`}>
       {ticks.map((t) => <span style={`bottom:${(t / top) * 100}%`}>{number.format(t)}</span>)}

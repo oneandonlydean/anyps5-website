@@ -121,7 +121,7 @@ const en = {
       Pad: { name: "Input", role: "Controllers" },
     },
     furthestTitle: "Games that already go a long way",
-    allGames: (n: string) => `All ${n} games`,
+    allGames: "Show all games",
     peopleTitle: "The people building AnyPS5",
     peopleText: "Every commit and test run, even a crash, moves a game further.",
     contributors: "Contributors",
