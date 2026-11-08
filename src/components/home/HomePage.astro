@@ -58,11 +58,10 @@ const {
   people: { login: string; avatar: string; url: string; contributions: number }[];
 }>("contributors.json", { total: 0, people: [] });
 const leaders = contributors.slice(0, 6);
-// One row of 90 keeps the page light; everyone else is a link away.
+// Two rows of 90 keep the page light; everyone else is a link away.
 const LANE = 90;
-const crowd = contributors.slice(6, 6 + LANE);
-/** Both moving rows pass at the same speed: each avatar takes this long to go by. */
-const SECONDS_PER_AVATAR = 1.5;
+const crowd = contributors.slice(6, 6 + LANE * 2);
+const crowdRows = [crowd.filter((_, i) => i % 2 === 0), crowd.filter((_, i) => i % 2 === 1)];
 const unseen = contributorTotal - leaders.length - crowd.length;
 const commits = commitTotal ?? contributors.reduce((n, c) => n + c.contributions, 0);
 const testerCounts = new Map<string, number>();
@@ -318,7 +317,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
           {leaders.map((c) => (
             <li>
               <a href={c.url}>
-                <img src={avatar(c.avatar, 48)} alt="" width="48" height="48" loading="lazy" decoding="async" />
+                <img src={avatar(c.avatar, 56)} alt="" width="56" height="56" loading="lazy" decoding="async" />
                 <span class="who">
                   <b>{c.login}</b>
                   <span class="muted">{t.home.commitCount(c.contributions, num(c.contributions))}</span>
@@ -333,31 +332,33 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
 
     <div class="crowd reveal">
       {
-        crowd.length > 0 && (
-          <div class="lane" aria-label={t.home.moreContributors}>
-            <div class="window">
-              <div class="track" style={`--duration:${(crowd.length + (unseen > 0 ? 1 : 0)) * SECONDS_PER_AVATAR}s`}>
-                {[0, 1].map((copy) => (
-                  <ul aria-hidden={copy === 1 ? "true" : undefined}>
-                    {crowd.map((c) => (
-                      <li>
-                        <a href={c.url} data-name={`${c.login} · ${t.home.commitCount(c.contributions, num(c.contributions))}`} tabindex={copy === 1 ? -1 : undefined}>
-                          <img src={avatar(c.avatar, 40)} alt={copy === 1 ? "" : c.login} width="40" height="40" loading="lazy" decoding="async" />
-                        </a>
-                      </li>
-                    ))}
-                    {unseen > 0 && (
-                      <li>
-                        <a class="more" href={`${REPO_URL}/graphs/contributors`} data-name={t.home.everyone} tabindex={copy === 1 ? -1 : undefined}>
-                          +{num(unseen)}
-                        </a>
-                      </li>
-                    )}
-                  </ul>
-                ))}
+        crowdRows.map((row, r) =>
+          row.length ? (
+            <div class="lane" aria-label={r === 0 ? t.home.moreContributors : undefined}>
+              <div class="window">
+                <div class:list={["track", { reverse: r === 1 }]} style={`--duration:${Math.max(row.length * 1.4, 40)}s`}>
+                  {[0, 1].map((copy) => (
+                    <ul aria-hidden={copy === 1 ? "true" : undefined}>
+                      {row.map((c) => (
+                        <li>
+                          <a href={c.url} data-name={`${c.login} · ${t.home.commitCount(c.contributions, num(c.contributions))}`} tabindex={copy === 1 ? -1 : undefined}>
+                            <img src={avatar(c.avatar, 40)} alt={copy === 1 ? "" : c.login} width="40" height="40" loading="lazy" decoding="async" />
+                          </a>
+                        </li>
+                      ))}
+                      {r === 1 && unseen > 0 && (
+                        <li>
+                          <a class="more" href={`${REPO_URL}/graphs/contributors`} data-name={t.home.everyone} tabindex={copy === 1 ? -1 : undefined}>
+                            +{num(unseen)}
+                          </a>
+                        </li>
+                      )}
+                    </ul>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          ) : null,
         )
       }
     </div>
@@ -370,7 +371,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
             {topTesters.map((tester) => (
               <li>
                 <a href={`https://github.com/${encodeURIComponent(tester.login)}`}>
-                    <img src={testerAvatar(tester.login, 48)} alt="" width="48" height="48" loading="lazy" decoding="async" />
+                  <img src={testerAvatar(tester.login, 56)} alt="" width="56" height="56" loading="lazy" decoding="async" />
                   <span class="who">
                     <b>{tester.login}</b>
                     <span class="muted">{t.home.reportCount(tester.reports, num(tester.reports))}</span>
@@ -388,7 +389,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
         laneTesters.length > 0 && (
           <div class="lane testers" aria-label={t.home.testers}>
             <div class="window">
-              <div class="track" style={`--duration:${laneTesters.length * SECONDS_PER_AVATAR}s`}>
+              <div class="track" style={`--duration:${Math.max(laneTesters.length * 1.6, 40)}s`}>
                 {[0, 1].map((copy) => (
                   <ul aria-hidden={copy === 1 ? "true" : undefined}>
                     {laneTesters.map((tester) => (
@@ -1035,36 +1036,21 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     font-variant-numeric: tabular-nums;
   }
 
-  /* The six in one row, left to right by count. Too narrow for all six, the row scrolls sideways into the page's side
-     margins, card by card. */
   .leaders {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
-    margin: 0 calc(var(--gutter) * -1) 28px;
-    padding: 4px var(--gutter);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--gutter);
-    scrollbar-width: none;
+    margin: 0 0 28px;
+    padding: 0;
     list-style: none;
-  }
-  .leaders::-webkit-scrollbar {
-    display: none;
-  }
-  .leaders li {
-    flex: 1 0 168px;
-    min-width: 0;
-    scroll-snap-align: start;
   }
   .leaders a {
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
     overflow: hidden;
-    height: 100%;
-    padding: 16px;
+    padding: 16px 18px;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--surface);
@@ -1082,8 +1068,8 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   }
   .leaders img {
     flex: none;
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     background: var(--raised);
     box-shadow:
@@ -1093,7 +1079,6 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   .who {
     display: grid;
     min-width: 0;
-    max-width: 100%;
   }
   .who b {
     overflow: hidden;
@@ -1140,6 +1125,9 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
   }
   .lane[data-offscreen] .track {
     animation-play-state: paused;
+  }
+  .track.reverse {
+    animation-direction: reverse;
   }
   /* The window clips the endless row and fades it at both ends; padding leaves room for the name tags above and the
      hovered avatar's ring below. */
@@ -1314,6 +1302,9 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     .featured {
       grid-template-columns: 1fr 1fr;
     }
+    .leaders {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   @media (max-width: 560px) {
     /* Same as the start card's pills: one column, both as wide as the longer label. */
@@ -1322,8 +1313,19 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
       grid-template-columns: minmax(0, max-content);
       justify-content: start;
     }
-    .leaders li {
-      flex-basis: 150px;
+    .leaders {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .leaders a {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px;
+    }
+    .leaders img {
+      width: 44px;
+      height: 44px;
     }
     .status {
       gap: 10px;
