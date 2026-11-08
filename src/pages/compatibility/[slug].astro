@@ -207,12 +207,7 @@ const description = (() => {
                   ))}
                 </ul>
               )}
-              {(game.branch.prs.length > BRANCH_PRS_SHOWN || (game.branch.patched && game.branch.prs.length > 0)) && (
-                <p class="hint">
-                  {game.branch.prs.length > BRANCH_PRS_SHOWN && <>And {game.branch.prs.length - BRANCH_PRS_SHOWN} more{game.branch.patched ? ", " : "."} </>}
-                  {game.branch.patched && <>{game.branch.prs.length > BRANCH_PRS_SHOWN ? "plus" : "Plus"} local changes listed in the report.</>}
-                </p>
-              )}
+              {game.branch.prs.length > BRANCH_PRS_SHOWN && <p class="hint">And {game.branch.prs.length - BRANCH_PRS_SHOWN} more.</p>}
             </div>
           )}
         </section>
@@ -717,6 +712,7 @@ const description = (() => {
     color: var(--accent);
   }
   .branch-prs {
+    gap: 6px;
     margin-top: 12px;
   }
   .branch-prs + .hint,
