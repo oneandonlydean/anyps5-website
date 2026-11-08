@@ -14,7 +14,8 @@ import StageLadder from "../../components/StageLadder.astro";
 import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested } from "../../lib/data";
 import { buildLabel, reportBuild, uploadBuild, type BuildInfo } from "../../lib/builds";
 import type { Game } from "../../lib/resolve";
-import { DISCORD_URL, formatDate } from "../../lib/site";
+import { DISCORD_URL, formatDate, GITHUB_ICON } from "../../lib/site";
+import Logo from "../../components/Logo.astro";
 import { STAGES, stageRank, stageSlug } from "../../lib/stages";
 import { artSrc, artSrcset, PLATFORM_LABEL, reach, regionName, reportKey } from "../../lib/view";
 import { CONFIRMATIONS_NEEDED } from "../../lib/uploads";
@@ -376,12 +377,18 @@ const description = (() => {
                         </td>
                         <td class="muted by" data-upload-id={row.upload}>
                           <span class="who">
-                            {row.by ?? "—"}
-                            {row.upload !== undefined && (
-                              <span class="source" title="A run report uploaded on this site">
-                                Run report
-                              </span>
-                            )}
+                            <span class="name">
+                              {row.upload !== undefined ? (
+                                <span class="source" title="A run report uploaded on this site" role="img" aria-label="Uploaded run report">
+                                  <Logo size={13} />
+                                </span>
+                              ) : (
+                                <span class="source" title="A report in the Game bring-up discussions on GitHub" role="img" aria-label="GitHub report">
+                                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d={GITHUB_ICON} /></svg>
+                                </span>
+                              )}
+                              {row.by ?? "—"}
+                            </span>
                           </span>
                         </td>
                       </tr>
@@ -727,7 +734,7 @@ const description = (() => {
     display: block;
     margin-top: 2px;
   }
-  /* The name, with its "Run report" tag (and a maintainer's Hide) stacked under it, so the column stays narrow. */
+  /* The name, with its source icon, and a maintainer's Hide stacked under it, so the column stays narrow. */
   .who {
     display: flex;
     flex-direction: column;
@@ -815,13 +822,20 @@ const description = (() => {
   .reports tr:has([data-hidden]) {
     opacity: 0.4;
   }
+  /* Where the report came from: the GitHub mark for Discussions, the AnyPS5 mark for uploads. */
+  .by .name {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
   .by .source {
-    padding: 1px 7px;
-    border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
-    border-radius: 999px;
-    color: var(--accent);
-    font-size: 0.7rem;
-    white-space: nowrap;
+    display: inline-flex;
+    flex: none;
+    color: var(--text);
+    opacity: 0.75;
+  }
+  .by .source :global(.mark) {
+    color: inherit;
   }
   .upload-status {
     display: flex;
