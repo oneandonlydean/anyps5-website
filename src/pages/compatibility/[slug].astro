@@ -15,7 +15,7 @@ import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested } f
 import { buildLabel, reportBuild, uploadBuild, type BuildInfo } from "../../lib/builds";
 import type { Game } from "../../lib/resolve";
 import { DISCORD_URL, formatDate } from "../../lib/site";
-import { STAGES, stageSlug } from "../../lib/stages";
+import { STAGES, stageRank, stageSlug } from "../../lib/stages";
 import { artSrc, artSrcset, PLATFORM_LABEL, reach, regionName, reportKey } from "../../lib/view";
 import { CONFIRMATIONS_NEEDED } from "../../lib/uploads";
 import { gameTheme } from "../../lib/color";
@@ -94,7 +94,9 @@ const rows = [
     buildTitle: u.commit ?? undefined,
     by: u.login as string | null,
     upload: u.id,
-    stated: Boolean(u.stated),
+    // A stage the tester stated stops being "unconfirmed" once it counts: a maintainer verified the run, or enough
+    // reports reached it.
+    stated: Boolean(u.stated) && !u.verifiedBy && !(game.autoStage?.confirmed && stageRank(game.autoStage.stage) >= stageRank(u.stage)),
   })),
 ].sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 // What a search result shows: how far the game gets in plain words, how well tested that is, and its title ID, which
