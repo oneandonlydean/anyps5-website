@@ -2,7 +2,7 @@
 export const LOCALES = {
   en: { name: "English", lang: "en" },
   es: { name: "Español", lang: "es" },
-  "pt-br": { name: "Português (Brasil)", lang: "pt-BR" },
+  "pt-br": { name: "Português", lang: "pt-BR" },
   "zh-cn": { name: "简体中文", lang: "zh-CN" },
   ru: { name: "Русский", lang: "ru" },
 } as const;
