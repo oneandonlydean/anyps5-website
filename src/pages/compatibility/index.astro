@@ -4,7 +4,8 @@ import Base from "../../layouts/Base.astro";
 import GameCard from "../../components/GameCard.astro";
 import { getGames, getRetest, getScreenshots } from "../../lib/data";
 import { STAGES, stageRank, stageSlug } from "../../lib/stages";
-import { artSrc, PLATFORM_LABEL, reach } from "../../lib/view";
+import { artSrc } from "../../lib/art";
+import { PLATFORM_LABEL, reach } from "../../lib/view";
 
 const [games, retest, shots] = await Promise.all([getGames(), getRetest(), getScreenshots()]);
 // The order the page's script sorts into by default (furthest reached, then newest), so nothing moves after load.

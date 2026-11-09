@@ -76,7 +76,7 @@ Nothing on the site is maintained by hand. Each script below writes to `data/gen
 
 1. **Reports:** `sync:reports` reads every thread in the [Game bring-up](https://github.com/boykopovar/AnyPS5/discussions/categories/game-bring-up) discussions and parses each report's furthest point, system, GPU, build and blockers (`src/lib/parse.ts`, tested on real posts in `tests/fixtures/`). It also records every image posted.
 2. **Names and issues:** `sync:titles` maps title IDs to official names. `sync:issues` records the state of each issue or pull request a report names, including when it closed or merged.
-3. **Art:** `sync:art` takes cover, backdrop, logo and square art from the PlayStation Store, then SteamGridDB, plus each game's dominant colour. Images are linked to, never stored.
+3. **Art:** `sync:art` takes cover, backdrop, logo and square art from the PlayStation Store, then SteamGridDB, plus each game's dominant colour. PlayStation Store images are linked to, never stored. SteamGridDB serves only full-size originals, so `sync:art-copies` writes resized WebP copies of those to `public/art/` (not committed).
 4. **Screenshots:** `sync:screenshots` downloads each posted image once and writes small WebP copies to `public/community/` (not committed).
 5. **Merges:** `sync:merges` keeps the last 30 days of merged upstream pull requests for `/updates`.
 6. **Uploads:** `sync:uploads` reads uploaded run reports and maintainer actions from the Worker's `/api/export`.

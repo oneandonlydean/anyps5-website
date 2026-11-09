@@ -1,7 +1,8 @@
 import type { APIRoute, GetStaticPaths } from "astro";
 import { getGames } from "../../lib/data";
 import { gameImage } from "../../lib/og";
-import { artSrc, reach } from "../../lib/view";
+import { hostArt } from "../../lib/art";
+import { reach } from "../../lib/view";
 
 export const getStaticPaths = (async () => (await getGames()).map((game) => ({ params: { slug: game.slug }, props: { game } }))) satisfies GetStaticPaths;
 
@@ -12,8 +13,8 @@ export const GET: APIRoute<Awaited<ReturnType<typeof getStaticPaths>>[number]["p
     name: game.name,
     stage,
     onMain,
-    cover: art?.cover ? artSrc(art.cover, 600) : null,
-    hero: art?.hero ? artSrc(art.hero, 1280) : null,
+    cover: art?.cover ? hostArt(art.cover, 600) : null,
+    hero: art?.hero ? hostArt(art.hero, 1280) : null,
     color: art?.color ?? null,
   });
 };

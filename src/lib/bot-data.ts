@@ -10,7 +10,7 @@ import { newReportUrl } from "./site";
 import { stageRank, type StageOrNone } from "./stages";
 import { CATEGORY, getUpdates } from "./updates";
 import { getCompatHistory, getCoverage, getLibraryHistory, getProgress, getRelease } from "./upstream";
-import { artSrc } from "./view";
+import { hostArt } from "./art";
 
 /**
  * Everything the Discord bot answers commands from, in one file it reads from the site's own assets: games, library and
@@ -203,7 +203,7 @@ async function build() {
         name: g.name,
         ids: g.titleIds,
         stage: g.stage,
-        cover: g.art?.cover ? artSrc(g.art.cover, 240) : null,
+        cover: g.art?.cover ? hostArt(g.art.cover, 240) : null,
         tested: last.lastTested ? { date: last.lastTested, build: last.lastBuild ? buildLabel(last.lastBuild, firstRelease) : null, releasesSince: last.releasesSince } : null,
         blockers: g.blockers.slice(0, BLOCKERS_SHOWN).map((b) => ({ number: b.number, kind: b.kind, title: b.title, url: b.url })),
         thread: g.threads[0]?.url ?? newReportUrl(`${g.name} (${g.titleIds[0]})`),

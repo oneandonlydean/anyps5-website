@@ -7,16 +7,6 @@ export function reach(game: Pick<Game, "stage" | "branchStage">): { stage: Stage
   return { stage: game.stage, onMain: true };
 }
 
-const SONY_CDN = /^https:\/\/image\.api\.playstation\.com\//;
-
-export function artSrc(url: string, width: number): string {
-  return SONY_CDN.test(url) ? `${url}?w=${width}` : url;
-}
-
-export function artSrcset(url: string, widths: number[]): string | undefined {
-  return SONY_CDN.test(url) ? widths.map((w) => `${url}?w=${w} ${w}w`).join(", ") : undefined;
-}
-
 /** A stable hue from a string, for art placeholders. */
 export function hue(text: string): number {
   let h = 0;
