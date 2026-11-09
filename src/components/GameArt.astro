@@ -59,6 +59,14 @@ const initials =
   }
 </div>
 
+<script>
+  // An image that has arrived (or failed) is marked, which ends its tile's shimmer. Left running, every cover on a page
+  // kept a layer of its own animating for as long as the page was open: most of the cost of the home page's wall.
+  const settle = (target: EventTarget | null) => target instanceof HTMLImageElement && target.closest(".art") && target.toggleAttribute("data-loaded", true);
+  for (const type of ["load", "error"]) document.addEventListener(type, (event) => settle(event.target), true);
+  for (const img of document.querySelectorAll<HTMLImageElement>(".art img")) if (img.complete) settle(img);
+</script>
+
 <style>
   .art {
     position: relative;
@@ -74,8 +82,16 @@ const initials =
     height: 100%;
     object-fit: cover;
   }
-  /* A light sweep while the image loads; the opaque image covers it once it arrives. */
-  .art:has(img)::after {
+  /* A tile whose image waits until the screen comes near (loading="lazy") is not drawn before then either, so its
+     shimmer is not running out of sight. Its size comes from its ratio, so nothing moves when it is drawn. */
+  .art:has(img[loading="lazy"]) {
+    content-visibility: auto;
+  }
+  .art :global(picture) {
+    display: contents;
+  }
+  /* A light sweep while the image loads; it ends when the image arrives (the script above marks it). */
+  .art:has(img:not([data-loaded]))::after {
     content: "";
     position: absolute;
     inset: 0;
