@@ -1,15 +1,18 @@
 ---
 import { stageSlug, type StageOrNone } from "../lib/stages";
+import { strings, type Locale } from "../i18n";
 
 interface Props {
   stage: StageOrNone | null;
   onMain?: boolean;
+  locale?: Locale;
 }
-const { stage, onMain = true } = Astro.props;
+const { stage, onMain = true, locale = "en" } = Astro.props;
+const t = strings(locale).stage;
 ---
 
 <span class="badge" style={`--tone: var(--stage-${stageSlug(stage)})`}>
-  <b aria-hidden="true"></b>{stage ?? "Untested"}{!onMain && <span class="pr" title="Reached with open pull requests or local patches">PR</span>}
+  <b aria-hidden="true"></b>{t.names[stage ?? "Untested"]}{!onMain && <span class="pr" title={t.prTitle}>PR</span>}
 </span>
 
 <style>

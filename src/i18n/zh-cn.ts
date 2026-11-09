@@ -38,6 +38,24 @@ const strings: Strings = {
     legal:
       "AnyPS5 是独立项目，与索尼互动娱乐（Sony Interactive Entertainment）无关，也未获其授权或认可；“PlayStation”和“PS5”是其商标。游戏图片归各自发行商所有。AnyPS5 不包含任何受版权保护的软件、固件或密钥。",
   },
+  stage: {
+    names: {
+      Converts: "能转换",
+      Loads: "能加载",
+      Starts: "能启动",
+      "First draw": "首次绘制",
+      Presents: "能输出画面",
+      Menus: "能进菜单",
+      Ingame: "能进游戏",
+      Playable: "可游玩",
+      "Not converting": "无法转换",
+      Untested: "未测试",
+    },
+    prTitle: "需要未合并的拉取请求或本地补丁才能达到",
+    reaches: (stage: string) => `达到：${stage}`,
+    withPrs: (stage: string) => `借助未合并的拉取请求可达：${stage}`,
+    notTested: "尚未测试",
+  },
   home: {
     headline: "PS5 游戏，在 PC 上<em>原生</em>运行。",
     lede: "AnyPS5 把 PS5 可执行文件重新链接成原生的 Linux 和 Windows 程序，调用的是重新实现的系统库。不是模拟器，也没有额外的运行时进程。",

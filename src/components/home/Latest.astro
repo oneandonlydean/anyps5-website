@@ -42,7 +42,7 @@ const { games: highlights } = await getLatest();
                 <span class="slide-copy">
                   <span class="kicker">{h.kind === "regression" ? t.home.reportedLower : h.from ? t.home.upFrom(h.from) : h.first ? t.home.firstReport : t.home.firstOnMain}</span>
                   <b class="name">{h.game?.name ?? h.title}</b>
-                  {h.stage && <StageBadge stage={h.stage} />}
+                  {h.stage && <StageBadge stage={h.stage} locale={locale} />}
                   <LocalDate class="when" iso={h.date} />
                 </span>
               </a>

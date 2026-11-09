@@ -39,6 +39,24 @@ const strings: Strings = {
     legal:
       "AnyPS5 es un proyecto independiente, sin relación, autorización ni respaldo de Sony Interactive Entertainment, titular de las marcas «PlayStation» y «PS5». Las imágenes de los juegos pertenecen a sus editores. AnyPS5 no incluye software, firmware ni claves con derechos de autor.",
   },
+  stage: {
+    names: {
+      Converts: "Se convierte",
+      Loads: "Carga",
+      Starts: "Arranca",
+      "First draw": "Primer dibujado",
+      Presents: "Muestra imagen",
+      Menus: "Menús",
+      Ingame: "En juego",
+      Playable: "Jugable",
+      "Not converting": "No se convierte",
+      Untested: "Sin probar",
+    },
+    prTitle: "Alcanzado con pull requests abiertos o parches locales",
+    reaches: (stage: string) => `Llega a: ${stage}`,
+    withPrs: (stage: string) => `${stage} con pull requests abiertos`,
+    notTested: "Aún sin probar",
+  },
   home: {
     headline: "Juegos de PS5 funcionando <em>de forma nativa</em> en PC.",
     lede: "AnyPS5 reenlaza ejecutables de PS5 para convertirlos en programas nativos de Linux y Windows que funcionan sobre bibliotecas del sistema reimplementadas. Sin emulador y sin un proceso de ejecución aparte.",

@@ -43,6 +43,25 @@ const en = {
     legal:
       "AnyPS5 is an independent project, not affiliated with, authorised or endorsed by Sony Interactive Entertainment, which owns the “PlayStation” and “PS5” trademarks. Game artwork belongs to its publishers. AnyPS5 includes no copyrighted software, firmware or keys.",
   },
+  /** Stage names as badges show them, and the labels screen readers hear for a stage bar. */
+  stage: {
+    names: {
+      Converts: "Converts",
+      Loads: "Loads",
+      Starts: "Starts",
+      "First draw": "First draw",
+      Presents: "Presents",
+      Menus: "Menus",
+      Ingame: "Ingame",
+      Playable: "Playable",
+      "Not converting": "Not converting",
+      Untested: "Untested",
+    },
+    prTitle: "Reached with open pull requests or local patches",
+    reaches: (stage: string) => `Reaches ${stage}`,
+    withPrs: (stage: string) => `${stage} with open pull requests`,
+    notTested: "Not tested yet",
+  },
   home: {
     /** HTML: the word in <em> gets the gradient. */
     headline: "PS5 games, running <em>natively</em> on PC.",

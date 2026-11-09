@@ -47,6 +47,24 @@ const strings: Strings = {
     legal:
       "AnyPS5 — независимый проект, не связанный с Sony Interactive Entertainment и не одобренный ею, владелицей знаков «PlayStation» и «PS5». Обложки игр принадлежат издателям. AnyPS5 не содержит защищённых ПО, прошивок или ключей.",
   },
+  stage: {
+    names: {
+      Converts: "Конвертируется",
+      Loads: "Загружается",
+      Starts: "Запускается",
+      "First draw": "Первая отрисовка",
+      Presents: "Выводит кадры",
+      Menus: "Меню",
+      Ingame: "В игре",
+      Playable: "Играбельно",
+      "Not converting": "Не конвертируется",
+      Untested: "Не проверено",
+    },
+    prTitle: "Достигнуто с открытыми пул-реквестами или локальными патчами",
+    reaches: (stage: string) => `Стадия: ${stage}`,
+    withPrs: (stage: string) => `${stage} с открытыми пул-реквестами`,
+    notTested: "Ещё не проверено",
+  },
   home: {
     /** HTML: the word in <em> gets the gradient. */
     headline: "Игры с PS5 — <em>нативно</em> на ПК.",

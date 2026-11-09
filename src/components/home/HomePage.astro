@@ -157,7 +157,7 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     <a class="stat card" href="/compatibility">
       <span class="label">{t.home.gamesUnderTest}</span>
       <b data-count={games.length}>{games.length}</b>
-      <span class="stack" role="img" aria-label={distribution.map((s) => `${s.count} ${s.name}`).join(", ")}>
+      <span class="stack" role="img" aria-label={distribution.map((s) => `${s.count} ${t.stage.names[s.name]}`).join(", ")}>
         {distribution.map((s) => <i style={`flex:${s.count};background:var(--stage-${stageSlug(s.name)})`} />)}
       </span>
       <span class="muted">{t.home.withReports(num(tested.length))}</span>
@@ -284,8 +284,8 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
                 <div class="feature-copy">
                   {g.art?.logo ? <img class="feature-logo" src={artSrc(g.art.logo, 480)} alt={g.name} loading="lazy" /> : <h3>{g.name}</h3>}
                   <div class="feature-stage">
-                    <StageBadge stage={r.stage} onMain={r.onMain} />
-                    <StageBar stage={g.stage} branchStage={g.branchStage} />
+                    <StageBadge stage={r.stage} onMain={r.onMain} locale={locale} />
+                    <StageBar stage={g.stage} branchStage={g.branchStage} locale={locale} />
                   </div>
                 </div>
               </a>

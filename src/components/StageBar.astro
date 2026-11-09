@@ -1,16 +1,23 @@
 ---
 import { STAGES, stageRank, stageSlug, type StageOrNone } from "../lib/stages";
+import { strings, type Locale } from "../i18n";
 
 interface Props {
   stage: StageOrNone | null;
   branchStage?: StageOrNone | null;
   size?: "sm" | "md";
+  locale?: Locale;
 }
-const { stage, branchStage = null, size = "sm" } = Astro.props;
+const { stage, branchStage = null, size = "sm", locale = "en" } = Astro.props;
+const t = strings(locale).stage;
 const rank = stageRank(stage);
 const branchRank = stageRank(branchStage);
 const tone = stageSlug(rank >= 0 ? stage : branchStage);
-const label = stage ? `Reaches ${stage}${branchStage ? `, ${branchStage} with open pull requests` : ""}` : branchStage ? `${branchStage} with open pull requests` : "Not tested yet";
+const label = stage
+  ? `${t.reaches(t.names[stage])}${branchStage ? `, ${t.withPrs(t.names[branchStage])}` : ""}`
+  : branchStage
+    ? t.withPrs(t.names[branchStage])
+    : t.notTested;
 ---
 
 <span class:list={["bar", size]} role="img" aria-label={label} style={`--tone: var(--stage-${tone})`}>
