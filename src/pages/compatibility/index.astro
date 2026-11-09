@@ -237,6 +237,8 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
   const press = (buttons: HTMLButtonElement[], key: string, values: string[]) => buttons.forEach((b) => (b.ariaPressed = String(values.includes(b.dataset[key]!))));
 
   let platforms: string[] = [];
+  /** The cards in the order they are in the page. */
+  let placed = cards;
   let currentView = "grid";
   let gpus: string[] = [];
 
@@ -282,7 +284,9 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
       updated: (a, b) => b.dataset.updated!.localeCompare(a.dataset.updated!),
       name: (a, b) => a.dataset.name!.localeCompare(b.dataset.name!),
     };
-    grid.append(...[...cards].sort(order[sort.value]));
+    // Moving the cards makes the browser lay the whole grid out again, so only when the order has changed.
+    const sorted = [...cards].sort(order[sort.value]);
+    if (sorted.some((card, i) => card !== placed[i])) grid.append(...(placed = sorted));
     count.textContent = String(shown);
     countLabel.textContent = shown === 1 ? "game" : "games";
     empty.hidden = shown > 0;
@@ -932,6 +936,8 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     border-top: 1px solid var(--line);
     border-radius: 0;
     box-shadow: none;
+    /* A row's height, until it has been on screen (see GameCard.astro). */
+    contain-intrinsic-block-size: auto 83px;
   }
   .games.list :global(.game:first-child) {
     border-top: 0;

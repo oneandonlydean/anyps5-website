@@ -98,6 +98,11 @@ const lastTested = game.reports[0]?.date;
     color: var(--text);
     text-decoration: none;
     transition: transform 0.3s var(--ease), border-color 0.3s, box-shadow 0.3s;
+    /* Cards off screen are not laid out or painted until they come near it: with hundreds of games, that work took
+       most of a second on a phone at load and again on every filter change. The height is a card's usual one, used
+       until the real one is known. */
+    content-visibility: auto;
+    contain-intrinsic-block-size: auto 380px;
   }
   /* The cover's colour bleeds into the card body. */
   .game::before {
