@@ -1,38 +1,6 @@
 {
-  "generated": "2026-11-06T10:23:41.352Z",
+  "generated": "2026-11-09T18:46:33.697Z",
   "uploads": [
-    {
-      "id": 1,
-      "titleId": "PPSA21564",
-      "titleChosen": false,
-      "name": "ASTRO BOT",
-      "stage": "Ingame",
-      "stated": "Ingame",
-      "login": "oneandonlydean",
-      "githubId": 158058829,
-      "at": "2026-11-05T02:06:18.000Z",
-      "os": "linux",
-      "gpuVendor": "NVIDIA",
-      "gpu": "NVIDIA GeForce RTX 4090",
-      "commit": "9e1c9848a1c8229c299c004cd77317ee6748825f",
-      "release": null,
-      "contentVersion": "01.007.000",
-      "exit": "killed",
-      "recovered": true,
-      "missing": [],
-      "unsupported": [],
-      "truncated": {
-        "functions": 0,
-        "unsupported": 0
-      },
-      "stop": {
-        "kind": "other",
-        "reason": "unclean-unknown",
-        "message": "The run ended without writing a report; this one was recovered from a checkpoint."
-      },
-      "perf": null,
-      "verifiedBy": null
-    },
     {
       "id": 2,
       "titleId": "PPSA21564",
@@ -96,13 +64,4798 @@
       },
       "perf": null,
       "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 4,
+      "titleId": "PPSA15388",
+      "titleChosen": false,
+      "name": "High on Life",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "Hakhalz",
+      "githubId": 177460171,
+      "at": "2026-11-06T15:53:10.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4080",
+      "commit": "669f0673faee7236f0d33e9037dbaaa2916a185d",
+      "release": null,
+      "contentVersion": "01.120.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 5,
+        "low1": 0.7,
+        "p99Ms": 1390.06,
+        "stutters": 130,
+        "seconds": 371.822,
+        "gpuBusyPct": 10.4,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 5,
+      "titleId": "PPSA10261",
+      "titleChosen": false,
+      "name": "Lies of P",
+      "stage": "Presents",
+      "stated": null,
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-06T16:34:53.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "492ed5c5fe5d476257ab52fa8e09cf7c343c8200",
+      "release": null,
+      "contentVersion": "01.005.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 40.9,
+        "low1": 15.8,
+        "p99Ms": 63.29,
+        "stutters": 49,
+        "seconds": 30.01,
+        "gpuBusyPct": 54.8,
+        "cap": null,
+        "resolutions": [
+          "3200x1800"
+        ],
+        "comparable": false
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 6,
+      "titleId": "PPSA03527",
+      "titleChosen": false,
+      "name": "Grand Theft Auto III – The Definitive Edition",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-06T18:32:43.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "492ed5c5fe5d476257ab52fa8e09cf7c343c8200",
+      "release": null,
+      "contentVersion": "01.003.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 8.6,
+        "low1": 1.9,
+        "p99Ms": 530.39,
+        "stutters": 259,
+        "seconds": 240.745,
+        "gpuBusyPct": 46.7,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 7,
+      "titleId": "PPSA34502",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops II",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:15:36.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 13.3,
+        "low1": 5.9,
+        "p99Ms": 169.72,
+        "stutters": 9,
+        "seconds": 90.471,
+        "gpuBusyPct": 15,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 8,
+      "titleId": "PPSA34501",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:16:44.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.008.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 30.3,
+        "low1": 6.4,
+        "p99Ms": 156.9,
+        "stutters": 1110,
+        "seconds": 240.956,
+        "gpuBusyPct": 16.8,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 9,
+      "titleId": "PPSA26344",
+      "titleChosen": false,
+      "name": "Ghost of Yōtei",
+      "stage": "Presents",
+      "stated": null,
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:17:33.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.008.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 14.3,
+        "low1": 11.8,
+        "p99Ms": 84.73,
+        "stutters": 0,
+        "seconds": 60.114,
+        "gpuBusyPct": 56.2,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 10,
+      "titleId": "PPSA24003",
+      "titleChosen": false,
+      "name": "Dying Light: The Beast",
+      "stage": "Menus",
+      "stated": "Menus",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:18:17.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.007.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.5,
+        "low1": 59.8,
+        "p99Ms": 16.71,
+        "stutters": 4,
+        "seconds": 240.083,
+        "gpuBusyPct": 6.1,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 11,
+      "titleId": "PPSA21564",
+      "titleChosen": false,
+      "name": "ASTRO BOT",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:18:43.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.007.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 22.1,
+        "low1": 15.6,
+        "p99Ms": 63.9,
+        "stutters": 24,
+        "seconds": 213.716,
+        "gpuBusyPct": 57.3,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 12,
+      "titleId": "PPSA15304",
+      "titleChosen": false,
+      "name": "METAL GEAR SOLID Δ: SNAKE EATER",
+      "stage": "Menus",
+      "stated": "Menus",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:19:03.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.001.004",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 5.8,
+        "low1": 0.4,
+        "p99Ms": 2713.49,
+        "stutters": 23,
+        "seconds": 218.278,
+        "gpuBusyPct": 18,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 13,
+      "titleId": "PPSA10594",
+      "titleChosen": false,
+      "name": "TEKKEN™8",
+      "stage": "Menus",
+      "stated": "Menus",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:19:34.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 12.1,
+        "low1": 8.8,
+        "p99Ms": 113.87,
+        "stutters": 32,
+        "seconds": 245.355,
+        "gpuBusyPct": 52.7,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 14,
+      "titleId": "PPSA08560",
+      "titleChosen": false,
+      "name": "Split Fiction",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:32:52.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.500.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.2,
+        "low1": 0.7,
+        "p99Ms": 1394.95,
+        "stutters": 41,
+        "seconds": 249.61,
+        "gpuBusyPct": 9.2,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 15,
+      "titleId": "PPSA04263",
+      "titleChosen": false,
+      "name": "Grand Theft Auto V",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:33:10.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.010.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 29.7,
+        "low1": 29.9,
+        "p99Ms": 33.45,
+        "stutters": 3,
+        "seconds": 240.211,
+        "gpuBusyPct": 1.8,
+        "cap": 30,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 16,
+      "titleId": "PPSA02929",
+      "titleChosen": false,
+      "name": "Dreaming Sarah",
+      "stage": "Playable",
+      "stated": "Playable",
+      "login": "oneandonlydean",
+      "githubId": 158058829,
+      "at": "2026-11-07T08:33:45.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "commit": "e88dbd3af7025a97b3d77b81de96b67b30ab0a72",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.9,
+        "p99Ms": 16.7,
+        "stutters": 1,
+        "seconds": 240.099,
+        "gpuBusyPct": 3.9,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 17,
+      "titleId": "PPSA98766",
+      "titleChosen": false,
+      "name": "DriftCheck",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T14:54:06.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 53.4,
+        "low1": 24,
+        "p99Ms": 41.63,
+        "stutters": 132,
+        "seconds": 60.038,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 18,
+      "titleId": "PPSA99510",
+      "titleChosen": false,
+      "name": "GyroAim",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T14:56:00.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 53.1,
+        "low1": 23.2,
+        "p99Ms": 43.03,
+        "stutters": 162,
+        "seconds": 60.039,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 19,
+      "titleId": "PPSA99350",
+      "titleChosen": false,
+      "name": "Steam Remote Play",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T14:57:56.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 54.6,
+        "low1": 24.8,
+        "p99Ms": 40.35,
+        "stutters": 138,
+        "seconds": 60.003,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 20,
+      "titleId": "PPSA92280",
+      "titleChosen": false,
+      "name": "Capy Mobile",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:01:49.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.005.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 56.9,
+        "low1": 25.1,
+        "p99Ms": 39.85,
+        "stutters": 95,
+        "seconds": 60.025,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 21,
+      "titleId": "PPSA94002",
+      "titleChosen": false,
+      "name": "Raptor: Call of the Shadows",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:03:45.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.008.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 33.9,
+        "low1": 27,
+        "p99Ms": 37.09,
+        "stutters": 1,
+        "seconds": 30.028,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 22,
+      "titleId": "PPSA99109",
+      "titleChosen": false,
+      "name": "Prospero Explorer",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:05:42.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 6.8,
+        "low1": 5.4,
+        "p99Ms": 186.84,
+        "stutters": 0,
+        "seconds": 60.117,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 23,
+      "titleId": "PPSA99808",
+      "titleChosen": false,
+      "name": "PICO-8",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:06:04.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.001.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 24,
+      "titleId": "PPSA99920",
+      "titleChosen": false,
+      "name": "Prospero Vibrate",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:08:37.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 7.4,
+        "low1": 6.1,
+        "p99Ms": 164.14,
+        "stutters": 0,
+        "seconds": 60.173,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 25,
+      "titleId": "PPSA99110",
+      "titleChosen": false,
+      "name": "Prospero Multi Tools",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:10:32.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 7,
+        "low1": 5.5,
+        "p99Ms": 181.79,
+        "stutters": 0,
+        "seconds": 60.096,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 26,
+      "titleId": "PPSA90210",
+      "titleChosen": false,
+      "name": "Prospero Themes",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:12:27.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.007",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 52.4,
+        "low1": 28.4,
+        "p99Ms": 35.16,
+        "stutters": 114,
+        "seconds": 60.026,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 27,
+      "titleId": "PPSA96024",
+      "titleChosen": false,
+      "name": "Chiral-FTP",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:18:11.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.001.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 0.9,
+        "low1": 0.9,
+        "p99Ms": 1079.39,
+        "stutters": 0,
+        "seconds": 30.928,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 28,
+      "titleId": "PPSA06464",
+      "titleChosen": false,
+      "name": "PS64",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:20:06.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 54.4,
+        "low1": 37.2,
+        "p99Ms": 26.91,
+        "stutters": 4,
+        "seconds": 60.026,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 29,
+      "titleId": "PPSA99922",
+      "titleChosen": false,
+      "name": "Snes9x PS5",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:22:02.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "02.090.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 56.8,
+        "low1": 26.8,
+        "p99Ms": 37.33,
+        "stutters": 80,
+        "seconds": 60.013,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 30,
+      "titleId": "PPSA99925",
+      "titleChosen": false,
+      "name": "Beetle PCE PS5",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:24:29.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.011.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 57,
+        "low1": 28.2,
+        "p99Ms": 35.41,
+        "stutters": 65,
+        "seconds": 60.025,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 31,
+      "titleId": "PPSA99842",
+      "titleChosen": false,
+      "name": "Trophy Manager",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:26:28.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.001.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 53.6,
+        "low1": 27.5,
+        "p99Ms": 36.42,
+        "stutters": 91,
+        "seconds": 60.014,
+        "gpuBusyPct": 26.2,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 32,
+      "titleId": "PPSA47402",
+      "titleChosen": false,
+      "name": "Syobon Action",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:28:24.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.001.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 21.5,
+        "low1": 15.8,
+        "p99Ms": 63.33,
+        "stutters": 1,
+        "seconds": 60.077,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 33,
+      "titleId": "PPSA99600",
+      "titleChosen": false,
+      "name": "Cloud Play",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:33:41.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 28.4,
+        "low1": 25,
+        "p99Ms": 39.98,
+        "stutters": 0,
+        "seconds": 30.016,
+        "gpuBusyPct": 73.9,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 34,
+      "titleId": "PPSA17641",
+      "titleChosen": false,
+      "name": "SymphonyStation5",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:36:00.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 52.6,
+        "low1": 28.5,
+        "p99Ms": 35.13,
+        "stutters": 60,
+        "seconds": 60.01,
+        "gpuBusyPct": 28.9,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 35,
+      "titleId": "PPSA99474",
+      "titleChosen": false,
+      "name": "Twispero",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:38:02.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 12.1,
+        "low1": 5.4,
+        "p99Ms": 185.36,
+        "stutters": 14,
+        "seconds": 30.067,
+        "gpuBusyPct": 25.8,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 36,
+      "titleId": "PPSA99005",
+      "titleChosen": false,
+      "name": "PS5 OpenGL Showcase",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:40:00.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.4,
+        "low1": 2.5,
+        "p99Ms": 400.16,
+        "stutters": 0,
+        "seconds": 30.32,
+        "gpuBusyPct": 71.8,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 37,
+      "titleId": "PPSA99015",
+      "titleChosen": false,
+      "name": "Media Player Classic PS5",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:48:40.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 57.7,
+        "low1": 30.7,
+        "p99Ms": 32.55,
+        "stutters": 20,
+        "seconds": 60.024,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 38,
+      "titleId": "PPSA69428",
+      "titleChosen": false,
+      "name": "A2 Racer II",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:50:39.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.001.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.8,
+        "low1": 3.7,
+        "p99Ms": 270.75,
+        "stutters": 0,
+        "seconds": 60.143,
+        "gpuBusyPct": 0.5,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 39,
+      "titleId": "PPSA98001",
+      "titleChosen": false,
+      "name": "PokeMMO Prospero",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:52:38.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "02.000.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 29.6,
+        "low1": 25.3,
+        "p99Ms": 39.56,
+        "stutters": 1,
+        "seconds": 60.034,
+        "gpuBusyPct": 25.3,
+        "cap": 30,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 40,
+      "titleId": "PPSA99039",
+      "titleChosen": false,
+      "name": "EVO Player",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:54:42.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.012.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 11.1,
+        "low1": 0.8,
+        "p99Ms": 1220.98,
+        "stutters": 30,
+        "seconds": 30.039,
+        "gpuBusyPct": 15.8,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 41,
+      "titleId": "PPSA99303",
+      "titleChosen": false,
+      "name": "Quake III Arena",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:55:00.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.002.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 42,
+      "titleId": "PPSA99319",
+      "titleChosen": false,
+      "name": "Quake III Arena",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:55:19.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.004.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 43,
+      "titleId": "PPSA99993",
+      "titleChosen": false,
+      "name": "Pulse",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:57:17.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 6.3,
+        "low1": 5.4,
+        "p99Ms": 185.15,
+        "stutters": 0,
+        "seconds": 60.07,
+        "gpuBusyPct": 17.9,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 44,
+      "titleId": "PPSA99520",
+      "titleChosen": false,
+      "name": "Régie5",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T15:59:17.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.005.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 0.3,
+        "low1": 0,
+        "p99Ms": 59575.59,
+        "stutters": 3,
+        "seconds": 80.717,
+        "gpuBusyPct": 5.6,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 45,
+      "titleId": "PPSA99841",
+      "titleChosen": false,
+      "name": "Estante",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T16:01:16.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.005.005",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 53.3,
+        "low1": 27.3,
+        "p99Ms": 36.62,
+        "stutters": 103,
+        "seconds": 60.008,
+        "gpuBusyPct": 25.4,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 46,
+      "titleId": "PPSA99322",
+      "titleChosen": false,
+      "name": "Geometry Wars 2",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-07T16:02:49.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 47,
+      "titleId": "PPSA01736",
+      "titleChosen": false,
+      "name": "Planet Coaster",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-07T22:03:28.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "56374036ad47eb7f6daae5780bd78d60b05a6017",
+      "release": null,
+      "contentVersion": "01.017.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 4.8,
+        "low1": 2.2,
+        "p99Ms": 450.69,
+        "stutters": 15,
+        "seconds": 271.214,
+        "gpuBusyPct": 23.6,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": false
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 48,
+      "titleId": "PPSA12544",
+      "titleChosen": false,
+      "name": "Hollow Knight: Silksong",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-07T23:05:39.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "56374036ad47eb7f6daae5780bd78d60b05a6017",
+      "release": null,
+      "contentVersion": "01.000.010",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 64.2,
+        "low1": 45.1,
+        "p99Ms": 22.17,
+        "stutters": 100,
+        "seconds": 120.036,
+        "gpuBusyPct": 51.9,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": false
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 49,
+      "titleId": "PPSA22102",
+      "titleChosen": false,
+      "name": "Squirrel with a Gun",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-08T00:00:16.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "56374036ad47eb7f6daae5780bd78d60b05a6017",
+      "release": null,
+      "contentVersion": "01.001.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 7.4,
+        "low1": 5.3,
+        "p99Ms": 187.43,
+        "stutters": 30,
+        "seconds": 304.304,
+        "gpuBusyPct": 39.2,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": false
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 50,
+      "titleId": "PPSA05975",
+      "titleChosen": false,
+      "name": "BloodRayne 2: ReVamped",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "Biologisten",
+      "githubId": 16406684,
+      "at": "2026-11-08T10:57:32.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 2060 SUPER",
+      "commit": "4977f640527d606eacae4d948c3be22262a40e77",
+      "release": null,
+      "contentVersion": "01.001.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 28.7,
+        "low1": 9.8,
+        "p99Ms": 101.99,
+        "stutters": 168,
+        "seconds": 90.026,
+        "gpuBusyPct": 9.9,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 51,
+      "titleId": "PPSA10122",
+      "titleChosen": false,
+      "name": "Return To Monkey Island",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "Biologisten",
+      "githubId": 16406684,
+      "at": "2026-11-08T11:09:55.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 2060 SUPER",
+      "commit": "c10bbcf5f829bd91ae5a065073f24d673f0cfb4a",
+      "release": null,
+      "contentVersion": "01.101.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.8,
+        "low1": 50.4,
+        "p99Ms": 19.84,
+        "stutters": 8,
+        "seconds": 150.062,
+        "gpuBusyPct": 11.4,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 52,
+      "titleId": "PPSA99004",
+      "titleChosen": false,
+      "name": "ProsperoAI",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "Biologisten",
+      "githubId": 16406684,
+      "at": "2026-11-08T11:17:20.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 2060 SUPER",
+      "commit": "c10bbcf5f829bd91ae5a065073f24d673f0cfb4a",
+      "release": null,
+      "contentVersion": "01.006.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 42.6,
+        "low1": 40.9,
+        "p99Ms": 24.44,
+        "stutters": 14,
+        "seconds": 150.329,
+        "gpuBusyPct": 88.3,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 53,
+      "titleId": "PPSA04075",
+      "titleChosen": false,
+      "name": "River City Girls",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "Biologisten",
+      "githubId": 16406684,
+      "at": "2026-11-08T11:25:58.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 2060 SUPER",
+      "commit": "c10bbcf5f829bd91ae5a065073f24d673f0cfb4a",
+      "release": null,
+      "contentVersion": "02.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.8,
+        "low1": 59.9,
+        "p99Ms": 16.7,
+        "stutters": 8,
+        "seconds": 150.062,
+        "gpuBusyPct": 9.7,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 54,
+      "titleId": "PPSA01494",
+      "titleChosen": false,
+      "name": "Borderlands®4",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:07:53.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "828e44310ec98912f041d0e51b8adc809848741b",
+      "release": null,
+      "contentVersion": "01.100.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.7,
+        "p99Ms": 16.76,
+        "stutters": 0,
+        "seconds": 240.099,
+        "gpuBusyPct": 27.8,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 55,
+      "titleId": "PPSA18194",
+      "titleChosen": false,
+      "name": "METAL GEAR SOLID 4: Guns of the Patriots - Master Collection Version",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:07:54.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "828e44310ec98912f041d0e51b8adc809848741b",
+      "release": null,
+      "contentVersion": "01.004.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 55.6,
+        "low1": 39.9,
+        "p99Ms": 25.08,
+        "stutters": 28,
+        "seconds": 210.095,
+        "gpuBusyPct": 26.3,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 56,
+      "titleId": "PPSA31162",
+      "titleChosen": false,
+      "name": "Super Meat Boy 3D",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:07:56.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "828e44310ec98912f041d0e51b8adc809848741b",
+      "release": null,
+      "contentVersion": "02.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 7.1,
+        "low1": 6.1,
+        "p99Ms": 163.08,
+        "stutters": 86,
+        "seconds": 243.531,
+        "gpuBusyPct": 66.2,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 57,
+      "titleId": "PPSA34502",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops II",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:07:57.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "828e44310ec98912f041d0e51b8adc809848741b",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 14.8,
+        "low1": 5.6,
+        "p99Ms": 177.86,
+        "stutters": 538,
+        "seconds": 180.263,
+        "gpuBusyPct": 30.8,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 58,
+      "titleId": "PPSA36591",
+      "titleChosen": false,
+      "name": "STEINS;GATE RE:BOOT",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:07:58.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "828e44310ec98912f041d0e51b8adc809848741b",
+      "release": null,
+      "contentVersion": "01.002.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.5,
+        "p99Ms": 16.81,
+        "stutters": 3,
+        "seconds": 240.099,
+        "gpuBusyPct": 22.7,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 59,
+      "titleId": "PPSA18194",
+      "titleChosen": false,
+      "name": "METAL GEAR SOLID 4: Guns of the Patriots - Master Collection Version",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:02.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.004.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 54.3,
+        "low1": 35.7,
+        "p99Ms": 27.98,
+        "stutters": 31,
+        "seconds": 210.321,
+        "gpuBusyPct": 35.2,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 60,
+      "titleId": "PPSA31162",
+      "titleChosen": false,
+      "name": "Super Meat Boy 3D",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:03.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "02.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 7.4,
+        "low1": 5.7,
+        "p99Ms": 174.05,
+        "stutters": 3,
+        "seconds": 240.607,
+        "gpuBusyPct": 75.1,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 61,
+      "titleId": "PPSA34502",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops II",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:04.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 14.5,
+        "low1": 5.6,
+        "p99Ms": 177.51,
+        "stutters": 549,
+        "seconds": 180.582,
+        "gpuBusyPct": 30.7,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 62,
+      "titleId": "PPSA36591",
+      "titleChosen": false,
+      "name": "STEINS;GATE RE:BOOT",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:06.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.002.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 58.6,
+        "p99Ms": 17.06,
+        "stutters": 4,
+        "seconds": 240.099,
+        "gpuBusyPct": 21.9,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 63,
+      "titleId": "FAKE77031",
+      "titleChosen": false,
+      "name": "Playden",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:07.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.008.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 29.9,
+        "low1": 25.8,
+        "p99Ms": 38.82,
+        "stutters": 0,
+        "seconds": 60.036,
+        "gpuBusyPct": 74.3,
+        "cap": 30,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 64,
+      "titleId": "PPSA19111",
+      "titleChosen": false,
+      "name": "XashPS5 V1.3",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:08.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.030.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 65,
+      "titleId": "PPSA17035",
+      "titleChosen": false,
+      "name": "VITA5 PPSA17035",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:10.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 17.3,
+        "low1": 15.4,
+        "p99Ms": 65.06,
+        "stutters": 1,
+        "seconds": 60.092,
+        "gpuBusyPct": 79.9,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 66,
+      "titleId": "PPSA47770",
+      "titleChosen": false,
+      "name": "Afterglow",
+      "stage": "First draw",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:11.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.006",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 67,
+      "titleId": "PPSA50001",
+      "titleChosen": false,
+      "name": "SudokuZen",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:12.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.010",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 4.7,
+        "low1": 4,
+        "p99Ms": 249.14,
+        "stutters": 0,
+        "seconds": 60.229,
+        "gpuBusyPct": 81.6,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 68,
+      "titleId": "PPSA67670",
+      "titleChosen": false,
+      "name": "PayLoader",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:14.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.001.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 6.2,
+        "low1": 6,
+        "p99Ms": 166.14,
+        "stutters": 0,
+        "seconds": 60.144,
+        "gpuBusyPct": 62.7,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 69,
+      "titleId": "PPSA69426",
+      "titleChosen": false,
+      "name": "Signal Companion",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:15.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.001.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 14.9,
+        "low1": 13.1,
+        "p99Ms": 76.54,
+        "stutters": 1,
+        "seconds": 60.031,
+        "gpuBusyPct": 74.3,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 70,
+      "titleId": "PPSA98260",
+      "titleChosen": false,
+      "name": "SmartTube",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:16.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.189",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 22.6,
+        "low1": 17.2,
+        "p99Ms": 58.14,
+        "stutters": 1,
+        "seconds": 60.029,
+        "gpuBusyPct": 26.1,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 71,
+      "titleId": "PPSA98427",
+      "titleChosen": false,
+      "name": "CD Player",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:18.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.001.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 52,
+        "low1": 40.3,
+        "p99Ms": 24.82,
+        "stutters": 2,
+        "seconds": 60.025,
+        "gpuBusyPct": 58.3,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 72,
+      "titleId": "PPSA99000",
+      "titleChosen": false,
+      "name": "ProsperoStore",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:19.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.080",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.6,
+        "low1": 3.1,
+        "p99Ms": 319.69,
+        "stutters": 0,
+        "seconds": 30.016,
+        "gpuBusyPct": 79.4,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 73,
+      "titleId": "PPSA99001",
+      "titleChosen": false,
+      "name": "ProsperoRadio",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:20.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.010",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 17.3,
+        "low1": 14.1,
+        "p99Ms": 70.77,
+        "stutters": 1,
+        "seconds": 60.077,
+        "gpuBusyPct": 85.1,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 74,
+      "titleId": "PPSA99002",
+      "titleChosen": false,
+      "name": "ProsperoLight",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:22.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.110",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.7,
+        "low1": 3.2,
+        "p99Ms": 308.01,
+        "stutters": 0,
+        "seconds": 60.274,
+        "gpuBusyPct": 74,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 75,
+      "titleId": "PPSA99003",
+      "titleChosen": false,
+      "name": "ProsperoTV",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:23.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.060",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 4.2,
+        "low1": 4.1,
+        "p99Ms": 244.44,
+        "stutters": 0,
+        "seconds": 60.298,
+        "gpuBusyPct": 72.1,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 76,
+      "titleId": "PPSA99007",
+      "titleChosen": false,
+      "name": "Yamagi Quake II",
+      "stage": "First draw",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:24.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 77,
+      "titleId": "PPSA99009",
+      "titleChosen": false,
+      "name": "ProsperoLichess",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:26.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.6,
+        "low1": 3.3,
+        "p99Ms": 306.27,
+        "stutters": 0,
+        "seconds": 30.103,
+        "gpuBusyPct": 74.1,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 78,
+      "titleId": "PPSA99012",
+      "titleChosen": false,
+      "name": "ProsperoTube",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:27.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 0.6,
+        "low1": 0.2,
+        "p99Ms": 5327.16,
+        "stutters": 9,
+        "seconds": 32.299,
+        "gpuBusyPct": 5.2,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 79,
+      "titleId": "PPSA99050",
+      "titleChosen": false,
+      "name": "Homebrew UI Lab",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:28.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.010",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.6,
+        "low1": 3.4,
+        "p99Ms": 291.77,
+        "stutters": 0,
+        "seconds": 60.358,
+        "gpuBusyPct": 63.4,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 80,
+      "titleId": "PPSA99051",
+      "titleChosen": false,
+      "name": "Surround Sound Studio",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:30.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 4.1,
+        "low1": 3.9,
+        "p99Ms": 257.14,
+        "stutters": 0,
+        "seconds": 60.204,
+        "gpuBusyPct": 71.7,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 81,
+      "titleId": "PPSA99062",
+      "titleChosen": false,
+      "name": "ORION Media Center",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:31.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.105.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.7,
+        "low1": 3.2,
+        "p99Ms": 307.85,
+        "stutters": 0,
+        "seconds": 60.318,
+        "gpuBusyPct": 75.6,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 82,
+      "titleId": "PPSA99082",
+      "titleChosen": false,
+      "name": "OpenNOW PS5 - Prototype",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:32.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.002.038",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 1.9,
+        "low1": 1.7,
+        "p99Ms": 592.44,
+        "stutters": 0,
+        "seconds": 30.471,
+        "gpuBusyPct": 1.1,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 83,
+      "titleId": "PPSA99180",
+      "titleChosen": false,
+      "name": "PKG Folderizer",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-08T16:30:34.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.056.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.7,
+        "low1": 3.1,
+        "p99Ms": 318.13,
+        "stutters": 1,
+        "seconds": 60.102,
+        "gpuBusyPct": 71.5,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 84,
+      "titleId": "PPSA34502",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops II",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "Biologisten",
+      "githubId": 16406684,
+      "at": "2026-11-08T21:18:55.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 2060 SUPER",
+      "commit": "3d3548cbf0abe753c7a496a3b2bb716ff87daa4b",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 12.8,
+        "low1": 2.7,
+        "p99Ms": 374.48,
+        "stutters": 403,
+        "seconds": 420.84,
+        "gpuBusyPct": 17.3,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 85,
+      "titleId": "PPSA18026",
+      "titleChosen": false,
+      "name": "Planet Zoo",
+      "stage": "Menus",
+      "stated": "Menus",
+      "login": "adam25136",
+      "githubId": 34386517,
+      "at": "2026-11-08T22:32:42.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 5080",
+      "commit": "6e32a4f8a09015313848f213ec5e4d526a9b5701",
+      "release": null,
+      "contentVersion": "01.009.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 1.9,
+        "low1": 1.2,
+        "p99Ms": 853.18,
+        "stutters": 0,
+        "seconds": 30.142,
+        "gpuBusyPct": 19.3,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 86,
+      "titleId": "PPSA04027",
+      "titleChosen": false,
+      "name": "Cyberpunk 2077",
+      "stage": "Menus",
+      "stated": "Menus",
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-09T00:51:52.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "56374036ad47eb7f6daae5780bd78d60b05a6017",
+      "release": null,
+      "contentVersion": "02.310.100",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 4.8,
+        "low1": 0.8,
+        "p99Ms": 1191.85,
+        "stutters": 322,
+        "seconds": 993.233,
+        "gpuBusyPct": 22.7,
+        "cap": null,
+        "resolutions": [
+          "3200x1800"
+        ],
+        "comparable": false
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 87,
+      "titleId": "PPSA01494",
+      "titleChosen": false,
+      "name": "Borderlands®4",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:06.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f9627b74e745806647b93c62fec408982b7f4cbf",
+      "release": null,
+      "contentVersion": "01.100.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.7,
+        "p99Ms": 16.76,
+        "stutters": 0,
+        "seconds": 240.099,
+        "gpuBusyPct": 27.6,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 88,
+      "titleId": "PPSA18194",
+      "titleChosen": false,
+      "name": "METAL GEAR SOLID 4: Guns of the Patriots - Master Collection Version",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:08.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f9627b74e745806647b93c62fec408982b7f4cbf",
+      "release": null,
+      "contentVersion": "01.004.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 53.1,
+        "low1": 36,
+        "p99Ms": 27.76,
+        "stutters": 36,
+        "seconds": 211.522,
+        "gpuBusyPct": 34.1,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 89,
+      "titleId": "PPSA31162",
+      "titleChosen": false,
+      "name": "Super Meat Boy 3D",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:09.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f9627b74e745806647b93c62fec408982b7f4cbf",
+      "release": null,
+      "contentVersion": "02.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 5.3,
+        "low1": 0.7,
+        "p99Ms": 1427.09,
+        "stutters": 89,
+        "seconds": 240.698,
+        "gpuBusyPct": 42,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 90,
+      "titleId": "PPSA34502",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops II",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:10.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f9627b74e745806647b93c62fec408982b7f4cbf",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 12.7,
+        "low1": 4.1,
+        "p99Ms": 241.87,
+        "stutters": 238,
+        "seconds": 180.581,
+        "gpuBusyPct": 27.5,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 91,
+      "titleId": "PPSA36591",
+      "titleChosen": false,
+      "name": "STEINS;GATE RE:BOOT",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:12.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f9627b74e745806647b93c62fec408982b7f4cbf",
+      "release": null,
+      "contentVersion": "01.002.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.3,
+        "p99Ms": 16.85,
+        "stutters": 2,
+        "seconds": 240.099,
+        "gpuBusyPct": 22.5,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 92,
+      "titleId": "PPSA30839",
+      "titleChosen": false,
+      "name": "MXGP 26: The Official Game",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:13.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f9c96f23f024e20d7cac0111a3e37addfea207ca",
+      "release": null,
+      "contentVersion": "01.003.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.7,
+        "low1": 0.5,
+        "p99Ms": 1966.85,
+        "stutters": 19,
+        "seconds": 214.952,
+        "gpuBusyPct": 44.1,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 93,
+      "titleId": "PPSA30839",
+      "titleChosen": false,
+      "name": "MXGP 26: The Official Game",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:15.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f9c96f23f024e20d7cac0111a3e37addfea207ca",
+      "release": null,
+      "contentVersion": "01.003.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.2,
+        "low1": 0.3,
+        "p99Ms": 3965.25,
+        "stutters": 49,
+        "seconds": 254.621,
+        "gpuBusyPct": 29.3,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 94,
+      "titleId": "PPSA30839",
+      "titleChosen": false,
+      "name": "MXGP 26: The Official Game",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:16.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f9c96f23f024e20d7cac0111a3e37addfea207ca",
+      "release": null,
+      "contentVersion": "01.003.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.8,
+        "low1": 0.3,
+        "p99Ms": 2959.22,
+        "stutters": 78,
+        "seconds": 549.287,
+        "gpuBusyPct": 50.6,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 95,
+      "titleId": "PPSA99190",
+      "titleChosen": false,
+      "name": "PSCord",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:17.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.010",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 4,
+        "low1": 3.9,
+        "p99Ms": 259.21,
+        "stutters": 0,
+        "seconds": 60.167,
+        "gpuBusyPct": 73.6,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 96,
+      "titleId": "PPSA99300",
+      "titleChosen": false,
+      "name": "Spider-Man Edge Of Time",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:18.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.012.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 97,
+      "titleId": "PPSA99309",
+      "titleChosen": false,
+      "name": "Wind Waker",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:19.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 98,
+      "titleId": "PPSA99316",
+      "titleChosen": false,
+      "name": "Burnout 3",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:21.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 99,
+      "titleId": "PPSA99420",
+      "titleChosen": false,
+      "name": "PS5MC (Kodi 22)",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:22.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.012",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.9,
+        "low1": 0.8,
+        "p99Ms": 1207.87,
+        "stutters": 4,
+        "seconds": 30.062,
+        "gpuBusyPct": 27.5,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 100,
+      "titleId": "PPSA99429",
+      "titleChosen": false,
+      "name": "ApricotGS",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:23.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.030.005",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 41.6,
+        "low1": 34.1,
+        "p99Ms": 29.32,
+        "stutters": 2,
+        "seconds": 60.029,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 101,
+      "titleId": "PPSA99500",
+      "titleChosen": false,
+      "name": "Halo: Combat Evolved",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:24.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.124",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 102,
+      "titleId": "PPSA99505",
+      "titleChosen": false,
+      "name": "Jelly5",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:26.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.006.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 21.9,
+        "low1": 17,
+        "p99Ms": 58.75,
+        "stutters": 0,
+        "seconds": 30.026,
+        "gpuBusyPct": 24.3,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 103,
+      "titleId": "PPSA99515",
+      "titleChosen": false,
+      "name": "Emby5",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:27.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.002.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 19.8,
+        "low1": 16,
+        "p99Ms": 62.5,
+        "stutters": 1,
+        "seconds": 30.029,
+        "gpuBusyPct": 24.8,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 104,
+      "titleId": "PPSA99573",
+      "titleChosen": false,
+      "name": "FoxHollow",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:28.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.001.004",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 105,
+      "titleId": "PPSA99575",
+      "titleChosen": false,
+      "name": "PS5LM",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:30.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.009.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 53.6,
+        "low1": 28.9,
+        "p99Ms": 34.59,
+        "stutters": 19,
+        "seconds": 30.014,
+        "gpuBusyPct": 28.8,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 106,
+      "titleId": "PPSA99576",
+      "titleChosen": false,
+      "name": "PS5SD",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:31.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.009.015",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 45,
+        "low1": 35,
+        "p99Ms": 28.61,
+        "stutters": 2,
+        "seconds": 60.016,
+        "gpuBusyPct": 49.9,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 107,
+      "titleId": "PPSA99577",
+      "titleChosen": false,
+      "name": "PS5MG",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:32.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.007",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 44,
+        "low1": 31.6,
+        "p99Ms": 31.64,
+        "stutters": 0,
+        "seconds": 30.012,
+        "gpuBusyPct": 48.5,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 108,
+      "titleId": "PPSA99581",
+      "titleChosen": false,
+      "name": "PS5LM Plus",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:34.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.008.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 46.8,
+        "low1": 30,
+        "p99Ms": 33.35,
+        "stutters": 1,
+        "seconds": 30.01,
+        "gpuBusyPct": 46.9,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 109,
+      "titleId": "PPSA99594",
+      "titleChosen": false,
+      "name": "Alembic",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:35.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "00.003.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 52.6,
+        "low1": 28,
+        "p99Ms": 35.75,
+        "stutters": 67,
+        "seconds": 60.028,
+        "gpuBusyPct": 27.8,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 110,
+      "titleId": "PPSA99616",
+      "titleChosen": false,
+      "name": "I Wanna Be The Guy: Remastered Tribute Edition",
+      "stage": "First draw",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:36.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 111,
+      "titleId": "PPSA99630",
+      "titleChosen": false,
+      "name": "Morrowind - OpenMW",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:37.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 112,
+      "titleId": "PPSA99640",
+      "titleChosen": false,
+      "name": "Twilight Princess",
+      "stage": "First draw",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:38.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 113,
+      "titleId": "PPSA99660",
+      "titleChosen": false,
+      "name": "Animal Crossing",
+      "stage": null,
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:39.000Z",
+      "os": "windows",
+      "gpuVendor": null,
+      "gpu": null,
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "guest-exit",
+        "message": "The game exited normally."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 114,
+      "titleId": "PPSA99699",
+      "titleChosen": false,
+      "name": "Machete PS5SD",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:41.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "02.002.004",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 39.6,
+        "low1": 30.5,
+        "p99Ms": 32.82,
+        "stutters": 2,
+        "seconds": 60.036,
+        "gpuBusyPct": 55.7,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 115,
+      "titleId": "PPSA99700",
+      "titleChosen": false,
+      "name": "MacheteSaveGameManager",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:42.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.040.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 3.5,
+        "low1": 3.3,
+        "p99Ms": 304.07,
+        "stutters": 0,
+        "seconds": 60.479,
+        "gpuBusyPct": 68.7,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 116,
+      "titleId": "PPSA99728",
+      "titleChosen": false,
+      "name": "OpenRCT2",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-09T16:30:43.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 36.7,
+        "low1": 24.8,
+        "p99Ms": 40.36,
+        "stutters": 3,
+        "seconds": 30.016,
+        "gpuBusyPct": 0,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
     }
   ],
   "hidden": {
     "screenshots": [
+      "10ljdprelpb",
+      "11nn5k4xxw0",
       "1h8gipv1vh7",
+      "1m7z8uordeu",
       "1svunyfe79b",
-      "28xfbdmtgxf"
+      "24z6k4hv0ez",
+      "28xfbdmtgxf",
+      "39q1z3987a"
     ],
     "art": []
   }

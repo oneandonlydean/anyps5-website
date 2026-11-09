@@ -59,6 +59,11 @@
     "region": "EP",
     "concept": "10000669"
   },
+  "PPSA01494": {
+    "name": "Borderlands®4",
+    "region": "UP",
+    "concept": "10000819"
+  },
   "PPSA01503": {
     "name": "Bugsnax",
     "region": "EP",
@@ -389,6 +394,11 @@
     "region": "EP",
     "concept": "10000846"
   },
+  "PPSA04027": {
+    "name": "Cyberpunk 2077",
+    "region": "EP",
+    "concept": "234567"
+  },
   "PPSA04029": {
     "name": "Cyberpunk 2077",
     "region": "EP",
@@ -418,6 +428,11 @@
     "name": "Heavenly Bodies",
     "region": "UP",
     "concept": "10002096"
+  },
+  "PPSA04263": {
+    "name": "Grand Theft Auto V",
+    "region": "EP",
+    "concept": "201930"
   },
   "PPSA04264": {
     "name": "Grand Theft Auto V",
@@ -569,6 +584,11 @@
     "region": "UP",
     "concept": "10003398"
   },
+  "PPSA06464": {
+    "name": "Cult Of The Lamb",
+    "region": "UP",
+    "concept": "10004484"
+  },
   "PPSA06565": {
     "name": "Dusk Diver 2",
     "region": "EP",
@@ -699,6 +719,11 @@
     "region": "UP",
     "concept": "232708"
   },
+  "PPSA08045": {
+    "name": "The Knight Witch",
+    "region": "EP",
+    "concept": "10005253"
+  },
   "PPSA08056": {
     "name": "Under The Waves",
     "region": "UP",
@@ -733,6 +758,11 @@
     "name": "Flashback 2",
     "region": "EP",
     "concept": "10005443"
+  },
+  "PPSA08560": {
+    "name": "Split Fiction",
+    "region": "UP",
+    "concept": "10005449"
   },
   "PPSA08576": {
     "name": "Asterix & Obelix Slap Them All!",
@@ -824,10 +854,25 @@
     "region": "HP",
     "concept": "10003164"
   },
+  "PPSA10122": {
+    "name": "Return To Monkey Island",
+    "region": "UP",
+    "concept": "10006133"
+  },
+  "PPSA10261": {
+    "name": "Lies of P",
+    "region": "UP",
+    "concept": "10006052"
+  },
   "PPSA10264": {
     "name": "Jusant",
     "region": "EP",
     "concept": "10006168"
+  },
+  "PPSA10594": {
+    "name": "TEKKEN™8",
+    "region": "EP",
+    "concept": "10006270"
   },
   "PPSA10595": {
     "name": "TEKKEN™8",
@@ -843,6 +888,16 @@
     "name": "Persona 3 Reload",
     "region": "UP",
     "concept": "10001555"
+  },
+  "PPSA11018": {
+    "name": "Tractor Journey Nitro",
+    "region": "EP",
+    "concept": "10006442"
+  },
+  "PPSA11019": {
+    "name": "Tractor Journey Nitro",
+    "region": "JP",
+    "concept": "10006442"
   },
   "PPSA11386": {
     "name": "007 First Light",
@@ -954,6 +1009,11 @@
     "region": "EP",
     "concept": "10008074"
   },
+  "PPSA15687": {
+    "name": "Death or Treat",
+    "region": "EP",
+    "concept": "10008096"
+  },
   "PPSA16018": {
     "name": "ダブルドラゴン外伝　ライズ・オブ・ザ・ドラゴン",
     "region": "UP",
@@ -998,6 +1058,11 @@
     "name": "MONOPOLY®",
     "region": "EP",
     "concept": "10008585"
+  },
+  "PPSA17641": {
+    "name": "Deer Hunting Camp",
+    "region": "EP",
+    "concept": "10008876"
   },
   "PPSA17942": {
     "name": "DRAGON QUEST VII Reimagined",
@@ -1269,6 +1334,11 @@
     "region": "EP",
     "concept": "10012002"
   },
+  "PPSA25286": {
+    "name": "Crimson Desert",
+    "region": "UP",
+    "concept": "10002363"
+  },
   "PPSA25344": {
     "name": "Sword Of The Sea",
     "region": "EP",
@@ -1539,6 +1609,11 @@
     "region": "UP",
     "concept": "10017657"
   },
+  "PPSA34502": {
+    "name": "Call of Duty®: Black Ops II",
+    "region": "UP",
+    "concept": "10017658"
+  },
   "PPSA34547": {
     "name": "CONTROL Resonant",
     "region": "EP",
@@ -1588,6 +1663,11 @@
     "name": "STEINS;GATE RE:BOOT",
     "region": "UP",
     "concept": "10018909"
+  },
+  "PPSA37001": {
+    "name": "Is This Seat Taken?",
+    "region": "JB",
+    "concept": "10017990"
   },
   "PPSA37911": {
     "name": "Train Sim World 7",
