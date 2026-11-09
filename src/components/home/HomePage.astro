@@ -26,8 +26,11 @@ const num = (n: number) => n.toLocaleString(locale === "en" ? "en-GB" : locale);
 const [games, release, progress, coverage] = await Promise.all([getGames(), getRelease(), getProgress(), getCoverage()]);
 const shaders = coverage && { percent: (coverage.instructions.decoded / coverage.instructions.total) * 100 };
 const byReach = [...games].sort((a, b) => stageRank(reach(b).stage) - stageRank(reach(a).stage) || b.updated.localeCompare(a.updated));
-// Ten columns, so the wall reaches across even a wide screen.
+// Ten columns, so the wall reaches across even a wide screen. A phone shows about four of them, so the rest are
+// hidden there and their covers are never fetched.
 const WALL_COLUMNS = 10;
+const PHONE_COLUMNS = 5;
+const PHONE = 600;
 const wall = byReach.filter((g) => g.art?.cover).slice(0, WALL_COLUMNS * 6);
 const columns = Array.from({ length: WALL_COLUMNS }, (_, c) => wall.filter((_, i) => i % WALL_COLUMNS === c));
 const featured = byReach.filter((g) => g.art?.hero).slice(0, 6);
@@ -105,9 +108,9 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     <div class="wall" aria-hidden="true">
       {
         columns.map((column, c) => (
-          <div class="column" style={`--speed:${60 + c * 9}s;--phase:${c % 2 ? 0.5 : 0}`}>
+          <div class:list={["column", { wide: c >= PHONE_COLUMNS }]} style={`--speed:${60 + c * 9}s;--phase:${c % 2 ? 0.5 : 0}`}>
             {[...column, ...column].map((g, i) => (
-              <GameArt name={g.name} src={g.art!.cover} color={g.art!.color} ratio="2/3" widths={[240, 360]} sizes="180px" eager={i < 3 && c >= 5} loading="eager" />
+              <GameArt name={g.name} src={g.art!.cover} color={g.art!.color} ratio="2/3" widths={[240, 360]} sizes="180px" eager={i < 3 && c >= 5} loading="eager" minViewport={c >= PHONE_COLUMNS ? PHONE + 1 : undefined} />
             ))}
           </div>
         ))
@@ -1281,6 +1284,12 @@ const steps = t.home.steps.map((step, i) => ({ ...step, ...STEP_LINKS[i] }));
     }
     .native {
       grid-template-columns: 1fr;
+    }
+  }
+  /* Matches PHONE above: these columns are off the side of a phone's screen. */
+  @media (max-width: 600px) {
+    .column.wide {
+      display: none;
     }
   }
   @media (max-width: 900px) {
