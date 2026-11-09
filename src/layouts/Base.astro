@@ -1,9 +1,5 @@
 ---
 import "../styles/global.css";
-// The two fonts every page opens with (see global.css). Preloaded, they are fetched alongside the stylesheet rather
-// than after it, so text spends less time in the fallback font.
-import bodyFont from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
-import displayFont from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { viewTransitions } from "../lib/inline-scripts";
@@ -93,8 +89,6 @@ const graph = [
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={LOCALES[locale].lang.replace("-", "_")} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://image.api.playstation.com" crossorigin />
     <script is:inline>
       try {
