@@ -105,7 +105,8 @@
       ...results.map((r) => {
         const item = document.createElement("li");
         const link = document.createElement("a");
-        link.href = r.url.replace(/\.html$/, "").replace(/\/index$/, "/");
+        // The index names pages by their files (/faq/index.html is "/faq/"); the site serves them without the slash.
+        link.href = r.url.replace(/\.html$/, "").replace(/\/(index)?$/, "") || "/";
         link.setAttribute("role", "option");
         const head = document.createElement("span");
         head.className = "head";

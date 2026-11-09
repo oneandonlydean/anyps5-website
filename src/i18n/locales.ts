@@ -19,7 +19,7 @@ export const isTranslated = (path: string) => TRANSLATED_PATHS.some((p) => p.tes
 /** A path in a language: "/docs/guide" becomes "/es/docs/guide". Paths without translations stay English. */
 export function localePath(locale: Locale, path: string): string {
   if (locale === DEFAULT_LOCALE || !isTranslated(path)) return path;
-  return path === "/" ? `/${locale}/` : `/${locale}${path}`;
+  return path === "/" ? `/${locale}` : `/${locale}${path}`;
 }
 
 /** Splits a URL path into its language and the path it would have in English. */

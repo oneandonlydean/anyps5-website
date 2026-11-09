@@ -3,7 +3,9 @@ import Base from "../layouts/Base.astro";
 import { getRelease } from "../lib/upstream";
 
 const release = await getRelease();
-const APP = "/convert/app/index.html";
+// The converter is a folder of static files (npm run fetch:upstream). The site serves a folder's page at the folder's
+// name; the dev server only serves the file itself.
+const APP = import.meta.env.DEV ? "/convert/app/index.html" : "/convert/app";
 ---
 
 <Base title="Converter" description="Convert a PS5 game you own into a native Linux or Windows program, right in your browser. Your files never leave your device.">

@@ -138,7 +138,7 @@ const curatedFile = (g: (typeof unread)[number]["game"]) =>
     const item = el("li");
     const head = el("div", "", "row");
     const game = el("a", u.titleId) as HTMLAnchorElement;
-    game.href = `/compatibility/?q=${u.titleId}`;
+    game.href = `/compatibility?q=${u.titleId}`;
     head.append(
       game,
       el("span", `${u.stage ?? "stage unknown"} · ${u.os ?? "unknown OS"} · ${u.gpuVendor ?? "unknown GPU"}`),

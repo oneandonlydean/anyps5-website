@@ -226,7 +226,7 @@ const data = {
             el(
               "p",
               { className: "rd-group-head" },
-              library === "Unknown library" ? el("span", {}, library) : link(`/progress/?library=${encodeURIComponent(library)}#libraries`, library, "mono"),
+              library === "Unknown library" ? el("span", {}, library) : link(`/progress?library=${encodeURIComponent(library)}#libraries`, library, "mono"),
               el("span", { className: "rd-faint" }, plural(list.length, "function")),
             ),
             ...fold(

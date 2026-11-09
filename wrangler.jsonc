@@ -10,6 +10,9 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
+    // A page is served at the address the site links to (/compatibility), and its other form redirects there. The
+    // default is the reverse, which made every link on the site a redirect first.
+    "html_handling": "drop-trailing-slash",
     // Everything is a static file except the converter's library downloads, which the Worker streams from upstream,
     // the site's sign-in and API (/auth/*, /api/*), and the Discord bot's endpoints.
     "run_worker_first": ["/convert/app/libraries/*", "/api/*", "/auth/*", "/linked-role", "/discord/callback", "/github/callback", "/interactions"]

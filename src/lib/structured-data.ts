@@ -20,7 +20,7 @@ export const softwareSchema = (site: URL, release: Release | null) => ({
   applicationCategory: "GameApplication",
   operatingSystem: "Linux, Windows",
   url: site.href,
-  downloadUrl: new URL("/download/", site).href,
+  downloadUrl: new URL("/download", site).href,
   ...(release ? { softwareVersion: release.tag.replace(/^v/, ""), datePublished: release.published } : {}),
   license: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
   isAccessibleForFree: true,

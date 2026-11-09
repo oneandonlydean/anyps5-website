@@ -71,7 +71,12 @@ async function publishConverter(release: Release, withLibraries: boolean) {
   await write(resolve(staging, "embed.css"), embedCss);
   // Takes the theme from the embedding page before first paint; /convert keeps it in sync afterwards.
   const theme = `<script>try{document.documentElement.dataset.theme=parent.document.documentElement.dataset.theme==="light"?"light":"dark"}catch{}</script>`;
-  const html = new TextDecoder().decode(files["index.html"]).replace("</head>", `<link rel="stylesheet" href="embed.css">${theme}</head>`);
+  // The converter's files are linked relative to its folder, and the site serves it at /convert/app (no slash), so a
+  // <base> names the folder.
+  const html = new TextDecoder()
+    .decode(files["index.html"])
+    .replace("<head>", `<head><base href="/convert/app/">`)
+    .replace("</head>", `<link rel="stylesheet" href="embed.css">${theme}</head>`);
   await write(resolve(staging, "index.html"), html);
 
   const manifest = withLibraries ? await publishLibraries(release, staging) : await upstreamManifest(release);

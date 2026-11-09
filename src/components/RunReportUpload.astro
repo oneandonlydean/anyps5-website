@@ -291,7 +291,7 @@ const { games } = Astro.props;
         "good",
       );
       const link = el("a", `Find ${data.titleId} on the compatibility list`) as HTMLAnchorElement;
-      link.href = `/compatibility/?q=${encodeURIComponent(data.titleId)}`;
+      link.href = `/compatibility?q=${encodeURIComponent(data.titleId)}`;
       if (typeof data.fps === "number") done.append(` Measured at ${data.fps.toFixed(1)} fps.`);
       result.append(done, link);
       preview.hidden = send.hidden = pick.hidden = pickName.hidden = reached.hidden = benchBox.hidden = true;

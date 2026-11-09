@@ -26,7 +26,9 @@ export default defineConfig({
       i18n: { defaultLocale: "en", locales: Object.fromEntries(Object.entries(LOCALES).map(([key, l]) => [key, l.lang])) },
     }),
   ],
-  trailingSlash: "ignore",
+  // Pages live at /compatibility, not /compatibility/: every link on the site is written that way, and wrangler.jsonc
+  // serves them there (html_handling), so following a link takes one request rather than a redirect and then the page.
+  trailingSlash: "never",
   redirects: guideRedirects,
   devToolbar: { enabled: false },
   // Listen on every interface so other devices on the LAN can open the dev server.
