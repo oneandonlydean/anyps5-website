@@ -24,6 +24,11 @@ cat > dist/_headers <<'HEADERS'
   Referrer-Policy: strict-origin-when-cross-origin
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+# Screenshot and art copies are named after the image they were made from, so a name's content never changes.
+/community/*
+  Cache-Control: public, max-age=31536000, immutable
+/art/*
+  Cache-Control: public, max-age=31536000, immutable
 HEADERS
 # The site and test bot databases' migrations; needs "D1: Edit" on the Cloudflare token. Without it, the running Worker says
 # which migrations the site database has, and the deploy stops if this code needs one it doesn't: uploads would fail.
