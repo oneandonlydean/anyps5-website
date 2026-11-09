@@ -48,7 +48,7 @@ const viewer = shots.map((s) => ({
         <ul class="faces" aria-label="Testers who shared screenshots">
           {authors.slice(0, 6).map((a) => (
             <li title={a}>
-              <img src={`https://github.com/${a}.png?size=64`} alt={a} width="32" height="32" loading="lazy" decoding="async" />
+              <img src={`https://avatars.githubusercontent.com/${a}?s=64`} alt={a} width="32" height="32" loading="lazy" decoding="async" />
             </li>
           ))}
           {authors.length > 6 && <li class="more">+{authors.length - 6}</li>}
@@ -182,7 +182,7 @@ const viewer = shots.map((s) => ({
       $(".credit-line").textContent = [s.author, s.date].filter(Boolean).join(" · ");
       const face = $(".face") as HTMLImageElement;
       face.hidden = !s.author;
-      if (s.author) face.src = `https://github.com/${s.author}.png?size=72`;
+      if (s.author) face.src = `https://avatars.githubusercontent.com/${s.author}?s=72`;
       $(".counter").textContent = `${current + 1} / ${shots.length}`;
       ($(".post") as HTMLAnchorElement).href = s.post;
       ($(".original") as HTMLAnchorElement).href = s.original;

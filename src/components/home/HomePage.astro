@@ -75,7 +75,8 @@ const testers = [...testerCounts].sort((a, b) => b[1] - a[1]).map(([login, repor
 const topTesters = testers.slice(0, 6);
 const laneTesters = testers.slice(6);
 const avatar = (url: string, size: number) => `${url}${url.includes("?") ? "&" : "?"}s=${size * 2}`;
-const testerAvatar = (login: string, size: number) => `https://github.com/${encodeURIComponent(login)}.png?size=${size * 2}`;
+// The avatar host takes a login directly; github.com/<login>.png is a redirect to it that browsers may not cache.
+const testerAvatar = (login: string, size: number) => `https://avatars.githubusercontent.com/${encodeURIComponent(login)}?s=${size * 2}`;
 
 // The areas a game leans on first, in the order a frame needs them. Each bar counts every library in its area, so
 // "Graphics" means the whole path to the screen, not only its best-covered library.
