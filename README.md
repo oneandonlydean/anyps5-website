@@ -278,4 +278,4 @@ docs/proposals/     the run report brief and the replies with the runtime team
 
 ## Legal
 
-AnyPS5 is not affiliated with Sony Interactive Entertainment. Game art belongs to its publishers and is shown from the PlayStation Store and SteamGridDB. Title names come from [andshrew/PlayStation-Titles](https://github.com/andshrew/PlayStation-Titles).
+AnyPS5 is not affiliated with Sony Interactive Entertainment. Game art belongs to its publishers. It comes from the PlayStation Store, whose images the site links to, and from SteamGridDB, whose images the site serves as resized copies. Title names come from [andshrew/PlayStation-Titles](https://github.com/andshrew/PlayStation-Titles).
