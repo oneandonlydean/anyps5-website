@@ -335,7 +335,9 @@ const busiest = fullDays.reduce<(typeof fullDays)[number] | undefined>((best, d)
               %
             </b>
             <span class="muted">
-              {number.format(coverage.instructions.decoded)} of {number.format(coverage.instructions.total)} decode; {number.format(coverage.instructions.translated)} also translate
+              {coverage.instructions.decoded === coverage.instructions.translated
+                ? `${number.format(coverage.instructions.decoded)} of ${number.format(coverage.instructions.total)} decode and translate`
+                : `${number.format(coverage.instructions.decoded)} of ${number.format(coverage.instructions.total)} decode; ${number.format(coverage.instructions.translated)} also translate`}
             </span>
             <Sparkline values={coverage.history.map((h) => h.instructions?.decoded ?? null)} color="var(--accent-2)" label="Decoded instruction forms over time" />
           </div>
