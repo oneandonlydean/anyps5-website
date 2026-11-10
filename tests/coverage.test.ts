@@ -76,7 +76,16 @@ const others = `
 RdnaOpcode decodeSop2Opcode(std::uint32_t o) { switch (o) { case 0x00u: return RdnaOpcode::SAddU32; } }
 RdnaOpcode decodeSopcOpcode(std::uint32_t o) { switch (o) { case 0x00u: return RdnaOpcode::SCmpEqI32; } }
 RdnaOpcode decodeSopkOpcode(std::uint32_t o) { switch (o) { case 0x00u: return RdnaOpcode::SMovkI32; } }
-RdnaOpcode decodeSoppOpcode(std::uint32_t o) { switch (o) { case 0x01u: return RdnaOpcode::SEndpgm; } }
+RdnaOpcode decodeSoppOpcode(std::uint32_t o) {
+    switch (o) {
+        case 0x01u: return RdnaOpcode::SEndpgm;
+        case 0x17u:
+        case 0x18u:
+        case 0x1au: return RdnaOpcode::SCbranchCdbg;
+        case 0x1bu:
+        case 0x1eu: return RdnaOpcode::SEndpgm;
+    }
+}
 constexpr ImageOpcodeInfo imageOpcodes[] = { {0x00u, RdnaOpcode::ImageLoad} };
 RdnaInstruction DecodeRdnaEncodedInstruction(std::uint32_t pc) {
     switch (family) {
@@ -170,6 +179,14 @@ describe("decoder coverage", () => {
     expect(decoder.tables.get("SOPC")?.get(0)).toBe("SCmpEqI32");
     expect(decodes(decoder, form("S_MOV_B32", "SOP1", "base", 3))).toBe("SMovB32");
     expect(decodes(decoder, form("S_NOP", "SOP1", "base", 0x7f))).toBeNull();
+  });
+
+  it("credits every label in a stacked run of cases", () => {
+    expect(decodes(decoder, form("S_CBRANCH_CDBGSYS", "SOPP", "base", 0x17))).toBe("SCbranchCdbg");
+    expect(decodes(decoder, form("S_CBRANCH_CDBGUSER", "SOPP", "base", 0x18))).toBe("SCbranchCdbg");
+    expect(decodes(decoder, form("S_CBRANCH_CDBGSYS_OR_USER", "SOPP", "base", 0x19))).toBeNull();
+    expect(decodes(decoder, form("S_ENDPGM_SAVED", "SOPP", "base", 0x1b))).toBe("SEndpgm");
+    expect(decodes(decoder, form("S_ENDPGM_ORDERED_PS_DONE", "SOPP", "base", 0x1e))).toBe("SEndpgm");
   });
 
   it("shares the FLAT table with GLOBAL and SCRATCH", () => {

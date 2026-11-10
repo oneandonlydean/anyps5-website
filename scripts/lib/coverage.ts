@@ -143,7 +143,11 @@ const TABLE_KEYS = ["vop3encodedvop1", "vop3p", "vop3", "vopc", "vop2", "vop1", 
 const TABLE_ENCODING: Record<string, string> = { vop3encodedvop1: "VOP3:VOP1", image: "MIMG" };
 // Top-level declarations start in column 0; indented lines are statements inside them.
 const BLOCK = /^(?![\s}#])(?:[\w:<>&*,]+[ \t]+)*?(\w+)\s*(?:\[\]\s*=|\()/gm;
-const PAIR = /(?:\{\s*|case\s+)0x([0-9a-fA-F]+)u?\s*(?:,|:\s*return)\s*RdnaOpcode::(\w+)/g;
+// Array entries `{0x03u, RdnaOpcode::VAddF32, …}` and switch cases `case 0x17u: case 0x18u: return RdnaOpcode::X;`, where
+// every label in a stacked run decodes to the same opcode.
+const PAIR = /\{\s*0x([0-9a-fA-F]+)u?\s*,\s*RdnaOpcode::(\w+)/g;
+const CASES = /((?:case\s+0x[0-9a-fA-F]+u?\s*:\s*)+)return\s+RdnaOpcode::(\w+)/g;
+const LABEL = /0x([0-9a-fA-F]+)/g;
 
 export function scanDecoder(files: Files, lenient = false): Decoder {
   const tables = new Map<string, Map<number, string>>();
@@ -161,6 +165,7 @@ export function scanDecoder(files: Files, lenient = false): Decoder {
         const encoding = TABLE_ENCODING[table] ?? table.toUpperCase();
         const entries = tables.get(encoding) ?? new Map<number, string>();
         for (const m of block.matchAll(PAIR)) entries.set(hex(m[1]), m[2]);
+        for (const m of block.matchAll(CASES)) for (const label of m[1].matchAll(LABEL)) entries.set(hex(label[1]), m[2]);
         if (entries.size) tables.set(encoding, entries);
       } else {
         // A helper that mentions both an opcode number and an RdnaOpcode. Each pair only counts later if AMD's ISA
