@@ -1,5 +1,5 @@
 {
-  "commit": "da47ac971ce5554abcc360e47b07e2adb50d649d",
+  "commit": "eaec74e322a7d82ea78fe5c176dc94dc42eaa0cd",
   "sites": [
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
@@ -358,7 +358,7 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/Driver/Queues/Submission.cpp",
-      "line": 291,
+      "line": 312,
       "message": "AGC driver: … at DWORD …: "
     },
     {
@@ -488,32 +488,32 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 547,
+      "line": 567,
       "message": "frame capture: the guest write watch is unavailable, so CPU stores during the frames cannot be recorded"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 654,
+      "line": 674,
       "message": "frame capture: the guest arena is not reserved"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 664,
+      "line": 684,
       "message": "frame capture: VirtualQuery failed inside the guest arena"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 689,
+      "line": 709,
       "message": "frame capture: the guest arena is not reserved"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 724,
+      "line": 744,
       "message": "frame capture: guest memory capture is implemented on Windows and Linux only"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/HostReport.cpp",
-      "line": 243,
+      "line": 253,
       "message": "ANYPS5_HOST_REPORT must be 0 or 1, not '…'"
     },
     {
@@ -743,12 +743,12 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/Pm4.cpp",
-      "line": 1120,
+      "line": 1122,
       "message": "custom packet requires driver execution"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/Pm4.cpp",
-      "line": 1272,
+      "line": 1274,
       "message": "packet requires driver execution"
     },
     {
@@ -1218,117 +1218,117 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 241,
+      "line": 247,
       "message": ": Vulkan result "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 246,
+      "line": 252,
       "message": "Vulkan presentation: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 804,
+      "line": 810,
       "message": "Vulkan instance function missing: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 814,
+      "line": 820,
       "message": "Vulkan device function missing: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 833,
+      "line": 839,
       "message": "Vulkan dispatch: the LDS of …x…x… workgroups of … bytes each is over maxStorageBufferRange "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 871,
+      "line": 877,
       "message": "Vulkan dispatch: one scratch pool slot of … bytes is over the scratch pool buffer limit of … bytes"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1292,
+      "line": 1298,
       "message": "compute pipeline replay requires ANYPS5_ENABLE_SPIRV_TOOLS=ON"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1430,
+      "line": 1436,
       "message": "Vulkan loader: vkGetInstanceProcAddr missing"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1454,
+      "line": 1460,
       "message": "Vulkan presentation: required instance extension missing: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1469,
+      "line": 1475,
       "message": "vkCreateInstance: Vulkan result "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1559,
+      "line": 1578,
       "message": "Vulkan: no usable device whose name contains ANYPS5_GPU=\\\"…\\\"; devices: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 1562,
+      "line": 1581,
       "message": "Vulkan: no Vulkan 1.1 device with graphics, compute and swapchain presentation…Vulkan: no Vulkan 1.1 graphics and compute queue"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 3392,
+      "line": 3415,
       "message": "AGC graphics: an image copy its check allowed was refused: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5067,
+      "line": 5090,
       "message": "APS5_WATCH_MEMORY takes <hex address>:<hex bytes>[,...]"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5072,
+      "line": 5095,
       "message": "APS5_WATCH_MEMORY needs APS5_SYNC_DISPATCH=1"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 6197,
+      "line": 6220,
       "message": "Vulkan dispatch: invalid SPIR-V"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 6202,
+      "line": 6225,
       "message": "Vulkan dispatch: compute push constant range exceeds device limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 6538,
+      "line": 6561,
       "message": "Vulkan dispatch: recipe over a non-reusable template"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 2381,
+      "line": 2404,
       "message": "APS5_PIPELINE_STATS requires VK_KHR_pipeline_executable_properties"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 2384,
+      "line": 2407,
       "message": "APS5_PIPELINE_STATS requires pipelineExecutableInfo"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5840,
+      "line": 5863,
       "message": "Vulkan dispatch: a thread-dimension dispatch has no ShaderData thread limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5845,
+      "line": 5868,
       "message": "Vulkan dispatch: thread-dimension indirect arguments need the argument kernel"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5907,
+      "line": 5930,
       "message": "dispatch overlay has no descriptor set"
     },
     {
@@ -1788,452 +1788,452 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3305,
+      "line": 3336,
       "message": "AGC graphics: the multisampled depth surface whose samples are put in the guest's order is not resident"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3320,
+      "line": 3351,
       "message": "AGC graphics: the depth surface drawn at custom sample locations is not resident"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 602,
+      "line": 607,
       "message": "depth/stencil format … cannot be an attachment on this device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 603,
+      "line": 608,
       "message": "depth/stencil format … cannot be sampled on this device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 604,
+      "line": 609,
       "message": "depth target exceeds framebuffer limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 619,
+      "line": 624,
       "message": "native multisample depth requires image format queries"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 687,
+      "line": 692,
       "message": "the native multisample depth owner was released"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 689,
+      "line": 694,
       "message": "native multisample depth clear has not been recorded"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 707,
+      "line": 712,
       "message": "native multisample depth requires watched accessible guest memory"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 708,
+      "line": 713,
       "message": "external GPU writes over native multisample depth are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 729,
+      "line": 734,
       "message": "CPU writes raced native multisample stencil plane fill"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 731,
+      "line": 736,
       "message": "native multisample stencil plane fill has no complete tracked store"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 737,
+      "line": 742,
       "message": "CPU writes raced native multisample stencil plane fill"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 750,
+      "line": 755,
       "message": "guest writes over native multisample depth are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 752,
+      "line": 757,
       "message": "CPU writes raced native multisample depth clear"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 753,
+      "line": 758,
       "message": "native multisample depth clear has no complete tracked HTILE store"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 754,
+      "line": 759,
       "message": "native multisample depth clear value is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 760,
+      "line": 765,
       "message": "native multisample depth completed HTILE does not prove its clear value"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 761,
+      "line": 766,
       "message": "native multisample stencil completed HTILE does not prove its clear value"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 764,
+      "line": 769,
       "message": "guest writes raced native multisample depth clear"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 765,
+      "line": 770,
       "message": "CPU writes raced native multisample depth clear"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 773,
+      "line": 778,
       "message": "guest writes over native multisample depth are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 780,
+      "line": 785,
       "message": "native multisample depth sampled identity or format mismatch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 781,
+      "line": 786,
       "message": "native multisample depth sampled array, mip or layout is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 783,
+      "line": 788,
       "message": "native multisample depth sampled metadata or XOR mismatch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 789,
+      "line": 794,
       "message": "native multisample depth sampled metadata or XOR mismatch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 797,
+      "line": 802,
       "message": "native multisample depth sampled metadata or XOR mismatch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 811,
+      "line": 816,
       "message": "native multisample depth fast-clear transition is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 870,
+      "line": 875,
       "message": "the device cannot sample the native depth target's format and sample count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 877,
+      "line": 882,
       "message": "native multisampled depth sampling needs a numeric depth-plane format"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 878,
+      "line": 883,
       "message": "the device cannot sample the native depth target's stencil at its sample count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 879,
+      "line": 884,
       "message": "the sampled depth descriptor's sample count differs from its native target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 880,
+      "line": 885,
       "message": "sampling a native multisampled depth plane that the device stores in another depth format is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 901,
+      "line": 906,
       "message": "native multisample depth sampling requires its creation-time owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 910,
+      "line": 915,
       "message": "a native multisampled depth target is sampled only by recorded draws and dispatches"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 992,
+      "line": 997,
       "message": "guest writes raced native multisample depth publication capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 993,
+      "line": 998,
       "message": "guest writes raced native multisample depth publication capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 995,
+      "line": 1000,
       "message": "guest writes raced native multisample depth publication capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 996,
+      "line": 1001,
       "message": "guest writes raced native multisample depth publication capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1088,
+      "line": 1093,
       "message": "storage image access to a multisampled depth surface is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1157,
+      "line": 1162,
       "message": "depth surface storage clears need the recorder of the surface's device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1615,
+      "line": 1644,
       "message": "guest writes raced native multisample depth publication capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1708,
+      "line": 1737,
       "message": "native multisample depth shadow was not created"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1837,
+      "line": 1866,
       "message": "depth surface storage copies need an active recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1990,
+      "line": 2019,
       "message": "depth plane copy slices exceed its layers"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1991,
+      "line": 2020,
       "message": "a depth plane copy view starts past the slices it was given"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 1993,
+      "line": 2022,
       "message": "depth planes of a PS4 layered surface with several mip levels (stored level by level) are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2072,
+      "line": 2101,
       "message": "depth plane copy requires a texture detiler"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2201,
+      "line": 2230,
       "message": "a layered depth storage view's image does not hold its layers"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2208,
+      "line": 2237,
       "message": "depth surface storage copies need an active recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2447,
+      "line": 2476,
       "message": "native multisample depth publication inside a GPU completion is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2448,
+      "line": 2477,
       "message": "recursive native multisample depth publication is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2449,
+      "line": 2478,
       "message": "a previous native multisample depth publication store did not complete"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2457,
+      "line": 2486,
       "message": "sample-preserving guest publication of native multisample depth is not implemented for this owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2461,
+      "line": 2490,
       "message": "native multisample depth publication with an unapplied clear is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2462,
+      "line": 2491,
       "message": "sample-preserving guest publication of native multisample depth requires sampled readback support"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2470,
+      "line": 2499,
       "message": "native multisample depth publication lost its guarded plane"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2476,
+      "line": 2505,
       "message": "native multisample depth publication requires watched accessible guest memory"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2477,
+      "line": 2506,
       "message": "native multisample depth publication over a resident colour target is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2479,
+      "line": 2508,
       "message": "native multisample depth publication over pending storage image writes is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2486,
+      "line": 2515,
       "message": "the native multisample depth owner was released during publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2498,
+      "line": 2527,
       "message": "native multisample depth publication layout differs from its guarded range"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2500,
+      "line": 2529,
       "message": "native multisample depth publication exceeds the device's readback range"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2556,
+      "line": 2585,
       "message": "native multisample depth publication cannot distinguish an unwritten byte from a same-value guest store"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2565,
+      "line": 2594,
       "message": "guest writes raced native multisample depth publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2566,
+      "line": 2595,
       "message": "guest writes raced native multisample depth publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2567,
+      "line": 2596,
       "message": "native multisample depth ownership changed during publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 2575,
+      "line": 2604,
       "message": "guest writes raced native multisample depth publication"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3035,
+      "line": 3066,
       "message": "invalid multisample depth extent"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3036,
+      "line": 3067,
       "message": "unsupported multisample depth footprint"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3049,
+      "line": 3080,
       "message": "native depth read range overflows"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3073,
+      "line": 3104,
       "message": "sample-preserving guest publication of native multisample depth is not implemented while a multisampled colour target is being acquired"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3079,
+      "line": 3110,
       "message": "sample-preserving guest publication of native multisample depth is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3110,
+      "line": 3141,
       "message": "a native multisample depth attachment was retired while its draw resolved resources"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3119,
+      "line": 3150,
       "message": "native depth overlap range overflows"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3128,
+      "line": 3159,
       "message": "native depth release range overflows"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3187,
+      "line": 3218,
       "message": "a constant depth bias on a 16-bit depth target with stencil that the device stores as 32-bit float depth is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3222,
+      "line": 3253,
       "message": "native depth attachment range overflows"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3231,
+      "line": 3262,
       "message": "a native multisample depth attachment over the planes of a host-written owner of another identity is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3302,
+      "line": 3333,
       "message": "the multisampled depth surface whose samples are put in the guest's order cannot be sampled"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3662,
+      "line": 3700,
       "message": "CPU writes raced native multisample depth clear"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3717,
+      "line": 3755,
       "message": "reading sample 0 of a depth surface needs a multisampled descriptor"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3719,
+      "line": 3757,
       "message": "reading sample 0 of a multisampled depth surface whose depth plane is not at the descriptor's address is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3722,
+      "line": 3760,
       "message": "reading sample 0 of a multisampled depth surface whose depth plane is not at the descriptor's address is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3744,
+      "line": 3782,
       "message": "multisample reader overlaps a single-sample depth attachment"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3746,
+      "line": 3784,
       "message": "a native multisampled depth target is sampled only by recorded draws and dispatches"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3754,
+      "line": 3792,
       "message": "native multisample depth fast-clear transition is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3780,
+      "line": 3818,
       "message": "sampling several slices or an integer view of a depth plane that the device stores in another depth format is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 3789,
+      "line": 3827,
       "message": "depth planes of a PS4 layered surface with several mip levels (stored level by level) are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/DepthSurface.cpp",
-      "line": 4036,
+      "line": 4074,
       "message": "depth planes of a PS4 layered surface with several mip levels (stored level by level) are not implemented"
     },
     {
@@ -4328,77 +4328,77 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 4255,
+      "line": 4264,
       "message": "vkQueueSubmit recorder: injected failure"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 1754,
+      "line": 1761,
       "message": "work after a dispatch run without an open run"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 1774,
+      "line": 1781,
       "message": "a deferred dispatch barrier has no batch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 1860,
+      "line": 1867,
       "message": "no batch is open for the render pass"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 2729,
+      "line": 2736,
       "message": "a sample slot is prepared inside a render pass"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 2780,
+      "line": 2787,
       "message": "an occlusion segment begins without a reset query slot"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 2794,
+      "line": 2801,
       "message": "occlusion segments exceed the fold capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 2820,
+      "line": 2827,
       "message": "queued occlusion dumps exceed the fold capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 3211,
+      "line": 3218,
       "message": "invalid texture upload scratch request"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 3473,
+      "line": 3480,
       "message": "an owned draw input is a vertex or index buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 3488,
+      "line": 3495,
       "message": "an owned draw input differs while its proof holds"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 3498,
+      "line": 3505,
       "message": "an owned draw input is a vertex or index buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 3519,
+      "line": 3526,
       "message": "a highest index belongs to an index buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 4104,
+      "line": 4113,
       "message": "no batch to append a completion label to"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 4262,
+      "line": 4271,
       "message": "Recorder::Submit submit serial mismatch"
     },
     {
@@ -4438,22 +4438,22 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ResidentMirror.cpp",
-      "line": 440,
+      "line": 454,
       "message": "guest address outside its resident heap mirror"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ResidentMirror.cpp",
-      "line": 524,
+      "line": 538,
       "message": "the GPU wrote a heap mirror block that holds no memory"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ResidentMirror.cpp",
-      "line": 530,
+      "line": 544,
       "message": "heap mirror readback outside its buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ResidentMirror.cpp",
-      "line": 538,
+      "line": 552,
       "message": "heap mirror device read inside a GPU completion: its write-back needs a recorded readback"
     },
     {
@@ -4838,717 +4838,717 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1756,
+      "line": 1774,
       "message": "AGC graphics: unknown descriptor role"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1769,
+      "line": 1787,
       "message": "AGC graphics: unknown descriptor kind"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2148,
+      "line": 2169,
       "message": "typed heaps exceed per-stage sampler capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2152,
+      "line": 2173,
       "message": "typed heaps exceed descriptor set sampler capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2735,
+      "line": 2756,
       "message": "AGC graphics: ShaderResources encountered an unknown descriptor type while writing the descriptor set"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2965,
+      "line": 3044,
       "message": "resource content key exceeds vector limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4614,
+      "line": 5065,
       "message": "AGC graphics: descriptor set uses an unsupported descriptor type "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5048,
+      "line": 5499,
       "message": "shader sampler descriptors exceed per-stage limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5277,
+      "line": 5728,
       "message": "AGC graphics: guest texture dimension disagrees with the shader's declared image shape (shape …, dimension …)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5301,
+      "line": 5752,
       "message": "AGC graphics: guest texture sampled with unnormalized coordinates is not a single-layer 1D or 2D view without a minimum LOD clamp, and is neither a single-level view at mip 0 nor read only by image_sample_lz through an S# without minimum LOD or bias, which is not implemented (base level …, levels …, layers …, view type …)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5353,
+      "line": 5804,
       "message": "AGC graphics: guest storage texture dimension disagrees with the shader's declared image shape (shape …, dimension …)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5682,
+      "line": 6133,
       "message": "AGC graphics: guest texture dimension disagrees with the table entry's image shape (shape …, dimension …)"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5684,
+      "line": 6135,
       "message": "AGC graphics: the table entry's surface at 0x… (0x… bytes) is not mapped"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 847,
+      "line": 859,
       "message": "only a sampled 1D array is laid out as rows of a 2D image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 851,
+      "line": 863,
       "message": "native multisampled depth comparison sampling is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 861,
+      "line": 873,
       "message": "FMASK depth comparison sampling is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 862,
+      "line": 874,
       "message": "native FMASK array sampling is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 865,
+      "line": 877,
       "message": "compressed FMASK sampling without a matching resident native target is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 871,
+      "line": 883,
       "message": "sampling a native depth surface as a 1D array past maxImageArrayLayers is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1349,
+      "line": 1361,
       "message": "storage image access to a multisampled texture is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1525,
+      "line": 1537,
       "message": "sampled texture keys take eight descriptor words"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1533,
+      "line": 1545,
       "message": "cannot flush textures without a Vulkan device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1544,
+      "line": 1562,
       "message": "cannot clear textures without a Vulkan device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1717,
+      "line": 1735,
       "message": "storage image access to a multisampled texture is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1815,
+      "line": 1833,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1822,
+      "line": 1840,
       "message": "compute resources require a compute shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1850,
+      "line": 1868,
       "message": "shader resources were already completed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 1876,
+      "line": 1897,
       "message": "descriptor binding flag count differs from layout"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2145,
+      "line": 2166,
       "message": "typed heaps exceed per-stage resource capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2146,
+      "line": 2167,
       "message": "typed heaps exceed per-stage sampled image capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2147,
+      "line": 2168,
       "message": "typed heaps exceed per-stage storage image capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2151,
+      "line": 2172,
       "message": "typed heaps exceed descriptor set capacity"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2156,
+      "line": 2177,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2165,
+      "line": 2186,
       "message": "duplicate runtime image binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2169,
+      "line": 2190,
       "message": "invalid compact shader data size"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2171,
+      "line": 2192,
       "message": "runtime image metadata exceeds shader data"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2173,
+      "line": 2194,
       "message": "runtime image resource exceeds its compact layout"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2178,
+      "line": 2199,
       "message": "runtime image metadata has no descriptor elements"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2179,
+      "line": 2200,
       "message": "runtime metadata references an unbound image heap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2180,
+      "line": 2201,
       "message": "runtime metadata exceeds its bound heap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2189,
+      "line": 2210,
       "message": "AGC graphics: registered image range changed after resource capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2198,
+      "line": 2219,
       "message": "shader descriptor set exceeds device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2214,
+      "line": 2235,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2224,
+      "line": 2245,
       "message": "shader descriptors exceed per-stage limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2232,
+      "line": 2253,
       "message": "shader descriptors exceed per-stage limits"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2236,
-      "message": "unexpected descriptor set: a shader resource must use its stage's descriptor set"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2239,
-      "message": "image table binding is malformed"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2241,
-      "message": "a stage binds two image tables"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2242,
-      "message": "a stage's image tables disagree on their elements"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2248,
-      "message": "duplicate shader binding"
-    },
-    {
-      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2255,
-      "message": "image table map binding is malformed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
       "line": 2257,
-      "message": "image table map exceeds the storage buffer range limit"
+      "message": "unexpected descriptor set: a shader resource must use its stage's descriptor set"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2260,
+      "message": "image table binding is malformed"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2262,
+      "message": "a stage binds two image tables"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
       "line": 2263,
+      "message": "a stage's image tables disagree on their elements"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2269,
+      "message": "duplicate shader binding"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2276,
+      "message": "image table map binding is malformed"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2278,
+      "message": "image table map exceeds the storage buffer range limit"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
+      "line": 2284,
       "message": "a stage binds two image table maps"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2279,
+      "line": 2300,
       "message": "unsupported descriptor role "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2280,
+      "line": 2301,
       "message": "unsupported descriptor kind … for role …: only StorageBuffer is supported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2281,
+      "line": 2302,
       "message": "read-only descriptors are unsupported because the recompiler emits no NonWritable decoration"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2282,
+      "line": 2303,
       "message": "empty descriptor binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2289,
+      "line": 2310,
       "message": "guest buffer descriptor must contain four DWORDs per array element"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2304,
+      "line": 2325,
       "message": "guest buffer offset lies outside the shader's push constants"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2316,
+      "line": 2337,
       "message": "invalid GDS descriptor contract"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2322,
+      "line": 2343,
       "message": "shader data and flattened SRT descriptors must not be arrays"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2323,
+      "line": 2344,
       "message": "empty shader data descriptor"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2345,
+      "line": 2366,
       "message": "an image table stage has no map"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2347,
+      "line": 2368,
       "message": "image table map is truncated"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2349,
+      "line": 2370,
       "message": "image table map disagrees with its image binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2352,
+      "line": 2373,
       "message": "image table map is truncated"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2368,
+      "line": 2389,
       "message": "image tables need runtimeDescriptorArray, descriptorBindingPartiallyBound and descriptorBindingVariableDescriptorCount, which the device lacks"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2374,
+      "line": 2395,
       "message": "pipeline descriptors exceed device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2523,
+      "line": 2544,
       "message": "described set layouts need the descriptor cache"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2534,
+      "line": 2555,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2598,
+      "line": 2619,
       "message": "cannot update a published descriptor heap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2599,
+      "line": 2620,
       "message": "AGC graphics: registered image range changed after resource preparation"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2620,
+      "line": 2641,
       "message": "image lookups disagree with the descriptor plan"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2622,
+      "line": 2643,
       "message": "AGC graphics: registered image range changed during resource materialization"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2719,
+      "line": 2740,
       "message": "descriptor allocations disagree with compact binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2728,
+      "line": 2749,
       "message": "descriptor allocations disagree with compact binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2733,
+      "line": 2754,
       "message": "descriptor allocations disagree with compact binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2762,
+      "line": 2783,
       "message": "a guest buffer off the storage buffer offset alignment in a shader without shader data is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2764,
+      "line": 2785,
       "message": "guest buffer offset lies outside the shader's data buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2902,
+      "line": 2964,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 2962,
+      "line": 3041,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4583,
+      "line": 5034,
       "message": "descriptor binding flag count differs from layout"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4628,
+      "line": 5079,
       "message": "descriptor set exceeds the device's per-set descriptor limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4791,
+      "line": 5242,
       "message": "buffer descriptor must contain four DWORDs"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4793,
+      "line": 5244,
       "message": "buffer descriptor uses an unsupported type"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4801,
+      "line": 5252,
       "message": "shader buffer exceeds descriptor range limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4802,
+      "line": 5253,
       "message": "shader buffer size exceeds host address space"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4804,
+      "line": 5255,
       "message": "shader buffer aliases the render target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4807,
+      "line": 5258,
       "message": "writable shader buffer aliases the index buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4887,
+      "line": 5338,
       "message": "shader data buffer exceeds descriptor range limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4908,
+      "line": 5359,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4917,
+      "line": 5368,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4930,
+      "line": 5381,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4931,
+      "line": 5382,
       "message": "runtime data refresh cannot replace bound resources"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4936,
+      "line": 5387,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4946,
+      "line": 5397,
       "message": "template bindings disagree with the shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4947,
+      "line": 5398,
       "message": "data binding without its buffer"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4950,
+      "line": 5401,
       "message": "template data buffer cannot take the dispatch's words"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 4965,
+      "line": 5416,
       "message": "missing compiled shader"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5009,
+      "line": 5460,
       "message": "empty descriptor binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5012,
+      "line": 5463,
       "message": "typed descriptor heap capacity exceeded"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5016,
+      "line": 5467,
       "message": "resource class disagrees with typed descriptor heap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5017,
+      "line": 5468,
       "message": "typed image heaps require nullDescriptor or placeholder images"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5020,
+      "line": 5471,
       "message": "storage image binding has a non-image role"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5021,
+      "line": 5472,
       "message": "guest storage image descriptors must contain 8 dwords each"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5022,
+      "line": 5473,
       "message": "device texture detiler is unavailable"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5023,
+      "line": 5474,
       "message": "shader storage-image descriptors exceed per-stage limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5031,
+      "line": 5482,
       "message": "unsupported descriptor kind … for role "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5032,
+      "line": 5483,
       "message": "guest image descriptor role disagrees with its kind"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5033,
+      "line": 5484,
       "message": "guest image descriptor size is not a multiple of the binding count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5039,
+      "line": 5490,
       "message": "guest texture descriptor must contain 8 dwords"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5040,
+      "line": 5491,
       "message": "guest image binding is missing an image shape"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5041,
+      "line": 5492,
       "message": "device texture detiler is unavailable"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5042,
+      "line": 5493,
       "message": "device texture cache is unavailable"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5043,
+      "line": 5494,
       "message": "shader sampled-image descriptors exceed per-stage limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5045,
+      "line": 5496,
       "message": "pipeline sampled-image descriptors exceed device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5047,
+      "line": 5498,
       "message": "guest sampler descriptor must contain 4 dwords"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5049,
+      "line": 5500,
       "message": "guest sampler binding is missing depth comparison metadata"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5050,
+      "line": 5501,
       "message": "guest sampler binding has unnormalized coordinate metadata of another size"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5073,
+      "line": 5524,
       "message": "pipeline sampler descriptors exceed device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5245,
+      "line": 5696,
       "message": "guest sampled image binding is missing its image-sampler pairs"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5264,
+      "line": 5715,
       "message": "an S# that holds the LOD at 0 is paired with images of different minimum LODs"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5276,
+      "line": 5727,
       "message": "a 1D array within maxImageArrayLayers was bound as rows of a 2D image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5290,
+      "line": 5741,
       "message": "reading sample 0 of a multisampled texture with a depth comparison through a 2D image is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5306,
+      "line": 5757,
       "message": "a texture of guest format …, which is not sRGB and has no sRGB view, is sampled through a sampler that forces sRGB decoding, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5355,
+      "line": 5806,
       "message": "storage image atomics on a multisampled texture are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5371,
+      "line": 5822,
       "message": "guest storage texture descriptor clamps its minimum LOD above the level it addresses, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5482,
+      "line": 5933,
       "message": "sampler table binding is malformed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5483,
+      "line": 5934,
       "message": "sampler tables need runtimeDescriptorArray and descriptorBindingPartiallyBound, which the device lacks"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5498,
+      "line": 5949,
       "message": "a sampler table entry with a LOD bias beyond the sampler limit needs a per-entry shader bias, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5499,
+      "line": 5950,
       "message": "a sampler table entry with an opaque black border needs dynamic texture BC-swizzle pairing, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5500,
+      "line": 5951,
       "message": "a sampler table entry with a border needs dynamic texture numeric-class pairing, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5501,
+      "line": 5952,
       "message": "a sampler table entry that disables seamless cube filtering needs VK_EXT_non_seamless_cube_map because dynamic texture/sampler pairing is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5502,
+      "line": 5953,
       "message": "a sampler table entry with anisotropic ANISO_OVERRIDE needs dynamic texture mip-level pairing, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5527,
+      "line": 5978,
       "message": "pipeline sampler descriptors exceed device limits"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5652,
+      "line": 6103,
       "message": "an image table entry's sampler border color numeric class disagrees with its sampled image class, which needs dynamic pairing and is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5653,
+      "line": 6104,
       "message": "an image table entry paired with anisotropic ANISO_OVERRIDE needs dynamic texture mip-level pairing, which is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5714,
+      "line": 6165,
       "message": "a sampled image table entry has a minimum LOD clamp, which needs VK_EXT_image_view_min_lod"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 5961,
+      "line": 6412,
       "message": "image table map buffer disagrees with the map"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 6340,
+      "line": 6791,
       "message": "draw snapshots require a descriptor cache"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 6362,
+      "line": 6813,
       "message": "draw snapshot descriptor allocation failed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 6367,
+      "line": 6818,
       "message": "draw snapshot descriptor allocation failed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 6399,
+      "line": 6850,
       "message": "draw snapshot writes disagree with their descriptor bindings"
     },
     {
@@ -7328,17 +7328,17 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3674,
+      "line": 3675,
       "message": "AGC graphics: storage image window has no source"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5380,
+      "line": 5392,
       "message": "APS5_STORE_AT_FLIP=…: expected 1"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5386,
+      "line": 5398,
       "message": "APS5_STORE_AT_LABEL=…: expected 1"
     },
     {
@@ -7588,47 +7588,47 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3417,
+      "line": 3418,
       "message": "storage image window is not tile-block aligned"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3669,
+      "line": 3670,
       "message": "storage image upload selects no unit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3851,
+      "line": 3852,
       "message": "storage image write-back piece lies outside its import segments"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 3994,
+      "line": 3995,
       "message": "a storage write-back slab piece is not one window"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5108,
+      "line": 5120,
       "message": "a write-back's saved guest bytes are pending without a recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5212,
+      "line": 5224,
       "message": "cannot open private image readback file"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5221,
+      "line": 5233,
       "message": "cannot complete private image readback file"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 6630,
+      "line": 6642,
       "message": "storage image borrows no unit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 6944,
+      "line": 6956,
       "message": "a shadowed storage write-back range crosses the end of its import segment"
     },
     {
@@ -8043,12 +8043,22 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/State/src/Configuration.cpp",
-      "line": 32,
+      "line": 34,
+      "message": "sceAgcDriverSetHsOffchipParam: what the console keeps for a granularity above 3 or a buffering above 511 other than 1023 is not measured"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/State/src/Configuration.cpp",
+      "line": 41,
+      "message": "sceAgcDriverGetHsOffchipParam: null output"
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/State/src/Configuration.cpp",
+      "line": 49,
       "message": "sceAgcDriverSetTFRing: empty ring"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/State/src/Configuration.cpp",
-      "line": 39,
+      "line": 56,
       "message": "sceAgcDriverGetTFRing: null output"
     },
     {
@@ -8158,92 +8168,97 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 151,
+      "line": 150,
       "message": "frame replay: the capture header has no "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 235,
+      "line": 234,
       "message": "frame replay: cannot map the GPU-visible host range at "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 260,
+      "line": 259,
       "message": "frame replay: cannot map the GPU-visible host range at "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 284,
+      "line": 283,
       "message": "frame replay: calls format 1 does not record whether GPU writes had landed before each memory delta was read; record the capture again"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 288,
+      "line": 287,
       "message": "frame replay: the guest arena is at a different address than in the capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 417,
+      "line": 424,
       "message": "frame replay: call … waited longer than the pacing timeout"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 480,
+      "line": 487,
       "message": "frame replay: EOP flip token … was not reserved"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 496,
+      "line": 503,
+      "message": "frame replay: the replay did not settle before memory delta "
+    },
+    {
+      "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
+      "line": 516,
       "message": "frame replay: unknown call kind"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 785,
+      "line": 868,
       "message": "frame replay: --dump takes <address>:<bytes>:<file>"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 790,
+      "line": 873,
       "message": "frame replay: '…' is not a number"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 801,
+      "line": 884,
       "message": "frame replay: cannot write "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 867,
+      "line": 950,
       "message": "frame replay: APS5_FRAME_REPLAY_ATTEMPT must be a whole number from 0 to …, not '…'"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 884,
+      "line": 967,
       "message": "frame replay: cannot pass the relaunch count to the next process"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 889,
+      "line": 972,
       "message": "frame replay: cannot relaunch, error "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 1012,
+      "line": 1095,
       "message": "frame replay: cannot open "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 1014,
+      "line": 1097,
       "message": "frame replay: cannot write "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 1016,
+      "line": 1099,
       "message": "frame replay: cannot flush "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/tools/FrameReplay.cpp",
-      "line": 1018,
+      "line": 1101,
       "message": "frame replay: cannot close "
     },
     {
@@ -10423,228 +10438,223 @@
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1205,
+      "line": 1208,
       "message": "VOP1 SDWA selector is invalid"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1208,
+      "line": 1211,
       "message": "VOP1 SDWA output modifiers are not supported"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1225,
+      "line": 1228,
       "message": "SDWA source operand cannot be a literal constant"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1232,
+      "line": 1235,
       "message": "truncated VOP1 SDWA instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1286,
+      "line": 1289,
       "message": "truncated VOP1 DPP instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1301,
+      "line": 1304,
       "message": "DPP modifier is not supported for opcode…DPP8 modifier is not supported for opcode"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1306,
+      "line": 1309,
       "message": "VOP1 DPP integer source modifiers are not supported"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1392,
+      "line": 1395,
       "message": "VOP2 SDWA selector is invalid"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1397,
+      "line": 1400,
       "message": "VOP2 SDWA output modifiers are not supported"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1400,
+      "line": 1403,
       "message": "VOP2 SDWA source modifiers are not supported"
-    },
-    {
-      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1408,
-      "message": "VOP2 SDWA modifier is not supported for opcode"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
       "line": 1411,
-      "message": "VOP2 SDWA destination selector is not supported"
+      "message": "VOP2 SDWA modifier is not supported for opcode"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
       "line": 1414,
+      "message": "VOP2 SDWA destination selector is not supported"
+    },
+    {
+      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+      "line": 1417,
       "message": "VOP2 SDWA source selector is not supported"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1419,
+      "line": 1422,
       "message": "VOP2 SDWA source modifiers are not supported"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1458,
+      "line": 1461,
       "message": "truncated VOP2 SDWA instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1486,
+      "line": 1489,
       "message": "truncated VOP2 DPP instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1502,
+      "line": 1505,
       "message": "DPP modifier is not supported for opcode…DPP8 modifier is not supported for opcode"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1511,
+      "line": 1514,
       "message": "VOP2 DPP integer source modifiers are not supported"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1653,
+      "line": 1656,
       "message": "truncated VOPC SDWA instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1659,
+      "line": 1662,
       "message": "VOPC SDWA selector is invalid"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1685,
+      "line": 1688,
       "message": "truncated VOPC DPP instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1692,
+      "line": 1695,
       "message": "VOPC DPP modifier is not supported for opcode"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 1832,
+      "line": 1835,
       "message": "VOP3P integer dot source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2017,
+      "line": 2020,
       "message": "VOP3 perm-lane op_sel bits are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2026,
+      "line": 2029,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2032,
+      "line": 2035,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2038,
+      "line": 2041,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2046,
+      "line": 2049,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2052,
+      "line": 2055,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2058,
+      "line": 2061,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2064,
+      "line": 2067,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2070,
+      "line": 2073,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2076,
+      "line": 2079,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2082,
+      "line": 2085,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2092,
+      "line": 2095,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2098,
+      "line": 2101,
       "message": "VOP3 source modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2103,
+      "line": 2106,
       "message": "VOP3 source modifiers are not implemented"
-    },
-    {
-      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2116,
-      "message": "VOP3 interpolation modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
       "line": 2119,
-      "message": "VOP3 interpolation source is not a vector register"
-    },
-    {
-      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2154,
-      "message": "VOP3 interpolation third source is not the inline constant 0"
-    },
-    {
-      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2157,
       "message": "VOP3 interpolation modifiers are not implemented"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2161,
-      "message": "VOP3 interpolation source is not an interpolation parameter"
-    },
-    {
-      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2164,
+      "line": 2122,
       "message": "VOP3 interpolation source is not a vector register"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2200,
-      "message": "truncated vector instruction"
+      "line": 2157,
+      "message": "VOP3 interpolation third source is not the inline constant 0"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2215,
-      "message": "instruction is not a vector operation"
+      "line": 2160,
+      "message": "VOP3 interpolation modifiers are not implemented"
+    },
+    {
+      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+      "line": 2164,
+      "message": "VOP3 interpolation source is not an interpolation parameter"
+    },
+    {
+      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+      "line": 2167,
+      "message": "VOP3 interpolation source is not a vector register"
+    },
+    {
+      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+      "line": 2203,
+      "message": "truncated vector instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
@@ -10653,267 +10663,272 @@
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2302,
+      "line": 2221,
+      "message": "instruction is not a vector operation"
+    },
+    {
+      "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+      "line": 2305,
       "message": "VOPC SDWA modifier is not supported for opcode"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2324,
+      "line": 2327,
       "message": "truncated VOP3 instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2471,
+      "line": 2474,
       "message": "truncated VOP3P instruction"
     },
     {
       "file": "core/shader/recompiler/RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-      "line": 2504,
+      "line": 2507,
       "message": "VOP3P integer clamp is not implemented"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 86,
+      "line": 87,
       "message": "ShaderRecompiler::Recompile: unsupported shader stage"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 130,
+      "line": 131,
       "message": "the merged domain and geometry program has no s_cbranch_execz around its vertex half"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 132,
+      "line": 133,
       "message": "the vertex half of the merged domain and geometry program ends outside the program"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 184,
+      "line": 185,
       "message": "ShaderRecompiler: wave-shared VGPRs in a wave32 program are not modeled"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 186,
+      "line": 187,
       "message": "ShaderRecompiler: wave-shared VGPRs reach past v255"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 287,
+      "line": 288,
       "message": "a merged hull program that calls a fetch subroutine is unsupported"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 549,
+      "line": 554,
       "message": "ShaderRecompiler: prepared artifact does not match the resource plan source"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 585,
+      "line": 590,
       "message": "ShaderRecompiler: resource plan source changed while reloading"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 680,
+      "line": 685,
       "message": "barycentric emulation on the mesh path needs a mesh configuration and a device with mesh shaders"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 683,
+      "line": 688,
       "message": "barycentric emulation on the mesh path is only measured with the first provoking vertex"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 686,
+      "line": 691,
       "message": "barycentric emulation on the mesh path needs … bytes of mesh shared memory for … vertices, the device allows "
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 699,
+      "line": 704,
       "message": "barycentric emulation on the mesh path needs … mesh output components (… per-vertex and … per-primitive locations), the device allows "
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 700,
+      "line": 705,
       "message": "barycentric emulation on the mesh path needs … bytes of mesh output memory, the device allows "
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 766,
+      "line": 771,
       "message": "vertex input metadata is missing"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 769,
+      "line": 774,
       "message": "vertex attribute location exceeds resource count"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 826,
+      "line": 831,
       "message": "duplicate prepared specialization ID"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 834,
+      "line": 839,
       "message": "invalid prepared specialization module"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 838,
+      "line": 843,
       "message": "truncated prepared specialization instruction"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 842,
+      "line": 847,
       "message": "a workgroup offset is supplied at dispatch, not prepared"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 843,
+      "line": 848,
       "message": "duplicate workgroup offset specialization"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 848,
+      "line": 853,
       "message": "missing prepared specialization value"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 859,
+      "line": 864,
       "message": "duplicate prepared specialization value"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 872,
+      "line": 877,
       "message": "invalid prepared specialization constant"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 875,
+      "line": 880,
       "message": "invalid stencil replay push constant slot"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 958,
+      "line": 963,
       "message": "ShaderRecompiler: a specialized module built again from its key differs from its first build"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1123,
+      "line": 1128,
       "message": "ShaderRecompiler: a color target merge variant was materialized without the merged target"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1125,
+      "line": 1130,
       "message": "ShaderRecompiler: the captured images do not precede the color target merge images"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1221,
+      "line": 1226,
       "message": "a remapped raster shader's push data must end before the depth remap words"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1229,
+      "line": 1234,
       "message": "Shader cache: invalid vertex attribute metadata"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1237,
+      "line": 1242,
       "message": "unsupported prepared vertex format"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1302,
+      "line": 1307,
       "message": "specialization removed the prepared push constant interface"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1352,
+      "line": 1357,
       "message": "stencil replay push constant lies outside the stage range"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1358,
+      "line": 1363,
       "message": "vertex selector state exceeds its capacity"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1360,
+      "line": 1365,
       "message": "vertex selector state lies outside the push data"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1364,
+      "line": 1369,
       "message": "vertex selector state lies outside the shader data"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1624,
+      "line": 1629,
       "message": "a patched guest buffer binding changed its width"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1629,
+      "line": 1634,
       "message": "patched user data lies outside the push data"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1633,
+      "line": 1638,
       "message": "patched user data lies outside the shader data"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2096,
+      "line": 2101,
       "message": "ShaderRecompiler::Recompile: "
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2098,
+      "line": 2103,
       "message": "ShaderRecompiler::Recompile: unknown exception"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2208,
+      "line": 2213,
       "message": "ShaderRecompiler: prepared artifact is missing"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2238,
+      "line": 2243,
       "message": "ShaderRecompiler: resource capture belongs to another prepared shader"
-    },
-    {
-      "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2246,
-      "message": "ShaderRecompiler: prepared artifact is missing"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
       "line": 2251,
+      "message": "ShaderRecompiler: prepared artifact is missing"
+    },
+    {
+      "file": "core/shader/recompiler/Recompiler.cpp",
+      "line": 2256,
       "message": "ShaderRecompiler: prepared artifact does not match the static ABI"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2265,
+      "line": 2270,
       "message": "ShaderRecompiler: prepared artifact does not match the static ABI"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2266,
+      "line": 2271,
       "message": "ShaderRecompiler: resource capture belongs to another prepared shader"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2274,
+      "line": 2279,
       "message": "ShaderRecompiler: source handle is missing"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2275,
+      "line": 2280,
       "message": "ShaderRecompiler: prepared artifact does not match the static ABI"
     },
     {
       "file": "core/shader/recompiler/Recompiler.hpp",
-      "line": 608,
+      "line": 609,
       "message": "ElementFlags::at"
     },
     {
@@ -12448,27 +12463,27 @@
     },
     {
       "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
-      "line": 104,
-      "message": "f32 denormal mode 2 at pc … needs DenormPreserve 32, which the device does not offer for this shader"
-    },
-    {
-      "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
-      "line": 154,
-      "message": "f32 denormal mode 1 at pc … needs DenormPreserve 32, which the device does not offer for this shader"
-    },
-    {
-      "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
-      "line": 175,
+      "line": 106,
       "message": "f32 denormal mode … at pc … needs DenormPreserve 32, which the device does not offer for this shader"
     },
     {
       "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
-      "line": 179,
+      "line": 157,
+      "message": "f32 denormal mode 1 at pc … needs DenormPreserve 32, which the device does not offer for this shader"
+    },
+    {
+      "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
+      "line": 178,
+      "message": "f32 denormal mode … at pc … needs DenormPreserve 32, which the device does not offer for this shader"
+    },
+    {
+      "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
+      "line": 182,
       "message": "f32 denormal mode … at pc … is not implemented"
     },
     {
       "file": "core/shader/recompiler/Translation/src/VectorInstructions.cpp",
-      "line": 1314,
+      "line": 1317,
       "message": "TranslateVectorInstruction not implemented"
     },
     {
