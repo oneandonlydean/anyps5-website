@@ -8,8 +8,8 @@ import { artSrc } from "../../lib/art";
 import { PLATFORM_LABEL, reach } from "../../lib/view";
 
 const [games, retest, shots] = await Promise.all([getGames(), getRetest(), getScreenshots()]);
-// The order the page's script sorts into by default (furthest reached, then newest), so nothing moves after load.
-const ordered = [...games].sort((a, b) => stageRank(reach(b).stage) - stageRank(reach(a).stage) || b.updated.localeCompare(a.updated));
+// The order the page's script sorts into by default (furthest reached, then A–Z), so nothing moves after load.
+const ordered = [...games].sort((a, b) => stageRank(reach(b).stage) - stageRank(reach(a).stage) || a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
 // Games whose blockers have been fixed since their newest report, most fixes first.
 const ready = games
   .filter((g) => retest.get(g.slug)?.ready)
@@ -280,7 +280,7 @@ const GPUS = ["AMD", "NVIDIA", "Intel", "Apple"];
     renderActive(stages);
 
     const order: Record<string, (a: HTMLElement, b: HTMLElement) => number> = {
-      stage: (a, b) => (rank(b) ?? -2) - (rank(a) ?? -2) || b.dataset.updated!.localeCompare(a.dataset.updated!),
+      stage: (a, b) => (rank(b) ?? -2) - (rank(a) ?? -2) || a.dataset.name!.localeCompare(b.dataset.name!),
       updated: (a, b) => b.dataset.updated!.localeCompare(a.dataset.updated!),
       name: (a, b) => a.dataset.name!.localeCompare(b.dataset.name!),
     };
