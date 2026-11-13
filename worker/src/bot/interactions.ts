@@ -8,6 +8,7 @@ const PING = 1;
 const APPLICATION_COMMAND = 2;
 const AUTOCOMPLETE = 4;
 const PONG = 1;
+const MESSAGE = 4;
 const EPHEMERAL = 64;
 
 interface Interaction {
@@ -86,6 +87,29 @@ async function community(env: Env, name: string, options: Option[] | undefined, 
   return screenshot(env, data, arg("game"));
 }
 
+/**
+ * The commands whose answer the whole channel sees: the ones people use to point someone else at the rules or the FAQ.
+ * Every other command answers only the person who ran it, so lookups don't fill the channel.
+ */
+const PUBLIC = new Set(["rules", "rule", "faq"]);
+
+/** Makes a command's reply visible only to whoever ran it. */
+async function onlyToCaller(response: Response): Promise<Response> {
+  const body = await response.json<{ type: number; data?: { flags?: number } }>();
+  if (body.type === MESSAGE && body.data) body.data.flags = (body.data.flags ?? 0) | EPHEMERAL;
+  return Response.json(body);
+}
+
+async function command(env: Env, name: string, options: Option[] | undefined, caller: string): Promise<Response> {
+  if (isSiteCommand(name)) return runSiteCommand(env, name, options, caller);
+  const option = (n: string) => options?.find((o) => o.name === n)?.value ?? "";
+  if (name === "prs") return prs(env, caller, option("user") || caller);
+  if (name === "leaderboard") return leaderboard(env, option("board"), option("period"));
+  if (name === "stats") return stats(env);
+  if (COMMUNITY.has(name)) return community(env, name, options, caller);
+  return reply({ content: "Unknown command.", flags: EPHEMERAL });
+}
+
 export async function interactions(req: Request, env: Env): Promise<Response> {
   const body = await req.text();
   if (!(await verified(req, env, body))) return new Response("invalid request signature", { status: 401 });
@@ -95,18 +119,10 @@ export async function interactions(req: Request, env: Env): Promise<Response> {
 
   const caller = interaction.member?.user.id ?? interaction.user?.id;
   if (interaction.type === AUTOCOMPLETE && interaction.data) return suggest(env, interaction.data.name, interaction.data.options, caller);
-  if (interaction.type === APPLICATION_COMMAND && caller) {
-    if (interaction.data && isSiteCommand(interaction.data.name)) return runSiteCommand(env, interaction.data.name, interaction.data.options, caller);
-    if (interaction.data?.name === "prs") {
-      const target = interaction.data.options?.find((o) => o.name === "user")?.value ?? caller;
-      return prs(env, caller, target);
-    }
-    if (interaction.data?.name === "leaderboard") {
-      const option = (name: string) => interaction.data!.options?.find((o) => o.name === name)?.value ?? "";
-      return leaderboard(env, option("board"), option("period"));
-    }
-    if (interaction.data?.name === "stats") return stats(env);
-    if (interaction.data && COMMUNITY.has(interaction.data.name)) return community(env, interaction.data.name, interaction.data.options, caller);
+  if (interaction.type === APPLICATION_COMMAND && caller && interaction.data) {
+    const { name, options } = interaction.data;
+    const response = await command(env, name, options, caller);
+    return PUBLIC.has(name) ? response : onlyToCaller(response);
   }
   return reply({ content: "Unknown command.", flags: EPHEMERAL });
 }

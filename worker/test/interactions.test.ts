@@ -82,7 +82,8 @@ it("/leaderboard ranks everyone in the history, linked or not, without bots or p
   await addMerge(40, null, "ghost", daysAgo(1));
 
   const all = (await (await send(command("leaderboard", "d1"))).json<any>()).data;
-  expect(all.flags).toBeUndefined();
+  // Only the caller sees it, so lookups don't fill the channel.
+  expect(all.flags).toBe(64);
   expect(all.allowed_mentions).toEqual({ parse: [] });
   expect(all.embeds[0].title).toBe("Top contributors · All time");
   // Bots are left out of the totals and the ranking; a deleted account counts in the merges but not as a contributor.

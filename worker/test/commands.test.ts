@@ -263,6 +263,19 @@ it("/faq answers from data/bot.yaml and the site's FAQ, with site links made abs
   expect((await run("rules")).data.embeds[0].description).toBe("1. Be kind.");
 });
 
+it("answers only the caller, except /rules, /rule and /faq, which people use to point someone else at an answer", async () => {
+  data.rules = "**1. Be kind**\n\nTreat everyone with respect.";
+  forgetSiteData();
+  for (const [name, options] of [["rules", {}], ["rule", { number: "1" }], ["faq", { topic: "emulator" }]] as const) {
+    expect((await run(name, options)).data.flags, name).toBeUndefined();
+  }
+  for (const [name, options] of [["game", { name: "astro-bot" }], ["release", {}], ["recent", {}], ["stats", {}]] as const) {
+    expect((await run(name, options)).data.flags, name).toBe(64);
+  }
+  // A reply that hides its link previews keeps that, as well as being private.
+  expect((await run("report")).data.flags).toBe(64 | 4);
+});
+
 it("/follow, /following and /unfollow keep a member's list", async () => {
   expect((await run("follow", { game: "astro-bot" })).data.content).toContain("Following **Astro Bot** (Menus)");
   expect((await run("following")).data.content).toContain("[Astro Bot](https://worker.test/compatibility/astro-bot) · Menus");
