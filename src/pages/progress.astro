@@ -10,7 +10,7 @@ import { openFunctions, tallyWanted, type Needs } from "../lib/needs";
 import { formatDate, REPO_URL } from "../lib/site";
 import { getCommits, getCompatHistory, getCoverage, getProgress, getProgressHistory, type Coverage } from "../lib/upstream";
 import { atLeast, gameSeries } from "../lib/compat-history";
-import { stageRank } from "../lib/stages";
+import { weeklyPace } from "../lib/progress-summary";
 
 const [progress, libraryHistory, coverage, needs, games, compatHistory, commits] = await Promise.all([getProgress(), getProgressHistory(), getCoverage(), getNeeds(), getGames(), getCompatHistory(), getCommits()]);
 const number = new Intl.NumberFormat("en-GB");
@@ -126,26 +126,7 @@ const gameFacts = [
   { label: "Ingame or better", stage: "Ingame" },
 ] as const;
 // This week against the week before: what is being done, not only where things stand.
-const DAY = 864e5;
-const end = Date.parse(`${today}T23:59:59Z`);
-const week = (iso: string) => Math.floor((end - Date.parse(iso)) / (7 * DAY));
-const results = games.flatMap((g) => [...g.reports.map((r) => ({ date: r.date, by: r.author })), ...g.uploads.map((u) => ({ date: u.at, by: u.login }))]);
-const firstIngame = games.flatMap((g) => g.timeline.find((e) => stageRank(e.stage) >= stageRank("Ingame"))?.date ?? []);
-const functionsAt = (days: number) => libraryHistory.filter((d) => Date.parse(d.date) <= end - days * DAY).at(-1)?.libraries.done;
-const functionsGained = (from: number, to: number) => {
-  const [a, b] = [functionsAt(to), functionsAt(from)];
-  return a === undefined || b === undefined ? null : b - a;
-};
-const pace = [
-  { label: "Test results", now: results.filter((r) => week(r.date) === 0).length, before: results.filter((r) => week(r.date) === 1).length },
-  {
-    label: "Testers",
-    now: new Set(results.filter((r) => week(r.date) === 0).map((r) => r.by)).size,
-    before: new Set(results.filter((r) => week(r.date) === 1).map((r) => r.by)).size,
-  },
-  { label: "Games newly in game", now: firstIngame.filter((d) => week(d) === 0).length, before: firstIngame.filter((d) => week(d) === 1).length },
-  { label: "Functions implemented", now: functionsGained(0, 7), before: functionsGained(7, 14) },
-];
+const pace = weeklyPace(games, libraryHistory, today);
 
 // Commits per day on upstream main. The day the counts were taken is still in progress, so it is drawn as partial
 // and left out of the weekly figures.

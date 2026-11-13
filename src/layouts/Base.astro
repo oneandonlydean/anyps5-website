@@ -3,7 +3,8 @@ import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { viewTransitions } from "../lib/inline-scripts";
-import { isTranslated, LOCALES, localePath, parsePath, strings } from "../i18n";
+import { DEFAULT_LOCALE, isTranslated, LOCALES, localePath, parsePath, strings } from "../i18n";
+import { markdownPath } from "../lib/markdown";
 
 interface Props {
   title?: string;
@@ -42,6 +43,8 @@ const alternates = isTranslated(path)
   ? (Object.keys(LOCALES) as (keyof typeof LOCALES)[]).map((l) => ({ lang: LOCALES[l].lang, href: new URL(localePath(l, path), Astro.site).href }))
   : [];
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// The page as plain Markdown, for AI tools (/llms.txt lists them all); the copies are in English only.
+const markdown = locale === DEFAULT_LOCALE ? markdownPath(path) : null;
 // Search results show where a page sits: Home › Compatibility › Hades II.
 const segments = path.split("/").filter(Boolean);
 const crumbs = [
@@ -78,6 +81,7 @@ const graph = [
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/atom+xml" title="AnyPS5 updates" href="/updates.xml" />
+    {markdown && <link rel="alternate" type="text/markdown" title="This page as Markdown" href={markdown} />}
     <meta name="theme-color" content="#06080d" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="AnyPS5" />

@@ -12,16 +12,17 @@ import NoteBlock from "../../components/NoteBlock.astro";
 import StageHistory from "../../components/StageHistory.astro";
 import StageLadder from "../../components/StageLadder.astro";
 import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested } from "../../lib/data";
-import { buildLabel, reportBuild, uploadBuild, type BuildInfo } from "../../lib/builds";
+import { buildLabel } from "../../lib/builds";
 import type { Game } from "../../lib/resolve";
 import { DISCORD_URL, formatDate, GITHUB_ICON } from "../../lib/site";
 import Logo from "../../components/Logo.astro";
-import { STAGES, stageRank, stageSlug } from "../../lib/stages";
+import { STAGES, stageSlug } from "../../lib/stages";
 import { artSrc, artSrcset } from "../../lib/art";
-import { PLATFORM_LABEL, reach, regionName, reportKey } from "../../lib/view";
+import { PLATFORM_LABEL, reach, regionName } from "../../lib/view";
 import { CONFIRMATIONS_NEEDED } from "../../lib/uploads";
 import { gameTheme } from "../../lib/color";
 import { LIST_ITEM } from "../../lib/parse";
+import { reportRows } from "../../lib/game-rows";
 
 export async function getStaticPaths() {
   return (await getGames()).map((game) => ({ params: { slug: game.slug }, props: { game } }));
@@ -35,8 +36,6 @@ const shots = (await getScreenshots()).get(game.slug) ?? [];
 const [builds, tested] = await Promise.all([getBuilds(), getTested().then((t) => t.get(game.slug)!)]);
 const firstRelease = builds.releases.at(-1)?.tag;
 const label = (info: { release: string | null; exact: boolean }) => buildLabel(info, firstRelease);
-// A row's build: marked when only its date placed it, as it may be a neighbouring release.
-const rowLabel = (info: BuildInfo) => label(info);
 const BY_DATE = "The report names no commit or release, so its build is placed by its date";
 // A release's results take in the release and main up to the next one.
 const group = (release: string | null) => (release ? `${release} or main after it` : label({ release: null, exact: false }));
@@ -64,43 +63,8 @@ const [thread, ...otherThreads] = [...game.threads].sort((a, b) => b.comments - 
 const replies = (n: number) => (n === 1 ? "1 reply" : `${n} replies`);
 /** Pull requests listed under the ladder before "and N more". */
 const BRANCH_PRS_SHOWN = 5;
-const BUILD_LABEL = { main: "main", prs: "main + PRs", patched: "patched", unknown: "—" } as const;
 // Discussions reports and run reports uploaded here, newest first, in one table; each row opens its full report.
-const rows = [
-  ...game.reports.map((r) => ({
-    key: reportKey(r),
-    href: r.url,
-    date: r.date,
-    stage: r.stage,
-    os: r.platform as string | null,
-    gpuVendor: r.gpuVendor,
-    gpu: r.gpu,
-    // A main build is named by its release; one with pull requests or patches by what it added.
-    build: r.buildKind === "main" || r.buildKind === "unknown" ? (r.build ? rowLabel(reportBuild(r, builds)) : BUILD_LABEL[r.buildKind]) : (BUILD_LABEL[r.buildKind] as string),
-    byDate: (r.buildKind === "main" || r.buildKind === "unknown") && Boolean(r.build) && reportBuild(r, builds).basis === "date",
-    buildTitle: r.build ?? undefined,
-    by: r.author,
-    upload: undefined as number | undefined,
-    stated: false,
-  })),
-  ...game.uploads.map((u) => ({
-    key: `u${u.id}`,
-    href: `?report=u${u.id}`,
-    date: u.at,
-    stage: u.stage,
-    os: u.os,
-    gpuVendor: u.gpuVendor,
-    gpu: u.gpu ?? null,
-    build: rowLabel(uploadBuild(u, builds)),
-    byDate: uploadBuild(u, builds).basis === "date",
-    buildTitle: u.commit ?? undefined,
-    by: u.login as string | null,
-    upload: u.id,
-    // A stage the tester stated stops being "unconfirmed" once it counts: a maintainer verified the run, or enough
-    // reports reached it.
-    stated: Boolean(u.stated) && !u.verifiedBy && !(game.autoStage?.confirmed && stageRank(game.autoStage.stage) >= stageRank(u.stage)),
-  })),
-].sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+const rows = reportRows(game, builds);
 // What a search result shows: how far the game gets in plain words, how well tested that is, and its title ID, which
 // people search by too. The stage's meaning is left out when it would make the text too long to show in full.
 const description = (() => {
