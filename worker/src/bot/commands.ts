@@ -1,6 +1,7 @@
 import { librarySlug } from "../../../src/lib/library-slug";
+import { stageRank } from "../../../src/lib/stages";
 import { now, type Env } from "./env";
-import { findGames, link, links, meter, siteData, stageColor, words, type SiteData, type SiteGame } from "./site-data";
+import { findGames, link, links, meter, siteData, stageColor, words, type LatestRun, type SiteData, type SiteGame } from "./site-data";
 
 /**
  * The commands that answer from the site's data (src/pages/bot/data.json.ts): games, progress, the release, the
@@ -38,17 +39,90 @@ const option = (options: Option[] | undefined, name: string) => options?.find((o
 const pickGame = (data: SiteData, query: string): SiteGame | undefined => data.games.find((g) => g.slug === query) ?? findGames(data, query)[0];
 const noGame = (query: string) => privately(`No game on the compatibility list matches "${query.slice(0, 80)}".`);
 
+const OS: Record<string, string> = { linux: "Linux", windows: "Windows", macos: "macOS" };
+const osName = (os: string | null) => (os ? (OS[os.toLowerCase()] ?? os) : null);
+/** How an uploaded run ended, as the game page's report window says it. */
+const STOP: Record<string, string> = {
+  none: "Ran without stopping",
+  "missing-function": "Stopped on a missing function",
+  "unsupported-shader": "Stopped on an unsupported shader",
+  "unsupported-format": "Stopped on an unsupported format",
+  crash: "Crashed",
+  assert: "Stopped on an assertion",
+  other: "Stopped",
+};
+const REASON: Record<string, string> = {
+  "guest-exit": "the game exited",
+  "quit-requested": "the window was closed",
+  "runtime-stop": "AnyPS5 stopped it",
+  crash: "it crashed",
+  "unclean-unknown": "it ended uncleanly",
+  other: "it ended",
+};
+const BUILD_KIND: Record<string, string> = { prs: "with open pull requests", patched: "patched locally" };
+const SYSTEMS_SHOWN = 6;
+const names = (list: { names: string[]; more: number }) => `${list.names.map((n) => `\`${n}\``).join(", ")}${list.more ? ` and ${list.more} more` : ""}`;
+const cut = (text: string, limit: number) => (text.length > limit ? `${text.slice(0, limit - 1).trimEnd()}…` : text);
+
+/** The newest run, as lines: who ran it where, how far it got, how it ended and how fast it ran. */
+function latestRun(env: Env, run: LatestRun): string {
+  const system = [osName(run.os), run.gpu].filter(Boolean).join(" · ");
+  const build = [run.build && `Build: ${run.build}`, run.buildKind && BUILD_KIND[run.buildKind], run.version && `game version ${run.version}`].filter(Boolean).join(" · ");
+  const lines = [
+    `${when(run.date, "R")}${run.by ? ` by **${run.by}**` : ""}${system ? ` · ${system}` : ""}`,
+    build,
+    run.stage
+      ? `Reached **${run.stage}**${run.stated && stageRank(run.stated) > stageRank(run.stage) ? `, and the tester says ${run.stated}` : ""}${run.verified ? " · ✅ verified by a maintainer" : ""}`
+      : run.stated && `The tester says it reached **${run.stated}**`,
+  ];
+  if (run.stop) {
+    const ended = `${STOP[run.stop.kind] ?? "Stopped"}; ${REASON[run.stop.reason] ?? "it ended"}${run.recovered ? " (found at the next start)" : ""}`;
+    lines.push(run.stop.kind === "none" || !run.stop.message ? ended : `${ended}: ${cut(run.stop.message, 160)}`);
+  }
+  if (run.missing?.names.length) lines.push(`Missing: ${names(run.missing)}`);
+  if (run.unsupported?.names.length) lines.push(`Unsupported: ${names(run.unsupported)}`);
+  if (run.perf) {
+    const p = run.perf;
+    lines.push(`${p.fps} fps average · ${p.low1} fps 1% low${p.resolution ? ` · ${p.resolution}` : ""}${p.cap ? ` · capped at ${p.cap}` : ""} · ${Math.round(p.seconds)} s measured`);
+  }
+  if (run.shown) lines.push(`> ${cut(run.shown.replace(/\s+/g, " "), 300)}`);
+  lines.push(run.source === "upload" ? `[Open this run](${link(env, run.url)})` : `[Read the report](${run.url})`);
+  return cut(lines.filter(Boolean).join("\n"), 1024);
+}
+
 function game(env: Env, data: SiteData, query: string): Response {
   const g = pickGame(data, query);
   if (!g) return noGame(query);
-  const tested = g.tested
-    ? `${when(g.tested.date)}${g.tested.build ? ` on ${g.tested.build}` : ""}${g.tested.releasesSince ? ` · ${g.tested.releasesSince} release${g.tested.releasesSince === 1 ? "" : "s"} ago` : ""}`
-    : "Not yet";
-  const fields = [
+  const fields: { name: string; value: string; inline: boolean }[] = [
     { name: "Furthest stage", value: g.stage ?? "Untested", inline: true },
     { name: "Title ID", value: g.ids.join(", "), inline: true },
-    { name: "Last tested", value: tested, inline: false },
   ];
+  if (g.runs && g.runs.reports + g.runs.uploads > 0) {
+    const r = g.runs;
+    const what = [r.reports && `${r.reports} report${r.reports === 1 ? "" : "s"}`, r.uploads && `${r.uploads} uploaded run${r.uploads === 1 ? "" : "s"}`].filter(Boolean).join(", ");
+    fields.push({ name: "Tested by", value: `${r.testers} ${r.testers === 1 ? "person" : "people"} · ${what}`, inline: true });
+  }
+  if (g.latest) {
+    fields.push({ name: g.latest.source === "upload" ? "Latest run (uploaded)" : "Latest run (reported)", value: latestRun(env, g.latest), inline: false });
+  } else {
+    fields.push({ name: "Last tested", value: "Not yet. `/report` says how to add a run.", inline: false });
+  }
+  const releases = g.history?.releases ?? [];
+  if (releases.length) {
+    const lines = releases.map((r) => `${r.release} · ${r.stage}${r.results > 1 ? ` (${r.results} runs)` : ""}`);
+    const reg = g.history!.regression;
+    if (reg) lines.push(`⬇️ Lower than the ${reg.was} it reached on ${reg.release ?? "an older build"}`);
+    fields.push({ name: "By release", value: lines.join("\n"), inline: true });
+  }
+  const systems = Object.entries(g.systems).sort(([, a], [, b]) => stageRank(b) - stageRank(a));
+  if (systems.length) {
+    const lines = systems.slice(0, SYSTEMS_SHOWN).map(([key, stage]) => {
+      const [os, vendor] = key.split("/");
+      return `${osName(os!) ?? os} · ${vendor}: ${stage}`;
+    });
+    if (systems.length > SYSTEMS_SHOWN) lines.push(`…and ${systems.length - SYSTEMS_SHOWN} more`);
+    fields.push({ name: "Best on each system", value: lines.join("\n"), inline: true });
+  }
   if (g.blockers.length) {
     fields.push({
       name: "Where it stops",
@@ -56,6 +130,15 @@ function game(env: Env, data: SiteData, query: string): Response {
       inline: false,
     });
   }
+  if (g.retest?.ready) {
+    const fixed = g.retest.fixed.map((f) => (f.startsWith("#") ? f : `\`${f}\``)).join(", ");
+    fields.push({ name: "🔁 Worth running again", value: `What stopped it has been fixed since${fixed ? ` (${fixed})` : ""}. A run on the latest build would show how far it gets now.`, inline: false });
+  } else if (g.retest?.stale && g.tested) {
+    const since = g.tested.releasesSince;
+    fields.push({ name: "🕰️ Result may be out of date", value: `The newest result is ${since ? `${since} release${since === 1 ? "" : "s"}` : "a while"} old. A fresh run would help.`, inline: false });
+  }
+  const shots = data.screenshots.filter((s) => s.slug === g.slug).length;
+  const footer = ["/follow to hear when it moves", "/report to add a run", shots && `/screenshot for ${shots} screenshot${shots === 1 ? "" : "s"}`].filter(Boolean).join(" · ");
   return reply({
     embeds: [
       {
@@ -65,7 +148,7 @@ function game(env: Env, data: SiteData, query: string): Response {
         // The game's share picture (cover, name and stage), drawn by the site build for every game.
         image: { url: `${link(env, `/og/${g.slug}.jpg`)}?v=${Date.parse(data.generated)}` },
         fields,
-        footer: { text: "AnyPS5 compatibility list" },
+        footer: { text: footer },
       },
     ],
   });

@@ -20,6 +20,38 @@ export interface SiteGame {
   thread: string;
   /** The furthest stage reached on each system that reported one, as "linux/NVIDIA". */
   systems: Record<string, StageOrNone>;
+  /** The newest report or uploaded run; missing from data built before it was added. */
+  latest?: LatestRun | null;
+  runs?: { reports: number; uploads: number; testers: number };
+  /** Furthest stage per release, newest first; the regression is the better stage an older release reached. */
+  history?: { releases: { release: string; stage: StageOrNone; results: number }[]; regression: { was: StageOrNone; release: string | null } | null };
+  /** Whether the newest result is old, and whether what stopped it was fixed since (the fixes, as names or #numbers). */
+  retest?: { stale: boolean; ready: boolean; fixed: string[] };
+}
+
+export interface LatestRun {
+  source: "report" | "upload";
+  date: string;
+  by: string | null;
+  stage: StageOrNone | null;
+  /** What the uploader said it reached, past what the run report recorded. */
+  stated: StageOrNone | null;
+  os: string | null;
+  gpu: string | null;
+  build: string | null;
+  buildKind?: "main" | "prs" | "patched" | "unknown";
+  /** The game's own version. */
+  version: string | null;
+  stop: { kind: string; reason: string; message: string } | null;
+  recovered: boolean;
+  missing: { names: string[]; more: number } | null;
+  unsupported: { names: string[]; more: number } | null;
+  perf: { fps: number; low1: number; seconds: number; cap: number | null; resolution: string | null } | null;
+  verified: boolean;
+  /** What the report says was on screen. */
+  shown: string | null;
+  /** The report, or the game page with the uploaded run open. */
+  url: string;
 }
 
 export interface GuideStep {

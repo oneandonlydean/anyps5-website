@@ -1,7 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { strings } from "../i18n";
-import { buildLabel } from "./builds";
+import { buildLabel, reportBuild, uploadBuild, type BuildData, type Tested } from "./builds";
 import { gameSeries } from "./compat-history";
 import { getBuilds, getGames, getNeeds, getRetest, getScreenshots, getTested, getTrackedGames } from "./data";
 import { loadBotText } from "./load";
@@ -60,6 +60,69 @@ function testers(games: Awaited<ReturnType<typeof getGames>>, now: number) {
     people: all.sort((a, b) => b.reports + b.uploads - (a.reports + a.uploads) || b.last.localeCompare(a.last)),
   };
 }
+
+type BotGame = Awaited<ReturnType<typeof getGames>>[number];
+const LATEST_LISTED = 5;
+
+/**
+ * A game's newest run, for /game: a Discussions report or an uploaded run report, whichever is newer, with what it
+ * says about the system, the build and, for uploads, how the run ended and how fast it ran.
+ */
+function latestRun(game: BotGame, builds: BuildData, first: string | undefined) {
+  const report = game.reports.filter((r) => r.stage || r.shown).sort((a, b) => b.date.localeCompare(a.date))[0];
+  const upload = [...game.uploads].sort((a, b) => b.at.localeCompare(a.at))[0];
+  if (upload && (!report || upload.at > report.date)) {
+    const list = (names: string[] | null, cut: number) => (names ? { names: names.slice(0, LATEST_LISTED), more: Math.max(0, names.length - LATEST_LISTED) + cut } : null);
+    const p = upload.perf;
+    return {
+      source: "upload" as const,
+      date: upload.at,
+      by: upload.login,
+      stage: upload.stage,
+      stated: upload.stated ?? null,
+      os: upload.os,
+      gpu: upload.gpu ?? upload.gpuVendor,
+      build: buildLabel(uploadBuild(upload, builds), first),
+      version: upload.contentVersion,
+      stop: upload.stop,
+      recovered: upload.recovered,
+      missing: list(upload.missing, upload.truncated.functions),
+      unsupported: list(upload.unsupported, upload.truncated.unsupported),
+      perf: p ? { fps: p.fps, low1: p.low1, seconds: p.seconds, cap: p.cap, resolution: p.resolutions[0] ?? null } : null,
+      verified: Boolean(upload.verifiedBy),
+      shown: null,
+      url: `/compatibility/${game.slug}?report=u${upload.id}`,
+    };
+  }
+  if (!report) return null;
+  return {
+    source: "report" as const,
+    date: report.date,
+    by: report.author,
+    stage: report.stage,
+    stated: null,
+    os: report.platform,
+    gpu: report.gpu ?? report.gpuVendor,
+    // A report that names no build is placed by its date, which is a guess: it isn't shown.
+    build: report.build ? buildLabel(reportBuild(report, builds), first) : null,
+    buildKind: report.buildKind,
+    version: report.version,
+    stop: null,
+    recovered: false,
+    missing: null,
+    unsupported: null,
+    perf: null,
+    verified: false,
+    shown: report.shown?.slice(0, 400) ?? null,
+    url: report.url,
+  };
+}
+
+/** A game's furthest stage on each release it was run on, newest first, and whether the newest is a step back. */
+const releaseHistory = (tested: Tested | undefined, first: string | undefined) => ({
+  releases: (tested?.releases ?? []).slice(0, 4).map((r) => ({ release: r.release ?? (first ? `before ${first}` : "main"), stage: r.stage, results: r.results })),
+  regression: tested?.regression ? { was: tested.regression.was.stage, release: tested.regression.was.release } : null,
+});
 
 /** The FAQ's HTML answers as Discord markdown. */
 const markdown = (html: string) =>
@@ -208,6 +271,14 @@ async function build() {
         blockers: g.blockers.slice(0, BLOCKERS_SHOWN).map((b) => ({ number: b.number, kind: b.kind, title: b.title, url: b.url })),
         thread: g.threads[0]?.url ?? newReportUrl(`${g.name} (${g.titleIds[0]})`),
         systems: systems(g),
+        latest: latestRun(g, builds, firstRelease),
+        runs: {
+          reports: g.reports.length,
+          uploads: g.uploads.length,
+          testers: new Set([...g.reports.map((r) => r.author), ...g.uploads.map((u) => u.login)].filter(Boolean).map((l) => l!.toLowerCase())).size,
+        },
+        history: releaseHistory(tested.get(g.slug), firstRelease),
+        retest: { stale: last.stale, ready: last.ready, fixed: [...last.fixed.functions.slice(0, 4), ...last.fixed.issues.slice(0, 3).map((i) => `#${i.number}`)] },
       };
     }),
     libraries: progress && {

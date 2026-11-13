@@ -39,6 +39,28 @@ const DATA: SiteData = {
       blockers: [{ number: 42, kind: "issue", title: "VideoOut: unsupported pixel format", url: "https://github.com/acme/widgets/issues/42" }],
       thread: "https://github.com/acme/widgets/discussions/7",
       systems: { "linux/NVIDIA": "Menus", "windows/AMD": "Starts" },
+      latest: {
+        source: "upload",
+        date: "2026-10-20T00:00:00Z",
+        by: "Bob",
+        stage: "Menus",
+        stated: "Ingame",
+        os: "linux",
+        gpu: "NVIDIA GeForce RTX 4070",
+        build: "main after v0.1.3",
+        version: "01.002.000",
+        stop: { kind: "missing-function", reason: "runtime-stop", message: "sceHttp2SendRequest is not implemented." },
+        recovered: false,
+        missing: { names: ["sceHttp2SendRequest", "scePadOpen"], more: 4 },
+        unsupported: { names: [], more: 0 },
+        perf: { fps: 58.4, low1: 41.2, seconds: 30.2, cap: 60, resolution: "1920x1080" },
+        verified: true,
+        shown: null,
+        url: "/compatibility/astro-bot?report=u12",
+      },
+      runs: { reports: 2, uploads: 1, testers: 2 },
+      history: { releases: [{ release: "v0.1.3", stage: "Menus", results: 2 }, { release: "v0.1.2", stage: "Ingame", results: 1 }], regression: { was: "Ingame", release: "v0.1.2" } },
+      retest: { stale: false, ready: true, fixed: ["scePadOpen", "#40"] },
     },
     {
       slug: "astro-playroom",
@@ -159,9 +181,39 @@ it("/game shows a game's stage, last test and blockers, by name, title ID or the
     expect(embed.title).toBe("Astro Bot");
     expect(embed.url).toBe("https://worker.test/compatibility/astro-bot");
     expect(embed.image.url).toBe(`https://worker.test/og/astro-bot.jpg?v=${Date.parse(DATA.generated)}`);
-    expect(embed.fields.map((f: any) => f.value)).toEqual(expect.arrayContaining(["Menus", "PPSA01234", expect.stringContaining("main after v0.1.3 · 1 release ago")]));
-    expect(embed.fields.at(-1).value).toContain("[#42](https://github.com/acme/widgets/issues/42) VideoOut");
+    const field = (name: string) => embed.fields.find((f: any) => f.name === name)?.value;
+    expect(field("Furthest stage")).toBe("Menus");
+    expect(field("Title ID")).toBe("PPSA01234");
+    expect(field("Tested by")).toBe("2 people · 2 reports, 1 uploaded run");
+    expect(field("Latest run (uploaded)").split("\n")).toEqual([
+      "<t:1792454400:R> by **Bob** · Linux · NVIDIA GeForce RTX 4070",
+      "Build: main after v0.1.3 · game version 01.002.000",
+      "Reached **Menus**, and the tester says Ingame · ✅ verified by a maintainer",
+      "Stopped on a missing function; AnyPS5 stopped it: sceHttp2SendRequest is not implemented.",
+      "Missing: `sceHttp2SendRequest`, `scePadOpen` and 4 more",
+      "58.4 fps average · 41.2 fps 1% low · 1920x1080 · capped at 60 · 30 s measured",
+      "[Open this run](https://worker.test/compatibility/astro-bot?report=u12)",
+    ]);
+    expect(field("By release")).toBe("v0.1.3 · Menus (2 runs)\nv0.1.2 · Ingame\n⬇️ Lower than the Ingame it reached on v0.1.2");
+    expect(field("Best on each system")).toBe("Linux · NVIDIA: Menus\nWindows · AMD: Starts");
+    expect(field("Where it stops")).toContain("[#42](https://github.com/acme/widgets/issues/42) VideoOut");
+    expect(field("🔁 Worth running again")).toContain("fixed since (`scePadOpen`, #40)");
+    expect(embed.footer.text).toContain("/follow");
   }
+  // A Discussions report, and a game whose data has no runs yet.
+  data.games[1]!.latest = { source: "report", date: "2026-10-01T00:00:00Z", by: "Ann", stage: "Ingame", stated: null, os: "windows", gpu: "Radeon RX 7800 XT", build: null, buildKind: "prs", version: null, stop: null, recovered: false, missing: null, unsupported: null, perf: null, verified: false, shown: "Plays the first level at 30 FPS.", url: "https://github.com/acme/widgets/discussions/8#c1" };
+  forgetSiteData();
+  const playroom = (await run("game", { name: "astro-playroom" })).data.embeds[0];
+  expect(playroom.fields.find((f: any) => f.name === "Latest run (reported)").value.split("\n")).toEqual([
+    "<t:1790812800:R> by **Ann** · Windows · Radeon RX 7800 XT",
+    "with open pull requests",
+    "Reached **Ingame**",
+    "> Plays the first level at 30 FPS.",
+    "[Read the report](https://github.com/acme/widgets/discussions/8#c1)",
+  ]);
+  data.games[1]!.latest = null;
+  forgetSiteData();
+  expect((await run("game", { name: "astro-playroom" })).data.embeds[0].fields.find((f: any) => f.name === "Last tested").value).toContain("Not yet");
   expect((await run("game", { name: "zelda" })).data).toMatchObject({ flags: 64, content: expect.stringContaining('No game on the compatibility list matches "zelda"') });
 });
 
