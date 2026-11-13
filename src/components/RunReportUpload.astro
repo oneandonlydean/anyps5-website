@@ -1,11 +1,15 @@
 ---
 import { CONFIRMATIONS_NEEDED } from "../lib/uploads";
+import { STAGES, type StageName } from "../lib/stages";
 
 interface Props {
   /** Games on the compatibility list, for reports without a title ID (the uploader picks the game). */
   games: { name: string; ids: string[] }[];
 }
 const { games } = Astro.props;
+/** The choices for how far a run got, past the frames the report records; each reads as its stage's description. */
+const REACHED: [string, StageName][] = [["", "Presents"], ["menus", "Menus"], ["ingame", "Ingame"], ["playable", "Playable"]];
+const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.meaning.replace(/\.$/, "");
 ---
 
 <section class="card upload" id="upload" data-upload data-listed={JSON.stringify(games.flatMap((g) => g.ids))}>
@@ -56,10 +60,9 @@ const { games } = Astro.props;
     </label>
     <fieldset class="reached" data-reached hidden>
       <legend>How far did you get? The report can only tell up to frames on screen.</legend>
-      <label><input type="radio" name="reached" value="" checked /> Logos, video or loading screens</label>
-      <label><input type="radio" name="reached" value="menus" /> A menu or title screen that responds</label>
-      <label><input type="radio" name="reached" value="ingame" /> Into gameplay</label>
-      <label><input type="radio" name="reached" value="playable" /> Played it start to finish</label>
+      {REACHED.map(([value, stage]) => (
+        <label><input type="radio" name="reached" value={value} checked={value === ""} /> {meaning(stage)}</label>
+      ))}
     </fieldset>
     <button type="button" class="button primary" data-send hidden>Upload report</button>
   </div>
