@@ -3,10 +3,10 @@ export const STAGES = [
   { name: "Loads", short: "Loads", meaning: "The executable loads and reaches the game's entry point." },
   { name: "Starts", short: "Starts", meaning: "Game code runs past startup." },
   { name: "First draw", short: "Draws", meaning: "The first GPU draw or dispatch executes." },
-  { name: "Presents", short: "Presents", meaning: "Logos, video or loading screens." },
-  { name: "Menus", short: "Menus", meaning: "A menu or title screen that responds." },
-  { name: "Ingame", short: "Ingame", meaning: "Into gameplay." },
-  { name: "Playable", short: "Playable", meaning: "Played it start to finish." },
+  { name: "Presents", short: "Presents", meaning: "The game hands finished frames to the GPU for display: logos, loading screens or video." },
+  { name: "Menus", short: "Menus", meaning: "A menu or title screen renders and responds to input." },
+  { name: "Ingame", short: "Ingame", meaning: "Gameplay is reached." },
+  { name: "Playable", short: "Playable", meaning: "Playable from start to finish with minor issues." },
 ] as const;
 
 export type StageName = (typeof STAGES)[number]["name"];
