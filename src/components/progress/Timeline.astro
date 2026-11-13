@@ -363,6 +363,8 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
     padding-left: 12px;
     font-size: 0.84rem;
     line-height: 1.4;
+    /* Change summaries can name a long C++ symbol with no spaces; it breaks rather than spilling out of the card. */
+    overflow-wrap: anywhere;
   }
   .part li::before {
     content: "";
@@ -422,6 +424,10 @@ const milestoneLabel = (kind: "complete" | "half" | "started" | undefined, libra
   }
   .rest-list b {
     color: var(--text);
+  }
+  .rest-list span {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   .dot {
     flex: none;
