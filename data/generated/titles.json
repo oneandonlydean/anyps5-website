@@ -4,6 +4,11 @@
     "region": "UP",
     "concept": "202138"
   },
+  "CUSA00419": {
+    "name": "Grand Theft Auto V",
+    "region": "UP",
+    "concept": "201930"
+  },
   "CUSA01664": {
     "name": "LIMBO",
     "region": "UP",
@@ -23,6 +28,16 @@
     "name": "Knowledge is Power: Decades",
     "region": "UP",
     "concept": "232856"
+  },
+  "PPSA01284": {
+    "name": "Returnal",
+    "region": "UP",
+    "concept": "10000176"
+  },
+  "PPSA01285": {
+    "name": "Returnal",
+    "region": "EP",
+    "concept": "10000176"
   },
   "PPSA01289": {
     "name": "Sackboy™: A Big Adventure",
@@ -53,6 +68,11 @@
     "name": "Devil May Cry 5 Special Edition",
     "region": "UP",
     "concept": "227315"
+  },
+  "PPSA01467": {
+    "name": "Marvel's Spider-Man Remastered",
+    "region": "UP",
+    "concept": "10000762"
   },
   "PPSA01474": {
     "name": "Ratchet & Clank: Rift Apart",
@@ -93,6 +113,11 @@
     "name": "Mortal Kombat 11",
     "region": "EP",
     "concept": "231756"
+  },
+  "PPSA01649": {
+    "name": "Call of Duty®: Modern Warfare II",
+    "region": "UP",
+    "concept": "10001130"
   },
   "PPSA01670": {
     "name": "DEATHLOOP",
@@ -158,6 +183,11 @@
     "name": "Ghost of Tsushima",
     "region": "UP",
     "concept": "235227"
+  },
+  "PPSA02257": {
+    "name": "Guilty Gear -Strive-",
+    "region": "EP",
+    "concept": "10000453"
   },
   "PPSA02306": {
     "name": "Spirit of the North: Enhanced Edition",
@@ -243,6 +273,11 @@
     "name": "Greak - Memories of Azur",
     "region": "EP",
     "concept": "10002329"
+  },
+  "PPSA02902": {
+    "name": "In rays of the Light",
+    "region": "UP",
+    "concept": "10001075"
   },
   "PPSA02929": {
     "name": "Dreaming Sarah",
@@ -443,6 +478,11 @@
     "name": "RESIDENT EVIL 2",
     "region": "UP",
     "concept": "229500"
+  },
+  "PPSA04319": {
+    "name": "Instant Sports Plus",
+    "region": "UP",
+    "concept": "10003240"
   },
   "PPSA04334": {
     "name": "FATAL FRAME: Maiden of Black Water",
@@ -914,6 +954,11 @@
     "region": "EP",
     "concept": "10005908"
   },
+  "PPSA13446": {
+    "name": "Aphelion",
+    "region": "UP",
+    "concept": "10007223"
+  },
   "PPSA13579": {
     "name": "Blasphemous 2",
     "region": "EP",
@@ -964,10 +1009,20 @@
     "region": "EP",
     "concept": "10007607"
   },
+  "PPSA14501": {
+    "name": "Brothers: A Tale of Two Sons Remake",
+    "region": "UP",
+    "concept": "10007683"
+  },
   "PPSA14632": {
     "name": "LEGO® ホライゾン アドベンチャー",
     "region": "EP",
     "concept": "10007722"
+  },
+  "PPSA14708": {
+    "name": "Commandos: Origins",
+    "region": "EP",
+    "concept": "10007746"
   },
   "PPSA15065": {
     "name": "Cat Quest III",
@@ -1419,6 +1474,11 @@
     "region": "UP",
     "concept": "10013248"
   },
+  "PPSA27950": {
+    "name": "Golfing Over It with Alva Majo",
+    "region": "EB",
+    "concept": "10013805"
+  },
   "PPSA28002": {
     "name": "NINJA GAIDEN: Ragebound",
     "region": "EP",
@@ -1509,6 +1569,11 @@
     "region": "UP",
     "concept": "10015010"
   },
+  "PPSA30140": {
+    "name": "Syberia - Remastered",
+    "region": "EP",
+    "concept": "10015158"
+  },
   "PPSA30528": {
     "name": "Red Dead Redemption",
     "region": "UP",
@@ -1518,6 +1583,11 @@
     "name": "MLB® The Show™ 26",
     "region": "UP",
     "concept": "10015430"
+  },
+  "PPSA30797": {
+    "name": "KAKU: Ancient Seal",
+    "region": "EP",
+    "concept": "10015528"
   },
   "PPSA30839": {
     "name": "MXGP 26: The Official Game",
@@ -1659,6 +1729,11 @@
     "region": "EP",
     "concept": "10018449"
   },
+  "PPSA36257": {
+    "name": "Luna Abyss",
+    "region": "JP",
+    "concept": "10018646"
+  },
   "PPSA36591": {
     "name": "STEINS;GATE RE:BOOT",
     "region": "UP",
@@ -1673,5 +1748,10 @@
     "name": "Train Sim World 7",
     "region": "EP",
     "concept": "10019606"
+  },
+  "PPSA38010": {
+    "name": "Suika Game",
+    "region": "UB",
+    "concept": "10019457"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-09T18:46:33.697Z",
+  "generated": "2026-11-13T04:30:48.580Z",
   "uploads": [
     {
       "id": 2,
@@ -3675,7 +3675,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 88,
@@ -3719,7 +3719,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 89,
@@ -3763,7 +3763,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 90,
@@ -3807,7 +3807,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 91,
@@ -3851,7 +3851,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 92,
@@ -3895,7 +3895,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 93,
@@ -3939,7 +3939,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 94,
@@ -3983,7 +3983,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 95,
@@ -4027,7 +4027,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 96,
@@ -4059,7 +4059,7 @@
         "message": "The game exited normally."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 97,
@@ -4091,7 +4091,7 @@
         "message": "The game exited normally."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 98,
@@ -4123,7 +4123,7 @@
         "message": "The game exited normally."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 99,
@@ -4167,7 +4167,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 100,
@@ -4211,7 +4211,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 101,
@@ -4243,7 +4243,7 @@
         "message": "The game exited normally."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 102,
@@ -4287,7 +4287,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 103,
@@ -4331,7 +4331,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 104,
@@ -4363,7 +4363,7 @@
         "message": "The game exited normally."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 105,
@@ -4407,7 +4407,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 106,
@@ -4451,7 +4451,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 107,
@@ -4495,7 +4495,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 108,
@@ -4539,7 +4539,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 109,
@@ -4583,7 +4583,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 110,
@@ -4615,7 +4615,7 @@
         "message": "The window was closed."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 111,
@@ -4647,7 +4647,7 @@
         "message": "The game exited normally."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 112,
@@ -4679,7 +4679,7 @@
         "message": "The game exited normally."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 113,
@@ -4711,7 +4711,7 @@
         "message": "The game exited normally."
       },
       "perf": null,
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 114,
@@ -4755,7 +4755,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 115,
@@ -4799,7 +4799,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 116,
@@ -4843,7 +4843,975 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 117,
+      "titleId": "PPSA04264",
+      "titleChosen": false,
+      "name": "Grand Theft Auto V",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "adam25136",
+      "githubId": 34386517,
+      "at": "2026-11-10T08:41:00.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 5080",
+      "commit": "1b3ccf750a89fb726dfe3acf4ca0a8fd33106378",
+      "release": null,
+      "contentVersion": "01.005.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 12.1,
+        "low1": 2.4,
+        "p99Ms": 419.18,
+        "stutters": 124,
+        "seconds": 180.665,
+        "gpuBusyPct": 52.9,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 118,
+      "titleId": "PPSA01494",
+      "titleChosen": false,
+      "name": "Borderlands®4",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:06.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "706573b02fb1e473092498cce6ee1b5c2ac856af",
+      "release": null,
+      "contentVersion": "01.100.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 2,
+        "low1": 0.7,
+        "p99Ms": 1516.5,
+        "stutters": 37,
+        "seconds": 241.982,
+        "gpuBusyPct": 23.9,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 119,
+      "titleId": "PPSA18194",
+      "titleChosen": false,
+      "name": "METAL GEAR SOLID 4: Guns of the Patriots - Master Collection Version",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:07.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "706573b02fb1e473092498cce6ee1b5c2ac856af",
+      "release": null,
+      "contentVersion": "01.004.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 54.3,
+        "low1": 35.7,
+        "p99Ms": 27.98,
+        "stutters": 34,
+        "seconds": 210.471,
+        "gpuBusyPct": 34,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 120,
+      "titleId": "PPSA31162",
+      "titleChosen": false,
+      "name": "Super Meat Boy 3D",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:09.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "706573b02fb1e473092498cce6ee1b5c2ac856af",
+      "release": null,
+      "contentVersion": "02.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 7.9,
+        "low1": 6,
+        "p99Ms": 165.43,
+        "stutters": 3,
+        "seconds": 240.514,
+        "gpuBusyPct": 75.3,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 121,
+      "titleId": "PPSA34502",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops II",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:10.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "706573b02fb1e473092498cce6ee1b5c2ac856af",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.6,
+        "p99Ms": 16.77,
+        "stutters": 0,
+        "seconds": 150.062,
+        "gpuBusyPct": 27.2,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 122,
+      "titleId": "PPSA36591",
+      "titleChosen": false,
+      "name": "STEINS;GATE RE:BOOT",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:11.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "706573b02fb1e473092498cce6ee1b5c2ac856af",
+      "release": null,
+      "contentVersion": "01.002.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.3,
+        "p99Ms": 16.85,
+        "stutters": 2,
+        "seconds": 240.099,
+        "gpuBusyPct": 23,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 123,
+      "titleId": "PPSA99773",
+      "titleChosen": false,
+      "name": "PShare",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:13.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 29.7,
+        "low1": 17.7,
+        "p99Ms": 56.34,
+        "stutters": 6,
+        "seconds": 60.021,
+        "gpuBusyPct": 23.6,
+        "cap": 30,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 124,
+      "titleId": "PPSA99924",
+      "titleChosen": false,
+      "name": "FBNeo PS5",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:14.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "02.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 57.1,
+        "low1": 28.2,
+        "p99Ms": 35.46,
+        "stutters": 67,
+        "seconds": 60.012,
+        "gpuBusyPct": 0,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 125,
+      "titleId": "PPSA99991",
+      "titleChosen": false,
+      "name": "YouTube Max’d",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:15.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.003.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 0.6,
+        "low1": 0.2,
+        "p99Ms": 5335.61,
+        "stutters": 7,
+        "seconds": 32.156,
+        "gpuBusyPct": 4.8,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 126,
+      "titleId": "PPSA99997",
+      "titleChosen": false,
+      "name": "Nuvio",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-10T20:30:16.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce GT 1030",
+      "commit": "090f57166adb9692d27d16662a89ccc33a502406",
+      "release": null,
+      "contentVersion": "01.000.007",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 13.8,
+        "low1": 0.9,
+        "p99Ms": 1084.64,
+        "stutters": 73,
+        "seconds": 30.069,
+        "gpuBusyPct": 5.6,
+        "cap": 30,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 127,
+      "titleId": "PPSA01494",
+      "titleChosen": false,
+      "name": "Borderlands®4",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-11T15:41:26.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "6b7b52b3712fc31838ab507d29c553c5eec17942",
+      "release": null,
+      "contentVersion": "01.100.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 2.1,
+        "low1": 0.6,
+        "p99Ms": 1582.56,
+        "stutters": 38,
+        "seconds": 244.631,
+        "gpuBusyPct": 23.8,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 128,
+      "titleId": "PPSA18194",
+      "titleChosen": false,
+      "name": "METAL GEAR SOLID 4: Guns of the Patriots - Master Collection Version",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-11T15:41:27.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "6b7b52b3712fc31838ab507d29c553c5eec17942",
+      "release": null,
+      "contentVersion": "01.004.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 53.8,
+        "low1": 35.7,
+        "p99Ms": 28.03,
+        "stutters": 32,
+        "seconds": 210.088,
+        "gpuBusyPct": 35.1,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 129,
+      "titleId": "PPSA31162",
+      "titleChosen": false,
+      "name": "Super Meat Boy 3D",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-11T15:41:29.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "6b7b52b3712fc31838ab507d29c553c5eec17942",
+      "release": null,
+      "contentVersion": "02.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 9.5,
+        "low1": 6.9,
+        "p99Ms": 144.96,
+        "stutters": 4,
+        "seconds": 240.371,
+        "gpuBusyPct": 83.5,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 130,
+      "titleId": "PPSA34502",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops II",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-11T15:41:30.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "6b7b52b3712fc31838ab507d29c553c5eec17942",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.6,
+        "p99Ms": 16.78,
+        "stutters": 0,
+        "seconds": 150.062,
+        "gpuBusyPct": 26.7,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 131,
+      "titleId": "PPSA36591",
+      "titleChosen": false,
+      "name": "STEINS;GATE RE:BOOT",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-11T15:41:32.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "6b7b52b3712fc31838ab507d29c553c5eec17942",
+      "release": null,
+      "contentVersion": "01.002.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 58.8,
+        "p99Ms": 17.02,
+        "stutters": 3,
+        "seconds": 240.099,
+        "gpuBusyPct": 23.1,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 132,
+      "titleId": "PPSA21567",
+      "titleChosen": false,
+      "name": "ASTRO BOT",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "Alaixs",
+      "githubId": 63883086,
+      "at": "2026-11-11T16:28:56.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "commit": "6b7b52b3712fc31838ab507d29c553c5eec17942",
+      "release": null,
+      "contentVersion": "01.019.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 13.3,
+        "low1": 8.5,
+        "p99Ms": 117.31,
+        "stutters": 20,
+        "seconds": 720.852,
+        "gpuBusyPct": 83.5,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 133,
+      "titleId": "PPSA03671",
+      "titleChosen": false,
+      "name": "Marvel's Wolverine",
+      "stage": "Presents",
+      "stated": null,
+      "login": "Capmare",
+      "githubId": 35742735,
+      "at": "2026-11-11T22:54:19.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+      "commit": "7c83b0f9868ec0b820241d0582ab7827d19a9e16",
+      "release": null,
+      "contentVersion": "01.001.005",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 2,
+        "low1": 0.5,
+        "p99Ms": 1986.18,
+        "stutters": 45,
+        "seconds": 61.339,
+        "gpuBusyPct": 52.4,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": false
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 134,
+      "titleId": "PPSA01494",
+      "titleChosen": false,
+      "name": "Borderlands®4",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-12T13:02:53.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f59a4a6e26d3f4908a936b5fe6818b1ab9e511d0",
+      "release": null,
+      "contentVersion": "01.100.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 1.7,
+        "low1": 0.6,
+        "p99Ms": 1654.73,
+        "stutters": 35,
+        "seconds": 244.569,
+        "gpuBusyPct": 23.3,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 135,
+      "titleId": "PPSA18194",
+      "titleChosen": false,
+      "name": "METAL GEAR SOLID 4: Guns of the Patriots - Master Collection Version",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-12T13:02:54.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f59a4a6e26d3f4908a936b5fe6818b1ab9e511d0",
+      "release": null,
+      "contentVersion": "01.004.003",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 53.9,
+        "low1": 35.3,
+        "p99Ms": 28.29,
+        "stutters": 33,
+        "seconds": 210.184,
+        "gpuBusyPct": 36.2,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 136,
+      "titleId": "PPSA31162",
+      "titleChosen": false,
+      "name": "Super Meat Boy 3D",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-12T13:02:55.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f59a4a6e26d3f4908a936b5fe6818b1ab9e511d0",
+      "release": null,
+      "contentVersion": "02.000.001",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 7.3,
+        "low1": 4.6,
+        "p99Ms": 216.79,
+        "stutters": 12,
+        "seconds": 240.633,
+        "gpuBusyPct": 64.1,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 137,
+      "titleId": "PPSA34502",
+      "titleChosen": false,
+      "name": "Call of Duty®: Black Ops II",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-12T13:02:57.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f59a4a6e26d3f4908a936b5fe6818b1ab9e511d0",
+      "release": null,
+      "contentVersion": "01.010.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59.6,
+        "p99Ms": 16.77,
+        "stutters": 0,
+        "seconds": 150.062,
+        "gpuBusyPct": 26,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 138,
+      "titleId": "PPSA36591",
+      "titleChosen": false,
+      "name": "STEINS;GATE RE:BOOT",
+      "stage": "Presents",
+      "stated": null,
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-12T13:02:58.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "f59a4a6e26d3f4908a936b5fe6818b1ab9e511d0",
+      "release": null,
+      "contentVersion": "01.002.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 58.9,
+        "p99Ms": 16.98,
+        "stutters": 4,
+        "seconds": 240.099,
+        "gpuBusyPct": 22.1,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": "oneandonlydean"
     }
   ],
   "hidden": {
