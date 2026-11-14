@@ -31,9 +31,9 @@ export const HELP_SECTIONS = [
   ["Games", ["game", "games", "screenshot", "report", "follow", "unfollow", "following"]],
   ["Progress and news", ["progress", "progressmap", "library", "wanted", "release", "tracked", "recent", "stats"]],
   ["People", ["leaderboard", "profile", "prs"]],
-  ["Help and the server", ["help", "setup", "error", "faq", "rules", "rule", "tag"]],
+  ["Help and the server", ["help", "setup", "error", "faq", "rules", "rule", "tag", "votekick"]],
   ["Moderation", ["ban", "unban", "kick", "timeout", "untimeout", "warn", "warnings", "unwarn", "purge", "slowmode", "lock", "unlock"]],
-  ["Server setup", ["roles", "tags", "logs", "welcome", "autorole", "automod", "sticky"]],
+  ["Server setup", ["roles", "tags", "logs", "welcome", "autorole", "automod", "sticky", "votekicks"]],
 ];
 export const COMMANDS = [
   { name: "help", description: "Every bot command you can use", ...guildOnly },
@@ -181,6 +181,40 @@ export const COMMANDS = [
       sub("pause", "Stop moving this channel's sticky message down, without removing it"),
       sub("resume", "Move this channel's paused sticky message down again"),
       sub("list", "Every sticky message in this server"),
+    ],
+    ...adminOnly,
+    ...guildOnly,
+  },
+  // Community votes (votes.ts).
+  {
+    name: "votekick",
+    description: "Start a vote to ban or silence someone, for when no moderator is around",
+    options: [
+      opt(T.user, "user", "Who the vote is about", true),
+      opt(T.string, "action", "What happens if it passes", true, {
+        choices: [
+          { name: "Silence for 24 hours", value: "timeout" },
+          { name: "Ban for 2 weeks", value: "ban" },
+        ],
+      }),
+      opt(T.string, "reason", "Why; everyone voting sees it", true, { max_length: 200 }),
+    ],
+    ...guildOnly,
+  },
+  {
+    name: "votekicks",
+    description: "Community votes to ban or silence members",
+    options: [
+      subWith("on", "Turn votes on, or change how they work", [
+        opt(T.role, "mod_role", "Pinged when a vote starts; its members can cancel votes", true),
+        opt(T.int, "votes", "Yes votes needed (defaults to 5)", false, { min_value: 2, max_value: 25 }),
+        opt(T.role, "voter_role", "Only members with this role can vote (defaults to anyone here 2 weeks)"),
+      ]),
+      sub("off", "Turn votes off"),
+      subWith("channel", "Allow votes in a channel, or stop allowing them (no channels: anywhere)", [
+        opt(T.channel, "channel", "The channel", true, { channel_types: TEXT_CHANNELS }),
+      ]),
+      sub("show", "How votes are set up"),
     ],
     ...adminOnly,
     ...guildOnly,

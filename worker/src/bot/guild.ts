@@ -246,11 +246,25 @@ export interface Automod {
   rulesChannel?: string;
 }
 
+/** Community votes (votes.ts): off until an admin turns them on with /votekicks on. */
+export interface Votes {
+  enabled: boolean;
+  /** Yes votes a vote needs; it also needs twice as many yes as no. */
+  needed: number;
+  /** The role pinged when a vote starts, whose members can cancel it. */
+  modRole?: string;
+  /** Only members with this role can vote, when set. */
+  voterRole?: string;
+  /** The channels votes can be started in; empty means any. */
+  channels: string[];
+}
+
 export interface Settings {
   logs: LogChannels;
   welcome: Welcome;
   autoroles: string[];
   automod: Automod;
+  votes: Votes;
 }
 
 export const DEFAULTS: Settings = {
@@ -258,6 +272,7 @@ export const DEFAULTS: Settings = {
   welcome: {},
   autoroles: [],
   automod: { filters: {}, words: [], allowedLinks: [], ignoredChannels: [], ignoredRoles: [], timeoutMinutes: 1440 },
+  votes: { enabled: false, needed: 5, channels: [] },
 };
 
 /** A stored setting over its defaults, so settings saved before a new field existed still have it. */
@@ -349,15 +364,18 @@ const VERB: Record<Case["action"], [string, number]> = {
 
 export const caseTitle = (c: Case) => `${VERB[c.action][0]} · case ${c.number}`;
 
-/** Who acted: a moderator, automod (the bot), or someone the audit log didn't name ("0"). */
-const moderator = (id: string, botId: string) => (id === botId ? "automod" : id === "0" ? "someone" : `<@${id}>`);
+/** The moderator id of a case decided by a community vote (votes.ts). */
+export const VOTE = "vote";
+
+/** Who acted: a moderator, automod (the bot), a community vote, or someone the audit log didn't name ("0"). */
+const moderator = (id: string, botId: string) => (id === botId ? "automod" : id === VOTE ? "a community vote" : id === "0" ? "someone" : `<@${id}>`);
 
 /** A case as a line, for /warnings. */
 export const caseLine = (c: Case, botId: string) =>
   `**#${c.number}** ${VERB[c.action][0]}${c.duration ? ` for ${formatDuration(c.duration)}` : ""} by ${moderator(c.moderator_id, botId)} <t:${c.created_at}:R>${c.active ? "" : " (taken back)"}: ${c.reason ?? "no reason given"}`;
 
 /** Posts a case to the server's moderation log, if it has one. */
-export async function logCase(bot: Bot, c: Case, user?: User): Promise<void> {
+export async function logCase(bot: Bot, c: Case, user?: User, extra: { name: string; value: string }[] = []): Promise<void> {
   const { moderation } = await getSetting(bot.env, c.guild_id, "logs");
   if (!moderation) return;
   const posted = await bot.post(moderation, {
@@ -370,6 +388,7 @@ export async function logCase(bot: Bot, c: Case, user?: User): Promise<void> {
           { name: "Moderator", value: moderator(c.moderator_id, bot.env.DISCORD_CLIENT_ID).replace(/^[a-z]/, (x) => x.toUpperCase()), inline: true },
           ...(c.duration ? [{ name: "Duration", value: formatDuration(c.duration), inline: true }] : []),
           { name: "Reason", value: (c.reason ?? "No reason given").slice(0, 1024) },
+          ...extra.map((f) => ({ ...f, value: f.value.slice(0, 1024) })),
         ],
         timestamp: new Date(c.created_at * 1000).toISOString(),
       },
@@ -385,7 +404,7 @@ export function noticeFor(c: Pick<Case, "action" | "reason" | "duration">, serve
     timeout: `You were timed out for ${formatDuration(c.duration ?? 0)} in`,
     untimeout: "Your timeout was lifted in",
     kick: "You were kicked from",
-    ban: "You were banned from",
+    ban: c.duration ? `You were banned for ${formatDuration(c.duration)} from` : "You were banned from",
     unban: "You were unbanned from",
   };
   return `${what[c.action]} **${server}**.${c.reason ? `\nReason: ${c.reason}` : ""}`;

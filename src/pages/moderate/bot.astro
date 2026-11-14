@@ -90,6 +90,12 @@ const NOTES: Record<string, Note> = {
   },
   prs: { group: "people", reply: "text", private: true, live: true, text: "A linked member's merged pull request count and latest merges." },
   help: { group: "help", reply: "text", private: true, text: "Every command the member can use, by group. Moderation and server setup commands show only to members with the permission they need." },
+  votekick: {
+    group: "help",
+    reply: "text",
+    live: true,
+    text: "Starts a public vote to silence a member for 24 hours or ban them for 2 weeks, for when no moderator is around. It passes at 5 yes votes (or the number set with /votekicks) with twice as many yes as no, within 10 minutes; the starter's vote counts. Only members here for 2 weeks can start or vote, moderators can't be voted on, and the mod role is pinged and can cancel. A passed vote is a case by \"a community vote\" in the moderation log, with who voted; the bot lifts the ban after 2 weeks.",
+  },
   setup: { group: "help", reply: "text", text: "The setup guide in short: all six steps, or one step's sections with commands and links. Edits to the guide reach the bot at the next build." },
   error: {
     group: "help",
@@ -120,6 +126,13 @@ const NOTES: Record<string, Note> = {
   },
   tag: { group: "help", reply: "text", live: true, text: "Posts a saved reply for the whole channel. Tags are suggested as you type; anyone can use them." },
   tags: { group: "admin", reply: "text", private: true, live: true, text: "Saving, changing and deleting the replies /tag posts, for members who can manage messages. Up to 200 per server." },
+  votekicks: {
+    group: "admin",
+    reply: "text",
+    private: true,
+    live: true,
+    text: "Turns community votes on (with the mod role to ping, the yes votes needed and an optional voter role) or off, and picks the channels they can be started in. Off until an admin turns it on.",
+  },
   logs: {
     group: "admin",
     reply: "text",

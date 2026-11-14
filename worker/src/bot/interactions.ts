@@ -10,6 +10,7 @@ import { settingsCommand, settingsSubmit, SETTINGS } from "./settings";
 import { siteData } from "./site-data";
 import { stickyCommand, stickySubmit } from "./sticky";
 import { suggestTags, tag, tagsCommand, tagsSubmit } from "./tags";
+import { voteClick, voteCommand, VOTE_COMMANDS } from "./votes";
 
 const PING = 1;
 const APPLICATION_COMMAND = 2;
@@ -115,7 +116,8 @@ async function command(env: Env, name: string, options: Option[] | undefined, ca
 }
 
 /**
- * The server tools that replace Carl-bot (moderation, role panels, tags, logs, welcome, autorole, automod) and /sticky.
+ * The server tools that replace Carl-bot (moderation, role panels, tags, logs, welcome, autorole, automod), /sticky and
+ * community votes.
  * Each sets who sees its own replies. Their forms come back as modal submits, and role panels as button clicks; a form
  * is only ever shown to someone allowed to run the command that opened it.
  */
@@ -131,6 +133,7 @@ function serverTools(env: Env, i: Interaction): Promise<Response> | undefined {
   }
   if (i.type === MESSAGE_COMPONENT) {
     if (custom.startsWith("role:") || custom.startsWith("rolemenu:")) return rolesClick(env, i);
+    if (custom.startsWith("vote:")) return voteClick(env, i);
     return Promise.resolve(reply({ content: "Unknown button.", flags: EPHEMERAL }));
   }
   if (i.type === AUTOCOMPLETE) {
@@ -145,6 +148,7 @@ function serverTools(env: Env, i: Interaction): Promise<Response> | undefined {
   if (name === "tag") return tag(env, i);
   if (name === "tags") return tagsCommand(env, i);
   if (SETTINGS.has(name)) return settingsCommand(env, i);
+  if (VOTE_COMMANDS.has(name)) return voteCommand(env, i);
   return undefined;
 }
 

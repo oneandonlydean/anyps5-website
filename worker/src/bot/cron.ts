@@ -6,6 +6,7 @@ import * as github from "./github";
 import { BudgetError, HttpError } from "./http";
 import { refreshStickies } from "./sticky";
 import { syncUser } from "./sync";
+import { closeVotes } from "./votes";
 
 // Workers free plan allows 50 subrequests per invocation, retries included.
 // The poll announces merges until only the resync's share of the budget is
@@ -53,6 +54,7 @@ export async function runCron(env: Env, at = new Date()): Promise<void> {
     ...every(DISCUSSIONS_EVERY, ["discussions", watchDiscussions]),
     // Before the merge poll, which takes whatever budget is left; it leaves the poll enough for a run.
     ["stickies", refreshStickies],
+    ["votes", closeVotes],
     ["poll", pollMerges],
     ["resync", resync],
   ];
