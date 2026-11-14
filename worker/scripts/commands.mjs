@@ -23,7 +23,20 @@ const group = (name, description, options) => ({ type: T.group, name, descriptio
 const subWith = (name, description, options) => ({ type: T.sub, name, description, options });
 const member = (description = "The member") => opt(T.user, "user", description, true);
 const reason = opt(T.string, "reason", "Why; they're told, and it goes in the case", false, { max_length: 400 });
+/**
+ * How /help groups the commands, in the order it lists them; the same groups as the maintainers' page. Every command
+ * is in exactly one (test/help.test.ts checks).
+ */
+export const HELP_SECTIONS = [
+  ["Games", ["game", "games", "screenshot", "report", "follow", "unfollow", "following"]],
+  ["Progress and news", ["progress", "progressmap", "library", "wanted", "release", "tracked", "recent", "stats"]],
+  ["People", ["leaderboard", "profile", "prs"]],
+  ["Help and the server", ["help", "setup", "error", "faq", "rules", "rule", "tag"]],
+  ["Moderation", ["ban", "unban", "kick", "timeout", "untimeout", "warn", "warnings", "unwarn", "purge", "slowmode", "lock", "unlock"]],
+  ["Server setup", ["roles", "tags", "logs", "welcome", "autorole", "automod", "sticky"]],
+];
 export const COMMANDS = [
+  { name: "help", description: "Every bot command you can use", ...guildOnly },
   {
     name: "prs",
     description: "Show how many merged pull requests a member has",

@@ -3,6 +3,7 @@ import { isSiteCommand, reply, runSiteCommand, suggest, type Option } from "./co
 import { error, games, profile, recent, screenshot, setup } from "./community";
 import type { Env, User } from "./env";
 import type { Interaction as GuildInteraction } from "./guild";
+import { help } from "./help";
 import { MODERATION, moderation } from "./moderation";
 import { rolesClick, rolesCommand, rolesSubmit, suggestPanels } from "./roles";
 import { settingsCommand, settingsSubmit, SETTINGS } from "./settings";
@@ -160,6 +161,7 @@ export async function interactions(req: Request, env: Env): Promise<Response> {
   if (interaction.type === AUTOCOMPLETE && interaction.data) return suggest(env, interaction.data.name, interaction.data.options, caller);
   if (interaction.type === APPLICATION_COMMAND && caller && interaction.data) {
     const { name, options } = interaction.data;
+    if (name === "help") return help(interaction.member?.permissions);
     const response = await command(env, name, options, caller);
     return PUBLIC.has(name) ? response : onlyToCaller(response);
   }
