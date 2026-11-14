@@ -31,6 +31,13 @@ rules: |-
   **Enforcement:** warning → timeout → kick → ban. Piracy, malware, or hate speech = immediate ban.
 
 answers:
+  # Automod also posts this one when it removes an ETA question (worker/src/bot/automod-rules.ts).
+  - topic: eta
+    title: When will a game (or GTA 6) work?
+    text: >-
+      There's no date. AnyPS5 is built by volunteers, and asking doesn't make it sooner (rule 3).
+      [The progress page](/progress) shows how far it has come, and [the compatibility list](/compatibility) how far
+      each game gets today. A [report](/report) of how far a game gets on your PC helps more than asking.
   - topic: report
     title: How do I report how far a game gets?
     text: >-

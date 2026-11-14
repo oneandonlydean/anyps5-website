@@ -1,5 +1,9 @@
-import { log, type Env } from "./env";
+import { indexRules, scan, type Filter } from "./automod-rules";
+import { baseUrl, log, type Env } from "./env";
+import { links, siteData, type SiteData } from "./site-data";
 import {
+  actionOf,
+  Bot,
   formatDuration,
   getSetting,
   modal,
@@ -27,8 +31,13 @@ const MAX_AUTOROLES = 10;
 const MAX_WORDS = 200;
 const POWERS = P.ADMINISTRATOR | P.MANAGE_GUILD | P.MANAGE_ROLES | P.MANAGE_CHANNELS | P.BAN_MEMBERS | P.KICK_MEMBERS | P.MANAGE_MESSAGES | P.MODERATE_MEMBERS;
 
-/** What each automod filter's limit means, and its default. */
+/** What each automod filter catches, what its limit means and its default. */
 export const FILTERS: Record<keyof Automod["filters"], { what: string; limit?: [string, number] }> = {
+  scam: { what: "crypto promotion, fake giveaways and phishing links" },
+  piracy: { what: "asking for or sharing games, PKGs, dumps, keys and firmware" },
+  hidden: { what: "link shorteners, ad-lockers and links hidden in base64" },
+  eta: { what: "\"when will it work?\" questions about PS5 games and GTA 6" },
+  crosspost: { what: "the same message in several channels at once, as hacked accounts post", limit: ["channels within a minute", 3] },
   invites: { what: "Discord invite links to other servers" },
   links: { what: "links, except to allowed sites" },
   mentions: { what: "messages that mention many members or roles", limit: ["mentions in one message", 5] },
@@ -39,9 +48,20 @@ export const FILTERS: Record<keyof Automod["filters"], { what: string; limit?: [
 };
 
 const ACTIONS: Record<AutomodAction, string> = {
-  delete: "deletes the message",
-  warn: "deletes the message and warns them",
-  timeout: "deletes the message and times them out",
+  delete: "deletes the message, with a short notice",
+  strike: "deletes the message and takes a step on the ladder: a public warning (only ever one), then a timeout, then a ban",
+  answer: "deletes the question and answers it from the FAQ, at most every 3 minutes per channel",
+};
+
+/** What /automod setup turns on: the filters that replace Discord's keyword rules. */
+const RECOMMENDED: Automod["filters"] = {
+  scam: { action: "strike" },
+  piracy: { action: "strike" },
+  hidden: { action: "strike" },
+  crosspost: { action: "strike", limit: 3 },
+  mentions: { action: "strike", limit: 6 },
+  invites: { action: "delete" },
+  eta: { action: "answer" },
 };
 
 /** A welcome or goodbye message with its placeholders filled in. */
@@ -53,10 +73,38 @@ export function renderWelcome(template: string, user: { id: string; username: st
     .replaceAll("{count}", count ? count.toLocaleString("en") : "");
 }
 
+/**
+ * The server rules as text, so automod never catches someone quoting them: the rules in data/bot.yaml, and what's
+ * posted in the given rules channels (embeds included, as rules are often posted). Also the FAQ's ETA answer.
+ */
+export async function serverRules(env: Env, bot: Bot, channels: string[]): Promise<{ text: string; eta?: string }> {
+  let data: SiteData | null = await siteData(env);
+  if (!data) {
+    // A Durable Object may not have the site's assets bound; the published file is the same.
+    data = await fetch(`${baseUrl(env)}/bot/data.json`)
+      .then((r) => (r.ok ? r.json<SiteData>() : null))
+      .catch(() => null);
+  }
+  const texts: string[] = [data?.rules ?? ""];
+  for (const channel of channels) {
+    const res = await bot.call("discord rules channel", "GET", `/channels/${channel}/messages?limit=50`);
+    if (!res.ok) {
+      await res.body?.cancel();
+      continue;
+    }
+    type Embed = { title?: string; description?: string; fields?: { name: string; value: string }[] };
+    for (const m of await res.json<{ content: string; embeds?: Embed[] }[]>()) {
+      texts.push(m.content, ...(m.embeds ?? []).flatMap((e) => [e.title ?? "", e.description ?? "", ...(e.fields ?? []).flatMap((f) => [f.name, f.value])]));
+    }
+  }
+  const eta = data?.answers?.find((a) => a.topic === "eta")?.text;
+  return { text: texts.filter(Boolean).join("\n"), ...(eta ? { eta: links(env, eta) } : {}) };
+}
+
 /** Has the gateway read the settings again now, rather than within the minute. */
-export async function reloadGateway(env: Env): Promise<void> {
+export async function reloadGateway(env: Env, rules = false): Promise<void> {
   try {
-    await env.GATEWAY?.getByName("gateway").reload();
+    await env.GATEWAY?.getByName("gateway").reload(rules);
   } catch (err) {
     log("gateway_reload_failed", { error: String(err) });
   }
@@ -64,7 +112,8 @@ export async function reloadGateway(env: Env): Promise<void> {
 
 async function save<K extends keyof Settings>(env: Env, guild: string, key: K, value: Settings[K]): Promise<void> {
   await setSetting(env, guild, key, value);
-  await reloadGateway(env);
+  // Automod's rules channel may have changed, and with it what counts as quoting the rules.
+  await reloadGateway(env, key === "automod");
 }
 
 const handsOutPowers = (i: Interaction, roleId: string) => {
@@ -164,6 +213,8 @@ async function automod(env: Env, i: Interaction, guild: string, group: string | 
     const filter = text(options, "filter") as keyof Automod["filters"];
     const action = text(options, "action");
     const info = FILTERS[filter];
+    if (!FILTERS[filter] || (action !== "off" && !(action in ACTIONS))) return privately("Unknown action.");
+    if (action === "answer" && filter !== "eta") return privately("Only the ETA filter can answer; pick Delete or Strike for this one.");
     if (action === "off") {
       delete config.filters[filter];
       await save(env, guild, "automod", config);
@@ -181,6 +232,32 @@ async function automod(env: Env, i: Interaction, guild: string, group: string | 
     return privately(
       `The ${filter} filter now catches ${info.what}${info.limit ? ` (${limit} ${info.limit[0]})` : ""} and ${ACTIONS[action as AutomodAction]}.${extra} Moderators and the channels and roles set with \`/automod ignore\` are left alone.`,
     );
+  }
+
+  if (!group && name === "setup") {
+    config.filters = { ...config.filters, ...RECOMMENDED };
+    await save(env, guild, "automod", config);
+    return privately(
+      [
+        "Turned on the recommended filters:",
+        ...Object.entries(RECOMMENDED).map(([f, v]) => `- **${f}**: ${FILTERS[f as keyof typeof FILTERS].what}; ${ACTIONS[v.action as AutomodAction].replace(/^deletes the message and /, "")}`),
+        "",
+        `Timeouts last ${formatDuration(config.timeoutMinutes * 60)}. Warnings point to ${config.rulesChannel ? `<#${config.rulesChannel}>` : "the server's rules channel"}; change it with \`/automod rules\`.`,
+        "Now turn off the keyword and regex rules in Server Settings → AutoMod, or both will act on the same messages. Keep Discord's **mention spam** and **suspected spam** rules: they stop messages before anyone sees them.",
+        "Try a message with `/automod test` to see what would happen.",
+      ].join("\n"),
+    );
+  }
+
+  if (!group && name === "rules") {
+    const channel = String(value(options, "channel"));
+    config.rulesChannel = channel;
+    await save(env, guild, "automod", config);
+    return privately(`Warnings now point to <#${channel}>, and quoting what's posted there is never caught.`);
+  }
+
+  if (!group && name === "test") {
+    return privately(await tryMessage(env, guild, config, text(options, "message")));
   }
 
   if (group === "words") {
@@ -211,12 +288,12 @@ async function automod(env: Env, i: Interaction, guild: string, group: string | 
     const minutes = Number(value(options, "minutes"));
     config.timeoutMinutes = minutes;
     await save(env, guild, "automod", config);
-    return privately(`Automod timeouts now last ${formatDuration(minutes * 60)}.`);
+    return privately(`The ladder's timeout now lasts ${formatDuration(minutes * 60)}.`);
   }
 
   const filters = (Object.keys(FILTERS) as (keyof Automod["filters"])[]).map((f) => {
     const on = config.filters[f];
-    return `- **${f}**: ${on ? `${on.action}${on.limit ? ` at ${on.limit} ${FILTERS[f].limit![0]}` : ""}` : "off"}`;
+    return `- **${f}**: ${on ? `${actionOf(on)}${on.limit ? ` at ${on.limit} ${FILTERS[f].limit![0]}` : ""}` : "off"}`;
   });
   return privately(
     [
@@ -225,7 +302,7 @@ async function automod(env: Env, i: Interaction, guild: string, group: string | 
       `Blocked words: ${config.words.length ? config.words.map((w) => `||${w}||`).join(", ") : "none"}`,
       `Allowed sites: ${config.allowedLinks.join(", ") || "none"}`,
       `Ignored: ${[...config.ignoredChannels.map((c) => `<#${c}>`), ...config.ignoredRoles.map((r) => `<@&${r}>`)].join(", ") || "nothing"}`,
-      `Timeouts last ${formatDuration(config.timeoutMinutes * 60)}. Members who can manage messages are never checked.`,
+      `Warnings point to ${config.rulesChannel ? `<#${config.rulesChannel}>` : "the server's rules channel"}. The ladder's timeout lasts ${formatDuration(config.timeoutMinutes * 60)}. Members who can manage messages are never checked.`,
     ].join("\n"),
   );
 }
@@ -246,3 +323,22 @@ export async function settingsSubmit(env: Env, i: Interaction): Promise<Response
   );
 }
 
+
+/** /automod test: what automod would make of a message, and why, without anyone being caught. */
+async function tryMessage(env: Env, guild: string, config: Automod, message: string): Promise<string> {
+  const bot = new Bot(env);
+  const { text: rules } = await serverRules(env, bot, config.rulesChannel ? [config.rulesChannel] : []);
+  const read = (enabled: Partial<Record<Filter, { limit?: number }>>) =>
+    scan({ content: message, mentions: 0, everyone: /@(?:everyone|here)\b/.test(message), newcomer: false }, { enabled, words: config.words, allowedLinks: config.allowedLinks, rules: indexRules(rules) });
+  const on = Object.fromEntries(Object.entries(config.filters).map(([k, v]) => [k, { limit: v.limit }]));
+  const verdict = read(on);
+  if (verdict) {
+    const action = actionOf(config.filters[verdict.filter]!);
+    const outcome = action === "strike" ? (verdict.severe ? "a strike that skips the warning (straight to a timeout)" : "a strike") : action === "answer" ? "the ETA answer" : "a short notice";
+    return `Caught by **${verdict.filter}**: ${verdict.why}.\nMatched: ${verdict.evidence.join(", ")}.\nThe message would be deleted, with ${outcome}.`;
+  }
+  const all = Object.fromEntries((Object.keys(FILTERS) as Filter[]).filter((f) => !["links", "caps", "words"].includes(f)).map((f) => [f, {}]));
+  const off = read(all);
+  if (off) return `Not caught with the filters that are on. The **${off.filter}** filter would catch it (${off.evidence.join(", ")}), but it's off.`;
+  return "Not caught. Quotes of the server rules never are, and a single word like \"bitcoin\" or \"torrent\" alone isn't enough.";
+}

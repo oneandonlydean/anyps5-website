@@ -1,7 +1,8 @@
 import { runInDurableObject } from "cloudflare:test";
 import { env } from "cloudflare:workers";
 import { expect, it } from "vitest";
-import { breaks, guildState, handle, type CachedMessage, type Job, type KnownMember, type World } from "../src/bot/events";
+import { NO_RULES } from "../src/bot/automod-rules";
+import { guildState, handle, type CachedMessage, type Job, type KnownMember, type World } from "../src/bot/events";
 import type { Gateway } from "../src/bot/gateway";
 import { Bot, DEFAULTS, addCase, type Automod, type Settings } from "../src/bot/guild";
 import { runJob } from "../src/bot/jobs";
@@ -44,6 +45,9 @@ function makeWorld(settings: Partial<Settings> = {}) {
     enqueue: (job, delay) => jobs.push({ job, ...(delay ? { delay } : {}) }),
     recent: new Map(),
     removedByAutomod: new Map(),
+    rules: () => NO_RULES,
+    etaAnswer: () => "There's no date.",
+    answered: new Map(),
     now: () => t,
   };
   return world;
@@ -59,32 +63,8 @@ const message = (content: string, extra: Record<string, unknown> = {}) => ({
   member: { roles: [] },
   ...extra,
 });
-const check = (config: Automod, content: string, extra = {}, recent: { at: number; content: string }[] = []) => breaks(config, message(content, extra), recent, 100)?.filter;
-
-it("automod's filters", () => {
-  const all = automod(
-    { invites: { action: "delete" }, links: { action: "delete" }, words: { action: "delete" }, mentions: { action: "delete", limit: 3 }, caps: { action: "delete", limit: 70 }, spam: { action: "delete", limit: 3 }, duplicates: { action: "delete", limit: 3 } },
-    { words: ["ass"], allowedLinks: ["github.com", "anyps5.gg"] },
-  );
-  expect(check(all, "join discord.gg/abc")).toBe("invites");
-  expect(check(all, "see https://github.com/x and https://docs.anyps5.gg/y")).toBeUndefined();
-  expect(check(all, "see https://www.github.com/x")).toBeUndefined();
-  expect(check(all, "see https://evil.com/x")).toBe("links");
-  expect(check(all, "see https://github.com.evil.com/x")).toBe("links");
-  expect(check(all, "a class of its own")).toBeUndefined();
-  expect(check(all, "what an ASS!")).toBe("words");
-  expect(check(all, "hi", { mentions: [{ id: "a" }, { id: "b" }], mention_roles: ["r"] })).toBe("mentions");
-  expect(check(all, "hi", { mentions: [{ id: "a" }, { id: "a" }] })).toBeUndefined();
-  expect(check(all, "WHY IS THIS NOT WORKING")).toBe("caps");
-  expect(check(all, "OK GG")).toBeUndefined();
-  expect(check(all, "hello", {}, [{ at: 97, content: "a" }, { at: 99, content: "b" }, { at: 99, content: "c" }])).toBe("spam");
-  expect(check(all, "hello", {}, [{ at: 50, content: "hello" }, { at: 60, content: "hello" }])).toBe("duplicates");
-  expect(check(all, "hello", {}, [{ at: 50, content: "hello" }, { at: 60, content: "other" }])).toBeUndefined();
-});
-
-it("automod deletes and notifies, or warns, and leaves moderators, bots and ignored channels alone", () => {
-  const world = makeWorld({ automod: automod({ invites: { action: "delete" }, words: { action: "warn" } }, { words: ["badword"], ignoredChannels: ["quiet"] }) });
-  handle(world, "GUILD_MEMBERS_CHUNK", { guild_id: "g1", members: [] });
+it("automod deletes and notifies, or strikes, and leaves moderators, bots and ignored channels alone", () => {
+  const world = makeWorld({ automod: automod({ invites: { action: "delete" }, scam: { action: "strike" } }, { ignoredChannels: ["quiet"], rulesChannel: "rules" }) });
 
   handle(world, "MESSAGE_CREATE", message("discord.gg/x", { member: { roles: ["mod"] } }));
   handle(world, "MESSAGE_CREATE", message("discord.gg/x", { author: { id: "b", username: "bot", bot: true } }));
@@ -93,14 +73,50 @@ it("automod deletes and notifies, or warns, and leaves moderators, bots and igno
 
   handle(world, "MESSAGE_CREATE", message("discord.gg/x", { id: "spam1" }));
   expect(world.jobs).toEqual([
-    { job: { kind: "delete", channel: "general", message: "spam1", reason: "Automod: invite link" } },
-    { job: { kind: "post", channel: "general", message: { content: "<@u1>, your message was removed: invite link.", allowed_mentions: { users: ["u1"] } }, expires: 8 } },
+    { job: { kind: "delete", channel: "general", message: "spam1", reason: "Automod (invites): invites to other servers aren't allowed here" } },
+    { job: { kind: "post", channel: "general", message: { content: "<@u1>, your message was removed: invites to other servers aren't allowed here.", allowed_mentions: { users: ["u1"] } }, expires: 8 } },
   ]);
 
   world.jobs.length = 0;
-  handle(world, "MESSAGE_CREATE", message("you badword", { id: "w1" }));
-  expect(world.jobs.map((j) => j.job.kind)).toEqual(["delete", "punish"]);
-  expect(world.jobs[1]!.job).toMatchObject({ action: "warn", server: "AnyPS5", reason: "Automod: blocked word", minutes: 10, user: { id: "u1" } });
+  handle(world, "MESSAGE_CREATE", message("Free airdrop, connect your wallet now", { id: "w1" }));
+  expect(world.jobs.map((j) => j.job.kind)).toEqual(["delete", "strike"]);
+  expect(world.jobs[1]!.job).toMatchObject({ filter: "scam", severe: false, server: "AnyPS5", rules: "rules", minutes: 1440, channel: "general", user: { id: "u1" } });
+});
+
+it("a message edited into spam is caught, and a forwarded one is read too", () => {
+  const world = makeWorld({ automod: automod({ scam: { action: "strike" } }) });
+  handle(world, "MESSAGE_CREATE", message("hello everyone", { id: "e1" }));
+  handle(world, "MESSAGE_UPDATE", { ...message("hello everyone, claim your reward at our presale", { id: "e1" }), edited_timestamp: "2026-01-01" });
+  expect(world.jobs.map((j) => j.job.kind)).toEqual(["delete", "strike"]);
+
+  world.jobs.length = 0;
+  handle(world, "MESSAGE_CREATE", message("", { id: "f1", message_snapshots: [{ message: { content: "seed phrase giveaway, connect wallet" } }] }));
+  expect(world.jobs.map((j) => j.job.kind)).toEqual(["delete", "strike"]);
+});
+
+it("the same message in three channels is a hacked account: every copy goes, and it skips the warning", () => {
+  const world = makeWorld({ automod: automod({ crosspost: { action: "strike", limit: 3 } }) });
+  handle(world, "MESSAGE_CREATE", message("check out this cool thing", { id: "a", channel_id: "c1" }));
+  handle(world, "MESSAGE_CREATE", message("check out this cool thing", { id: "b", channel_id: "c2" }));
+  expect(world.jobs).toEqual([]);
+  handle(world, "MESSAGE_CREATE", message("check out this cool thing", { id: "c", channel_id: "c3" }));
+  expect(world.jobs.filter((j) => j.job.kind === "delete").map((j) => (j.job as any).message)).toEqual(["c", "a", "b"]);
+  expect(world.jobs.at(-1)!.job).toMatchObject({ kind: "strike", filter: "crosspost", severe: true });
+});
+
+it("ETA questions are removed and answered, at most every 3 minutes per channel", () => {
+  const world = makeWorld({ automod: automod({ eta: { action: "answer" } }) });
+  handle(world, "MESSAGE_CREATE", message("when will gta 6 work?", { id: "q1" }));
+  expect(world.jobs.map((j) => j.job)).toEqual([
+    { kind: "delete", channel: "general", message: "q1", reason: "Automod (eta): there's no date for that (rule 3)" },
+    { kind: "post", channel: "general", message: { content: "<@u1> There's no date.", allowed_mentions: { users: ["u1"] }, flags: 4 } },
+  ]);
+  world.tick(60);
+  handle(world, "MESSAGE_CREATE", message("eta for ps5 games?", { id: "q2", author: { id: "u2", username: "other" } }));
+  expect(world.jobs.slice(2).map((j) => j.job.kind)).toEqual(["delete"]);
+  world.tick(200);
+  handle(world, "MESSAGE_CREATE", message("how long until ps5 games are playable", { id: "q3", author: { id: "u3", username: "third" } }));
+  expect(world.jobs.slice(3).map((j) => j.job.kind)).toEqual(["delete", "post"]);
 });
 
 it("logs edits and deletions with what the message said, and notes automod's deletions", () => {
@@ -123,7 +139,7 @@ it("logs edits and deletions with what the message said, and notes automod's del
   world.jobs.length = 0;
   handle(world, "MESSAGE_CREATE", message("discord.gg/x", { id: "a1" }));
   handle(world, "MESSAGE_DELETE", { id: "a1", guild_id: "g1", channel_id: "general" });
-  expect((world.jobs.at(-1)!.job as any).message.embeds[0].description).toContain("deleted in <#general> by automod (invite link)");
+  expect((world.jobs.at(-1)!.job as any).message.embeds[0].description).toContain("deleted in <#general> by automod (invites to other servers aren't allowed here)");
 
   world.jobs.length = 0;
   handle(world, "MESSAGE_DELETE", { id: "never-seen", guild_id: "g1", channel_id: "general" });
@@ -160,18 +176,72 @@ it("logs nickname and role changes, and leaving with the roles they had", () => 
 
 // Jobs.
 
-it("an automod timeout times the member out, records a case, tells them and logs it", async () => {
+const strikeJob = (severe = false): Job => ({
+  kind: "strike",
+  guild: "g1",
+  server: "AnyPS5",
+  channel: "general",
+  user: { id: "u1", username: "member" },
+  filter: "piracy",
+  why: "asking for or sharing games, keys or firmware isn't allowed (rule 1)",
+  severe,
+  rules: "rules",
+  minutes: 1440,
+});
+/** Moves every case back in time, past the cooldown that makes a burst of messages one strike. */
+const later = () => env.DB.prepare("UPDATE cases SET created_at = created_at - 300").run();
+
+it("the warning ladder: one public warning, then a 24-hour timeout, then a ban", async () => {
   await env.DB.prepare("INSERT INTO guild_settings VALUES ('g1', 'logs', '{\"moderation\":\"modlog\"}', 0)").run();
   const calls = mockFetch({
     [`PATCH ${API}/guilds/g1/members/u1`]: () => new Response(null, { status: 204 }),
+    [`PUT ${API}/guilds/g1/bans/u1`]: () => new Response(null, { status: 204 }),
     [`POST ${API}/users/@me/channels`]: () => json({ id: "dm" }),
-    [`POST ${API}/channels/dm/messages`]: () => json({ id: "x" }),
-    [`POST ${API}/channels/modlog/messages`]: () => json({ id: "y" }),
+    [`POST ${API}/channels/`]: () => json({ id: "x" }),
   });
-  await runJob(new Bot(env), { kind: "punish", guild: "g1", server: "AnyPS5", user: { id: "u1", username: "member" }, action: "timeout", reason: "Automod: spam", minutes: 10 });
-  expect(await env.DB.prepare("SELECT action, moderator_id, duration FROM cases").first()).toEqual({ action: "timeout", moderator_id: "app123", duration: 600 });
-  expect(JSON.parse(calls[2]!.body).content).toBe("You were timed out for 10 minutes in **AnyPS5**.\nReason: Automod: spam");
-  expect(JSON.parse(calls[3]!.body).embeds[0].fields[1]).toEqual({ name: "Moderator", value: "Automod", inline: true });
+  const said = () => calls.filter((c) => c.url === `${API}/channels/general/messages`).map((c) => JSON.parse(c.body).content);
+
+  await runJob(new Bot(env), strikeJob());
+  expect(said()).toEqual([
+    "⚠️ <@u1>, your message was removed: asking for or sharing games, keys or firmware isn't allowed (rule 1).\nThis is your only warning. Next time is a 1 day timeout, and after that a ban. Please read <#rules>.",
+  ]);
+  // A second message in the same burst is only deleted.
+  await runJob(new Bot(env), strikeJob());
+  expect(said()).toHaveLength(1);
+
+  await later();
+  await runJob(new Bot(env), strikeJob());
+  expect(said()[1]).toBe("🔇 <@u1> was timed out for 1 day: asking for or sharing games, keys or firmware isn't allowed (rule 1). They had been warned. Next time is a ban. Please read <#rules>.");
+  const until = Date.parse(JSON.parse(calls.find((c) => c.method === "PATCH")!.body).communication_disabled_until);
+  expect(Math.round((until - Date.now()) / 3600_000)).toBe(24);
+
+  await later();
+  await runJob(new Bot(env), strikeJob());
+  expect(said()[2]).toBe("🔨 <@u1> was banned: asking for or sharing games, keys or firmware isn't allowed (rule 1), after a warning and a timeout.");
+  expect(JSON.parse(calls.find((c) => c.method === "PUT")!.body)).toEqual({ delete_message_seconds: 3600 });
+  const cases = (await env.DB.prepare("SELECT action, moderator_id FROM cases ORDER BY number").all()).results;
+  expect(cases).toEqual([
+    { action: "warn", moderator_id: "app123" },
+    { action: "timeout", moderator_id: "app123" },
+    { action: "ban", moderator_id: "app123" },
+  ]);
+  expect(calls.filter((c) => c.url.endsWith("/channels/modlog/messages"))).toHaveLength(3);
+});
+
+it("a severe case skips the warning, and a taken-back warning doesn't count", async () => {
+  mockFetch({
+    [`PATCH ${API}/guilds/g1/members/u1`]: () => new Response(null, { status: 204 }),
+    [`POST ${API}/users/@me/channels`]: () => json({}, 403),
+    [`POST ${API}/channels/`]: () => json({ id: "x" }),
+  });
+  await runJob(new Bot(env), strikeJob(true));
+  expect(await env.DB.prepare("SELECT action FROM cases").first("action")).toBe("timeout");
+
+  await env.DB.prepare("DELETE FROM cases").run();
+  await addCase(env, { guild_id: "g1", action: "warn", user_id: "u1", moderator_id: "mod", reason: "old", duration: null });
+  await env.DB.prepare("UPDATE cases SET active = 0, created_at = created_at - 300").run();
+  await runJob(new Bot(env), strikeJob());
+  expect((await env.DB.prepare("SELECT action FROM cases ORDER BY number").all()).results.map((c: any) => c.action)).toEqual(["warn", "warn"]);
 });
 
 it("a ban from outside the bot becomes a case naming who did it, from the audit log", async () => {

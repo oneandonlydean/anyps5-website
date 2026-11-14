@@ -155,10 +155,11 @@ async function unwarn(env: Env, guild: string, options: Option[]): Promise<Respo
   const number = Number(value(options, "case"));
   const c = await env.DB.prepare("SELECT * FROM cases WHERE guild_id = ? AND number = ?").bind(guild, number).first<Case>();
   if (!c) return privately(`There's no case ${number}.`);
-  if (c.action !== "warn") return privately(`Case ${number} is a ${c.action}, not a warning.`);
+  if (c.action !== "warn" && c.action !== "timeout") return privately(`Case ${number} is a ${c.action}; only warnings and timeouts can be taken back.`);
   if (!c.active) return privately(`Case ${number} was already taken back.`);
   await env.DB.prepare("UPDATE cases SET active = 0 WHERE guild_id = ? AND number = ?").bind(guild, number).run();
-  return privately(`Took back warning ${number} for <@${c.user_id}>.`);
+  const lift = c.action === "timeout" ? " If they're still timed out, `/untimeout` lifts it." : "";
+  return privately(`Took back ${c.action === "warn" ? "warning" : "timeout"} ${number} for <@${c.user_id}>: it no longer counts toward automod's warning, timeout, ban ladder.${lift}`);
 }
 
 async function purge(bot: Bot, i: Interaction, options: Option[]): Promise<Response> {

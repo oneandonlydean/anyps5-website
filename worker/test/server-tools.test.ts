@@ -79,7 +79,7 @@ it("/warn, /warnings and /unwarn", async () => {
   expect(listed).toContain("**2** active warnings, 2 cases in all.");
   expect(listed).toContain("**#2** Warned by <@mod>");
 
-  expect((await interact(cmd("unwarn", [o("case", 1, 4)]))).data.content).toBe("Took back warning 1 for <@u1>.");
+  expect((await interact(cmd("unwarn", [o("case", 1, 4)]))).data.content).toBe("Took back warning 1 for <@u1>: it no longer counts toward automod's warning, timeout, ban ladder.");
   expect((await interact(cmd("warnings", [o("user", "u1", 6)]))).data.content).toContain("**1** active warning, 2 cases");
   expect((await interact(cmd("unwarn", [o("case", 1, 4)]))).data.content).toContain("already taken back");
 });
@@ -209,11 +209,22 @@ it("/logs, /autorole, /automod and /welcome save the server's settings", async (
   await interact(sub("autorole", "add", [o("role", "newbie", 8)], role("newbie")));
   expect(await getSetting(env, "g1", "autoroles")).toEqual(["newbie"]);
 
-  expect((await interact(sub("automod", "filter", [o("filter", "caps"), o("action", "warn"), o("limit", 80, 4)]))).data.content).toContain("(80 percent capitals) and deletes the message and warns them");
+  expect((await interact(sub("automod", "filter", [o("filter", "caps"), o("action", "warn")]))).data.content).toBe("Unknown action.");
+  expect((await interact(sub("automod", "filter", [o("filter", "piracy"), o("action", "answer")]))).data.content).toContain("Only the ETA filter can answer");
+  expect((await interact(sub("automod", "filter", [o("filter", "caps"), o("action", "strike"), o("limit", 80, 4)]))).data.content).toContain(
+    "(80 percent capitals) and deletes the message and takes a step on the ladder",
+  );
   await interact(cmd("automod", [{ type: 2, name: "words", options: [{ type: 1, name: "add", options: [o("words", "Foo, bar ,foo")] }] }]));
   const automod = await getSetting(env, "g1", "automod");
-  expect(automod.filters.caps).toEqual({ action: "warn", limit: 80 });
+  expect(automod.filters.caps).toEqual({ action: "strike", limit: 80 });
   expect(automod.words).toEqual(["foo", "bar"]);
+
+  const setup = (await interact(sub("automod", "setup"))).data.content;
+  expect(setup).toContain("**piracy**");
+  expect(setup).toContain("turn off the keyword and regex rules");
+  expect((await getSetting(env, "g1", "automod")).filters).toMatchObject({ scam: { action: "strike" }, eta: { action: "answer" }, caps: { action: "strike", limit: 80 } });
+  expect((await interact(sub("automod", "test", [o("message", "anyone got the gta 6 pkg?")]))).data.content).toContain("Caught by **piracy**");
+  expect((await interact(sub("automod", "test", [o("message", "i mined bitcoin once")]))).data.content).toContain("Not caught.");
 
   const modal = await interact(sub("welcome", "join", [o("channel", "lobby", 7)]));
   expect(modal.data.custom_id).toBe("settings:welcome:join:lobby");

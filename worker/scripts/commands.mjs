@@ -222,7 +222,7 @@ export const COMMANDS = [
     ...guildOnly,
   },
   { name: "warnings", description: "A member's warnings and other cases", options: [member()], ...allowed(PERM.moderate), ...guildOnly },
-  { name: "unwarn", description: "Take back a warning", options: [opt(T.int, "case", "The case number, from /warnings", true, { min_value: 1 })], ...allowed(PERM.moderate), ...guildOnly },
+  { name: "unwarn", description: "Take back a warning or timeout, so it no longer counts", options: [opt(T.int, "case", "The case number, from /warnings", true, { min_value: 1 })], ...allowed(PERM.moderate), ...guildOnly },
   {
     name: "purge",
     description: "Delete recent messages in this channel",
@@ -372,6 +372,11 @@ export const COMMANDS = [
       subWith("filter", "Turn a filter on or off, and choose what it does", [
         opt(T.string, "filter", "Which filter", true, {
           choices: [
+            { name: "Scams: crypto, fake giveaways, phishing", value: "scam" },
+            { name: "Piracy: asking for or sharing games, PKGs, keys", value: "piracy" },
+            { name: "Hidden links: shorteners, base64", value: "hidden" },
+            { name: "ETA questions (PS5 games, GTA 6)", value: "eta" },
+            { name: "Same message in several channels", value: "crosspost" },
             { name: "Invites to other servers", value: "invites" },
             { name: "Links (except allowed sites)", value: "links" },
             { name: "Mass mentions", value: "mentions" },
@@ -384,12 +389,12 @@ export const COMMANDS = [
         opt(T.string, "action", "What it does", true, {
           choices: [
             { name: "Off", value: "off" },
-            { name: "Delete the message", value: "delete" },
-            { name: "Delete and warn", value: "warn" },
-            { name: "Delete and time out", value: "timeout" },
+            { name: "Delete, with a short notice", value: "delete" },
+            { name: "Strike: warning, then timeout, then ban", value: "strike" },
+            { name: "Delete and answer (ETA only)", value: "answer" },
           ],
         }),
-        opt(T.int, "limit", "Mentions, percent capitals, messages in 5 seconds or repeats", false, { min_value: 2, max_value: 100 }),
+        opt(T.int, "limit", "Mentions, percent capitals, messages in 5 seconds, repeats or channels", false, { min_value: 2, max_value: 100 }),
       ]),
       group("words", "Blocked words", [
         subWith("add", "Block words", [opt(T.string, "words", "Comma-separated", true, { max_length: 1000 })]),
@@ -403,7 +408,10 @@ export const COMMANDS = [
         subWith("channel", "Ignore a channel, or check it again", [opt(T.channel, "channel", "The channel", true)]),
         subWith("role", "Ignore a role, or check it again", [opt(T.role, "role", "The role", true)]),
       ]),
-      subWith("timeout", "How long automod timeouts last", [opt(T.int, "minutes", "Minutes", true, { min_value: 1, max_value: 40320 })]),
+      sub("setup", "Turn on the recommended filters"),
+      subWith("rules", "The rules channel warnings point to", [opt(T.channel, "channel", "The rules channel", true, { channel_types: TEXT_CHANNELS })]),
+      subWith("test", "See what automod would do with a message", [opt(T.string, "message", "The message", true, { max_length: 2000 })]),
+      subWith("timeout", "How long the ladder's timeout lasts (defaults to 24 hours)", [opt(T.int, "minutes", "Minutes", true, { min_value: 1, max_value: 40320 })]),
       sub("show", "Every filter and setting"),
     ],
     ...adminOnly,

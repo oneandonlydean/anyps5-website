@@ -106,7 +106,7 @@ const NOTES: Record<string, Note> = {
   untimeout: { group: "moderation", reply: "text", private: true, live: true, text: "Ends a timeout early." },
   warn: { group: "moderation", reply: "text", private: true, live: true, text: "A warning on the member's record, with a reason they're sent." },
   warnings: { group: "moderation", reply: "text", private: true, live: true, text: "A member's record: active warnings and every case, newest first." },
-  unwarn: { group: "moderation", reply: "text", private: true, live: true, text: "Takes back a warning by case number. The case stays on the record, marked as taken back." },
+  unwarn: { group: "moderation", reply: "text", private: true, live: true, text: "Takes back a warning or timeout by case number, so it no longer counts toward automod's ladder. The case stays on the record, marked as taken back." },
   purge: { group: "moderation", reply: "text", private: true, live: true, text: "Deletes up to 100 recent messages in the channel, or only one member's. Pinned messages and ones older than 14 days are kept; Discord won't bulk delete those." },
   slowmode: { group: "moderation", reply: "text", private: true, live: true, text: "How long members wait between messages in a channel, from off to 6 hours." },
   lock: { group: "moderation", reply: "text", private: true, live: true, text: "Stops @everyone posting in a channel and says so there. Administrators and roles explicitly allowed in the channel can still post." },
@@ -134,7 +134,7 @@ const NOTES: Record<string, Note> = {
     reply: "text",
     private: true,
     live: true,
-    text: "Filters for invites, links (except allowed sites), mass mentions, capitals, spam, repeats and blocked words. Each deletes the message and can also warn or time out. Members who can manage messages, and ignored channels and roles, are never checked.",
+    text: "Replaces Discord's keyword and regex rules. Scams (crypto, fake giveaways, phishing), piracy requests, hidden links (shorteners, base64), ETA questions, the same message in several channels, invites, mass mentions, and more. Text is read through look-alike letters, spaced-out letters and leetspeak; quotes of the server rules are never caught, and a single weak word (\"bitcoin\", \"torrent\") isn't enough. A strike is a public warning in the channel (only ever one), then a 24-hour timeout, then a ban; hacked-account patterns skip the warning. ETA questions are removed and answered from the FAQ. Setup turns on the recommended filters; test shows what would happen to a message. Moderators, and ignored channels and roles, are never checked.",
   },
   sticky: {
     group: "admin",

@@ -1,3 +1,4 @@
+import type { Filter } from "./automod-rules";
 import { reply } from "./commands";
 import { log, now, type Env } from "./env";
 import { Http, HttpError } from "./http";
@@ -222,20 +223,27 @@ export interface Welcome {
   leave?: { channel: string; message: string };
 }
 
-export type AutomodAction = "delete" | "warn" | "timeout";
+/** Delete only, delete and take a step on the warning ladder (warning, timeout, ban), or delete and answer (ETA). */
+export type AutomodAction = "delete" | "strike" | "answer";
 export interface AutomodFilter {
-  action: AutomodAction;
-  /** Mentions per message, percent of capitals, messages per 5 seconds or repeats, depending on the filter. */
+  /** Older settings may say warn or timeout, which are strikes now. */
+  action: AutomodAction | "warn" | "timeout";
+  /** Mentions per message, percent of capitals, messages per 5 seconds, repeats or channels, depending on the filter. */
   limit?: number;
 }
+/** Actions saved before the warning ladder (warn, timeout) are strikes now. */
+export const actionOf = (f: AutomodFilter): AutomodAction => (f.action === "delete" || f.action === "answer" ? f.action : "strike");
+
 export interface Automod {
-  filters: Partial<Record<"invites" | "links" | "mentions" | "caps" | "spam" | "duplicates" | "words", AutomodFilter>>;
+  filters: Partial<Record<Filter, AutomodFilter>>;
   words: string[];
   allowedLinks: string[];
   ignoredChannels: string[];
   ignoredRoles: string[];
-  /** How long a timeout from automod lasts, in minutes. */
+  /** How long the timeout on the ladder lasts, in minutes. */
   timeoutMinutes: number;
+  /** The channel warnings point to; defaults to the server's own rules channel. */
+  rulesChannel?: string;
 }
 
 export interface Settings {
@@ -249,7 +257,7 @@ export const DEFAULTS: Settings = {
   logs: {},
   welcome: {},
   autoroles: [],
-  automod: { filters: {}, words: [], allowedLinks: [], ignoredChannels: [], ignoredRoles: [], timeoutMinutes: 10 },
+  automod: { filters: {}, words: [], allowedLinks: [], ignoredChannels: [], ignoredRoles: [], timeoutMinutes: 1440 },
 };
 
 /** A stored setting over its defaults, so settings saved before a new field existed still have it. */

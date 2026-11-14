@@ -1,5 +1,6 @@
+import { scan, type Filter, type MessageFacts, type RulesIndex, type Verdict } from "./automod-rules";
+import { actionOf, P, permissionsOf, type Automod, type Member, type Role, type Settings, type User } from "./guild";
 import { renderWelcome } from "./settings";
-import { P, permissionsOf, type Automod, type Member, type Role, type Settings, type User } from "./guild";
 
 /**
  * What the bot does with what happens in the server, as the gateway (gateway.ts) sees it: automod, message and member
@@ -12,7 +13,21 @@ export type Job =
   | { kind: "post"; channel: string; message: Record<string, unknown>; /** Deleted again after this many seconds. */ expires?: number }
   | { kind: "delete"; channel: string; message: string; reason: string }
   | { kind: "role"; guild: string; user: string; role: string; reason: string }
-  | { kind: "punish"; guild: string; server: string; user: User; action: "warn" | "timeout"; reason: string; minutes: number }
+  | {
+      kind: "strike";
+      guild: string;
+      server: string;
+      channel: string;
+      user: User;
+      filter: Filter;
+      why: string;
+      /** Skips the warning: hacked accounts and phishing. */
+      severe: boolean;
+      /** The rules channel the warning points to. */
+      rules: string | null;
+      /** How long the timeout lasts. */
+      minutes: number;
+    }
   | { kind: "ban"; guild: string; user: User; banned: boolean }
   | { kind: "sticky"; channel: string };
 
@@ -22,6 +37,8 @@ export interface GuildState {
   owner_id: string;
   roles: Role[];
   memberCount: number;
+  /** The server's rules channel, if it's a community server with one. */
+  rulesChannel: string | null;
   /** Threads and the channel each sits in, so automod's ignored channels cover their threads. */
   parents: Map<string, string>;
 }
@@ -62,8 +79,14 @@ export interface World {
   saveMember(guild: string, user: string, member: KnownMember): void;
   forgetMember(guild: string, user: string): void;
   enqueue(job: Job, delaySeconds?: number): void;
-  /** Each member's recent messages, for the spam and duplicate filters. */
-  recent: Map<string, { at: number; content: string }[]>;
+  /** Each member's recent messages, for the spam, repeat and cross-post filters. */
+  recent: Map<string, { at: number; content: string; channel: string; id: string }[]>;
+  /** The server rules, so quoting them is never caught. */
+  rules(): RulesIndex;
+  /** The FAQ's answer to "when will it work?", for ETA questions. */
+  etaAnswer(): string | undefined;
+  /** When each channel last got the ETA answer. */
+  answered: Map<string, number>;
   /** Messages automod deleted, so the delete log can say so. */
   removedByAutomod: Map<string, string>;
   now(): number;
@@ -82,6 +105,8 @@ interface MessageEvent {
   mention_roles?: string[];
   mention_everyone?: boolean;
   edited_timestamp?: string | null;
+  /** Forwarded messages. */
+  message_snapshots?: { message?: { content?: string } }[];
 }
 
 const COLORS = { join: 0x23a55a, leave: 0xda373c, edit: 0xf0b232, delete: 0xda373c, member: 0x5b9bff };
@@ -91,66 +116,126 @@ const NOTICE_SECONDS = 8;
 const NEW_ACCOUNT_DAYS = 7;
 /** How long after a message a sticky moves down: long enough for a burst of messages to move it once. */
 const STICKY_DELAY = 3;
-const createdAt = (id: string) => Number(BigInt(id) >> 22n) / 1000 + 1420070400;
+/** When a Discord id was made, in seconds; 0 (long ago) for anything that isn't one. */
+const createdAt = (id: string) => (/^\d{1,20}$/.test(id) ? Number(BigInt(id) >> 22n) / 1000 + 1420070400 : 0);
 const clip = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 
-// Automod.
+// Automod: scan() in automod-rules.ts reads the text; this adds what needs history, and decides what happens.
 
-const INVITE = /(?:discord(?:app)?\.com\/invite|discord\.gg|dsc\.gg)\/[\w-]+/i;
-const URL = /https?:\/\/([^\s/<>"')]+)/gi;
-const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const CROSSPOST_WINDOW = 60;
+/** ETA answers, at most this often per channel; questions in between are only removed. */
+const ANSWER_EVERY = 180;
+const NEWCOMER_SECONDS = 86400;
 
-const allowedHost = (host: string, allowed: string[]) => {
-  const h = host.toLowerCase().replace(/:\d+$/, "").replace(/^www\./, "");
-  return allowed.some((d) => h === d || h.endsWith(`.${d}`));
-};
+type Recent = { at: number; content: string; channel: string; id: string };
 
-/** Which filter a message breaks, and why in a few words. Spam and duplicates count on the member's recent messages. */
-export function breaks(config: Automod, m: MessageEvent, recent: { at: number; content: string }[], now: number): { filter: keyof Automod["filters"]; why: string } | undefined {
+/** Spam, repeats and the same message in several channels, from the member's recent messages. */
+function fromHistory(config: Automod, m: MessageEvent, recent: Recent[], now: number): Verdict | undefined {
   const f = config.filters;
-  const content = m.content ?? "";
-  if (f.invites && INVITE.test(content)) return { filter: "invites", why: "invite link" };
-  if (f.links) {
-    const hosts = [...content.matchAll(URL)].map((x) => x[1]!);
-    if (hosts.some((h) => !allowedHost(h, config.allowedLinks))) return { filter: "links", why: "link" };
+  const content = (m.content ?? "").trim().toLowerCase();
+  if (f.crosspost && content.length >= 10) {
+    const channels = new Set(recent.filter((r) => now - r.at < CROSSPOST_WINDOW && r.content === content).map((r) => r.channel));
+    channels.add(m.channel_id);
+    if (channels.size >= (f.crosspost.limit ?? 3)) {
+      return { filter: "crosspost", why: "the same message was posted in several channels", severe: true, evidence: [`${channels.size} channels`] };
+    }
   }
-  if (f.words && config.words.length) {
-    const hit = config.words.find((w) => new RegExp(`(^|[^\\p{L}\\p{N}])${escape(w)}($|[^\\p{L}\\p{N}])`, "iu").test(content));
-    if (hit) return { filter: "words", why: "blocked word" };
+  if (f.spam && recent.filter((r) => now - r.at < SPAM_WINDOW).length >= (f.spam.limit ?? 5)) {
+    return { filter: "spam", why: "messages were sent too fast", severe: false, evidence: ["spam"] };
   }
-  if (f.mentions) {
-    const count = new Set(m.mentions?.map((u) => u.id)).size + (m.mention_roles?.length ?? 0) + (m.mention_everyone ? 1 : 0);
-    if (count >= (f.mentions.limit ?? 5)) return { filter: "mentions", why: `${count} mentions` };
-  }
-  if (f.caps) {
-    const letters = content.match(/\p{L}/gu) ?? [];
-    const upper = letters.filter((c) => c !== c.toLowerCase()).length;
-    if (letters.length >= 10 && (upper / letters.length) * 100 >= (f.caps.limit ?? 70)) return { filter: "caps", why: "too many capitals" };
-  }
-  if (f.spam) {
-    const inWindow = recent.filter((r) => now - r.at < SPAM_WINDOW).length;
-    if (inWindow >= (f.spam.limit ?? 5)) return { filter: "spam", why: "sending messages too fast" };
-  }
-  if (f.duplicates && content.trim()) {
-    const same = content.trim().toLowerCase();
+  if (f.duplicates && content) {
     const repeats = (f.duplicates.limit ?? 3) - 1;
     const last = recent.filter((r) => now - r.at < DUPLICATE_WINDOW).slice(-repeats);
-    if (repeats > 0 && last.length === repeats && last.every((r) => r.content === same)) return { filter: "duplicates", why: "repeating the same message" };
+    if (repeats > 0 && last.length === repeats && last.every((r) => r.content === content)) {
+      return { filter: "duplicates", why: "the same message was repeated", severe: false, evidence: ["repeats"] };
+    }
   }
   return undefined;
 }
 
-function exempt(world: World, settings: Settings, m: MessageEvent): boolean {
+/** The text automod reads: the message, and any message it forwards. */
+const textOf = (m: MessageEvent) => [m.content ?? "", ...(m.message_snapshots ?? []).map((s) => s.message?.content ?? "")].filter(Boolean).join("\n");
+
+function facts(world: World, m: MessageEvent): MessageFacts {
+  const content = textOf(m);
+  const joined = m.member?.joined_at ? Date.parse(m.member.joined_at) / 1000 : undefined;
+  return {
+    content,
+    mentions: new Set(m.mentions?.map((u) => u.id)).size + (m.mention_roles?.length ?? 0) + (m.mention_everyone ? 1 : 0),
+    everyone: Boolean(m.mention_everyone) || /@(?:everyone|here)\b/u.test(content),
+    newcomer: world.now() - createdAt(m.author!.id) < NEW_ACCOUNT_DAYS * 86400 || (joined !== undefined && world.now() - joined < NEWCOMER_SECONDS),
+  };
+}
+
+function exempt(world: World, settings: Settings, m: MessageEvent, roles: string[]): boolean {
   if (!m.guild_id || !m.author || m.author.bot || m.webhook_id) return true;
   const config = settings.automod;
   const parent = world.guild(m.guild_id)?.parents.get(m.channel_id);
   if (config.ignoredChannels.includes(m.channel_id) || (parent && config.ignoredChannels.includes(parent))) return true;
-  const roles = m.member?.roles ?? [];
   if (roles.some((r) => config.ignoredRoles.includes(r))) return true;
   // Until the server's roles are known, moderators can't be told apart, so nobody is checked.
   const guild = world.guild(m.guild_id);
   if (!guild) return true;
   return Boolean(permissionsOf(guild, m.author.id, roles) & P.MANAGE_MESSAGES);
+}
+
+/** Checks a new or edited message; history (spam, repeats, cross-posts) only counts for new ones. */
+function moderate(world: World, m: MessageEvent, recent: Recent[] | undefined): void {
+  const settings = world.settings(m.guild_id!);
+  if (!settings || !Object.keys(settings.automod.filters).length) return;
+  const roles = m.member?.roles ?? world.member(m.guild_id!, m.author!.id)?.roles ?? [];
+  if (exempt(world, settings, m, roles)) return;
+  const config = settings.automod;
+  const enabled = Object.fromEntries(Object.entries(config.filters).map(([k, v]) => [k, { limit: v.limit }]));
+  const verdict =
+    (recent && fromHistory(config, m, recent, world.now())) ??
+    scan(facts(world, m), { enabled, words: config.words, allowedLinks: config.allowedLinks, rules: world.rules() });
+  if (verdict) act(world, settings, m, verdict, recent ?? []);
+}
+
+function act(world: World, settings: Settings, m: MessageEvent, verdict: Verdict, recent: Recent[]): void {
+  const guild = m.guild_id!;
+  const user = m.author!;
+  const action = actionOf(settings.automod.filters[verdict.filter]!);
+  const reason = `Automod (${verdict.filter}): ${verdict.why}`;
+  world.removedByAutomod.set(m.id, verdict.why);
+  world.enqueue({ kind: "delete", channel: m.channel_id, message: m.id, reason });
+  // A hacked account's copies in the other channels go too.
+  if (verdict.filter === "crosspost") {
+    const content = (m.content ?? "").trim().toLowerCase();
+    for (const r of recent) {
+      if (r.content !== content || r.id === m.id) continue;
+      world.removedByAutomod.set(r.id, verdict.why);
+      world.enqueue({ kind: "delete", channel: r.channel, message: r.id, reason });
+    }
+  }
+
+  if (action === "answer") {
+    const answer = world.etaAnswer();
+    const last = world.answered.get(m.channel_id) ?? 0;
+    if (answer && world.now() - last >= ANSWER_EVERY) {
+      world.answered.set(m.channel_id, world.now());
+      world.enqueue({ kind: "post", channel: m.channel_id, message: { content: `<@${user.id}> ${answer}`, allowed_mentions: { users: [user.id] }, flags: 4 } });
+    }
+    return;
+  }
+  if (action === "delete") {
+    world.enqueue({ kind: "post", channel: m.channel_id, message: { content: `<@${user.id}>, your message was removed: ${verdict.why}.`, allowed_mentions: { users: [user.id] } }, expires: NOTICE_SECONDS });
+    return;
+  }
+  const state = world.guild(guild);
+  world.enqueue({
+    kind: "strike",
+    guild,
+    server: state?.name ?? "the server",
+    channel: m.channel_id,
+    user,
+    why: verdict.why,
+    filter: verdict.filter,
+    severe: verdict.severe,
+    rules: settings.automod.rulesChannel ?? state?.rulesChannel ?? null,
+    minutes: settings.automod.timeoutMinutes,
+  });
 }
 
 function onMessage(world: World, m: MessageEvent): void {
@@ -170,20 +255,8 @@ function onMessage(world: World, m: MessageEvent): void {
 
   const key = `${m.guild_id}:${m.author.id}`;
   const recent = (world.recent.get(key) ?? []).filter((r) => now - r.at < DUPLICATE_WINDOW);
-  const settings = world.settings(m.guild_id);
-  const hit = settings && Object.keys(settings.automod.filters).length && !exempt(world, settings, m) ? breaks(settings.automod, m, recent, now) : undefined;
-  world.recent.set(key, [...recent, { at: now, content: (m.content ?? "").trim().toLowerCase() }].slice(-10));
-  if (!hit || !settings) return;
-
-  const action = settings.automod.filters[hit.filter]!.action;
-  world.removedByAutomod.set(m.id, hit.why);
-  world.enqueue({ kind: "delete", channel: m.channel_id, message: m.id, reason: `Automod: ${hit.why}` });
-  if (action === "delete") {
-    world.enqueue({ kind: "post", channel: m.channel_id, message: { content: `<@${m.author.id}>, your message was removed: ${hit.why}.`, allowed_mentions: { users: [m.author.id] } }, expires: NOTICE_SECONDS });
-  } else {
-    const guild = world.guild(m.guild_id);
-    world.enqueue({ kind: "punish", guild: m.guild_id, server: guild?.name ?? "the server", user: m.author, action, reason: `Automod: ${hit.why}`, minutes: settings.automod.timeoutMinutes });
-  }
+  world.recent.set(key, [...recent, { at: now, content: (m.content ?? "").trim().toLowerCase(), channel: m.channel_id, id: m.id }].slice(-10));
+  moderate(world, m, recent);
 }
 
 /** Any message but the bot's own, webhooks and other bots included, pushes a sticky up. */
@@ -203,6 +276,8 @@ function onEdit(world: World, m: MessageEvent): void {
   if (!m.guild_id || m.content === undefined || !m.edited_timestamp) return;
   const before = world.message(m.id);
   if (!before || before.content === m.content) return;
+  // A message edited into spam after it was posted is checked again.
+  if (m.author && !m.author.bot) moderate(world, m, undefined);
   world.saveMessage({ ...before, content: m.content });
   const channel = world.settings(m.guild_id)?.logs.messages;
   if (!channel) return;
@@ -369,6 +444,7 @@ function updateGuild(world: World, type: string, d: any): void {
   switch (type) {
     case "GUILD_UPDATE":
       state.name = d.name;
+      state.rulesChannel = d.rules_channel_id ?? null;
       state.owner_id = d.owner_id;
       state.roles = d.roles ?? state.roles;
       return;
@@ -390,5 +466,5 @@ function updateGuild(world: World, type: string, d: any): void {
 export function guildState(d: any): GuildState {
   const parents = new Map<string, string>();
   for (const t of d.threads ?? []) if (t.parent_id) parents.set(t.id, t.parent_id);
-  return { id: d.id, name: d.name, owner_id: d.owner_id, roles: d.roles ?? [], memberCount: d.member_count ?? 0, parents };
+  return { id: d.id, name: d.name, owner_id: d.owner_id, roles: d.roles ?? [], memberCount: d.member_count ?? 0, rulesChannel: d.rules_channel_id ?? null, parents };
 }

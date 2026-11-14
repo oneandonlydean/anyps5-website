@@ -1,7 +1,9 @@
 import { DurableObject } from "cloudflare:workers";
 import { log, type Env } from "./env";
+import { indexRules, NO_RULES, type RulesIndex } from "./automod-rules";
 import { guildState, handle, type CachedMessage, type GuildState, type Job, type KnownMember, type World } from "./events";
 import { allSettings, Bot, type Settings } from "./guild";
+import { serverRules } from "./settings";
 import { runJob } from "./jobs";
 
 /**
@@ -26,6 +28,8 @@ const FATAL_PAUSE_MS = 3600_000;
 const MESSAGE_DAYS = 7;
 const JOBS_PER_ALARM = 50;
 const MAX_ATTEMPTS = 4;
+/** How often the rules are read again for automod; settings changes read them at once. */
+const RULES_EVERY_MS = 30 * 60_000;
 
 export interface GatewayStatus {
   connected: boolean;
@@ -50,7 +54,11 @@ export class Gateway extends DurableObject<Env> implements World {
   /** Server state lives in memory, and a resume doesn't send it again: a fresh instance starts a new session. */
   private seenReady = false;
   private stickies = new Set<string>();
-  recent = new Map<string, { at: number; content: string }[]>();
+  private rulesIndex: RulesIndex = NO_RULES;
+  private rulesAt = 0;
+  private eta?: string;
+  recent = new Map<string, { at: number; content: string; channel: string; id: string }[]>();
+  answered = new Map<string, number>();
   stickyQueued = new Map<string, number>();
   removedByAutomod = new Map<string, string>();
 
@@ -69,7 +77,8 @@ export class Gateway extends DurableObject<Env> implements World {
 
   /** Connects if the connection is down or has gone quiet. Called every minute. */
   async ensure(): Promise<GatewayStatus> {
-    await this.reload();
+    await this.refresh();
+    if (Date.now() - this.rulesAt > RULES_EVERY_MS) await this.loadRules();
     this.ctx.storage.sql.exec("DELETE FROM messages WHERE created_at < ?", this.now() - MESSAGE_DAYS * 86400);
     const stoppedUntil = Number(this.meta("stopped_until") ?? 0);
     if (stoppedUntil > Date.now()) return this.status();
@@ -79,7 +88,30 @@ export class Gateway extends DurableObject<Env> implements World {
     return this.status();
   }
 
-  async reload(): Promise<void> {
+  /** Settings changed: read them now, and the rules too when automod's settings changed. */
+  async reload(rules = false): Promise<void> {
+    await this.refresh();
+    if (rules) await this.loadRules();
+  }
+
+  private async loadRules(): Promise<void> {
+    this.rulesAt = Date.now();
+    const channels = new Set<string>();
+    for (const [id, settings] of this.config) {
+      const channel = settings.automod.rulesChannel ?? this.guilds.get(id)?.rulesChannel;
+      if (channel) channels.add(channel);
+    }
+    for (const g of this.guilds.values()) if (g.rulesChannel) channels.add(g.rulesChannel);
+    try {
+      const { text, eta } = await serverRules(this.env, new Bot(this.env), [...channels]);
+      this.rulesIndex = indexRules(text);
+      this.eta = eta;
+    } catch (err) {
+      log("gateway_rules_failed", { error: String(err) });
+    }
+  }
+
+  private async refresh(): Promise<void> {
     this.config = await allSettings(this.env);
     const { results } = await this.env.DB.prepare("SELECT channel_id FROM stickies WHERE paused = 0").all<{ channel_id: string }>();
     this.stickies = new Set(results.map((r) => r.channel_id));
@@ -275,6 +307,14 @@ export class Gateway extends DurableObject<Env> implements World {
 
   get botId(): string {
     return this.env.DISCORD_CLIENT_ID;
+  }
+
+  rules(): RulesIndex {
+    return this.rulesIndex;
+  }
+
+  etaAnswer(): string | undefined {
+    return this.eta;
   }
 
   hasSticky(channel: string): boolean {
