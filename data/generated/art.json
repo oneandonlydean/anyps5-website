@@ -69,7 +69,7 @@
     ]
   },
   "PPSA01153": {
-    "checked": "2026-11-06T05:56:50.960Z",
+    "checked": "2026-11-14T07:20:16.940Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -1215,6 +1215,17 @@
       "PlayStation Store"
     ]
   },
+  "PPSA05813": {
+    "checked": "2026-11-14T07:20:19.529Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202203/0501/FUr3M0kGxyddUfUeuKBBFf2w.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202203/0501/tc67Gmu0MIEY7WMuBi3R7w8p.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202203/0501/NTT9SfB3wDOxYDrbNuxlADVU.jpg",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202203/0501/SUff32SottUWGnh1uxIG8dxq.png",
+    "color": "#7e3520",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
   "PPSA05916": {
     "checked": "2026-10-29T05:22:56.408Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202110/2619/Cgrw2Scn2ODT7QOHWV1ny5RY.png",
@@ -1339,6 +1350,17 @@
   },
   "PPSA06464": {
     "checked": "2026-11-08T08:51:45.032Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1518/ea3296f59652aea59db01dd6668c93f1dd23102f84d18807.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1518/d7430b7e85b62d1a5fcd4cd2463a6fc6646083c91dd1dbb9.png",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1518/186cd9352595fab352f61db979de40f171d61e075e1d5dd5.png",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1518/aa1f2ae00a21f869b32c825ec72772b9baf3c3a7a59742aa.png",
+    "color": "#d43236",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
+  "PPSA06465": {
+    "checked": "2026-11-14T07:20:18.101Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1518/ea3296f59652aea59db01dd6668c93f1dd23102f84d18807.png",
     "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1518/d7430b7e85b62d1a5fcd4cd2463a6fc6646083c91dd1dbb9.png",
     "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1518/186cd9352595fab352f61db979de40f171d61e075e1d5dd5.png",
@@ -1926,6 +1948,17 @@
       "PlayStation Store"
     ]
   },
+  "PPSA10067": {
+    "checked": "2026-11-14T07:20:19.011Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202305/2309/02a7644b160e11678ca5332d6e0eb5fdd87902aa3087d446.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202305/2313/925ff87d47f31186e7782967fbb3263bfc46fa81ba501a7d.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202305/2313/49c238437007b1be60c572875cda19fd83ebd05359dbb50e.jpg",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202305/2313/0bc18d2fdeb1f28ec196f921db7665a76c5d0159af109710.png",
+    "color": "#3f7eb7",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
   "PPSA10112": {
     "checked": "2026-10-29T05:22:42.409Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202209/1505/5cSwXCtCnItDE46iYGcaXtAm.png",
@@ -2107,6 +2140,17 @@
     "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/1YHRDsi3voapHSwJfDMneZXV.jpg",
     "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/Mh9k2V9uMC3le9KBYCjKbdFx.png",
     "color": "#56362d",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
+  "PPSA14002": {
+    "checked": "2026-11-14T07:20:18.110Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202302/2321/ba706e54d68d10a0eb6ab7c36cdad9178c58b7fb7bb03d28.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202302/2321/100a5dc417414ddb04630e98c7ce49c00059a6c30aba826e.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202308/1519/95cce955dc59d04e2ea5ab624a823ace14e9c5f7e24dfb8f.png",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202302/2321/ec8ebd5829e6949f10ee73ca15983f6aa09b7fbc9188fb1e.png",
+    "color": "#31678e",
     "credits": [
       "PlayStation Store"
     ]
@@ -2345,6 +2389,17 @@
       "PlayStation Store"
     ]
   },
+  "PPSA16626": {
+    "checked": "2026-11-14T07:20:17.932Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202307/0712/70530fcfc1241d149c7a83806a13b51cbe237636527fe618.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202307/0712/d040d4064d9526de8e035bf4ef485a6369cd3981b5dd0e23.png",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202307/1711/f3ccbdbce9194121617e890d73e9b13f9d0c7a8a528bee98.png",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202305/0910/2ccec9151e6804c63aa69a47024cee073136bc9e89731c37.png",
+    "color": "#7b4e46",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
   "PPSA16645": {
     "checked": "2026-11-06T05:56:56.021Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202406/1216/9023747aeb28e119f8a8fe3272a67ae5f5e19ba0f658aacd.png",
@@ -2419,6 +2474,17 @@
     "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2015/3c031e939d7f1116d7a2f56621a6a14093b8e8373e82f2be.jpg",
     "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2015/f7264b1b023f57249f4cc2258b5d06330e26440080f84f3a.png",
     "color": "#c08444",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
+  "PPSA17599": {
+    "checked": "2026-11-14T07:20:18.041Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202501/2217/e5833a53529ff9879e87689f1e8b04d45ba7e6c97fa791e2.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202501/2217/15dd9f9368aa87c9b2dcaf58e1856e8cca01b6e595331858.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202406/0917/96d5b955f3833beb4e0be99c8699fa0abe83b81e2eb2a59e.jpg",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202503/1916/82d9f7b4bc64a925975aad9ac224b2cbb305343e6d46fa98.png",
+    "color": "#6f5d46",
     "credits": [
       "PlayStation Store"
     ]
@@ -3265,7 +3331,7 @@
     ]
   },
   "PPSA28319": {
-    "checked": "2026-11-06T05:56:48.337Z",
+    "checked": "2026-11-14T07:20:16.233Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -3842,7 +3908,7 @@
     ]
   },
   "PPSA47770": {
-    "checked": "2026-11-06T05:56:50.933Z",
+    "checked": "2026-11-14T07:20:17.331Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -3851,7 +3917,7 @@
     "credits": []
   },
   "PPSA50001": {
-    "checked": "2026-11-06T05:56:48.664Z",
+    "checked": "2026-11-14T07:20:16.593Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -3989,7 +4055,7 @@
     "credits": []
   },
   "PPSA77305": {
-    "checked": "2026-11-06T05:56:50.744Z",
+    "checked": "2026-11-14T07:20:16.955Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4069,7 +4135,7 @@
     "credits": []
   },
   "PPSA97358": {
-    "checked": "2026-11-06T05:56:47.655Z",
+    "checked": "2026-11-14T07:20:15.666Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4107,7 +4173,7 @@
     "credits": []
   },
   "PPSA98512": {
-    "checked": "2026-11-06T05:56:48.330Z",
+    "checked": "2026-11-14T07:20:16.397Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4127,7 +4193,7 @@
     ]
   },
   "PPSA98766": {
-    "checked": "2026-11-06T05:56:48.336Z",
+    "checked": "2026-11-14T07:20:16.425Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4136,7 +4202,7 @@
     "credits": []
   },
   "PPSA99000": {
-    "checked": "2026-11-06T05:56:50.602Z",
+    "checked": "2026-11-14T07:20:17.046Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4145,7 +4211,7 @@
     "credits": []
   },
   "PPSA99001": {
-    "checked": "2026-11-06T05:56:47.645Z",
+    "checked": "2026-11-14T07:20:15.408Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4183,7 +4249,7 @@
     ]
   },
   "PPSA99005": {
-    "checked": "2026-11-06T05:56:47.989Z",
+    "checked": "2026-11-14T07:20:15.903Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4192,7 +4258,7 @@
     "credits": []
   },
   "PPSA99006": {
-    "checked": "2026-11-06T05:56:47.300Z",
+    "checked": "2026-11-14T07:20:15.067Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4210,7 +4276,7 @@
     "credits": []
   },
   "PPSA99008": {
-    "checked": "2026-11-06T05:56:47.303Z",
+    "checked": "2026-11-14T07:20:15.066Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4219,7 +4285,7 @@
     "credits": []
   },
   "PPSA99009": {
-    "checked": "2026-11-06T05:56:47.492Z",
+    "checked": "2026-11-14T07:20:15.236Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4237,7 +4303,7 @@
     "credits": []
   },
   "PPSA99011": {
-    "checked": "2026-11-06T05:56:47.487Z",
+    "checked": "2026-11-14T07:20:15.236Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4277,7 +4343,7 @@
     ]
   },
   "PPSA99030": {
-    "checked": "2026-11-06T05:56:48.989Z",
+    "checked": "2026-11-14T07:20:16.787Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4286,7 +4352,7 @@
     "credits": []
   },
   "PPSA99039": {
-    "checked": "2026-11-06T05:56:48.164Z",
+    "checked": "2026-11-14T07:20:15.940Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4355,7 +4421,7 @@
     ]
   },
   "PPSA99105": {
-    "checked": "2026-11-06T05:56:48.656Z",
+    "checked": "2026-11-14T07:20:16.599Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4364,7 +4430,7 @@
     "credits": []
   },
   "PPSA99109": {
-    "checked": "2026-11-06T05:56:47.821Z",
+    "checked": "2026-11-14T07:20:15.555Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4454,7 +4520,7 @@
     "credits": []
   },
   "PPSA99203": {
-    "checked": "2026-11-06T05:56:47.303Z",
+    "checked": "2026-11-14T07:20:15.059Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4675,7 +4741,7 @@
     ]
   },
   "PPSA99360": {
-    "checked": "2026-11-06T05:56:47.475Z",
+    "checked": "2026-11-14T07:20:15.222Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4966,7 +5032,7 @@
     ]
   },
   "PPSA99764": {
-    "checked": "2026-11-06T05:56:47.476Z",
+    "checked": "2026-11-14T07:20:15.242Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -4984,7 +5050,7 @@
     "credits": []
   },
   "PPSA99793": {
-    "checked": "2026-11-06T05:56:50.442Z",
+    "checked": "2026-11-14T07:20:16.944Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -5033,7 +5099,7 @@
     ]
   },
   "PPSA99866": {
-    "checked": "2026-11-06T05:56:48.338Z",
+    "checked": "2026-11-14T07:20:16.265Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -5042,7 +5108,7 @@
     "credits": []
   },
   "PPSA99868": {
-    "checked": "2026-11-06T05:56:47.984Z",
+    "checked": "2026-11-14T07:20:16.262Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -5051,7 +5117,7 @@
     "credits": []
   },
   "PPSA99869": {
-    "checked": "2026-11-06T05:56:47.826Z",
+    "checked": "2026-11-14T07:20:15.586Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -5060,7 +5126,7 @@
     "credits": []
   },
   "PPSA99871": {
-    "checked": "2026-11-06T05:56:48.159Z",
+    "checked": "2026-11-14T07:20:16.254Z",
     "square": null,
     "cover": null,
     "hero": null,
@@ -5069,7 +5135,7 @@
     "credits": []
   },
   "PPSA99874": {
-    "checked": "2026-11-06T05:56:48.507Z",
+    "checked": "2026-11-14T07:20:16.574Z",
     "square": null,
     "cover": null,
     "hero": null,

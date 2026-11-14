@@ -1,6 +1,6 @@
 {
-  "commit": "a6fbf9ce96323c74cab255174857ba1f156cda0b",
-  "date": "2026-11-13",
+  "commit": "74900e8b0fdc9d55fd2e53db0a9a7d941b49820e",
+  "date": "2026-11-14",
   "isa": "AMD RDNA 2",
   "instructions": {
     "total": 1460,
@@ -162,47 +162,47 @@
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2128,
+        "line": 2151,
         "message": "image table snapshot has unsupported recursive children"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2538,
+        "line": 2561,
         "message": "a 3D gather of an image table entry is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2539,
+        "line": 2562,
         "message": "a 3D gather of an image without an 8-dword descriptor is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2544,
+        "line": 2567,
         "message": "a 3D gather through a sampler table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2547,
+        "line": 2570,
         "message": "a 3D gather with unnormalized coordinates is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2553,
+        "line": 2576,
         "message": "a 3D gather with a border color table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2554,
+        "line": 2577,
         "message": "a 3D gather of an integer texture with border addressing is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2555,
+        "line": 2578,
         "message": "a 3D gather of a swizzled texture with border addressing is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2557,
+        "line": 2580,
         "message": "a 3D gather through samplers that disagree is not implemented"
       },
       {
@@ -582,7 +582,7 @@
       },
       {
         "file": "Translation/src/FloatInstructions.cpp",
-        "line": 265,
+        "line": 281,
         "message": "v_fma_mixlo/mixhi_f16 at pc … in FLOAT_MODE … (f16 denormals not kept) is not implemented"
       },
       {
@@ -2954,7 +2954,27 @@
     },
     {
       "date": "2026-11-13",
-      "commit": "a6fbf9ce96323c74cab255174857ba1f156cda0b",
+      "commit": "82690d2c286f22592484ec638b70d65d967707b8",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 86,
+        "buffer": 81,
+        "host": 73
+      },
+      "throws": 125
+    },
+    {
+      "date": "2026-11-14",
+      "commit": "74900e8b0fdc9d55fd2e53db0a9a7d941b49820e",
       "instructions": {
         "total": 1460,
         "decoded": 1460,

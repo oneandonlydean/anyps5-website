@@ -1,49 +1,49 @@
 {
-  "generated": "2026-11-13T04:31:48.158Z",
+  "generated": "2026-11-14T07:20:29.690Z",
   "totals": {
-    "total": 11853,
-    "month": 9083,
-    "week": 2422,
-    "people": 864,
-    "active": 702
+    "total": 12266,
+    "month": 9150,
+    "week": 2470,
+    "people": 889,
+    "active": 693
   },
   "boards": {
     "all": [
       {
         "login": "MarcZX10",
-        "total": 635,
+        "total": 646,
         "month": 457,
-        "week": 130
+        "week": 114
       },
       {
         "login": "oneandonlydean",
-        "total": 359,
-        "month": 147,
-        "week": 43
+        "total": 369,
+        "month": 144,
+        "week": 50
       },
       {
         "login": "JJenkx",
-        "total": 349,
-        "month": 347,
-        "week": 78
+        "total": 360,
+        "month": 354,
+        "week": 74
       },
       {
         "login": "xXPBSXx",
-        "total": 347,
-        "month": 329,
+        "total": 354,
+        "month": 332,
         "week": 84
       },
       {
         "login": "adriadam10",
         "total": 344,
-        "month": 87,
-        "week": 19
+        "month": 76,
+        "week": 15
       },
       {
         "login": "milescoviello",
-        "total": 319,
-        "month": 289,
-        "week": 24
+        "total": 323,
+        "month": 282,
+        "week": 26
       },
       {
         "login": "al3w0f205",
@@ -52,16 +52,16 @@
         "week": 138
       },
       {
-        "login": "Celegans12",
-        "total": 184,
-        "month": 95,
-        "week": 1
+        "login": "BunnyFl",
+        "total": 194,
+        "month": 194,
+        "week": 132
       },
       {
-        "login": "BunnyFl",
-        "total": 165,
-        "month": 165,
-        "week": 112
+        "login": "Celegans12",
+        "total": 184,
+        "month": 90,
+        "week": 1
       },
       {
         "login": "kyon-eth",
@@ -73,27 +73,27 @@
     "month": [
       {
         "login": "MarcZX10",
-        "total": 635,
+        "total": 646,
         "month": 457,
-        "week": 130
+        "week": 114
       },
       {
         "login": "JJenkx",
-        "total": 349,
-        "month": 347,
-        "week": 78
+        "total": 360,
+        "month": 354,
+        "week": 74
       },
       {
         "login": "xXPBSXx",
-        "total": 347,
-        "month": 329,
+        "total": 354,
+        "month": 332,
         "week": 84
       },
       {
         "login": "milescoviello",
-        "total": 319,
-        "month": 289,
-        "week": 24
+        "total": 323,
+        "month": 282,
+        "week": 26
       },
       {
         "login": "al3w0f205",
@@ -103,9 +103,9 @@
       },
       {
         "login": "BunnyFl",
-        "total": 165,
-        "month": 165,
-        "week": 112
+        "total": 194,
+        "month": 194,
+        "week": 132
       },
       {
         "login": "kyon-eth",
@@ -114,22 +114,22 @@
         "week": 1
       },
       {
-        "login": "StoneDC",
-        "total": 152,
-        "month": 152,
-        "week": 30
+        "login": "slopgobblercobbler",
+        "total": 153,
+        "month": 153,
+        "week": 41
       },
       {
-        "login": "slopgobblercobbler",
-        "total": 148,
-        "month": 148,
-        "week": 49
+        "login": "StoneDC",
+        "total": 153,
+        "month": 153,
+        "week": 27
       },
       {
         "login": "oneandonlydean",
-        "total": 359,
-        "month": 147,
-        "week": 43
+        "total": 369,
+        "month": 144,
+        "week": 50
       }
     ],
     "week": [
@@ -140,58 +140,58 @@
         "week": 138
       },
       {
-        "login": "MarcZX10",
-        "total": 635,
-        "month": 457,
-        "week": 130
+        "login": "BunnyFl",
+        "total": 194,
+        "month": 194,
+        "week": 132
       },
       {
-        "login": "BunnyFl",
-        "total": 165,
-        "month": 165,
-        "week": 112
+        "login": "MarcZX10",
+        "total": 646,
+        "month": 457,
+        "week": 114
       },
       {
         "login": "Kikoarl",
-        "total": 118,
-        "month": 104,
-        "week": 91
-      },
-      {
-        "login": "xXPBSXx",
-        "total": 347,
-        "month": 329,
-        "week": 84
+        "total": 134,
+        "month": 118,
+        "week": 107
       },
       {
         "login": "DonRyuzaki",
-        "total": 92,
-        "month": 92,
-        "week": 82
+        "total": 113,
+        "month": 113,
+        "week": 94
+      },
+      {
+        "login": "xXPBSXx",
+        "total": 354,
+        "month": 332,
+        "week": 84
       },
       {
         "login": "JJenkx",
-        "total": 349,
-        "month": 347,
-        "week": 78
+        "total": 360,
+        "month": 354,
+        "week": 74
       },
       {
         "login": "MarrasFederico",
-        "total": 120,
-        "month": 120,
-        "week": 66
+        "total": 124,
+        "month": 124,
+        "week": 60
       },
       {
-        "login": "alvaroelpob",
-        "total": 94,
-        "month": 94,
-        "week": 58
+        "login": "oneandonlydean",
+        "total": 369,
+        "month": 144,
+        "week": 50
       },
       {
-        "login": "slopgobblercobbler",
-        "total": 148,
-        "month": 148,
-        "week": 49
+        "login": "AlexWhitehouse",
+        "total": 61,
+        "month": 61,
+        "week": 47
       }
     ]
   }

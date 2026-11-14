@@ -569,6 +569,11 @@
     "region": "EP",
     "concept": "205354"
   },
+  "PPSA05813": {
+    "name": "The Quarry",
+    "region": "UP",
+    "concept": "10004123"
+  },
   "PPSA05916": {
     "name": "BloodRayne: ReVamped",
     "region": "EP",
@@ -627,6 +632,11 @@
   "PPSA06464": {
     "name": "Cult Of The Lamb",
     "region": "UP",
+    "concept": "10004484"
+  },
+  "PPSA06465": {
+    "name": "Cult Of The Lamb",
+    "region": "EP",
     "concept": "10004484"
   },
   "PPSA06565": {
@@ -889,6 +899,11 @@
     "region": "UP",
     "concept": "10006028"
   },
+  "PPSA10067": {
+    "name": "Prince of Persia: The Lost Crown",
+    "region": "UP",
+    "concept": "10005985"
+  },
   "PPSA10112": {
     "name": "SILENT HILL: The Short Message",
     "region": "HP",
@@ -978,6 +993,11 @@
     "name": "Assassin's Creed® Mirage",
     "region": "EP",
     "concept": "10004865"
+  },
+  "PPSA14002": {
+    "name": "Baldur's Gate 3",
+    "region": "EP",
+    "concept": "10007460"
   },
   "PPSA14053": {
     "name": "Afterimage",
@@ -1084,6 +1104,11 @@
     "region": "HP",
     "concept": "10008356"
   },
+  "PPSA16626": {
+    "name": "Achilles: Legends Untold",
+    "region": "EP",
+    "concept": "10004880"
+  },
   "PPSA16645": {
     "name": "7 Days To Die - Console Edition",
     "region": "UP",
@@ -1113,6 +1138,11 @@
     "name": "MONOPOLY®",
     "region": "EP",
     "concept": "10008585"
+  },
+  "PPSA17599": {
+    "name": "Clair Obscur: Expedition 33",
+    "region": "EP",
+    "concept": "10008503"
   },
   "PPSA17641": {
     "name": "Deer Hunting Camp",
@@ -1148,6 +1178,11 @@
     "name": "Afterdream",
     "region": "EP",
     "concept": "10009147"
+  },
+  "PPSA18463": {
+    "name": "Baldur's Gate 3",
+    "region": "JP",
+    "concept": "10007460"
   },
   "PPSA18605": {
     "name": "ReadyOrNot",

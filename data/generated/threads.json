@@ -7,8 +7,8 @@
       "PPSA21564"
     ],
     "created": "2026-10-02T12:30:16Z",
-    "updated": "2026-11-13T03:42:30Z",
-    "comments": 87,
+    "updated": "2026-11-13T17:12:45Z",
+    "comments": 88,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/357#discussioncomment-19340471",
@@ -124,8 +124,8 @@
       "PPSA26344"
     ],
     "created": "2026-10-05T14:20:37Z",
-    "updated": "2026-11-13T03:55:51Z",
-    "comments": 114,
+    "updated": "2026-11-14T02:42:54Z",
+    "comments": 116,
     "reports": [],
     "media": [
       {
@@ -515,8 +515,8 @@
       "PPSA04264"
     ],
     "created": "2026-10-07T17:29:49Z",
-    "updated": "2026-10-31T10:28:26Z",
-    "comments": 25,
+    "updated": "2026-11-14T03:28:27Z",
+    "comments": 28,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/1203",
@@ -9204,8 +9204,8 @@
       "PPSA14299"
     ],
     "created": "2026-10-18T08:16:10Z",
-    "updated": "2026-11-03T21:47:28Z",
-    "comments": 8,
+    "updated": "2026-11-13T06:32:13Z",
+    "comments": 9,
     "reports": [],
     "media": []
   },
@@ -10824,8 +10824,8 @@
       "PPSA34008"
     ],
     "created": "2026-10-21T02:45:09Z",
-    "updated": "2026-11-06T08:29:40Z",
-    "comments": 16,
+    "updated": "2026-11-13T22:42:27Z",
+    "comments": 17,
     "reports": [],
     "media": []
   },
@@ -11236,8 +11236,8 @@
       "PPSA01859"
     ],
     "created": "2026-10-21T12:07:26Z",
-    "updated": "2026-10-21T12:08:26Z",
-    "comments": 0,
+    "updated": "2026-11-13T16:23:43Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9093",
@@ -11259,6 +11259,27 @@
           9071
         ],
         "blockerText": "Error: \"symbol lookup error: ./app.elf: undefined symbol: KeOZ19X8-Ug\"\r\n\r\nIssue: https://github.com/boykopovar/AnyPS5/issues/9062\r\nPull: https://github.com/boykopovar/AnyPS5/pull/9071"
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9093#discussioncomment-19594649",
+        "discussion": 9093,
+        "author": "keksimusmaximus",
+        "date": "2026-11-13T16:23:42Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": "linux",
+        "gpu": "AMD Radeon RX 6700 XT",
+        "gpuVendor": "AMD",
+        "build": "v0.1.5-3187-g12e449e72d",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.001.000",
+        "shown": "After hitting \"Start Game\" it crashes with\n\n[gpu] driver failure: AGC graphics: the depth target's sample count differs from the rasterizer's [videoout] presentation failed: AGC graphics: the depth target's sample count differs from the rasterizer's terminate called after throwing an instance of 'std::runtime_error' what(): AGC graphics: the depth target's sample count differs from the rasterizer's",
+        "blockers": [
+          14861,
+          19617
+        ],
+        "blockerText": "Issue: https://github.com/boykopovar/AnyPS5/issues/14861\r\nPR: https://github.com/boykopovar/AnyPS5/pull/19617"
       }
     ],
     "media": []
@@ -12773,8 +12794,8 @@
       "PPSA30839"
     ],
     "created": "2026-10-22T10:03:12Z",
-    "updated": "2026-11-12T13:26:49Z",
-    "comments": 33,
+    "updated": "2026-11-14T05:38:44Z",
+    "comments": 34,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9725",
@@ -13795,8 +13816,8 @@
       "PPSA06369"
     ],
     "created": "2026-10-22T21:12:00Z",
-    "updated": "2026-11-02T05:59:01Z",
-    "comments": 8,
+    "updated": "2026-11-13T22:00:11Z",
+    "comments": 10,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9909",
@@ -13817,7 +13838,15 @@
         "blockerText": "Strided vertex fetch with OOB_SELECT 2 past `NUM_RECORDS` throws instead of reading the stored bytes."
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/JJenkx/AnyPS5/releases/download/linux-validation-20261023/eternal-cylinder-pr19707-native-scenes-20261113.png",
+        "alt": "Native baseline/candidate frames; camera state differs",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9909#discussioncomment-19600924",
+        "author": "JJenkx",
+        "date": "2026-11-13T22:00:11Z"
+      }
+    ]
   },
   {
     "number": 9910,
@@ -13859,8 +13888,8 @@
       "PPSA30528"
     ],
     "created": "2026-10-22T21:28:16Z",
-    "updated": "2026-10-24T02:49:27Z",
-    "comments": 2,
+    "updated": "2026-11-13T22:51:09Z",
+    "comments": 3,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9914",
@@ -13927,6 +13956,13 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/9914#discussioncomment-19153324",
         "author": "akkadbakkad89",
         "date": "2026-10-23T19:31:28Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/f968a3b3-42da-42f9-a2c7-5f9c34b73811",
+        "alt": "04-armadillo-after-walking",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/9914#discussioncomment-19601717",
+        "author": "alexdb8",
+        "date": "2026-11-13T22:51:08Z"
       }
     ]
   },
@@ -14478,7 +14514,7 @@
       "PPSA03016"
     ],
     "created": "2026-10-23T12:49:25Z",
-    "updated": "2026-11-11T13:37:23Z",
+    "updated": "2026-11-13T14:31:04Z",
     "comments": 2,
     "reports": [
       {
@@ -15758,8 +15794,8 @@
       "PPSA24263"
     ],
     "created": "2026-10-26T21:56:04Z",
-    "updated": "2026-11-06T05:40:42Z",
-    "comments": 8,
+    "updated": "2026-11-13T18:50:00Z",
+    "comments": 9,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11591",
@@ -16018,8 +16054,8 @@
       "PPSA31246"
     ],
     "created": "2026-10-26T22:19:34Z",
-    "updated": "2026-11-07T11:14:00Z",
-    "comments": 16,
+    "updated": "2026-11-13T21:25:04Z",
+    "comments": 18,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/11599",
@@ -17780,8 +17816,8 @@
       "PPSA25646"
     ],
     "created": "2026-10-30T18:18:29Z",
-    "updated": "2026-11-04T00:33:46Z",
-    "comments": 3,
+    "updated": "2026-11-14T03:57:43Z",
+    "comments": 4,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/13561",
@@ -18230,8 +18266,8 @@
       "PPSA05595"
     ],
     "created": "2026-10-31T16:41:30Z",
-    "updated": "2026-11-11T11:32:06Z",
-    "comments": 9,
+    "updated": "2026-11-14T06:50:30Z",
+    "comments": 10,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14033",
@@ -18461,8 +18497,8 @@
       "PPSA08194"
     ],
     "created": "2026-10-31T17:41:17Z",
-    "updated": "2026-11-12T21:22:51Z",
-    "comments": 7,
+    "updated": "2026-11-13T07:29:44Z",
+    "comments": 8,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14067",
@@ -27118,15 +27154,15 @@
       "PPSA01528"
     ],
     "created": "2026-11-13T01:11:39Z",
-    "updated": "2026-11-13T03:37:38Z",
-    "comments": 0,
+    "updated": "2026-11-13T14:01:10Z",
+    "comments": 1,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/19269",
         "discussion": 19269,
         "author": "al3w0f205",
         "date": "2026-11-13T01:11:39Z",
-        "edited": "2026-11-13T03:37:38Z",
+        "edited": "2026-11-13T05:01:52Z",
         "stage": "Ingame",
         "platform": "windows",
         "gpu": "NVIDIA GeForce RTX 4070 Laptop",
@@ -27138,17 +27174,27 @@
         "shown": "- Boot & Logos: Boots cleanly, initializes PRX dependencies (libSceJobManager, Il2CppUserAssemblies, PS5Plugin, VivoxNative, SaveData, libSceNpCppWebApi).\n- Rendering & Presentation: Vulkan presentation runs in 3840x2160 presented at 1920x1080. Shaders compile cleanly to disk cache (shader_cache).\n- Performance:\n- Base unoptimized launch sits at ~0.7 to 2 FPS due to 101 WAIT_REG_MEM pipeline stalls per frame and 13 spinning Unity job threads saturating CPU cores.\n- With CPU worker affinity pinning (APS5_JOB_AFFINITY=1 / APS5_WORKER_AFFINITY=1 routing background jobs to E-cores) and pipelined draw/DMA (APS5_PIPELINED_DRAWS=32, APS5_PIPELINE_DMA=1, APS5_FLIP_INFLIGHT=2), menu responsiveness stabilizes significantly.",
         "blockers": [],
         "blockerText": null
+      },
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19269#discussioncomment-19591790",
+        "discussion": 19269,
+        "author": "JJenkx",
+        "date": "2026-11-13T14:01:10Z",
+        "edited": "2026-11-13T14:14:50Z",
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": "Radeon RX 6650 XT",
+        "gpuVendor": "AMD",
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": "01.015.000",
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
       }
     ],
-    "media": [
-      {
-        "src": "https://raw.githubusercontent.com/al3w0f205/al3w0f205/main/overcooked_run.jpg",
-        "alt": "Overcooked All You Can Eat",
-        "url": "https://github.com/boykopovar/AnyPS5/discussions/19269",
-        "author": "al3w0f205",
-        "date": "2026-11-13T01:11:39Z"
-      }
-    ]
+    "media": []
   },
   {
     "number": 19297,
@@ -27245,5 +27291,342 @@
       }
     ],
     "media": []
+  },
+  {
+    "number": 19621,
+    "title": "Baldur’s Gate 3 (PPSA14002)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19621",
+    "titleIds": [
+      "PPSA14002",
+      "PPSA18463"
+    ],
+    "created": "2026-11-13T16:26:57Z",
+    "updated": "2026-11-13T16:50:02Z",
+    "comments": 2,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19621",
+        "discussion": 19621,
+        "author": "birdmarty",
+        "date": "2026-11-13T16:26:57Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": "windows",
+        "gpu": "AMD Radeon RX 6800",
+        "gpuVendor": "AMD",
+        "build": "8de3dc81409b008b6f28e36c428e49d7bd9ac942",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.000.000",
+        "shown": "Last screen seen: the new-game loading screen immediately after difficulty selection. The game never reaches character creation or gameplay.\n\nProgression and frame rate (cold cache, first run): - Boot/splash and EULA: locked 60 FPS (p50 16.68 ms, 1,429 presents). First draw at 4.96 s, first present at 9.34 s. - ~4-minute stall at 100% loading: two consecutive frames took 127.8 s and 104.4 s, >95% of it inside Vulkan.ComputePipeline (121.5 s / 102.4 s) in Driver.Packet.dispatch while the AMD 26.10.1 shader compiler compiled compute shaders. Ambient audio kept playing during the freeze (audio threads are independent of the graphics queue worker). - Loading circle afterwards: ~1.4–1.6 FPS (p50 623–741 ms) during heavy asset loading (Vulkan.GraphicsPipeline.create ~17.6 s per 30 s window, 31–79 GB of Graphics.Copy.bytes per 30 s). - Main menu: settles at ~5.7–6.8 FPS (p50 91–92 ms). Overall run: 2,755 frames at 4.285 average FPS. - Warm cache: 500–604 pipelines/modules (120–157 MiB) replay from pipelines.journal in ~823 ms, so the compile stall is skipped and the menu is reached quickly — but warm runs then hit the sceHttp2SendRequestAsync abort unless user data is deleted first.\n\nWhat works: - Picture: correct rendering through EULA, main menu, difficulty select and \"Press X to Continue\". - Audio: menu/ambient audio plays, including during the shader-compile stall. - Input: DualSense navigation works through all menus.\n\nWhat is missing: - No gameplay: every new-game attempt crashes during world load. - Warm boots abort at startup on the unimplemented sceHttp2SendRequestAsync function unless user data is wiped. - Shader telemetry: 1,045 shaders compiled, 1 failed (image heap capacity), 0 unsupported shaders/image formats. Non-fatal warnings: AkMotion.prx fails to load (Windows loader error 126), trophy/UDS aggregation warnings (uds00.ucp), and temp0\\Logs creation failures (0x80020002).\n\nHighest state reached: Menus (crashes on the transition to Ingame).",
+        "blockers": [],
+        "blockerText": "Current stopping point (after the local heap-capacity patch below):\r\nFATAL: unhandled exception 0xc0000005 on thread 32848 'WT/Low/WT_4'\r\n— immediately after difficulty selection, during new-game world initialization.\r\n\r\nThree main crashes encountered, in order:\r\n\r\n1) Warm-run HLE abort — every warm launch (thread 31124):\r\n[libc] unhandled exception 'St13runtime_error' thrown from 00007ff91b231798\r\nterminate called after throwing an instance of 'std::runtime_error'\r\n  what():  sceHttp2SendRequestAsync not implemented\r\nFATAL: abort() (SIGABRT) on thread 31124\r\n\r\nCause: the libSceHttp2 HLE stub throws std::runtime_error -> std::terminate -> SIGABRT. It only fires on warm runs: on a true first boot BG3 creates save dirs/config/EULA state and skips online telemetry/patch checks; once local user data exists, the game's background REST thread calls sceHttp2SendRequestAsync at startup. A warm shader cache also removes the early compile stall, letting the network thread reach the call sooner.\r\nWorkaround: delete download0 folder before each launch (forces the first-boot path).\r\n\r\n2) Shader recompiler image heap overflow -> unprepared-pipeline crash:\r\nShaderRecompiler::Recompile: shader image heap capacity exceeded\r\n[Shaders/ShaderRegistry.cpp:1894 operator()] Shader 0x2ed34ae00 snapshot=0x13c849325f0 could not be prepared after r... (log truncates mid-line, no what()/SIGABRT)\r\n\r\nCause: BindingAllocator.cpp:151 rejects stage-0 shaders whose expanded image descriptor groups exceed RuntimeAbi::SampledHeapCapacity / StorageHeapCapacity (64u). BG3's dynamic storage images expand to StorageMipSlots=16 slots each plus multiple runtime image modes per resource, overflowing the 64-slot heaps. Hit on adjacent shaders 0x2ed34ae00, 0x2ed350000 and 0x2ed34d000 across runs (warm cache shifts which one fails first). Failed shaders are never written to the disk cache, so this is a permanent, deterministic cache miss; binding/dispatching the missing pipeline then kills the process with a na"
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/cc0ace6a-1105-4e51-8a16-061f67e8273b",
+        "alt": "eula",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19621#discussioncomment-19594755",
+        "author": "birdmarty",
+        "date": "2026-11-13T16:27:34Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/57b87c74-f0e1-4b19-8c14-59eebc85ae9a",
+        "alt": "main-menu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19621#discussioncomment-19594755",
+        "author": "birdmarty",
+        "date": "2026-11-13T16:27:34Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/8e09f104-3a0f-4d76-a1ed-7bdf428e0ebb",
+        "alt": "select_difficulty",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19621#discussioncomment-19594755",
+        "author": "birdmarty",
+        "date": "2026-11-13T16:27:34Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/0486a833-0cfb-4fac-95f2-1623715fce09",
+        "alt": "Untitled",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19621#discussioncomment-19594755",
+        "author": "birdmarty",
+        "date": "2026-11-13T16:27:34Z"
+      }
+    ]
+  },
+  {
+    "number": 19642,
+    "title": "Achilles Legends Untold (PPSA16626)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19642",
+    "titleIds": [
+      "PPSA16626"
+    ],
+    "created": "2026-11-13T17:25:28Z",
+    "updated": "2026-11-13T17:27:01Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19642",
+        "discussion": 19642,
+        "author": "birdmarty",
+        "date": "2026-11-13T17:25:28Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "AMD Radeon RX 6800",
+        "gpuVendor": "AMD",
+        "build": "8de3dc81409b008b6f28e36c428e49d7bd9ac942",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.014.000",
+        "shown": "Game: Achilles: Legends Untold, PPSA16626, content version 01.014.000. Last screen seen: active gameplay, then saved and exited to the main menu and closed the window cleanly.\n\nProgression: - Cold boot: first draw 15.7 s, first present 20.4 s. Main menu reached after a shader-compilation period: 13,963 shaders compiled this run vs only 195 cache hits (effectively cold cache), ~126.7 s total compile time, 30 slow compiles; one 10 s window wrote 1,886 cache entries / 1,206 MiB to disk. - New game starts without any issue. - Cutscenes play but at very low FPS (Bink video; one \"Bink: Mismatched number of tracks opened.\" warning in the log). - Gameplay: semi-playable. Movement, combat and menus all work; saving and exiting to the main menu work. - The only gameplay problem: every ~20-30 s the game freezes for ~10 s, apparently when streaming in new areas. Those stalls eat a huge share of wall time (~30 freezes x ~10 s out of an 818 s session) while being <1% of frames.\n\nFrame rate (818 s run, 10,656 presents): - Average 13.43 FPS. Median frame 61.9 ms (~16 FPS), p90 91.0 ms (~11 FPS), p99 157.4 ms (~6.4 FPS). The multi-second freezes are too rare to move p99 but drag the average down.\n\nWhat works: picture through boot / menu / cutscenes / gameplay; input fully playable; saving and clean exit; no missing HLE functions (report missing.functions = []), 0 failed shaders, no unsupported image formats, StorageBuffer write/atomic descriptors accepted (1236 / 14). What is missing: smooth frame pacing (recurring ~10 s freezes, see Current blocker) and acceptable cutscene FPS.\n\nHighest state reached: Ingame / semi-playable (save + exit verified).",
+        "blockers": [],
+        "blockerText": "No crash — the title runs, saves and exits. The blocker is a recurring ~10 s freeze every 20-30 s during gameplay. Two mechanisms are visible in profile_bench.log:\r\n\r\n1) GPU fence-wait timeouts (most likely cause of the 10 s freezes):\r\n[gpu] queue 0x20 WAIT_REG_MEM at 0x10214dbee0 timed out after 1000ms (function 3 ref 0x1 mask ...\r\n[gpu]   ... write generation 978405 seen 978403, queue 0 dormant 0, completions pending 0, label due 0\r\n[gpu]   preceding packet SET_SH_REG 00000240 2020cb00 c47000000 0007c007 a1b00fac 0000001f 00700000 006b0000\r\n[gpu]   preceding packet RELEASE_MEM 06000528 600100000 7f644ca8 00000020 00000000 00000000\r\nRepeated timeout clusters at write generations 2627801 (seen 2627795), 3478850 (seen 3478850), 5688805 (seen 5688802).\r\n\r\nCause: a GPU sync point (WAIT_REG_MEM following RELEASE_MEM — a streaming/completion fence) is not satisfied within the 1000 ms timeout and gets retried. The observed write generation lags the target by 2-6 while the diagnostics say \"completions pending 0, queue dormant 0\" — the emulator believes nothing is in flight, yet the label hasn't landed. That points at a missed/late label write or completion handling, not real GPU work. In one cluster the target generation had ALREADY been seen (3478850 == 3478850) and the wait still timed out, which suggests the wait's compare/mask handling may also be involved. If the wait is retried in 1 s chunks ~10 times before it passes, that reproduces the observed ~10 s freezes exactly, and the 20-30 s cadence matches area-streaming sync points.\r\n\r\n2) Shaders deferred to first use (cold-boot delay + some in-game hitching):\r\n[Shaders/ShaderRegistry.cpp:1324 PlanRegistered] Shader 0x... has unsupported registered shader type 8; it is not prepared at registration   (repeated throughout the log)\r\n[Shaders/ShaderRegistry.cpp:1330 operator()] Shader 0x... could not be prepared at registration (its program address is not in the shader registers); preparing it when it is used\r\n[Shaders/Shade"
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/2c53b2f7-0787-4dfe-a2c0-d07ec1259947",
+        "alt": "mainmenu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19642#discussioncomment-19596045",
+        "author": "birdmarty",
+        "date": "2026-11-13T17:27:01Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/d28164cc-deb2-48ca-a58d-ee612b3d02d6",
+        "alt": "cutscene",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19642#discussioncomment-19596045",
+        "author": "birdmarty",
+        "date": "2026-11-13T17:27:01Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/5e597f29-bed5-4929-aca6-2f1d3b170c2b",
+        "alt": "lol",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19642#discussioncomment-19596045",
+        "author": "birdmarty",
+        "date": "2026-11-13T17:27:01Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/d95e51a1-0dee-4aa7-b7c3-15e81df0b989",
+        "alt": "ingame",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19642#discussioncomment-19596045",
+        "author": "birdmarty",
+        "date": "2026-11-13T17:27:01Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/e917324f-0a2a-4752-a3aa-b38bb91d6f1c",
+        "alt": "ingame2",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19642#discussioncomment-19596045",
+        "author": "birdmarty",
+        "date": "2026-11-13T17:27:01Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/e7e4829b-e6cd-4028-b89f-da138d392085",
+        "alt": "ingame3",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19642#discussioncomment-19596045",
+        "author": "birdmarty",
+        "date": "2026-11-13T17:27:01Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/25a30814-37cb-47c8-bfd9-b1b9056d71aa",
+        "alt": "kitty!",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19642#discussioncomment-19596045",
+        "author": "birdmarty",
+        "date": "2026-11-13T17:27:01Z"
+      }
+    ]
+  },
+  {
+    "number": 19679,
+    "title": "Clair Obscur: Expedition 33 (PPSA17599)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+    "titleIds": [
+      "PPSA17599"
+    ],
+    "created": "2026-11-13T19:41:26Z",
+    "updated": "2026-11-13T19:41:26Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+        "discussion": 19679,
+        "author": "birdmarty",
+        "date": "2026-11-13T19:41:26Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "AMD Radeon RX 6800",
+        "gpuVendor": "AMD",
+        "build": "8de3dc81409b008b6f28e36c428e49d7bd9ac942",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.500.300",
+        "shown": "Last screen seen: Opening cutscene in Lumière (dialogue between Gustave and Maelle) before the runtime aborted on a Vulkan device memory allocation failure (VK_ERROR_OUT_OF_DEVICE_MEMORY).\n\nProgression: - Cold/warm boot: first draw 3.845 s, first present 4.689 s. Main menu loads cleanly. On this warm-cache run, 88 shaders were compiled (14.113 ms total compile time, 0 slow compiles) with 3,115 shader disk-cache hits. - New Game start is timing-sensitive: - Selecting New Game immediately after reaching the main menu crashes right after creating/opening /savedata0/ue4savegame.dpx.sav (0xc0000005 null-pointer read on FAsyncLoadingThread). - Waiting ~10 minutes on the main menu before selecting New Game bypasses the async-loading crash and enters the loading screen. - Loading screen: extremely slow progression. Frame times spike into multi-second stalls (p99 2,920.346 ms), with the screen remaining black most of the time and only updating roughly once every ~30 seconds. - Opening cutscene / In-engine rendering: unplayable. - Output stays black the vast majority of the time. - Intermittent severely deformed frames appear, featuring a large black rectangle obscuring most of the frame surrounded by blocky, colorful macro-block artifacts, while UI subtitles (Gustave) render cleanly on top (0.87 FPS on the window counter). - Very rarely (<1 frame per minute), an intact, properly rendered frame is presented (e.g., Maelle in Lumière with subtitles at 0.67 FPS on the window counter). - The session ran for 894.105 s (~14 min 54 s) total before aborting on a compute shader vkAllocateMemory failure (Vulkan result -2).\n\nFrame rate (894.105 s total run / 888.289 s FPS window, 3,231 presents): - Average 3.636 FPS overall (heavily inflated by the ~10-minute main menu idle). Median frame (p50) 146.957 ms (~6.8 FPS), p90 650.339 ms (~1.5 FPS), p99 2,920.346 ms (~0.34 FPS). Once loading and the opening cutscene begin, live presentation drops to ~0.67–0.87 FPS, with valid non-black frames appearing less than once per minute.\n\nWhat works: boot and main menu rendering/navigation; save file creation (/savedata0/ue4savegame.dpx.sav); UI/subtitle rendering and occasional clean 3D cutscene frames; shader compilation and disk caching (shaders.failed = 0, unsupported = [], 0 slow compiles); no missing HLE functions (missing.functions = []); all 34 image formats accepted; all descriptor types accepted (StorageBuffer write/atomic 3,435 / 1,103; StorageImage write/atomic 14,243 / 876).\n\nWhat is missing: device-local VRAM budget management and texture/storage-image cache eviction (prevents heap exhaustion and the fatal VK_ERROR_OUT_OF_DEVICE_MEMORY crash), FAsyncLoadingThread synchronization when starting a New Game immediately without a menu wait, and uncorrupted/consistent frame rendering past the main menu.\n\nHighest state reached: In game (opening cutscene reached after a ~10 min main menu wait; unplayable at <1 FPS with severe graphical corruption before VRAM OOM crash).\n\n<img width=\"1482\" height=\"863\" alt=\"main_menu\" src=\"https://github.com/user-attachments/assets/1dba324e-ac21-407f-ba45-d4b404155e84\" /> <img width=\"1482\" height=\"862\" alt=\"cutscene\" src=\"https://github.com/user-attachments/assets/975c152e-9f8f-4d1f-8b71-713353b67f75\" /> <img width=\"1476\" height=\"863\" alt=\"deformed2\" src=\"https://github.com/user-attachments/assets/6744de81-dbfa-4c6a-8657-2441bbf0e0d2\" /> <img width=\"1474\" height=\"861\" alt=\"deformed3\" src=\"https://github.com/user-attachments/assets/abdc6d17-c3a2-4bbb-b57b-d8a0876178ef\" /> <img width=\"1483\" height=\"856\" alt=\"diformed\" src=\"https://github.com/user-attachments/assets/5dad5f82-c312-44b3-a222-59d054b63c5e\" /> <img width=\"1476\" height=\"866\" alt=\"occasional\" src=\"https://github.com/user-attachments/assets/b8a6d418-f744-4a4a-a831-9b012ca35180\" /> <img width=\"1482\" height=\"853\" alt=\"single\" src=\"https://github.com/user-attachments/assets/a4f731a0-df35-4999-bf47-72e46916207c\" />",
+        "blockers": [],
+        "blockerText": "Two distinct crashes occur depending on how long the game sits on the main menu before starting a New Game:\r\n\r\n1. Primary blocker (after ~10 min menu idle): Device-local VRAM exhaustion (`VK_ERROR_OUT_OF_DEVICE_MEMORY` / `Vulkan result -2`) and failed texture cache eviction during cutscene rendering:\r\n```text\r\n[gpu] device buffer: device-local heap 1 uses 13783 of its 13783 MiB budget, 75497472 bytes placed in host memory type 1; 64 such allocations, 3507 MiB\r\n[gpu] texture caches released 0 MiB of the 72 MiB asked for: 0 sampled entries, 0 storage images (cache or device busy, skipped), 0 with pending results kept\r\n[bufferpool] vkAllocateMemory device buffer recovered: allocation=268435456 reclaimed=1054789888 released=0 initialResult=-2 attempts=2\r\n[videoout] presentation failed: compute shader 0x15c10bf700: AGC graphics: vkAllocateMemory device buffer: allocation=54525952 memoryType=1 reclaimed=0 released=0 initialResult=-2 attempts=1; heap 0 14290/14777 MiB; heap 1 13784/13784 MiB: Vulkan result -2; DISPATCH_INDIRECT on queue 0x0, arguments at 0x1e411a0000, driver path gpu-side, read-ahead none\r\n[gpu] driver failure: compute shader 0x15c10bf700: AGC graphics: vkAllocateMemory device buffer: allocation=54525952 memoryType=1 reclaimed=0 released=0 initialResult=-2 attempts=1; heap 0 14290/14777 MiB; heap 1 13784/13784 MiB: Vulkan result -2; DISPATCH_INDIRECT on queue 0x0, arguments at 0x1e411a0000, driver path gpu-side, read-ahead none\r\nterminate called after throwing an instance of 'std::runtime_error'\r\n  what():  compute shader 0x15c10bf700: AGC graphics: vkAllocateMemory device buffer: allocation=54525952 memoryType=1 reclaimed=0 released=0 initialResult=-2 attempts=1; heap 0 14290/14777 MiB; heap 1 13784/13784 MiB: Vulkan result -2; DISPATCH_INDIRECT on queue 0x0, arguments at 0x1e411a0000, driver path gpu-side, read-ahead none"
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/1dba324e-ac21-407f-ba45-d4b404155e84",
+        "alt": "main_menu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+        "author": "birdmarty",
+        "date": "2026-11-13T19:41:26Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/975c152e-9f8f-4d1f-8b71-713353b67f75",
+        "alt": "cutscene",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+        "author": "birdmarty",
+        "date": "2026-11-13T19:41:26Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/6744de81-dbfa-4c6a-8657-2441bbf0e0d2",
+        "alt": "deformed2",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+        "author": "birdmarty",
+        "date": "2026-11-13T19:41:26Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/abdc6d17-c3a2-4bbb-b57b-d8a0876178ef",
+        "alt": "deformed3",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+        "author": "birdmarty",
+        "date": "2026-11-13T19:41:26Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/5dad5f82-c312-44b3-a222-59d054b63c5e",
+        "alt": "diformed",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+        "author": "birdmarty",
+        "date": "2026-11-13T19:41:26Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/b8a6d418-f744-4a4a-a831-9b012ca35180",
+        "alt": "occasional",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+        "author": "birdmarty",
+        "date": "2026-11-13T19:41:26Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/a4f731a0-df35-4999-bf47-72e46916207c",
+        "alt": "single",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19679",
+        "author": "birdmarty",
+        "date": "2026-11-13T19:41:26Z"
+      }
+    ]
+  },
+  {
+    "number": 19684,
+    "title": "Cult of the Lamb (PPSA06465)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19684",
+    "titleIds": [
+      "PPSA06465"
+    ],
+    "created": "2026-11-13T19:51:10Z",
+    "updated": "2026-11-13T19:51:10Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19684",
+        "discussion": 19684,
+        "author": "root-over",
+        "date": "2026-11-13T19:51:10Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": null,
+        "gpuVendor": "AMD",
+        "build": "main at 79e407ded7, no local changes.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.023",
+        "shown": "A Unity (IL2CPP) title. It reaches the title screen (\"Press Any Button to Start\"), the intro cutscene, and gameplay through the first dungeon. A 225 s session was played with no visible rendering, audio or input problems, and the window was closed normally.\n\nanyps5-report.json of that session: 4614 frames presented, 20.5 FPS average (frame time p50 39.9 ms, p90 134.1 ms, p99 152.9 ms) on this integrated GPU, no missing functions, 214 shaders compiled and 0 failed (first run), clean exit. The process peaked at 3.35 GiB resident and stayed flat after the first dungeon loaded.\n\nRoutine log lines only:\n\n- [exception] guest context signal=0x1e ... lines (about 300 in 90 s), all at the same two rip values; the title keeps running through them.\n- One host import falls back to copies: [gpu] host import of 0x...+0x... failed at vkAllocateMemory (-13); falling back to copies, requested by map.\n- The host import budget fills at 586 MiB; by the end of the session 819269 imports had been refused (mostly access and build requests). Not measured whether this causes the slow p90 frames.",
+        "blockers": [],
+        "blockerText": "None seen. Saving, later dungeons and the cult management loop beyond the first visit were not tested specifically."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 19714,
+    "title": "Prince of Persia: The Lost Crown (PPSA10067)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19714",
+    "titleIds": [
+      "PPSA10067"
+    ],
+    "created": "2026-11-13T21:18:00Z",
+    "updated": "2026-11-13T21:18:00Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19714",
+        "discussion": 19714,
+        "author": "root-over",
+        "date": "2026-11-13T21:18:00Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "linux",
+        "gpu": null,
+        "gpuVendor": "AMD",
+        "build": "main at 79e407ded7, no local changes.",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.004.001",
+        "shown": "A Unity (IL2CPP) title with Wwise audio. It reaches the main menu (Start Game, Options, News, Ubisoft Connect, Credits, Stats), the save slot screen, the opening cutscene with subtitles (\"Persian soldiers defended the land, no matter the cost.\", \"One of them would become a legend.\") and gameplay in the first area. An 8-minute session was played with no visible rendering, audio or input problems, and the window was closed normally. Ubisoft Connect shows as offline.\n\nanyps5-report.json of that session: 488 s, 5732 frames presented, 11.8 FPS average (frame time p50 75.1 ms, p90 258.7 ms, p99 630.7 ms) on this integrated GPU, no missing functions, clean exit. A separate 120 s run that stayed on the menus averaged 25.2 FPS. The process peaked at 5.2 GiB resident.\n\nRoutine log lines only:\n\n- [exception] guest context signal=0x1e ... lines, as in other Unity titles; the title keeps running through them.\n- One host import falls back to copies: [gpu] host import of 0x...+0x... failed at vkAllocateMemory (-13); falling back to copies, requested by map.\n- The host import budget fills at 586 MiB; by the end of the session 1710905 imports had been refused (mostly build and access requests). Not measured whether this causes the slow p90 and p99 frames.",
+        "blockers": [],
+        "blockerText": "None seen. Saving and later areas were not tested specifically."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 19851,
+    "title": "The Quarry (PPSA05813)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19851",
+    "titleIds": [
+      "PPSA05813"
+    ],
+    "created": "2026-11-14T03:08:41Z",
+    "updated": "2026-11-14T03:14:11Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19851",
+        "discussion": 19851,
+        "author": "lgqdaxia",
+        "date": "2026-11-14T03:08:41Z",
+        "edited": "2026-11-14T03:14:11Z",
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 3080 Laptop",
+        "gpuVendor": "NVIDIA",
+        "build": "The recorded scene uses the [gameplay integration at 55909a18897d](https://github.com/lgqdaxia/AnyPS5/tree/55909a18897d1a5ea84886a3ba562a0fa54ce8f2), based on main 813d4dbbf998. The corrected replay SDK adds the runtime formatted-read fix at 9f5ad4dafc93; the standalone submis…",
+        "buildKind": "patched",
+        "prs": [],
+        "version": "01.000.007",
+        "shown": "A character's backpack is displaced and deformed when an RGB32_FLOAT buffer read returns (X, 0, 0) instead of (X, Y, Z). The completed formatted-read fix restores its position and shape. The corrected replay completes both frames and 94 submissions, with zero unfinished work, pacing timeouts or VUIDs.\n\n![PPSA05813 backpack before and after the formatted-read correction](https://github.com/user-attachments/assets/6745c2e2-b190-467a-a5f0-0a5c2a3bbda7)",
+        "blockers": [
+          19852,
+          14439,
+          14944,
+          12316,
+          16413,
+          18937
+        ],
+        "blockerText": "- #14439 tracks the truncated formatted read. #14944 carries the earlier static fix; the [complete branch](https://github.com/lgqdaxia/AnyPS5/tree/codex/fix-srt-zero-read-extents) also handles offsets that are zero through runtime SRT fields. The complete replacement is now [#19852](https://github.com/boykopovar/AnyPS5/pull/19852).\n- The recorded gameplay integration also contains the vertex-index provenance guard from #12316 and the legacy push-budget fix from #16413. These are integration prerequisites for this evidence, not dependencies of the standalone formatted-read PR.\n- The NVIDIA depth workaround from #18937 is now merged and remains opt-in. The recorded configuration enables `APS5_READONLY_DEPTH_BOUNDS_COMPARE=1`.\n- A later native run with shader caching disabled stops in `FAsyncLoadingThread`: a `CineCameraComponentSMG` export \"does not have all load flags\". That native loading observation remains under investigation."
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/6745c2e2-b190-467a-a5f0-0a5c2a3bbda7",
+        "alt": "PPSA05813 backpack before and after the formatted-read correction",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19851",
+        "author": "lgqdaxia",
+        "date": "2026-11-14T03:08:41Z"
+      }
+    ]
   }
 ]

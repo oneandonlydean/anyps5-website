@@ -611,9 +611,9 @@
     "number": 3965,
     "kind": "pr",
     "title": "fix(windows): enter guest startup on an arena-backed main stack",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/3965",
-    "closedAt": null
+    "closedAt": "2026-11-14T03:20:23Z"
   },
   "4012": {
     "number": 4012,
@@ -3611,9 +3611,9 @@
     "number": 9893,
     "kind": "pr",
     "title": "feat(agc): write RELEASE_MEM DATA_SEL 4 for PS4 guests as an 800 MHz count",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9893",
-    "closedAt": null
+    "closedAt": "2026-11-14T03:35:09Z"
   },
   "9895": {
     "number": 9895,
@@ -3739,9 +3739,9 @@
     "number": 9999,
     "kind": "pr",
     "title": "fix(agc): view cleared surfaces without flushing handed-over results",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9999",
-    "closedAt": null
+    "closedAt": "2026-11-14T03:35:44Z"
   },
   "10018": {
     "number": 10018,
@@ -4215,13 +4215,21 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/12208",
     "closedAt": "2026-10-29T20:52:05Z"
   },
+  "12316": {
+    "number": 12316,
+    "kind": "pr",
+    "title": "fix(shader): prove embedded vertex-fetch index provenance",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/12316",
+    "closedAt": null
+  },
   "12458": {
     "number": 12458,
     "kind": "pr",
     "title": "fix(shader): leave pixel helpers out of EXEC values only where ballots skip them",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/12458",
-    "closedAt": null
+    "closedAt": "2026-11-14T03:44:00Z"
   },
   "12662": {
     "number": 12662,
@@ -4419,17 +4427,17 @@
     "number": 14168,
     "kind": "issue",
     "title": "Marvel's Spider-Man Remastered (PPSA01467): a compute shader's waterfall call through a 16-byte table record is not statically resolvable",
-    "state": "open",
+    "state": "closed",
     "url": "https://github.com/boykopovar/AnyPS5/issues/14168",
-    "closedAt": null
+    "closedAt": "2026-11-14T03:52:07Z"
   },
   "14296": {
     "number": 14296,
     "kind": "pr",
     "title": "fix(shader): link table calls whose descriptor comes from another buffer",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/14296",
-    "closedAt": null
+    "closedAt": "2026-11-14T03:52:06Z"
   },
   "14298": {
     "number": 14298,
@@ -4463,6 +4471,22 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/14379",
     "closedAt": "2026-11-06T02:48:15Z"
   },
+  "14439": {
+    "number": 14439,
+    "kind": "issue",
+    "title": "Stride-zero OOB_SELECT=2 formatted SSBO reads truncate the Y/Z components",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/issues/14439",
+    "closedAt": null
+  },
+  "14861": {
+    "number": 14861,
+    "kind": "issue",
+    "title": "AGC graphics: the depth target's sample count differs from the rasterizer's - MAIDEN (Resident Evil Village Demo) (PPSA01859)",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/issues/14861",
+    "closedAt": null
+  },
   "14870": {
     "number": 14870,
     "kind": "pr",
@@ -4470,6 +4494,14 @@
     "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/14870",
     "closedAt": "2026-11-08T18:07:17Z"
+  },
+  "14944": {
+    "number": 14944,
+    "kind": "pr",
+    "title": "fix(agc): preserve proven base formatted buffer read extents",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/14944",
+    "closedAt": null
   },
   "15169": {
     "number": 15169,
@@ -4567,6 +4599,14 @@
     "url": "https://github.com/boykopovar/AnyPS5/pull/16352",
     "closedAt": "2026-11-12T13:34:14Z"
   },
+  "16413": {
+    "number": 16413,
+    "kind": "pr",
+    "title": "fix(agc): keep legacy graphics push data inside its block",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/16413",
+    "closedAt": null
+  },
   "16437": {
     "number": 16437,
     "kind": "pr",
@@ -4627,17 +4667,17 @@
     "number": 17570,
     "kind": "pr",
     "title": "fix(libSceHttp2): return DNS lookup errors",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/17570",
-    "closedAt": null
+    "closedAt": "2026-11-13T10:17:19Z"
   },
   "17863": {
     "number": 17863,
     "kind": "pr",
     "title": "perf(shader): bound image table keys from findLSB, induction and unsigned clamps",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/17863",
-    "closedAt": null
+    "closedAt": "2026-11-14T04:20:36Z"
   },
   "17880": {
     "number": 17880,
@@ -4659,9 +4699,9 @@
     "number": 18037,
     "kind": "pr",
     "title": "perf(agc): reuse read-only guest buffer uploads",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/18037",
-    "closedAt": null
+    "closedAt": "2026-11-14T04:23:49Z"
   },
   "18086": {
     "number": 18086,
@@ -4739,16 +4779,40 @@
     "number": 18207,
     "kind": "pr",
     "title": "feat(libSceMsgDialog): export sceMsgDialogGetResult for PS4 titles",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/18207",
-    "closedAt": null
+    "closedAt": "2026-11-13T05:41:36Z"
   },
   "18319": {
     "number": 18319,
     "kind": "pr",
     "title": "perf(agc): keep unfolded indirect draws on the GPU",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/18319",
+    "closedAt": "2026-11-14T04:37:37Z"
+  },
+  "18937": {
+    "number": 18937,
+    "kind": "pr",
+    "title": "fix(agc): add an opt-in workaround for NVIDIA depth test errors",
+    "state": "merged",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/18937",
+    "closedAt": "2026-11-13T02:09:28Z"
+  },
+  "19617": {
+    "number": 19617,
+    "kind": "pr",
+    "title": "fix(agc): rasterize a single-sample MSAA_ENABLE scan into a multisampled depth target at the pixel center",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/19617",
+    "closedAt": null
+  },
+  "19852": {
+    "number": 19852,
+    "kind": "pr",
+    "title": "fix(shader): preserve runtime-proven formatted buffer read extents",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/19852",
     "closedAt": null
   }
 }
