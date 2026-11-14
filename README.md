@@ -115,7 +115,7 @@ Nothing on the site is maintained by hand. Each script below writes to `data/gen
 
 After a run, AnyPS5 writes `anyps5-report.json` (built by the runtime team on the `run-report-v1` branch). People sign in with GitHub on `/report` and upload it.
 
-- **The format** is upstream's. `src/lib/run-report/run-report.schema.json` is an unchanged copy of their `docs/run-report.schema.json` (version 1, frozen together), and `tests/fixtures/run-reports/` holds their 11 sample reports, which the tests run. To update the format, copy in the new schema and fixtures, then bump `SCHEMA_COMMIT` in `src/lib/run-report.ts`. The brief and replies are in `docs/proposals/`.
+- **The format** is upstream's. `src/lib/run-report/run-report.schema.json` is an unchanged copy of their `docs/run-report.schema.json` (version 1; upstream adds optional fields without bumping the version, so a new field upstream rejects every new report here until the copy is refreshed), and `tests/fixtures/run-reports/` holds their 11 sample reports, which the tests run. To update the format, copy in the new schema and fixtures, then bump `SCHEMA_COMMIT` in `src/lib/run-report.ts`. The brief and replies are in `docs/proposals/`.
 - **Checks:** the Worker validates each upload against the schema (at most 64 KiB), then:
   - refuses reports that contradict themselves (milestone order, stage, frame rate)
   - flags claims that contradict the source code, such as a "missing" function that is implemented. Flagged reports wait for a maintainer.

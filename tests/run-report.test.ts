@@ -38,6 +38,18 @@ describe("validateRunReport", () => {
     badId.game.titleId = "PPSA1234";
     expect(validateRunReport(badId).issues.join(" ")).toContain("game/titleId");
   });
+
+  it("accepts the optional fields upstream added to version 1 later (frame times, compile time)", () => {
+    const report = load("stop-none.json");
+    report.run.frameMs = { p50: 16.7, p90: 33.4, p99: 120.5 };
+    report.shaders.compileMs = 5321.5;
+    report.shaders.slowCompiles = 12;
+    expect(validateRunReport(report).issues).toEqual([]);
+    report.run.frameMs = null;
+    expect(validateRunReport(report).issues).toEqual([]);
+    report.run.frameMs = { p50: 16.7 };
+    expect(validateRunReport(report).issues.join(" ")).toContain("run/frameMs");
+  });
 });
 
 describe("checkReport", () => {

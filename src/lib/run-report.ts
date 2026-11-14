@@ -4,12 +4,13 @@ import type { StageOrNone } from "./stages";
 
 /**
  * The run report the AnyPS5 runtime writes after each run (anyps5-report.json). The schema is upstream's, copied
- * unchanged from docs/run-report.schema.json (version 1, frozen in commit ca194ef6 of the run-report-v1 branch), so the
+ * unchanged from docs/run-report.schema.json (version 1, as of commit 449a777d on main, which added the optional
+ * run.frameMs, shaders.compileMs and shaders.slowCompiles without changing the version), so the
  * Worker and the build accept exactly what the runtime writes. Every object in it is closed: a new field needs a new
  * copy of the schema. The validator is one that runs in Cloudflare Workers, where code generation isn't allowed.
  */
 
-export const SCHEMA_COMMIT = "ca194ef6d16ec5bbac957723aafcd143c1a74c34";
+export const SCHEMA_COMMIT = "449a777d480f2f6e71324e4401d538be621ff2e8";
 
 export type RunStage = "unknown" | "loads" | "starts" | "first-draw" | "presents";
 type Text = string | null;
@@ -37,6 +38,8 @@ export interface RunReport {
     framesPresented: number;
     averageFps: number | null;
     fpsWindowSeconds: number | null;
+    /** Frame-time percentiles in ms over the last 2,048 intervals; null with under two frames. Added after v1 shipped. */
+    frameMs?: { p50: number; p90: number; p99: number } | null;
     recovered: boolean;
     incomplete: boolean;
   };
@@ -47,6 +50,9 @@ export interface RunReport {
     compiled: number;
     failed: number;
     cacheHits?: number;
+    /** Total shader compile wall time in ms, and compiles over 100 ms; left out when shader coverage is off. */
+    compileMs?: number;
+    slowCompiles?: number;
     unsupported: { encoding: Text; opcode: Text; opcodeValue: number | null; modifiers: string[] | null; count: number }[];
     imageFormats: { format: number; name: Text; status: "accepted" | "rejected" | "unknown"; usage: string; count: number }[];
     descriptors: { type: string; status: "accepted" | "rejected" | "unknown"; usage: string; count: number }[];
