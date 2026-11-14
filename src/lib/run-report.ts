@@ -131,6 +131,16 @@ export function checkReport(report: RunReport, facts: UpstreamFacts, now = Date.
     const expected = framesPresented / fpsWindowSeconds;
     if (Math.abs(averageFps - expected) > Math.max(0.5, expected * 0.1)) errors.push("The average frame rate doesn't match the frames and the time measured.");
   }
+  // Frame-time percentiles come from the intervals between presented frames, so they need two frames, and rise.
+  const frameMs = report.run.frameMs;
+  if (frameMs) {
+    if (framesPresented < 2) errors.push("The report gives frame times for a run that presented fewer than two frames.");
+    if (frameMs.p50 > frameMs.p90 || frameMs.p90 > frameMs.p99) errors.push("The frame-time percentiles are out of order.");
+  }
+  // Compile time is only measured with shader coverage on, and slow compiles are some of the compiles.
+  const s = report.shaders;
+  if (!report.coverage.shaders && (s.compileMs !== undefined || s.slowCompiles !== undefined)) errors.push("The report gives shader compile times, but shaders weren't collected.");
+  if (s.slowCompiles !== undefined && s.slowCompiles > s.compiled + s.failed) errors.push("The report counts more slow shader compiles than compiles.");
 
   if (report.coverage.missing) {
     const implemented = report.missing.functions.filter((f) => facts.implemented(f.name) === true).map((f) => f.name);

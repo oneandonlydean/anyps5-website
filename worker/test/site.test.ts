@@ -132,6 +132,42 @@ it("serves a visible upload's whole report by id, and nothing that is flagged, h
   expect((await call(`/api/reports/${id}`)).status).toBe(404);
 });
 
+it("keeps a run recipe sent with its report and serves it with the report, secrets left out", async () => {
+  const tester = await signIn("tester", 42);
+  const report = fresh();
+  const recipe = (id: string) => ({
+    format: "anyps5-recipe",
+    version: 1,
+    generated: report.generated,
+    run: { id },
+    anyps5: { commit: report.anyps5.commit },
+    argv: ["anyps5", "--game", "My Game/eboot.elf", "--token=abc"],
+    environment: { ANYPS5_VSYNC: "0", ANYPS5_API_KEY: "secret" },
+    configFiles: ["pad.toml"],
+  });
+  const send = (r: unknown, rec: unknown) => {
+    const form = new FormData();
+    form.set("report", new Blob([JSON.stringify(r)], { type: "application/json" }), "anyps5-report.json");
+    form.set("recipe", new Blob([typeof rec === "string" ? rec : JSON.stringify(rec)], { type: "application/json" }), "anyps5-recipe.json");
+    return call("/api/reports", { method: "POST", body: form, cookie: tester });
+  };
+
+  const other = await send(report, recipe(runId()));
+  expect(other.status).toBe(400);
+  expect(await other.json()).toMatchObject({ error: "This run recipe isn't from this run.", badRecipe: true });
+  expect((await send(report, "not json")).status).toBe(400);
+
+  const ok = await send(report, recipe(report.run.id));
+  expect(ok.status).toBe(201);
+  const { id } = await ok.json<{ id: number }>();
+  const detail = await (await call(`/api/reports/${id}`)).json<{ recipe: { argv: string[]; environment: Record<string, string> } }>();
+  expect(detail.recipe.argv).toEqual(["anyps5", "--game", "My Game/eboot.elf", "--token=[redacted]"]);
+  expect(detail.recipe.environment).toEqual({ ANYPS5_VSYNC: "0" });
+  // A report sent without one has none.
+  const plain = await (await post("/api/reports", fresh(), tester)).json<{ id: number }>();
+  expect((await (await call(`/api/reports/${plain.id}`)).json<{ recipe: unknown }>()).recipe).toBeNull();
+});
+
 it("lets maintainers approve, hide and block, logs it, and keeps others out", async () => {
   const tester = await signIn("tester", 42);
   const mod = await signIn("MOD1", 7);

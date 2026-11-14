@@ -1,4 +1,5 @@
 import { benchRequired, benchStats, checkBench, MAX_BENCH_BYTES, readBench, type BenchStats } from "../../../src/lib/bench";
+import { checkRecipe, MAX_RECIPE_BYTES, validateRecipe, type RunRecipe } from "../../../src/lib/recipe";
 import { checkReport, MAX_REPORT_BYTES, SITE_STAGE, validateRunReport, type RunReport, type UpstreamFacts } from "../../../src/lib/run-report";
 import type { Env } from "../bot/env";
 import { currentAccount, isMaintainer } from "./auth";
@@ -48,8 +49,9 @@ const FORM_OVERHEAD = 16_384;
 /**
  * Takes a run report from a signed-in account: at most 64 KiB, valid against the run report schema, consistent, and
  * stored once per run. A report without a title ID needs `?titleId=` naming the game the uploader chose. The body is
- * the report as JSON, or a form with the report as `report` and its frame-time file (aps5-bench-….json.gz) as `bench`;
- * a run that presented frames for a minute needs the second, and the site's frame rate comes from it.
+ * the report as JSON, or a form with the report as `report`, its frame-time file (aps5-bench-….json.gz) as `bench` and
+ * its run recipe (anyps5-recipe.json) as `recipe`. A run that presented frames for a minute needs the frame-time file,
+ * and the site's frame rate comes from it; the recipe is optional and shows with the report.
  */
 export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>) => void): Promise<Response> {
   if (!sameOrigin(req)) return problem(403, "Cross-site request refused.");
@@ -57,7 +59,7 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   if (!account) return problem(401, "Sign in with GitHub to upload a report.");
   if (account.blocked) return problem(403, "This account can't upload reports.");
   const form = (req.headers.get("content-type") ?? "").toLowerCase().startsWith("multipart/form-data");
-  const limit = form ? MAX_REPORT_BYTES + MAX_BENCH_BYTES + FORM_OVERHEAD : MAX_REPORT_BYTES;
+  const limit = form ? MAX_REPORT_BYTES + MAX_BENCH_BYTES + MAX_RECIPE_BYTES + FORM_OVERHEAD : MAX_REPORT_BYTES;
   const tooBig = () => problem(413, form ? "A run report is at most 64 KB, and its frame-time file at most 8 MB." : "A run report is at most 64 KB.");
   if (Number(req.headers.get("content-length") ?? 0) > limit) return tooBig();
   const body = await readLimited(req, limit);
@@ -65,6 +67,7 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
 
   let bytes: Uint8Array = body;
   let benchBytes: Uint8Array | null = null;
+  let recipeBytes: Uint8Array | null = null;
   if (form) {
     let parts: FormData;
     try {
@@ -83,6 +86,8 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
     bytes = report;
     benchBytes = await part("bench");
     if (benchBytes && benchBytes.length > MAX_BENCH_BYTES) return problem(413, "A frame-time file is at most 8 MB.");
+    recipeBytes = await part("recipe");
+    if (recipeBytes && recipeBytes.length > MAX_RECIPE_BYTES) return problem(413, "A run recipe is at most 32 KB.");
   }
 
   let data: unknown;
@@ -114,6 +119,22 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
       },
       400,
     );
+  }
+
+  // How the run was started: optional, but when it's sent it must be a recipe from this run.
+  let recipe: RunRecipe | null = null;
+  if (recipeBytes?.length) {
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(recipeBytes));
+    } catch {
+      return json({ error: "The run recipe isn't JSON. Send the anyps5-recipe.json AnyPS5 wrote, or leave it out.", badRecipe: true }, 400);
+    }
+    const read = validateRecipe(parsed);
+    if (!read.recipe) return json({ error: "This isn't a valid AnyPS5 run recipe.", issues: read.issues, badRecipe: true }, 400);
+    const mismatch = checkRecipe(report, read.recipe);
+    if (mismatch.length) return json({ error: "This run recipe isn't from this run.", issues: mismatch, badRecipe: true }, 400);
+    recipe = read.recipe;
   }
 
   // A converted game without its metadata has no title ID; the uploader says which game it was.
@@ -159,9 +180,9 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   try {
     row = await db
     .prepare(
-      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name, stated_stage, bench, bench_digest, verified_by, verified_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
+      "INSERT INTO uploads (github_id, title_id, stage, commit_sha, report, digest, flags, status, created_at, run_id, title_chosen, title_name, stated_stage, bench, bench_digest, verified_by, verified_at, recipe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id",
     )
-    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName, stated, bench ? JSON.stringify(bench.stats) : null, bench?.digest ?? null, confirmedBy, confirmedBy ? nowSeconds() : null)
+    .bind(account.github_id, titleId, report.run.stage, report.anyps5.commit ?? "", stored, digest, JSON.stringify(flags), status, nowSeconds(), report.run.id, report.game.titleId ? 0 : 1, titleName, stated, bench ? JSON.stringify(bench.stats) : null, bench?.digest ?? null, confirmedBy, confirmedBy ? nowSeconds() : null, recipe ? JSON.stringify(recipe) : null)
     .first<number>("id");
   } catch (err) {
     // The same run or frame-time file sent twice at once: the second insert hits a unique index.
@@ -264,6 +285,7 @@ type Row = {
   stated_stage: string | null;
   bench: string | null;
   verified_by: string | null;
+  recipe: string | null;
 };
 
 function perf(bench: string | null): UploadPerf | null {
@@ -303,7 +325,7 @@ export function summarise(row: Row): UploadSummary {
   };
 }
 
-const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, u.stated_stage, u.bench, u.verified_by, a.login";
+const COLUMNS = "u.id, u.report, u.github_id, u.created_at, u.title_id, u.title_chosen, u.title_name, u.stated_stage, u.bench, u.verified_by, u.recipe, a.login";
 
 /** Everything the site build needs: visible uploads from accounts in good standing, and what maintainers hid. */
 export async function exportData(_req: Request, env: Env): Promise<Response> {
@@ -352,6 +374,7 @@ export async function reportDetail(_req: Request, env: Env, id: number): Promise
       at: new Date(row.created_at * 1000).toISOString(),
       report: JSON.parse(row.report),
       bench: row.bench ? JSON.parse(row.bench) : null,
+      recipe: row.recipe ? JSON.parse(row.recipe) : null,
     },
     200,
     { "cache-control": "public, max-age=300" },

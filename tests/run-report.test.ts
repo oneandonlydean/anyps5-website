@@ -53,6 +53,28 @@ describe("validateRunReport", () => {
 });
 
 describe("checkReport", () => {
+  it("refuses frame and compile times that contradict the run", () => {
+    const ok = report("stop-none.json");
+    ok.run.frameMs = { p50: 16.7, p90: 20, p99: 40 };
+    if (ok.run.framesPresented < 2) ok.run.frameMs = null;
+    expect(checkReport(ok, facts(), NOW).errors.filter((e) => /frame times|percentiles|compile/.test(e))).toEqual([]);
+    const few = report("zero-present.json");
+    few.run.frameMs = { p50: 16.7, p90: 20, p99: 40 };
+    expect(checkReport(few, facts(), NOW).errors).toContain("The report gives frame times for a run that presented fewer than two frames.");
+    const order = report("stop-none.json");
+    order.run.frameMs = { p50: 40, p90: 20, p99: 16 };
+    expect(checkReport(order, facts(), NOW).errors).toContain("The frame-time percentiles are out of order.");
+    const slow = report("stop-none.json");
+    slow.coverage.shaders = true;
+    slow.shaders.compileMs = 1000;
+    slow.shaders.slowCompiles = slow.shaders.compiled + slow.shaders.failed + 1;
+    expect(checkReport(slow, facts(), NOW).errors).toContain("The report counts more slow shader compiles than compiles.");
+    const uncovered = report("stop-none.json");
+    uncovered.coverage.shaders = false;
+    uncovered.shaders.compileMs = 1000;
+    expect(checkReport(uncovered, facts(), NOW).errors).toContain("The report gives shader compile times, but shaders weren't collected.");
+  });
+
   it("refuses what the schema can't express: milestone order, stage, frame rate", () => {
     const order = report("stop-crash.json");
     order.run.milestones.firstDraw = 0.1;

@@ -18,7 +18,8 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
     <p class="muted">
       When a game stops, AnyPS5 writes <code>anyps5-report.json</code> next to it: how far it got, what it was missing, and why it stopped. Drop it here and your
       result goes on the compatibility list. A run that showed frames for a minute or more also needs its frame-time file, so the site measures the frame rate
-      itself: start the game with <code>APS5_TRACE_SUMMARY_EVERY=30 APS5_TRACE_BENCH=1</code> and AnyPS5 writes <code>aps5-bench-….json.gz</code> as well. A new stage counts once {CONFIRMATIONS_NEEDED} people have seen it, or one upload and a Discussions report agree.
+      itself: start the game with <code>APS5_TRACE_SUMMARY_EVERY=30 APS5_TRACE_BENCH=1</code> and AnyPS5 writes <code>aps5-bench-….json.gz</code> as well. Add
+      <code>anyps5-recipe.json</code> too, and your report shows how the run was started, so others can repeat it. A new stage counts once {CONFIRMATIONS_NEEDED} people have seen it, or one upload and a Discussions report agree.
     </p>
   </div>
 
@@ -30,7 +31,7 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
     <input type="file" accept=".json,.gz,application/json,application/gzip" id="report-file" multiple data-file />
     <label for="report-file">
       <b>Choose anyps5-report.json</b>
-      <span class="muted">or drop it here, with its aps5-bench-….json.gz</span>
+      <span class="muted">or drop it here, with its aps5-bench-….json.gz and anyps5-recipe.json</span>
     </label>
     <div class="preview" data-preview hidden></div>
     <div class="bench" data-bench hidden>
@@ -46,6 +47,20 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
         >. It holds frame times and your hardware, no game data.
       </p>
       <div class="preview" data-bench-preview hidden></div>
+    </div>
+    <div class="bench" data-recipe hidden>
+      <input type="file" accept=".json,application/json" id="recipe-file" data-recipe-file />
+      <label for="recipe-file">
+        <b data-recipe-label>Add how it was started (optional)</b>
+        <span class="muted">anyps5-recipe.json, from the same run</span>
+      </label>
+      <p class="muted note">
+        AnyPS5 writes it next to the report: the command line, the <code>ANYPS5_</code> settings and the names of the config files the run used. It shows with your
+        report so others can repeat the run. AnyPS5 hides user names and paths, and the site leaves out anything named like a password or token. Check what's
+        shown below before you upload.
+      </p>
+      <div class="preview" data-recipe-preview hidden></div>
+      <button type="button" class="linkish" data-recipe-remove hidden>Leave it out</button>
     </div>
     <label class="pick" data-pick hidden>
       <span>This report doesn't say which game it was. Which game did you run? If it isn't on the list, type its title ID.</span>
@@ -71,6 +86,7 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
 
 <script>
   import { benchRequired, benchStats, checkBench, MAX_BENCH_BYTES, readBench } from "../lib/bench";
+  import { checkRecipe, commandLine, environmentLines, MAX_RECIPE_BYTES, validateRecipe } from "../lib/recipe";
 
   const root = document.querySelector<HTMLElement>("[data-upload]")!;
   const account = root.querySelector<HTMLElement>("[data-account]")!;
@@ -88,6 +104,11 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
   const benchInput = root.querySelector<HTMLInputElement>("[data-bench-file]")!;
   const benchLabel = root.querySelector<HTMLElement>("[data-bench-label]")!;
   const benchPreview = root.querySelector<HTMLElement>("[data-bench-preview]")!;
+  const recipeBox = root.querySelector<HTMLElement>("[data-recipe]")!;
+  const recipeInput = root.querySelector<HTMLInputElement>("[data-recipe-file]")!;
+  const recipeLabel = root.querySelector<HTMLElement>("[data-recipe-label]")!;
+  const recipePreview = root.querySelector<HTMLElement>("[data-recipe-preview]")!;
+  const recipeRemove = root.querySelector<HTMLButtonElement>("[data-recipe-remove]")!;
   const reachedValue = () => (reached.hidden ? "" : (reached.querySelector<HTMLInputElement>("input:checked")?.value ?? ""));
   // Every listed title ID, regional variants too: the list shows only each game's first.
   const listed = new Set<string>(JSON.parse(root.dataset.listed ?? "[]"));
@@ -103,6 +124,8 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
   // The frame-time file, once it has been read and fits the report.
   let bench: File | null = null;
   let benchNeeded = false;
+  // The run recipe as the site will keep it, once it has been read and fits the report.
+  let recipe: string | null = null;
 
   const el = (tag: string, text: string, className?: string) => {
     const node = document.createElement(tag);
@@ -148,25 +171,39 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
     .then(showAccount)
     .catch(() => showAccount({ signedIn: false, signInAvailable: false }));
 
-  // The frame-time file is named aps5-bench-….json.gz; anything else dropped with it is taken as the report.
+  // The frame-time file is named aps5-bench-….json.gz. The report and the recipe are both JSON, and are told apart by
+  // the format they declare, so a renamed file still lands in the right place; anything else is taken as the report.
   const isBench = (file: File) => /^aps5-bench-/i.test(file.name) || file.name.toLowerCase().endsWith(".gz");
-  async function chooseFiles(files: File[]) {
-    const report = files.find((f) => !isBench(f));
-    const frames = files.find(isBench);
-    if (report) await choose(report);
-    if (frames) {
-      if (!body) return result.replaceChildren(el("p", "Choose the run report first, then its frame-time file.", "bad"));
-      await chooseBench(frames);
+  async function isRecipe(file: File) {
+    if (/^anyps5-recipe/i.test(file.name)) return true;
+    if (file.size > MAX_RECIPE_BYTES) return false;
+    try {
+      return JSON.parse(await file.text())?.format === "anyps5-recipe";
+    } catch {
+      return false;
     }
+  }
+  async function chooseFiles(files: File[]) {
+    const frames = files.find(isBench);
+    const json = files.filter((f) => !isBench(f));
+    const recipes = await Promise.all(json.map(isRecipe));
+    const runRecipe = json.find((_, i) => recipes[i]);
+    const report = json.find((_, i) => !recipes[i]);
+    if (report) await choose(report);
+    if ((frames || runRecipe) && !body)
+      return result.replaceChildren(el("p", `Choose the run report first, then its ${frames ? "frame-time file" : "recipe"}.`, "bad"));
+    if (frames) await chooseBench(frames);
+    if (runRecipe) await chooseRecipe(runRecipe);
   }
 
   // A quick look in the browser first, so an obviously wrong file is caught before it is sent.
   async function choose(file: File | undefined) {
     result.replaceChildren();
-    preview.hidden = send.hidden = reached.hidden = pick.hidden = pickName.hidden = benchBox.hidden = benchPreview.hidden = true;
+    preview.hidden = send.hidden = reached.hidden = pick.hidden = pickName.hidden = benchBox.hidden = benchPreview.hidden = recipeBox.hidden = true;
     body = report = bench = null;
     benchInput.value = "";
     benchLabel.textContent = "Choose the frame-time file";
+    clearRecipe();
     if (!file) return;
     if (file.size > MAX) return result.append(el("p", "That file is too big for a run report (64 KB at most).", "bad"));
     const text = await file.text();
@@ -192,7 +229,51 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
     // Only a run that showed frames has frame times; one that did for a minute must send them.
     benchNeeded = benchRequired(report);
     benchBox.hidden = report.run?.stage !== "presents";
-    preview.hidden = send.hidden = false;
+    preview.hidden = send.hidden = recipeBox.hidden = false;
+  }
+
+  function clearRecipe() {
+    recipe = null;
+    recipeInput.value = "";
+    recipeLabel.textContent = "Add how it was started (optional)";
+    recipePreview.hidden = recipeRemove.hidden = true;
+  }
+
+  /** Reads the run recipe here as the site will, and shows exactly what will be published with the report. */
+  async function chooseRecipe(file: File | undefined) {
+    clearRecipe();
+    result.replaceChildren();
+    if (!file) return;
+    recipeLabel.textContent = file.name;
+    recipeRemove.hidden = false;
+    const bad = (text: string, issues: string[] = []) => {
+      recipePreview.replaceChildren(el("span", text, "bad"), ...issues.map((i) => el("span", i, "muted")));
+      recipePreview.hidden = false;
+    };
+    if (file.size > MAX_RECIPE_BYTES) return bad("That file is too big for a run recipe (32 KB at most).");
+    let data: unknown;
+    try {
+      data = JSON.parse(await file.text());
+    } catch {
+      return bad("That file isn't JSON. Choose the anyps5-recipe.json AnyPS5 wrote.");
+    }
+    const read = validateRecipe(data);
+    if (!read.recipe) return bad("That isn't a valid AnyPS5 run recipe.", read.issues);
+    let errors: string[];
+    try {
+      errors = checkRecipe(report, read.recipe);
+    } catch {
+      errors = [];
+    }
+    if (errors.length) return bad("This recipe isn't from this run.", errors);
+    const lines = [...environmentLines(read.recipe.environment), commandLine(read.recipe.argv)].filter(Boolean);
+    recipePreview.replaceChildren(
+      el("b", "Shown with your report:"),
+      el("pre", lines.join(" \\\n") || "(nothing: the recipe is empty)"),
+      ...(read.recipe.configFiles.length ? [el("span", `Config files: ${read.recipe.configFiles.join(", ")}`, "muted")] : []),
+    );
+    recipePreview.hidden = false;
+    recipe = JSON.stringify(read.recipe);
   }
 
   /** Reads the frame-time file here as the site will, and shows what it measures. */
@@ -232,6 +313,8 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
 
   input.addEventListener("change", () => chooseFiles([...(input.files ?? [])]));
   benchInput.addEventListener("change", () => chooseBench(benchInput.files?.[0]));
+  recipeInput.addEventListener("change", () => chooseRecipe(recipeInput.files?.[0]));
+  recipeRemove.addEventListener("click", clearRecipe);
   drop.addEventListener("dragover", (event) => {
     event.preventDefault();
     drop.classList.add("over");
@@ -272,6 +355,7 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
       const form = new FormData();
       form.set("report", new Blob([body], { type: "application/json" }), "anyps5-report.json");
       if (bench) form.set("bench", bench, bench.name);
+      if (recipe) form.set("recipe", new Blob([recipe], { type: "application/json" }), "anyps5-recipe.json");
       res = await fetch(`/api/reports${query.size ? `?${query}` : ""}`, { method: "POST", body: form });
     } catch {
       send.disabled = false;
@@ -297,8 +381,9 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
       link.href = `/compatibility?q=${encodeURIComponent(data.titleId)}`;
       if (typeof data.fps === "number") done.append(` Measured at ${data.fps.toFixed(1)} fps.`);
       result.append(done, link);
-      preview.hidden = send.hidden = pick.hidden = pickName.hidden = reached.hidden = benchBox.hidden = true;
+      preview.hidden = send.hidden = pick.hidden = pickName.hidden = reached.hidden = benchBox.hidden = recipeBox.hidden = true;
       input.value = benchInput.value = "";
+      clearRecipe();
       return;
     }
     result.append(el("p", data.error ?? "The upload didn't work. Try again.", "bad"));
@@ -306,6 +391,7 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
     if (data.needsName) pickName.hidden = false;
     if (data.needsGame) pick.hidden = false;
     if (data.needsBench) benchBox.hidden = false;
+    if (data.badRecipe) recipeBox.hidden = false;
     if (Array.isArray(data.issues)) {
       const list = document.createElement("ul");
       for (const issue of data.issues) list.append(el("li", issue));
@@ -346,7 +432,7 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
   .account :global(.note) {
     font-size: 0.82rem;
   }
-  .account :global(.linkish) {
+  .upload :global(.linkish) {
     padding: 0;
     border: 0;
     background: none;
@@ -441,6 +527,17 @@ const meaning = (stage: StageName) => STAGES.find((s) => s.name === stage)!.mean
     display: grid;
     gap: 2px;
     font-size: 0.9rem;
+  }
+  .preview :global(pre) {
+    margin: 4px 0;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
   .result :global(p) {
     margin: 0 0 6px;

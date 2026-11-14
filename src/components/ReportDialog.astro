@@ -55,6 +55,7 @@ const data = {
 
 <script>
   import type { BenchStats } from "../lib/bench";
+  import { commandLine, environmentLines, type RunRecipe } from "../lib/recipe";
   import type { RunReport } from "../lib/run-report";
   import type { Report } from "../lib/schema";
   import { stageSlug, type StageOrNone } from "../lib/stages";
@@ -77,6 +78,8 @@ const data = {
     report: RunReport;
     /** Measured from the run's frame-time file; null when it came without one. */
     bench: BenchStats | null;
+    /** How the run was started, when the uploader sent its anyps5-recipe.json. */
+    recipe?: RunRecipe | null;
   }
 
   const REPO = "https://github.com/boykopovar/AnyPS5";
@@ -256,6 +259,8 @@ const data = {
             stat("Compiled", number.format(s.compiled)),
             stat("Failed", number.format(s.failed)),
             s.cacheHits !== undefined ? stat("From the cache", number.format(s.cacheHits)) : null,
+            s.compileMs !== undefined ? stat("Compile time", seconds(s.compileMs / 1000), "all compiles together, on this machine") : null,
+            s.slowCompiles !== undefined ? stat("Slow compiles", number.format(s.slowCompiles), "over 100 ms each") : null,
           ),
         );
       if (r.coverage.unsupported) {
@@ -358,12 +363,22 @@ const data = {
     }
 
     function perfView(b: BenchStats | null | undefined, r: RunReport) {
-      if (!b)
-        return el(
+      if (!b) {
+        const note = el(
           "p",
           { className: "rd-faint" },
           r.run.stage === "presents" ? "Uploaded without its frame-time file, so the site has no frame rate for this run." : "This run showed no frames to measure.",
         );
+        // The runtime's own frame times, which the site can't check: shown, never counted.
+        const f = r.run.frameMs;
+        if (!f) return note;
+        return el(
+          "div",
+          {},
+          note,
+          el("div", { className: "rd-stats" }, stat("Frame time", `${f.p50.toFixed(1)} ms`, "median, as AnyPS5 reported it"), stat("90th percentile", `${f.p90.toFixed(1)} ms`), stat("99th percentile", `${f.p99.toFixed(1)} ms`)),
+        );
+      }
       const m = b.measured;
       const mib = b.host.memoryMiB;
       return el(
@@ -389,6 +404,28 @@ const data = {
           ["Not compared", b.comparable ? null : [b.profiled.length ? `Profiled with ${b.profiled.join(", ")}` : null, b.dirty ? "built from modified sources" : null].filter(Boolean).join("; ")],
           ["Settings", Object.keys(b.env).length ? el("span", { className: "mono rd-env" }, ...Object.entries(b.env).map(([k, v]) => el("span", {}, `${k}=${v}`))) : null],
         ]),
+      );
+    }
+
+    /** The command line and settings from the run recipe, as one shell snippet someone can copy to repeat the run. */
+    function recipeView(recipe: RunRecipe) {
+      const lines = [...environmentLines(recipe.environment), commandLine(recipe.argv)].filter(Boolean);
+      const copy = el("button", { type: "button", className: "rd-button" }, "Copy");
+      copy.addEventListener("click", () => {
+        navigator.clipboard?.writeText(lines.join(" \\\n")).then(
+          () => (copy.textContent = "Copied"),
+          () => (copy.textContent = "Couldn't copy"),
+        );
+      });
+      return el(
+        "div",
+        {},
+        lines.length ? el("pre", { className: "mono rd-recipe" }, lines.join(" \\\n")) : el("p", { className: "rd-faint" }, "The recipe is empty."),
+        facts([
+          ["Config files", recipe.configFiles.length ? recipe.configFiles.join(", ") : null],
+          ["Hidden", JSON.stringify(recipe).includes("[redacted]") ? "Values with a user name or path in them show as [redacted]." : null],
+        ]),
+        lines.length ? el("div", { className: "rd-actions" }, copy) : null,
       );
     }
 
@@ -462,6 +499,7 @@ const data = {
             ["Content ID", r.game.contentId ? el("span", { className: "mono" }, r.game.contentId) : null],
           ]),
         ),
+        detail.recipe ? section("How it was started", recipeView(detail.recipe)) : null,
         section(`Missing functions${r.coverage.missing ? ` · ${number.format(r.missing.functions.length + r.truncated.functions)}` : ""}`, missing(r)),
         section("Shaders", shaders(r)),
       );
@@ -1018,6 +1056,16 @@ const data = {
     color: var(--muted);
     font-weight: 600;
     cursor: pointer;
+  }
+  .report-dialog :global(.rd-recipe) {
+    margin: 0 0 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    font-size: 0.78rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
   .report-dialog :global(.rd-raw pre) {
     max-height: 340px;

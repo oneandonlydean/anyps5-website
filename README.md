@@ -117,10 +117,11 @@ After a run, AnyPS5 writes `anyps5-report.json` (built by the runtime team on th
 
 - **The format** is upstream's. `src/lib/run-report/run-report.schema.json` is an unchanged copy of their `docs/run-report.schema.json` (version 1; upstream adds optional fields without bumping the version, so a new field upstream rejects every new report here until the copy is refreshed), and `tests/fixtures/run-reports/` holds their 11 sample reports, which the tests run. To update the format, copy in the new schema and fixtures, then bump `SCHEMA_COMMIT` in `src/lib/run-report.ts`. The brief and replies are in `docs/proposals/`.
 - **Checks:** the Worker validates each upload against the schema (at most 64 KiB), then:
-  - refuses reports that contradict themselves (milestone order, stage, frame rate)
+  - refuses reports that contradict themselves (milestone order, stage, frame rate, frame-time percentiles, shader compile counts)
   - flags claims that contradict the source code, such as a "missing" function that is implemented. Flagged reports wait for a maintainer.
 
   A run is stored once (by its run id), with at most 30 uploads a day per account. A report without a title ID asks the uploader to choose the game.
+- **The run recipe** (`anyps5-recipe.json`, written next to the report since upstream `449a777d`) is optional. It holds the arguments, `ANYPS5_*` variables and config file names the run was started with, and the game page shows it with the report so others can repeat the run. Upstream has no schema for it, so `src/lib/recipe.ts` follows their writer, ignores fields it doesn't know (a new upstream field doesn't break uploads), checks the run id matches the report, and drops anything named like a secret again before it's stored in the `recipe` column (migration `0007_recipe.sql`).
 - **How far it got:** a run report can only record stages up to Presents. For a run that presented frames, the uploader can say it reached a menu, gameplay or the end, and that stage is what the upload counts towards.
 - **Confirmations:** an upload moves a game's stage once two accounts reach it, or one account and a Discussions report by someone else. Until then the game page shows "1 of 2 confirmations".
 - **Maintainers:** listed in `MAINTAINERS` in `wrangler.jsonc` by GitHub account id, not login, because logins can be renamed. To find an id, run `gh api users/<login> --jq .id`.
