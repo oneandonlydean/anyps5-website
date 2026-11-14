@@ -42,6 +42,7 @@ const GROUPS = [
   ["progress", "Progress and news", "How far AnyPS5 has come, and what changed."],
   ["people", "People", "Contributors and testers."],
   ["help", "Help and the server", "Answers for newcomers, and the server rules."],
+  ["admin", "Server admins", "Only administrators see these, unless an admin lets another role use them in Server Settings → Integrations → the bot."],
 ] as const;
 
 const NOTES: Record<string, Note> = {
@@ -96,6 +97,13 @@ const NOTES: Record<string, Note> = {
   faq: { group: "help", reply: "text", text: "Answers from the site's FAQ and from data/bot.yaml. Topics are suggested as you type." },
   rules: { group: "help", reply: "text", text: "The server rules, from data/bot.yaml." },
   rule: { group: "help", reply: "text", text: "One rule by number, to point someone at it. Rules are suggested by number or title." },
+  sticky: {
+    group: "admin",
+    reply: "text",
+    private: true,
+    live: true,
+    text: "Keeps a message at the bottom of the channel it's run in. Set opens a form for the text (up to 2,000 characters; mentions never ping). The bot can't see chat as it happens, so it checks once a minute and posts the sticky again below anything newer, deleting the old copy. Up to 10 per server; the bot needs View Channel, Send Messages and Read Message History in the channel.",
+  },
 };
 
 const commands = COMMANDS as Command[];
@@ -104,7 +112,11 @@ const ORDER = Object.keys(NOTES);
 const missing = commands.filter((c) => !NOTES[c.name]).map((c) => c.name);
 if (missing.length) throw new Error(`src/pages/moderate/bot.astro has no notes for /${missing.join(", /")}`);
 
-const usage = (c: Command) => [`/${c.name}`, ...(c.options ?? []).map((o) => (o.required ? `<${o.name}>` : `[${o.name}]`))].join(" ");
+/** Subcommands (option type 1) read as alternatives, like /sticky set|remove; other options as <required> [optional]. */
+const usage = (c: Command) =>
+  c.options?.every((o) => o.type === 1)
+    ? `/${c.name} ${c.options.map((o) => o.name).join("|")}`
+    : [`/${c.name}`, ...(c.options ?? []).map((o) => (o.required ? `<${o.name}>` : `[${o.name}]`))].join(" ");
 const kind = (o: CommandOption) => (o.type === 6 ? "a member" : o.type === 4 ? "a number" : o.choices ? o.choices.map((c) => c.name).join(", ") : "text");
 
 const POSTS = [
@@ -157,8 +169,8 @@ const POSTS = [
                           {c.options.map((o) => (
                             <li>
                               <code>{o.name}</code>
-                              <span class="muted">{o.required ? "required" : "optional"}</span> {o.description}
-                              {(o.choices || o.type !== 3) && <span class="muted"> · {kind(o)}</span>}
+                              {o.type !== 1 && <span class="muted">{o.required ? "required" : "optional"}</span>} {o.description}
+                              {(o.choices || (o.type !== 3 && o.type !== 1)) && <span class="muted"> · {kind(o)}</span>}
                             </li>
                           ))}
                         </ul>

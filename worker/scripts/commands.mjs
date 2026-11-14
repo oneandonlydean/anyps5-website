@@ -6,6 +6,10 @@ const guildOnly = { integration_types: [0], contexts: [0] };
 const text = (name, description, required) => ({ type: 3, name, description, required, autocomplete: true });
 /** An optional text option with fixed choices, given as [label, value]. */
 const choice = (name, description, choices) => ({ type: 3, name, description, required: false, choices: choices.map(([label, value]) => ({ name: label, value })) });
+/** A subcommand without options. */
+const sub = (name, description) => ({ type: 1, name, description });
+/** Administrators only, unless a server admin lets more roles use it in Server Settings → Integrations. */
+const adminOnly = { default_member_permissions: "8" };
 export const COMMANDS = [
   {
     name: "prs",
@@ -139,6 +143,20 @@ export const COMMANDS = [
       { type: 6, name: "user", description: "Member to look up (defaults to you)", required: false },
       { type: 3, name: "github", description: "Or a GitHub login, for anyone", required: false, max_length: 39 },
     ],
+    ...guildOnly,
+  },
+  // sticky.ts
+  {
+    name: "sticky",
+    description: "Keep a message at the bottom of this channel",
+    options: [
+      sub("set", "Add or change this channel's sticky message"),
+      sub("remove", "Remove this channel's sticky message"),
+      sub("pause", "Stop moving this channel's sticky message down, without removing it"),
+      sub("resume", "Move this channel's paused sticky message down again"),
+      sub("list", "Every sticky message in this server"),
+    ],
+    ...adminOnly,
     ...guildOnly,
   },
 ];

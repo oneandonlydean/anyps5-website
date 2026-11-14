@@ -3,17 +3,19 @@ import { isSiteCommand, reply, runSiteCommand, suggest, type Option } from "./co
 import { error, games, profile, recent, screenshot, setup } from "./community";
 import type { Env, User } from "./env";
 import { siteData } from "./site-data";
+import { stickyCommand, stickySubmit, type StickyInteraction } from "./sticky";
 
 const PING = 1;
 const APPLICATION_COMMAND = 2;
 const AUTOCOMPLETE = 4;
+const MODAL_SUBMIT = 5;
 const PONG = 1;
 const MESSAGE = 4;
 const EPHEMERAL = 64;
 
-interface Interaction {
+interface Interaction extends StickyInteraction {
   type: number;
-  data?: { name: string; options?: Option[] };
+  data?: StickyInteraction["data"] & { name: string; options?: Option[] };
   member?: { user: { id: string } };
   user?: { id: string };
 }
@@ -118,9 +120,12 @@ export async function interactions(req: Request, env: Env): Promise<Response> {
   if (interaction.type === PING) return Response.json({ type: PONG });
 
   const caller = interaction.member?.user.id ?? interaction.user?.id;
+  // The form /sticky set opens; only someone allowed to run /sticky can be shown it.
+  if (interaction.type === MODAL_SUBMIT) return stickySubmit(env, interaction);
   if (interaction.type === AUTOCOMPLETE && interaction.data) return suggest(env, interaction.data.name, interaction.data.options, caller);
   if (interaction.type === APPLICATION_COMMAND && caller && interaction.data) {
     const { name, options } = interaction.data;
+    if (name === "sticky") return stickyCommand(env, interaction);
     const response = await command(env, name, options, caller);
     return PUBLIC.has(name) ? response : onlyToCaller(response);
   }

@@ -4,6 +4,7 @@ import * as discord from "./discord";
 import { log, makeCtx, now, type Ctx, type Env, type User } from "./env";
 import * as github from "./github";
 import { BudgetError, HttpError } from "./http";
+import { refreshStickies } from "./sticky";
 import { syncUser } from "./sync";
 
 // Workers free plan allows 50 subrequests per invocation, retries included.
@@ -50,6 +51,8 @@ export async function runCron(env: Env, at = new Date()): Promise<void> {
     ...every(DIGEST_EVERY, ["libraries", announceLibraries]),
     ...every(WEEK_EVERY, ["week", (c) => announceWeek(c, at)]),
     ...every(DISCUSSIONS_EVERY, ["discussions", watchDiscussions]),
+    // Before the merge poll, which takes whatever budget is left; it leaves the poll enough for a run.
+    ["stickies", refreshStickies],
     ["poll", pollMerges],
     ["resync", resync],
   ];
