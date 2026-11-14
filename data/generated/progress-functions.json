@@ -21447,10 +21447,6 @@
     "FreeTypeOt",
     1
   ],
-  "sceFreeTypeOtOutlineGetBitmap_nid_no_patch": [
-    "FreeTypeOt",
-    1
-  ],
   "FT_Glyph_Stroke_nid_postfix": [
     "FreeTypeOt",
     0
@@ -21568,6 +21564,10 @@
     0
   ],
   "sceFreeTypeOtOutlineEmbolden_nid_no_patch": [
+    "FreeTypeOt",
+    0
+  ],
+  "sceFreeTypeOtOutlineGetBitmap_nid_no_patch": [
     "FreeTypeOt",
     0
   ],
@@ -24200,6 +24200,10 @@
     1
   ],
   "sceGnmDrawInitDefaultHardwareState175": [
+    "GnmDriver",
+    1
+  ],
+  "sceGnmDrawInitDefaultHardwareState200_nid_disambig1": [
     "GnmDriver",
     1
   ],
@@ -27239,7 +27243,15 @@
     "Http",
     1
   ],
+  "sceHttpCookieExport": [
+    "Http",
+    1
+  ],
   "sceHttpCookieFlush": [
+    "Http",
+    1
+  ],
+  "sceHttpCookieImport": [
     "Http",
     1
   ],
@@ -27623,14 +27635,6 @@
     "Http",
     0
   ],
-  "sceHttpCookieExport": [
-    "Http",
-    0
-  ],
-  "sceHttpCookieImport": [
-    "Http",
-    0
-  ],
   "sceHttpDbgGetConnectionStat": [
     "Http",
     0
@@ -27955,11 +27959,23 @@
     "Http2",
     0
   ],
+  "sceHttpCacheClear": [
+    "HttpCache",
+    1
+  ],
+  "sceHttpCacheClearAllUserTags": [
+    "HttpCache",
+    1
+  ],
   "sceHttpCacheCompleteRequest": [
     "HttpCache",
     1
   ],
   "sceHttpCacheCreateRequest": [
+    "HttpCache",
+    1
+  ],
+  "sceHttpCacheCreateRequestWithTag": [
     "HttpCache",
     1
   ],
@@ -28011,23 +28027,11 @@
     "HttpCache",
     0
   ],
-  "sceHttpCacheClear": [
-    "HttpCache",
-    0
-  ],
   "sceHttpCacheClearAll": [
     "HttpCache",
     0
   ],
-  "sceHttpCacheClearAllUserTags": [
-    "HttpCache",
-    0
-  ],
   "sceHttpCacheClearCacheInfo": [
-    "HttpCache",
-    0
-  ],
-  "sceHttpCacheCreateRequestWithTag": [
     "HttpCache",
     0
   ],
@@ -28635,27 +28639,7 @@
     "Icu",
     1
   ],
-  "uloc_canonicalize": [
-    "Icu",
-    1
-  ],
-  "uloc_getBaseName": [
-    "Icu",
-    1
-  ],
-  "uloc_getCountry": [
-    "Icu",
-    1
-  ],
   "uloc_getKeywordValue": [
-    "Icu",
-    1
-  ],
-  "uloc_getLanguage": [
-    "Icu",
-    1
-  ],
-  "uloc_getScript": [
     "Icu",
     1
   ],
@@ -28771,6 +28755,10 @@
     "Icu",
     1
   ],
+  "uprv_int32Comparator_nid_postfix": [
+    "Icu",
+    1
+  ],
   "uprv_isInfinite_nid_postfix": [
     "Icu",
     1
@@ -28844,6 +28832,14 @@
     1
   ],
   "uprv_trunc_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "uprv_uint16Comparator_nid_postfix": [
+    "Icu",
+    1
+  ],
+  "uprv_uint32Comparator_nid_postfix": [
     "Icu",
     1
   ],
@@ -38123,6 +38119,10 @@
     "Icu",
     0
   ],
+  "uloc_canonicalize": [
+    "Icu",
+    0
+  ],
   "uloc_countAvailable": [
     "Icu",
     0
@@ -38135,7 +38135,15 @@
     "Icu",
     0
   ],
+  "uloc_getBaseName": [
+    "Icu",
+    0
+  ],
   "uloc_getCharacterOrientation": [
+    "Icu",
+    0
+  ],
+  "uloc_getCountry": [
     "Icu",
     0
   ],
@@ -38191,6 +38199,10 @@
     "Icu",
     0
   ],
+  "uloc_getLanguage": [
+    "Icu",
+    0
+  ],
   "uloc_getLineOrientation_nid_postfix": [
     "Icu",
     0
@@ -38204,6 +38216,10 @@
     0
   ],
   "uloc_getParent_nid_postfix": [
+    "Icu",
+    0
+  ],
+  "uloc_getScript": [
     "Icu",
     0
   ],
@@ -38579,10 +38595,6 @@
     "Icu",
     0
   ],
-  "uprv_int32Comparator_nid_postfix": [
-    "Icu",
-    0
-  ],
   "uprv_isASCIILetter_nid_postfix": [
     "Icu",
     0
@@ -38640,14 +38652,6 @@
     0
   ],
   "uprv_tzset_nid_postfix": [
-    "Icu",
-    0
-  ],
-  "uprv_uint16Comparator_nid_postfix": [
-    "Icu",
-    0
-  ],
-  "uprv_uint32Comparator_nid_postfix": [
     "Icu",
     0
   ],
@@ -40395,6 +40399,14 @@
     "Jsc",
     1
   ],
+  "_ZN3WTF14FileSystemImpl12readFromFileEiPci": [
+    "Jsc",
+    1
+  ],
+  "_ZN3WTF14FileSystemImpl15getFileDeviceIdERKNS_7CStringE": [
+    "Jsc",
+    1
+  ],
   "_ZN3WTF16weakRandomUint32Ev": [
     "Jsc",
     1
@@ -40415,7 +40427,23 @@
     "Jsc",
     1
   ],
+  "_ZN3WTF31integerToSixCharacterHashStringEj": [
+    "Jsc",
+    1
+  ],
   "_ZN3WTF4SHA111computeHashERSt5arrayIhLm20EE": [
+    "Jsc",
+    1
+  ],
+  "_ZN3WTF7CPUTime3getEv": [
+    "Jsc",
+    1
+  ],
+  "_ZN3WTF8Internal9appendHexEPhjmjNS_17HexConversionModeE": [
+    "Jsc",
+    1
+  ],
+  "_ZN3WTF8pageMaskEv": [
     "Jsc",
     1
   ],
@@ -40564,6 +40592,10 @@
     1
   ],
   "_ZNK3WTF7SecondsplERKNS_24TimeWithDynamicClockTypeE": [
+    "Jsc",
+    1
+  ],
+  "_ZNK3WTF9MediaTimeneERKS0_": [
     "Jsc",
     1
   ],
@@ -41715,14 +41747,6 @@
     "Jsc",
     0
   ],
-  "_ZN3WTF14FileSystemImpl12readFromFileEiPci": [
-    "Jsc",
-    0
-  ],
-  "_ZN3WTF14FileSystemImpl15getFileDeviceIdERKNS_7CStringE": [
-    "Jsc",
-    0
-  ],
   "_ZN3WTF14FileSystemImpl17openTemporaryFileERKNS_6StringERiS3_": [
     "Jsc",
     0
@@ -41784,10 +41808,6 @@
     0
   ],
   "_ZN3WTF25createCanonicalUUIDStringEv": [
-    "Jsc",
-    0
-  ],
-  "_ZN3WTF31integerToSixCharacterHashStringEj": [
     "Jsc",
     0
   ],
@@ -41879,10 +41899,6 @@
     "Jsc",
     0
   ],
-  "_ZN3WTF7CPUTime3getEv": [
-    "Jsc",
-    0
-  ],
   "_ZN3WTF7RunLoop14initializeMainEv": [
     "Jsc",
     0
@@ -41919,10 +41935,6 @@
     "Jsc",
     0
   ],
-  "_ZN3WTF8Internal9appendHexEPhjmjNS_17HexConversionModeE": [
-    "Jsc",
-    0
-  ],
   "_ZN3WTF8JSONImpl5Value12escapeStringERNS_13StringBuilderENS_10StringViewE": [
     "Jsc",
     0
@@ -41932,10 +41944,6 @@
     0
   ],
   "_ZN3WTF8JSONImpl9ArrayBaseD2Ev": [
-    "Jsc",
-    0
-  ],
-  "_ZN3WTF8pageMaskEv": [
     "Jsc",
     0
   ],
@@ -43091,10 +43099,6 @@
     "Jsc",
     0
   ],
-  "_ZNK3WTF9MediaTimeneERKS0_": [
-    "Jsc",
-    0
-  ],
   "_ZNK9Inspector15RemoteInspector18clientCapabilitiesEv": [
     "Jsc",
     0
@@ -44243,6 +44247,10 @@
     "Json2",
     0
   ],
+  "AllocateCodingContextDec_nid_postfix": [
+    "Jxr",
+    1
+  ],
   "CloseWS_List_nid_postfix": [
     "Jxr",
     1
@@ -44715,10 +44723,6 @@
     "Jxr",
     1
   ],
-  "AllocateCodingContextDec_nid_postfix": [
-    "Jxr",
-    0
-  ],
   "FreeDescMetadata_nid_postfix": [
     "Jxr",
     0
@@ -44967,7 +44971,27 @@
     "LibcInternal",
     1
   ],
+  "ResetStreamFormatFlags": [
+    "LibcInternal",
+    1
+  ],
+  "SetStreamBase": [
+    "LibcInternal",
+    1
+  ],
+  "SetStreamFormatFlags": [
+    "LibcInternal",
+    1
+  ],
+  "_Call_onceEx_nid_postfix": [
+    "LibcInternal",
+    1
+  ],
   "_Daysto_nid_postfix": [
+    "LibcInternal",
+    1
+  ],
+  "_Do_call_nid_postfix": [
     "LibcInternal",
     1
   ],
@@ -45388,6 +45412,10 @@
     1
   ],
   "_ZSt10unexpectedv_nid_postfix": [
+    "LibcInternal",
+    1
+  ],
+  "_ZSt11setiosflagsNSt5_IosbIiE9_FmtflagsE_nid_postfix": [
     "LibcInternal",
     1
   ],
@@ -46367,6 +46395,14 @@
     "LibcInternal",
     1
   ],
+  "sceLibcInternalResetiosflags_nid_no_patch": [
+    "LibcInternal",
+    1
+  ],
+  "sceLibcInternalSetbase_nid_no_patch": [
+    "LibcInternal",
+    1
+  ],
   "sceLibcInternalSiClassTypeInfoBaseDestructor_nid_no_patch": [
     "LibcInternal",
     1
@@ -46719,19 +46755,11 @@
     "LibcInternal",
     0
   ],
-  "_Call_onceEx_nid_postfix": [
-    "LibcInternal",
-    0
-  ],
   "_Closreg_nid_postfix": [
     "LibcInternal",
     0
   ],
   "_Deletegloballocale_nid_postfix": [
-    "LibcInternal",
-    0
-  ],
-  "_Do_call_nid_postfix": [
     "LibcInternal",
     0
   ],
@@ -48019,10 +48047,6 @@
     "LibcInternal",
     0
   ],
-  "_ZSt11setiosflagsNSt5_IosbIiE9_FmtflagsE_nid_postfix": [
-    "LibcInternal",
-    0
-  ],
   "_ZSt9_LStrcollIcEiPKT_S2_S2_S2_PKSt8_Collvec_nid_postfix": [
     "LibcInternal",
     0
@@ -48795,10 +48819,6 @@
     "LibcInternal",
     0
   ],
-  "libSceLibcInternalInventory_238_nid_no_patch": [
-    "LibcInternal",
-    0
-  ],
   "libSceLibcInternalInventory_239_nid_no_patch": [
     "LibcInternal",
     0
@@ -48812,10 +48832,6 @@
     0
   ],
   "libSceLibcInternalInventory_246_nid_no_patch": [
-    "LibcInternal",
-    0
-  ],
-  "libSceLibcInternalInventory_251_nid_no_patch": [
     "LibcInternal",
     0
   ],
@@ -50299,6 +50315,10 @@
     "LibreSsl",
     1
   ],
+  "SSL_CTX_get_ex_data_nid_postfix": [
+    "LibreSsl",
+    1
+  ],
   "SSL_CTX_get_ex_new_index_nid_postfix": [
     "LibreSsl",
     1
@@ -51023,10 +51043,6 @@
     "LibreSsl",
     0
   ],
-  "SSL_CTX_get_ex_data_nid_postfix": [
-    "LibreSsl",
-    0
-  ],
   "SSL_CTX_load_verify_locations_nid_postfix": [
     "LibreSsl",
     0
@@ -51631,6 +51647,14 @@
     "LibreSsl3",
     1
   ],
+  "EVP_PKCS82PKEY_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "EVP_PKEY2PKCS8_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
   "EVP_PKEY_CTX_ctrl_nid_postfix": [
     "LibreSsl3",
     1
@@ -51660,6 +51684,18 @@
     1
   ],
   "EVP_PKEY_decrypt_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "EVP_PKEY_derive_init_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "EVP_PKEY_derive_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "EVP_PKEY_derive_set_peer_nid_postfix": [
     "LibreSsl3",
     1
   ],
@@ -51755,6 +51791,22 @@
     "LibreSsl3",
     1
   ],
+  "EcContextClear": [
+    "LibreSsl3",
+    1
+  ],
+  "EcContextInitialize": [
+    "LibreSsl3",
+    1
+  ],
+  "EcControl": [
+    "LibreSsl3",
+    1
+  ],
+  "EcDerive": [
+    "LibreSsl3",
+    1
+  ],
   "Final": [
     "LibreSsl3",
     1
@@ -51804,6 +51856,10 @@
     1
   ],
   "PKCS5_PBKDF2_HMAC_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "PKCS8_PRIV_KEY_INFO_free_nid_postfix": [
     "LibreSsl3",
     1
   ],
@@ -52052,6 +52108,26 @@
     1
   ],
   "d2i_ASN1_INTEGER_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "d2i_PKCS8_PRIV_KEY_INFO_bio_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "d2i_PKCS8_PRIV_KEY_INFO_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "d2i_PUBKEY_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "d2i_PrivateKey_bio_nid_postfix": [
+    "LibreSsl3",
+    1
+  ],
+  "i2d_PKCS8_PRIV_KEY_INFO_nid_postfix": [
     "LibreSsl3",
     1
   ],
@@ -53771,14 +53847,6 @@
     "LibreSsl3",
     0
   ],
-  "EVP_PKCS82PKEY_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "EVP_PKEY2PKCS8_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
   "EVP_PKEY_CTX_new_id_nid_postfix": [
     "LibreSsl3",
     0
@@ -53788,18 +53856,6 @@
     0
   ],
   "EVP_PKEY_copy_parameters_nid_disambig1_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "EVP_PKEY_derive_init_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "EVP_PKEY_derive_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "EVP_PKEY_derive_set_peer_nid_postfix": [
     "LibreSsl3",
     0
   ],
@@ -53864,10 +53920,6 @@
     0
   ],
   "PKCS7_free_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "PKCS8_PRIV_KEY_INFO_free_nid_postfix": [
     "LibreSsl3",
     0
   ],
@@ -54099,22 +54151,6 @@
     "LibreSsl3",
     0
   ],
-  "d2i_PKCS8_PRIV_KEY_INFO_bio_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "d2i_PKCS8_PRIV_KEY_INFO_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "d2i_PUBKEY_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "d2i_PrivateKey_bio_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
   "d2i_RSAPublicKey_bio_nid_postfix": [
     "LibreSsl3",
     0
@@ -54132,10 +54168,6 @@
     0
   ],
   "d2i_X509_bio_nid_postfix": [
-    "LibreSsl3",
-    0
-  ],
-  "i2d_PKCS8_PRIV_KEY_INFO_nid_postfix": [
     "LibreSsl3",
     0
   ],
@@ -56219,6 +56251,14 @@
     "Mouse",
     1
   ],
+  "sceMouseSetHandType": [
+    "Mouse",
+    1
+  ],
+  "sceMouseSetPointerSpeed": [
+    "Mouse",
+    1
+  ],
   "sceMouseConnectPort": [
     "Mouse",
     0
@@ -56252,14 +56292,6 @@
     0
   ],
   "sceMouseMbusInit": [
-    "Mouse",
-    0
-  ],
-  "sceMouseSetHandType": [
-    "Mouse",
-    0
-  ],
-  "sceMouseSetPointerSpeed": [
     "Mouse",
     0
   ],
@@ -61943,6 +61975,26 @@
     "NKWebKit",
     1
   ],
+  "_ZN3WTF10StringImpl28convertToLowercaseWithLocaleERKNS_10AtomStringE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN3WTF10StringImpl28convertToUppercaseWithLocaleERKNS_10AtomStringE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN3WTF10StringImpl31convertToLowercaseWithoutLocaleEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN3WTF10StringImpl31convertToUppercaseWithoutLocaleEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN3WTF10StringImpl57convertToLowercaseWithoutLocaleStartingAtFailingIndex8BitEj": [
+    "NKWebKit",
+    1
+  ],
   "_ZN3WTF10StringImpl6createEPKDsj": [
     "NKWebKit",
     1
@@ -62220,6 +62272,14 @@
     1
   ],
   "_ZN3WTF13jsValueMallocEm": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN3WTF13normalizedNFCENS_10StringViewE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN3WTF13normalizedNFCERKNS_6StringE": [
     "NKWebKit",
     1
   ],
@@ -63415,6 +63475,26 @@
     "NKWebKit",
     1
   ],
+  "_ZN7WebCore12SettingsBase26defaultMinimumZoomFontSizeEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore12SettingsBase28defaultTextAutosizingEnabledEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore12SettingsBase35defaultContentChangeObserverEnabledEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore12SettingsBase37defaultDownloadableBinaryFontsEnabledEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore12SettingsBase48defaultMediaContentTypesRequiringHardwareSupportEv": [
+    "NKWebKit",
+    1
+  ],
   "_ZN7WebCore13GraphicsLayer9setClientERNS_19GraphicsLayerClientE": [
     "NKWebKit",
     1
@@ -64203,6 +64283,30 @@
     "NKWebKit",
     1
   ],
+  "_ZN7WebCore19ResourceRequestBase16setHTTPUserAgentERKN3WTF6StringE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore19ResourceRequestBase18addHTTPHeaderFieldENS_14HTTPHeaderNameERKN3WTF6StringE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore19ResourceRequestBase18addHTTPHeaderFieldERKN3WTF6StringES4_": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore19ResourceRequestBase18setHTTPContentTypeERKN3WTF6StringE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore19ResourceRequestBase18setHTTPHeaderFieldENS_14HTTPHeaderNameERKN3WTF6StringE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore19ResourceRequestBase18setHTTPHeaderFieldERKN3WTF6StringES4_": [
+    "NKWebKit",
+    1
+  ],
   "_ZN7WebCore19ResourceRequestBase22defaultTimeoutIntervalEv": [
     "NKWebKit",
     1
@@ -64212,6 +64316,10 @@
     1
   ],
   "_ZN7WebCore19ResourceRequestBase25setDefaultTimeoutIntervalEd": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCore19ResourceRequestBase30addHTTPHeaderFieldIfNotPresentENS_14HTTPHeaderNameERKN3WTF6StringE": [
     "NKWebKit",
     1
   ],
@@ -65011,6 +65119,10 @@
     "NKWebKit",
     1
   ],
+  "_ZN7WebCore22HistoricalVelocityData18velocityForNewDataENS_10FloatPointEdN3WTF13MonotonicTimeE": [
+    "NKWebKit",
+    1
+  ],
   "_ZN7WebCore22parseVPCodecParametersEN3WTF10StringViewE": [
     "NKWebKit",
     1
@@ -65592,6 +65704,10 @@
     1
   ],
   "_ZN7WebCorelsERN3WTF10TextStreamERKNS_12FloatPoint3DE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZN7WebCorelsERN3WTF10TextStreamERKNS_12VelocityDataE": [
     "NKWebKit",
     1
   ],
@@ -67431,11 +67547,31 @@
     "NKWebKit",
     1
   ],
+  "_ZNK3WTF6String28convertToLowercaseWithLocaleERKNS_10AtomStringE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZNK3WTF6String28convertToUppercaseWithLocaleERKNS_10AtomStringE": [
+    "NKWebKit",
+    1
+  ],
   "_ZNK3WTF6String29charactersWithNullTerminationEv": [
     "NKWebKit",
     1
   ],
+  "_ZNK3WTF6String31convertToLowercaseWithoutLocaleEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZNK3WTF6String31convertToUppercaseWithoutLocaleEv": [
+    "NKWebKit",
+    1
+  ],
   "_ZNK3WTF6String4utf8ENS_14ConversionModeE": [
+    "NKWebKit",
+    1
+  ],
+  "_ZNK3WTF6String57convertToLowercaseWithoutLocaleStartingAtFailingIndex8BitEj": [
     "NKWebKit",
     1
   ],
@@ -67452,6 +67588,10 @@
     1
   ],
   "_ZNK3WTF6String7toFloatEPb": [
+    "NKWebKit",
+    1
+  ],
+  "_ZNK3WTF6String8foldCaseEv": [
     "NKWebKit",
     1
   ],
@@ -68075,6 +68215,10 @@
     "NKWebKit",
     1
   ],
+  "_ZNK7WebCore19ResourceRequestBase10httpOriginEv": [
+    "NKWebKit",
+    1
+  ],
   "_ZNK7WebCore19ResourceRequestBase10isSameSiteEv": [
     "NKWebKit",
     1
@@ -68083,7 +68227,27 @@
     "NKWebKit",
     1
   ],
+  "_ZNK7WebCore19ResourceRequestBase12httpReferrerEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZNK7WebCore19ResourceRequestBase13httpUserAgentEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZNK7WebCore19ResourceRequestBase15httpContentTypeEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZNK7WebCore19ResourceRequestBase15httpHeaderFieldENS_14HTTPHeaderNameE": [
+    "NKWebKit",
+    1
+  ],
   "_ZNK7WebCore19ResourceRequestBase15timeoutIntervalEv": [
+    "NKWebKit",
+    1
+  ],
+  "_ZNK7WebCore19ResourceRequestBase18hasHTTPHeaderFieldENS_14HTTPHeaderNameE": [
     "NKWebKit",
     1
   ],
@@ -73715,26 +73879,6 @@
     "NKWebKit",
     0
   ],
-  "_ZN3WTF10StringImpl28convertToLowercaseWithLocaleERKNS_10AtomStringE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN3WTF10StringImpl28convertToUppercaseWithLocaleERKNS_10AtomStringE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN3WTF10StringImpl31convertToLowercaseWithoutLocaleEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN3WTF10StringImpl31convertToUppercaseWithoutLocaleEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN3WTF10StringImpl57convertToLowercaseWithoutLocaleStartingAtFailingIndex8BitEj": [
-    "NKWebKit",
-    0
-  ],
   "_ZN3WTF10StringImpl5adoptEONS_12StringBufferIDsEE": [
     "NKWebKit",
     0
@@ -73932,14 +74076,6 @@
     0
   ],
   "_ZN3WTF13dumpCharacterERNS_11PrintStreamEc": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN3WTF13normalizedNFCENS_10StringViewE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN3WTF13normalizedNFCERKNS_6StringE": [
     "NKWebKit",
     0
   ],
@@ -78391,27 +78527,11 @@
     "NKWebKit",
     0
   ],
-  "_ZN7WebCore12SettingsBase26defaultMinimumZoomFontSizeEv": [
-    "NKWebKit",
-    0
-  ],
   "_ZN7WebCore12SettingsBase26setMinimumDOMTimerIntervalEN3WTF7SecondsE": [
     "NKWebKit",
     0
   ],
-  "_ZN7WebCore12SettingsBase28defaultTextAutosizingEnabledEv": [
-    "NKWebKit",
-    0
-  ],
   "_ZN7WebCore12SettingsBase33platformDefaultMediaSourceEnabledEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore12SettingsBase35defaultContentChangeObserverEnabledEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore12SettingsBase37defaultDownloadableBinaryFontsEnabledEv": [
     "NKWebKit",
     0
   ],
@@ -78420,10 +78540,6 @@
     0
   ],
   "_ZN7WebCore12SettingsBase44setMediaContentTypesRequiringHardwareSupportERKN3WTF6VectorINS_11ContentTypeELm0ENS1_15CrashOnOverflowELm16ENS1_10FastMallocEEE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore12SettingsBase48defaultMediaContentTypesRequiringHardwareSupportEv": [
     "NKWebKit",
     0
   ],
@@ -84279,10 +84395,6 @@
     "NKWebKit",
     0
   ],
-  "_ZN7WebCore19ResourceRequestBase16setHTTPUserAgentERKN3WTF6StringE": [
-    "NKWebKit",
-    0
-  ],
   "_ZN7WebCore19ResourceRequestBase17clearHTTPReferrerEv": [
     "NKWebKit",
     0
@@ -84303,26 +84415,6 @@
     "NKWebKit",
     0
   ],
-  "_ZN7WebCore19ResourceRequestBase18addHTTPHeaderFieldENS_14HTTPHeaderNameERKN3WTF6StringE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore19ResourceRequestBase18addHTTPHeaderFieldERKN3WTF6StringES4_": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore19ResourceRequestBase18setHTTPContentTypeERKN3WTF6StringE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore19ResourceRequestBase18setHTTPHeaderFieldENS_14HTTPHeaderNameERKN3WTF6StringE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore19ResourceRequestBase18setHTTPHeaderFieldERKN3WTF6StringES4_": [
-    "NKWebKit",
-    0
-  ],
   "_ZN7WebCore19ResourceRequestBase19setHTTPHeaderFieldsENS_13HTTPHeaderMapE": [
     "NKWebKit",
     0
@@ -84332,10 +84424,6 @@
     0
   ],
   "_ZN7WebCore19ResourceRequestBase22clearHTTPAuthorizationEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore19ResourceRequestBase30addHTTPHeaderFieldIfNotPresentENS_14HTTPHeaderNameERKN3WTF6StringE": [
     "NKWebKit",
     0
   ],
@@ -85980,10 +86068,6 @@
     0
   ],
   "_ZN7WebCore22HTMLPlugInImageElement29setIsPrimarySnapshottedPlugInEb": [
-    "NKWebKit",
-    0
-  ],
-  "_ZN7WebCore22HistoricalVelocityData18velocityForNewDataENS_10FloatPointEdN3WTF13MonotonicTimeE": [
     "NKWebKit",
     0
   ],
@@ -91935,10 +92019,6 @@
     "NKWebKit",
     0
   ],
-  "_ZN7WebCorelsERN3WTF10TextStreamERKNS_12VelocityDataE": [
-    "NKWebKit",
-    0
-  ],
   "_ZN7WebCorelsERN3WTF10TextStreamERKNS_14TimingFunctionE": [
     "NKWebKit",
     0
@@ -94456,30 +94536,6 @@
     0
   ],
   "_ZNK3WTF3URL4dumpERNS_11PrintStreamE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK3WTF6String28convertToLowercaseWithLocaleERKNS_10AtomStringE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK3WTF6String28convertToUppercaseWithLocaleERKNS_10AtomStringE": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK3WTF6String31convertToLowercaseWithoutLocaleEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK3WTF6String31convertToUppercaseWithoutLocaleEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK3WTF6String57convertToLowercaseWithoutLocaleStartingAtFailingIndex8BitEj": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK3WTF6String8foldCaseEv": [
     "NKWebKit",
     0
   ],
@@ -97075,31 +97131,11 @@
     "NKWebKit",
     0
   ],
-  "_ZNK7WebCore19ResourceRequestBase10httpOriginEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK7WebCore19ResourceRequestBase12httpReferrerEv": [
-    "NKWebKit",
-    0
-  ],
   "_ZNK7WebCore19ResourceRequestBase12isolatedCopyEv": [
     "NKWebKit",
     0
   ],
-  "_ZNK7WebCore19ResourceRequestBase13httpUserAgentEv": [
-    "NKWebKit",
-    0
-  ],
   "_ZNK7WebCore19ResourceRequestBase13isConditionalEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK7WebCore19ResourceRequestBase15httpContentTypeEv": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK7WebCore19ResourceRequestBase15httpHeaderFieldENS_14HTTPHeaderNameE": [
     "NKWebKit",
     0
   ],
@@ -97112,10 +97148,6 @@
     0
   ],
   "_ZNK7WebCore19ResourceRequestBase17redirectedRequestERKNS_16ResourceResponseEb": [
-    "NKWebKit",
-    0
-  ],
-  "_ZNK7WebCore19ResourceRequestBase18hasHTTPHeaderFieldENS_14HTTPHeaderNameE": [
     "NKWebKit",
     0
   ],
@@ -106299,11 +106331,31 @@
     "NpCppWebApi",
     1
   ],
+  "_ZN3sce2Np9CppWebApi10Activities2V114UserActivities14UserActivities13getActivitiesEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZN3sce2Np9CppWebApi11Matchmaking2V113PlayerForRead19getPlayerAttributesEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZN3sce2Np9CppWebApi11Matchmaking2V115LocationFactory6createEPNS1_6Common10LibContextEPNS5_12IntrusivePtrINS3_8LocationEEE": [
     "NpCppWebApi",
     1
   ],
   "_ZN3sce2Np9CppWebApi11Matchmaking2V116AttributeFactory6createEPNS1_6Common10LibContextEPKcNS3_13AttributeTypeES9_PNS5_12IntrusivePtrINS3_9AttributeEEE": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZN3sce2Np9CppWebApi11Matchmaking2V120GetOfferResponseBody10getPlayersEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZN3sce2Np9CppWebApi11Matchmaking2V121GetTicketResponseBody10getPlayersEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZN3sce2Np9CppWebApi11Matchmaking2V121GetTicketResponseBody19getTicketAttributesEv": [
     "NpCppWebApi",
     1
   ],
@@ -107327,6 +107379,10 @@
     "NpCppWebApi",
     1
   ],
+  "_ZN3sce2Np9CppWebApi14SessionManager2V124GameSessionMemberForRead10getPlayersEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZN3sce2Np9CppWebApi14SessionManager2V124RequestGameSessionPlayer12setJoinStateERKNS3_16InitialJoinStateE": [
     "NpCppWebApi",
     1
@@ -107519,11 +107575,19 @@
     "NpCppWebApi",
     1
   ],
+  "_ZN3sce2Np9CppWebApi14SessionManager2V150PostPlayerSessionsSessionIdInvitationsResponseBody14getInvitationsEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZN3sce2Np9CppWebApi14SessionManager2V150PutPlayerSessionsSessionIdLeaderRequestBodyFactory6createEPNS1_6Common10LibContextERKNS_4Json5ValueEPNS5_12IntrusivePtrINS3_43PutPlayerSessionsSessionIdLeaderRequestBodyEEE": [
     "NpCppWebApi",
     1
   ],
   "_ZN3sce2Np9CppWebApi14SessionManager2V150PutPlayerSessionsSessionIdLeaderRequestBodyFactory6createEPNS1_6Common10LibContextERKmPKcPNS5_12IntrusivePtrINS3_43PutPlayerSessionsSessionIdLeaderRequestBodyEEE": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZN3sce2Np9CppWebApi14SessionManager2V154GetUsersAccountIdPlayerSessionsInvitationsResponseBody14getInvitationsEv": [
     "NpCppWebApi",
     1
   ],
@@ -109759,11 +109823,19 @@
     "NpCppWebApi",
     1
   ],
+  "_ZNK3sce2Np9CppWebApi11Matchmaking2V113PlayerForRead11getOnlineIdEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZNK3sce2Np9CppWebApi11Matchmaking2V113PlayerForRead11getTeamNameEv": [
     "NpCppWebApi",
     1
   ],
   "_ZNK3sce2Np9CppWebApi11Matchmaking2V113PlayerForRead12getAccountIdEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi11Matchmaking2V118PlayerForOfferRead11getOnlineIdEv": [
     "NpCppWebApi",
     1
   ],
@@ -109780,6 +109852,10 @@
     1
   ],
   "_ZNK3sce2Np9CppWebApi11Matchmaking2V120GetOfferResponseBody10getOfferIdEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi11Matchmaking2V120GetOfferResponseBody11getLocationEv": [
     "NpCppWebApi",
     1
   ],
@@ -109804,6 +109880,10 @@
     1
   ],
   "_ZNK3sce2Np9CppWebApi11Matchmaking2V121GetTicketResponseBody11getTicketIdEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi11Matchmaking2V121GetTicketResponseBody12getSubmitterEv": [
     "NpCppWebApi",
     1
   ],
@@ -109979,7 +110059,51 @@
     "NpCppWebApi",
     1
   ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V122GetRankingResponseBody22getLastUpdatedDateTimeEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZNK3sce2Np9CppWebApi12Leaderboards2V122RecordScoreRequestBody17needsTmpRankIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody13getEntryLimitEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody15entryLimitIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody16getMaxScoreLimitEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody16getMinScoreLimitEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody18maxScoreLimitIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody18minScoreLimitIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody20getLargeDataNumLimitEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody21getLargeDataSizeLimitEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody22largeDataNumLimitIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody23largeDataSizeLimitIsSetEv": [
     "NpCppWebApi",
     1
   ],
@@ -110036,6 +110160,10 @@
     1
   ],
   "_ZNK3sce2Np9CppWebApi12Leaderboards2V15Entry8getScoreEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi12Leaderboards2V19RecordApi26RecordScoreResponseHeaders24getXPsnAtomicOperationIdEv": [
     "NpCppWebApi",
     1
   ],
@@ -110159,6 +110287,10 @@
     "NpCppWebApi",
     1
   ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V110FromMember11getOnlineIdEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V111GameSession12getSessionIdEv": [
     "NpCppWebApi",
     1
@@ -110175,6 +110307,10 @@
     "NpCppWebApi",
     1
   ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V114Representative11getPlatformEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V114Representative12getAccountIdEv": [
     "NpCppWebApi",
     1
@@ -110183,7 +110319,23 @@
     "NpCppWebApi",
     1
   ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer11getPlatformEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer12getAccountIdEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer12getJoinStateEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer14getCustomData1Ev": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer14joinStateIsSetEv": [
     "NpCppWebApi",
     1
   ],
@@ -110192,6 +110344,14 @@
     1
   ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer16getJoinTimestampEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead11memberIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead12getSessionIdEv": [
     "NpCppWebApi",
     1
   ],
@@ -110208,6 +110368,10 @@
     1
   ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead14getMatchmakingEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead14sessionIdIsSetEv": [
     "NpCppWebApi",
     1
   ],
@@ -110244,6 +110408,10 @@
     1
   ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead23supportedPlatformsIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead9getMemberEv": [
     "NpCppWebApi",
     1
   ],
@@ -110295,6 +110463,10 @@
     "NpCppWebApi",
     1
   ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead12getSessionIdEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead13getMaxPlayersEv": [
     "NpCppWebApi",
     1
@@ -110339,11 +110511,19 @@
     "NpCppWebApi",
     1
   ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead19getJoinableUserTypeEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead20getInvitableUserTypeEv": [
     "NpCppWebApi",
     1
   ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead21createdTimestampIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead21joinableUserTypeIsSetEv": [
     "NpCppWebApi",
     1
   ],
@@ -110383,6 +110563,10 @@
     "NpCppWebApi",
     1
   ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V124GameSessionMemberForRead12playersIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V125FriendJoinedPlayerSession12getSessionIdEv": [
     "NpCppWebApi",
     1
@@ -110408,6 +110592,42 @@
     1
   ],
   "_ZNK3sce2Np9CppWebApi14SessionManager2V131JoinedPlayerSessionWithPlatform12getSessionIdEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V131ResponsePlayerSessionInvitation15getInvitationIdEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead12getSessionIdEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead14sessionIdIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead17invitationIdIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead22receivedTimestampIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead7getFromEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead9fromIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V150PostPlayerSessionsSessionIdInvitationsResponseBody16invitationsIsSetEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi14SessionManager2V154GetUsersAccountIdPlayerSessionsInvitationsResponseBody16invitationsIsSetEv": [
     "NpCppWebApi",
     1
   ],
@@ -110440,6 +110660,10 @@
     1
   ],
   "_ZNK3sce2Np9CppWebApi17TitleCloudStorage2V110DataStatus7getInfoEv": [
+    "NpCppWebApi",
+    1
+  ],
+  "_ZNK3sce2Np9CppWebApi17TitleCloudStorage2V110DataStatus8getOwnerEv": [
     "NpCppWebApi",
     1
   ],
@@ -111771,43 +111995,11 @@
     "NpCppWebApi",
     0
   ],
-  "_ZN3sce2Np9CppWebApi10Activities2V114UserActivities14UserActivities13getActivitiesEv": [
-    "NpCppWebApi",
-    0
-  ],
   "_ZN3sce2Np9CppWebApi10Activities2V114UserActivities26GetUsersActivitiesResponse8getUsersEv": [
     "NpCppWebApi",
     0
   ],
-  "_ZN3sce2Np9CppWebApi11Matchmaking2V113PlayerForRead19getPlayerAttributesEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZN3sce2Np9CppWebApi11Matchmaking2V120GetOfferResponseBody10getPlayersEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZN3sce2Np9CppWebApi11Matchmaking2V121GetTicketResponseBody10getPlayersEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZN3sce2Np9CppWebApi11Matchmaking2V121GetTicketResponseBody19getTicketAttributesEv": [
-    "NpCppWebApi",
-    0
-  ],
   "_ZN3sce2Np9CppWebApi11UserProfile2V112BasicProfileD1Ev": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZN3sce2Np9CppWebApi14SessionManager2V124GameSessionMemberForRead10getPlayersEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZN3sce2Np9CppWebApi14SessionManager2V150PostPlayerSessionsSessionIdInvitationsResponseBody14getInvitationsEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZN3sce2Np9CppWebApi14SessionManager2V154GetUsersAccountIdPlayerSessionsInvitationsResponseBody14getInvitationsEv": [
     "NpCppWebApi",
     0
   ],
@@ -112995,10 +113187,6 @@
     "NpCppWebApi",
     0
   ],
-  "_ZNK3sce2Np9CppWebApi11Matchmaking2V113PlayerForRead11getOnlineIdEv": [
-    "NpCppWebApi",
-    0
-  ],
   "_ZNK3sce2Np9CppWebApi11Matchmaking2V113PlayerForRead11getPlatformEv": [
     "NpCppWebApi",
     0
@@ -113023,10 +113211,6 @@
     "NpCppWebApi",
     0
   ],
-  "_ZNK3sce2Np9CppWebApi11Matchmaking2V118PlayerForOfferRead11getOnlineIdEv": [
-    "NpCppWebApi",
-    0
-  ],
   "_ZNK3sce2Np9CppWebApi11Matchmaking2V118PlayerForOfferRead11getPlatformEv": [
     "NpCppWebApi",
     0
@@ -113048,10 +113232,6 @@
     0
   ],
   "_ZNK3sce2Np9CppWebApi11Matchmaking2V118PlayerForOfferRead14accountIdIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi11Matchmaking2V120GetOfferResponseBody11getLocationEv": [
     "NpCppWebApi",
     0
   ],
@@ -113080,10 +113260,6 @@
     0
   ],
   "_ZNK3sce2Np9CppWebApi11Matchmaking2V121GetTicketResponseBody11statusIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi11Matchmaking2V121GetTicketResponseBody12getSubmitterEv": [
     "NpCppWebApi",
     0
   ],
@@ -113135,10 +113311,6 @@
     "NpCppWebApi",
     0
   ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V122GetRankingResponseBody22getLastUpdatedDateTimeEv": [
-    "NpCppWebApi",
-    0
-  ],
   "_ZNK3sce2Np9CppWebApi12Leaderboards2V123RecordScoreResponseBody10getTmpRankEv": [
     "NpCppWebApi",
     0
@@ -113151,10 +113323,6 @@
     "NpCppWebApi",
     0
   ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody13getEntryLimitEv": [
-    "NpCppWebApi",
-    0
-  ],
   "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody13getUpdateModeEv": [
     "NpCppWebApi",
     0
@@ -113163,143 +113331,7 @@
     "NpCppWebApi",
     0
   ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody15entryLimitIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
   "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody15updateModeIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody16getMaxScoreLimitEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody16getMinScoreLimitEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody18maxScoreLimitIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody18minScoreLimitIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody20getLargeDataNumLimitEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody21getLargeDataSizeLimitEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody22largeDataNumLimitIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V130GetBoardDefinitionResponseBody23largeDataSizeLimitIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi12Leaderboards2V19RecordApi26RecordScoreResponseHeaders24getXPsnAtomicOperationIdEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V110FromMember11getOnlineIdEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V114Representative11getPlatformEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer11getPlatformEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer12getAccountIdEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer12getJoinStateEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V117GameSessionPlayer14joinStateIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead11memberIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead12getSessionIdEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead14sessionIdIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V118GameSessionForRead9getMemberEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead12getSessionIdEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead19getJoinableUserTypeEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V120PlayerSessionForRead21joinableUserTypeIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V124GameSessionMemberForRead12playersIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V131ResponsePlayerSessionInvitation15getInvitationIdEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead12getSessionIdEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead14sessionIdIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead17invitationIdIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead22receivedTimestampIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead7getFromEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V136UsersPlayerSessionsInvitationForRead9fromIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V150PostPlayerSessionsSessionIdInvitationsResponseBody16invitationsIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi14SessionManager2V154GetUsersAccountIdPlayerSessionsInvitationsResponseBody16invitationsIsSetEv": [
-    "NpCppWebApi",
-    0
-  ],
-  "_ZNK3sce2Np9CppWebApi17TitleCloudStorage2V110DataStatus8getOwnerEv": [
     "NpCppWebApi",
     0
   ],
@@ -116359,6 +116391,10 @@
     "NpProfileDialog",
     1
   ],
+  "sceNpRemotePlaySessionSignalingCreateJoinSession": [
+    "NpRemotePlaySessionSignaling",
+    1
+  ],
   "sceNpRemotePlaySessionSignalingGetConnectionStatus": [
     "NpRemotePlaySessionSignaling",
     1
@@ -116379,6 +116415,10 @@
     "NpRemotePlaySessionSignaling",
     1
   ],
+  "sceNpRemotePlaySessionSignalingJoinSession": [
+    "NpRemotePlaySessionSignaling",
+    1
+  ],
   "sceNpRemotePlaySessionSignalingLeaveSession": [
     "NpRemotePlaySessionSignaling",
     1
@@ -116395,15 +116435,7 @@
     "NpRemotePlaySessionSignaling",
     0
   ],
-  "sceNpRemotePlaySessionSignalingCreateJoinSession": [
-    "NpRemotePlaySessionSignaling",
-    0
-  ],
   "sceNpRemotePlaySessionSignalingEstablishConnection": [
-    "NpRemotePlaySessionSignaling",
-    0
-  ],
-  "sceNpRemotePlaySessionSignalingJoinSession": [
     "NpRemotePlaySessionSignaling",
     0
   ],
@@ -118619,6 +118651,10 @@
     "NpUniversalDataSystem",
     1
   ],
+  "sceNpUniversalDataSystemIntRecordDataEstimateSize": [
+    "NpUniversalDataSystem",
+    1
+  ],
   "sceNpUniversalDataSystemIntRecordObjectSetArray": [
     "NpUniversalDataSystem",
     1
@@ -118756,10 +118792,6 @@
     0
   ],
   "sceNpUniversalDataSystemIntReadStream": [
-    "NpUniversalDataSystem",
-    0
-  ],
-  "sceNpUniversalDataSystemIntRecordDataEstimateSize": [
     "NpUniversalDataSystem",
     0
   ],
@@ -119675,6 +119707,10 @@
     "NpWebApi2",
     1
   ],
+  "sceNpWebApi2SetMultipartContentType": [
+    "NpWebApi2",
+    1
+  ],
   "sceNpWebApi2SetRequestTimeout": [
     "NpWebApi2",
     1
@@ -119720,10 +119756,6 @@
     0
   ],
   "sceNpWebApi2IntPushEventCreateDestPs4CtxIndFilter": [
-    "NpWebApi2",
-    0
-  ],
-  "sceNpWebApi2SetMultipartContentType": [
     "NpWebApi2",
     0
   ],
@@ -119791,6 +119823,10 @@
     "OpusCeltEnc",
     1
   ],
+  "sceOpusCeltEncGetAjmContext": [
+    "OpusCeltEnc",
+    1
+  ],
   "sceOpusCeltEncGetSize": [
     "OpusCeltEnc",
     1
@@ -119812,10 +119848,6 @@
     0
   ],
   "sceOpusCeltEncEncodeWithPriority": [
-    "OpusCeltEnc",
-    0
-  ],
-  "sceOpusCeltEncGetAjmContext": [
     "OpusCeltEnc",
     0
   ],
@@ -119971,6 +120003,10 @@
     "OpusSilkEnc",
     1
   ],
+  "sceOpusSilkEncGetAjmContext": [
+    "OpusSilkEnc",
+    1
+  ],
   "sceOpusSilkEncGetSize": [
     "OpusSilkEnc",
     1
@@ -120004,10 +120040,6 @@
     0
   ],
   "sceOpusSilkEncEncodeWithPriorityAndTimeout": [
-    "OpusSilkEnc",
-    0
-  ],
-  "sceOpusSilkEncGetAjmContext": [
     "OpusSilkEnc",
     0
   ],
@@ -130011,7 +130043,19 @@
     "Ult",
     1
   ],
+  "sceUltGetConditionVariableInfo": [
+    "Ult",
+    1
+  ],
   "sceUltGetQueueDataResourcePoolInfo": [
+    "Ult",
+    1
+  ],
+  "sceUltGetQueueInfo": [
+    "Ult",
+    1
+  ],
+  "sceUltGetSemaphoreInfo": [
     "Ult",
     1
   ],
@@ -130235,23 +130279,11 @@
     "Ult",
     0
   ],
-  "sceUltGetConditionVariableInfo": [
-    "Ult",
-    0
-  ],
   "sceUltGetMutexInfo": [
     "Ult",
     0
   ],
-  "sceUltGetQueueInfo": [
-    "Ult",
-    0
-  ],
   "sceUltGetReaderWriterLockInfo": [
-    "Ult",
-    0
-  ],
-  "sceUltGetSemaphoreInfo": [
     "Ult",
     0
   ],
@@ -130583,6 +130615,14 @@
     "UsbStorage",
     1
   ],
+  "sceUsbStorageRegisterCallbackForMapAvailable": [
+    "UsbStorage",
+    1
+  ],
+  "sceUsbStorageRegisterCallbackForMapUnavailable": [
+    "UsbStorage",
+    1
+  ],
   "sceUsbStorageRequestMap": [
     "UsbStorage",
     1
@@ -130700,14 +130740,6 @@
     0
   ],
   "sceUsbStorageGetdentsClose": [
-    "UsbStorage",
-    0
-  ],
-  "sceUsbStorageRegisterCallbackForMapAvailable": [
-    "UsbStorage",
-    0
-  ],
-  "sceUsbStorageRegisterCallbackForMapUnavailable": [
     "UsbStorage",
     0
   ],
@@ -144579,6 +144611,22 @@
     "libc",
     1
   ],
+  "gamma_nid_postfix": [
+    "libc",
+    1
+  ],
+  "gamma_r_nid_postfix": [
+    "libc",
+    1
+  ],
+  "gammaf_nid_postfix": [
+    "libc",
+    1
+  ],
+  "gammaf_r_nid_postfix": [
+    "libc",
+    1
+  ],
   "getc_nid_postfix": [
     "libc",
     1
@@ -144904,6 +144952,18 @@
     1
   ],
   "lgamma_nid_postfix": [
+    "libc",
+    1
+  ],
+  "lgamma_r_nid_postfix": [
+    "libc",
+    1
+  ],
+  "lgammaf_nid_postfix": [
+    "libc",
+    1
+  ],
+  "lgammaf_r_nid_postfix": [
     "libc",
     1
   ],
@@ -146323,6 +146383,10 @@
     "libc",
     1
   ],
+  "tgamma_nid_postfix": [
+    "libc",
+    1
+  ],
   "tgammaf_nid_postfix": [
     "libc",
     1
@@ -146947,6 +147011,10 @@
     "libcairo",
     1
   ],
+  "cairo_mask": [
+    "libcairo",
+    1
+  ],
   "cairo_matrix_init": [
     "libcairo",
     1
@@ -146987,6 +147055,30 @@
     "libcairo",
     1
   ],
+  "cairo_mesh_pattern_begin_patch": [
+    "libcairo",
+    1
+  ],
+  "cairo_mesh_pattern_curve_to": [
+    "libcairo",
+    1
+  ],
+  "cairo_mesh_pattern_end_patch": [
+    "libcairo",
+    1
+  ],
+  "cairo_mesh_pattern_line_to": [
+    "libcairo",
+    1
+  ],
+  "cairo_mesh_pattern_move_to": [
+    "libcairo",
+    1
+  ],
+  "cairo_mesh_pattern_set_corner_color_rgba": [
+    "libcairo",
+    1
+  ],
   "cairo_move_to": [
     "libcairo",
     1
@@ -147004,6 +147096,14 @@
     1
   ],
   "cairo_path_extents": [
+    "libcairo",
+    1
+  ],
+  "cairo_pattern_create_for_surface": [
+    "libcairo",
+    1
+  ],
+  "cairo_pattern_create_mesh": [
     "libcairo",
     1
   ],
@@ -147063,6 +147163,10 @@
     "libcairo",
     1
   ],
+  "cairo_set_font_options": [
+    "libcairo",
+    1
+  ],
   "cairo_set_line_cap": [
     "libcairo",
     1
@@ -147084,6 +147188,10 @@
     1
   ],
   "cairo_set_operator": [
+    "libcairo",
+    1
+  ],
+  "cairo_set_source": [
     "libcairo",
     1
   ],
@@ -147231,34 +147339,6 @@
     "libcairo",
     0
   ],
-  "cairo_mask": [
-    "libcairo",
-    0
-  ],
-  "cairo_mesh_pattern_begin_patch": [
-    "libcairo",
-    0
-  ],
-  "cairo_mesh_pattern_curve_to": [
-    "libcairo",
-    0
-  ],
-  "cairo_mesh_pattern_end_patch": [
-    "libcairo",
-    0
-  ],
-  "cairo_mesh_pattern_line_to": [
-    "libcairo",
-    0
-  ],
-  "cairo_mesh_pattern_move_to": [
-    "libcairo",
-    0
-  ],
-  "cairo_mesh_pattern_set_corner_color_rgba": [
-    "libcairo",
-    0
-  ],
   "cairo_paint": [
     "libcairo",
     0
@@ -147271,15 +147351,7 @@
     "libcairo",
     0
   ],
-  "cairo_pattern_create_for_surface": [
-    "libcairo",
-    0
-  ],
   "cairo_pattern_create_linear": [
-    "libcairo",
-    0
-  ],
-  "cairo_pattern_create_mesh": [
     "libcairo",
     0
   ],
@@ -147375,19 +147447,11 @@
     "libcairo",
     0
   ],
-  "cairo_set_font_options": [
-    "libcairo",
-    0
-  ],
   "cairo_set_font_size": [
     "libcairo",
     0
   ],
   "cairo_set_scaled_font": [
-    "libcairo",
-    0
-  ],
-  "cairo_set_source": [
     "libcairo",
     0
   ],
@@ -151619,6 +151683,10 @@
     "libkernel_sys",
     1
   ],
+  "sceKernelCreateUuidV7": [
+    "libkernel_sys",
+    1
+  ],
   "sceKernelDeleteEport": [
     "libkernel_sys",
     1
@@ -153132,10 +153200,6 @@
     0
   ],
   "sceKernelCreateBudget": [
-    "libkernel_sys",
-    0
-  ],
-  "sceKernelCreateUuidV7": [
     "libkernel_sys",
     0
   ],
@@ -155671,6 +155735,10 @@
     "libwebrtc",
     1
   ],
+  "_ZN3rtc18webrtc_checks_impl8FatalLogEPKciS2_PKNS0_12CheckArgTypeEz_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
   "_ZN3rtc19webrtc_logging_impl3LogEPKNS0_10LogArgTypeEz_nid_postfix": [
     "libwebrtc",
     1
@@ -155871,11 +155939,27 @@
     "libwebrtc",
     1
   ],
+  "_ZN6webrtc12EncodedImageC1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc12EncodedImageD1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
   "_ZN6webrtc12RtpExtensionD1Ev_nid_postfix": [
     "libwebrtc",
     1
   ],
   "_ZN6webrtc12VideoEncoder10InitEncodeEPKNS_10VideoCodecEim_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc12VideoEncoder11EncoderInfoC1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc12VideoEncoder11EncoderInfoD1Ev_nid_postfix": [
     "libwebrtc",
     1
   ],
@@ -155891,7 +155975,35 @@
     "libwebrtc",
     1
   ],
+  "_ZN6webrtc13PacketOptionsC1ERKS0__nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc13PacketOptionsC1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
   "_ZN6webrtc13PacketOptionsD1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc13PushResamplerIsE8ResampleEN3rtc9ArrayViewIKsLln4711EEENS3_IsLln4711EEE_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc13PushResamplerIsE8ResampleENS_15InterleavedViewIKsEENS2_IsEE_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc13PushResamplerIsEC1Emmm_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc13PushResamplerIsEC1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc13PushResamplerIsED1Ev_nid_postfix": [
     "libwebrtc",
     1
   ],
@@ -155915,6 +156027,26 @@
     "libwebrtc",
     1
   ],
+  "_ZN6webrtc17CodecSpecificInfoC1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc17CodecSpecificInfoD1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc17PushSincResampler8ResampleEPKfmPfm_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc17PushSincResamplerC1Emm_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc17PushSincResamplerD1Ev_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
   "_ZN6webrtc18AudioDeviceGeneric15EnableBuiltInNSEb_nid_postfix": [
     "libwebrtc",
     1
@@ -155924,6 +156056,10 @@
     1
   ],
   "_ZN6webrtc18AudioDeviceGeneric16EnableBuiltInAGCEb_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc18EncodedImageBuffer6CreateEPKhm_nid_postfix": [
     "libwebrtc",
     1
   ],
@@ -155955,6 +156091,10 @@
     "libwebrtc",
     1
   ],
+  "_ZN6webrtc21PendingTaskSafetyFlag6CreateEv_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
   "_ZN6webrtc23AudioNetworkAdaptorImpl6ConfigC1Ev_nid_postfix": [
     "libwebrtc",
     1
@@ -155972,6 +156112,10 @@
     1
   ],
   "_ZN6webrtc32webrtc_sequence_checker_internal19SequenceCheckerImplC2Eb_nid_postfix": [
+    "libwebrtc",
+    1
+  ],
+  "_ZN6webrtc3voe16RemixAndResampleENS_15InterleavedViewIKsEEiPNS_13PushResamplerIsEEPNS_10AudioFrameE_nid_postfix": [
     "libwebrtc",
     1
   ],
@@ -156247,10 +156391,6 @@
     "libwebrtc",
     0
   ],
-  "_ZN3rtc18webrtc_checks_impl8FatalLogEPKciS2_PKNS0_12CheckArgTypeEz_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
   "_ZN3rtc6Thread10IsQuittingEv_nid_postfix": [
     "libwebrtc",
     0
@@ -156391,22 +156531,6 @@
     "libwebrtc",
     0
   ],
-  "_ZN6webrtc12EncodedImageC1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc12EncodedImageD1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc12VideoEncoder11EncoderInfoC1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc12VideoEncoder11EncoderInfoD1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
   "_ZN6webrtc13FrameCombiner7CombineEN3rtc9ArrayViewIKPNS_10AudioFrameELln4711EEEmimS4__nid_postfix": [
     "libwebrtc",
     0
@@ -156416,34 +156540,6 @@
     0
   ],
   "_ZN6webrtc13FrameCombinerD1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc13PacketOptionsC1ERKS0__nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc13PacketOptionsC1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc13PushResamplerIsE8ResampleEN3rtc9ArrayViewIKsLln4711EEENS3_IsLln4711EEE_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc13PushResamplerIsE8ResampleENS_15InterleavedViewIKsEENS2_IsEE_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc13PushResamplerIsEC1Emmm_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc13PushResamplerIsEC1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc13PushResamplerIsED1Ev_nid_postfix": [
     "libwebrtc",
     0
   ],
@@ -156563,26 +156659,6 @@
     "libwebrtc",
     0
   ],
-  "_ZN6webrtc17CodecSpecificInfoC1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc17CodecSpecificInfoD1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc17PushSincResampler8ResampleEPKfmPfm_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc17PushSincResamplerC1Emm_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc17PushSincResamplerD1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
   "_ZN6webrtc17RtpPacketReceivedC1EPKNS_21RtpHeaderExtensionMapENS_9TimestampE_nid_postfix": [
     "libwebrtc",
     0
@@ -156592,10 +156668,6 @@
     0
   ],
   "_ZN6webrtc17RtpPacketReceivedD1Ev_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc18EncodedImageBuffer6CreateEPKhm_nid_postfix": [
     "libwebrtc",
     0
   ],
@@ -156624,10 +156696,6 @@
     0
   ],
   "_ZN6webrtc21EchoCanceller3FactoryC1ERKNS_20EchoCanceller3ConfigE_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc21PendingTaskSafetyFlag6CreateEv_nid_postfix": [
     "libwebrtc",
     0
   ],
@@ -156708,10 +156776,6 @@
     0
   ],
   "_ZN6webrtc34CreateModularPeerConnectionFactoryENS_33PeerConnectionFactoryDependenciesE_nid_postfix": [
-    "libwebrtc",
-    0
-  ],
-  "_ZN6webrtc3voe16RemixAndResampleENS_15InterleavedViewIKsEEiPNS_13PushResamplerIsEEPNS_10AudioFrameE_nid_postfix": [
     "libwebrtc",
     0
   ],

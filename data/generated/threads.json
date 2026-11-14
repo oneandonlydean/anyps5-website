@@ -124,8 +124,8 @@
       "PPSA26344"
     ],
     "created": "2026-10-05T14:20:37Z",
-    "updated": "2026-11-14T02:42:54Z",
-    "comments": 116,
+    "updated": "2026-11-14T18:23:58Z",
+    "comments": 119,
     "reports": [],
     "media": [
       {
@@ -2063,10 +2063,18 @@
       "PPSA21703"
     ],
     "created": "2026-10-11T16:18:40Z",
-    "updated": "2026-10-28T19:22:18Z",
-    "comments": 5,
+    "updated": "2026-11-14T10:22:08Z",
+    "comments": 6,
     "reports": [],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/HabibUrRehmanBhattii/AnyPS5/releases/download/anyps5-gfs-screenshots-2026-11-14/PPSA21703-frame_011.png",
+        "alt": "Vampire Survivors main menu on AnyPS5",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/3745#discussioncomment-19610608",
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-14T10:22:08Z"
+      }
+    ]
   },
   {
     "number": 3839,
@@ -10979,8 +10987,8 @@
       "PPSA08576"
     ],
     "created": "2026-10-21T09:14:11Z",
-    "updated": "2026-11-10T21:45:59Z",
-    "comments": 3,
+    "updated": "2026-11-14T17:38:15Z",
+    "comments": 4,
     "reports": [],
     "media": [
       {
@@ -14514,7 +14522,7 @@
       "PPSA03016"
     ],
     "created": "2026-10-23T12:49:25Z",
-    "updated": "2026-11-13T14:31:04Z",
+    "updated": "2026-11-14T15:38:27Z",
     "comments": 2,
     "reports": [
       {
@@ -14556,7 +14564,29 @@
         "blockerText": "**On `main` 16345cad6a (update of 2026-10-30)**, each stop with the build that got past the one before it:\n1. `GetImageResource dword 0 is not a valid runtime value; chain: ReadConstBuffer@pc=0x000084bc(GetBufferResource(LoadAddressU32@pc=0x000084a8(...` (244 s). #9790 or #9969.\n2. With either: a compute dispatch resolves a 22,528-record bindless T# table at once; its ~7,500 textures take 15 GiB of device memory in about 10 s, and the run is stopped by our memory guard at 215-260 s (no present after 72-74 s). Most of that is mip levels above each T#'s `MIN_LOD` that the title never mapped. #13646 leaves them without memory: the peak drops to 9.5 GiB and the title presents again.\n3. With #9790 and #13646: `GetImageResource dword 0 is not a valid runtime value; chain: ReadConstBuffer@pc=0x00009a2c(GetBufferResource(LoadAddressU32@pc=0x00009a18(...` (219 s), the old 0x9a50 shape moved by -0x24. #9969 gets past it.\n4. With #9969 and #13646: `GetSamplerResource dword 0 is not a valid runtime value; chain: ReadConstBuffer@pc=0x00009a78(GetBufferResource(LoadAddressU32@pc=0x000099fc(...` (212-215 s), the old 0x9a9c: the key word is read through a sibling V# of the same record (P+0x50) and indexes a T# array in another one (P+0x10); no open pull request covers it. In some runs, with #9790 or #9969, `ReadConstBuffer@pc=0x00008ec0` comes first instead (149-225 s); its replay shows the same shape in another program (the same block 0xbb8 lower: V# A at P+0x50, key through A, T# array in V# B at P+0x10, S# through A at +0xa0). Across 26 runs with #9790: 13 at 0x9a2c, 10 at 0x8ec0, 3 stalls at about 150 s.\n5. With a local experiment that accepts the sibling-V# key, the shader dispatches with no refusal, and the 22,528-record table 0 (ReadFirstLane-keyed) fills VRAM again (12.7 GiB for the process; stopped by our memory guard at 186 and 248 s). A device-side image table (#7642, #10193) is what would avoid materializing it.\n\nEarlier, **on `main` 0c6a5bd593**, each stop with the bui"
       }
     ],
-    "media": []
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/85036b9d-9920-4f79-bad1-23aa8b2638f6",
+        "alt": "image",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/10195#discussioncomment-19609014",
+        "author": "Tamalero",
+        "date": "2026-11-14T08:23:00Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/235f85cb-f3af-4f42-be07-39fc909b15fe",
+        "alt": "image",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/10195#discussioncomment-19609014",
+        "author": "Tamalero",
+        "date": "2026-11-14T08:23:00Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/a6be6d52-def9-49fb-89b7-9583c0c803d8",
+        "alt": "image",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/10195#discussioncomment-19609014",
+        "author": "Tamalero",
+        "date": "2026-11-14T08:23:00Z"
+      }
+    ]
   },
   {
     "number": 10203,
@@ -27628,5 +27658,210 @@
         "date": "2026-11-14T03:08:41Z"
       }
     ]
+  },
+  {
+    "number": 19981,
+    "title": "Peppa Pig: World Adventures (PPSA09806, Windows): AGC native multisample depth publication abort",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19981",
+    "titleIds": [
+      "PPSA09806"
+    ],
+    "created": "2026-11-14T10:10:25Z",
+    "updated": "2026-11-14T11:18:33Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19981",
+        "discussion": 19981,
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-14T10:10:25Z",
+        "edited": "2026-11-14T10:32:23Z",
+        "stage": "Presents",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": "main 3f6cc968ba (existing worktree had unrelated pre-existing AGC/shader edits; unchanged for this test), relinker v0.1.4-17078-g3f6cc968ba-dirty. Windows, NVIDIA RTX 4070. Driver version and refresh rate were not captured.",
+        "buildKind": "main",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/HabibUrRehmanBhattii/AnyPS5/releases/download/anyps5-gfs-screenshots-2026-11-14/PPSA09806-frame_001.png",
+        "alt": "Peppa Pig: World Adventures logo on AnyPS5",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19981",
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-14T10:10:25Z"
+      }
+    ]
+  },
+  {
+    "number": 19982,
+    "title": "CLADUN X3 (PPSA31543, Windows): startup aborts on sceSaveDataCancel",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19982",
+    "titleIds": [
+      "PPSA31543"
+    ],
+    "created": "2026-11-14T10:10:27Z",
+    "updated": "2026-11-14T10:21:22Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19982",
+        "discussion": 19982,
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-14T10:10:27Z",
+        "edited": "2026-11-14T10:21:22Z",
+        "stage": "Presents",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": "main 3f6cc968ba with unrelated pre-existing AGC/shader edits, relinker v0.1.4-17078-g3f6cc968ba-dirty. Windows, RTX 4070.",
+        "buildKind": "main",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 19983,
+    "title": "Touhou Koumakyou: New Classic (PPSA38353, Windows): startup aborts on sceSaveDataCancel",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19983",
+    "titleIds": [
+      "PPSA38353"
+    ],
+    "created": "2026-11-14T10:10:28Z",
+    "updated": "2026-11-14T10:21:22Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19983",
+        "discussion": 19983,
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-14T10:10:28Z",
+        "edited": "2026-11-14T10:21:22Z",
+        "stage": "Presents",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": "main 3f6cc968ba with unrelated pre-existing AGC/shader edits, relinker v0.1.4-17078-g3f6cc968ba-dirty. Windows, RTX 4070.",
+        "buildKind": "main",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 19987,
+    "title": "Fairy Fencer F: Refrain Chord (PPSA09091, Windows): first present then stalled",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19987",
+    "titleIds": [
+      "PPSA09091"
+    ],
+    "created": "2026-11-14T10:22:09Z",
+    "updated": "2026-11-14T10:22:09Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19987",
+        "discussion": 19987,
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-14T10:22:09Z",
+        "edited": null,
+        "stage": "Presents",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": "main 3f6cc968ba with unrelated pre-existing AGC/shader edits, relinker v0.1.4-17078-g3f6cc968ba-dirty. Windows, RTX 4070.",
+        "buildKind": "main",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 19988,
+    "title": "The Legend of Heroes: Trails From Zero (PPSA36136, Windows): abort on NGS2 voice param",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/19988",
+    "titleIds": [
+      "PPSA36136"
+    ],
+    "created": "2026-11-14T10:22:10Z",
+    "updated": "2026-11-14T10:22:10Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19988",
+        "discussion": 19988,
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-14T10:22:10Z",
+        "edited": null,
+        "stage": "Presents",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": "main 3f6cc968ba with unrelated pre-existing AGC/shader edits, relinker v0.1.4-17078-g3f6cc968ba-dirty. Windows, RTX 4070.",
+        "buildKind": "main",
+        "prs": [],
+        "version": null,
+        "shown": null,
+        "blockers": [],
+        "blockerText": null
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 20039,
+    "title": "Dark Alliance (PPSA02681)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/20039",
+    "titleIds": [
+      "PPSA02681"
+    ],
+    "created": "2026-11-14T13:12:30Z",
+    "updated": "2026-11-14T13:12:30Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20039",
+        "discussion": 20039,
+        "author": "Ducengarth",
+        "date": "2026-11-14T13:12:30Z",
+        "edited": null,
+        "stage": "Menus",
+        "platform": "windows",
+        "gpu": "NVIDIA GeForce RTX 3090 Ti",
+        "gpuVendor": "NVIDIA",
+        "build": "fcca5a0d30 (main, 2026-11-14) with #19694 applied on top. The same scenes were also run on 174899a5cc (main, 2026-11-13) without any pull request.",
+        "buildKind": "prs",
+        "prs": [
+          19694
+        ],
+        "version": "01.009.000",
+        "shown": "- The Unreal Engine, Wwise and Wizards of the Coast logos play.\n- Then the screen stays black until a pad button is pressed. After the press, the intro cinematic plays.\n- After the cinematic comes the title screen (\"Press ✕ to start\") over an animated 3D background.\n- Frame rate on the title screen:\n- With a cold pipeline cache, presents fall to between 1 and 10 per 10 s. In that interval [draws] reports about 9.5 s of every 10 s spent creating pipelines (49 ms each on average, up to 453 ms).\n- With a warm cache it holds about 475 presents per 10 s until the next burst of new pipelines.\n- Input: pad input given through APS5_PAD_INPUT_FILE works; the first press starts the cinematic. Whether a press gets past the title screen was not established.\n- Audio: not tested (SDL_AUDIODRIVER=dummy).",
+        "blockers": [
+          19694,
+          1970
+        ],
+        "blockerText": "UE4 dies on `FAsyncLoadingThread` while it loads assets, on the title screen, after 2 to 3 minutes. It is intermittent, and it shows up in three ways:\n- `LowLevelFatalError ... Serial size mismatch` on a `MaterialInstanceConstant`.\n- UE4's \"Poorly formed Json Number\".\n- `0xc0000005` in the game's unversioned-property zeroing loop (`PPSA02681.exe+0x1b76e00`).\n\nIn every case, the serialized data read from the `.pak` is already wrong when it is parsed. The game reads its paks only through APR (`sceAmprAprCommandBufferReadFile`).\n\n- **On `main` (Windows):** an AGC GPU write-back lands in the read destination while the host is still copying into it. Comparing the destinations with the `.pak` bytes after each read caught it. The fix is #19694 (open).\n- **With #19694:** 1 crash in 5 runs with scripted pad input. Where the bad data came from in that run is not known yet.\n- **Related debt:** #1970 (pending storage-image results stored late). On `main`, `APS5_STORE_AT_LABEL=1` avoided the crash in 3 of 3 runs, but it cuts the frame rate to about 22 presents per 10 s.\n\nHelp wanted: does it reproduce on Linux, or on an AMD GPU?"
+      }
+    ],
+    "media": []
   }
 ]

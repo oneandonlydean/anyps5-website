@@ -1788,7 +1788,7 @@
         3
       ],
       "FreeTypeOt": [
-        142,
+        141,
         199
       ],
       "FrontPanelDisplay": [
@@ -1824,8 +1824,8 @@
         10
       ],
       "GnmDriver": [
-        35,
-        67
+        36,
+        68
       ],
       "GnmDriverForNeoMode": [
         111,
@@ -1856,7 +1856,7 @@
         7
       ],
       "Http": [
-        107,
+        109,
         123
       ],
       "Http2": [
@@ -1864,7 +1864,7 @@
         71
       ],
       "HttpCache": [
-        13,
+        16,
         30
       ],
       "HubAppUtil": [
@@ -1872,7 +1872,7 @@
         3
       ],
       "Icu": [
-        208,
+        206,
         2757
       ],
       "Idu": [
@@ -1928,7 +1928,7 @@
         5
       ],
       "Jsc": [
-        71,
+        78,
         737
       ],
       "Json": [
@@ -1940,7 +1940,7 @@
         223
       ],
       "Jxr": [
-        118,
+        119,
         143
       ],
       "JxrParser": [
@@ -1952,16 +1952,16 @@
         28
       ],
       "LibcInternal": [
-        435,
-        1130
+        443,
+        1133
       ],
       "LibreSsl": [
-        304,
+        305,
         473
       ],
       "LibreSsl3": [
-        582,
-        701
+        597,
+        705
       ],
       "LoginDialog": [
         7,
@@ -2004,7 +2004,7 @@
         47
       ],
       "Mouse": [
-        14,
+        16,
         29
       ],
       "Move": [
@@ -2040,7 +2040,7 @@
         1
       ],
       "NKWebKit": [
-        3005,
+        3038,
         11258
       ],
       "NKWebKitRequirements": [
@@ -2092,7 +2092,7 @@
         496
       ],
       "NpCppWebApi": [
-        1371,
+        1419,
         1799
       ],
       "NpEntitlementAccess": [
@@ -2136,7 +2136,7 @@
         8
       ],
       "NpRemotePlaySessionSignaling": [
-        8,
+        10,
         14
       ],
       "NpScoreRanking": [
@@ -2192,7 +2192,7 @@
         142
       ],
       "NpUniversalDataSystem": [
-        72,
+        73,
         93
       ],
       "NpUtility": [
@@ -2204,7 +2204,7 @@
         94
       ],
       "NpWebApi2": [
-        34,
+        35,
         45
       ],
       "OpusCeltDec": [
@@ -2212,7 +2212,7 @@
         11
       ],
       "OpusCeltEnc": [
-        8,
+        9,
         15
       ],
       "OpusDec": [
@@ -2220,7 +2220,7 @@
         30
       ],
       "OpusSilkEnc": [
-        8,
+        9,
         15
       ],
       "PSNowGkp": [
@@ -2516,7 +2516,7 @@
         14
       ],
       "Ult": [
-        79,
+        82,
         96
       ],
       "UpdateService": [
@@ -2528,7 +2528,7 @@
         8
       ],
       "UsbStorage": [
-        12,
+        14,
         47
       ],
       "UsbStorageDialog": [
@@ -2724,11 +2724,11 @@
         5
       ],
       "libc": [
-        1777,
-        1781
+        1785,
+        1789
       ],
       "libcairo": [
-        90,
+        101,
         161
       ],
       "libcurl": [
@@ -2752,7 +2752,7 @@
         767
       ],
       "libkernel_sys": [
-        188,
+        189,
         820
       ],
       "libkernel_web": [
@@ -2764,7 +2764,7 @@
         171
       ],
       "libwebrtc": [
-        189,
+        209,
         412
       ],
       "libwvoec": [
@@ -3585,6 +3585,20 @@
     },
     {
       "date": "2026-11-14",
+      "library": "HttpCache",
+      "kind": "half",
+      "done": 16,
+      "total": 30
+    },
+    {
+      "date": "2026-11-14",
+      "library": "Mouse",
+      "kind": "half",
+      "done": 16,
+      "total": 29
+    },
+    {
+      "date": "2026-11-14",
       "library": "SulphaDrv",
       "kind": "half",
       "done": 6,
@@ -3596,6 +3610,13 @@
       "kind": "half",
       "done": 11,
       "total": 14
+    },
+    {
+      "date": "2026-11-14",
+      "library": "libwebrtc",
+      "kind": "half",
+      "done": 209,
+      "total": 412
     }
   ]
 }

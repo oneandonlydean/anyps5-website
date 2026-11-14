@@ -244,6 +244,11 @@
     "region": "EP",
     "concept": "10000812"
   },
+  "PPSA02681": {
+    "name": "Dark Alliance",
+    "region": "EP",
+    "concept": "10001729"
+  },
   "PPSA02688": {
     "name": "Infliction: Extended Cut",
     "region": "UP",
@@ -844,6 +849,11 @@
     "region": "EP",
     "concept": "10005693"
   },
+  "PPSA09091": {
+    "name": "Fairy Fencer F: Refrain Chord",
+    "region": "UP",
+    "concept": "10004532"
+  },
   "PPSA09196": {
     "name": "Last Days of Lazarus",
     "region": "EP",
@@ -883,6 +893,11 @@
     "name": "GRIS",
     "region": "EP",
     "concept": "234650"
+  },
+  "PPSA09806": {
+    "name": "Peppa Pig: World Adventures",
+    "region": "EP",
+    "concept": "10006011"
   },
   "PPSA09809": {
     "name": "OCTOPATH TRAVELER II",
@@ -1654,6 +1669,11 @@
     "region": "UP",
     "concept": "10015861"
   },
+  "PPSA31543": {
+    "name": "CLADUN X3",
+    "region": "UP",
+    "concept": "10009704"
+  },
   "PPSA31544": {
     "name": "FINAL FANTASY RESONANCE",
     "region": "JP",
@@ -1764,6 +1784,11 @@
     "region": "EP",
     "concept": "10018449"
   },
+  "PPSA36136": {
+    "name": "The Legend of Heroes: Trails from Zero",
+    "region": "UP",
+    "concept": "10003242"
+  },
   "PPSA36257": {
     "name": "Luna Abyss",
     "region": "JP",
@@ -1788,5 +1813,10 @@
     "name": "Suika Game",
     "region": "UB",
     "concept": "10019457"
+  },
+  "PPSA38353": {
+    "name": "Touhou Koumakyou: New Classic - the Embodiment of Scarlet Devil",
+    "region": "UB",
+    "concept": "10019916"
   }
 }

@@ -3579,9 +3579,9 @@
     "number": 9889,
     "kind": "pr",
     "title": "feat(shader): decode more GCN instructions and take a GCN image's dimension from its T#",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/9889",
-    "closedAt": null
+    "closedAt": "2026-11-14T17:32:53Z"
   },
   "9890": {
     "number": 9890,
@@ -4307,9 +4307,9 @@
     "number": 13248,
     "kind": "pr",
     "title": "fix(agc): claim a multisampled color target that a single-sample storage image store overlaps",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/13248",
-    "closedAt": null
+    "closedAt": "2026-11-14T11:32:00Z"
   },
   "13492": {
     "number": 13492,
@@ -4515,9 +4515,9 @@
     "number": 15327,
     "kind": "pr",
     "title": "fix(agc): copy GPU-side indirect draw records when the packet is processed",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/15327",
-    "closedAt": null
+    "closedAt": "2026-11-14T11:42:39Z"
   },
   "15443": {
     "number": 15443,
@@ -4571,9 +4571,9 @@
     "number": 15691,
     "kind": "pr",
     "title": "fix(libkernel): end unwinding at the guest main stack's entry frame",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/15691",
-    "closedAt": null
+    "closedAt": "2026-11-14T11:44:32Z"
   },
   "15941": {
     "number": 15941,
@@ -4587,9 +4587,9 @@
     "number": 16025,
     "kind": "pr",
     "title": "feat(agc): draw DB stencil copies with a driver pixel program",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/16025",
-    "closedAt": null
+    "closedAt": "2026-11-14T17:40:01Z"
   },
   "16352": {
     "number": 16352,
@@ -4651,9 +4651,9 @@
     "number": 17227,
     "kind": "pr",
     "title": "perf(shader): drop f32 NaN-result selects whose payload no sink observes",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/17227",
-    "closedAt": null
+    "closedAt": "2026-11-14T17:39:59Z"
   },
   "17533": {
     "number": 17533,
@@ -4747,9 +4747,9 @@
     "number": 18176,
     "kind": "pr",
     "title": "feat(agc): draw PS4 EQAA and one-fragment color targets",
-    "state": "open",
+    "state": "merged",
     "url": "https://github.com/boykopovar/AnyPS5/pull/18176",
-    "closedAt": null
+    "closedAt": "2026-11-14T17:41:02Z"
   },
   "18177": {
     "number": 18177,
@@ -4805,6 +4805,14 @@
     "title": "fix(agc): rasterize a single-sample MSAA_ENABLE scan into a multisampled depth target at the pixel center",
     "state": "open",
     "url": "https://github.com/boykopovar/AnyPS5/pull/19617",
+    "closedAt": null
+  },
+  "19694": {
+    "number": 19694,
+    "kind": "pr",
+    "title": "fix(libc): report pages under an open host write as written on Windows",
+    "state": "open",
+    "url": "https://github.com/boykopovar/AnyPS5/pull/19694",
     "closedAt": null
   },
   "19852": {
