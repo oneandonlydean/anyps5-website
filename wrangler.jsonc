@@ -28,6 +28,9 @@
     // things stand, so the backlog is never announced.
     { "binding": "DB", "database_name": "anyps5-bot-test", "database_id": "0b37243f-4f64-42ce-b8a5-bba81a75696b", "migrations_dir": "worker/migrations" }
   ],
+  // The bot's live gateway connection (worker/src/bot/gateway.ts): automod, message and member logs, welcome, autorole.
+  "durable_objects": { "bindings": [{ "name": "GATEWAY", "class_name": "Gateway" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Gateway"] }],
   "vars": {
     "MAINTAINERS": "158058829",
     "SITE_REPO": "oneandonlydean/anyps5-website",
@@ -61,6 +64,8 @@
         },
         { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" }
       ],
+      "durable_objects": { "bindings": [{ "name": "GATEWAY", "class_name": "Gateway" }] },
+      "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Gateway"] }],
       "vars": {
         "MAINTAINERS": "158058829",
         "SITE_REPO": "oneandonlydean/anyps5-website",

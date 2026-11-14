@@ -1,3 +1,4 @@
+import type { Gateway } from "./gateway";
 import { Http } from "./http";
 import { importKey } from "./crypto";
 
@@ -31,6 +32,8 @@ export interface Env {
   /** The weekly summary; falls back to DISCORD_WEBHOOK_DIGEST, then DISCORD_WEBHOOK_PROGRESS. */
   DISCORD_WEBHOOK_WEEKLY?: string;
   TOKEN_KEY: string;
+  /** The live gateway connection (gateway.ts), for automod, logs, welcome and autorole. */
+  GATEWAY?: DurableObjectNamespace<Gateway>;
 
   // The site's own features: GitHub sign-in, uploaded run reports, maintainer tools.
   /** The site's database (accounts, uploads, what maintainers hid). Without it, those features are off. */

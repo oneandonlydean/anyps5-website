@@ -1,13 +1,14 @@
 import { reply } from "./commands";
 import { log, now, type Ctx, type Env } from "./env";
+import { submitted, type Bot } from "./guild";
+import { reloadGateway } from "./settings";
 import { Http, HttpError } from "./http";
 
 /**
- * Sticky messages: /sticky keeps a message as the last one in a channel, like StickyBot. The bot answers slash
- * commands over HTTP and never sees chat as it happens, so the cron moves each sticky down instead: once a minute it
- * reads every sticky channel's latest message id (one request per server) and, where something was posted below the
- * sticky, posts it again at the bottom and deletes the old copy. A sticky therefore comes back within about a minute
- * of new messages, and busy channels see it at most once a minute.
+ * Sticky messages: /sticky keeps a message as the last one in a channel, like StickyBot. When someone posts in a
+ * sticky channel, the gateway (gateway.ts) moves the sticky back down a few seconds later: it posts it again at the
+ * bottom and deletes the old copy. The cron checks too, once a minute, for whatever the gateway missed while it was
+ * disconnected: it reads every sticky channel's latest message id (one request per server).
  *
  * Who can use /sticky is set by Discord: the command is for administrators by default (scripts/commands.mjs), and a
  * server admin can let another role use it in Server Settings → Integrations → the bot → /sticky.
@@ -93,19 +94,19 @@ async function moveDown(env: Env, http: Http, sticky: Sticky): Promise<number | 
   return undefined;
 }
 
-/** The text a modal's input was submitted with, from either layout Discord uses (labels or action rows). */
-function submitted(components: unknown, id: string): string | undefined {
-  if (!components || typeof components !== "object") return undefined;
-  if (Array.isArray(components)) {
-    for (const c of components) {
-      const found = submitted(c, id);
-      if (found !== undefined) return found;
-    }
-    return undefined;
+/** From the gateway, a few seconds after someone posts in a sticky channel: moves the sticky down if it's not last. */
+export async function moveStickyIfBuried(bot: Bot, channel: string): Promise<void> {
+  const sticky = await get(bot.env, channel);
+  if (!sticky || sticky.paused) return;
+  const res = await bot.call("discord sticky channel", "GET", `/channels/${channel}`);
+  if (!res.ok) {
+    await res.body?.cancel();
+    return;
   }
-  const c = components as { custom_id?: string; value?: string; component?: unknown; components?: unknown };
-  if (c.custom_id === id && typeof c.value === "string") return c.value;
-  return submitted(c.component, id) ?? submitted(c.components, id);
+  const { last_message_id } = await res.json<{ last_message_id?: string | null }>();
+  if (last_message_id && last_message_id === sticky.message_id) return;
+  const failed = await moveDown(bot.env, bot.http, sticky);
+  if (failed) log("sticky_cannot_post", { guild: sticky.guild_id, channel, status: failed });
 }
 
 /** /sticky set|remove|pause|resume|list. */
@@ -150,11 +151,13 @@ export async function stickyCommand(env: Env, interaction: StickyInteraction): P
   if (sub === "remove") {
     await env.DB.prepare("DELETE FROM stickies WHERE channel_id = ?").bind(channel).run();
     await remove(env, http, channel, current.message_id);
+    await reloadGateway(env);
     return privately("Removed this channel's sticky message.");
   }
   if (sub === "pause") {
     if (current.paused) return privately("This channel's sticky message is already paused. `/sticky resume` brings it back.");
     await env.DB.prepare("UPDATE stickies SET paused = 1 WHERE channel_id = ?").bind(channel).run();
+    await reloadGateway(env);
     return privately("Paused: the sticky message stays where it is and no longer moves down. `/sticky resume` brings it back.");
   }
   if (sub === "resume") {
@@ -162,6 +165,7 @@ export async function stickyCommand(env: Env, interaction: StickyInteraction): P
     const failed = await moveDown(env, http, current);
     if (failed) return privately(cannotPost(failed));
     await env.DB.prepare("UPDATE stickies SET paused = 0 WHERE channel_id = ?").bind(channel).run();
+    await reloadGateway(env);
     return privately("Resumed: the sticky message is back at the bottom of this channel.");
   }
   return privately("Unknown command.");
@@ -196,8 +200,9 @@ export async function stickySubmit(env: Env, interaction: StickyInteraction): Pr
     .run();
   if (current) await remove(env, http, channel, current.message_id);
   log("sticky_set", { guild, channel, by: caller });
+  await reloadGateway(env);
   return privately(
-    `${current ? "Updated" : "Set"} this channel's sticky message. When people post, it moves back to the bottom within about a minute.`,
+    `${current ? "Updated" : "Set"} this channel's sticky message. When people post, it moves back to the bottom a few seconds later.`,
   );
 }
 

@@ -2,23 +2,24 @@ import { leaderboard, stats } from "./boards";
 import { isSiteCommand, reply, runSiteCommand, suggest, type Option } from "./commands";
 import { error, games, profile, recent, screenshot, setup } from "./community";
 import type { Env, User } from "./env";
+import type { Interaction as GuildInteraction } from "./guild";
+import { MODERATION, moderation } from "./moderation";
+import { rolesClick, rolesCommand, rolesSubmit, suggestPanels } from "./roles";
+import { settingsCommand, settingsSubmit, SETTINGS } from "./settings";
 import { siteData } from "./site-data";
-import { stickyCommand, stickySubmit, type StickyInteraction } from "./sticky";
+import { stickyCommand, stickySubmit } from "./sticky";
+import { suggestTags, tag, tagsCommand, tagsSubmit } from "./tags";
 
 const PING = 1;
 const APPLICATION_COMMAND = 2;
+const MESSAGE_COMPONENT = 3;
 const AUTOCOMPLETE = 4;
 const MODAL_SUBMIT = 5;
 const PONG = 1;
 const MESSAGE = 4;
 const EPHEMERAL = 64;
 
-interface Interaction extends StickyInteraction {
-  type: number;
-  data?: StickyInteraction["data"] & { name: string; options?: Option[] };
-  member?: { user: { id: string } };
-  user?: { id: string };
-}
+type Interaction = GuildInteraction & { data?: GuildInteraction["data"] & { name: string; options?: Option[] } };
 
 const unhex = (s: string) => Uint8Array.from(s.match(/../g) ?? [], (b) => parseInt(b, 16));
 
@@ -112,6 +113,40 @@ async function command(env: Env, name: string, options: Option[] | undefined, ca
   return reply({ content: "Unknown command.", flags: EPHEMERAL });
 }
 
+/**
+ * The server tools that replace Carl-bot (moderation, role panels, tags, logs, welcome, autorole, automod) and /sticky.
+ * Each sets who sees its own replies. Their forms come back as modal submits, and role panels as button clicks; a form
+ * is only ever shown to someone allowed to run the command that opened it.
+ */
+function serverTools(env: Env, i: Interaction): Promise<Response> | undefined {
+  const name = i.data?.name ?? "";
+  const custom = i.data?.custom_id ?? "";
+  if (i.type === MODAL_SUBMIT) {
+    if (custom.startsWith("sticky:")) return stickySubmit(env, i);
+    if (custom.startsWith("roles:")) return rolesSubmit(env, i);
+    if (custom.startsWith("tags:")) return tagsSubmit(env, i);
+    if (custom.startsWith("settings:")) return settingsSubmit(env, i);
+    return Promise.resolve(reply({ content: "Unknown form.", flags: EPHEMERAL }));
+  }
+  if (i.type === MESSAGE_COMPONENT) {
+    if (custom.startsWith("role:") || custom.startsWith("rolemenu:")) return rolesClick(env, i);
+    return Promise.resolve(reply({ content: "Unknown button.", flags: EPHEMERAL }));
+  }
+  if (i.type === AUTOCOMPLETE) {
+    if (name === "tag" || name === "tags") return suggestTags(env, i);
+    if (name === "roles") return suggestPanels(env, i);
+    return undefined;
+  }
+  if (i.type !== APPLICATION_COMMAND) return undefined;
+  if (name === "sticky") return stickyCommand(env, i);
+  if (MODERATION.has(name)) return moderation(env, i);
+  if (name === "roles") return rolesCommand(env, i);
+  if (name === "tag") return tag(env, i);
+  if (name === "tags") return tagsCommand(env, i);
+  if (SETTINGS.has(name)) return settingsCommand(env, i);
+  return undefined;
+}
+
 export async function interactions(req: Request, env: Env): Promise<Response> {
   const body = await req.text();
   if (!(await verified(req, env, body))) return new Response("invalid request signature", { status: 401 });
@@ -120,12 +155,11 @@ export async function interactions(req: Request, env: Env): Promise<Response> {
   if (interaction.type === PING) return Response.json({ type: PONG });
 
   const caller = interaction.member?.user.id ?? interaction.user?.id;
-  // The form /sticky set opens; only someone allowed to run /sticky can be shown it.
-  if (interaction.type === MODAL_SUBMIT) return stickySubmit(env, interaction);
+  const server = serverTools(env, interaction);
+  if (server) return server;
   if (interaction.type === AUTOCOMPLETE && interaction.data) return suggest(env, interaction.data.name, interaction.data.options, caller);
   if (interaction.type === APPLICATION_COMMAND && caller && interaction.data) {
     const { name, options } = interaction.data;
-    if (name === "sticky") return stickyCommand(env, interaction);
     const response = await command(env, name, options, caller);
     return PUBLIC.has(name) ? response : onlyToCaller(response);
   }

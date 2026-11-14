@@ -8,6 +8,7 @@
  *   the site database is bound.
  */
 import { runCron } from "./bot/cron";
+export { Gateway } from "./bot/gateway";
 import { botEnabled, log, type Env } from "./bot/env";
 import { HttpError } from "./bot/http";
 import { mergeBoards } from "./bot/boards";
@@ -102,5 +103,13 @@ export default {
     // The site's refresh runs with or without the bot; the bot's own minute also flushes held-back rebuilds.
     await siteCron(env, now);
     if (botEnabled(env)) await runCron(env, now);
+    // Keeps the gateway connected; its own failures never stop the rest of the minute.
+    if (botEnabled(env) && env.GATEWAY) {
+      try {
+        log("gateway_status", { ...(await env.GATEWAY.getByName("gateway").ensure()) });
+      } catch (err) {
+        log("gateway_ensure_failed", { error: String(err) });
+      }
+    }
   },
 } satisfies ExportedHandler<Env>;

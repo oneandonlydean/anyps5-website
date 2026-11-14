@@ -42,7 +42,8 @@ const GROUPS = [
   ["progress", "Progress and news", "How far AnyPS5 has come, and what changed."],
   ["people", "People", "Contributors and testers."],
   ["help", "Help and the server", "Answers for newcomers, and the server rules."],
-  ["admin", "Server admins", "Only administrators see these, unless an admin lets another role use them in Server Settings → Integrations → the bot."],
+  ["moderation", "Moderation", "For members with the matching permission (Ban Members, Kick Members, Timeout Members, Manage Messages or Manage Channels). A moderator can only act on members whose highest role is below theirs. Each action is a numbered case, the member is told by direct message, and the case goes to the moderation log."],
+  ["admin", "Server setup", "Only administrators see these, unless an admin lets another role use them in Server Settings → Integrations → the bot."],
 ] as const;
 
 const NOTES: Record<string, Note> = {
@@ -97,12 +98,49 @@ const NOTES: Record<string, Note> = {
   faq: { group: "help", reply: "text", text: "Answers from the site's FAQ and from data/bot.yaml. Topics are suggested as you type." },
   rules: { group: "help", reply: "text", text: "The server rules, from data/bot.yaml." },
   rule: { group: "help", reply: "text", text: "One rule by number, to point someone at it. Rules are suggested by number or title." },
+  ban: { group: "moderation", reply: "text", private: true, live: true, text: "Bans a member, or anyone by ID, and can delete their last hour, day or week of messages. They're told why before the ban." },
+  unban: { group: "moderation", reply: "text", private: true, live: true, text: "Lifts a ban. Paste the user's ID into the user field." },
+  kick: { group: "moderation", reply: "text", private: true, live: true, text: "Removes a member; they can join again with an invite. They're told why first." },
+  timeout: { group: "moderation", reply: "text", private: true, live: true, text: "Discord's timeout: they can read but not talk, for up to 28 days. Durations like 10m, 1h30m, 2d or 1w." },
+  untimeout: { group: "moderation", reply: "text", private: true, live: true, text: "Ends a timeout early." },
+  warn: { group: "moderation", reply: "text", private: true, live: true, text: "A warning on the member's record, with a reason they're sent." },
+  warnings: { group: "moderation", reply: "text", private: true, live: true, text: "A member's record: active warnings and every case, newest first." },
+  unwarn: { group: "moderation", reply: "text", private: true, live: true, text: "Takes back a warning by case number. The case stays on the record, marked as taken back." },
+  purge: { group: "moderation", reply: "text", private: true, live: true, text: "Deletes up to 100 recent messages in the channel, or only one member's. Pinned messages and ones older than 14 days are kept; Discord won't bulk delete those." },
+  slowmode: { group: "moderation", reply: "text", private: true, live: true, text: "How long members wait between messages in a channel, from off to 6 hours." },
+  lock: { group: "moderation", reply: "text", private: true, live: true, text: "Stops @everyone posting in a channel and says so there. Administrators and roles explicitly allowed in the channel can still post." },
+  unlock: { group: "moderation", reply: "text", private: true, live: true, text: "Opens a locked channel again." },
+  roles: {
+    group: "admin",
+    reply: "text",
+    private: true,
+    live: true,
+    text: "Role panels, Carl-bot's reaction roles with buttons or a menu. Create posts a panel (title and description in a form); add puts roles on it, with an emoji and a few words each. Modes: toggle, unique (one at a time) or add only. Roles with moderation permissions are refused, and the bot's role must be above the roles it hands out.",
+  },
+  tag: { group: "help", reply: "text", live: true, text: "Posts a saved reply for the whole channel. Tags are suggested as you type; anyone can use them." },
+  tags: { group: "admin", reply: "text", private: true, live: true, text: "Saving, changing and deleting the replies /tag posts, for members who can manage messages. Up to 200 per server." },
+  logs: {
+    group: "admin",
+    reply: "text",
+    private: true,
+    live: true,
+    text: "Log channels: edited and deleted messages (with what they said), joins and leaves (with account age), nickname and role changes, and moderation cases, including bans made outside the bot.",
+  },
+  welcome: { group: "admin", reply: "text", private: true, live: true, text: "Welcome and goodbye messages, written in a form. {user} mentions them, {username} and {server} are names, {count} is the member count. Members who must accept the rules are welcomed once they do." },
+  autorole: { group: "admin", reply: "text", private: true, live: true, text: "Roles every new member gets on joining, or on accepting the rules. Up to 10." },
+  automod: {
+    group: "admin",
+    reply: "text",
+    private: true,
+    live: true,
+    text: "Filters for invites, links (except allowed sites), mass mentions, capitals, spam, repeats and blocked words. Each deletes the message and can also warn or time out. Members who can manage messages, and ignored channels and roles, are never checked.",
+  },
   sticky: {
     group: "admin",
     reply: "text",
     private: true,
     live: true,
-    text: "Keeps a message at the bottom of the channel it's run in. Set opens a form for the text (up to 2,000 characters; mentions never ping). The bot can't see chat as it happens, so it checks once a minute and posts the sticky again below anything newer, deleting the old copy. Up to 10 per server; the bot needs View Channel, Send Messages and Read Message History in the channel.",
+    text: "Keeps a message at the bottom of the channel it's run in. Set opens a form for the text (up to 2,000 characters; mentions never ping). A few seconds after anyone posts there, the bot posts the sticky again below and deletes the old copy; a check every minute catches anything missed. Up to 10 per server; the bot needs View Channel, Send Messages and Read Message History in the channel.",
   },
 };
 
@@ -114,10 +152,11 @@ if (missing.length) throw new Error(`src/pages/moderate/bot.astro has no notes f
 
 /** Subcommands (option type 1) read as alternatives, like /sticky set|remove; other options as <required> [optional]. */
 const usage = (c: Command) =>
-  c.options?.every((o) => o.type === 1)
+  c.options?.every((o) => o.type === 1 || o.type === 2)
     ? `/${c.name} ${c.options.map((o) => o.name).join("|")}`
     : [`/${c.name}`, ...(c.options ?? []).map((o) => (o.required ? `<${o.name}>` : `[${o.name}]`))].join(" ");
-const kind = (o: CommandOption) => (o.type === 6 ? "a member" : o.type === 4 ? "a number" : o.choices ? o.choices.map((c) => c.name).join(", ") : "text");
+const KINDS: Record<number, string> = { 4: "a number", 6: "a member", 7: "a channel", 8: "a role" };
+const kind = (o: CommandOption) => (o.choices ? o.choices.map((c) => c.name).join(", ") : (KINDS[o.type] ?? "text"));
 
 const POSTS = [
   ["Merges", "Each merged feature, fix or speed-up goes to the progress channel; anything else to the dev channel, if one is set. A linked author is pinged."],
@@ -169,8 +208,8 @@ const POSTS = [
                           {c.options.map((o) => (
                             <li>
                               <code>{o.name}</code>
-                              {o.type !== 1 && <span class="muted">{o.required ? "required" : "optional"}</span>} {o.description}
-                              {(o.choices || (o.type !== 3 && o.type !== 1)) && <span class="muted"> · {kind(o)}</span>}
+                              {o.type > 2 && <span class="muted">{o.required ? "required" : "optional"}</span>} {o.description}
+                              {(o.choices || o.type > 3) && <span class="muted"> · {kind(o)}</span>}
                             </li>
                           ))}
                         </ul>

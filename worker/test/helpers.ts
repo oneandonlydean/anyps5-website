@@ -101,3 +101,25 @@ export const getCursor = () =>
 
 /** The execution context the Worker's fetch handler receives; background work runs to completion in tests anyway. */
 export const ctx = { waitUntil: () => {}, passThroughOnException: () => {}, props: {} } as unknown as ExecutionContext;
+
+const hex = (b: ArrayBuffer) => Array.from(new Uint8Array(b), (x) => x.toString(16).padStart(2, "0")).join("");
+let signer: Promise<{ keys: CryptoKeyPair; env: typeof env }> | undefined;
+
+/** Sends a signed interaction to the Worker, as Discord would, and returns the parsed reply. */
+export async function interact(interaction: unknown): Promise<any> {
+  signer ??= (async () => {
+    const keys = (await crypto.subtle.generateKey("Ed25519", true, ["sign", "verify"])) as CryptoKeyPair;
+    return { keys, env: { ...env, DISCORD_PUBLIC_KEY: hex((await crypto.subtle.exportKey("raw", keys.publicKey)) as ArrayBuffer) } };
+  })();
+  const { keys, env: signedEnv } = await signer;
+  const body = JSON.stringify(interaction);
+  const timestamp = "1700000000";
+  const signature = hex(await crypto.subtle.sign("Ed25519", keys.privateKey, new TextEncoder().encode(timestamp + body)));
+  const { default: worker } = await import("../src/index");
+  const res = await worker.fetch(
+    new Request("https://worker.test/interactions", { method: "POST", headers: { "x-signature-ed25519": signature, "x-signature-timestamp": timestamp }, body }) as any,
+    signedEnv,
+    ctx,
+  );
+  return res.json();
+}
