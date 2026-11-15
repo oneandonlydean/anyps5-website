@@ -429,6 +429,11 @@
     "region": "UP",
     "concept": "234567"
   },
+  "PPSA03977": {
+    "name": "The Witcher 3: Wild Hunt - Complete Edition",
+    "region": "EP",
+    "concept": "204794"
+  },
   "PPSA03984": {
     "name": "Forspoken",
     "region": "EP",
@@ -949,6 +954,11 @@
     "region": "UP",
     "concept": "10006270"
   },
+  "PPSA10665": {
+    "name": "FINAL FANTASY XVI",
+    "region": "EP",
+    "concept": "10002100"
+  },
   "PPSA10737": {
     "name": "Little Nightmares Enhanced Edition",
     "region": "EP",
@@ -1164,6 +1174,11 @@
     "region": "EP",
     "concept": "10008876"
   },
+  "PPSA17905": {
+    "name": "Horizon Forbidden West",
+    "region": "UP",
+    "concept": "10000886"
+  },
   "PPSA17942": {
     "name": "DRAGON QUEST VII Reimagined",
     "region": "EP",
@@ -1349,6 +1364,16 @@
     "region": "EB",
     "concept": "10010458"
   },
+  "PPSA21725": {
+    "name": "RIDE 6",
+    "region": "EP",
+    "concept": "10010475"
+  },
+  "PPSA21755": {
+    "name": "Iron Lung",
+    "region": "UB",
+    "concept": "10010468"
+  },
   "PPSA22102": {
     "name": "Squirrel with a Gun",
     "region": "UP",
@@ -1498,6 +1523,11 @@
     "name": "Mandragora: Whispers of the Witch Tree",
     "region": "HP",
     "concept": "10004736"
+  },
+  "PPSA27158": {
+    "name": "Dispatch",
+    "region": "HP",
+    "concept": "10013259"
   },
   "PPSA27305": {
     "name": "Goosebumps: Terror in Little Creek",
@@ -1818,5 +1848,10 @@
     "name": "Touhou Koumakyou: New Classic - the Embodiment of Scarlet Devil",
     "region": "UB",
     "concept": "10019916"
+  },
+  "PPSA38500": {
+    "name": "Grand Theft Auto VI",
+    "region": null,
+    "concept": "10000730"
   }
 }

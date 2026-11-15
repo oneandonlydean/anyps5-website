@@ -1,5 +1,5 @@
 {
-  "commit": "72d942814bf90184dfae83254c7012989f8f0ca2",
+  "commit": "2f8c84369157179517f26f788e93949f29a46707",
   "sites": [
     {
       "file": "core/libs/prx/libSceAgcDriver/Eq/src/Event.cpp",
@@ -523,27 +523,27 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 567,
+      "line": 581,
       "message": "frame capture: the guest write watch is unavailable, so CPU stores during the frames cannot be recorded"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 674,
+      "line": 688,
       "message": "frame capture: the guest arena is not reserved"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 685,
+      "line": 699,
       "message": "frame capture: VirtualQuery failed inside the guest arena"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 710,
+      "line": 724,
       "message": "frame capture: the guest arena is not reserved"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp",
-      "line": 746,
+      "line": 760,
       "message": "frame capture: guest memory capture is implemented on Windows and Linux only"
     },
     {
@@ -1328,32 +1328,32 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 3442,
+      "line": 3446,
       "message": "AGC graphics: an image copy its check allowed was refused: "
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5127,
+      "line": 5131,
       "message": "APS5_WATCH_MEMORY takes <hex address>:<hex bytes>[,...]"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5132,
+      "line": 5136,
       "message": "APS5_WATCH_MEMORY needs APS5_SYNC_DISPATCH=1"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 6260,
+      "line": 6264,
       "message": "Vulkan dispatch: invalid SPIR-V"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 6265,
+      "line": 6269,
       "message": "Vulkan dispatch: compute push constant range exceeds device limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 6601,
+      "line": 6605,
       "message": "Vulkan dispatch: recipe over a non-reusable template"
     },
     {
@@ -1368,17 +1368,17 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5904,
+      "line": 5908,
       "message": "Vulkan dispatch: a thread-dimension dispatch has no ShaderData thread limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5909,
+      "line": 5913,
       "message": "Vulkan dispatch: thread-dimension indirect arguments need the argument kernel"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Execution/src/VulkanDevice.cpp",
-      "line": 5971,
+      "line": 5975,
       "message": "dispatch overlay has no descriptor set"
     },
     {
@@ -1798,27 +1798,27 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/BufferPool.cpp",
-      "line": 739,
+      "line": 741,
       "message": "an image allocation requires an image"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/BufferPool.cpp",
-      "line": 741,
+      "line": 743,
       "message": "sparse, disjoint and protected images require separate image memory binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/BufferPool.cpp",
-      "line": 743,
+      "line": 745,
       "message": "external and swapchain images require separate image memory binding"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/BufferPool.cpp",
-      "line": 751,
+      "line": 753,
       "message": "invalid image memory requirements"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/BufferPool.cpp",
-      "line": 753,
+      "line": 755,
       "message": "an image allocation must use its context's buffer pool"
     },
     {
@@ -3028,192 +3028,192 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5204,
+      "line": 5231,
       "message": "guest allocation lease must precede resource registration"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5406,
+      "line": 5414,
       "message": "a partial heap import has no mirror for its remaining bytes"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5578,
+      "line": 5586,
       "message": "guest memory ownership is frozen for GPU execution"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5579,
+      "line": 5587,
       "message": "empty guest memory range"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5580,
+      "line": 5588,
       "message": "guest memory range overflow"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 5614,
+      "line": 5622,
       "message": "no address space to dissolve"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6424,
+      "line": 6429,
       "message": "guest memory was already uploaded"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6459,
+      "line": 6464,
       "message": "image mirrors overlap"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6482,
+      "line": 6487,
       "message": "writable guest memory overlaps an immutable snapshot"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6486,
+      "line": 6491,
       "message": "inconsistent overlapping guest snapshots"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6498,
+      "line": 6503,
       "message": "guest GPU allocation size overflow"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 6623,
+      "line": 6628,
       "message": "guest memory upload was not prepared"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7002,
+      "line": 7007,
       "message": "GPU copy capture requires APS5_CAPTURE_TRACE"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7004,
+      "line": 7009,
       "message": "GPU buffer copies need an active recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7250,
+      "line": 7255,
       "message": "guest GPU memory is not available"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7251,
+      "line": 7256,
       "message": "invalid guest buffer view"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7253,
+      "line": 7258,
       "message": "guest buffer has no GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7263,
+      "line": 7268,
       "message": "no storage buffer offset alignment"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7264,
+      "line": 7269,
       "message": "a guest buffer view in a GPU owner that does not start at a DWORD boundary is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7270,
+      "line": 7275,
       "message": "guest buffer view starts past its copy"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7274,
+      "line": 7279,
       "message": "rounded up to its view range exceeds"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7275,
+      "line": 7280,
       "message": "guest buffer view exceeds descriptor range limit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7283,
+      "line": 7288,
       "message": "guest buffer view range overflow"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7288,
+      "line": 7293,
       "message": "incomplete guest GPU upload"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7290,
+      "line": 7295,
       "message": "GPU address range overflow"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7343,
+      "line": 7348,
       "message": "guest GPU address ranges are not available"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7402,
+      "line": 7407,
       "message": "runtime buffer write has no writable GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7429,
+      "line": 7434,
       "message": "guest GPU address ranges are not available"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7454,
+      "line": 7459,
       "message": "a cached BDA table differs from the ranges of the build that found it"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7598,
+      "line": 7603,
       "message": "written range exceeds its heap mirror"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7617,
+      "line": 7622,
       "message": "guest memory cannot be committed twice or before upload"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7624,
+      "line": 7629,
       "message": "write-back range has no GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7635,
+      "line": 7640,
       "message": "write-back range exceeds its GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7645,
+      "line": 7650,
       "message": "heap mirror write-back has no reference"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7654,
+      "line": 7659,
       "message": "heap mirror readback does not match its write-back"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7670,
+      "line": 7675,
       "message": "write-back range exceeds its GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7691,
+      "line": 7696,
       "message": "write-back range exceeds its GPU owner"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp",
-      "line": 7852,
+      "line": 7857,
       "message": "staging copies recorded into a recorder that is not the device's"
     },
     {
@@ -3583,17 +3583,17 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1182,
+      "line": 1257,
       "message": ", is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1413,
+      "line": 1488,
       "message": "initial multisampled DCC contents are not a supported uniform fast clear"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1652,
+      "line": 1728,
       "message": "storage image access to"
     },
     {
@@ -3683,322 +3683,322 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 423,
+      "line": 454,
       "message": "native FMASK sampling requires a tracked two- or eight-fragment DCC target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 424,
+      "line": 455,
       "message": "native FMASK format does not match its resident target's sample count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 425,
+      "line": 456,
       "message": "native FMASK target layout is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 426,
+      "line": 457,
       "message": "native FMASK descriptor does not match its resident target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 427,
+      "line": 458,
       "message": "native FMASK extent or subresource does not match its resident target"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 429,
+      "line": 460,
       "message": "native FMASK sampling requires its device's active recorder outside completion"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 503,
+      "line": 534,
       "message": "the device cannot write the multisampled color target's format as a storage image at its sample count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 504,
+      "line": 535,
       "message": "a storage image access to a multisampled color target in another format than the target's storage form is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 507,
+      "line": 538,
       "message": "a storage image access to a multisampled color target whose CMASK fast clear no draw has applied is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 509,
+      "line": 540,
       "message": "a multisampled color target is only written by recorded dispatches on its device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 544,
+      "line": 575,
       "message": "the multisampled color target has no storage view to put its samples in the guest's order"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 568,
+      "line": 599,
       "message": "the device cannot sample the multisampled color target's format at its sample count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 571,
+      "line": 602,
       "message": "sampling a multisampled color target whose CMASK fast clear no draw has applied is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 573,
+      "line": 604,
       "message": "a multisampled color target is only sampled by recorded draws and dispatches on its device"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 602,
+      "line": 666,
       "message": "a multisampled color target is only viewed in its own format or its sRGB twin"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 796,
+      "line": 866,
       "message": "uploading multisampled guest color under compression metadata is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 797,
+      "line": 867,
       "message": "uploading multisampled guest color of arrays, volumes or mips is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 798,
+      "line": 868,
       "message": "non-uniform multisampled guest color tiling is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 800,
+      "line": 870,
       "message": "the multisampled guest color layout and footprint differ"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 801,
+      "line": 871,
       "message": "the multisampled guest color element count is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 810,
+      "line": 880,
       "message": "multisampled DCC metadata base alignment is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 811,
+      "line": 881,
       "message": "multisampled DCC CMASK footprint is invalid"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 813,
+      "line": 883,
       "message": "multisampled DCC color footprint is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 826,
+      "line": 896,
       "message": "initial multisampled DCC contents require watched guest memory"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 828,
+      "line": 898,
       "message": "initial multisampled DCC contents have no write generation"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 835,
+      "line": 905,
       "message": "overlapping multisampled DCC color or metadata ranges are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 845,
+      "line": 915,
       "message": "native FMASK contents require watched guest memory"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 848,
+      "line": 918,
       "message": "native FMASK contents have no write generation"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 850,
+      "line": 920,
       "message": "native FMASK overlaps its color or metadata planes"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 861,
+      "line": 931,
       "message": "initial multisampled DCC contents changed during import"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 879,
+      "line": 949,
       "message": "adding DCC to a resident multisampled color target is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 882,
+      "line": 952,
       "message": "multisampled DCC metadata was released while its color target remains resident"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 884,
+      "line": 954,
       "message": "multisampled DCC target layout or metadata changed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 898,
+      "line": 968,
       "message": "native FMASK target layout changed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1329,
+      "line": 1404,
       "message": "unsupported multisampled DCC fragment count"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1330,
+      "line": 1405,
       "message": "multisampled DCC requires pipe-aligned SW_64KB_R_X"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1331,
+      "line": 1406,
       "message": "unsupported multisampled DCC element size"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1332,
+      "line": 1407,
       "message": "invalid multisampled DCC extent"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1333,
+      "line": 1408,
       "message": "multisampled DCC array, volume or mip contents are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1352,
+      "line": 1427,
       "message": "multisampled DCC comp-to-single keys without a recorded clear color are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1354,
+      "line": 1429,
       "message": "multisampled DCC comp-to-single clears of this texel size are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1358,
+      "line": 1433,
       "message": "multisampled DCC comp-to-single clear has no exact host value"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1396,
+      "line": 1471,
       "message": "multisampled DCC address, color transform, lossy mode or XOR is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1397,
+      "line": 1472,
       "message": "multisampled DCC metadata snapshot size mismatch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1399,
+      "line": 1474,
       "message": "multisampled DCC CMASK snapshot size mismatch"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1416,
+      "line": 1491,
       "message": "multisampled DCC clear format is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1421,
+      "line": 1496,
       "message": "multisampled DCC fast clear has no exact host value"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1481,
+      "line": 1556,
       "message": "a fill over the color memory of a multisampled target has no exact clear value in its format"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1492,
+      "line": 1567,
       "message": "initial multisample color contents with CMASK require a modeled metadata import"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1493,
+      "line": 1568,
       "message": "initial multisample array, volume or mip contents are not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1494,
+      "line": 1569,
       "message": "initial multisample color format or element size is unsupported"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1495,
+      "line": 1570,
       "message": "initial multisample color texel size is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1497,
+      "line": 1572,
       "message": "initial multisample color footprint is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1499,
+      "line": 1574,
       "message": "initial multisample color contents overlap resident native depth"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1504,
+      "line": 1579,
       "message": "initial multisample color contents are not fully mapped"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1508,
+      "line": 1583,
       "message": "initial multisample color contents changed during capture"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1519,
+      "line": 1594,
       "message": "nonuniform initial multisample color tiling is not implemented"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1520,
+      "line": 1595,
       "message": "initial multisample color samples require enabled formatless multisampled storage image writes"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1522,
+      "line": 1597,
       "message": "initial multisample color layout and footprint differ"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1527,
+      "line": 1602,
       "message": "initial multisample color contents changed during upload preparation"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1607,
+      "line": 1683,
       "message": "a multisampled texture is only sampled by recorded draws and dispatches"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1630,
+      "line": 1706,
       "message": "a multisampled texture is only sampled by recorded draws and dispatches"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1660,
+      "line": 1736,
       "message": "a multisampled color target is only written by recorded dispatches"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/MultisampleTarget.cpp",
-      "line": 1745,
+      "line": 1821,
       "message": "FMASK descriptor refers to more than one resident target"
     },
     {
@@ -4508,7 +4508,7 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 4590,
+      "line": 4609,
       "message": "vkQueueSubmit recorder: injected failure"
     },
     {
@@ -4593,12 +4593,12 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 4439,
+      "line": 4458,
       "message": "no batch to append a completion label to"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Recorder.cpp",
-      "line": 4597,
+      "line": 4616,
       "message": "Recorder::Submit submit serial mismatch"
     },
     {
@@ -5723,22 +5723,22 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 7174,
+      "line": 7183,
       "message": "draw snapshots require a descriptor cache"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 7196,
+      "line": 7205,
       "message": "draw snapshot descriptor allocation failed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 7201,
+      "line": 7210,
       "message": "draw snapshot descriptor allocation failed"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/ShaderResources.cpp",
-      "line": 7233,
+      "line": 7242,
       "message": "draw snapshot writes disagree with their descriptor bindings"
     },
     {
@@ -7543,17 +7543,17 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5140,
+      "line": 5141,
       "message": "StorageTexture::FlushPending: injected failure for a test"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5679,
+      "line": 5691,
       "message": "APS5_STORE_AT_FLIP=…: expected 1"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5685,
+      "line": 5697,
       "message": "APS5_STORE_AT_LABEL=…: expected 1"
     },
     {
@@ -7848,27 +7848,27 @@
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5401,
+      "line": 5413,
       "message": "a write-back's saved guest bytes are pending without a recorder"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5505,
+      "line": 5517,
       "message": "cannot open private image readback file"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 5514,
+      "line": 5526,
       "message": "cannot complete private image readback file"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 6975,
+      "line": 6987,
       "message": "storage image borrows no unit"
     },
     {
       "file": "core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp",
-      "line": 7303,
+      "line": 7315,
       "message": "a shadowed storage write-back range crosses the end of its import segment"
     },
     {
@@ -11128,67 +11128,67 @@
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1806,
+      "line": 1807,
       "message": "a patched guest buffer binding changed its width"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1811,
+      "line": 1812,
       "message": "patched user data lies outside the push data"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 1815,
+      "line": 1816,
       "message": "patched user data lies outside the shader data"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2281,
+      "line": 2282,
       "message": "ShaderRecompiler::Recompile: "
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2283,
+      "line": 2284,
       "message": "ShaderRecompiler::Recompile: unknown exception"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2398,
+      "line": 2399,
       "message": "ShaderRecompiler: prepared artifact is missing"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2429,
+      "line": 2430,
       "message": "ShaderRecompiler: resource capture belongs to another prepared shader"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2437,
+      "line": 2438,
       "message": "ShaderRecompiler: prepared artifact is missing"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2442,
-      "message": "ShaderRecompiler: prepared artifact does not match the static ABI"
-    },
-    {
-      "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2456,
+      "line": 2443,
       "message": "ShaderRecompiler: prepared artifact does not match the static ABI"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
       "line": 2457,
+      "message": "ShaderRecompiler: prepared artifact does not match the static ABI"
+    },
+    {
+      "file": "core/shader/recompiler/Recompiler.cpp",
+      "line": 2458,
       "message": "ShaderRecompiler: resource capture belongs to another prepared shader"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2465,
+      "line": 2466,
       "message": "ShaderRecompiler: source handle is missing"
     },
     {
       "file": "core/shader/recompiler/Recompiler.cpp",
-      "line": 2466,
+      "line": 2467,
       "message": "ShaderRecompiler: prepared artifact does not match the static ABI"
     },
     {
@@ -11398,42 +11398,42 @@
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvImageEmitter.cpp",
-      "line": 76,
+      "line": 84,
       "message": "image dmask has fewer components than requested"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvImageEmitter.cpp",
-      "line": 90,
+      "line": 98,
       "message": "image gather dmask must select exactly one component"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvImageEmitter.cpp",
-      "line": 313,
+      "line": 321,
       "message": "invalid sampled image numeric class"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvImageEmitter.cpp",
-      "line": 610,
+      "line": 618,
       "message": "image conversion format is not a packed 16-bit or 32-bit unsigned integer, unorm or float format"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvImageEmitter.cpp",
-      "line": 1044,
+      "line": 1052,
       "message": "storage image conversion format is not a SINT format written through a UINT view"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvImageEmitter.cpp",
-      "line": 1165,
+      "line": 1173,
       "message": "opcode is not an image atomic"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvImageEmitter.cpp",
-      "line": 2314,
+      "line": 2324,
       "message": "EmitImageOperation(SpirvModule&) is not used: image instructions are emitted per opcode through EmitImage"
     },
     {
       "file": "core/shader/recompiler/SpirvBackend/src/SpirvImageEmitter.cpp",
-      "line": 2318,
+      "line": 2328,
       "message": "EmitImageOperation(SpirvValueEmitContext&) is not used: image instructions are emitted per opcode through EmitImage"
     },
     {

@@ -124,7 +124,7 @@
       "PPSA26344"
     ],
     "created": "2026-10-05T14:20:37Z",
-    "updated": "2026-11-14T18:23:58Z",
+    "updated": "2026-11-15T02:32:51Z",
     "comments": 119,
     "reports": [],
     "media": [
@@ -10987,8 +10987,8 @@
       "PPSA08576"
     ],
     "created": "2026-10-21T09:14:11Z",
-    "updated": "2026-11-14T17:38:15Z",
-    "comments": 4,
+    "updated": "2026-11-15T00:17:14Z",
+    "comments": 6,
     "reports": [],
     "media": [
       {
@@ -15824,7 +15824,7 @@
       "PPSA24263"
     ],
     "created": "2026-10-26T21:56:04Z",
-    "updated": "2026-11-13T18:50:00Z",
+    "updated": "2026-11-14T22:17:20Z",
     "comments": 9,
     "reports": [
       {
@@ -18296,8 +18296,8 @@
       "PPSA05595"
     ],
     "created": "2026-10-31T16:41:30Z",
-    "updated": "2026-11-14T06:50:30Z",
-    "comments": 10,
+    "updated": "2026-11-15T01:22:26Z",
+    "comments": 11,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/14033",
@@ -27860,6 +27860,193 @@
           1970
         ],
         "blockerText": "UE4 dies on `FAsyncLoadingThread` while it loads assets, on the title screen, after 2 to 3 minutes. It is intermittent, and it shows up in three ways:\n- `LowLevelFatalError ... Serial size mismatch` on a `MaterialInstanceConstant`.\n- UE4's \"Poorly formed Json Number\".\n- `0xc0000005` in the game's unversioned-property zeroing loop (`PPSA02681.exe+0x1b76e00`).\n\nIn every case, the serialized data read from the `.pak` is already wrong when it is parsed. The game reads its paks only through APR (`sceAmprAprCommandBufferReadFile`).\n\n- **On `main` (Windows):** an AGC GPU write-back lands in the read destination while the host is still copying into it. Comparing the destinations with the `.pak` bytes after each read caught it. The fix is #19694 (open).\n- **With #19694:** 1 crash in 5 runs with scripted pad input. Where the bad data came from in that run is not known yet.\n- **Related debt:** #1970 (pending storage-image results stored late). On `main`, `APS5_STORE_AT_LABEL=1` avoided the crash in 3 of 3 runs, but it cuts the frame rate to about 22 presents per 10 s.\n\nHelp wanted: does it reproduce on Linux, or on an AMD GPU?"
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 20200,
+    "title": "FINAL FANTASY XVI (PPSA10665) — harvest report",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/20200",
+    "titleIds": [
+      "PPSA10665"
+    ],
+    "created": "2026-11-14T20:51:31Z",
+    "updated": "2026-11-14T20:51:31Z",
+    "comments": 0,
+    "reports": [],
+    "media": []
+  },
+  {
+    "number": 20322,
+    "title": "Dispatch (PPSA27158)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/20322",
+    "titleIds": [
+      "PPSA27158"
+    ],
+    "created": "2026-11-15T02:02:01Z",
+    "updated": "2026-11-15T02:03:31Z",
+    "comments": 1,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322",
+        "discussion": 20322,
+        "author": "birdmarty",
+        "date": "2026-11-15T02:02:01Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "AMD Radeon RX 6800",
+        "gpuVendor": "AMD",
+        "build": "ee25ae607b83c0e8a0978db2a592e2f19e5530a0",
+        "buildKind": "main",
+        "prs": [],
+        "version": "01.000.013",
+        "shown": "The game runs and plays well, averaging around 50 FPS (63,439 frames presented over ~21 minutes of runtime). However, it consistently crashes upon exiting the hacking mini-game.",
+        "blockers": [],
+        "blockerText": "The game aborts with a runtime-stop error specifically when exiting the hacking mini-game.\r\nwhat():  AGC graphics: a line polygon mode needs PA_SU_LINE_CNTL\r\n\r\n<img width=\"1467\" height=\"855\" alt=\"last node\" src=\"https://github.com/user-attachments/assets/201ae258-6a14-4d03-8973-3858ecc384e9\" />"
+      }
+    ],
+    "media": [
+      {
+        "src": "https://github.com/user-attachments/assets/201ae258-6a14-4d03-8973-3858ecc384e9",
+        "alt": "last node",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:02:01Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/888e5a8b-0e88-4a6c-85b0-f8b2663f8bea",
+        "alt": "menu",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/16ef97c4-ed2c-4b6f-9d55-27dec936eb12",
+        "alt": "ingame",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/977430db-4bea-47b7-88f2-3076b4ce2833",
+        "alt": "glonde_glazer",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/551afc7f-b614-4d94-9903-d1c381245db0",
+        "alt": "tripple d&#39;s",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/434f7787-fbb6-4d36-a3d6-c9c4251edbcf",
+        "alt": "hacking",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/4a14457e-ab67-4a68-b3f1-0df9e5488649",
+        "alt": "last node",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/691457e5-17eb-4440-beeb-7aa4a9e5bc4a",
+        "alt": "lmfao",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/fb56c288-252c-47f5-88e8-6bc717419559",
+        "alt": "right before",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/11fae1a9-96bf-44b6-87cd-4fcb5d618c51",
+        "alt": "start",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      },
+      {
+        "src": "https://github.com/user-attachments/assets/52f9cea5-e294-4f51-9599-da935f7efacf",
+        "alt": "training",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20322#discussioncomment-19623313",
+        "author": "birdmarty",
+        "date": "2026-11-15T02:03:31Z"
+      }
+    ]
+  },
+  {
+    "number": 20342,
+    "title": "The Witcher 3: Wild Hunt - Complete Edition (PPSA03977)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/20342",
+    "titleIds": [
+      "PPSA03977"
+    ],
+    "created": "2026-11-15T02:21:43Z",
+    "updated": "2026-11-15T02:21:43Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20342",
+        "discussion": 20342,
+        "author": "relativespace2K",
+        "date": "2026-11-15T02:21:43Z",
+        "edited": null,
+        "stage": "Ingame",
+        "platform": "windows",
+        "gpu": "RX 6800 XT",
+        "gpuVendor": "AMD",
+        "build": null,
+        "buildKind": "unknown",
+        "prs": [],
+        "version": "04.040.100",
+        "shown": "Loading reaches gameplay in about 120-140 s. The first successful run stayed in game for 180 s, riding Roach in Velen at about 8 FPS at 3200x1800. Keyboard input works (W, Esc, M); the pause menu and World Map open, though the map itself is mostly black. Audio was not checked. No TDR or device-lost was seen in that run.",
+        "blockers": [],
+        "blockerText": "- Stock `main` stops before the first frame with `AGC graphics: depth bias in units other than the depth format is unsupported (register 0x2de = 0x000001e9)` on a D16 target; the local build only bypasses the throw.\n- One run stopped at about 90 s with `shader 0x208017400 stage 1: buffer ADD_TID is only valid for compute shaders`.\n- After clearing `ADD_TID`, a run reached the menu and World Map but stopped at about 200 s with `shader 0x2095e0200 stage 1: buffer descriptor uses an unsupported type (buffer 1 V# 00000002 04dba3d0 00000002 c01e7600) first used at pc 0x128`.\n- A local build that clears that descriptor type is deployed but not yet validated."
+      }
+    ],
+    "media": []
+  },
+  {
+    "number": 20383,
+    "title": "Grand Theft Auto VI (PPSA38500)",
+    "url": "https://github.com/boykopovar/AnyPS5/discussions/20383",
+    "titleIds": [
+      "PPSA38500"
+    ],
+    "created": "2026-11-15T03:43:04Z",
+    "updated": "2026-11-15T03:43:04Z",
+    "comments": 0,
+    "reports": [
+      {
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/20383",
+        "discussion": 20383,
+        "author": "cubegh",
+        "date": "2026-11-15T03:43:04Z",
+        "edited": null,
+        "stage": "Not converting",
+        "platform": null,
+        "gpu": null,
+        "gpuVendor": null,
+        "build": "naw",
+        "buildKind": "unknown",
+        "prs": [],
+        "version": null,
+        "shown": "nothing i havent tried js tryna put it in mind",
+        "blockers": [],
+        "blockerText": null
       }
     ],
     "media": []

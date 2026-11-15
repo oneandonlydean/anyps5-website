@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T20:12:53.632Z",
+  "generated": "2026-11-15T03:58:32.457Z",
   "uploads": [
     {
       "id": 2,
@@ -5812,6 +5812,172 @@
         "comparable": true
       },
       "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 139,
+      "titleId": "PPSA21755",
+      "titleChosen": false,
+      "name": "Iron Lung",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-14T22:28:56.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "ee25ae607b83c0e8a0978db2a592e2f19e5530a0",
+      "release": null,
+      "contentVersion": "01.000.100",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.7,
+        "low1": 58.4,
+        "p99Ms": 17.13,
+        "stutters": 3,
+        "seconds": 60.025,
+        "gpuBusyPct": 50.4,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 140,
+      "titleId": "PPSA17905",
+      "titleChosen": false,
+      "name": "Horizon Forbidden West",
+      "stage": "Menus",
+      "stated": "Menus",
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-15T00:35:11.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "ee25ae607b83c0e8a0978db2a592e2f19e5530a0",
+      "release": null,
+      "contentVersion": "01.030.000",
+      "exit": "abort",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "other",
+        "reason": "runtime-stop",
+        "message": "compute shader 0xb280180b00: shader 0xb280180b00 stage 0: ShaderRecompiler::Recompile: GetImageResource dword 0 is not a valid runtime value; chain: CompositeExtractU32x4(Ballot(INotEqual32(Immediate, BitwiseAnd32(Immediate, GetBuiltin(Immediate, Immediate)))), Immediate)"
+      },
+      "perf": {
+        "fps": 41.8,
+        "low1": 19.5,
+        "p99Ms": 51.4,
+        "stutters": 120,
+        "seconds": 277.259,
+        "gpuBusyPct": 18.6,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 141,
+      "titleId": "PPSA27158",
+      "titleChosen": false,
+      "name": "Dispatch",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-15T01:17:23.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "ee25ae607b83c0e8a0978db2a592e2f19e5530a0",
+      "release": null,
+      "contentVersion": "01.000.013",
+      "exit": "abort",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "other",
+        "reason": "runtime-stop",
+        "message": "AGC graphics: a line polygon mode needs PA_SU_LINE_CNTL"
+      },
+      "perf": {
+        "fps": 44.5,
+        "low1": 7.7,
+        "p99Ms": 129.2,
+        "stutters": 191,
+        "seconds": 450.408,
+        "gpuBusyPct": 62.8,
+        "cap": 60,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 142,
+      "titleId": "PPSA21725",
+      "titleChosen": false,
+      "name": "RIDE 6",
+      "stage": "Presents",
+      "stated": null,
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-15T02:06:34.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "ee25ae607b83c0e8a0978db2a592e2f19e5530a0",
+      "release": null,
+      "contentVersion": "01.018.000",
+      "exit": "abort",
+      "recovered": false,
+      "missing": [
+        "sceHttp2SendRequestAsync"
+      ],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "missing-function",
+        "reason": "runtime-stop",
+        "message": "Called libSceHttp2 sceHttp2SendRequestAsync, which is not implemented."
+      },
+      "perf": null,
+      "verifiedBy": null
     }
   ],
   "hidden": {

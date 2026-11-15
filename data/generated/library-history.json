@@ -1,1394 +1,5 @@
 {
   "previous": {
-    "date": "2026-11-13",
-    "libraries": {
-      "Party": [
-        0,
-        26
-      ],
-      "libAacs": [
-        0,
-        264
-      ],
-      "libCprm": [
-        0,
-        35
-      ],
-      "libCss": [
-        0,
-        65
-      ],
-      "libReactNative.Modules.Vsh": [
-        0,
-        83
-      ],
-      "libReactNative.Modules.Vsh.WebAppLauncher": [
-        0,
-        57
-      ],
-      "AbstractLocal": [
-        8,
-        70
-      ],
-      "AbstractStorage": [
-        12,
-        131
-      ],
-      "AbstractTcs": [
-        0,
-        40
-      ],
-      "AbstractTwitter": [
-        16,
-        68
-      ],
-      "AbstractYoutube": [
-        16,
-        76
-      ],
-      "Ac3Enc": [
-        6,
-        7
-      ],
-      "Acm": [
-        12,
-        72
-      ],
-      "AddressSanitizer": [
-        0,
-        301
-      ],
-      "Agc": [
-        238,
-        242
-      ],
-      "AgcDriver": [
-        96,
-        166
-      ],
-      "AgcVsh": [
-        1,
-        2
-      ],
-      "Ajm": [
-        3,
-        3
-      ],
-      "Ajm.native": [
-        35,
-        55
-      ],
-      "Ajmi": [
-        2,
-        24
-      ],
-      "Ampr": [
-        134,
-        137
-      ],
-      "AppChecker": [
-        0,
-        3
-      ],
-      "AppContent": [
-        30,
-        39
-      ],
-      "AppDbShellCoreClient": [
-        0,
-        28
-      ],
-      "AppInstUtil": [
-        4,
-        158
-      ],
-      "AsyncStorageInternal": [
-        0,
-        22
-      ],
-      "At9Enc": [
-        0,
-        5
-      ],
-      "Audio3d": [
-        32,
-        32
-      ],
-      "AudioIn": [
-        19,
-        49
-      ],
-      "AudioLatencyEstimation": [
-        0,
-        4
-      ],
-      "AudioOut": [
-        76,
-        219
-      ],
-      "AudioPropagation": [
-        30,
-        41
-      ],
-      "AudioSystem": [
-        2,
-        38
-      ],
-      "Audiodec": [
-        6,
-        6
-      ],
-      "Audiodec.native": [
-        2,
-        16
-      ],
-      "AudiodecCpu": [
-        0,
-        8
-      ],
-      "AutoMounterClient": [
-        0,
-        6
-      ],
-      "AvPlayer": [
-        28,
-        28
-      ],
-      "AvPlayer.native": [
-        2,
-        2
-      ],
-      "AvPlayerStreaming": [
-        1,
-        34
-      ],
-      "AvSetting": [
-        13,
-        157
-      ],
-      "Avcap2": [
-        0,
-        59
-      ],
-      "Avcap2mvr": [
-        0,
-        13
-      ],
-      "BackupRestoreUtil": [
-        12,
-        21
-      ],
-      "Beisobmf": [
-        10,
-        18
-      ],
-      "Bemp2sys": [
-        6,
-        33
-      ],
-      "Bgft": [
-        4,
-        103
-      ],
-      "BgsStorage": [
-        0,
-        17
-      ],
-      "BluetoothHid": [
-        8,
-        17
-      ],
-      "Camera": [
-        87,
-        125
-      ],
-      "CdlgAdIdClient": [
-        0,
-        7
-      ],
-      "CdlgG2P": [
-        7,
-        7
-      ],
-      "CdlgPlayerReview": [
-        7,
-        7
-      ],
-      "CdlgUtilServer": [
-        2,
-        43
-      ],
-      "CesCs": [
-        288,
-        288
-      ],
-      "CffMgr": [
-        0,
-        14
-      ],
-      "CloudMessaging": [
-        0,
-        6
-      ],
-      "CommonDialog": [
-        2,
-        28
-      ],
-      "CompanionHttpd": [
-        17,
-        17
-      ],
-      "CompanionUtil": [
-        5,
-        5
-      ],
-      "Composite": [
-        8,
-        130
-      ],
-      "ConnectAccountDialog": [
-        7,
-        7
-      ],
-      "ContentDelete": [
-        2,
-        8
-      ],
-      "ContentExport": [
-        7,
-        22
-      ],
-      "ContentListController": [
-        0,
-        19
-      ],
-      "ContentSearch": [
-        17,
-        29
-      ],
-      "ConvertKeycode": [
-        4,
-        4
-      ],
-      "CustomMusicAudioOut": [
-        0,
-        10
-      ],
-      "CustomMusicCore": [
-        0,
-        29
-      ],
-      "CustomMusicPlayReady4": [
-        0,
-        82
-      ],
-      "CustomMusicSysCallWrapper": [
-        0,
-        107
-      ],
-      "DataTransfer": [
-        0,
-        90
-      ],
-      "Dbg": [
-        0,
-        29
-      ],
-      "DbgThreadSanitizer": [
-        2,
-        2
-      ],
-      "Deci5": [
-        0,
-        7
-      ],
-      "Depth": [
-        3,
-        39
-      ],
-      "Depth2": [
-        0,
-        11
-      ],
-      "Dipsw": [
-        0,
-        10
-      ],
-      "DiscId": [
-        2,
-        2
-      ],
-      "DiscMap": [
-        3,
-        5
-      ],
-      "Dseehx": [
-        0,
-        4
-      ],
-      "DtsEnc": [
-        6,
-        7
-      ],
-      "EditMp4": [
-        2,
-        9
-      ],
-      "ErrorDialog": [
-        8,
-        8
-      ],
-      "Esvm": [
-        0,
-        52
-      ],
-      "EsvmEngine": [
-        21,
-        58
-      ],
-      "EsvmPlayReady": [
-        0,
-        1
-      ],
-      "Face": [
-        1,
-        29
-      ],
-      "FaceTracker": [
-        11,
-        21
-      ],
-      "Fiber": [
-        16,
-        16
-      ],
-      "Fios2": [
-        168,
-        168
-      ],
-      "FlexContent": [
-        0,
-        12
-      ],
-      "Font": [
-        153,
-        240
-      ],
-      "FontFt": [
-        41,
-        45
-      ],
-      "FontGs": [
-        4,
-        6
-      ],
-      "FontGs.native": [
-        4,
-        6
-      ],
-      "FreeType": [
-        142,
-        152
-      ],
-      "FreeTypeOl": [
-        47,
-        92
-      ],
-      "FreeTypeOptOl": [
-        3,
-        3
-      ],
-      "FreeTypeOt": [
-        129,
-        199
-      ],
-      "FrontPanelDisplay": [
-        0,
-        3
-      ],
-      "FsInternalForVsh": [
-        9,
-        339
-      ],
-      "GLSlimVSH": [
-        140,
-        210
-      ],
-      "GameCustomDataDialog": [
-        9,
-        9
-      ],
-      "GameLiveStreaming": [
-        25,
-        47
-      ],
-      "GameUpdate": [
-        7,
-        8
-      ],
-      "Gic": [
-        1,
-        1
-      ],
-      "GifParser": [
-        4,
-        10
-      ],
-      "GnmDriver": [
-        34,
-        66
-      ],
-      "GnmDriverForNeoMode": [
-        111,
-        139
-      ],
-      "GpuTrace": [
-        0,
-        8
-      ],
-      "GvMp4Parser": [
-        0,
-        24
-      ],
-      "HidControl": [
-        81,
-        82
-      ],
-      "Hmd": [
-        30,
-        187
-      ],
-      "Hmd2": [
-        101,
-        234
-      ],
-      "HmdSetupDialog": [
-        7,
-        7
-      ],
-      "Http": [
-        107,
-        123
-      ],
-      "Http2": [
-        25,
-        71
-      ],
-      "HttpCache": [
-        13,
-        30
-      ],
-      "HubAppUtil": [
-        0,
-        3
-      ],
-      "Icu": [
-        208,
-        2747
-      ],
-      "Idu": [
-        16,
-        21
-      ],
-      "ImageUtil": [
-        0,
-        18
-      ],
-      "Ime": [
-        17,
-        64
-      ],
-      "ImeBackend": [
-        2,
-        27
-      ],
-      "ImeDialog": [
-        13,
-        14
-      ],
-      "ImeDialogVoiceDictation": [
-        0,
-        1
-      ],
-      "InvitationDialog": [
-        9,
-        9
-      ],
-      "Ipmi": [
-        30,
-        97
-      ],
-      "Jemspace": [
-        0,
-        13
-      ],
-      "JobManager": [
-        13,
-        13
-      ],
-      "JpegDec": [
-        6,
-        6
-      ],
-      "JpegEnc": [
-        4,
-        4
-      ],
-      "JpegParser": [
-        0,
-        5
-      ],
-      "Jsc": [
-        64,
-        737
-      ],
-      "Json": [
-        0,
-        30
-      ],
-      "Json2": [
-        134,
-        223
-      ],
-      "Jxr": [
-        118,
-        143
-      ],
-      "JxrParser": [
-        0,
-        7
-      ],
-      "Keyboard": [
-        10,
-        28
-      ],
-      "LibcInternal": [
-        412,
-        1130
-      ],
-      "LibreSsl": [
-        301,
-        473
-      ],
-      "LibreSsl3": [
-        561,
-        688
-      ],
-      "LoginDialog": [
-        7,
-        7
-      ],
-      "LoginMgrServer": [
-        35,
-        37
-      ],
-      "LoginService": [
-        2,
-        3
-      ],
-      "M4aacEnc": [
-        1,
-        18
-      ],
-      "Mat": [
-        0,
-        52
-      ],
-      "Mbus": [
-        11,
-        136
-      ],
-      "MediaAppSharedStorage": [
-        0,
-        16
-      ],
-      "MediaFrameworkInterface": [
-        0,
-        177
-      ],
-      "MediaFrameworkUtil": [
-        0,
-        5
-      ],
-      "MetadataReaderWriter": [
-        0,
-        47
-      ],
-      "Mouse": [
-        12,
-        29
-      ],
-      "Move": [
-        12,
-        21
-      ],
-      "MoveTracker": [
-        3,
-        18
-      ],
-      "MsgDialog": [
-        9,
-        9
-      ],
-      "MsgDialog.native": [
-        10,
-        10
-      ],
-      "MusicCoreInterface": [
-        0,
-        7
-      ],
-      "MusicFrameworkInterface": [
-        0,
-        37
-      ],
-      "NKWeb": [
-        0,
-        5
-      ],
-      "NKWebCdlgInjectedBundle": [
-        0,
-        1
-      ],
-      "NKWebKit": [
-        2987,
-        11258
-      ],
-      "NKWebKitRequirements": [
-        130,
-        173
-      ],
-      "Net": [
-        116,
-        232
-      ],
-      "NetCtl": [
-        42,
-        105
-      ],
-      "NetCtlAp": [
-        11,
-        11
-      ],
-      "NetCtlApDialog": [
-        7,
-        7
-      ],
-      "Ngs2": [
-        0,
-        2
-      ],
-      "Ngs2.native": [
-        57,
-        71
-      ],
-      "Notification": [
-        4,
-        4
-      ],
-      "NpAuth": [
-        14,
-        14
-      ],
-      "NpAuthAuthorizedAppDialog": [
-        7,
-        7
-      ],
-      "NpCommerce": [
-        12,
-        12
-      ],
-      "NpCommon": [
-        393,
-        496
-      ],
-      "NpCppWebApi": [
-        1332,
-        1778
-      ],
-      "NpEntitlementAccess": [
-        26,
-        26
-      ],
-      "NpEulaDialog": [
-        7,
-        9
-      ],
-      "NpFriendListDialog": [
-        7,
-        9
-      ],
-      "NpGameIntent": [
-        11,
-        26
-      ],
-      "NpManager": [
-        222,
-        551
-      ],
-      "NpMatching2": [
-        23,
-        69
-      ],
-      "NpPartner001": [
-        3,
-        4
-      ],
-      "NpPartnerSubscription": [
-        0,
-        2
-      ],
-      "NpParty": [
-        26,
-        26
-      ],
-      "NpProfileDialog": [
-        8,
-        8
-      ],
-      "NpRemotePlaySessionSignaling": [
-        8,
-        14
-      ],
-      "NpScoreRanking": [
-        51,
-        51
-      ],
-      "NpSessionSignaling": [
-        26,
-        31
-      ],
-      "NpSessionSignalingCrossplay": [
-        0,
-        11
-      ],
-      "NpSignaling": [
-        17,
-        24
-      ],
-      "NpSns": [
-        0,
-        21
-      ],
-      "NpSnsFacebookDialog": [
-        7,
-        7
-      ],
-      "NpSnsYouTubeDialog": [
-        7,
-        7
-      ],
-      "NpSpeechToText": [
-        6,
-        7
-      ],
-      "NpTcs": [
-        0,
-        11
-      ],
-      "NpTextToSpeech": [
-        10,
-        11
-      ],
-      "NpTrophy": [
-        26,
-        110
-      ],
-      "NpTrophy2": [
-        18,
-        61
-      ],
-      "NpTus": [
-        137,
-        142
-      ],
-      "NpUniversalDataSystem": [
-        72,
-        93
-      ],
-      "NpUtility": [
-        82,
-        102
-      ],
-      "NpWebApi": [
-        51,
-        94
-      ],
-      "NpWebApi2": [
-        34,
-        45
-      ],
-      "OpusCeltDec": [
-        10,
-        11
-      ],
-      "OpusCeltEnc": [
-        8,
-        15
-      ],
-      "OpusDec": [
-        13,
-        30
-      ],
-      "OpusSilkEnc": [
-        8,
-        15
-      ],
-      "PSNowGkp": [
-        1,
-        9
-      ],
-      "Pad": [
-        54,
-        222
-      ],
-      "PadTracker": [
-        1,
-        6
-      ],
-      "PatchCheckerClient": [
-        8,
-        12
-      ],
-      "Perf": [
-        0,
-        84
-      ],
-      "Pfs": [
-        7,
-        9
-      ],
-      "PlayGo": [
-        23,
-        24
-      ],
-      "PlayGoDialog": [
-        7,
-        7
-      ],
-      "PlayReady": [
-        7,
-        50
-      ],
-      "PlayReady2": [
-        0,
-        17
-      ],
-      "PlayReady4": [
-        0,
-        87
-      ],
-      "PlayReady4L": [
-        0,
-        8
-      ],
-      "PlayerInvitationDialog": [
-        7,
-        7
-      ],
-      "PlayerSelectionDialog": [
-        8,
-        8
-      ],
-      "PngDec": [
-        6,
-        6
-      ],
-      "PngEnc": [
-        4,
-        4
-      ],
-      "PngParser": [
-        4,
-        10
-      ],
-      "PosixForWebKit": [
-        31,
-        38
-      ],
-      "ProprietaryVoiceChatHelperPrx": [
-        3,
-        5
-      ],
-      "Ps2EmuMenuDialog": [
-        7,
-        7
-      ],
-      "Psm": [
-        3,
-        118
-      ],
-      "PsmUtil": [
-        0,
-        4
-      ],
-      "Psml_debug": [
-        25,
-        39
-      ],
-      "Random": [
-        1,
-        1
-      ],
-      "RazorCpu": [
-        41,
-        42
-      ],
-      "RazorCpu_debug": [
-        0,
-        3
-      ],
-      "RegMgr": [
-        15,
-        74
-      ],
-      "RemotePlayClientIpc": [
-        0,
-        18
-      ],
-      "Remoteplay": [
-        3,
-        50
-      ],
-      "ResourceArbitrator": [
-        0,
-        14
-      ],
-      "RnpsAppMgr": [
-        0,
-        35
-      ],
-      "RnpsBundle": [
-        0,
-        5
-      ],
-      "RnpsNKInjectedBundle": [
-        0,
-        1
-      ],
-      "Rtc": [
-        51,
-        52
-      ],
-      "Rudp": [
-        33,
-        35
-      ],
-      "S3da": [
-        4,
-        4
-      ],
-      "SaveData": [
-        0,
-        19
-      ],
-      "SaveData.native": [
-        56,
-        120
-      ],
-      "SaveDataDialog.native": [
-        10,
-        10
-      ],
-      "ScreenShot": [
-        13,
-        13
-      ],
-      "Sdma": [
-        13,
-        27
-      ],
-      "Share": [
-        17,
-        23
-      ],
-      "ShareFactoryUtil": [
-        0,
-        6
-      ],
-      "ShareInternal.native": [
-        0,
-        20
-      ],
-      "SharePlay": [
-        5,
-        25
-      ],
-      "ShareUtility": [
-        6,
-        22
-      ],
-      "ShellUIUtil": [
-        3,
-        7
-      ],
-      "SigninDialog": [
-        7,
-        7
-      ],
-      "SisrSys": [
-        0,
-        2
-      ],
-      "SocialScreen": [
-        1,
-        11
-      ],
-      "SocialScreenDialog": [
-        7,
-        7
-      ],
-      "SpSysCallWrapper": [
-        48,
-        48
-      ],
-      "SrcUtl": [
-        4,
-        13
-      ],
-      "Ssl": [
-        38,
-        55
-      ],
-      "SulphaDrv": [
-        1,
-        8
-      ],
-      "SysCore": [
-        0,
-        84
-      ],
-      "SysUtil": [
-        1,
-        24
-      ],
-      "Sysmodule": [
-        11,
-        21
-      ],
-      "SystemGesture": [
-        23,
-        24
-      ],
-      "SystemLogger": [
-        3,
-        3
-      ],
-      "SystemLogger2": [
-        1,
-        14
-      ],
-      "SystemLogger2Delivery": [
-        0,
-        7
-      ],
-      "SystemLogger2Game": [
-        0,
-        2
-      ],
-      "SystemLogger2NativeQueueClient": [
-        7,
-        12
-      ],
-      "SystemService": [
-        154,
-        617
-      ],
-      "SystemTts": [
-        0,
-        10
-      ],
-      "TEEClient": [
-        0,
-        15
-      ],
-      "TextToSpeech": [
-        9,
-        12
-      ],
-      "TextToSpeech2": [
-        9,
-        14
-      ],
-      "TtsCoreG3Bc": [
-        4,
-        18
-      ],
-      "TtsEngine": [
-        10,
-        11
-      ],
-      "UgcBgUploaderClient": [
-        0,
-        14
-      ],
-      "UgcServiceS3": [
-        0,
-        14
-      ],
-      "Ult": [
-        78,
-        96
-      ],
-      "UpdateService": [
-        0,
-        56
-      ],
-      "UrlConfigResolver": [
-        0,
-        8
-      ],
-      "UsbStorage": [
-        12,
-        47
-      ],
-      "UsbStorageDialog": [
-        7,
-        7
-      ],
-      "Usbd": [
-        61,
-        61
-      ],
-      "UserService": [
-        44,
-        695
-      ],
-      "Vcodec": [
-        7,
-        8
-      ],
-      "VdecCore": [
-        14,
-        21
-      ],
-      "VdecCore.native": [
-        0,
-        4
-      ],
-      "VdecSavc": [
-        1,
-        4
-      ],
-      "VdecSavc2": [
-        1,
-        4
-      ],
-      "VdecShevc": [
-        1,
-        13
-      ],
-      "VdecSvp9": [
-        0,
-        11
-      ],
-      "Vdecsw": [
-        18,
-        18
-      ],
-      "Vdecwrap": [
-        0,
-        11
-      ],
-      "Venc": [
-        2,
-        27
-      ],
-      "VideoArbitration": [
-        2,
-        3
-      ],
-      "VideoCoreInterface": [
-        0,
-        4
-      ],
-      "VideoCoreServerInterface": [
-        4,
-        47
-      ],
-      "VideoDecoderArbitration": [
-        1,
-        4
-      ],
-      "VideoNativeExtEssential": [
-        1,
-        6
-      ],
-      "VideoOut": [
-        71,
-        290
-      ],
-      "VideoOutSecondary": [
-        0,
-        2
-      ],
-      "VideoRecording.native": [
-        0,
-        27
-      ],
-      "VideoRecordingP": [
-        9,
-        26
-      ],
-      "VideoStreamingEngine": [
-        46,
-        70
-      ],
-      "VideoStreamingEngineAudioOnly": [
-        0,
-        4
-      ],
-      "Videodec": [
-        6,
-        7
-      ],
-      "Videodec2": [
-        11,
-        29
-      ],
-      "VisionManager": [
-        25,
-        63
-      ],
-      "VnaInternal": [
-        73,
-        84
-      ],
-      "VnaWebsocket": [
-        4,
-        22
-      ],
-      "Voice": [
-        36,
-        36
-      ],
-      "VoiceChat": [
-        64,
-        64
-      ],
-      "VoiceCommand": [
-        0,
-        23
-      ],
-      "VoiceQoS": [
-        19,
-        25
-      ],
-      "VorbisDec": [
-        31,
-        34
-      ],
-      "VrHand": [
-        1,
-        8
-      ],
-      "VrServiceDialog": [
-        7,
-        7
-      ],
-      "VrSetupDialog": [
-        7,
-        7
-      ],
-      "VrTracker": [
-        9,
-        39
-      ],
-      "VrTracker2": [
-        86,
-        93
-      ],
-      "VsePlugin": [
-        0,
-        34
-      ],
-      "WebBrowserDialog": [
-        10,
-        14
-      ],
-      "WebRtc": [
-        0,
-        5
-      ],
-      "WebTransport": [
-        0,
-        53
-      ],
-      "WebmParserMdrw": [
-        0,
-        7
-      ],
-      "WkFontConfig": [
-        0,
-        5
-      ],
-      "Workspace": [
-        0,
-        18
-      ],
-      "Xml": [
-        121,
-        183
-      ],
-      "Zlib": [
-        5,
-        5
-      ],
-      "libc": [
-        1773,
-        1777
-      ],
-      "libcairo": [
-        90,
-        161
-      ],
-      "libcurl": [
-        59,
-        85
-      ],
-      "libfontconfig": [
-        23,
-        53
-      ],
-      "libfreetype": [
-        16,
-        26
-      ],
-      "libharfbuzz": [
-        10,
-        37
-      ],
-      "libkernel": [
-        716,
-        767
-      ],
-      "libkernel_sys": [
-        186,
-        820
-      ],
-      "libkernel_web": [
-        3,
-        43
-      ],
-      "libmdbg_syscore": [
-        2,
-        171
-      ],
-      "libwebrtc": [
-        174,
-        412
-      ],
-      "libwvoec": [
-        0,
-        77
-      ],
-      "ulobjmgr": [
-        4,
-        6
-      ]
-    }
-  },
-  "latest": {
     "date": "2026-11-14",
     "libraries": {
       "Party": [
@@ -1760,16 +371,16 @@
         12
       ],
       "Font": [
-        153,
-        240
+        160,
+        241
       ],
       "FontFt": [
         41,
         45
       ],
       "FontGs": [
-        4,
-        6
+        8,
+        10
       ],
       "FontGs.native": [
         4,
@@ -1824,7 +435,7 @@
         10
       ],
       "GnmDriver": [
-        36,
+        37,
         68
       ],
       "GnmDriverForNeoMode": [
@@ -1872,7 +483,7 @@
         3
       ],
       "Icu": [
-        206,
+        222,
         2757
       ],
       "Idu": [
@@ -1928,7 +539,7 @@
         5
       ],
       "Jsc": [
-        78,
+        80,
         737
       ],
       "Json": [
@@ -1952,7 +563,7 @@
         28
       ],
       "LibcInternal": [
-        443,
+        469,
         1133
       ],
       "LibreSsl": [
@@ -2040,7 +651,7 @@
         1
       ],
       "NKWebKit": [
-        3038,
+        3067,
         11258
       ],
       "NKWebKitRequirements": [
@@ -2092,7 +703,7 @@
         496
       ],
       "NpCppWebApi": [
-        1419,
+        1433,
         1799
       ],
       "NpEntitlementAccess": [
@@ -2372,7 +983,7 @@
         19
       ],
       "SaveData.native": [
-        56,
+        57,
         120
       ],
       "SaveDataDialog.native": [
@@ -2456,7 +1067,7 @@
         21
       ],
       "SystemGesture": [
-        23,
+        24,
         24
       ],
       "SystemLogger": [
@@ -2764,7 +1375,1396 @@
         171
       ],
       "libwebrtc": [
-        209,
+        211,
+        412
+      ],
+      "libwvoec": [
+        0,
+        77
+      ],
+      "ulobjmgr": [
+        4,
+        6
+      ]
+    }
+  },
+  "latest": {
+    "date": "2026-11-15",
+    "libraries": {
+      "Party": [
+        0,
+        26
+      ],
+      "libAacs": [
+        0,
+        264
+      ],
+      "libCprm": [
+        0,
+        35
+      ],
+      "libCss": [
+        0,
+        65
+      ],
+      "libReactNative.Modules.Vsh": [
+        0,
+        83
+      ],
+      "libReactNative.Modules.Vsh.WebAppLauncher": [
+        0,
+        57
+      ],
+      "AbstractLocal": [
+        8,
+        70
+      ],
+      "AbstractStorage": [
+        12,
+        131
+      ],
+      "AbstractTcs": [
+        0,
+        40
+      ],
+      "AbstractTwitter": [
+        16,
+        68
+      ],
+      "AbstractYoutube": [
+        16,
+        76
+      ],
+      "Ac3Enc": [
+        6,
+        7
+      ],
+      "Acm": [
+        12,
+        72
+      ],
+      "AddressSanitizer": [
+        0,
+        301
+      ],
+      "Agc": [
+        238,
+        242
+      ],
+      "AgcDriver": [
+        97,
+        167
+      ],
+      "AgcVsh": [
+        1,
+        2
+      ],
+      "Ajm": [
+        3,
+        3
+      ],
+      "Ajm.native": [
+        35,
+        55
+      ],
+      "Ajmi": [
+        5,
+        26
+      ],
+      "Ampr": [
+        134,
+        137
+      ],
+      "AppChecker": [
+        0,
+        3
+      ],
+      "AppContent": [
+        30,
+        39
+      ],
+      "AppDbShellCoreClient": [
+        0,
+        28
+      ],
+      "AppInstUtil": [
+        4,
+        158
+      ],
+      "AsyncStorageInternal": [
+        0,
+        22
+      ],
+      "At9Enc": [
+        0,
+        5
+      ],
+      "Audio3d": [
+        32,
+        32
+      ],
+      "AudioIn": [
+        19,
+        49
+      ],
+      "AudioLatencyEstimation": [
+        0,
+        4
+      ],
+      "AudioOut": [
+        78,
+        219
+      ],
+      "AudioPropagation": [
+        30,
+        41
+      ],
+      "AudioSystem": [
+        2,
+        38
+      ],
+      "Audiodec": [
+        6,
+        6
+      ],
+      "Audiodec.native": [
+        2,
+        16
+      ],
+      "AudiodecCpu": [
+        0,
+        8
+      ],
+      "AutoMounterClient": [
+        0,
+        6
+      ],
+      "AvPlayer": [
+        28,
+        28
+      ],
+      "AvPlayer.native": [
+        2,
+        2
+      ],
+      "AvPlayerStreaming": [
+        1,
+        34
+      ],
+      "AvSetting": [
+        13,
+        157
+      ],
+      "Avcap2": [
+        0,
+        59
+      ],
+      "Avcap2mvr": [
+        0,
+        13
+      ],
+      "BackupRestoreUtil": [
+        19,
+        21
+      ],
+      "Beisobmf": [
+        10,
+        18
+      ],
+      "Bemp2sys": [
+        6,
+        33
+      ],
+      "Bgft": [
+        4,
+        103
+      ],
+      "BgsStorage": [
+        0,
+        17
+      ],
+      "BluetoothHid": [
+        8,
+        17
+      ],
+      "Camera": [
+        87,
+        125
+      ],
+      "CdlgAdIdClient": [
+        0,
+        7
+      ],
+      "CdlgG2P": [
+        7,
+        7
+      ],
+      "CdlgPlayerReview": [
+        7,
+        7
+      ],
+      "CdlgUtilServer": [
+        2,
+        43
+      ],
+      "CesCs": [
+        288,
+        288
+      ],
+      "CffMgr": [
+        0,
+        14
+      ],
+      "CloudMessaging": [
+        0,
+        6
+      ],
+      "CommonDialog": [
+        5,
+        28
+      ],
+      "CompanionHttpd": [
+        17,
+        17
+      ],
+      "CompanionUtil": [
+        5,
+        5
+      ],
+      "Composite": [
+        8,
+        130
+      ],
+      "ConnectAccountDialog": [
+        7,
+        7
+      ],
+      "ContentDelete": [
+        2,
+        8
+      ],
+      "ContentExport": [
+        7,
+        22
+      ],
+      "ContentListController": [
+        0,
+        19
+      ],
+      "ContentSearch": [
+        17,
+        29
+      ],
+      "ConvertKeycode": [
+        4,
+        4
+      ],
+      "CustomMusicAudioOut": [
+        0,
+        10
+      ],
+      "CustomMusicCore": [
+        0,
+        29
+      ],
+      "CustomMusicPlayReady4": [
+        0,
+        82
+      ],
+      "CustomMusicSysCallWrapper": [
+        0,
+        107
+      ],
+      "DataTransfer": [
+        0,
+        90
+      ],
+      "Dbg": [
+        0,
+        29
+      ],
+      "DbgThreadSanitizer": [
+        2,
+        2
+      ],
+      "Deci5": [
+        0,
+        7
+      ],
+      "Depth": [
+        3,
+        39
+      ],
+      "Depth2": [
+        0,
+        11
+      ],
+      "Dipsw": [
+        0,
+        10
+      ],
+      "DiscId": [
+        2,
+        2
+      ],
+      "DiscMap": [
+        3,
+        5
+      ],
+      "Dseehx": [
+        0,
+        4
+      ],
+      "DtsEnc": [
+        6,
+        7
+      ],
+      "EditMp4": [
+        2,
+        9
+      ],
+      "ErrorDialog": [
+        8,
+        8
+      ],
+      "Esvm": [
+        0,
+        52
+      ],
+      "EsvmEngine": [
+        21,
+        58
+      ],
+      "EsvmPlayReady": [
+        0,
+        1
+      ],
+      "Face": [
+        1,
+        29
+      ],
+      "FaceTracker": [
+        11,
+        21
+      ],
+      "Fiber": [
+        16,
+        16
+      ],
+      "Fios2": [
+        167,
+        168
+      ],
+      "FlexContent": [
+        0,
+        12
+      ],
+      "Font": [
+        160,
+        241
+      ],
+      "FontFt": [
+        41,
+        45
+      ],
+      "FontGs": [
+        8,
+        10
+      ],
+      "FontGs.native": [
+        4,
+        6
+      ],
+      "FreeType": [
+        142,
+        152
+      ],
+      "FreeTypeOl": [
+        47,
+        92
+      ],
+      "FreeTypeOptOl": [
+        3,
+        3
+      ],
+      "FreeTypeOt": [
+        141,
+        199
+      ],
+      "FrontPanelDisplay": [
+        0,
+        3
+      ],
+      "FsInternalForVsh": [
+        9,
+        339
+      ],
+      "GLSlimVSH": [
+        140,
+        210
+      ],
+      "GameCustomDataDialog": [
+        9,
+        9
+      ],
+      "GameLiveStreaming": [
+        25,
+        47
+      ],
+      "GameUpdate": [
+        7,
+        8
+      ],
+      "Gic": [
+        1,
+        1
+      ],
+      "GifParser": [
+        4,
+        10
+      ],
+      "GnmDriver": [
+        39,
+        70
+      ],
+      "GnmDriverForNeoMode": [
+        111,
+        139
+      ],
+      "GpuTrace": [
+        0,
+        8
+      ],
+      "GvMp4Parser": [
+        0,
+        24
+      ],
+      "HidControl": [
+        81,
+        82
+      ],
+      "Hmd": [
+        30,
+        187
+      ],
+      "Hmd2": [
+        102,
+        234
+      ],
+      "HmdSetupDialog": [
+        7,
+        7
+      ],
+      "Http": [
+        109,
+        123
+      ],
+      "Http2": [
+        25,
+        71
+      ],
+      "HttpCache": [
+        16,
+        30
+      ],
+      "HubAppUtil": [
+        0,
+        3
+      ],
+      "Icu": [
+        234,
+        2757
+      ],
+      "Idu": [
+        16,
+        21
+      ],
+      "ImageUtil": [
+        0,
+        18
+      ],
+      "Ime": [
+        17,
+        64
+      ],
+      "ImeBackend": [
+        2,
+        27
+      ],
+      "ImeDialog": [
+        13,
+        14
+      ],
+      "ImeDialogVoiceDictation": [
+        0,
+        1
+      ],
+      "InvitationDialog": [
+        9,
+        9
+      ],
+      "Ipmi": [
+        30,
+        97
+      ],
+      "Jemspace": [
+        0,
+        13
+      ],
+      "JobManager": [
+        13,
+        13
+      ],
+      "JpegDec": [
+        6,
+        6
+      ],
+      "JpegEnc": [
+        4,
+        4
+      ],
+      "JpegParser": [
+        0,
+        5
+      ],
+      "Jsc": [
+        82,
+        737
+      ],
+      "Json": [
+        0,
+        30
+      ],
+      "Json2": [
+        134,
+        223
+      ],
+      "Jxr": [
+        128,
+        143
+      ],
+      "JxrParser": [
+        0,
+        7
+      ],
+      "Keyboard": [
+        13,
+        28
+      ],
+      "LibcInternal": [
+        477,
+        1131
+      ],
+      "LibreSsl": [
+        305,
+        473
+      ],
+      "LibreSsl3": [
+        597,
+        705
+      ],
+      "LoginDialog": [
+        7,
+        7
+      ],
+      "LoginMgrServer": [
+        35,
+        37
+      ],
+      "LoginService": [
+        2,
+        3
+      ],
+      "M4aacEnc": [
+        1,
+        18
+      ],
+      "Mat": [
+        0,
+        52
+      ],
+      "Mbus": [
+        11,
+        136
+      ],
+      "MediaAppSharedStorage": [
+        0,
+        16
+      ],
+      "MediaFrameworkInterface": [
+        0,
+        177
+      ],
+      "MediaFrameworkUtil": [
+        0,
+        5
+      ],
+      "MetadataReaderWriter": [
+        0,
+        47
+      ],
+      "Mouse": [
+        16,
+        29
+      ],
+      "Move": [
+        15,
+        21
+      ],
+      "MoveTracker": [
+        3,
+        18
+      ],
+      "MsgDialog": [
+        9,
+        9
+      ],
+      "MsgDialog.native": [
+        10,
+        10
+      ],
+      "MusicCoreInterface": [
+        0,
+        7
+      ],
+      "MusicFrameworkInterface": [
+        0,
+        37
+      ],
+      "NKWeb": [
+        0,
+        5
+      ],
+      "NKWebCdlgInjectedBundle": [
+        0,
+        1
+      ],
+      "NKWebKit": [
+        3084,
+        11258
+      ],
+      "NKWebKitRequirements": [
+        130,
+        173
+      ],
+      "Net": [
+        116,
+        232
+      ],
+      "NetCtl": [
+        42,
+        105
+      ],
+      "NetCtlAp": [
+        11,
+        11
+      ],
+      "NetCtlApDialog": [
+        7,
+        7
+      ],
+      "Ngs2": [
+        0,
+        2
+      ],
+      "Ngs2.native": [
+        57,
+        71
+      ],
+      "Notification": [
+        4,
+        4
+      ],
+      "NpAuth": [
+        14,
+        14
+      ],
+      "NpAuthAuthorizedAppDialog": [
+        7,
+        7
+      ],
+      "NpCommerce": [
+        12,
+        12
+      ],
+      "NpCommon": [
+        393,
+        496
+      ],
+      "NpCppWebApi": [
+        1450,
+        1799
+      ],
+      "NpEntitlementAccess": [
+        26,
+        26
+      ],
+      "NpEulaDialog": [
+        7,
+        9
+      ],
+      "NpFriendListDialog": [
+        7,
+        9
+      ],
+      "NpGameIntent": [
+        11,
+        26
+      ],
+      "NpManager": [
+        229,
+        551
+      ],
+      "NpMatching2": [
+        23,
+        69
+      ],
+      "NpPartner001": [
+        3,
+        4
+      ],
+      "NpPartnerSubscription": [
+        0,
+        2
+      ],
+      "NpParty": [
+        26,
+        26
+      ],
+      "NpProfileDialog": [
+        8,
+        8
+      ],
+      "NpRemotePlaySessionSignaling": [
+        10,
+        14
+      ],
+      "NpScoreRanking": [
+        51,
+        51
+      ],
+      "NpSessionSignaling": [
+        27,
+        31
+      ],
+      "NpSessionSignalingCrossplay": [
+        0,
+        11
+      ],
+      "NpSignaling": [
+        17,
+        24
+      ],
+      "NpSns": [
+        0,
+        21
+      ],
+      "NpSnsFacebookDialog": [
+        7,
+        7
+      ],
+      "NpSnsYouTubeDialog": [
+        7,
+        7
+      ],
+      "NpSpeechToText": [
+        6,
+        7
+      ],
+      "NpTcs": [
+        0,
+        11
+      ],
+      "NpTextToSpeech": [
+        10,
+        11
+      ],
+      "NpTrophy": [
+        26,
+        110
+      ],
+      "NpTrophy2": [
+        18,
+        61
+      ],
+      "NpTus": [
+        139,
+        142
+      ],
+      "NpUniversalDataSystem": [
+        73,
+        93
+      ],
+      "NpUtility": [
+        82,
+        102
+      ],
+      "NpWebApi": [
+        51,
+        94
+      ],
+      "NpWebApi2": [
+        35,
+        45
+      ],
+      "OpusCeltDec": [
+        10,
+        11
+      ],
+      "OpusCeltEnc": [
+        9,
+        15
+      ],
+      "OpusDec": [
+        13,
+        30
+      ],
+      "OpusSilkEnc": [
+        9,
+        15
+      ],
+      "PSNowGkp": [
+        1,
+        9
+      ],
+      "Pad": [
+        55,
+        222
+      ],
+      "PadTracker": [
+        1,
+        6
+      ],
+      "PatchCheckerClient": [
+        8,
+        12
+      ],
+      "Perf": [
+        0,
+        84
+      ],
+      "Pfs": [
+        7,
+        9
+      ],
+      "PlayGo": [
+        23,
+        24
+      ],
+      "PlayGoDialog": [
+        7,
+        7
+      ],
+      "PlayReady": [
+        7,
+        50
+      ],
+      "PlayReady2": [
+        0,
+        17
+      ],
+      "PlayReady4": [
+        0,
+        87
+      ],
+      "PlayReady4L": [
+        0,
+        8
+      ],
+      "PlayerInvitationDialog": [
+        7,
+        7
+      ],
+      "PlayerSelectionDialog": [
+        8,
+        8
+      ],
+      "PngDec": [
+        6,
+        6
+      ],
+      "PngEnc": [
+        4,
+        4
+      ],
+      "PngParser": [
+        4,
+        10
+      ],
+      "PosixForWebKit": [
+        33,
+        38
+      ],
+      "ProprietaryVoiceChatHelperPrx": [
+        3,
+        5
+      ],
+      "Ps2EmuMenuDialog": [
+        7,
+        7
+      ],
+      "Psm": [
+        3,
+        118
+      ],
+      "PsmUtil": [
+        0,
+        4
+      ],
+      "Psml_debug": [
+        25,
+        39
+      ],
+      "Random": [
+        1,
+        1
+      ],
+      "RazorCpu": [
+        41,
+        42
+      ],
+      "RazorCpu_debug": [
+        0,
+        3
+      ],
+      "RegMgr": [
+        19,
+        74
+      ],
+      "RemotePlayClientIpc": [
+        0,
+        18
+      ],
+      "Remoteplay": [
+        3,
+        50
+      ],
+      "ResourceArbitrator": [
+        0,
+        14
+      ],
+      "RnpsAppMgr": [
+        0,
+        35
+      ],
+      "RnpsBundle": [
+        0,
+        5
+      ],
+      "RnpsNKInjectedBundle": [
+        0,
+        1
+      ],
+      "Rtc": [
+        51,
+        52
+      ],
+      "Rudp": [
+        33,
+        35
+      ],
+      "S3da": [
+        4,
+        4
+      ],
+      "SaveData": [
+        0,
+        19
+      ],
+      "SaveData.native": [
+        57,
+        120
+      ],
+      "SaveDataDialog.native": [
+        10,
+        10
+      ],
+      "ScreenShot": [
+        13,
+        13
+      ],
+      "Sdma": [
+        13,
+        27
+      ],
+      "Share": [
+        17,
+        23
+      ],
+      "ShareFactoryUtil": [
+        0,
+        6
+      ],
+      "ShareInternal.native": [
+        0,
+        20
+      ],
+      "SharePlay": [
+        5,
+        25
+      ],
+      "ShareUtility": [
+        6,
+        22
+      ],
+      "ShellUIUtil": [
+        3,
+        7
+      ],
+      "SigninDialog": [
+        7,
+        7
+      ],
+      "SisrSys": [
+        0,
+        2
+      ],
+      "SocialScreen": [
+        1,
+        11
+      ],
+      "SocialScreenDialog": [
+        7,
+        7
+      ],
+      "SpSysCallWrapper": [
+        48,
+        48
+      ],
+      "SrcUtl": [
+        4,
+        13
+      ],
+      "Ssl": [
+        38,
+        55
+      ],
+      "SulphaDrv": [
+        6,
+        8
+      ],
+      "SysCore": [
+        0,
+        84
+      ],
+      "SysUtil": [
+        1,
+        24
+      ],
+      "Sysmodule": [
+        11,
+        21
+      ],
+      "SystemGesture": [
+        24,
+        24
+      ],
+      "SystemLogger": [
+        3,
+        3
+      ],
+      "SystemLogger2": [
+        11,
+        14
+      ],
+      "SystemLogger2Delivery": [
+        0,
+        7
+      ],
+      "SystemLogger2Game": [
+        0,
+        2
+      ],
+      "SystemLogger2NativeQueueClient": [
+        7,
+        12
+      ],
+      "SystemService": [
+        154,
+        617
+      ],
+      "SystemTts": [
+        0,
+        10
+      ],
+      "TEEClient": [
+        0,
+        15
+      ],
+      "TextToSpeech": [
+        9,
+        12
+      ],
+      "TextToSpeech2": [
+        9,
+        14
+      ],
+      "TtsCoreG3Bc": [
+        4,
+        18
+      ],
+      "TtsEngine": [
+        10,
+        11
+      ],
+      "UgcBgUploaderClient": [
+        0,
+        14
+      ],
+      "UgcServiceS3": [
+        0,
+        14
+      ],
+      "Ult": [
+        82,
+        96
+      ],
+      "UpdateService": [
+        0,
+        56
+      ],
+      "UrlConfigResolver": [
+        0,
+        8
+      ],
+      "UsbStorage": [
+        14,
+        47
+      ],
+      "UsbStorageDialog": [
+        7,
+        7
+      ],
+      "Usbd": [
+        61,
+        61
+      ],
+      "UserService": [
+        44,
+        695
+      ],
+      "Vcodec": [
+        7,
+        8
+      ],
+      "VdecCore": [
+        14,
+        21
+      ],
+      "VdecCore.native": [
+        0,
+        4
+      ],
+      "VdecSavc": [
+        1,
+        4
+      ],
+      "VdecSavc2": [
+        1,
+        4
+      ],
+      "VdecShevc": [
+        1,
+        13
+      ],
+      "VdecSvp9": [
+        0,
+        11
+      ],
+      "Vdecsw": [
+        18,
+        18
+      ],
+      "Vdecwrap": [
+        0,
+        11
+      ],
+      "Venc": [
+        2,
+        27
+      ],
+      "VideoArbitration": [
+        2,
+        3
+      ],
+      "VideoCoreInterface": [
+        0,
+        4
+      ],
+      "VideoCoreServerInterface": [
+        4,
+        47
+      ],
+      "VideoDecoderArbitration": [
+        1,
+        4
+      ],
+      "VideoNativeExtEssential": [
+        1,
+        6
+      ],
+      "VideoOut": [
+        76,
+        290
+      ],
+      "VideoOutSecondary": [
+        0,
+        2
+      ],
+      "VideoRecording.native": [
+        0,
+        27
+      ],
+      "VideoRecordingP": [
+        10,
+        26
+      ],
+      "VideoStreamingEngine": [
+        46,
+        70
+      ],
+      "VideoStreamingEngineAudioOnly": [
+        0,
+        4
+      ],
+      "Videodec": [
+        6,
+        7
+      ],
+      "Videodec2": [
+        11,
+        29
+      ],
+      "VisionManager": [
+        25,
+        63
+      ],
+      "VnaInternal": [
+        73,
+        84
+      ],
+      "VnaWebsocket": [
+        4,
+        22
+      ],
+      "Voice": [
+        36,
+        36
+      ],
+      "VoiceChat": [
+        64,
+        64
+      ],
+      "VoiceCommand": [
+        0,
+        23
+      ],
+      "VoiceQoS": [
+        19,
+        25
+      ],
+      "VorbisDec": [
+        31,
+        34
+      ],
+      "VrHand": [
+        1,
+        8
+      ],
+      "VrServiceDialog": [
+        7,
+        7
+      ],
+      "VrSetupDialog": [
+        7,
+        7
+      ],
+      "VrTracker": [
+        9,
+        39
+      ],
+      "VrTracker2": [
+        86,
+        93
+      ],
+      "VsePlugin": [
+        0,
+        34
+      ],
+      "WebBrowserDialog": [
+        10,
+        14
+      ],
+      "WebRtc": [
+        0,
+        5
+      ],
+      "WebTransport": [
+        0,
+        53
+      ],
+      "WebmParserMdrw": [
+        0,
+        7
+      ],
+      "WkFontConfig": [
+        0,
+        5
+      ],
+      "Workspace": [
+        0,
+        18
+      ],
+      "Xml": [
+        121,
+        183
+      ],
+      "Zlib": [
+        5,
+        5
+      ],
+      "libc": [
+        1787,
+        1791
+      ],
+      "libcairo": [
+        104,
+        161
+      ],
+      "libcurl": [
+        59,
+        85
+      ],
+      "libfontconfig": [
+        23,
+        53
+      ],
+      "libfreetype": [
+        16,
+        26
+      ],
+      "libharfbuzz": [
+        10,
+        38
+      ],
+      "libkernel": [
+        715,
+        767
+      ],
+      "libkernel_sys": [
+        189,
+        820
+      ],
+      "libkernel_web": [
+        3,
+        43
+      ],
+      "libmdbg_syscore": [
+        2,
+        171
+      ],
+      "libwebrtc": [
+        211,
         412
       ],
       "libwvoec": [
@@ -3606,6 +3606,13 @@
     },
     {
       "date": "2026-11-14",
+      "library": "SystemGesture",
+      "kind": "complete",
+      "done": 24,
+      "total": 24
+    },
+    {
+      "date": "2026-11-14",
       "library": "SystemLogger2",
       "kind": "half",
       "done": 11,
@@ -3615,7 +3622,7 @@
       "date": "2026-11-14",
       "library": "libwebrtc",
       "kind": "half",
-      "done": 209,
+      "done": 211,
       "total": 412
     }
   ]

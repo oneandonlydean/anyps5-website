@@ -1,8 +1,8 @@
 {
   "libraries": {
-    "done": 15991,
-    "total": 39381,
-    "percent": 40.61,
+    "done": 16168,
+    "total": 39388,
+    "percent": 41.05,
     "groups": [
       {
         "name": "Party",
@@ -651,8 +651,8 @@
       {
         "name": "libSceFont",
         "label": "Font",
-        "done": 153,
-        "total": 240,
+        "done": 160,
+        "total": 241,
         "inert": 0
       },
       {
@@ -665,9 +665,9 @@
       {
         "name": "libSceFontGs",
         "label": "FontGs",
-        "done": 4,
-        "total": 6,
-        "inert": 0
+        "done": 8,
+        "total": 10,
+        "inert": 1
       },
       {
         "name": "libSceFontGs.native",
@@ -763,8 +763,8 @@
       {
         "name": "libSceGnmDriver",
         "label": "GnmDriver",
-        "done": 36,
-        "total": 68,
+        "done": 39,
+        "total": 70,
         "inert": 13
       },
       {
@@ -847,7 +847,7 @@
       {
         "name": "libSceIcu",
         "label": "Icu",
-        "done": 206,
+        "done": 234,
         "total": 2757,
         "inert": 0
       },
@@ -945,7 +945,7 @@
       {
         "name": "libSceJsc",
         "label": "Jsc",
-        "done": 78,
+        "done": 82,
         "total": 737,
         "inert": 12
       },
@@ -966,7 +966,7 @@
       {
         "name": "libSceJxr",
         "label": "Jxr",
-        "done": 119,
+        "done": 128,
         "total": 143,
         "inert": 11
       },
@@ -987,8 +987,8 @@
       {
         "name": "libSceLibcInternal",
         "label": "LibcInternal",
-        "done": 443,
-        "total": 1133,
+        "done": 477,
+        "total": 1131,
         "inert": 89
       },
       {
@@ -1141,9 +1141,9 @@
       {
         "name": "libSceNKWebKit",
         "label": "NKWebKit",
-        "done": 3038,
+        "done": 3084,
         "total": 11258,
-        "inert": 459
+        "inert": 462
       },
       {
         "name": "libSceNKWebKitRequirements",
@@ -1232,7 +1232,7 @@
       {
         "name": "libSceNpCppWebApi",
         "label": "NpCppWebApi",
-        "done": 1419,
+        "done": 1450,
         "total": 1799,
         "inert": 514
       },
@@ -1400,7 +1400,7 @@
       {
         "name": "libSceNpTus",
         "label": "NpTus",
-        "done": 137,
+        "done": 139,
         "total": 142,
         "inert": 0
       },
@@ -1722,7 +1722,7 @@
       {
         "name": "libSceSaveData.native",
         "label": "SaveData.native",
-        "done": 56,
+        "done": 57,
         "total": 120,
         "inert": 14
       },
@@ -1869,7 +1869,7 @@
       {
         "name": "libSceSystemGesture",
         "label": "SystemGesture",
-        "done": 23,
+        "done": 24,
         "total": 24,
         "inert": 1
       },
@@ -2338,14 +2338,14 @@
       {
         "name": "libc",
         "label": "libc",
-        "done": 1785,
-        "total": 1789,
+        "done": 1787,
+        "total": 1791,
         "inert": 28
       },
       {
         "name": "libcairo",
         "label": "libcairo",
-        "done": 101,
+        "done": 104,
         "total": 161,
         "inert": 0
       },
@@ -2408,7 +2408,7 @@
       {
         "name": "libwebrtc",
         "label": "libwebrtc",
-        "done": 209,
+        "done": 211,
         "total": 412,
         "inert": 31
       },

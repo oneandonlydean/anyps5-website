@@ -1,6 +1,6 @@
 {
-  "commit": "72d942814bf90184dfae83254c7012989f8f0ca2",
-  "date": "2026-11-14",
+  "commit": "2f8c84369157179517f26f788e93949f29a46707",
+  "date": "2026-11-15",
   "isa": "AMD RDNA 2",
   "instructions": {
     "total": 1460,
@@ -2974,7 +2974,27 @@
     },
     {
       "date": "2026-11-14",
-      "commit": "72d942814bf90184dfae83254c7012989f8f0ca2",
+      "commit": "6764133b357a9a399327fa9596568ea2b089847d",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 87,
+        "buffer": 81,
+        "host": 74
+      },
+      "throws": 125
+    },
+    {
+      "date": "2026-11-15",
+      "commit": "2f8c84369157179517f26f788e93949f29a46707",
       "instructions": {
         "total": 1460,
         "decoded": 1460,

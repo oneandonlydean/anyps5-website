@@ -938,6 +938,17 @@
       "PlayStation Store"
     ]
   },
+  "PPSA03977": {
+    "checked": "2026-11-15T03:58:43.910Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202609/1711/d851895118a16d07706b91e7b69b53ce27531269cad5e968.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202609/1711/b06ba2e4fbd25a3d70734631416d86ece025bff214fa147b.png",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202609/1711/f1ca1ab2a3e548d28a8d5dc058874d59edbd9d9ff1d65d1d.png",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202609/1711/2563c9e6552657a0d6b98a84171e47952a8676aa07663a13.png",
+    "color": "#873c2a",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
   "PPSA03984": {
     "checked": "2026-11-06T05:56:49.976Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202203/0922/2gqcLQ5GUmznCHUZuuamxD06.png",
@@ -2047,6 +2058,17 @@
       "PlayStation Store"
     ]
   },
+  "PPSA10665": {
+    "checked": "2026-11-15T03:58:43.599Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202211/3007/lgFVhRm5BfoX02pRUt3lSmLV.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202212/0108/yPQHi9pITw5RwQnuQcY0262O.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202211/1007/M1j1kwGXMhbfA8OQo3r7wrMw.jpg",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0912/neIbzwRRrmjPFlhrh7Cpcceq.png",
+    "color": "#ae7c4e",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
   "PPSA10737": {
     "checked": "2026-10-29T05:22:27.937Z",
     "square": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA05952_00/4/i_180e40677dc525aece20a7825a4af48464ec3fe0feffcc0f6d23d708af4975fa/i/icon0.png",
@@ -2533,6 +2555,17 @@
       "PlayStation Store"
     ]
   },
+  "PPSA17905": {
+    "checked": "2026-11-15T03:58:45.613Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202010/2915/kifM3lnke5lExwRd96mIDojQ.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202010/2915/f2jH2HOP0yYYQtDPd8LjqErv.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202010/2915/SqRcyLjZbpK26ej6TnWf43xp.jpg",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202010/2915/v1fBvxSWP3vKlEWjgfTcckAq.png",
+    "color": "#5096c6",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
   "PPSA17942": {
     "checked": "2026-10-29T05:22:40.056Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202508/2811/b2e2d208028f8ab569e95d58f3903a9e7147ea8708b6d9c3.png",
@@ -2920,6 +2953,28 @@
       "PlayStation Store"
     ]
   },
+  "PPSA21725": {
+    "checked": "2026-11-15T03:58:45.368Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1010/f3e1293fd32c6d4ab71d9d2b8150c84c669dfa9204acf79e.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1010/95385c16e1c933a95d0c50c4b4527010381b4c50fe630d68.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202512/1010/dab072eef7c0bdaefd19edc407cac7a3055ed32d0d0ad912.jpg",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202510/2809/1fa242cee0ed55e8c39fd5518853c064a33e8157f1466655.png",
+    "color": "#ae5337",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
+  "PPSA21755": {
+    "checked": "2026-11-15T03:58:45.194Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202509/2320/3c6c6e8610b16ebd2541cd2a273e87c3e128d3479b71ad64.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202509/2320/a5bcdd088ba42cc3cb9146622a172b300c1604685ec05937.png",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202509/2320/98565b4307873010f15efb2baac5f34c893ea5fdb440828a.png",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202509/2320/13ec00f10016267d3fadf84c48c34dfc5f3e1223cc4db2ac.png",
+    "color": "#5d1f28",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
   "PPSA22102": {
     "checked": "2026-10-31T20:52:51.262Z",
     "square": "https://image.api.playstation.com/vulcan/ap/rnd/202410/1521/34cde2ac9bcecdbc02167fd024ab2dd6c220c419984a5350.png",
@@ -3236,6 +3291,17 @@
     "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2815/60b199b14cfc3a3af47fe959ab55a139adb0f796c9fa3683.png",
     "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2815/a86c2a9fa1c0b6824566cce9f385721697b102a1be17dd36.png",
     "color": "#a9251e",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
+  "PPSA27158": {
+    "checked": "2026-11-15T03:58:43.704Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202508/0621/4fb935ea5e75490740d6726da42d05d953cb50a693188174.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202509/1301/2f039f8c3c9b36180c7dab41dfee133e0738617736882cf0.png",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202508/0621/ec31656b48fcfb5a7e3bab986250cd82bafdb8ac401a1183.png",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202509/1602/6cffd8dce4b1c7d25870224c7d1ee149517336493560700a.png",
+    "color": "#0b4375",
     "credits": [
       "PlayStation Store"
     ]
@@ -3958,6 +4024,17 @@
     "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202608/0405/19e84ac7528bc9ed536a238720464fac533e29de08f97d41.png",
     "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202608/0405/3fcc509815d84f5e37162ed75bf5f240b1cc49f6bc946cda.png",
     "color": "#e8979e",
+    "credits": [
+      "PlayStation Store"
+    ]
+  },
+  "PPSA38500": {
+    "checked": "2026-11-15T03:58:43.295Z",
+    "square": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/2ebe6fa868c682fcd3d7c5bc866bc95697c02aa4c8f16dc2.jpg",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/1c8e3e304f0bad2d99ffed828ad460ebe5949608cb82a5dd.png",
+    "logo": "https://image.api.playstation.com/vulcan/ap/rnd/202606/2315/939d117f7c92cfdd07f93a1474b0eb0c196b32514007a4d6.png",
+    "color": "#a6685d",
     "credits": [
       "PlayStation Store"
     ]
