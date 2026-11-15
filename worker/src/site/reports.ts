@@ -126,7 +126,7 @@ export async function upload(req: Request, env: Env, wait: (p: Promise<unknown>)
   if (recipeBytes?.length) {
     let parsed: unknown;
     try {
-      parsed = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(recipeBytes));
+      parsed = JSON.parse(new TextDecoder("utf-8", { fatal: true, ignoreBOM: false }).decode(recipeBytes));
     } catch {
       return json({ error: "The run recipe isn't JSON. Send the anyps5-recipe.json AnyPS5 wrote, or leave it out.", badRecipe: true }, 400);
     }
