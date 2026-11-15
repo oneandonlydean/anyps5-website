@@ -3,6 +3,7 @@ import { isSiteCommand, reply, runSiteCommand, suggest, type Option } from "./co
 import { error, games, profile, recent, screenshot, setup } from "./community";
 import type { Env, User } from "./env";
 import type { Interaction as GuildInteraction } from "./guild";
+import { PUBLIC_REPLIES } from "../../scripts/commands.mjs";
 import { help } from "./help";
 import { MODERATION, moderation } from "./moderation";
 import { rolesClick, rolesCommand, rolesSubmit, suggestPanels } from "./roles";
@@ -92,11 +93,8 @@ async function community(env: Env, name: string, options: Option[] | undefined, 
   return screenshot(env, data, arg("game"));
 }
 
-/**
- * The commands whose answer the whole channel sees: the ones people use to point someone else at the rules or the FAQ.
- * Every other command answers only the person who ran it, so lookups don't fill the channel.
- */
-const PUBLIC = new Set(["rules", "rule", "faq"]);
+/** The commands whose answer the whole channel sees (scripts/commands.mjs); the rest answer only whoever ran them. */
+const PUBLIC = new Set(PUBLIC_REPLIES);
 
 /** Makes a command's reply visible only to whoever ran it. */
 async function onlyToCaller(response: Response): Promise<Response> {

@@ -19,4 +19,5 @@ export interface Command {
 }
 
 export const HELP_SECTIONS: [title: string, names: string[]][];
+export const PUBLIC_REPLIES: string[];
 export const COMMANDS: Command[];

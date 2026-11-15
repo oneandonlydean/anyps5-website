@@ -35,6 +35,12 @@ export const HELP_SECTIONS = [
   ["Moderation", ["ban", "unban", "kick", "timeout", "untimeout", "warn", "warnings", "unwarn", "purge", "slowmode", "lock", "unlock"]],
   ["Server setup", ["roles", "tags", "logs", "welcome", "autorole", "automod", "sticky", "votekicks"]],
 ];
+/**
+ * The commands whose answer the whole channel sees: the ones people use to point someone else at the rules or the FAQ.
+ * Every other command answers only the person who ran it, so lookups don't fill the channel (interactions.ts). The
+ * server tools set their own: /tag posts for everyone, and /votekick posts the vote for everyone.
+ */
+export const PUBLIC_REPLIES = ["rules", "rule", "faq"];
 export const COMMANDS = [
   { name: "help", description: "Every bot command you can use", ...guildOnly },
   {

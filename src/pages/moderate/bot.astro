@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 // The definitions Discord gets, so this page lists exactly what is registered.
-import { COMMANDS } from "../../../worker/scripts/commands.mjs";
+import { COMMANDS, PUBLIC_REPLIES } from "../../../worker/scripts/commands.mjs";
 
 /**
  * Every Discord bot command and what it does, for maintainers. Not linked from anywhere and kept out of search; hand
@@ -30,8 +30,11 @@ type Reply = "picture" | "text";
 interface Note {
   group: (typeof GROUPS)[number][0];
   reply: Reply;
-  /** Only the person who ran it sees the answer. */
-  private?: boolean;
+  /**
+   * The whole channel sees what it posts, though the command isn't in PUBLIC_REPLIES (a server tool that posts by
+   * itself). Otherwise only the person who ran it sees the answer.
+   */
+  everyone?: boolean;
   /** Answered from the site's data, so as current as the last site build; otherwise live. */
   live?: boolean;
   text: string;
@@ -54,16 +57,15 @@ const NOTES: Record<string, Note> = {
     text: "Games at a stage or further. With a GPU or OS it uses only reports on that system, so a game can show a different stage there than on the list.",
   },
   screenshot: { group: "games", reply: "picture", text: "A random community screenshot, crediting who took it. Only games with screenshots are suggested. Hide a bad one from Moderation." },
-  report: { group: "games", reply: "text", private: true, text: "Points to the game's bring-up thread and the run report upload page." },
+  report: { group: "games", reply: "text", text: "Points to the game's bring-up thread and the run report upload page." },
   follow: {
     group: "games",
     reply: "text",
-    private: true,
     live: true,
     text: "A direct message when the game reaches a new stage. Up to 25 games each; the member needs direct messages from server members allowed.",
   },
-  unfollow: { group: "games", reply: "text", private: true, live: true, text: "Stops those messages. Only followed games are suggested." },
-  following: { group: "games", reply: "text", private: true, live: true, text: "The games someone follows, with their stages now." },
+  unfollow: { group: "games", reply: "text", live: true, text: "Stops those messages. Only followed games are suggested." },
+  following: { group: "games", reply: "text", live: true, text: "The games someone follows, with their stages now." },
   progress: { group: "progress", reply: "picture", text: "Everything at a glance, or libraries, shaders or games in depth. Each has its own picture." },
   progressmap: { group: "progress", reply: "picture", text: "Upstream's progress map of every library function, as an image." },
   library: { group: "progress", reply: "picture", text: "One system library's progress and the games waiting on it. Libraries are suggested as you type." },
@@ -88,11 +90,12 @@ const NOTES: Record<string, Note> = {
     live: true,
     text: "Someone's merged pull requests and test reports, and where they rank in each. Works for a linked member, or anyone by GitHub login.",
   },
-  prs: { group: "people", reply: "text", private: true, live: true, text: "A linked member's merged pull request count and latest merges." },
-  help: { group: "help", reply: "text", private: true, text: "Every command the member can use, by group. Moderation and server setup commands show only to members with the permission they need." },
+  prs: { group: "people", reply: "text", live: true, text: "A linked member's merged pull request count and latest merges." },
+  help: { group: "help", reply: "text", text: "Every command the member can use, by group. Moderation and server setup commands show only to members with the permission they need." },
   votekick: {
     group: "help",
     reply: "text",
+    everyone: true,
     live: true,
     text: "Starts a public vote to silence a member for 24 hours or ban them for 2 weeks, for when no moderator is around. It passes at 5 yes votes (or the number set with /votekicks) with twice as many yes as no, within 10 minutes; the starter's vote counts. Only members here for 2 weeks can start or vote, moderators can't be voted on, and the mod role is pinged and can cancel. A passed vote is a case by \"a community vote\" in the moderation log, with who voted; the bot lifts the ban after 2 weeks.",
   },
@@ -105,54 +108,49 @@ const NOTES: Record<string, Note> = {
   faq: { group: "help", reply: "text", text: "Answers from the site's FAQ and from data/bot.yaml. Topics are suggested as you type." },
   rules: { group: "help", reply: "text", text: "The server rules, from data/bot.yaml." },
   rule: { group: "help", reply: "text", text: "One rule by number, to point someone at it. Rules are suggested by number or title." },
-  ban: { group: "moderation", reply: "text", private: true, live: true, text: "Bans a member, or anyone by ID, and can delete their last hour, day or week of messages. They're told why before the ban." },
-  unban: { group: "moderation", reply: "text", private: true, live: true, text: "Lifts a ban. Paste the user's ID into the user field." },
-  kick: { group: "moderation", reply: "text", private: true, live: true, text: "Removes a member; they can join again with an invite. They're told why first." },
-  timeout: { group: "moderation", reply: "text", private: true, live: true, text: "Discord's timeout: they can read but not talk, for up to 28 days. Durations like 10m, 1h30m, 2d or 1w." },
-  untimeout: { group: "moderation", reply: "text", private: true, live: true, text: "Ends a timeout early." },
-  warn: { group: "moderation", reply: "text", private: true, live: true, text: "A warning on the member's record, with a reason they're sent." },
-  warnings: { group: "moderation", reply: "text", private: true, live: true, text: "A member's record: active warnings and every case, newest first." },
-  unwarn: { group: "moderation", reply: "text", private: true, live: true, text: "Takes back a warning or timeout by case number, so it no longer counts toward automod's ladder. The case stays on the record, marked as taken back." },
-  purge: { group: "moderation", reply: "text", private: true, live: true, text: "Deletes up to 100 recent messages in the channel, or only one member's. Pinned messages and ones older than 14 days are kept; Discord won't bulk delete those." },
-  slowmode: { group: "moderation", reply: "text", private: true, live: true, text: "How long members wait between messages in a channel, from off to 6 hours." },
-  lock: { group: "moderation", reply: "text", private: true, live: true, text: "Stops @everyone posting in a channel and says so there. Administrators and roles explicitly allowed in the channel can still post." },
-  unlock: { group: "moderation", reply: "text", private: true, live: true, text: "Opens a locked channel again." },
+  ban: { group: "moderation", reply: "text", live: true, text: "Bans a member, or anyone by ID, and can delete their last hour, day or week of messages. They're told why before the ban." },
+  unban: { group: "moderation", reply: "text", live: true, text: "Lifts a ban. Paste the user's ID into the user field." },
+  kick: { group: "moderation", reply: "text", live: true, text: "Removes a member; they can join again with an invite. They're told why first." },
+  timeout: { group: "moderation", reply: "text", live: true, text: "Discord's timeout: they can read but not talk, for up to 28 days. Durations like 10m, 1h30m, 2d or 1w." },
+  untimeout: { group: "moderation", reply: "text", live: true, text: "Ends a timeout early." },
+  warn: { group: "moderation", reply: "text", live: true, text: "A warning on the member's record, with a reason they're sent." },
+  warnings: { group: "moderation", reply: "text", live: true, text: "A member's record: active warnings and every case, newest first." },
+  unwarn: { group: "moderation", reply: "text", live: true, text: "Takes back a warning or timeout by case number, so it no longer counts toward automod's ladder. The case stays on the record, marked as taken back." },
+  purge: { group: "moderation", reply: "text", live: true, text: "Deletes up to 100 recent messages in the channel, or only one member's. Pinned messages and ones older than 14 days are kept; Discord won't bulk delete those." },
+  slowmode: { group: "moderation", reply: "text", live: true, text: "How long members wait between messages in a channel, from off to 6 hours." },
+  lock: { group: "moderation", reply: "text", live: true, text: "Stops @everyone posting in a channel and says so there. Administrators and roles explicitly allowed in the channel can still post." },
+  unlock: { group: "moderation", reply: "text", live: true, text: "Opens a locked channel again." },
   roles: {
     group: "admin",
     reply: "text",
-    private: true,
     live: true,
     text: "Role panels, Carl-bot's reaction roles with buttons or a menu. Create posts a panel (title and description in a form); add puts roles on it, with an emoji and a few words each. Modes: toggle, unique (one at a time) or add only. Roles with moderation permissions are refused, and the bot's role must be above the roles it hands out.",
   },
-  tag: { group: "help", reply: "text", live: true, text: "Posts a saved reply for the whole channel. Tags are suggested as you type; anyone can use them." },
-  tags: { group: "admin", reply: "text", private: true, live: true, text: "Saving, changing and deleting the replies /tag posts, for members who can manage messages. Up to 200 per server." },
+  tag: { group: "help", reply: "text", everyone: true, live: true, text: "Posts a saved reply for the whole channel. Tags are suggested as you type; anyone can use them." },
+  tags: { group: "admin", reply: "text", live: true, text: "Saving, changing and deleting the replies /tag posts, for members who can manage messages. Up to 200 per server." },
   votekicks: {
     group: "admin",
     reply: "text",
-    private: true,
     live: true,
     text: "Turns community votes on (with the mod role to ping, the yes votes needed and an optional voter role) or off, and picks the channels they can be started in. Off until an admin turns it on.",
   },
   logs: {
     group: "admin",
     reply: "text",
-    private: true,
     live: true,
     text: "Log channels: edited and deleted messages (with what they said), joins and leaves (with account age), nickname and role changes, and moderation cases, including bans made outside the bot.",
   },
-  welcome: { group: "admin", reply: "text", private: true, live: true, text: "Welcome and goodbye messages, written in a form. {user} mentions them, {username} and {server} are names, {count} is the member count. Members who must accept the rules are welcomed once they do." },
-  autorole: { group: "admin", reply: "text", private: true, live: true, text: "Roles every new member gets on joining, or on accepting the rules. Up to 10." },
+  welcome: { group: "admin", reply: "text", live: true, text: "Welcome and goodbye messages, written in a form. {user} mentions them, {username} and {server} are names, {count} is the member count. Members who must accept the rules are welcomed once they do." },
+  autorole: { group: "admin", reply: "text", live: true, text: "Roles every new member gets on joining, or on accepting the rules. Up to 10." },
   automod: {
     group: "admin",
     reply: "text",
-    private: true,
     live: true,
     text: "Replaces Discord's keyword and regex rules. Scams (crypto, fake giveaways, phishing), piracy requests, hidden links (shorteners, base64), ETA questions, the same message in several channels, invites, mass mentions, and more. Text is read through look-alike letters, spaced-out letters and leetspeak; quotes of the server rules are never caught, and a single weak word (\"bitcoin\", \"torrent\") isn't enough. A strike is a public warning in the channel (only ever one), then a 24-hour timeout, then a ban; hacked-account patterns skip the warning. ETA questions are removed and answered from the FAQ. Setup turns on the recommended filters; test shows what would happen to a message. Moderators, and ignored channels and roles, are never checked.",
   },
   sticky: {
     group: "admin",
     reply: "text",
-    private: true,
     live: true,
     text: "Keeps a message at the bottom of the channel it's run in. Set opens a form for the text (up to 2,000 characters; mentions never ping). A few seconds after anyone posts there, the bot posts the sticky again below and deletes the old copy; a check every minute catches anything missed. Up to 10 per server; the bot needs View Channel, Send Messages and Read Message History in the channel.",
   },
@@ -211,7 +209,7 @@ const POSTS = [
                       <code>{usage(c)}</code>
                       <span class="tags">
                         {note.reply === "picture" && <span class="tag picture">Picture</span>}
-                        {note.private && <span class="tag private">Only you</span>}
+                        {!note.everyone && !PUBLIC_REPLIES.includes(c.name) && <span class="tag private">Only you</span>}
                         {note.live && <span class="tag live">Live</span>}
                       </span>
                     </dt>
