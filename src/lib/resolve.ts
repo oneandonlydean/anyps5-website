@@ -88,6 +88,19 @@ function storeName(name: string): string {
 }
 
 /**
+ * Drops the bring-up threads a maintainer closed, so a closed game leaves the site. One comes back when it is reopened,
+ * when someone posts a report in it after it was closed, or when a run of one of its title IDs is uploaded after that.
+ */
+export function visibleThreads(threads: Thread[], uploads: { titleId: string; at: string }[] = []): Thread[] {
+  return threads.filter((t) => {
+    const closed = t.closedAt;
+    if (!closed) return true;
+    const ids = new Set(t.titleIds);
+    return t.reports.some((r) => r.date > closed) || uploads.some((u) => ids.has(u.titleId) && u.at > closed);
+  });
+}
+
+/**
  * Groups threads and overlays into one game each. Title IDs join when a thread or overlay lists them together, and
  * regional releases of one game join when they go by the same name: each title ID's curated name, else the name in
  * its thread title, else its store name (the store names some different apps alike, and a store concept can cover a

@@ -1,5 +1,5 @@
 import { loadGenerated, loadOverlays, loadTracked } from "./load";
-import { groupGames, resolveGame, type Game } from "./resolve";
+import { groupGames, resolveGame, visibleThreads, type Game } from "./resolve";
 import { matcher, type ErrorSite, type FunctionIndex, type Needs } from "./needs";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
@@ -25,7 +25,7 @@ async function load(): Promise<Game[]> {
     getCommunity(),
   ]);
   const extra = { uploads: community.uploads, hiddenArt: new Set(community.hidden.art) };
-  return groupGames(threads, overlays, titles, community.uploads)
+  return groupGames(visibleThreads(threads, community.uploads), overlays, titles, community.uploads)
     .map((identity) => resolveGame(identity, titles, issues, art, extra))
     .sort((a, b) => stageRank(b.stage) - stageRank(a.stage) || b.updated.localeCompare(a.updated));
 }

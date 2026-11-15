@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { NamedOverlay } from "../src/lib/load";
-import { groupGames, resolveGame, slugify, threadName } from "../src/lib/resolve";
+import { groupGames, resolveGame, slugify, threadName, visibleThreads } from "../src/lib/resolve";
 import type { Report, Thread } from "../src/lib/schema";
 
 function report(overrides: Partial<Report>): Report {
@@ -36,6 +36,7 @@ function thread(number: number, ids: string[], reports: Report[] = []): Thread {
     comments: 0,
     reports,
     media: [],
+    closedAt: null,
   };
 }
 
@@ -170,6 +171,25 @@ describe("stage", () => {
     } as const;
     const game = resolveOne([thread(1, ["PPSA00001"], [report({ blockers: [5, 6] })])], [], issues);
     expect(game.blockers.map((b) => b.number)).toEqual([5]);
+  });
+});
+
+describe("closed threads", () => {
+  const closed = (reports: Report[] = [report({})]): Thread => ({ ...thread(1, ["PPSA00001"], reports), closedAt: "2026-11-01T00:00:00Z" });
+  const upload = (titleId: string, at: string) => ({ titleId, at });
+
+  it("keeps open threads and drops closed ones", () => {
+    expect(visibleThreads([thread(2, ["PPSA00002"]), closed()]).map((t) => t.number)).toEqual([2]);
+  });
+
+  it("brings a closed thread back on a report posted after it closed", () => {
+    expect(visibleThreads([closed([report({}), report({ date: "2026-11-02T00:00:00Z" })])])).toHaveLength(1);
+  });
+
+  it("brings a closed thread back on a later upload of one of its title IDs", () => {
+    expect(visibleThreads([closed()], [upload("PPSA00001", "2026-10-30T00:00:00Z")])).toHaveLength(0);
+    expect(visibleThreads([closed()], [upload("PPSA00009", "2026-11-03T00:00:00Z")])).toHaveLength(0);
+    expect(visibleThreads([closed()], [upload("PPSA00001", "2026-11-03T00:00:00Z")])).toHaveLength(1);
   });
 });
 

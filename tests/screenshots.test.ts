@@ -33,6 +33,7 @@ describe("gameScreenshots", () => {
     created: "2026-10-01",
     updated: "2026-10-05",
     comments: 3,
+    closedAt: null,
     reports: [report(1, "Menus", "2026-10-02"), report(2, "Ingame", "2026-10-03")],
     media: [
       media("https://e.com/menu.png", 1, "2026-10-02"),

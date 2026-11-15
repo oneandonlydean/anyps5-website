@@ -89,6 +89,8 @@ export const Thread = z.object({
   comments: z.number(),
   reports: z.array(Report),
   media: z.array(Media).default([]),
+  /** When a maintainer closed the discussion; null while open. A closed thread is off the site until it comes back (see visibleThreads). */
+  closedAt: z.string().nullable().default(null),
 });
 export type Thread = z.infer<typeof Thread>;
 

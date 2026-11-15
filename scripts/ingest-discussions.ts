@@ -26,6 +26,8 @@ interface Discussion extends Post {
   number: number;
   title: string;
   updatedAt: string;
+  closed: boolean;
+  closedAt: string | null;
   comments: Comments;
 }
 
@@ -37,7 +39,7 @@ const PAGE = `
       discussions(first: 10, after: $after, categoryId: $category, orderBy: { field: UPDATED_AT, direction: DESC }) {
         pageInfo { hasNextPage endCursor }
         nodes {
-          id number title updatedAt ${POST}
+          id number title updatedAt closed closedAt ${POST}
           comments(first: 100) { ${COMMENTS} }
         }
       }
@@ -96,6 +98,7 @@ function toThread(d: Discussion): Thread | null {
     comments: d.comments.totalCount,
     reports,
     media,
+    closedAt: d.closed ? d.closedAt : null,
   };
 }
 
