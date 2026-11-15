@@ -114,7 +114,8 @@
         "author": "TheEzio5",
         "date": "2026-10-26T18:18:09Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 675,
@@ -124,7 +125,7 @@
       "PPSA26344"
     ],
     "created": "2026-10-05T14:20:37Z",
-    "updated": "2026-11-15T02:32:51Z",
+    "updated": "2026-11-15T05:21:17Z",
     "comments": 119,
     "reports": [],
     "media": [
@@ -380,7 +381,8 @@
         "author": "hritikutekar",
         "date": "2026-11-07T05:16:23Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 726,
@@ -427,7 +429,8 @@
         "author": "mrfelek",
         "date": "2026-10-23T07:48:32Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 966,
@@ -492,7 +495,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T06:43:25Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 1142,
@@ -505,7 +509,8 @@
     "updated": "2026-10-11T03:03:36Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 1203,
@@ -545,7 +550,8 @@
         "author": "MichonGoddijn231849",
         "date": "2026-10-07T17:29:49Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 1277,
@@ -599,7 +605,8 @@
         "author": "ddrsilva",
         "date": "2026-10-11T11:58:20Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 1283,
@@ -713,7 +720,8 @@
         "author": "dotaku22",
         "date": "2026-10-24T12:38:39Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 1504,
@@ -769,7 +777,8 @@
         "author": "rhya119",
         "date": "2026-10-29T07:54:42Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 1519,
@@ -782,7 +791,8 @@
     "updated": "2026-11-02T02:13:35Z",
     "comments": 7,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 1742,
@@ -901,7 +911,8 @@
         "author": "ronaldoskydragon-dot",
         "date": "2026-11-02T16:50:17Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 1965,
@@ -986,7 +997,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T12:29:18Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 1996,
@@ -999,7 +1011,8 @@
     "updated": "2026-10-21T09:25:02Z",
     "comments": 2,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 2021,
@@ -1179,7 +1192,8 @@
         "author": "NahuelGenchi",
         "date": "2026-10-10T01:06:05Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 2126,
@@ -1192,7 +1206,8 @@
     "updated": "2026-10-13T13:20:39Z",
     "comments": 2,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 2171,
@@ -1205,7 +1220,8 @@
     "updated": "2026-10-24T13:36:28Z",
     "comments": 4,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 2172,
@@ -1218,7 +1234,8 @@
     "updated": "2026-10-22T10:01:54Z",
     "comments": 6,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 2211,
@@ -1252,7 +1269,8 @@
         "blockerText": "3D view corrupts after map use, partially recovers on further cycles (#5335)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 2255,
@@ -1362,7 +1380,8 @@
         "author": "johnmaia",
         "date": "2026-10-13T08:55:46Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 2431,
@@ -1409,7 +1428,8 @@
         "author": "authurtabo-byte",
         "date": "2026-10-09T19:36:57Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 2461,
@@ -1444,7 +1464,8 @@
         "author": "ayoubelachiqi",
         "date": "2026-10-19T20:33:05Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 2475,
@@ -1572,7 +1593,8 @@
         "author": "dantdmdarealguy",
         "date": "2026-10-14T00:32:28Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 2690,
@@ -1621,7 +1643,8 @@
         "author": "pudinero",
         "date": "2026-10-19T19:39:56Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 2810,
@@ -1649,7 +1672,8 @@
         "author": "billythemenace2",
         "date": "2026-10-10T15:42:12Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 2884,
@@ -1684,7 +1708,8 @@
         "author": "danielcadev",
         "date": "2026-10-17T09:27:29Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 3003,
@@ -1697,7 +1722,8 @@
     "updated": "2026-10-18T12:02:09Z",
     "comments": 2,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 3018,
@@ -1739,7 +1765,8 @@
         "author": "santhoshkumar-dev",
         "date": "2026-10-11T13:39:18Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 3086,
@@ -1795,7 +1822,8 @@
         "author": "mrfelek",
         "date": "2026-11-04T18:30:07Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 3232,
@@ -1836,7 +1864,8 @@
         "blockerText": "Frame rate in the level.\n\nThe level is reached on plain `main` since #2490 and #2491 were merged. Before them the title stopped on `sampling the depth plane of depth surface 0x529430000 (2048x2048, vk format 124) as a 2048x2048 texture of guest format 7` (measured on `main` 7b5214d4).\n\nStops from earlier in this thread that are fixed on `main`: the missing `libSceJobManager` (#3170), the heap error report from lazy binding on a fiber stack (#3214), the 2D `image_sample` on a 1D texture (#3222), the writing attribute in `sceFontWritingLineWritesOrder` (#3260), `sceAudioInHqOpen` (#3669) and the GNM subvector loop instructions (#3750)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 3234,
@@ -1901,7 +1930,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T06:26:47Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 3413,
@@ -2004,7 +2034,8 @@
         "author": "hypermoist",
         "date": "2026-10-11T09:52:09Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 3443,
@@ -2053,7 +2084,8 @@
         "author": "billythemenace2",
         "date": "2026-10-11T10:42:10Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 3745,
@@ -2074,7 +2106,8 @@
         "author": "HabibUrRehmanBhattii",
         "date": "2026-11-14T10:22:08Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 3839,
@@ -2108,7 +2141,8 @@
         "blockerText": "None known. What is left is re-measuring on current `main`, and #1191 (resident image for linear color targets), which still needs a rebase by its author."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 3873,
@@ -2121,7 +2155,8 @@
     "updated": "2026-10-11T18:22:46Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4001,
@@ -2232,7 +2267,8 @@
         "author": "bagodees",
         "date": "2026-11-13T00:08:27Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 4184,
@@ -2325,7 +2361,8 @@
         "author": "Nesyth",
         "date": "2026-10-12T00:52:57Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 4275,
@@ -2346,7 +2383,8 @@
         "author": "ShootanoJumper",
         "date": "2026-10-12T17:49:11Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 4310,
@@ -2378,7 +2416,8 @@
         "blockerText": "none in 300 s. The two startup fixes from the first post are no longer needed: `sceNgs2RackGetVoiceHandle` now returns `0x804a8305` for the out-of-range voice and the title continues (`Audio system initialized`). `sceImeKeyboardGetResourceId` fails with `0x80bc0004`; input is not affected."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4401,
@@ -2391,7 +2430,8 @@
     "updated": "2026-10-14T01:58:54Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4427,
@@ -2404,7 +2444,8 @@
     "updated": "2026-10-13T09:05:53Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4443,
@@ -2417,7 +2458,8 @@
     "updated": "2026-11-12T10:41:33Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4461,
@@ -2957,7 +2999,8 @@
         "author": "sktharunbalaji13-cmd",
         "date": "2026-11-07T11:07:48Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 4680,
@@ -2970,7 +3013,8 @@
     "updated": "2026-10-14T17:19:24Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4687,
@@ -3027,7 +3071,8 @@
         "blockerText": "None found. No fatal line, and no error line other than the game's own `ioerror_assets_all.bundle` probe; no crash in three launches.\n\nOne limitation of the telemetry, not of the game: no `pad` line was written in any of the three runs, although the scripted presses acted. `pad` lines carry the controller and keyboard/mouse state read through SDL, and `APS5_PAD_INPUT_FILE` input is applied later in `libScePad`, so file-injected input does not appear in them; a `pad` line needs a physical controller or host keyboard/mouse input."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4697,
@@ -3083,7 +3128,8 @@
         "author": "gjonn",
         "date": "2026-10-13T22:21:31Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 4711,
@@ -3115,7 +3161,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4850,
@@ -3154,7 +3201,8 @@
         "blockerText": "Update 2026-10-14: none in AnyPS5. #4667 (`hw.model`) and #4776 (`machdep.tsc_freq`) are both merged. On `main` it runs with `--trap-sdk-syscall-stubs` (#3804) and draws its frontend at about 60 fps on Windows; others report the same on Linux with a display. It then needs the user's own PS2 BIOS in `/data/PCSX2/bios` and games in `/data/PCSX2/games`."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4851,
@@ -3210,7 +3258,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4852,
@@ -3265,7 +3314,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4853,
@@ -3340,7 +3390,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4854,
@@ -3396,7 +3447,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 4982,
@@ -3471,7 +3523,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5071,
@@ -3561,7 +3614,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5146,
@@ -3621,7 +3675,8 @@
         "author": "mrfelek",
         "date": "2026-10-13T15:00:22Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5169,
@@ -3710,7 +3765,8 @@
         "author": "EagleBearerYS",
         "date": "2026-10-28T18:34:05Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5192,
@@ -3782,7 +3838,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5268,
@@ -3821,7 +3878,8 @@
         "blockerText": "None on this branch. What's left before it works on `main`:\n1. Merge the six open PRs listed above.\n2. Replace the three local workarounds with real fixes:\n   - Bind a single-sample result when a 2D MSAA target is read through a plain 2D image instruction. Which value RDNA returns is still an open question.\n   - Lines and points into a multisampled target with `MSAA_ENABLE` clear. The hardware behaviour is also still an open question.\n   - An NGS2 sampler setup clearing the voice callback. A PR will follow.\n3. Look into the faint audio artifacts and the frame rate."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5316,
@@ -3863,7 +3921,8 @@
         "author": "santhoshkumar-dev",
         "date": "2026-10-15T09:16:54Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5320,
@@ -3905,7 +3964,8 @@
         "blockerText": "The title needs these open pull requests on `main` e152ba8f:\n\n| | For |\n|---|---|\n| #5323 | mesh-path vertex shaders with clip or cull distances: `unsupported mesh output kind` 7 s after start |\n| #5321 | black screen after the first logo frame: the HZB occlusion readback is dropped as \"memory no longer registered\" because its staging image spans two adjacent allocations |\n| #5324 | `APS5_STORE_AT_LABEL=1`: the CPU reads the occlusion results after waiting for a label, before they were stored, so the character is not drawn |\n| #5322 | stays on the logo screen: the PSN ID token poll finished before any local player existed, so no active profile was ever set |\n\nStill open:\n\n- The green tint on the character model.\n- About 3.5 fps on the character screen."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5342,
@@ -3948,7 +4008,8 @@
         "author": "MathiasDevelopes",
         "date": "2026-10-13T17:29:40Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5346,
@@ -3980,7 +4041,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5382,
@@ -4088,7 +4150,8 @@
         "author": "billythemenace2",
         "date": "2026-10-14T21:46:25Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5389,
@@ -4142,7 +4205,8 @@
         "author": "alexpournaras",
         "date": "2026-10-13T18:35:46Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5424,
@@ -4219,7 +4283,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5468,
@@ -4262,7 +4327,8 @@
         "blockerText": "The candidate terminates with a null read at game.exe+0x1c60f2 (original guest VA 0x1b60f2). This is the same stop previously traced to the low Windows main-stack region and addressed by #3965, whose review and independent validation remain pending.\r\n\r\nThe paired run isolates #3925: with the same runtime and #3897, baseline HTTP2 throws at sceHttp2SendRequestAsync with both option pointers null. Replacing only libSceHttp2.prx with #3925 lets send and wait return 0 and delivers the existing offline completion 0x80436063, then reaches the null read above. In both runs #3897 loads the title's one 1,408-byte PEM CA and returns 0.\r\n\r\nOpen prerequisites in this observation: #3897 (certificate import) and #3925 (HTTP2 direct waiting). Next proposed fix: #3965 (not tested in this run). The earlier memory stop is tracked in #2883; #3713 and #3509 are already in the tested main. No menu or playability claim."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5501,
@@ -4301,7 +4367,8 @@
         "blockerText": "None for start-up: the four absent imports are merged (#5502 `sysctlnametomib`, #5563 `fegetenv`, #5643 `mincore`, #5666 `sigsuspend`), and so is #5187 (`getrlimit(RLIMIT_NOFILE)`), which the VM needs next.\r\n\r\nOpen: #5831, because the title's trace log is damaged by concurrent `O_APPEND` writes on Windows. The DNS stage depends on file I/O speed, because the title opens, appends to and closes its trace file once per traced call."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5516,
@@ -4437,7 +4504,8 @@
         "author": "BiladeiroSupremo",
         "date": "2026-10-18T18:40:53Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5518,
@@ -5041,7 +5109,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5557,
@@ -5073,7 +5142,8 @@
         "blockerText": "presentation failed ... static runtime image interface\r\n\r\ndirect memory range ... references unallocated physical page"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5593,
@@ -5126,7 +5196,8 @@
         "author": "edubox",
         "date": "2026-11-02T15:10:00Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5600,
@@ -5166,7 +5237,8 @@
         "blockerText": "Updated 2026-10-18 (`main` `eb1a15b5c`): nothing open is needed any more. #5604 (the geometry VGPR allocation check, #5437 part 2) merged on 2026-10-15, after #5187, #5061, #4958 and #4593.\n\nOn Windows (RTX 3080), plain `main` `eb1a15b5c` relinked with `--windows --windows-fixed-base 0x400000` passes the GPU probe without device loss and runs its UI loop for the full 60 s at about 100 fps. The probe's readback is black, though: xemu logs `Could not determine triangle strip1 rotation`, an inconsistent triangle-fan winding and `VK geometry shader winding: 0, 0, 0, 0`, so the probe's geometry draw output doesn't seem to reach its 640x480 target ([details on #5437](https://github.com/boykopovar/AnyPS5/issues/5437#issuecomment-6256225424)). On Linux the same build gets through the geometry draw, but this test machine's lavapipe (LLVM 20.1) aborts in its own shader compiler on the probe's compute pipeline. The fixed base is still required (#4013)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5601,
@@ -5224,7 +5296,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5625,
@@ -5274,7 +5347,8 @@
         "author": "darklinkworker",
         "date": "2026-10-14T17:03:05Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5665,
@@ -5287,7 +5361,8 @@
     "updated": "2026-10-21T12:36:00Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5714,
@@ -5351,7 +5426,8 @@
         "blockerText": "**On `main`** c13dc7e6b (2026-10-13), 007 stops about 2 s after start, before any draw, with `VOP3 source modifiers are not implemented`: row 8 of the table in #2523. Newer `main` was not run alone.\n\n**Still needed beyond `main`**, in the order the title reached them (order from earlier bases, not bisected on 34355eeea):\n1. Row 8, cube instructions with an output modifier: SleglJan/AnyPS5#21. Upstream #2463 was closed by the intake pause; no upstream PR is open.\n2. Row 19 at the first flip, `bindless image table has 18960 entries (0 materials), limit 16`: #757 and #758, plus local follow-ups that narrow each table to the keys its shader reads.\n3. Local, no PR: a pixel shader stops at its first draw with `shader sampler pairs exceed runtime heap capacity` (21 samplers instead of 7); the fix folds again after masked-select elimination in every program, not only with a live packed ancillary input.\n4. Local, no PR: vertex programs with all eight guest clip distances fail (`guest clip distances plus the all-zero clip position distance exceed 8 clip distances`); the fix adds the all-zero distance only when a slot is free.\n5. Level load, local: `registered program refers to an incompatible shader binary type`. 007 registers its hull programs as one merged LS+HS binary (type 3); the stack runs the whole program in the hull stage, one invocation per output control point.\n6. Level load, local: indexed indirect draws whose declared index range reaches unbacked pages; the unbacked part is bound as zeros.\n7. First cinematic, local:\n   - image-table stores (the #2500 commit and a store path for tables selected at run time); without them frames come out pink and white;\n   - `workgroup count … exceeds device limits` on an indirect dispatch: storing pending storage-image results waits for newer recorded writers of the same memory;\n   - out of device memory on 10 GB: texture allocations release unreferenced cache entries and retry, device buffers fall back to host memory.\n\nAlso carri"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5732,
@@ -5434,7 +5510,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T05:37:24Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5744,
@@ -5488,7 +5565,8 @@
         "author": "ducloc080202",
         "date": "2026-10-14T09:15:37Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5769,
@@ -5520,7 +5598,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5809,
@@ -5599,7 +5678,8 @@
         "author": "Bitencure",
         "date": "2026-10-14T11:51:05Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5832,
@@ -5642,7 +5722,8 @@
         "author": "mrfelek",
         "date": "2026-10-14T12:52:08Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5888,
@@ -5680,7 +5761,8 @@
         "blockerText": "Loading screen hang (#4909): sceKernelClose(0) closed the host's stdin. Fixed in the pull request below.\r\nAudio stutter: one output mutex was shared by every port. Fixed in the pull request below.\r\nBlack screen after opening the settings menu: needs the pull request below (pending storage images served from the latest writer) and #5627 (HTILE fast clears from Unity's clear kernels; it carries #5111).\r\nOverworld frame rate on main: fixed in the pull request below. #5627 adds a per-draw HTILE readback over untracked memory, about 29% of the queue worker, which needs the same write-watch stamp."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5908,
@@ -5712,7 +5794,8 @@
         "blockerText": "Not a deadlock but graphics queue throughput. With APS5_PROFILE_DRAW=1, queue 0 records about 1,000 draws a second at 0.6-0.9 ms CPU each, about 2 frames a second at about 500 draws a frame. A backlog of 11-35 submissions builds up on queue 0. Async compute (queue 0x20) WAIT_REG_MEMs on labels deep in that backlog for 10-66 s, and flip submissions wait behind them, so RenderThread stalls past the 120 s watchdog.\nMost of the per-draw cost is in ShaderResources::PrepareDrawBindings (about 0.5 ms per draw). I am working on that and will link the pull request here."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5912,
@@ -5746,7 +5829,8 @@
         "blockerText": "None with the fix. On `main`: `sceNgs2RackGetVoiceHandle: invalid argument` at 1.5 s, same stop as STAR WARS: Dark Forces Remaster (PPSA19728, #4310), which runs the same engine. Pull request: see the reply below."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5921,
@@ -5782,7 +5866,8 @@
         "blockerText": "None with #5916. On `main`: `sceNgs2RackGetVoiceHandle: invalid argument` before the first frame."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5932,
@@ -5872,7 +5957,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5935,
@@ -5954,7 +6040,8 @@
         "author": "AnthonyClemens",
         "date": "2026-10-19T01:56:08Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 5963,
@@ -5997,7 +6084,8 @@
         "blockerText": "On `main` 956269ad1 the title stops at its first frames:\n\n```\nDescriptorBindingBuilder::Populate multisampled image resources have no descriptor image shape\n```\n\nThat is #3036. Each open PR moves it one step:\n\n| Stack | Stop |\n|---|---|\n| `main` | `multisampled image resources have no descriptor image shape` |\n| + #4820 | `guest texture descriptor uses MSAA which is not implemented` |\n| + #5496 | `sampling the 1920x1080 multisampled texture 0x231590000 of 2 samples, which no draw rendered to, is not implemented` |\n| + #5445 | `... which no draw rendered to and whose tile mode 4 has no modeled multisampled color footprint, is not implemented` |\n\nTile mode 4 is `kZ64KBX`: a 2-sample Z_X depth texture sampled before any draw rendered to it. Past that, the native multisample depth path of #5496 refuses, in this order:\n\n1. `native multisample depth metadata fill transition is not implemented` (an HTILE fill covering the whole target)\n2. `native multisample stencil or depth format import is not implemented` (the depth target has stencil)\n3. `native multisample depth import requires watched accessible guest memory`, then `native multisample depth requires watched accessible guest memory` at sampling\n4. `native multisample depth fast-clear transition is not implemented`\n5. `native multisample depth sampled identity or format mismatch` (when returning to the boat)\n\nTo get in game I bypassed these locally. These are workarounds, not proposals:\n\n- `createFilled` accepts the 64 KiB Z/S/D XOR tile modes with the `Standard64KB` footprint.\n- `NoteDepthMetadataFill` does not refuse sampling when the fill covers the whole HTILE (the pending clear is kept).\n- The native multisample depth import accepts `VK_FORMAT_D32_SFLOAT_S8_UINT` and a stencil plane, and skips the initial-state proof; `CheckCurrent` only checks the refusal.\n- Fast clears on a sampled native multisample depth target are applied (`ApplyFastClear`) instead of refused.\n- An identity or format mismatch falls back to th"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5972,
@@ -6036,7 +6124,8 @@
         "blockerText": "`kevent: EVFILT_READ on a non-socket descriptor not implemented`: the JDK's kqueue selector registering the read end of its wake-up pipe. #5973 fixes it; with it, the third row ends with `STAGE: Network25 returned normally` and the fourth with `STAGE: DestroyJavaVM complete`. The PRs it needed to load and start its VM (#5502, #5563, #5643, #5666, #5187) are merged."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 5996,
@@ -6090,7 +6179,8 @@
         "author": "semirkabir",
         "date": "2026-10-15T06:15:03Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6214,
@@ -6128,7 +6218,8 @@
         "blockerText": "`sceHmd2ReprojectionSetAllowPositionalReprojection not implemented` from `libSceHmd2` on `main` f52509acc, 3 of 3 runs (since b378541e7 initialization fails and the title goes straight into its reprojection set-up). Open pull requests the title needs, in order: #7658 (that export; with it the next stop is `sceHmd2ReprojectionQueryDisplayBufferSizeAlign`), #7690 (the remaining size queries). Past those, a PS VR2 runtime (tracker results, gaze, Sense controllers, the HMD video port; discussed in #7649) and the `DB_RENDER_CONTROL` 0x84 / 0x88 copies (#6304, #5499)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6256,
@@ -6193,7 +6284,8 @@
         "author": "erm14254",
         "date": "2026-10-15T08:11:22Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6275,
@@ -6246,7 +6338,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6289,
@@ -6325,7 +6418,8 @@
         "author": "jackthereaper2006",
         "date": "2026-10-15T09:13:17Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6338,
@@ -6396,7 +6490,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6344,
@@ -6466,7 +6561,8 @@
         "blockerText": "The frame rate during first-run shader compilation. The title logs this once per frame, and its breadcrumb report says all markers completed:\r\n\r\n```\r\nFailure in SubmissionManagerPs5::waitForFrame with error code 0x8002003C.  See the log for additional details (e.g. potential GPU breadcrumbs).\r\n```\r\n\r\nOpen pull requests this run needs:\r\n- notaxeltv's PPSA34015 PRs, applied together: #5352 #6034 #6049 #6056 #6058 #6062 #6072 #6074 #6079 #6084 #6085 #6086 #6087 #6088 #6089 #6090 #6092. Without them the title does not load on `main`: libSceLoginService.prx is missing and libraries such as libScePlayerSelectionDialog and libSceVdecsw lack imports it needs.\r\n- #6343 `kevent` on descriptor 0. Without it, the title stops about 40 seconds after start with `kevent: EVFILT_READ on a non-socket descriptor not implemented`, because it registers its standard input in a kqueue.\r\n\r\nAlso logged, without stopping the title: `sceSysmoduleIsLoaded unknown id: 306`."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6404,
@@ -6498,7 +6594,8 @@
         "blockerText": "No gameplay blocker encountered in the tested opening tutorial. No additional PRs, game-specific patches or metadata changes were applied. A diagnostic path-encoding issue encountered during setup is described below."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6421,
@@ -6530,7 +6627,8 @@
         "blockerText": "Not tested via AI so no issue raised.\r\n\r\n```\r\n[videoout] presentation failed: compute shader 0x1417c4300: buffer descriptor uses an unsupported type (buffer 0 V# 02100b00 c3c00000 010dc1df 91b00fac)\r\n[gpu] driver failure: compute shader 0x1417c4300: buffer descriptor uses an unsupported type (buffer 0 V# 02100bterminate called after throwing an instance of 'std::runtime_error'\r\n  what():  compute shader 0x1417c4300: buffer descriptor uses an unsupported type (buffer 0 V# 02100b00 c3c00000 010dc1df 91b00fac)\r\n00 c3c00000 010dc1df 91b00fac)\r\nFATAL: abort() (SIGABRT) on thread 16552\r\n    #0 0x00007ffe5a57c778 libc.prx+0xc778\r\n    #1 0x00007ffe5a624621 libc.prx+0xb4621\r\n    #2 0x00000000dc56f940\r\n  stack return address candidates:\r\nterminate called after throwing an instance of 'std::runtime_error'\r\n  what():  compute shader 0x1417c4300: buffer descriptor uses an unsupported type (buffer 0 V# 02100b00 c3c00000 010dc1df 91b00fac)\r\n    [rsp+0x8] 0x00007ffedf792139 ucrtbase.dll+0xc2139\r\n```"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6434,
@@ -6562,7 +6660,8 @@
         "blockerText": "No PR. Just testing on latest/near latest commits.\r\n\r\n```\r\n[shader-disk-cache] (10 s): 0 hits, 8 misses, 8 writes (1.5 MiB), 0 load failures, 0 write failures; resource plans: 0 hits, 4 misses, 4 writes, 0 load failures; 0.0 MiB read in 1.1 ms (totals: 613 hits, 110 misses, 110 writes; plans 387 hits, 63 misses)\r\n[src/Open.cpp:215 sceKernelOpen] path=/app0/Media/resources.resource flags=0x0 nativeFlags=0x8000 mode=00\r\n[src/Texture.cpp:262 Texture] Texture address=0x21f313000 128x128 mips=1 layers=1 dim=1 tile=2 format=173 vk=137 element=16\r\n[src/Texture.cpp:264 Texture]   mip 32x32 tiled=0x0+0x4000 linear=0x0+0x4000 blocksPerRow=2 pitch=512 tail=0\r\n[src/Open.cpp:215 sceKernelOpen] path=/app0/Media/resources.resource flags=0x0 nativeFlags=0x8000 mode=00\r\n[shader-disk-cache] (10[src/Texture.cpp:1090 StorageTexture] StorageTexture address=0x247110000 1440x810 mips=1 mip=0 layers=0 base=0 dim=1 tile=7 format=56 vk=37\r\n s): 0 hits, 4 misses, 4 writes (1.1 MiB), 0 load failures, 0 write failures; resource plans: 0 hits, 2 misses, 2 writes, 0 load failures; 0.0 MiB read in 0.6 ms (totals: 613 hits, 114 misses, 114 writes; plans 387 hits, 65 misses)\r\n[src/Texture.cpp:1090 StorageTexture] StorageTexture address=0x227a18000 1536x816 mips=1 mip=0 layers=0 base=0 dim=1 tile=0 format=1 vk=9\r\n[src/Texture.cpp:750 Texture] Texture address=0x227a18000 1536x816 mips=1 viewed from storage image (vk=9)\r\n[src/Texture.cpp:1090 StorageTexture] StorageTexture address=0x227b4a000 768x408 mips=1 mip=0 layers=0 base=0 dim=1 tile=0 format=14 vk=16\r\n[src/Texture.cpp:750 Texture] Texture address=0x227b4a000 768x408 mips=1 viewed from storage image (vk=16)\r\n[videoout] presentation failed: AGC graphics: unsupported color format 16 number type 0 component swap 2\r\n[gpu] driver failure: AGC graphics: unsupported color format 16 number type 0 comterminate called after throwing an instance of 'std::runtime_error'\r\n  what():  AGC graphics: unsupported color format 16 number type 0 component swap 2\r\npon"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6460,
@@ -6590,7 +6689,8 @@
         "author": "JJenkx",
         "date": "2026-10-18T16:45:15Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6468,
@@ -6663,7 +6763,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6477,
@@ -6676,7 +6777,8 @@
     "updated": "2026-10-19T16:26:42Z",
     "comments": 2,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6496,
@@ -6708,7 +6810,8 @@
         "blockerText": "None seen so far."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6547,
@@ -6740,7 +6843,8 @@
         "blockerText": "None seen so far."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6554,
@@ -6753,7 +6857,8 @@
     "updated": "2026-11-11T20:21:11Z",
     "comments": 5,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6561,
@@ -6766,7 +6871,8 @@
     "updated": "2026-11-01T18:43:19Z",
     "comments": 3,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6562,
@@ -6779,7 +6885,8 @@
     "updated": "2026-11-04T10:31:11Z",
     "comments": 5,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6575,
@@ -6815,7 +6922,8 @@
         "blockerText": "On plain main it aborts right after the story intro, when a character takes a photo:\r\n\r\n```\r\nAGC graphics: CB resolve from a target whose sample count differs from the rasterizer's\r\nFATAL: abort() (SIGABRT)\r\n```\r\n\r\nThe title resolves a 4x 512x512 target with PA_SC_MODE_CNTL_0.MSAA_ENABLE off while PA_SC_AA_CONFIG still holds 2x from earlier draws. #6571 fixes this, and with it the title keeps playing. No blocker is known after that; the remaining issue is performance (about 25 fps, GPU-bound below full load)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6591,
@@ -6855,7 +6963,8 @@
         "author": "LuisAguilarDev",
         "date": "2026-10-15T21:39:10Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6602,
@@ -6892,7 +7001,8 @@
         "blockerText": "1. On `main`, `tools/unwrap_self.py` refuses all 19 modules (`segment 6 vaddr 0x1aa8260 is in no PT_LOAD`: a PT_TLS with no file bytes at the end of its PT_LOAD). #6441 fixes this; details are in my comment there.\r\n\r\n2. An intermittent abort, seen once 12 seconds into loading and once on opening the pause menu:\r\n\r\n```\r\nterminate called after throwing an instance of 'std::runtime_error'\r\n  what():  APR: cannot open ...\\app0\\Media\\StreamingAssets\\PS5\\Table\\battle\r\n```\r\n\r\nThe same file was read moments earlier, and the next run went past the same point. I am running a build that records the Windows error when that open fails, to find the cause.\r\n\r\n3. Frame rate, as described above."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6633,
@@ -6928,7 +7038,8 @@
         "blockerText": "No stop and no crash: the frame rate in gameplay. No issue or pull request tracks it yet, and the title needs no open pull requests or local changes.\r\n\r\nProfile of the first gameplay scene (`APS5_TRACE_SUMMARY_EVERY=10`, `APS5_PROFILE_GPU=1`), frame p50 about 172 ms, per frame:\r\n- `Driver.Packet.memory_wait` 170 to 230 ms, the time a queue spends in WAIT_REG_MEM packets (opcode 0x3c) waiting for another queue\r\n- `Driver.Draw` about 105 ms\r\n- `Draw.shader_compile_and_link` about 70 ms\r\n- the GPU itself is not the limit\r\n\r\nQueue 0 (`queue worker 0x0`) is 99% busy; the compute queue (`queue worker 0x20`) is 75 to 125% busy. The intro and cutscene intervals show about 16.7 ms per frame with `memory_wait` under 80 ms.\r\n\r\nFour WAIT_REG_MEM timeouts were logged while loading, for example:\r\n```\r\n[gpu] queue 0x20 WAIT_REG_MEM at 0x1020ea4760 timed out after 1000ms (function 3 ref 0x1 mask 0xffffffff value 0x20eba6a0)\r\n[gpu]   preceding packet WAIT_REG_MEM 00000013 20ea4760 00000010 00000001 ffffffff 00000019\r\n```\r\nThe value found in memory is not 1 and looks like the low half of an address, so the wait may be on memory that nothing writes with the expected value. This is not confirmed.\r\n\r\nAlso logged: `texture ... has mixed DCC keys ...; its texels are read as stored` (10 times) and `guest memory changed while GPU results were pending; keeping the CPU's blocks`."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6634,
@@ -6960,7 +7071,8 @@
         "blockerText": "None that stop play; no issue or pull request is open for this title. The window opens at the title's 1920x1080 display mode and looks small on a larger display; F11 (built-in binding) toggles borderless fullscreen (`SDL_WINDOW_FULLSCREEN_DESKTOP`). 71 stubbed imports throw if called (`sceAjm*` job manager, `sceAgcAcb*`/`sceAgcDriver*` audio capture, `sceAudioInOpen`, `sceSsl*` names, `sceSystemServiceLoadExec`, `select`/`__tls_get_addr` nid postfixes, `sceLibcBacktrace*`); none were called during the tested session."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6651,
@@ -6973,7 +7085,8 @@
     "updated": "2026-11-10T04:05:56Z",
     "comments": 3,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6664,
@@ -7009,7 +7122,8 @@
         "blockerText": "`setsockopt(IPPROTO_IPV6, IPV6_V6ONLY, 0)` on Java's `AF_INET6` sockets returns `ENOPROTOOPT`. #6663 handles `IPV6_V6ONLY`. With it, the IPv6 TCP/UDP loopback row, the network load row and `DestroyJavaVM` pass. The HTTPS row then connects to the IPv4 address of `example.com` through `::ffff:`, but its first `read` fails with `Software caused connection abort`. Here the interpreter-only VM takes longer between `connect` and the TLS ClientHello than the server keeps an idle connection open; a plain connection that waits 15 s before sending gets a reset. That row may pass on a faster machine or once the VM's per-call tracing costs less."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6722,
@@ -7054,7 +7168,8 @@
         "blockerText": "None seen up to the first controllable gameplay. Speed is the limit there: #8068 (the draw committer bounds the frame; 12 % of its samples rescanned sampled textures' DCC keys). #8075 (merged) added the committer sampler used to find it. #8117 reads each sampled texture's keys once per lookup: over six alternating pairs in this gameplay scene, p50 345.4 ms -> 310.4 ms (-10 %).\r\n\r\nStill needed on top of `main`:\r\n1. `unsupported PA_CL_CLIP_CNTL flags is unsupported (register 0x204 = 0x00090000)`: #6572.\r\n2. `scePlayGo: sce_sys/playgo-chunk.dat and sce_sys/playgo-scenario.json are missing, so chunk ID 1 cannot be checked`: the dump has no `sce_sys/playgo-*` files; run with a local `app0/playgo-chunkdefs.xml` holding `default_chunk=\"999\"` (chunks 0-999 reported installed).\r\n3. No sound on `main`: the title gives two MAIN ports the same PCM buffer each grain. #7719 fixes it; the bot closed it for the open-PR limit, it is not merged."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6749,
@@ -7086,7 +7201,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6752,
@@ -7158,7 +7274,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T06:58:02Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6803,
@@ -7196,7 +7313,8 @@
         "blockerText": "1. **No mesh shaders on the RX 5700 XT (RDNA1).** The title's NGG programs take AnyPS5's mesh path, which needs `VK_EXT_mesh_shader`. On current `main` the first such draw stops with a mesh shader error; #6523 makes that refusal clear. #6528 proposes running those draws through a compute pass and an ordinary draw instead. With my local prototype of it, the title gets past those draws, including a layered full-screen pass it repeats 32 times per frame, and reaches the loading screen above. Devices with mesh shaders are not affected by this blocker.\n2. **Loading screen.** Not investigated yet. It is not known whether it waits on something the emulator is missing, or whether the prototype renders the layered pass wrongly."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6864,
@@ -7250,7 +7368,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6865,
@@ -7303,7 +7422,8 @@
         "author": "energizer91",
         "date": "2026-10-16T14:55:23Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6895,
@@ -7350,7 +7470,8 @@
         "author": "mrfelek",
         "date": "2026-10-19T14:44:29Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6933,
@@ -7438,7 +7559,8 @@
         "author": "JJenkx",
         "date": "2026-10-16T19:59:41Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6952,
@@ -7474,7 +7596,8 @@
         "blockerText": "Unmodified main d92a8dad reaches the menu, New Game save-slot selection and difficulty selection, then aborts while loading the opening level, before gameplay:\r\n\r\n```text\r\nGetSamplerResource dword 0 is not a valid runtime value;\r\nchain: ReadLane(LoadVectorWindow(Immediate), Immediate)\r\n```\r\n\r\nRelated work: [PR #6277](https://github.com/boykopovar/AnyPS5/pull/6277). All four captured compute requests still fail with that PR alone. The additional unpublished prototype validates recovered spill values against the GPU lane read; only libSceAgcDriver.prx differed from the baseline runtime. No title-specific metadata override was used. The prototype is not an upstream fix or a submitted PR.\r\n\r\nA synthetic counterexample and technical follow-up are [on PR #6277](https://github.com/boykopovar/AnyPS5/pull/6277#issuecomment-6215244790); implementation discussion stays there. Remaining bring-up blockers after the local prototype are very low gameplay frame rate and incomplete rendering. No cause or fix for those is established.\r\n\r\nAI-assisted investigation and report: yes."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6978,
@@ -7517,7 +7640,8 @@
         "blockerText": "None for the parts tested. Every piece Limbo needs is in `main` or in #9430 to #9432. Paths Limbo does not use still throw NotImplemented: 3D and thick tile modes, interrupt flips, and the PSN calls that need a signed-in user."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6979,
@@ -7585,7 +7709,8 @@
         "author": "ZIKDZ",
         "date": "2026-10-17T00:32:43Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 6991,
@@ -7622,7 +7747,8 @@
         "blockerText": "1. **v0.1.2:** after New Game → Yes, the load stops with `AGC graphics: storing storage image results pending over memory outside the write watch without the guest bytes saved before them is not implemented`. This is #5711, fixed by #5760. Main 153d5d469 gets in game.\r\n2. **Main:** one run crashed in the second cutscene with `FATAL: unhandled exception 0xc0000005` on the title's main thread, rip `hello-neighbor.exe+0x3418666` (the relinked eboot), read of `0x1fc3087a8c`, `rbx = rcx = 0`. The second run, with the draw-input patch, got past that cutscene. That is one run each, so it is not shown whether the patch is related.\r\n3. **Performance:** 1 to 2 FPS. The largest part is the untracked whole-surface comparison of render targets in host-imported memory on Windows, described above. I have not changed that code, since the Windows write-tracking work (#637, #5596) is in progress.\r\n\r\nAlso seen once on v0.1.2: `queue 0x20 WAIT_REG_MEM at 0x1020f337a0 timed out after 1000ms (function 3 ref 0x1 ...)`. It was not seen on main."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6994,
@@ -7665,7 +7791,8 @@
         "blockerText": "No stop within 1500 s with two open PRs and one setting, but the picture stays black; I have not looked into why. This answers the request in #2010 (\"If Cyberpunk 2077 or GTA III DE stops on main, please open an issue with the title ID and the log line\"). Each stop already has a thread, so the data went there:\n\n| Stop, in order | Thread | What gets past it |\n|---|---|---|\n| 1 to 2 s: `scePlayGo: sce_sys/playgo-chunk.dat and sce_sys/playgo-scenario.json are missing, so chunk ID 1 cannot be checked` | #6205 | `APS5_PLAYGO_UNLISTED_CHUNKS=absent` (#6236, merged after af0fff762). With `installed` instead, the title runs out of memory at 19 s (`Ran out of memory allocating 5565054976 bytes with alignment 65536`), the same allocation as Sackboy and Horizon on #6236 |\n| main thread `SIGSEGV` at `0x800000021` about a second after the swapchain is created | #6681 ([comment](https://github.com/boykopovar/AnyPS5/pull/6681#issuecomment-6228767262)) | #6681: the bss tail shares a page with the next `PT_LOAD` and reads file bytes |\n| `SIGSEGV` in `LinkPipelineFromLibraries` at the window attach, warm cache only | #6805, #6814 ([comment](https://github.com/boykopovar/AnyPS5/pull/6814#issuecomment-6228767460)) | #6814, or `APS5_NO_LIBRARY_PREBUILD=1` |"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 6996,
@@ -7726,7 +7853,8 @@
         "author": "JJenkx",
         "date": "2026-10-17T14:12:02Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7020,
@@ -7790,7 +7918,8 @@
         "author": "zanopi",
         "date": "2026-10-17T05:57:41Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7043,
@@ -7822,7 +7951,8 @@
         "blockerText": "1. Performance (sub-1 FPS in game).\r\n2. Unsupported tessellation configurations: about 10 programs are not prepared (\"not affine\" / \"not preparing a registered tessellation\"); run with APS5_SKIP_UNSUPPORTED_TESS=1, so those draws are missing.\r\n3. Local change still needed for correct lighting (without it near surfaces are unlit): depth decompress-to-copy. The title decompresses depth with DB_RENDER_CONTROL bit 0x40 (DEPTH_COMPRESS_DISABLE), no depth tests and Z_READ_BASE != Z_WRITE_BASE; the lighting pass then samples the Z_WRITE copy. The local fix records the copy (write address -> read address, same size) in State.cpp DecodeState and resolves textures bound at the copy address to the live depth surface in GuestTextureResource. Planned as a pull request once it is generalised (it currently uses the live depth surface instead of a snapshot)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7158,
@@ -7876,7 +8006,8 @@
         "author": "stefanetek",
         "date": "2026-10-17T14:26:45Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7167,
@@ -7948,7 +8079,8 @@
         "author": "amiraction0938",
         "date": "2026-10-17T14:44:12Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7198,
@@ -8043,7 +8175,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7219,
@@ -8080,7 +8213,8 @@
         "blockerText": "None found: no stop, no crash and no fatal or abort line in the log on the first run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7239,
@@ -8117,7 +8251,8 @@
         "blockerText": "Two things after the menu. (1) The slowdown: the GPU is idle, not busy. In the [present] lines the GPU busy time is 12–31 ms per frame while the idle gaps go from 17 ms (at 34 fps) to 3,488 ms, 10,519 ms, 11,192 ms and 13,296 ms per frame, so the time goes to the emulator side. In the [packets] lines of the slow period DISPATCH_DIRECT takes 6,886 ms for 48 dispatches on queue 0x2d and DISPATCH_INDIRECT 5,440 ms for 32 on queue 0x0 in 10 s (about 140 and 170 ms each), DRAW_INDEX_2 6,835 ms for 15,859 on queue 0x0, and a queue waits 7.9 s for a submission; the [recompile] result memo shows 126 hits against 1,461 misses with 1,295 evictions, and the log reports 823,500 dispatches with 328,232 dispatch-cache evictions. I have not found the cause yet. (2) The abort at about 619 s: \"shader 0x114073b400 stage 5: ShaderRecompiler::Recompile: shader info collection failed: interpolation parameter reference is out of range (attribute 0 component 0 mode 0, 0 inputs)\", thrown from the videoout presentation path after \"Shader 0x114073b400 stage 5 has no artifact prepared at registration for the state of this draw or dispatch; preparing it at use\". A pixel shader reads interpolant 0 while the draw state declares no pixel inputs."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7257,
@@ -8152,7 +8287,8 @@
         "blockerText": "Performance only, and the GPU is idle during the stalls rather than busy. Numbers from the log: the [draw] driver phases line shows recompile at 182.9 us per draw packet (capture 16.9 us); the [capture] line counts 1,662,668 captures with 865,780 pages fetched; the [recorder] line counts 19,303 syncs that waited 33.8 s for the GPU in total (pending write 5,094 syncs, 25.6 s); the [texture] lines report 2,200 textures in the run (994 copied from storage images), with allocate+image at 1,569 ms in total. The log also contains 6 lines \"Shader 0x200cbc0000 ... has unsupported registered shader type 8; it is not prepared at registration\" (0x200cbc0000, 0x200cbd0000, 0x200cbf0000, 0x200cc00000, 0x200cc10000, 0x200cc20000); I did not check whether anything draws with them. I have not found the cause of the freezes. Before the PlayGo setting was corrected the title aborted at startup (see How it was run)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7265,
@@ -8229,7 +8365,8 @@
         "author": "birdmarty",
         "date": "2026-11-07T17:34:18Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7302,
@@ -8271,7 +8408,8 @@
         "blockerText": "On `main` de83e8f270 the title aborts about 64 s after New Game, still loading:\n```\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  compute shader 0x1004159a00: reads or writes a converted float image with 16-bit data, which is not implemented\n```\n#11580 removes that abort (no such line with it). With it, about 115 s after New Game, in the first gameplay scene, the GPU hangs and the context is lost:\n```\namdgpu 0000:03:00.0: ring gfx_0.0.0 timeout, signaled seq=38004368, emitted seq=38004369\nradv/amdgpu: The CS has been cancelled because the context is lost. This context is guilty of a hard recovery.\n[device-fault] last dispatch reached: marker 1924992, program 0x100407a100\n[device-fault] last dispatch finished: marker 1924992, program 0x100407a100\n  what():  AGC graphics: vkQueueSubmit recorder: Vulkan result -4\n```\nThe last marked dispatch finished, so the stuck work came after it (draws and waits carry no marker). Before the hang the log repeats `deferred write-back failed: image table: shader 0x1004138500 stage 2 pc 0x78 selected the descriptor at 0x3c7630180: outside the snapshot` (and its neighbours 0x40 apart), `BDA access failed: address=0x438f4bffc instruction=0x170 bytes=1 stage=4 reason=1`, and one `queue 0x3d WAIT_REG_MEM_64 at 0x1000020160 timed out after 1000ms`. The stuck work is a draw: with `APS5_LOOP_GUARD=65536` there is no hang, and every guard report names one pixel shader, `[gpu] loop guard: the loop exit at pc 0x360c of shader 0x2e8b98100 ran past 65536 evaluations`. That loop (pc 0x3608 to 0x55f0) is a waterfall over EXEC whose key mask is EXEC read as a value before `s_wqm`; with the helper lanes of the whole-quad expansion in that mask, no lane can match and the pass repeats forever. #12458 leaves the helper lanes out of EXEC values there, and with it (no loop guard) the title ran 900 s in gameplay without a hang. The image-table lines above still appear with it.\n\nWith an empty shader cache, about a quarter of "
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7303,
@@ -8311,7 +8449,8 @@
         "blockerText": "On current `main` the title stops about 63 s after start, since #10167:\n\n```\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  sceHttp2SendRequest: HTTP/1.x transport is not implemented not implemented\n```\n\nIts OpenTelemetry exporter sends its first trace batch then, as an HTTP/1.1 POST to an HTTPS server. With #11611 the request goes out but the title stops at 65 s on `sceHttp2: TLS failed; console error mapping is unknown`, because the server's certificate cannot be verified. With #11611 and either #11145 (system certificate roots: the POSTs then complete with 200) or #11922 (the failed handshake returns `0x8095F00C`, as on a PS5, and the exporter retries every 31 s), the title runs to a 600 s limit without stopping.\n\nIt then sits on the end-user license agreement, which says \"Scroll to the bottom to accept\": the right stick, left stick, D-pad, L2 and R2 leave it unchanged in nearly every run, while the same right stick input scrolls CONTROL Resonant's agreement. The input does reach the title: with the right stick held down, `scePadRead` returns `R=(128,255)`, and the D-pad shows as `buttons=0x40`. The agreement waits for the title's preferences, which are never requested. A per-frame trace on `main` bb04a4f1ea + #11611 shows why: the first `sceUserServiceGetEvent` call returns the initial user's LOGIN event, and in that same frame the title signs that user in and makes it the active user before the user's progress restore has finished (it completes about 370 ms later); the preferences are then never requested and the splash state stays without a user.\n\nWith a local diagnostic build that does not queue that initial LOGIN event (`main` 102c4f95a2 + #11611), the title activates the user after the restore, requests its preferences, and the agreement scrolls and is accepted; the privacy policy, the photosensitivity warning and the brightness calibration follow, with no abort in 300 s. `/app0/data_pack2/prospero/base-en-000.rmdblob` is ope"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7304,
@@ -8351,7 +8490,8 @@
         "blockerText": "Nothing stops it on the quick settings page yet; ADVANCE there is the next step. Stops seen on the way, all intermittent: #7700 (`FATAL: unhandled exception 0xc0000005 on thread 'Heartbeat'`, the title walking a freed thread stack, once in three visits to the legal agreements page) and the storage-image write-back refusal that #7048 is for (`storing storage image results pending over memory outside the write watch without the guest bytes saved before them is not implemented`), which still fires on about 1 run in 7 with #7048 applied (reported on the PR). The `sce::Json::Parser::parse: null text` abort from libSceJson2 was seen once with #7346 and not since (no issue). Stock `main` 922dc8999 stopped on `compute shader 0x1150101000: AGC graphics: 32-bit integer read of the depth-layout texture 0x11c10f0000, which is no depth surface drawn with, is not implemented` (#5398, closed, fixed by #7346, merged). Open pull requests the title still needs: #7048."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7305,
@@ -8391,7 +8531,8 @@
         "author": "isshininu",
         "date": "2026-10-18T11:21:30Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7315,
@@ -8495,7 +8636,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7320,
@@ -8529,7 +8671,8 @@
         "blockerText": "`vkWaitForFences present: Vulkan result -4` (VK_ERROR_DEVICE_LOST) about 100 s into the cinematic, after a burst of new compute dispatches; checkpoint program 0x146f38800 at stages 0x1 and 0x2000. Tracked in #5951. No open pull request known to address it; nothing local."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7347,
@@ -8563,7 +8706,8 @@
         "blockerText": "The shader recompiler aborts with \"ShaderRecompiler::Recompile: GetImageResource dword 0 is not a valid runtime value\" (exit code 0xC0000409), on a waterfall loop over a per-lane T#. Related upstream commits: f234476b2 (added support for it) and 353094a25 (reverted it). No open pull requests that I know of, and no local changes."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7359,
@@ -8597,7 +8741,8 @@
         "blockerText": "The frame rate. No stop on this commit.\r\n\r\nHistory, for anyone on an older build: on main 66702f1cf the title did not load (`FAIL: unresolved ELF import GtF-2gJqsts from libScePlayerSelectionDialog.prx` and three more PlayerSelectionDialog imports), which #6058 fixed and which is now merged. With #6058 on 66702f1cf it then stopped at the title menu in every plain run:\r\n```\r\nFATAL: unhandled exception 0xc000001d on thread 9780 'FAsyncLoadingThread'\r\n  rip 0x0000000142027a2c app.exe+0x2027a2c\r\n```\r\n(a switch on a type byte read from loader data that held bytes of `Mm_map_obj04.uexp`). That stop no longer happens on f1af6c591; I did not find which merged change removed it."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7373,
@@ -8633,7 +8778,8 @@
         "blockerText": "Main aborts with:\n\n```text\n[Video] Disposing of video logos\nterminate called after throwing an instance of 'std::invalid_argument'\n  what():  direct memory range 0x2b1ef0000+0x2f8000 references unallocated physical page 0x2b1ef0000\n```\n\nRelated implementation: #7105, which returns EACCES on unknown direct-memory release ranges. With that patch, startup passes this failure point. This observation does not establish that every memory-release path or later scene works.\n\nThe four focused Linux checks `guest_memory_pool_stats`, `MemoryPoolTest`, `guest_memory`, and `guest_mmap_fixed_anonymous` all passed on the candidate."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7379,
@@ -8665,7 +8811,8 @@
         "blockerText": "The frame rate after the intro. The measured profile (APS5_PROFILE_DRAW=1) shows where the time goes in the steady slow part: about 88 presents per 10 s, GPU busy 29 ms per frame and idle gaps of 81 ms per frame, so the GPU is waiting for the emulator side. In those windows the title sends about 440,000 DRAW_INDEX_2 packets per 10 s, roughly 5,000 draws per frame, and the draw path costs 14 us per draw on average (13 us for the 440,000 template hits; 1,400 builds at 337 us each, so it is not shader compilation). The 10 s total of about 6.3 s splits across vertex 1.0 s, prepare 1.0 s, lookup 1.7 s and record 1.6 s, with pipeline 0.3 s. For comparison the intro window had 2,136 DRAW_INDEX_2 packets per 10 s at 594 presents. Most draws continue an existing render pass (432,603 of 444,658) and only 612 of them hit a draw recipe. I do not know whether that last point is the cause; I have not changed anything or run a controlled comparison."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7382,
@@ -8703,7 +8850,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7384,
@@ -9167,7 +9315,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7387,
@@ -9202,7 +9351,8 @@
         "blockerText": "None known with those changes applied. Without them, the three stops above."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7458,
@@ -9215,7 +9365,8 @@
     "updated": "2026-11-13T06:32:13Z",
     "comments": 9,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7534,
@@ -9260,7 +9411,8 @@
         "blockerText": "#11691 (merged) fixed the format 36 sampling stop. On `main` 3b32cc7b61 the title stops at 73 s on a 4x target's memory reused for the 4K display buffer:\n\n```\nAGC graphics: a CPU read of 0x10dfd20000+0x1fe0000 overlaps multisampled color target 0x10e0720000+0x870000 (4 samples), whose samples are only on the host: guest access to it is not implemented\n```\n\n#8223 makes that read pass; then it stops at 73-85 s on a partial clear of a 1x storage image whose last 0x200000 bytes cover a dead 4x target (traced in #8223's thread):\n\n```\ncompute shader 0x1000810a00: AGC graphics: a cached image access of 0x10dc1d0000+0x480000 overlaps multisampled color target 0x10dc450000+0x480000 (4 samples), whose samples are only on the host: guest access to it is not implemented\n```\n\n#13248 counts that storage store as reuse of the dead target. With #8223 and #13248, the title gets past the autosave notice in 12 of 14 runs, shows \"Update! New Game+ Available\", and reaches the Menu Narration screen, at about 1.5 FPS. In the other 2 runs it stopped at 79 s on a delayed write-back of the clear's 1x image over a newer 4x target; #13963 stores those results before the target takes the memory (0 stops in 20 runs with it).\n\nWith #13248 and #13963, in the first real-time scenes after the intro video (197 to 218 s after New Game), 4 runs stopped on three different refusals:\n- 2 runs: `compute shader 0x10b4c8ad00: AGC graphics: native multisample stencil or depth format import is not implemented`, for a D32S8 4x 1920x1080 target with a separate stencil plane and no HTILE (its depth memory was a 1920x1080 storage image before; the stencil plane gets a fill of 0 just before). No open pull request covers a target without HTILE.\n- 1 run: `SPIR-V requires unsupported device capability 42` (`MinLod`, from an `_cl` sample in a graphics shader). #12662 accepts it when the device enables `shaderResourceMinLod`; the one run with it stopped on the refusal above first.\n- 1 run: `compute shader 0x10009c9600: "
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7578,
@@ -9296,7 +9448,8 @@
         "blockerText": "- Main menu background: fixed by the pull request linked in the reply below.\n- On `main` 2083bc700, 4 of 20 runs stopped 41 to 47 s after start with `AGC graphics: storing storage image results pending over memory outside the write watch without the guest bytes saved before them is not implemented`. With #6308, 0 of 20.\n- On a first run of a scene (cold shader cache) the graphics queue worker stays in `nvgpucomp64.dll` for over 120 s and the title stops itself: `GameThread timed out waiting for RenderThread after 120.00 secs`. A later run with the shaders cached loads.\n- With NVIDIA 610.88 it stopped in `nvgpucomp64.dll` (the 610 driver crash in the usage notes); 617.42 does not.\n- On `main` 2083bc700, on the AMD Radeon iGPU of a Ryzen 9 7900X3D (`ANYPS5_GPU=Radeon`, AMD 25.10.36) it did not get past the first load: the same 120 s timeout once, then `VK_ERROR_DEVICE_LOST` with no device fault reported."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7607,
@@ -9354,7 +9507,8 @@
         "blockerText": "the GPU hangs in the pre-match cutscene. amdgpu reports `ring gfx_0.0.0 timeout` and resets the ring, and the title stops with:"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7617,
@@ -9386,7 +9540,8 @@
         "blockerText": "No blocking issue encountered in the tested portion. Performance remains around 30–40 FPS, and the initial shader-preparation delay can temporarily look like a hang. No open PRs or local code changes were required for this run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7621,
@@ -9418,7 +9573,8 @@
         "blockerText": "```text\n[memory] configured flexible memory: 0x1c000000 bytes (448 MiB)\n[gpu] driver failure: depth, stencil or conditional color writes is unsupported (register 0x200 = 0x00000777)\n[videoout] presentation failed: depth, stencil or conditional color writes is unsupported (register 0x200 = 0x00000777)\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  depth, stencil or conditional color writes is unsupported (register 0x200 = 0x00000777)\nFATAL: abort() (SIGABRT)\n```\n\nThe process exits with `0xC0000409`. The memory watchdog did not terminate it.\n\nSearched discussions, issues, and PRs by title ID and the reported error; no matching tracking issue or proposed fix was identified. No workaround or additional PR was applied. Implementation investigation can be tracked separately in an issue and linked here."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7657,
@@ -9454,7 +9610,8 @@
         "blockerText": "1. **Cold cache: UE's render-thread watchdog kills the first New Game load.** On the first two New Game attempts with a cold shader cache, the game stopped with:\n   ```\n   LowLevelFatalError [File:.\\Runtime/RenderCore/Private/RenderingThread.cpp] [Line: 1415]\n   GameThread timed out waiting for RenderThread after 120.00 secs\n   ```\n   followed by `FATAL: unhandled exception 0xc0000005`. During that load the shader cache took about 1,200 misses in 30 s (~1.3 GB written), with two CPU threads at 100 % and the GPU at about 1 %. Each attempt keeps what it compiled, and the third attempt reached the cutscene. That attempt also had `-dpcvars=g.TimeoutForBlockOnRenderFence=900000` appended to `uecommandline.txt` (in a copy, not the original). I can't tell whether the shipping build honoured it or whether the warmer cache was enough. This matches the cold-load numbers in #5436 (> 700 s, mostly compute pipeline creation).\n2. Current `main` `400baa252` aborts at start-up with `Thread destructor callback is already registered` on **Windows** too (#7636), so I built the parent of the #6112 merge.\n\nAlso seen, without visible effect: `[gpu] queue 0x20 WAIT_REG_MEM ... timed out after 1000ms (function 3 ref 0x1 ...)` a few times during the New Game load."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7697,
@@ -9488,7 +9645,8 @@
         "blockerText": "None seen up to the first room. Not played further yet."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7926,
@@ -9535,7 +9693,8 @@
         "author": "XatiX",
         "date": "2026-11-02T20:18:33Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7941,
@@ -9604,7 +9763,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 7969,
@@ -9632,7 +9792,8 @@
         "author": "Dragost",
         "date": "2026-10-19T18:56:55Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7970,
@@ -9660,7 +9821,8 @@
         "author": "Dragost",
         "date": "2026-10-19T18:59:56Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 7972,
@@ -9723,7 +9885,8 @@
         "blockerText": "On NVIDIA (no `VK_EXT_shader_stencil_export`; AMD untested), in the order the stops showed up as I added pull requests:\n\n1. **`AGC graphics: guest buffer has no GPU owner`** in a compute dispatch, on `main`. It hit at 52 s on the \"Loading saved data...\" screen. In a run that was still filling the shader cache, it hit at 488 s on the EULA QR screen. It didn't occur with the open #10304 ([comment](https://github.com/boykopovar/AnyPS5/pull/10304#issuecomment-6382454713)).\n2. **Stencil export emulation.** With #10304 alone, the title stops at 61 s on the \"Loading saved data...\" dialog: `stencil reference export emulation requires a replay-safe pixel shader with late tests` (#4276). That shader is the same program as `0x224b431a00` from the earlier runs, at another address. It passes the replay-safety check only with #9317 and all four follow-ups: #9904, #9393, #9905 and #9906 ([comment](https://github.com/boykopovar/AnyPS5/pull/9317#issuecomment-6382158160)).\n3. **With those**, the first replayed draw of an unbounded stencil export throws `AGC graphics: guest buffer offset lies outside the shader's push constants`. #8615 fixes that ([comment](https://github.com/boykopovar/AnyPS5/pull/8615#issuecomment-6382161584)).\n4. **With #8615 as well**, the run then stops at `stencil replay refuses depth or stencil feedback reads`. No pull request covers it. On 2026-10-20, a diagnostic run traced it to the address-based build: `InPlaceReads()` listed every imported range (1689) as an in-place read, and two 8 MiB ranges among them overlapped the depth target (details on #8145).\n\nSeparately: with #9317 and the follow-ups, with or without #8615, 4 of 7 runs stopped before the first replayed draw of an unbounded stencil export. They stopped on `sample-preserving guest publication of native multisample depth is not implemented`: three at 46–52 s, and the first run, which was still compiling shaders, at 548 s on the EULA QR screen. This is tracked in #6570, and the open #9950 targets it "
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8045,
@@ -9794,7 +9957,8 @@
         "author": "birdmarty",
         "date": "2026-11-09T01:10:44Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8062,
@@ -9834,7 +9998,8 @@
         "author": "17bryen",
         "date": "2026-10-19T19:22:26Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8158,
@@ -9918,7 +10083,8 @@
         "author": "JJenkx",
         "date": "2026-10-31T22:35:28Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8196,
@@ -9954,7 +10120,8 @@
         "blockerText": "Blue flicker on the road during races only. Issue #865: `StorageTexture` write-back keeps the CPU's bytes for a whole 64 KiB block when a CPU stamp lands in a partial (edge) block, dropping GPU results for bytes the CPU did not change. This is the case that remains open after #1599 (the byte-by-byte edge merge from the closed PR #1918). `APS5_EAGER_WRITEBACK=1` sidesteps the glyph-box form of it but collapses race loading to sub-5 FPS, so it is not a usable workaround for this title."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8214,
@@ -9967,7 +10134,8 @@
     "updated": "2026-10-20T03:32:56Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8229,
@@ -9980,7 +10148,8 @@
     "updated": "2026-11-06T01:21:11Z",
     "comments": 2,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8239,
@@ -10008,7 +10177,8 @@
         "author": "JJenkx",
         "date": "2026-10-20T05:29:52Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8367,
@@ -10083,7 +10253,8 @@
         "author": "rulesless",
         "date": "2026-10-20T11:18:21Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8381,
@@ -10160,7 +10331,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8421,
@@ -10202,7 +10374,8 @@
         "author": "evitor-silva",
         "date": "2026-10-20T21:55:40Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8422,
@@ -10238,7 +10411,8 @@
         "blockerText": "Pipeline build time of the large compute modules, as in #6118, and the frame rate at the first screen."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8560,
@@ -10272,7 +10446,8 @@
         "blockerText": "On `main` the title stops at start-up before the first frame: the Epic Online Services module (`EOSSDK-PS5-Shipping.prx`) imports 106 `libSceNpCppWebApi` exports (`UserProfile::V1`, `ProfanityFilter::V2`, `CommunicationRestrictionStatus::V3` and their `Common` template members) that no library provides (`FAIL: unresolved ELF import ... from libSceNpCppWebApi.prx`). The dump ships no `libSceNpCppWebApi.prx`. #8561 adds them. Nothing past the title screen has been tried."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8562,
@@ -10325,7 +10500,8 @@
         "author": "edubox",
         "date": "2026-11-11T11:58:37Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8587,
@@ -10404,7 +10580,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T05:03:03Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8606,
@@ -10439,7 +10616,8 @@
         "blockerText": "On `main` 892a4f132: `native multisample stencil or depth format import is not implemented`. The title needs #9533 (stacked on #6300), which imports this D32S8 target with a separate stencil plane and a depth-only HTILE, and lets that depth be sampled through a descriptor without HTILE. With #9533 the title reaches the first level and is playable there, at about 120 fps presented (see the comment below). #6300 alone does not cover this target."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8613,
@@ -10452,7 +10630,8 @@
     "updated": "2026-11-11T11:32:14Z",
     "comments": 3,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8627,
@@ -10486,7 +10665,8 @@
         "blockerText": "`VK_ERROR_DEVICE_LOST` in the first indirect dispatch of compute program `0x140c8a000` (1 x 62976 x 1 groups)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8628,
@@ -10518,7 +10698,8 @@
         "blockerText": "No hard blocker. Main problem is in-game performance (~10 fps)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8634,
@@ -10531,7 +10712,8 @@
     "updated": "2026-11-02T10:36:40Z",
     "comments": 2,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8661,
@@ -10544,7 +10726,8 @@
     "updated": "2026-11-06T06:14:00Z",
     "comments": 5,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8671,
@@ -10557,7 +10740,8 @@
     "updated": "2026-11-05T20:32:03Z",
     "comments": 5,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8674,
@@ -10616,7 +10800,8 @@
         "author": "akkadbakkad89",
         "date": "2026-10-20T20:44:48Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8691,
@@ -10629,7 +10814,8 @@
     "updated": "2026-11-05T20:32:01Z",
     "comments": 5,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8695,
@@ -10661,7 +10847,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8698,
@@ -10693,7 +10880,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8710,
@@ -10728,7 +10916,8 @@
         "blockerText": "```text\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  NGS2: custom module id 0x1b is not implemented\nFATAL: abort() (SIGABRT) on thread 21316\n```\n\nThe current import audit reports **0 absent imports**, **0 missing host dependencies**, and **0 library mismatches**. It classifies 878 unique imports as 766 implemented, 22 throwing stubs, and 90 supplied by game modules. Export availability does not establish that every path in a function is implemented.\n\nRelated tracking: [issue #8039](https://github.com/boykopovar/AnyPS5/issues/8039) also records custom module `0x1b` in Rise of the Ronin. [fma-rc's firmware analysis](https://github.com/boykopovar/AnyPS5/issues/8039#issuecomment-6294323150) identifies `0x1b` as **Reverb**. This adds another affected title for that module: **Trails in the Sky 1st Chapter (PPSA28465)**. Our run did not instrument the module's option/state sizes or buffer routing, so it does not establish that this title needs the other modules, multi-buffer racks or rack `0x4003` described there.\n\nThe related [PR #8609](https://github.com/boykopovar/AnyPS5/pull/8609) is open as of 2026-10-20 and adds custom rack creation validation/error handling. Its description explicitly leaves valid but unimplemented modules throwing; it does not implement custom Reverb processing or claim to unblock this title. That branch has not been tested with this game. No local workaround or integration branch is used."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8737,
@@ -10741,7 +10930,8 @@
     "updated": "2026-11-12T19:47:41Z",
     "comments": 8,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8746,
@@ -10754,7 +10944,8 @@
     "updated": "2026-11-09T20:18:38Z",
     "comments": 10,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8764,
@@ -10767,7 +10958,8 @@
     "updated": "2026-10-22T00:19:20Z",
     "comments": 5,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8765,
@@ -10809,7 +11001,8 @@
         "author": "Biologisten",
         "date": "2026-11-07T15:15:52Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8786,
@@ -10822,7 +11015,8 @@
     "updated": "2026-11-02T16:29:01Z",
     "comments": 6,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8844,
@@ -10835,7 +11029,8 @@
     "updated": "2026-11-13T22:42:27Z",
     "comments": 17,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8868,
@@ -10898,7 +11093,8 @@
         "author": "JJenkx",
         "date": "2026-11-11T20:47:08Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 8931,
@@ -10934,7 +11130,8 @@
         "blockerText": "A crash at the first mission load. On recent `main` it happened in one of five played sessions, while unattended runs no longer hit it.\r\n\r\n- **First report:** one of my three played runs on 7ab4b2e56, and 5 of 10 unattended runs into the mission on 53a0a27bb with `APS5_TRACE_FLUSH=1 APS5_TRACE_MEMORY=1`, ended in an access violation on a Unity thread (`AssetGarbageCollectorHelper`, `Loading.PreloadManager`, `Gfx Task Executor`) over corrupted heap data, or once in `unsupported PM4 packet type: header 0x00000000` in a command buffer that was overwritten. Cause: pending storage-image results of memory the game unmapped are stored later over the new heap it maps at the same addresses.\r\n- **Unattended runs on later `main`** (same settings, 45 s each, after a warm-up run): 10 of 10 reached the mission without a crash on 50757b01c6, and 10 of 10 on 6a8f224629. The late stores are still there: 8 of the 10 runs on 50757b01c6 stored 68-73 results into ranges the title had unmapped, and all 10 on 6a8f224629 stored 48-58.\r\n- **Played on `main`:** one of five sessions crashed: on 6a8f224629, 24 s after start, while `level7` was loading after I picked the save, with an access violation (read of `0x18` at `app.exe+0xa7086e`). That session ran without `APS5_TRACE_MEMORY`, so the log can't tie it to the late stores. The other four ran with tracing and played into the mission without a crash (one on 6a8f224629 for about 10 minutes, three on f95acfc948 for about 4 minutes each), and each of their logs has 44-132 stores into unmapped ranges.\r\n- **#8932** removes the late stores: with its change rebased onto 50757b01c6 (local build, not pushed), none of 10 unattended runs stored into unmapped ranges, and none crashed (none crashed on that `main` either). With the change cherry-picked onto f95acfc948 (local build), three played sessions of about 4 minutes into the mission had no crash and no stores into unmapped ranges, alternated with the three `main` sessions above. With no crash on t"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 8966,
@@ -10977,7 +11174,8 @@
         "blockerText": "`main` `62b3ba2522`: two runs stop 6 and 10 s in with `sceHttp2SetCookieBox not implemented`. Before #10167, `sceHttp2SetCookieBox`, `sceHttp2SetRedirectCallback` and `sceHttp2SetSslCallback` returned 0 and `sceHttp2SendRequest` returned a network error; #10167 made them real or throwing. The title's request goes to `script.google.com` (`action=GetLanguageSource`, its translation download).\n\nWhat it needs (with 1 alone it stops at 2, with 1 to 3 at 4, with 1 to 4 at 5):\n1. `sceHttp2SetCookieBox`: #11950\n2. `sceHttp2SetRedirectCallback`: #11575\n3. `sceHttp2SetSslCallback`: #11586\n4. HTTP/1.1 requests: #11611 (its `libSceHttp2.prx` builds on Windows now that #12059 is merged)\n5. trust in public certificate authorities, so the title's certificate callback accepts `script.google.com`: #11134\n\nWith all five merged onto `main` `319621ba2e` (#11611 at `fc5defa1c0` also carries #11575 and #11586; #11950 at `bbef95bb68`; #11134 at `4770881256`) and no other changes, both 300 s runs (unattended, cross pressed every 3 s) reach the in-game base screen at about 35 presents per second. The merges conflicted only in debt text, in one `#include` line of `Transport.cpp` (both kept) and in `GuestHttp2Transport.cpp` (taken from #11611 for this run, since no test ran).\n\nOnce in game, the freeze at the first level load (one run in four) and the first-use hitches remain. Reconnecting a controller needs #8964 (closed for now, see above)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9002,
@@ -11026,7 +11224,8 @@
         "author": "edubox",
         "date": "2026-10-27T08:58:20Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9004,
@@ -11060,7 +11259,8 @@
         "blockerText": "An intermittent abort about 2 s after start: `sceKernelWaitSema: invalid argument` (1 of 14 clean starts; never under GDB).\n\nCause, from the executable: the init function at `0x44xx` starts a worker thread (entry `0x48d0`) before it calls `sceKernelCreateSema(&sem /* 0x1fc0a8 */, ..., attr 1, init 0, max 1)` at `0x4506`. The worker loop at `0x4a06` calls `sceKernelWaitSema(sem, 1, NULL)` and, on a non-zero result, prints an error and loops back. When the worker runs first, it passes a null handle and expects an error it can retry, but `sceKernelWaitSema` throws on a null handle.\n\nThe fix (PR linked below) returns `SCE_KERNEL_ERROR_ESRCH` for a null handle, as shadPS4 does for an unallocated handle. With it, a 180 s run and 8 starts showed no stop."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9024,
@@ -11102,7 +11302,8 @@
         "author": "BunnyFl",
         "date": "2026-10-21T10:00:29Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9035,
@@ -11115,7 +11316,8 @@
     "updated": "2026-11-11T06:57:03Z",
     "comments": 6,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9039,
@@ -11128,7 +11330,8 @@
     "updated": "2026-11-01T20:46:38Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9065,
@@ -11195,7 +11398,8 @@
         "author": "authurtabo-byte",
         "date": "2026-10-21T11:26:49Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9067,
@@ -11208,7 +11412,8 @@
     "updated": "2026-11-02T01:34:33Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9078,
@@ -11221,7 +11426,8 @@
     "updated": "2026-11-01T05:40:02Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9091,
@@ -11234,17 +11440,18 @@
     "updated": "2026-11-05T20:32:06Z",
     "comments": 3,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9093,
-    "title": "Resident Evil Village [MAIDEN Demo] (PPSA01859)",
+    "title": "PPSA01859 -MAIDEN (Resident Evil Village Demo)",
     "url": "https://github.com/boykopovar/AnyPS5/discussions/9093",
     "titleIds": [
       "PPSA01859"
     ],
     "created": "2026-10-21T12:07:26Z",
-    "updated": "2026-11-13T16:23:43Z",
+    "updated": "2026-11-14T08:45:56Z",
     "comments": 1,
     "reports": [
       {
@@ -11290,7 +11497,8 @@
         "blockerText": "Issue: https://github.com/boykopovar/AnyPS5/issues/14861\r\nPR: https://github.com/boykopovar/AnyPS5/pull/19617"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9151,
@@ -11342,7 +11550,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9189,
@@ -11376,7 +11585,8 @@
         "blockerText": "None (no stop). Per-draw shader resolution limits the frame rate on this scene."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9268,
@@ -11845,7 +12055,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9308,
@@ -11882,7 +12093,8 @@
         "blockerText": "No stop. On `main`, refused host imports dominate the frame. #8091 brings the intro to about 12 FPS on this machine."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9376,
@@ -11916,7 +12128,8 @@
         "blockerText": "The captured failure is:\r\n\r\n```text\r\n[gpu] driver failure: AGC graphics: storage texture has no committed guest pages\r\n[videoout] presentation failed: AGC graphics: storage texture has no committed guest pages\r\nterminate called after throwing an instance of 'std::runtime_error'\r\n  what():  AGC graphics: storage texture has no committed guest pages\r\nFATAL: abort() (SIGABRT) on thread 6580\r\n```\r\n\r\nWindows process exit code: `0xC0000409`. The memory watchdog did not terminate the run; minimum recorded available physical RAM was 6.43 GiB, above its 5 GiB threshold. Available commit stayed above its 8 GiB threshold as well.\r\n\r\nAn earlier recorded session also stopped with this exact graphics error when returning to the main menu. A separate manual retest was reported to crash after approximately five minutes of gameplay; no guest log was captured for that separate retest.\r\n\r\nRelated: [#9275](https://github.com/boykopovar/AnyPS5/pull/9275) documents the same storage-image refusal in other titles. It is documentation only, not a fix, and does not establish Biped's underlying cause. No Biped-specific issue or fix PR was found in the search, and no workaround or local code patch was used. Root cause remains unresolved."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9426,
@@ -11950,7 +12163,8 @@
         "blockerText": "None seen in this run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9434,
@@ -11992,7 +12206,8 @@
         "author": "JJenkx",
         "date": "2026-10-31T20:15:01Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9475,
@@ -12059,7 +12274,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T05:59:11Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9476,
@@ -12096,7 +12312,8 @@
         "blockerText": "`sceCommonDialogInitialize` returns the wrong code on a repeat call; #8618 fixes it."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9516,
@@ -12133,7 +12350,8 @@
         "blockerText": "None once the system fonts are present. Without #5209, the emulator's UI text is laid out vertically, but I didn't check whether that blocks play. I only tested the touchpad START with #5209 in."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9559,
@@ -12167,7 +12385,8 @@
         "blockerText": "None seen in this run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9590,
@@ -12180,7 +12399,8 @@
     "updated": "2026-11-01T21:16:57Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9593,
@@ -12243,7 +12463,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T05:17:28Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9594,
@@ -12280,7 +12501,8 @@
         "blockerText": "The recompiler stop (#8070). After that, an out-of-memory stop at 156 s, not investigated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9603,
@@ -12293,7 +12515,8 @@
     "updated": "2026-10-22T04:02:01Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9606,
@@ -12327,7 +12550,8 @@
         "blockerText": "Unreal out-of-memory fatal error during start-up (5.5 GB allocation), cause not investigated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9615,
@@ -12371,7 +12595,8 @@
         "blockerText": "- The trophy stop: #9115.\n- MGS1's speed:\n  - #9188 returns a synchronous draw's render target memory to the image pool.\n  - #9202 stores only the bytes a synchronous draw changed in a linear target.\n  - Together they take a synchronous draw from 16-50 ms to about 1.8 ms. On equal content, aligned by guest flip count, MGS1's boot logos go from 10.7-21.4 to 30.3-52.8 flips/s.\n  - #9217 asks which store-back rule is acceptable for resident linear targets, with the local numbers. MarcZX10's answer there: keep the store guarantee, and speed up the synchronous path.\n- Frame-time measurement: #9373 and #9602 move `APS5_PROFILE_DRAW`'s draw reports and the frame-dump log line to the asynchronous profile output. As synchronous writes to stderr, they added hitches of up to 208 ms."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9639,
@@ -12437,7 +12662,8 @@
         "author": "JJenkx",
         "date": "2026-10-26T20:56:17Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9659,
@@ -12450,7 +12676,8 @@
     "updated": "2026-10-22T06:52:39Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9679,
@@ -12496,7 +12723,8 @@
         "blockerText": "Performance, not a stop. Two things bound the frame on this `main`:\n\n- CPU copies of buffers outside the host imports: 1.55 GiB per 10 s window (25.9 GB over the run, 22.9 GB of it from the region at 0x2050000000), about 2.5 s of every 10 s on queue worker 0. This is the case #5372 removes (open, conflicting with `main`): with it merged locally on `main` 4b462ef60 the copies were zero, GPU busy per present 75 to 83 ms and the frame 171 ms at the median.\n- The draw committer thread: about 40,000 draw packets per 10 s at 77 to 86 µs each (capture 18.6, recompile lookup 19.2, lock wait 20.1 µs per draw), the problem #7895 tracks. The draw cache hits 0.0 % of draws in gameplay: 97 % of the misses are draws whose only difference is per-draw pointers in the user data (#4054), and relocation (#4943) does not reach them because every vertex stage reads its fetch tables through such pointers and the vertex shaders build their buffer descriptors from the pointer words; on local prototypes stacked on #5609 and #6539 the hit rate stays at 0.5 to 0.7 % because the per-stage alias is keyed on SRT contents that differ per draw. The counters will follow as a comment for the owners of #5609 and #6539.\n\nGPU time per present on this run (`APS5_PROFILE_GPU=1`, program ranges): 0x200fae0000 20.1 ms over 8 dispatches, 0x2013ba0000 12.6 ms, 0x206fd50000 9.8 ms, 0x200e480000 6.2 ms, the skin-cache kernel 0x200fa10000 4.8 ms over 15 dispatches with #8336 (55 ms without it: its 2.5 and 3.3 MiB outputs were written in place into the host import at 4.2 ms per dispatch).\n\nOpen pull requests and local changes the title needs or needed:\n\n- #8172 (merged 2026-10-20): before it the title stopped before gameplay at the write-watch refusal of #7017 (\"storing storage image results pending over memory outside the write watch without the guest bytes saved before them is not implemented\"); the closed #7687 was the local workaround. On this `main` the stop is gone.\n- #5372 (open, conflicting): removes the"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9683,
@@ -12530,7 +12758,8 @@
         "blockerText": "On Linux, the thread stacks that `scePthreadAttrGet` / `pthread_attr_get_np` / `sceKernelIsStack` report do not start on a 16 KiB page boundary. HotSpot aligns its guard zone down to its 16 KiB page, so `mprotect` lands below the reported stack and is refused.\n\nOpen pull request: #9684 (aligns created and adopted thread stacks on Linux).\n\nThe same stop shows on Java 25 ZIP/JAR (PPSA99867, 01.000.000) and Java 25 Dependencies (PPSA99873, 01.000.001) from the same project. With the fix, all three titles pass every row, and the VM is created and destroyed."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9687,
@@ -12621,7 +12850,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9692,
@@ -12659,7 +12889,8 @@
         "blockerText": "On `main`, 2 of 2 runs with input stop after the Unreal Engine logo:\r\n`AGC graphics: storing storage image results pending over memory outside the write watch without the guest bytes saved before them is not implemented` (once from compute shader 0x2012260000). Same refusal as #7017 and #8052; #7048 removes it for this title. A run left at the online-features dialog without input did not stop in 120 s.\r\nNext: the title and menu frame rate (~6 FPS), and the ~12 FPS on the logos with #7048 (~60 FPS on `main`)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9704,
@@ -12695,7 +12926,8 @@
         "blockerText": "None known on NVIDIA with #9694, up to the start of the second chapter's load (not finished in the first session). On AMD (RADV/ACO, Mesa 25.2.8): the ACO crash above, worked around with `RADV_DEBUG=llvm`."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9708,
@@ -12708,7 +12940,8 @@
     "updated": "2026-11-11T05:32:37Z",
     "comments": 7,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9716,
@@ -12749,7 +12982,8 @@
         "blockerText": "1. Without `APS5_STORE_AT_LABEL=1` the title faults in `UnityGfxDeviceWorker` about 30 to 60 s after start (`libc.prx.guest.prx+0x36598`, read of `0xffffffffffffffff`): a lazy storage-image write-back lands over guest memory the title already reused as heap. A fix that holds CPU writes on pending ranges runs locally; it will be a separate PR.\n2. The portrait / notification icons show coloured noise where the console shows the fallback icon: the PiP render targets read back through a compute shader hold stale fragments. Under investigation.\n3. Per-draw driver CPU time (about 130 µs per draw, 230 to 330 draws per frame) caps the title at about 30 FPS on this machine. shadPS4 runs it faster on the same machine.\n\nLocal changes not yet in a PR: `sceNetGetSockInfo` for kernel sockets with `recv_queue_length` (the PlayLink server polls it), the pad SPECIAL port as measured on a PS4, regular-file `mmap` on Windows, `sceSystemServiceGetPlatformPrivacySetting`, signed-out NP answers, and a PS4 discovery responder on the PC (UDP 987) so the phone app lists the PC."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": "2026-10-22T09:47:41Z"
   },
   {
     "number": 9718,
@@ -12792,7 +13026,8 @@
         "blockerText": "1. Without `APS5_STORE_AT_LABEL=1` the title faults in `UnityGfxDeviceWorker` about 30 to 60 s after start (`libc.prx.guest.prx+0x36598`, read of `0xffffffffffffffff`): a lazy storage-image write-back lands over guest memory the title already reused as heap. A fix that holds CPU writes on pending ranges runs locally; it will be a separate PR.\n2. The portrait / notification icons show coloured noise where the console shows the fallback icon: the PiP render targets read back through a compute shader hold stale fragments. Under investigation.\n3. Per-draw driver CPU time (about 130 µs per draw, 230 to 330 draws per frame) caps the title at about 30 FPS on this machine. shadPS4 runs it faster on the same machine. Open PR #10174 removes one cost behind this: the raw shader snapshot cache kept only 64 programs, so the unregistered PS4 shaders were prepared again each time they came round. Measured on the original Knowledge is Power (CUSA09558) menus: 383 programs, 341 136 preparations in 240 s before and 383 after, about 120 to 147 presents per 10 s. Not yet measured on this title.\n\nLocal changes not yet in a PR: `sceNetGetSockInfo` for kernel sockets with `recv_queue_length` (the PlayLink server polls it), the pad SPECIAL port as measured on a PS4, regular-file `mmap` on Windows, `sceSystemServiceGetPlatformPrivacySetting`, signed-out NP answers, and a PS4 discovery responder on the PC (UDP 987) so the phone app lists the PC."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9725,
@@ -13292,7 +13527,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9740,
@@ -13332,7 +13568,8 @@
         "author": "TopSecretGaming123456",
         "date": "2026-10-22T11:16:21Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9744,
@@ -13364,7 +13601,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9758,
@@ -13400,7 +13638,8 @@
         "blockerText": "On plain `main` the loader stops before anything runs, on the one export the title imports from `libScePosixForWebKit` that the module does not have:\n\n```\n./app.elf: symbol lookup error: ./app.elf: undefined symbol: cB4rMoKU4UI\n```\n\n`cB4rMoKU4UI` is `pthread_setname_np`; open #8080 adds it. After that, on llvmpipe, the stop is the LLVM abort above.\n\nThe title also imports `shm_open`, `readlink`, `cpuset_getaffinity`, `_umtx_op` and `sceSystemServiceLoadExec`, which have throwing paths; none was reached in this run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9762,
@@ -13436,7 +13675,8 @@
         "blockerText": "The game files. Nothing in the emulator stops it before that point.\n\nOne emulator-side problem shows when `/download0` cannot be used (it is created from the package's `sce_sys`, so a package without that directory has none, and a read-only location would do the same): the title's first `freopen` of `stdout` fails, which leaves the stream closed, and a later `freopen` of that closed stream aborts the process on `main`:\n\n```\n[libc] unhandled exception 'St13runtime_error' thrown from 0x7ffff5d4ddda\nterminate called after throwing an instance of 'std::runtime_error'\n  what():  FileStream: closed stream\n```\n\nFreeBSD's `freopen` reopens a closed `FILE`, so the console carries on. The pull request below makes `freopen` do the same; with it the title runs through to its data check (exit 0) in that layout too. Pull request: #9763."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9787,
@@ -13490,7 +13730,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9788,
@@ -13613,7 +13854,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T03:12:41Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9864,
@@ -13645,7 +13887,8 @@
         "blockerText": "Unreal out-of-memory fatal error during start-up on a 5,565,054,976-byte allocation, cause not investigated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9865,
@@ -13685,7 +13928,8 @@
         "author": "JJenkx",
         "date": "2026-10-22T19:43:13Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9868,
@@ -13717,7 +13961,8 @@
         "blockerText": "None seen in this run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9900,
@@ -13749,7 +13994,8 @@
         "blockerText": "Dithered alpha-to-coverage (`DB_ALPHA_TO_MASK = 0xe701`) is unimplemented in the AGC driver."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9901,
@@ -13814,7 +14060,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T04:40:04Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9909,
@@ -13854,7 +14101,8 @@
         "author": "JJenkx",
         "date": "2026-11-13T22:00:11Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9910,
@@ -13886,7 +14134,8 @@
         "blockerText": "None for offline play. Online content (Taiko Music Pass, DLC song packs) needs PSN, which AnyPS5 does not provide."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9914,
@@ -13972,7 +14221,8 @@
         "author": "alexdb8",
         "date": "2026-11-13T22:51:08Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9917,
@@ -14004,7 +14254,8 @@
         "blockerText": "None seen in this run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9925,
@@ -14036,7 +14287,8 @@
         "blockerText": "None seen in this run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 9956,
@@ -14112,7 +14364,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T04:57:14Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 9981,
@@ -14159,7 +14412,8 @@
         "author": "Tamalero",
         "date": "2026-10-23T02:10:49Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10040,
@@ -14193,7 +14447,8 @@
         "blockerText": "No hard blocker. Two open problems:\r\n1. The 3D image's exposure and tone mapping (near-monochrome, crushed shadows, sky black or blown out).\r\n2. Performance: about 8 fps in menus, with `Driver.Packet` the largest phase.\r\n\r\nA run that presses △ to skip the intro is queued, to reach gameplay sooner and test stick movement."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10051,
@@ -14225,7 +14480,8 @@
         "blockerText": "Nothing stops the game, but these are wrong or awkward (all seen by eye, none investigated yet):"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10080,
@@ -14257,7 +14513,8 @@
         "blockerText": "None seen in this run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10081,
@@ -14307,7 +14564,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10082,
@@ -14375,7 +14633,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10154,
@@ -14433,7 +14692,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T05:08:29Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10155,
@@ -14480,7 +14740,8 @@
         "author": "JJenkx",
         "date": "2026-10-23T11:03:02Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10156,
@@ -14512,7 +14773,8 @@
         "blockerText": "libSceNgs2: the custom PitchShift module is not implemented."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10195,
@@ -14586,7 +14848,8 @@
         "author": "Tamalero",
         "date": "2026-11-14T08:23:00Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10203,
@@ -14618,7 +14881,8 @@
         "blockerText": "None seen with system fonts. Without them, the title's font initialization fails."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10204,
@@ -14686,7 +14950,8 @@
         "author": "edubox",
         "date": "2026-10-25T22:08:04Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10209,
@@ -14718,7 +14983,8 @@
         "blockerText": "Nothing stops it, but the title only converts with --trap-sdk-syscall-stubs. Without the flag, the relinker stops with FAIL: Forbidden syscall instruction at code offset 0xca968a: syscall number 191.\r\nAnalysis (AI-assisted, not measured): this is the only raw syscall in the executable. It is a ps5-payload-dev SDK stub (mov rax, 0xbf; mov r10, rcx; syscall; ret) for FreeBSD pathconf. Its only caller passes \".\" and 5 (_PC_PATH_MAX), next to the current_path string, which matches libc++ std::filesystem::current_path(). The trapped stub was never reached in either run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10215,
@@ -14750,7 +15016,8 @@
         "blockerText": "Black output while running at 15 to 26 FPS; cause not found."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10261,
@@ -14807,7 +15074,8 @@
         "author": "JJenkx",
         "date": "2026-10-26T03:15:03Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10271,
@@ -14839,7 +15107,8 @@
         "blockerText": "libSceNgs2: the custom Reverb module is not implemented."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10355,
@@ -14852,7 +15121,8 @@
     "updated": "2026-10-23T19:02:07Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": "2026-10-23T19:02:07Z"
   },
   {
     "number": 10413,
@@ -14886,7 +15156,8 @@
         "blockerText": "None seen up to the first road; 16 to 19 FPS there, not investigated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10445,
@@ -14933,7 +15204,8 @@
         "author": "JJenkx",
         "date": "2026-10-24T00:48:52Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10471,
@@ -14970,7 +15242,8 @@
         "blockerText": "The intermittent stop at about 50 s:\n```\n[gpu] driver failure: AGC graphics: storing storage image results pending over memory outside the write watch without the guest bytes saved before them is not implemented\n```\nOne of the two runs names `compute shader 0x2011380000`. That is the same refusal as Palworld in #7017 and Astro Bot in #8052. The 120 s render-thread stall is a second, separate symptom that I haven't investigated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10520,
@@ -14991,7 +15264,8 @@
         "author": "rezesferi",
         "date": "2026-10-24T18:19:32Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10567,
@@ -15042,7 +15316,8 @@
         "author": "JJenkx",
         "date": "2026-10-25T12:17:34Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 10597,
@@ -15130,7 +15405,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10843,
@@ -15143,7 +15419,8 @@
     "updated": "2026-10-25T04:43:54Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10872,
@@ -15190,7 +15467,8 @@
         "blockerText": "- Nothing stops `main` before the casino gameplay. #10887 (the missing `sceImeBackend` exports), #10614 (the update check) and #10913 (the divide by zero at the opening movie), all merged, removed the three earlier stops.\n- Frame rate: in the casino the median frame took about 56 ms with #7844 (94.3 ms without it), and the GPU is busy about 39 ms per present (What is shown), against 16.7 ms for 60 fps.\n- Memory: with #7844 merged, one 1984 MiB host import is still refused at the 12249 MiB default.\n\n**Open pull requests we measured on this title.** Exclusive pairs, as described under How it was run. Each change is the median over neighbouring pairs of legs (with it minus without), on the base the line names. In these pairs plain `main` ran this scene at a frame p50 of 89 to 94 ms and `main` with #7844 at 56 to 63 ms, so compare numbers only within a line.\n\nMemory and frame rate (merged on 2026-11-01):\n- #7844 (Mouhand-Kaddo) raises the default host import budget here from 8172 to 12249 MiB. On `main` `50843f45d9` (2026-10-31; one clean `main` leg between two clean legs with it): frame p50 -37.8 ms, presents per 10 s +65.0, GPU -17.1 ms per present. Peak private memory over the four 620 s legs: 18.35 and 18.74 GiB with it, 21.43 and 21.59 GiB without.\n\nFrame rate:\n- #9858 (Raghav314) makes `CompletePendingCpuWrites` wait only for CPU-completion labels. On `main` `3a2b919816`, without #7844, 4 alternating clean legs (2026-10-30): frame p50 -18.2 ms, presents per 10 s +22.9, GPU -5.2 ms per present. With #7844 in both builds, our earlier numbers on #9858 (2026-10-28) were frame p50 69.1 -> 58.6 and 58.9 ms. #11847 makes the same change, and #9445 includes it.\n- #13796 (ours, draft): the title uses several render surfaces both as 2D and as one-slice 2D arrays, and this keeps one storage image for both, so they are no longer copied between two images. On `main` `aaccd0ba39` with its change, without #7844, 8 alternating clean legs (2026-10-30): frame p50 -3.2 ms (lower in "
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 10986,
@@ -15232,7 +15510,8 @@
         "blockerText": "Memory. On this system (8 GB VRAM, 32 GB RAM) the title runs out of memory 5 to 12 minutes in, on the title screen or menu. I stop it with a watchdog first, because when GTT reached 24 GB the whole PC froze once. In a 4-minute sample:\n\n- GTT 15.5 to 16.5 GB:\n  - about 12.3 GB is guest memory imported through dma-buf (#943 and #4449); the import budget of 12288 MiB is full;\n  - about 2.1 GB is image mirrors;\n  - the rest is storage textures placed in host memory once VRAM is full.\n- The process's own anonymous memory is 3 to 5 GB; swap use grows to 1.4 GB.\n\nTwo things make it worse:\n\n- **Storage-texture churn.** When VRAM is full, the storage-texture budget falls to its 512 MiB floor. An image-table element at the base of the 5.2 GB GPU pool (0x1180000000, 16384x16384 RGBA8, exactly 1 GiB) is then recreated hundreds of times. Every time it evicts the rest of the cache, which re-uploads 50 to 120 GB per 10 s. With `APS5_TEXTURE_CACHE_MIB=3072` that falls to 10 to 15 GB per 10 s, but fps does not change.\n- **Large array textures.** Other large arrays are created repeatedly, for example 2560x1440 with 23 to 142 layers, 512x512x526 and 120x68x4097. I have not yet checked whether the shaders use all of these layers.\n\nLocal changes in this run (not proposed as fixes):\n\n- Image views of 1 GiB or more are bound as absent when they run past their guest allocation or are 16k by 16k. 2D arrays over 512 MiB are cut to the slices that fit.\n- `ShaderMemory::readWords` copies its lazy blocks through `process_vm_readv`. In 2 of 7 runs it crashed with SIGSEGV (SEGV_ACCERR) in `TableSnapshotter::ReadRuns`: an image-table read hit a page in Retail CPU memory (0x102a800000, 0x102e000000) that was no longer readable. My guess is that the title decommitted the page while a capture was reading it. I have not opened an issue for this yet.\n- Earlier local work for this title (MEM_SEMAPHORE, 64-bit image atomics, S# chain): see #9295."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 11024,
@@ -15264,7 +15543,8 @@
         "blockerText": "None noticed"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 11097,
@@ -15296,7 +15576,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 11113,
@@ -15346,7 +15627,8 @@
         "author": "EagleBearerYS",
         "date": "2026-10-25T18:28:22Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11114,
@@ -15425,7 +15707,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T07:35:55Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11147,
@@ -15541,7 +15824,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T03:17:39Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11206,
@@ -15604,7 +15888,8 @@
         "author": "wrocketdev",
         "date": "2026-10-25T21:49:58Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11484,
@@ -15652,7 +15937,8 @@
         "author": "BunnyFl",
         "date": "2026-10-26T16:53:14Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11493,
@@ -15698,7 +15984,8 @@
         "author": "BunnyFl",
         "date": "2026-10-26T17:22:31Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11508,
@@ -15744,7 +16031,8 @@
         "blockerText": "None on `main` 21668cc9d8 with #11506: no abort, no `not implemented` throw and no label-wait timeout in 1800 s. The limit is speed, and it is not the GPU (busy about 33 ms of a 60 ms present in a traced 15 s in Helgen): compute queue 0x28 waits on a label from queue 0 at each of its submissions, its fill dispatches wait for the GPU before they run (297 of 297 submissions, about 3 s in 10 s), and about a fifth of its fills, of 16 and 64 MiB over 64 KiB registered pieces (larger than the 8 MiB import window), are written by the CPU after the device goes idle. #4449 removes the host import failures there (1084 to 0) without changing the speed.\n\nLimiting the CPU fill's whole-device wait to the fill's range exposed a remaining label race: a queue's own reset of a label had not reached memory when its next wait read the old value, so queue 0x28 passed a wait early and the queues deadlocked on `0x112a800020`/`0x112a800b80` (3 of 3 runs). #13883 (merged) holds such a wait until the queue's own store lands; with it, 0 of 6 runs froze.\n\nStops on the way, each with the build that got past the one before it:\n1. `NGS2: reverb channel conversion is not implemented`, 19 s after start: the reverb voice has 2 inputs and 8 outputs. Fixed by #10347 (merged).\n2. The New Game loading screen hangs at 140 to 151 s: `ResourceMaterializer::ExtractPlan` → `MayDecide` walks a shared condition once per path for shader 0x122151a400. #11506.\n3. `AGC graphics: guest cube texture descriptor holds fewer than 6 array slices (format 71, 512x512x5, type 11, tile 27, mips 0..0 of 1) (base array 0)` at 155 s: pixel shader 0x121ddc3d00 samples a cube whose descriptor holds five slices. Fixed by #11507 (merged).\n4. The title stops presenting about 200 s after start, at the start of the cart ride, after `[gpu] queue 0x28 WAIT_REG_MEM at 0x112a800020 timed out after 1000ms` and the same on queue 0x0: a label store that queue 0x28 had already taken and reset released its next wait. Fixed by #12923 (merged)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 11570,
@@ -15814,7 +16102,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 11591,
@@ -16074,7 +16363,8 @@
         "author": "camezaro-intc",
         "date": "2026-11-06T05:40:42Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11599,
@@ -16221,7 +16511,8 @@
         "author": "QRMOE",
         "date": "2026-10-28T02:17:34Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11607,
@@ -16261,7 +16552,8 @@
         "author": "BunnyFl",
         "date": "2026-10-26T22:39:07Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11608,
@@ -16316,7 +16608,8 @@
         "blockerText": "past the start-up fault that #16974 fixes, nothing stopped this run before the window was closed. Its log has no `specialized module bindings disagree with the prepared plan` line (`522df1e176` contains #11951's merge, `26b0933f01`), no other `driver failure`, no `is not implemented` line and no `FATAL`. The report lists no missing functions and no failed shaders (112 compiled, 1,770 cache hits: reuse in memory or from the disk cache, which earlier runs in this folder had filled)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 11609,
@@ -16352,12 +16645,12 @@
         "discussion": 11609,
         "author": "Biologisten",
         "date": "2026-11-06T08:03:53Z",
-        "edited": null,
+        "edited": "2026-11-06T15:30:25Z",
         "stage": "Ingame",
         "platform": "linux",
         "gpu": "NVIDIA GeForce RTX 2060 SUPER",
         "gpuVendor": "NVIDIA",
-        "build": "main ea443a1546ca04f66d15ebf17b0fd4d98d75f7e6, no pull requests or tracked local changes on top. origin/main matches this commit.",
+        "build": "main ea443a1546ca04f66d15ebf17b0fd4d98d75f7e6, no pull requests or local changes on top.",
         "buildKind": "patched",
         "prs": [],
         "version": "02.000.000",
@@ -16388,7 +16681,8 @@
         "author": "Biologisten",
         "date": "2026-11-06T08:03:53Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11655,
@@ -16428,7 +16722,8 @@
         "author": "train66453574657453456345",
         "date": "2026-10-27T01:01:26Z"
       }
-    ]
+    ],
+    "closedAt": "2026-10-27T01:01:41Z"
   },
   {
     "number": 11822,
@@ -16477,7 +16772,8 @@
         "author": "edubox",
         "date": "2026-10-27T08:53:23Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 11898,
@@ -16490,7 +16786,8 @@
     "updated": "2026-10-27T12:21:00Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 11917,
@@ -16527,7 +16824,8 @@
         "blockerText": "* **Vulkan Queue-Drain / Draw-Committer Overhead:** Profiling via NVIDIA Nsight Systems & Nsight Graphics reveals the GPU spends 28.1% of execution time in \"miscellaneous\" stalls, sitting idle between ~72 small Vulkan submissions per frame.\r\n* **Forced Queue Drains:** Nearly every compute job forces a full draw-queue drain (~9,600 drains / 10s) inside `DrawPipeline.cpp:185`.\r\n* **Issue link:** Related to write-watch / memory page-fault tracking overhead on Windows (#361 / #357)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 11954,
@@ -16540,7 +16838,8 @@
     "updated": "2026-10-27T13:50:44Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12086,
@@ -16574,7 +16873,8 @@
         "blockerText": "Log error: [gpu] queue 0x20 WAIT_REG_MEM at 0x1021039a00 timed out after 1000ms\r\n\r\nDescription: The compatibility layer instructs the GPU to wait for a specific memory register value or command fence to clear, but it times out after 1 second, resulting in a queue stall/hang.\r\n\r\nRelated Issues / PRs: [Link any open issues or pull requests tracking Vulkan WAIT_REG_MEM timeouts or shader execution mismatches if applicable]"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12128,
@@ -16644,7 +16944,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12236,
@@ -16748,7 +17049,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": "2026-10-28T20:54:12Z"
   },
   {
     "number": 12317,
@@ -16798,7 +17100,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12325,
@@ -16811,7 +17114,8 @@
     "updated": "2026-10-28T09:41:20Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12571,
@@ -16843,7 +17147,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": "2026-10-29T03:47:15Z"
   },
   {
     "number": 12708,
@@ -16911,7 +17216,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12710,
@@ -16924,7 +17230,8 @@
     "updated": "2026-10-29T04:03:21Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12711,
@@ -16937,7 +17244,8 @@
     "updated": "2026-11-12T13:04:41Z",
     "comments": 12,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12712,
@@ -16969,7 +17277,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12713,
@@ -16982,7 +17291,8 @@
     "updated": "2026-10-29T04:03:49Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12728,
@@ -17014,7 +17324,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12755,
@@ -17046,7 +17357,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12760,
@@ -17078,7 +17390,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12761,
@@ -17091,7 +17404,8 @@
     "updated": "2026-10-29T08:26:32Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12762,
@@ -17159,7 +17473,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12763,
@@ -17227,7 +17542,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 12932,
@@ -17270,7 +17586,8 @@
         "blockerText": "- Stage load: #11469. Open pull requests linked there: #6412 and #12208.\n- In the stage, with local changes past #11469: stale geometry, #11562; #11995 addresses it.\n- Open pull requests the title needs before that point: #11998 (the stop after the cutscene) and #12071 (speed without `--to-intel`)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13015,
@@ -17356,7 +17673,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13016,
@@ -17424,7 +17742,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13017,
@@ -17474,7 +17793,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13018,
@@ -17542,7 +17862,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13019,
@@ -17630,7 +17951,8 @@
         "blockerText": "The title exited by itself (exit code 1)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13087,
@@ -17685,7 +18007,8 @@
         "blockerText": "On `main` bb04a4f1ea with the pull requests below, the loading after the credits used to end at about 1314-1359 s with a GPU hang (`ring gfx_0.0.0 timeout` in the kernel log, then `vkQueueSubmit recorder: Vulkan result -4`), with memory still free. The cause is #4449 missing on current `main`: the title maps its direct memory in pieces at scattered memfd offsets, and without that PR 7,000 to 12,000 host imports fail (`host import of ... failed at vkAllocateMemory (-1000072003); falling back to copies`) against 1 with it. With #4449 (merged by hand, it conflicts with `main`) and #12081 (now merged), the title reaches its first gameplay, the \"Basic Movement\" tutorial, about 770 s after New Game, and walks through the hangar area for about 1,000 s more without stopping.\n\nOn `main` 8f55414024 the title also needs #11580: without it, it aborts at 276 s, before the title screen, with `compute shader 0x2111c18500: reads or writes a converted float image with 16-bit data, which is not implemented`. With the whole stack, a 2000 s run from New Game had no abort, hang or kill, and reached the \"Basic Movement\" tutorial at about 1760 s. Walking on from there, our desktop memory guard stopped the run at 1280 s on entering the forklift room (`vram_free=1249 MiB gtt_free=3020 MiB`; the process held 15.5 GiB of VRAM and 11.0 GiB of GTT, of which 9.9 GiB were shared imports, and the device-local heap held 2 GiB of sampled textures and 3.5 GiB of storage images). Presents fell from 8 to 4 per 10 s as memory filled. The process also peaks at 23 to 25 GiB of host memory (RSS) about 80 to 120 s after start, during start-up, then drops to about 7 GiB.\n\nNext limits: memory at 3840x2160 (with #4449 the title's imports hold about 10 GiB of GTT, and VRAM is full during the loading after the credits), speed (about 1-3 FPS), and translucent rectangles and green and red quads over the gameplay scene, which open PR #9999 removes (same save and route: 4 of 9 screenshots show them without it, none "
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13424,
@@ -17717,7 +18040,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13466,
@@ -17749,7 +18073,8 @@
         "blockerText": "FAIL: unresolved ELF import CBkVZi9WhVo from libSceHmd2.prx\r\nSearched libraries:\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\app0\\sce_module\\libSceNpCppWebApi.prx.guest.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\app0\\sce_module\\libScePfs.prx.guest.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\app0\\sce_module\\libc.prx.guest.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\app0\\sce_module\\logiWheel.prx.guest.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceAppContent.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceAudioIn.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceAudioOut.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceAvPlayer.native.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceCommonDialog.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceConvertKeycode.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libkernel.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceErrorDialog.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceFiber.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceFont-module.prx\r\n  D:\\PS5\\MFGT\\[SuperPSX]-My.First.Gran.Turismo-PPSA24156-USA-Game (v01.010) [APR-EMU]-PS5-windows\\libs\\libSceFont"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13493,
@@ -17798,7 +18123,8 @@
         "author": "wrocketdev",
         "date": "2026-10-30T17:01:10Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 13543,
@@ -17836,7 +18162,8 @@
         "blockerText": "1. On plain `main` it does not load: it imports `fNoviuIwykc` (`sceKernelAllocateDirectMemoryForApp`) and `cBp0Ad-24LA` (`sceKernelProtectDirectMemoryForPID`) from `libkernel.prx`, and both are declared only in `libkernel_sys.prx`, so the loader stops on an unresolved ELF import. Open PR: #12826.\n2. `sceKernelGetProcessAbiType` is a stub that throws. Open PR: #11939.\n3. It reads `sysctl` {1, 14, 8, 0} (`kern.proc.proc`) while it starts, and the runtime throws on the unsupported MIB, which aborts the title: `sysctl_nid_postfix: unsupported MIB 1.14.8.0`. PR: #13532.\n4. It opens `/mnt/sandbox/PPSA99170_000/app0/assets/` directly, which the runtime does not resolve; without the junction it exits with `Could not find asset path in \"/mnt/sandbox/PPSA99170_000/app0/assets/\"`. No PR yet.\n5. Its launcher needs console payloads (an ELF loader on port 9021, Kstuff, ShadowMountPlus, its `websrv` on 127.0.0.1:8686) and a Wine runtime under `/data/ps5proton`, so the launcher UI is as far as it gets here."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13561,
@@ -17876,7 +18203,8 @@
         "author": "nekotaru-retro",
         "date": "2026-10-30T18:18:29Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 13709,
@@ -17889,7 +18217,8 @@
     "updated": "2026-10-31T02:54:14Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13726,
@@ -17964,7 +18293,8 @@
         "author": "ycbuzi",
         "date": "2026-11-08T23:43:20Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 13768,
@@ -18005,7 +18335,8 @@
         "blockerText": "`compute shader ...: reads or writes a converted float image with 16-bit data, which is not implemented`. Open #11580 implements this. I will test with it next and update this thread.\n\nBehind it, `sceHttp2WaitAsync` with `*timeout == 0` from the EOS SDK still needs a console measurement before #11630 can implement it. Without diagnostic 3, the title stops there."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13786,
@@ -18037,7 +18368,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13797,
@@ -18069,7 +18401,8 @@
         "blockerText": "None encountered during the tested gameplay."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 13859,
@@ -18104,7 +18437,8 @@
         "blockerText": "Current blocker\r\n[videoout] presentation failed: AGC graphics: device does not support mesh shaders followed by a fatal abort.\r\n\r\nNote: I have set the environment variable APS5_NO_MESH_SHADER=1, and it is active (confirmed via echo). However, the game still throws this error. The Quadro P1000 is a Pascal architecture GPU which lacks native mesh shaders and fragment shader barycentrics. It appears the tessellation/compute-pass fallback (from PRs #9356 / #9387) is either not triggering correctly on Pascal hardware or is missing from the current build."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14010,
@@ -18136,7 +18470,8 @@
         "blockerText": "`Media/Modules/Il2CppUserAssemblies.prx` lists `PS4sceSystemServiceParamGetInt_plugin.prx` among its needed modules (`app.Il2CppUserAssemblies.prx.guest.prx.needed.json`), but:\n- the package does not contain that file. The extraction was checked against every package member.\n- the module imports no symbol from it. Its registry only has `libSceNet`, `libSceNetCtl`, `libSceRtc`, `libSceSystemService` and `libkernel`.\n\nSo the console evidently boots without it. The relinker treats every dependency that is not a guest module as a host library and keeps it as `DT_NEEDED`, so the Linux loader refuses to start. A simple \"no imports from it\" rule is not safe: across the 30-odd runtimes I have staged, host libraries such as `libkernel.prx`, `libSceAgcDriver.prx` and `libSceRtc.prx` often appear as dependencies with no matching imports. A correct rule also needs to know which host libraries exist, and the relinker can't know that at relink time when `--rpath` is `$ORIGIN/libs`. That is a relinker design question, so I am not proposing a change here."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14013,
@@ -18168,7 +18503,8 @@
         "blockerText": "Speed: about 1.4 FPS once the cut-scene starts, after about 60 FPS on the first screens. The image is also blotchy; the cut-scene is meant to be black and white. The engine logs no further allocation failure in 294 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14019,
@@ -18205,7 +18541,8 @@
         "blockerText": "None in 300 s with #6959. Without it, the scene is dark: the UE4 layered-target case #6959 fixes, also seen on OCTOPATH TRAVELER II's map (#9593). The frame rate, about 11 FPS, has not been investigated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14030,
@@ -18239,7 +18576,8 @@
         "blockerText": "`sceAgcGetFusedShaderSize_0080` in `libSceAgc/Misc/src/ShaderFusion.cpp` refuses a geometry half whose `embedded_constant_buffer_size_dqw` is not 0. How the firmware lays out a fused shader that carries an embedded constant buffer is not documented, so the refusal is deliberate. #10048 changes the same fusion code, for the back half's register lists, but not this case."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14031,
@@ -18286,7 +18624,8 @@
         "author": "JJenkx",
         "date": "2026-11-03T01:20:16Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 14033,
@@ -18318,7 +18657,8 @@
         "blockerText": "A crash in guest code. Under gdb with the same inputs, it is `SEGV_MAPERR` at address 0 on a game thread, with PC `0x2bac088` in `eboot.elf`. The code there is an array insert: a `memmove` call at `0x2bac07f`, then `mov (%r15),%rax` and a store to `(%rax,%rbx,4)`. The array's data pointer is null, which suggests that an earlier guest allocation returned null or failed. I haven't traced which one."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14035,
@@ -18354,7 +18694,8 @@
         "blockerText": "None in 300 s with #10304. On `main` alone it is the missing GPU owner of an indirect-dispatch argument buffer, the case #10304 (\"keep buffer owners when a staged address space dissolves\") addresses."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14053,
@@ -18391,7 +18732,8 @@
         "blockerText": "Intermittent first-stage loading stall / guest allocator crash: https://github.com/boykopovar/AnyPS5/issues/14052. That issue contains the distinct native and debugger observations and full logs. A later debugger run advances into the island scene and closes normally; it does not establish a fix or stability. No required fix PR has been identified yet, and #14042 is not claimed to unblock this title."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14054,
@@ -18429,7 +18771,8 @@
         "blockerText": "None in 300 s with #6959. Without it the scene is dark: the UE4 case #6959 fixes, also seen on Spirit of the North (#14019) and Override 2 (#6933)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14058,
@@ -18464,7 +18807,8 @@
         "blockerText": "The shader recompiler cannot resolve an image descriptor read through an address chosen between two constant-buffer reads:\n\n```\ncompute shader 0x20084d0000: shader 0x20084d0000 stage 0: ShaderRecompiler::Recompile: GetImageResource dword 0 is not a valid runtime value; chain: LoadAddressU32@pc=0x00004244(GetAddressResource(Phi(Phi(ReadConstBuffer@pc=0x00000418(GetBufferResource(ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate)), ShiftLeftLogical32(ReadFirstLane(SelectU32(LogicalAnd, IAdd32, LoadBufferU32), Phi(LogicalAnd, LogicalAnd)), Immediate)), Phi(ReadConstBuffer@pc=0x00000418(GetBufferResource(ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate), ReadConst(GetSrtResource, Immediate)), ShiftLeftLogical32(ReadFirstLane(SelectU32, Phi), Immediate)), Phi(ReadConstBuffer@pc=0x00000418(GetBufferResource(ReadConst, ReadConst, ReadConst, ReadConst), ShiftLeftLogical32(ReadFirstLane, Immediate)), ReadConstBuffer@pc=0x00003b70(GetBufferResource(LoadAddressU32@pc=0x00003b64, LoadAddressU32@pc=0x00003b64, LoadAddressU32@pc=0x00003b64, LoadAddressU32@pc=0x00003b64), Immediate)))), ReadConstBuffer@pc=0x00000418(GetBufferResource(ReadConst(GetSrtResource, Im …\n```\n\nI also tried two open descriptor-tracking PRs, each merged onto the same `main`. Neither changes the stop:\n- #12132 (`fold descriptor web paths that hold the lane index or texels`): the same error at `pc=0x00003f28`.\n- #7223 (`resolve nested image tables through runtime pointers`): the same error at `pc=0x00004290`."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14061,
@@ -18496,7 +18840,8 @@
         "blockerText": "None observed in this short initial-scene check. No required open PR or local production change identified. Later progress remains untested."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14064,
@@ -18517,7 +18862,8 @@
         "author": "JJenkx",
         "date": "2026-11-12T17:07:29Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 14067,
@@ -18556,7 +18902,8 @@
         "blockerText": "None in 300 s with #6959. Without it the 3D scene is dark: the UE4 case #6959 fixes, also seen today on Spirit of the North (#14019), Insomnis (#14054) and Override 2 (#6933)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14075,
@@ -18590,7 +18937,8 @@
         "blockerText": "None in 300 s. Speed, about 6 to 20 FPS, has not been investigated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14077,
@@ -18648,7 +18996,8 @@
         "author": "JJenkx",
         "date": "2026-10-31T17:59:21Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 14082,
@@ -18680,7 +19029,8 @@
         "blockerText": "Not identified. I could not drive the menu past New Content with the scripted pad: Down does not move the cursor. That may be the input script, not the emulator."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 14093,
@@ -18773,7 +19123,8 @@
         "author": "birdmarty",
         "date": "2026-11-08T00:18:27Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 14099,
@@ -18818,7 +19169,8 @@
         "author": "JJenkx",
         "date": "2026-10-31T21:04:01Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 14104,
@@ -18853,7 +19205,8 @@
         "author": "JJenkx",
         "date": "2026-11-02T19:20:17Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 14316,
@@ -18887,7 +19240,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 15124,
@@ -18923,7 +19277,8 @@
         "blockerText": "On `main`:\n\n1. **The first fight stops** with `a line polygon mode wider or narrower than one pixel`: the title draws lines with `PA_SU_LINE_CNTL` = 0x10 (two pixels). Fixed by #9489.\n2. **Character select stops presenting** with `color export format 4 into an unsigned integer target is unsupported`, which has been thrown since #9789. The screen freezes, which looks like a dead pad. I keep these exports on the float path locally as a workaround; it is not a correct fix, and I haven't opened a PR for it.\n3. **Some attract-mode fights stop** with `atomic image descriptor uses an unsupported format 11`: a compute pass reduces 16-bit texels with `ImageAtomicUMin32`. I run it locally through an R32_UINT twin of the 16_UINT surface; the PR waits for my open PR limit.\n\nOther local changes:\n\n- Cull distances from tessellation evaluation shaders: now on `main` through #13492.\n- Importing direct memory that spans several backings through one udmabuf list. I haven't checked whether `main`'s run-list import (`d5b768f02` and the commits before it) makes this unnecessary.\n- Performance changes only, which the title doesn't need to run."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 15250,
@@ -18965,7 +19320,8 @@
         "author": "JJenkx",
         "date": "2026-11-02T22:14:05Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15328,
@@ -19007,7 +19363,8 @@
         "blockerText": "1. **GPU hang**, fixed by #15327 (open). The game's \"begin command context\" function (game.exe 0x2175070) refills the per-frame pool holding GPU-side indirect draw records with 0xEE after submitting and before the GPU runs, without waiting on a label. AnyPS5 read the records in place when the batch ran, so a `vkCmdDrawIndirect` asked for 0xEEEEEEEE vertices and instances. `APS5_NO_HOST_IMPORT=1` or `APS5_NO_GPU_INDIRECT_DRAW=1` also avoid it on `main`.\n2. **`clock_gettime: unsupported clock_id 20`**, then `abort()` at about 50 s, from Party.prx (PlayFab Party) at 0x29be26, which falls back to `gettimeofday` when the call fails. PS5 measurements on #16437 show both libkernel exports answer id 20 with a time from an unidentified clock (2033.63 s, unchanged over three reads). #16437 now answers only what was measured (3, 6 and 22 to 31 `EINVAL`; 16 to 19 `EIO`) and leaves 20 and 21 throwing until two follow-up probes identify them. The stack keeps the earlier `EINVAL` version for id 20 until then.\n3. **Speed**: see below."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 15337,
@@ -19020,7 +19377,8 @@
     "updated": "2026-11-10T14:06:33Z",
     "comments": 5,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 15606,
@@ -19033,7 +19391,8 @@
     "updated": "2026-11-03T21:28:16Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 15824,
@@ -19080,7 +19439,8 @@
         "author": "DonRyuzaki",
         "date": "2026-11-04T18:03:51Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15961,
@@ -19124,7 +19484,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T03:23:47Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15966,
@@ -19171,7 +19532,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T03:50:42Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15968,
@@ -19206,7 +19568,8 @@
         "blockerText": "`libSceNgs2.native`: `core/libs/prx/libSceNgs2.native/src/Custom.cpp:68` throws \"NGS2: custom mastering racks with modules are not implemented\" while the title sets up its audio. PROJECT ZERO: Mask of the Lunar Eclipse (PPSA10278) stops on the same line. #8039 tracks other NGS2 custom-rack gaps (module ids, rack id 0x4003); #14119 (open) reworks NGS2 mastering output, and I have not tested whether it covers this."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 15972,
@@ -19246,7 +19609,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T04:51:54Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15976,
@@ -19283,7 +19647,8 @@
         "blockerText": "`libSceNgs2.native`: `core/libs/prx/libSceNgs2.native/src/Custom.cpp:87` throws \"NGS2: custom module id 0x17 is not implemented\" when the title builds a custom rack. I found no issue or open PR for module 0x17: #8039 tracks custom-rack module ids 0x15/0x19/0x1b/0x23, #4246 module 0x20, and the open #14379 adds UserFx (0x19) on custom sampler racks. FATAL FRAME: Maiden of Black Water (#15968) and PROJECT ZERO: Mask of the Lunar Eclipse stop on another NGS2 custom-rack gap (\"custom mastering racks with modules\")."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 15980,
@@ -19332,7 +19697,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T05:54:30Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15983,
@@ -19372,7 +19738,8 @@
         "author": "ycbuzi",
         "date": "2026-11-08T23:43:22Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15984,
@@ -19419,7 +19786,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T06:07:59Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15987,
@@ -19466,7 +19834,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T06:19:55Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15991,
@@ -19506,7 +19875,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T06:53:16Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 15995,
@@ -19553,7 +19923,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T07:30:13Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 16001,
@@ -19600,7 +19971,8 @@
         "author": "ycbuzi",
         "date": "2026-11-05T08:03:13Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 16329,
@@ -19656,7 +20028,8 @@
         "author": "edubox",
         "date": "2026-11-06T09:44:03Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 16330,
@@ -19717,7 +20090,8 @@
         "author": "edubox",
         "date": "2026-11-06T09:46:33Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 16331,
@@ -19773,7 +20147,8 @@
         "author": "edubox",
         "date": "2026-11-06T09:50:27Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 16332,
@@ -19829,7 +20204,8 @@
         "author": "edubox",
         "date": "2026-11-06T09:54:59Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 16610,
@@ -20405,7 +20781,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16646,
@@ -20531,7 +20908,8 @@
         "author": "Hicham0789",
         "date": "2026-11-11T00:15:03Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 16802,
@@ -20637,7 +21015,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16803,
@@ -20993,7 +21372,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16804,
@@ -21061,7 +21441,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16805,
@@ -21129,7 +21510,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16806,
@@ -21197,7 +21579,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16808,
@@ -21247,7 +21630,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16809,
@@ -21297,7 +21681,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16810,
@@ -21365,7 +21750,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16811,
@@ -21433,7 +21819,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16815,
@@ -21483,7 +21870,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16816,
@@ -21551,7 +21939,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16817,
@@ -21619,7 +22008,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16818,
@@ -21651,7 +22041,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16820,
@@ -21701,7 +22092,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16821,
@@ -21751,7 +22143,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16829,
@@ -21801,7 +22194,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16902,
@@ -21887,7 +22281,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16904,
@@ -21973,7 +22368,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16905,
@@ -22041,7 +22437,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16906,
@@ -22091,7 +22488,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 16907,
@@ -22145,7 +22543,8 @@
         "author": "Biologisten",
         "date": "2026-11-08T07:57:32Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 17030,
@@ -22213,7 +22612,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17031,
@@ -22263,7 +22663,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17032,
@@ -22313,7 +22714,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17033,
@@ -22381,7 +22783,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17034,
@@ -22449,7 +22852,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17036,
@@ -22499,7 +22903,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17037,
@@ -22549,7 +22954,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17038,
@@ -22581,7 +22987,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17039,
@@ -22649,7 +23056,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17041,
@@ -22717,7 +23125,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17042,
@@ -22785,7 +23194,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17043,
@@ -22835,7 +23245,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17045,
@@ -22903,7 +23314,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17046,
@@ -22971,7 +23383,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17047,
@@ -23021,7 +23434,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17048,
@@ -23089,7 +23503,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17049,
@@ -23139,7 +23554,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17050,
@@ -23207,7 +23623,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17052,
@@ -23275,7 +23692,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17053,
@@ -23343,7 +23761,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17054,
@@ -23393,7 +23812,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17058,
@@ -23443,7 +23863,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17060,
@@ -23493,7 +23914,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17061,
@@ -23561,7 +23983,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17350,
@@ -23629,7 +24052,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17355,
@@ -23697,7 +24121,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17356,
@@ -23747,7 +24172,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17357,
@@ -23797,7 +24223,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17359,
@@ -23847,7 +24274,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17360,
@@ -23915,7 +24343,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17361,
@@ -23947,7 +24376,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17362,
@@ -23997,7 +24427,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17363,
@@ -24065,7 +24496,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17364,
@@ -24097,7 +24529,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17366,
@@ -24129,7 +24562,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17367,
@@ -24179,7 +24613,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17368,
@@ -24247,7 +24682,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17369,
@@ -24297,7 +24733,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17370,
@@ -24365,7 +24802,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17372,
@@ -24433,7 +24871,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17373,
@@ -24501,7 +24940,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17374,
@@ -24551,7 +24991,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17376,
@@ -24619,7 +25060,8 @@
         "blockerText": "The title exited by itself (exit code 1)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17377,
@@ -24669,7 +25111,8 @@
         "blockerText": "The title exited by itself (exit code 1)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17378,
@@ -24737,7 +25180,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17379,
@@ -24805,7 +25249,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17381,
@@ -24855,7 +25300,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17382,
@@ -24923,7 +25369,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17383,
@@ -24973,7 +25420,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17384,
@@ -25005,7 +25453,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17385,
@@ -25037,7 +25486,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17387,
@@ -25105,7 +25555,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17388,
@@ -25173,7 +25624,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17389,
@@ -25241,7 +25693,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17391,
@@ -25309,7 +25762,8 @@
         "blockerText": "The title exited by itself (exit code 1)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17575,
@@ -25351,7 +25805,8 @@
         "author": "talha-devp",
         "date": "2026-11-08T23:20:39Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 17576,
@@ -25400,7 +25855,8 @@
         "author": "talha-devp",
         "date": "2026-11-08T23:20:41Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 17577,
@@ -25442,7 +25898,8 @@
         "author": "talha-devp",
         "date": "2026-11-08T23:20:43Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 17618,
@@ -25492,7 +25949,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17619,
@@ -25542,7 +26000,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17620,
@@ -25592,7 +26051,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17930,
@@ -25627,7 +26087,8 @@
         "blockerText": "No abort on `main` 39a172839a; the blocker is the black frames after the Housemarque logo. No issue opened: the frames are black in the driver's read-back as well as in gamescope and the title does not react to input, so there is no failing line to report yet. Two intermittent events at the same point, 35 to 40 s in, right after `[SAVEDATA:native] dirNameSearch user=268435456 pattern=(all) hit=1 set=1 -> 0x00000000` (the save profile the first run created): in 1 of 5 RTX 3090 runs the title stopped presenting (no `[present]` line after 25 s, no title line after 35 s, alive to the cap), and in 1 of 2 RADV runs it segfaulted (kernel: `segfault at 38 ip 00000000057731f1 sp 0000000200601ee0 error 4 in app.elf[53771f1,400000+5fce000]`). The other five runs continued. Not investigated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17969,
@@ -25680,7 +26141,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17985,
@@ -25730,7 +26192,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17986,
@@ -25780,7 +26243,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17987,
@@ -25830,7 +26294,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17988,
@@ -25880,7 +26345,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 17989,
@@ -25930,7 +26396,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18025,
@@ -25943,7 +26410,8 @@
     "updated": "2026-11-10T16:49:04Z",
     "comments": 1,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18073,
@@ -26006,7 +26474,8 @@
         "author": "Tamalero",
         "date": "2026-11-10T09:48:32Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 18084,
@@ -26053,7 +26522,8 @@
         "blockerText": "In the order the title meets them, each measured with every change before it in place:\r\n\r\n1. **`tools/unwrap_self.py` fails on the eboot** (`main` `75f67aa55e`): `segment 4 does not fit the file`. Segment 4 is the eboot's `PT_INTERP`, the case #17880 targets; #17880 was not tried here. A local workaround unwraps the eboot, `libc.prx` and `libSceFios2.prx`.\r\n2. **The relinker refuses the eboot** (`main` `75f67aa55e`): `FAIL: Undefined non-weak symbol has non-default visibility: f1zwJ3jAI2k#B#C`. The eboot imports `_Unwind_Resume` (libc) as an undefined global symbol with protected visibility, the only one of its 732 dynamic symbols. Local change: accept protected visibility in that check. #17105 (ntamas94) makes the relinker accept such imports; with it, the eboot converts ([result](https://github.com/boykopovar/AnyPS5/pull/17105#issuecomment-6776164600)).\r\n3. **The eboot needs `libSceGnmDriver_padebug.prx`** (`main` `39bac5d055`), while its 45 GNM imports name the module and library `libSceGnmDriver`. AnyPS5 builds no file of that name, so all 45 stay unresolved: the start ends with exit `0xC0000139` and 46 unresolved imports, these 45 and `sceMsgDialogGetResult`. Hasbro Family Fun Pack ([savvaniss on #6977](https://github.com/boykopovar/AnyPS5/pull/6977#issuecomment-6236089151)) and Until Dawn ([SuperCatElvis on #6684](https://github.com/boykopovar/AnyPS5/pull/6684#issuecomment-6264811774)) ask for the same library. Local change: load `libSceGnmDriver.prx` for that dependency (in step 4's run as a copy under the padebug name, from step 5 on in the relinker). #18087 proposes loading `libSceGnmDriver.prx` for this dependency in the relinker.\r\n4. **Two imports exist only in other AnyPS5 libraries** (`main` `d0913992db`): `sceGnmDrawInitDefaultHardwareState` only in `libSceGnmDriverForNeoMode`, and `sceMsgDialogGetResult` only in `libSceMsgDialog.native`. Local change: the relinker also loads `libSceGnmDriverForNeoMode.prx` for the GNM dependency and `libSceMsgDialog.n"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18128,
@@ -26087,7 +26557,8 @@
         "blockerText": "Gameplay stops on a refused native multisample depth import: a 4x `D32_SFLOAT` target with no stencil plane and no HTILE whose plane does not hold one value is sampled by a compute shader, and the AGC driver throws `native multisample depth initial import requires pipe-aligned or depth-only HTILE without VRS` (exit 0xC0000409). Tracked in #18127. Seen four times, on e1f012ca1638 and 706573b02fb1.\r\n\r\nOn e1f012ca1638 with empty pipeline caches, the first gameplay run instead ended at the engine's watchdog (`GameThread timed out waiting for RenderThread after 120.00 secs`, exit 0xC0000005 from the title's own abort) while the AMD driver built compute pipelines of 229k to 281k SPIR-V words in 2.5 to 3.5 s each; later runs passed that point.\r\n\r\nOn the title screen the frame rate is about 13 FPS, measured with `APS5_TRACE_SUMMARY_EVERY=10` and `tools/trace_digest.py` (e1f012ca1638, warm caches):\r\n\r\n```\r\n| # | seconds | presents | p50 | p90 | p99 | max | GPU busy | busiest worker | largest phase |\r\n|---|---|---|---|---|---|---|---|---|---|\r\n| 1 | 0-10 | 26 | 100.9 | 249.9 | 6971.9 | 6971.9 | 54.5 | 57 % | Driver.Packet 369.7 |\r\n| 2 | 10-20 | 119 | 81.5 | 97.6 | 123.5 | 136.5 | 43.7 | 97 % | Driver.Packet 127.1 |\r\n| 3 | 20-30 | 131 | 75.6 | 82.8 | 88.1 | 88.7 | 42.5 | 97 % | Driver.Packet 113.0 |\r\n| 6 | 50-60 | 132 | 75.7 | 78.8 | 85.3 | 86.9 | 41.8 | 97 % | Driver.Packet 111.3 |\r\n| 9 | 80-90 | 134 | 74.7 | 78.7 | 84.4 | 86.0 | 41.7 | 96 % | Driver.Packet 109.8 |\r\n| 13 | 120-131 | 134 | 74.2 | 78.5 | 85.2 | 86.4 | 41.6 | 96 % | Driver.Packet 109.4 |\r\n```\r\n\r\n```\r\n[gpu] 330500 dispatches (66958 dispatch cache hits, 225614 evictions, 265848 recompile cache hits): capture 8.8 s, cache key 0.0 s, recompile 2.2 s, device 71.6 s\r\n[packets] queue 0x20 1215 submissions, time by packet (10 s): DISPATCH_INDIRECT x5535 1931ms DISPATCH_DIRECT x7290 1274ms WAIT_REG_MEM x15930 957ms DMA_DATA x25380 719ms SET_SH_REG x89775 19ms ...\r\n[gpu] host imports at shutdown: 1287 live (3988.9 MiB); m"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18132,
@@ -26128,7 +26599,8 @@
         "blockerText": "None seen within 150 s on the build above. On the way there:\n\n| Stop | Needs |\n|---|---|\n| 11 s: `sceAppContentDownload0Expand not implemented` (`main`) | #18116 |\n| 16 s: `sceHttp2SendRequestAsync not implemented` (with #18116) | #11630 |\n\n#17570 was merged for the run as well; the title also ran to a 100 s limit without it."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18178,
@@ -26178,7 +26650,8 @@
         "blockerText": "The title exited by itself (exit code 1)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18179,
@@ -26228,7 +26701,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18180,
@@ -26278,7 +26752,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18181,
@@ -26328,7 +26803,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18182,
@@ -26378,7 +26854,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18183,
@@ -26428,7 +26905,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18211,
@@ -26441,7 +26919,8 @@
     "updated": "2026-11-10T21:28:05Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18255,
@@ -26502,7 +26981,8 @@
         "author": "Hicham0789",
         "date": "2026-11-11T00:35:41Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 18278,
@@ -26552,7 +27032,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18279,
@@ -26602,7 +27083,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18280,
@@ -26652,7 +27134,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18334,
@@ -26686,7 +27169,8 @@
         "blockerText": "Intermittent crash about 66 s in, from #6926's unit shadow race (see above). Workaround on current `main`: `APS5_NO_UNIT_SHADOW=1`."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18345,
@@ -26744,7 +27228,8 @@
         "author": "edubox",
         "date": "2026-11-11T10:52:05Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 18385,
@@ -26796,7 +27281,8 @@
         "author": "edubox",
         "date": "2026-11-11T13:08:21Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 18490,
@@ -26828,7 +27314,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18492,
@@ -26878,7 +27365,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18690,
@@ -26910,7 +27398,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18691,
@@ -26942,7 +27431,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 18786,
@@ -26994,7 +27484,8 @@
         "author": "edubox",
         "date": "2026-11-12T08:43:25Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 18789,
@@ -27046,7 +27537,8 @@
         "author": "edubox",
         "date": "2026-11-12T09:04:36Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 18953,
@@ -27078,7 +27570,8 @@
         "blockerText": "That pull request is not merged yet. On plain `main` the game crashes a few minutes into play with an access violation on `UnityGfxDeviceWorker` in the Unity allocator."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19066,
@@ -27110,7 +27603,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19069,
@@ -27142,7 +27636,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19070,
@@ -27174,7 +27669,8 @@
         "blockerText": "None seen in this run: it was still running when the window was closed after 100 s."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19269,
@@ -27224,7 +27720,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19297,
@@ -27256,7 +27753,8 @@
         "blockerText": "The title exited by itself (exit code 139)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19298,
@@ -27288,7 +27786,8 @@
         "blockerText": "The title exited by itself (exit code 0)."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19307,
@@ -27320,7 +27819,8 @@
         "blockerText": "The game runs without any noticeable functional issues, with the exception of low performance, averaging approximately **19.2 FPS**. Graphics render correctly, audio playback and fullscreen mode work as expected, and loading times are reasonable. No crashes, graphical glitches, or other issues were observed during testing.\r\n\r\n**The only remaining blocker is the low frame rate**, which makes gameplay less enjoyable despite everything else functioning well. Future AnyPS5 performance optimizations may help improve playability."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19621,
@@ -27382,7 +27882,8 @@
         "author": "birdmarty",
         "date": "2026-11-13T16:27:34Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 19642,
@@ -27464,7 +27965,8 @@
         "author": "birdmarty",
         "date": "2026-11-13T17:27:01Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 19679,
@@ -27546,7 +28048,8 @@
         "author": "birdmarty",
         "date": "2026-11-13T19:41:26Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 19684,
@@ -27578,7 +28081,8 @@
         "blockerText": "None seen. Saving, later dungeons and the cult management loop beyond the first visit were not tested specifically."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19714,
@@ -27610,7 +28114,8 @@
         "blockerText": "None seen. Saving and later areas were not tested specifically."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19851,
@@ -27657,7 +28162,8 @@
         "author": "lgqdaxia",
         "date": "2026-11-14T03:08:41Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 19981,
@@ -27667,8 +28173,8 @@
       "PPSA09806"
     ],
     "created": "2026-11-14T10:10:25Z",
-    "updated": "2026-11-14T11:18:33Z",
-    "comments": 1,
+    "updated": "2026-11-15T04:54:50Z",
+    "comments": 2,
     "reports": [
       {
         "url": "https://github.com/boykopovar/AnyPS5/discussions/19981",
@@ -27696,8 +28202,44 @@
         "url": "https://github.com/boykopovar/AnyPS5/discussions/19981",
         "author": "HabibUrRehmanBhattii",
         "date": "2026-11-14T10:10:25Z"
+      },
+      {
+        "src": "https://github.com/HabibUrRehmanBhattii/AnyPS5/releases/download/anyps5-gfs-screenshots-2026-11-14/PPSA09806-frame_000.png",
+        "alt": "Hasbro / eOne logo",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19981#discussioncomment-19624867",
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-15T04:37:18Z"
+      },
+      {
+        "src": "https://github.com/HabibUrRehmanBhattii/AnyPS5/releases/download/anyps5-gfs-screenshots-2026-11-14/PPSA09806-frame_001.png",
+        "alt": "Peppa loading screen",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19981#discussioncomment-19624867",
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-15T04:37:18Z"
+      },
+      {
+        "src": "https://github.com/HabibUrRehmanBhattii/AnyPS5/releases/download/anyps5-gfs-screenshots-2026-11-14/PPSA09806-frame_002.png",
+        "alt": "Outright Games logo",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19981#discussioncomment-19624867",
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-15T04:37:18Z"
+      },
+      {
+        "src": "https://github.com/HabibUrRehmanBhattii/AnyPS5/releases/download/anyps5-gfs-screenshots-2026-11-14/PPSA09806-frame_004.png",
+        "alt": "Peppa family plane",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19981#discussioncomment-19624867",
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-15T04:37:18Z"
+      },
+      {
+        "src": "https://github.com/HabibUrRehmanBhattii/AnyPS5/releases/download/anyps5-gfs-screenshots-2026-11-14/PPSA09806-frame_006.png",
+        "alt": "Peppa world artwork",
+        "url": "https://github.com/boykopovar/AnyPS5/discussions/19981#discussioncomment-19624867",
+        "author": "HabibUrRehmanBhattii",
+        "date": "2026-11-15T04:37:18Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 19982,
@@ -27729,7 +28271,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19983,
@@ -27761,7 +28304,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19987,
@@ -27793,7 +28337,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 19988,
@@ -27825,7 +28370,8 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 20039,
@@ -27862,7 +28408,8 @@
         "blockerText": "UE4 dies on `FAsyncLoadingThread` while it loads assets, on the title screen, after 2 to 3 minutes. It is intermittent, and it shows up in three ways:\n- `LowLevelFatalError ... Serial size mismatch` on a `MaterialInstanceConstant`.\n- UE4's \"Poorly formed Json Number\".\n- `0xc0000005` in the game's unversioned-property zeroing loop (`PPSA02681.exe+0x1b76e00`).\n\nIn every case, the serialized data read from the `.pak` is already wrong when it is parsed. The game reads its paks only through APR (`sceAmprAprCommandBufferReadFile`).\n\n- **On `main` (Windows):** an AGC GPU write-back lands in the read destination while the host is still copying into it. Comparing the destinations with the `.pak` bytes after each read caught it. The fix is #19694 (open).\n- **With #19694:** 1 crash in 5 runs with scripted pad input. Where the bad data came from in that run is not known yet.\n- **Related debt:** #1970 (pending storage-image results stored late). On `main`, `APS5_STORE_AT_LABEL=1` avoided the crash in 3 of 3 runs, but it cuts the frame rate to about 22 presents per 10 s.\n\nHelp wanted: does it reproduce on Linux, or on an AMD GPU?"
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 20200,
@@ -27875,7 +28422,8 @@
     "updated": "2026-11-14T20:51:31Z",
     "comments": 0,
     "reports": [],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 20322,
@@ -27985,7 +28533,8 @@
         "author": "birdmarty",
         "date": "2026-11-15T02:03:31Z"
       }
-    ]
+    ],
+    "closedAt": null
   },
   {
     "number": 20342,
@@ -28017,7 +28566,8 @@
         "blockerText": "- Stock `main` stops before the first frame with `AGC graphics: depth bias in units other than the depth format is unsupported (register 0x2de = 0x000001e9)` on a D16 target; the local build only bypasses the throw.\n- One run stopped at about 90 s with `shader 0x208017400 stage 1: buffer ADD_TID is only valid for compute shaders`.\n- After clearing `ADD_TID`, a run reached the menu and World Map but stopped at about 200 s with `shader 0x2095e0200 stage 1: buffer descriptor uses an unsupported type (buffer 1 V# 00000002 04dba3d0 00000002 c01e7600) first used at pc 0x128`.\n- A local build that clears that descriptor type is deployed but not yet validated."
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": null
   },
   {
     "number": 20383,
@@ -28027,7 +28577,7 @@
       "PPSA38500"
     ],
     "created": "2026-11-15T03:43:04Z",
-    "updated": "2026-11-15T03:43:04Z",
+    "updated": "2026-11-15T04:10:06Z",
     "comments": 0,
     "reports": [
       {
@@ -28049,6 +28599,7 @@
         "blockerText": null
       }
     ],
-    "media": []
+    "media": [],
+    "closedAt": "2026-11-15T04:10:06Z"
   }
 ]
