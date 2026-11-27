@@ -1,8 +1,8 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  // A demo deployment of the site on Cloudflare: npm run deploy:demo. It also runs a test copy of the Discord bot, with
-  // its own Discord app, database and webhooks (see "Testing the bot before cutover" in the README). The bot stays off
-  // until its TOKEN_KEY secret is set. The production environment below is the official site and bot.
+  // A demo deployment of the site on Cloudflare: npm run deploy:demo. It's staging for the site only: the Discord bot
+  // runs in production alone, so the demo has no bot database and the bot stays off here. The production environment
+  // below is the official site and bot.
   "name": "anyps5-demo",
   "main": "worker/src/index.ts",
   "compatibility_date": "2026-10-01",
@@ -23,13 +23,9 @@
   // The site's own data: GitHub sign-in, uploaded run reports, what maintainers hid. Shared with production, so
   // uploads made before cutover carry over.
   "d1_databases": [
-    { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" },
-    // The test bot's own database, never the live gh-worker's. Empty to start: the first run only records where
-    // things stand, so the backlog is never announced.
-    { "binding": "DB", "database_name": "anyps5-bot-test", "database_id": "0b37243f-4f64-42ce-b8a5-bba81a75696b", "migrations_dir": "worker/migrations" }
+    { "binding": "SITE_DB", "database_name": "anyps5-site", "database_id": "0abd405c-2a54-4a94-af66-05b64de4bf78", "migrations_dir": "worker/site-migrations" }
   ],
-  // The bot's live gateway connection (worker/src/bot/gateway.ts): automod, message and member logs, welcome, autorole.
-  "durable_objects": { "bindings": [{ "name": "GATEWAY", "class_name": "Gateway" }] },
+  // The bot's gateway class is still in the code, so its migration stays; with no binding the demo never uses it.
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Gateway"] }],
   "vars": {
     "MAINTAINERS": "158058829",
@@ -37,13 +33,7 @@
     // The demo is staging: the live Worker asks for the scheduled upstream checks, so the demo doesn't ("0" is off).
     "SITE_REFRESH_MINUTES": "0",
     "GITHUB_REPO": "boykopovar/AnyPS5",
-    "BASE_URL": "https://demo.anyps5.gg",
-    // The test Discord app, "AnyPS5 (test)": its Application ID and the public key that verifies slash-command requests.
-    // Neither is secret; its client secret and bot token are secrets.
-    "DISCORD_CLIENT_ID": "1566680323905953993",
-    "DISCORD_PUBLIC_KEY": "d45c3dbab0d9bcfee04786487d8b0d64c99490ff560d28fd85c58dae1c3bb2be",
-    // The test bot's GitHub OAuth app, "AnyPS5 bot (test)", for linking GitHub accounts; its client secret is a secret.
-    "GITHUB_CLIENT_ID": "Ov23li1p96PYxfbYBiOk"
+    "BASE_URL": "https://demo.anyps5.gg"
   },
 
   "env": {

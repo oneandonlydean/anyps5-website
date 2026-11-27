@@ -63,9 +63,6 @@ if ! npx wrangler d1 migrations apply SITE_DB --remote --env="$env"; then
     echo "::warning::Could not apply the site database's migrations, but it has them all; check the token has D1 Edit."
   fi
 fi
-# The bot's database. Production's is gh-worker's live one, so its migrations are run by hand at the bot's cutover
+# The bot's database is production's alone (the demo has no bot). Its migrations are run by hand at the bot's cutover
 # (see "Going live" in the README), not on every deploy.
-if [ "$target" = demo ]; then
-  npx wrangler d1 migrations apply DB --remote --env="" || echo "::warning::Could not apply the test bot database's migrations; check the token has D1 Edit."
-fi
 npx wrangler deploy --env="$env"

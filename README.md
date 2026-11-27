@@ -131,7 +131,7 @@ After a run, AnyPS5 writes `anyps5-report.json` (built by the runtime team on th
 
 ## Discord bot
 
-The Worker also runs the bot that used to be the separate gh-worker. It runs in the `production` environment, with the live database and secrets. The demo runs a test copy; see below.
+The Worker also runs the bot that used to be the separate gh-worker. It runs in the `production` environment only, with the live database and secrets; the demo doesn't run the bot.
 
 - **Linked roles:** members link GitHub and get roles by merged pull request count.
 - **Slash commands.** Register or update them with `npm --prefix worker run register-commands`, and the linked-role metadata with `register-metadata`. Both need `DISCORD_CLIENT_ID` and `DISCORD_BOT_TOKEN` in the environment. Re-run `register-commands` whenever the list changes.
@@ -153,11 +153,11 @@ The Worker also runs the bot that used to be the separate gh-worker. It runs in 
   - `/tag` posts a saved reply for everyone; `/tags` saves and edits them (`tags.ts`).
   - `/logs`, `/welcome`, `/autorole` and `/automod` (`settings.ts`) store per-server settings in `guild_settings`. What they set up runs on the gateway.
   - **The gateway** (`gateway.ts`, a Durable Object) holds the bot's live connection to Discord, which slash commands don't need but logs and automod do: messages as they're sent, edits, deletions, joins, leaves and bans. `events.ts` decides what to do with each event, and `jobs.ts` makes the Discord calls from a queue that an alarm drains, retrying failures. The cron calls it every minute and it reconnects or resumes if the connection dropped. It remembers messages for 7 days, so deleted and edited ones can be logged with what they said. Close codes 4004 and 4014 (bad token, intents not allowed) pause it for an hour instead of using up the day's logins; the Worker's logs say `gateway_stopped`.
-  - **Setting it up** for a bot (the test bot and the production one each need this):
+  - **Setting it up:**
     1. In the Developer Portal, Bot → Privileged Gateway Intents: turn on **Server Members Intent** and **Message Content Intent**.
     2. Give the bot the permissions it uses. Either re-add it with `https://discord.com/oauth2/authorize?client_id=<Application ID>&scope=bot+applications.commands&permissions=1374658063510` (Kick, Ban, Timeout, Manage Roles, Manage Channels, Manage Messages, View Audit Log, View Channels, Send Messages and in threads, Embed Links, Read Message History), or add those to its role.
     3. In Server Settings → Roles, drag the bot's role above every role it hands out (panels, autorole) and every member it moderates.
-    4. Deploy (the bot database's migrations `0004` and `0005` are applied by the demo deploy; for production, `npm --prefix worker run migrate:remote`), then `register-commands`.
+    4. Deploy, apply the bot database's migrations with `npm --prefix worker run migrate:remote`, then `register-commands`.
     5. Pick log channels with `/logs set`, then run `/automod setup`. Nothing is logged or filtered until then. Once everything works, remove Carl-bot.
   - **Automod** (`automod-rules.ts` reads the text, `events.ts` acts, `jobs.ts` runs the ladder) replaces Discord's keyword and regex AutoMod rules, which also caught people pasting the rules. Built-in filters: scams (crypto promotion, fake giveaways, phishing and look-alike sites), piracy requests (PKGs, dumps, keys, firmware, GTA 6 downloads), hidden links (shorteners, ad-lockers, base64), ETA questions about PS5 games and GTA 6, and the same message in several channels; plus invites, links, mentions, capitals, spam, repeats and custom blocked words.
     - Text is read three ways (as written; look-alike letters and spaced-out letters undone; leetspeak undone), so `a i r d r o p`, `41rdr0p` and a Cyrillic `аirdrop` all match. Most terms add to a score: one weak word (bitcoin, nft, torrent, "free games") isn't enough, two are, and a link or a brand-new member makes it worse. Matches inside a quote of the server rules (from `data/bot.yaml` and the server's rules channel, five words or more) never count, and a match after "don't" or "beware" counts half.
@@ -180,29 +180,6 @@ The Worker also runs the bot that used to be the separate gh-worker. It runs in 
 Release posts link the downloads and sum up what was merged since the release before, from the merge history. A fresh database has no history until `worker/scripts/backfill-merges.mjs` fills it, so `/leaderboard` and those sums start empty without it.
 
 - **Keeping the site current:** when the bot sees a user-facing merge, a release or new bring-up reports, it asks this repository to rebuild. Requests are at most every 2 minutes, and one that comes too soon is kept and sent later. GitHub runs one build at a time and keeps only the newest waiting one, so on a busy day the site is rebuilt about every 10 minutes.
-
-### Testing the bot before cutover
-
-The demo runs a test copy of the bot with its own Discord app and its own database (`anyps5-bot-test`). The live gh-worker and its database are never touched. The bot stays off until the demo has a `TOKEN_KEY` secret, and deleting that secret turns it off again. On its first run it only records where things stand, so old merges are never posted.
-
-Set each secret from the repository root with `npx wrangler secret put <NAME> --env=""`, which prompts for the value.
-
-1. **Discord app.** In the [Developer Portal](https://discord.com/developers/applications), create a new application, for example "AnyPS5 (test)".
-   - **General Information:** put the Application ID in `DISCORD_CLIENT_ID` and the Public Key in `DISCORD_PUBLIC_KEY`, under the demo's `vars` in `wrangler.jsonc`. Neither is secret.
-   - **OAuth2:** copy the Client Secret into `DISCORD_CLIENT_SECRET`, and add the redirect `https://demo.anyps5.gg/discord/callback`.
-   - **Bot:** reset the token and copy it into `DISCORD_BOT_TOKEN`.
-2. **GitHub OAuth app**, for linking GitHub accounts to roles. Create one in [Developer settings](https://github.com/settings/developers) with the callback `https://demo.anyps5.gg/github/callback`. Its Client ID goes in `GITHUB_CLIENT_ID` under the demo's `vars`, and a new client secret in the `GITHUB_CLIENT_SECRET` secret. This is separate from the site's sign-in app.
-3. **GitHub token** for reading pull requests: a [fine-grained token](https://github.com/settings/personal-access-tokens/new) with "Public repositories" read-only access, in `GITHUB_TOKEN`.
-4. **Private channel and webhooks.** In the Discord server, create a channel such as `#bot-test` and make it private (Edit Channel → Permissions → Private Channel). Then go to Edit Channel → Integrations → Webhooks → New Webhook and copy its URL into `DISCORD_WEBHOOK_URL`. To test every kind of post, put the same URL in `DISCORD_WEBHOOK_PROGRESS`, `DISCORD_WEBHOOK_DEV`, `DISCORD_WEBHOOK_RELEASES`, `DISCORD_WEBHOOK_GAMES` and `DISCORD_WEBHOOK_DIGEST` too, or make a channel for each to match production. Without `DISCORD_WEBHOOK_DEV`, `_RELEASES` or `_GAMES`, those posts are skipped.
-5. **Turn it on.** Generate a key with `openssl rand -base64 32` and set it as `TOKEN_KEY`.
-6. **Discord endpoints.** These are checked as you save them, so set them after step 5:
-   - General Information → Interactions Endpoint URL: `https://demo.anyps5.gg/interactions`
-   - General Information → Linked Roles Verification URL: `https://demo.anyps5.gg/linked-role`
-7. **Commands and role metadata.** In fish, `read -sx DISCORD_BOT_TOKEN` and `read -x DISCORD_CLIENT_ID` keep the token off screen and out of history. Then run `npm --prefix worker run register-metadata` and `npm --prefix worker run register-commands`.
-8. **Add it to the server.** Open `https://discord.com/oauth2/authorize?client_id=<Application ID>&scope=bot+applications.commands&permissions=0`. The `bot` scope lets it send `/follow` messages; it asks for no permissions. Then, to keep `/prs` and `/leaderboard` in the test channel, go to Server Settings → Integrations → the app → turn off "All Channels" and add `#bot-test`.
-9. **Linked role.** Server Settings → Roles → create a role such as "Contributor (test)" → Links → Add requirement → the test app, for example at least 1 merged pull request. Get it from the server menu → Linked Roles, which takes you through Discord and GitHub sign-in.
-
-What to expect: merges post within a minute or two of landing (upstream merges about 160 a day, so the channel gets busy). A game reaching a new stage posts within about two minutes of the site rebuilding. A release posts within five minutes. The daily summary posts after 01:00 UTC. `npx wrangler tail --env=""` shows the bot's logs. At cutover, the production environment uses the live app and database, and the test app can be deleted.
 
 ## Deploying and running
 
@@ -254,25 +231,25 @@ This step runs upstream's own `tools/progress.py`, which only reads source files
 
 ## Going live
 
-The production environment in `wrangler.jsonc` is the official site with the bot. It reuses gh-worker's D1 database, so linked members, merge history and the announcement position carry over, and it shares `anyps5-site` with the demo, so uploads carry over too.
+The production environment in `wrangler.jsonc` is the official site with the bot. The bot keeps the old bot's Discord app and database, so linked members, merge history and the announcement position carry over, and it shares `anyps5-site` with the demo, so uploads carry over too. The old bot is the `gh-discord-roles` Worker (once called gh-worker, serving anyps5.emdd.me).
 
-The site went live first, with the bot off: production has no `TOKEN_KEY`, so it serves only the site and its API, and gh-worker keeps running the bot. Steps 1, 2, 5 and 7 are done, along with the sign-in and rebuild secrets from step 3. The bot's cutover is the rest of step 3 and steps 4 and 6, plus the bot's `DISCORD_CLIENT_ID` and `GITHUB_CLIENT_ID` under `env.production.vars`.
+The site went live first, with the bot off: production has no `TOKEN_KEY`, so it serves only the site and its API while the old Worker keeps running the bot.
+
+**The old key.** Linked members' Discord tokens are encrypted with the old Worker's `TOKEN_KEY`, and no copy of it was kept. Cloudflare never shows a secret's value, but the Worker can still use it. So at cutover a one-off Worker (`worker/rekey/`) is deployed under the old name, which keeps its secrets, and re-encrypts every member's tokens with a new key for production. That can only happen at cutover: until then the old bot keeps refreshing tokens with the old key, and Discord retires each refresh token once it's used.
 
 1. **Domain:** `wrangler.jsonc` already gives production `anyps5.gg` (`env.production.routes` and `BASE_URL`). Set the repository variable `SITE_URL` to `https://anyps5.gg` so the workflow reads uploads from, and deploys for, the live site.
 2. **Sign-in app:** create the real GitHub OAuth app for sign-in (callback `https://anyps5.gg/auth/github/callback`).
-3. **Secrets:** run `npx wrangler secret put <NAME> --env production` for each of these:
-   - sign-in and rebuilds: `SITE_GITHUB_CLIENT_ID`, `SITE_GITHUB_CLIENT_SECRET`, `SITE_DISPATCH_TOKEN` (new values; regenerate any shared during testing)
-   - the bot: `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`, `DISCORD_BOT_TOKEN`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITHUB_TOKEN`
-   - `TOKEN_KEY`: the **same value** gh-worker uses. Linked members' Discord tokens are encrypted with it; with a new key they would all have to link again.
+3. **Secrets:** run `npx wrangler secret put <NAME> --env production` for each of these. Not `TOKEN_KEY`: that turns the bot on, and the cutover script sets it.
+   - sign-in and rebuilds: `SITE_GITHUB_CLIENT_ID`, `SITE_GITHUB_CLIENT_SECRET`, `SITE_DISPATCH_TOKEN`
+   - the bot, from the existing Discord app and the bot's GitHub OAuth app: `DISCORD_CLIENT_ID` (the Application ID), `DISCORD_CLIENT_SECRET`, `DISCORD_BOT_TOKEN`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITHUB_TOKEN`. Resetting the bot token or a client secret to copy it stops the old bot using it, so do these on cutover day.
    - the webhooks from the [bot's table](#discord-bot)
-4. **Stop gh-worker's cron** (remove its trigger, or delete that Worker), so the two never post the same merge or refresh the same tokens.
-5. **Deploy:** `SITE_URL=https://<domain> npm run deploy:production`. This builds without the demo's `noindex`, applies the site database's migrations and deploys. Then run `npm --prefix worker run migrate:remote` for the bot's database; it does nothing unless new migrations were added.
-6. **Discord developer portal:** point these at the new domain:
-   - Interactions Endpoint URL: `/interactions`
-   - Linked Roles Verification URL: `/linked-role`
-   - OAuth2 redirect: `/discord/callback`
-
-   In the bot's GitHub OAuth app, set the callback to `/github/callback`. The slash commands stay registered.
+4. **Cutover:** `bash worker/rekey/cutover.sh`. It checks production has the secrets above, then gives the old Worker a new key and a one-time password, replaces the old bot with the one-off Worker (which also removes its cron), adds the bot database's new tables, re-encrypts every member's tokens (a dry run first), and sets the same new key as production's `TOKEN_KEY`. The key and password are never shown. Anyone it couldn't read is listed and links again.
+5. **Discord Developer Portal**, for the existing app:
+   - General Information: rename it to AnyPS5 and change its icon if you like (Bot has the bot's own name and avatar). Members keep their linked roles; a new app would make everyone link again.
+   - Point at the new domain: Interactions Endpoint URL `https://anyps5.gg/interactions`, Linked Roles Verification URL `https://anyps5.gg/linked-role`, and the OAuth2 redirect `https://anyps5.gg/discord/callback`. Discord checks these as you save them, so after step 4.
+   - In the bot's GitHub OAuth app, set the callback to `https://anyps5.gg/github/callback`.
+   - Then [set up the server tools](#discord-bot) (intents, permissions, role order) and run `register-commands`.
+6. **Delete the old Worker** once the bot answers from anyps5.gg: `npx wrangler delete --name gh-discord-roles`. Keep the `gh-discord-roles` database; production uses it.
 7. **Workflow:** in `.github/workflows/site.yml`, change the deploy step from `npm run deploy:demo` to `npm run deploy:production`, with `SITE_URL` set.
 
 ## Languages

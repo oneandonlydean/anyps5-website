@@ -1,0 +1,13 @@
+{
+  // The one-off cutover Worker (index.ts). Same name as the old bot so it keeps that Worker's secrets; no cron, so the
+  // old bot's minute job stops when this is deployed. Deploy with: npx wrangler deploy -c worker/rekey/wrangler.jsonc
+  "name": "gh-discord-roles",
+  "main": "index.ts",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "anyps5.emdd.me", "custom_domain": true }],
+  "triggers": { "crons": [] },
+  "observability": { "enabled": true },
+  "d1_databases": [{ "binding": "DB", "database_name": "gh-discord-roles", "database_id": "32ee5bdf-8377-4aa2-820f-3233ff722da1" }]
+}
