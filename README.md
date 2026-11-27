@@ -206,11 +206,13 @@ What to expect: merges post within a minute or two of landing (upstream merges a
 
 ## Deploying and running
 
-The demo deploys itself from `.github/workflows/site.yml`:
+The live site, anyps5.gg, deploys itself from `.github/workflows/site.yml`:
 - on every push to `main`
 - on a rebuild request from the Worker (`site-data-changed`) or from upstream (`upstream-updated`)
-- every 3 hours, only when something the site shows changed (while this repository is private; once it's public, run it hourly)
+- every 30 minutes on the live Worker's request (`scheduled-check`), and hourly from GitHub's schedule, only when something the site shows changed
 - daily, regardless
+
+The demo, demo.anyps5.gg, is staging: it shares the site database with the live site and is deployed by hand with `npm run deploy:demo`. `npm run deploy:production` deploys the live site from a laptop the same way.
 
 Every deploy first runs the site's and the Worker's tests, and applies the site database's migrations. If the token can't, the deploy asks the running Worker (`/api/schema`) which migrations the database has, and stops if the new code needs one it lacks. `ci.yml` runs the same checks on pull requests.
 
@@ -253,6 +255,8 @@ This step runs upstream's own `tools/progress.py`, which only reads source files
 ## Going live
 
 The production environment in `wrangler.jsonc` is the official site with the bot. It reuses gh-worker's D1 database, so linked members, merge history and the announcement position carry over, and it shares `anyps5-site` with the demo, so uploads carry over too.
+
+The site went live first, with the bot off: production has no `TOKEN_KEY`, so it serves only the site and its API, and gh-worker keeps running the bot. Steps 1, 2, 5 and 7 are done, along with the sign-in and rebuild secrets from step 3. The bot's cutover is the rest of step 3 and steps 4 and 6, plus the bot's `DISCORD_CLIENT_ID` and `GITHUB_CLIENT_ID` under `env.production.vars`.
 
 1. **Domain:** `wrangler.jsonc` already gives production `anyps5.gg` (`env.production.routes` and `BASE_URL`). Set the repository variable `SITE_URL` to `https://anyps5.gg` so the workflow reads uploads from, and deploys for, the live site.
 2. **Sign-in app:** create the real GitHub OAuth app for sign-in (callback `https://anyps5.gg/auth/github/callback`).

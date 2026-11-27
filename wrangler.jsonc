@@ -34,8 +34,8 @@
   "vars": {
     "MAINTAINERS": "158058829",
     "SITE_REPO": "oneandonlydean/anyps5-website",
-    // Ask the site repository to check upstream this often (minutes); it rebuilds only when something changed.
-    "SITE_REFRESH_MINUTES": "30",
+    // The demo is staging: the live Worker asks for the scheduled upstream checks, so the demo doesn't ("0" is off).
+    "SITE_REFRESH_MINUTES": "0",
     "GITHUB_REPO": "boykopovar/AnyPS5",
     "BASE_URL": "https://demo.anyps5.gg",
     // The test Discord app, "AnyPS5 (test)": its Application ID and the public key that verifies slash-command requests.

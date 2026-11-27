@@ -30,8 +30,8 @@
     "fetch:commits": "tsx scripts/fetch-commits.ts",
     "validate": "tsx scripts/validate.ts",
     "icons": "tsx scripts/icons.ts",
-    "deploy:demo": "sh scripts/deploy-demo.sh",
-    "deploy:production": "sh scripts/deploy-production.sh",
+    "deploy:demo": "sh scripts/deploy.sh demo",
+    "deploy:production": "sh scripts/deploy.sh production",
     "refresh:demo": "sh scripts/refresh-demo.sh"
   },
   "dependencies": {

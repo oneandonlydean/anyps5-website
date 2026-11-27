@@ -1,13 +1,13 @@
 name: Update site
 
-# Refreshes every data source, builds the site and deploys it to Cloudflare.
+# Refreshes every data source, builds the site and deploys it to Cloudflare as anyps5.gg. The demo
+# (demo.anyps5.gg) is staging now, deployed by hand with `npm run deploy:demo`.
 #
 # - push to main: this site's code changed.
 # - repository_dispatch (upstream-updated): upstream pinged after a merge or release (see README).
-# - every 3 hours: a cheap check of what the site shows from upstream (latest release, published library progress,
+# - hourly: a cheap check of what the site shows from upstream (latest release, published library progress,
 #   the shader recompiler and GPU driver source, the bring-up discussions); it builds only if any of them changed.
-#   Upstream's main moves almost hourly, so checking more often uses up a private repository's Actions minutes;
-#   once the repository is public (unlimited minutes), "*/30 * * * *" is fine.
+#   The live Worker also asks for this check every SITE_REFRESH_MINUTES, since GitHub's schedule runs late.
 # - daily: a full refresh regardless, for contributor counts, titles and art.
 #
 # Needs the secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID, and optionally SGDB_API_KEY.
@@ -20,7 +20,7 @@ on:
     # scheduled-check: the site's Worker, every SITE_REFRESH_MINUTES (GitHub's schedule below runs late or not at all).
     types: [upstream-updated, site-data-changed, scheduled-check]
   schedule:
-    - cron: "23 */3 * * *"
+    - cron: "23 * * * *"
     - cron: "41 4 * * *"
   workflow_dispatch:
 
@@ -35,7 +35,7 @@ env:
   UPSTREAM: boykopovar/AnyPS5
   DAILY: "41 4 * * *"
   # Where uploads and maintainer actions are read from: the site's own Worker (repository variable SITE_URL).
-  SITE_API: ${{ vars.SITE_URL || 'https://demo.anyps5.gg' }}
+  SITE_API: ${{ vars.SITE_URL || 'https://anyps5.gg' }}
 
 jobs:
   update:
@@ -123,7 +123,8 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # The data was refreshed by the steps above.
           SKIP_SYNC: "1"
-        run: npm run deploy:demo
+          SITE_URL: ${{ vars.SITE_URL || 'https://anyps5.gg' }}
+        run: npm run deploy:production
 
       - name: Remember this upstream state as deployed
         if: steps.seen.outputs.cache-hit != 'true'
