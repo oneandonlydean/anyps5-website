@@ -1,6 +1,6 @@
 {
-  "commit": "2f8c84369157179517f26f788e93949f29a46707",
-  "date": "2026-11-15",
+  "commit": "335fd4626fb803e03ae5049b382a3225fc2de8b0",
+  "date": "2026-11-27",
   "isa": "AMD RDNA 2",
   "instructions": {
     "total": 1460,
@@ -13,12 +13,12 @@
   },
   "formats": {
     "total": 159,
-    "sampled": 87,
-    "buffer": 81,
-    "host": 74
+    "sampled": 103,
+    "buffer": 83,
+    "host": 90
   },
   "throws": {
-    "total": 125,
+    "total": 128,
     "areas": [
       {
         "name": "RdnaDecoder",
@@ -26,7 +26,7 @@
       },
       {
         "name": "Translation",
-        "count": 23
+        "count": 26
       },
       {
         "name": "Optimization",
@@ -62,22 +62,22 @@
       },
       {
         "file": "ControlFlow/src/GraphBuilder.cpp",
-        "line": 806,
+        "line": 811,
         "message": "unsupported scalar call link register at program counter …: the link must be an ordinary aligned scalar register pair"
       },
       {
         "file": "ControlFlow/src/GraphBuilder.cpp",
-        "line": 1120,
+        "line": 1125,
         "message": "unsupported dynamic s_setpc_b64 at program counter "
       },
       {
         "file": "ControlFlow/src/GraphBuilder.cpp",
-        "line": 1199,
+        "line": 1204,
         "message": "unsupported dynamic s_setpc_b64 at program counter "
       },
       {
         "file": "ControlFlow/src/RequestSerializer.cpp",
-        "line": 980,
+        "line": 993,
         "message": "unsupported recompile request serialization version"
       },
       {
@@ -97,117 +97,122 @@
       },
       {
         "file": "IntermediateRepresentation/src/IrBuilder/IrBuilderLogic.cpp",
-        "line": 64,
+        "line": 70,
         "message": "IrBuilder::Select unsupported value type"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 136,
+        "line": 163,
         "message": "image descriptor has an unsupported type"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1079,
+        "line": 1131,
         "message": "image table has an unsupported nested descriptor"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1643,
+        "line": 1771,
         "message": "FORCE_DEGAMMA on RGBA8_UINT with mixed sampler states is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1671,
+        "line": 1799,
         "message": "sampling of a converted image through a min or max reduction sampler is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1682,
+        "line": 1810,
         "message": "sampling of a converted image through samplers that disagree is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1696,
+        "line": 1824,
         "message": "unsupported color comparison image instructions"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1713,
+        "line": 1841,
         "message": "comparison sampling of a color texture through a sampler table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1720,
+        "line": 1848,
         "message": "comparison sampling of a color texture through a min or max reduction sampler is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1737,
+        "line": 1865,
         "message": "comparison sampling of a color texture with a border color table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1742,
+        "line": 1870,
         "message": "comparison sampling of a color texture through samplers that disagree is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 1789,
+        "line": 1915,
         "message": "buffer descriptor uses an unsupported type"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2145,
+        "line": 2277,
         "message": "image table snapshot has unsupported recursive children"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2576,
+        "line": 2716,
         "message": "a 3D gather of an image table entry is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2577,
+        "line": 2717,
         "message": "a 3D gather of an image without an 8-dword descriptor is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2582,
+        "line": 2722,
         "message": "a 3D gather through a sampler table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2585,
+        "line": 2725,
         "message": "a 3D gather with unnormalized coordinates is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2591,
+        "line": 2731,
         "message": "a 3D gather with a border color table is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2592,
+        "line": 2732,
         "message": "a 3D gather of an integer texture with border addressing is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2593,
+        "line": 2733,
         "message": "a 3D gather of a swizzled texture with border addressing is not implemented"
       },
       {
         "file": "Optimization/src/ResourceMaterializer.cpp",
-        "line": 2595,
+        "line": 2735,
         "message": "a 3D gather through samplers that disagree is not implemented"
       },
       {
         "file": "RdnaDecoder/src/GcnInstructionDecoder.cpp",
-        "line": 35,
+        "line": 37,
         "message": "GCN … opcode … at program counter … is not implemented"
       },
       {
         "file": "RdnaDecoder/src/GcnInstructionDecoder.cpp",
-        "line": 303,
+        "line": 206,
+        "message": "GCN VOP3 opcode … at program counter … sets OP_SEL bits 15:12, which are not implemented…VOP3"
+      },
+      {
+        "file": "RdnaDecoder/src/GcnInstructionDecoder.cpp",
+        "line": 330,
         "message": "GCN MTBUF opcode … at program counter … uses data format … with number format …, which has no RDNA buffer format"
       },
       {
@@ -252,37 +257,37 @@
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 448,
+        "line": 460,
         "message": "unsupported scalar source operand"
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 466,
+        "line": 478,
         "message": "unsupported scalar destination operand"
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 824,
-        "message": "unsupported MUBUF lds modifier"
+        "line": 834,
+        "message": "unsupported MUBUF lds modifier on cache control"
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 910,
+        "line": 839,
+        "message": "unsupported MUBUF lds modifier: requires an untyped byte, short or dword load or format_x, no TFE or reserved bits"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
+        "line": 926,
         "message": "unsupported FLAT modifiers or segment"
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 949,
+        "line": 965,
         "message": "FLAT scratch scalar offset register is unsupported"
       },
       {
         "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 999,
-        "message": "DS write exchange of one location through both offsets is not supported"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaMemoryOpDecoder.cpp",
-        "line": 1037,
+        "line": 1050,
         "message": "DS src2 operation with the offset taken from the address is not supported"
       },
       {
@@ -327,128 +332,68 @@
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1215,
+        "line": 1266,
         "message": "VOP1 SDWA output modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1308,
+        "line": 1360,
         "message": "DPP modifier is not supported for opcode…DPP8 modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1313,
+        "line": 1365,
         "message": "VOP1 DPP integer source modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1404,
+        "line": 1454,
         "message": "VOP2 SDWA output modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1407,
+        "line": 1457,
         "message": "VOP2 SDWA source modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1415,
+        "line": 1465,
         "message": "VOP2 SDWA modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1418,
+        "line": 1468,
         "message": "VOP2 SDWA destination selector is not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1421,
+        "line": 1471,
         "message": "VOP2 SDWA source selector is not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1426,
-        "message": "VOP2 SDWA source modifiers are not supported"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1509,
+        "line": 1554,
         "message": "DPP modifier is not supported for opcode…DPP8 modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1518,
+        "line": 1563,
         "message": "VOP2 DPP integer source modifiers are not supported"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1699,
+        "line": 1744,
         "message": "VOPC DPP modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 1839,
+        "line": 1898,
         "message": "VOP3P integer dot source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2024,
+        "line": 2096,
         "message": "VOP3 perm-lane op_sel bits are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2033,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2039,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2045,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2053,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2059,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2065,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2071,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2077,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2083,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2089,
-        "message": "VOP3 source modifiers are not implemented"
-      },
-      {
-        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2099,
-        "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
@@ -457,117 +402,177 @@
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2110,
+        "line": 2111,
         "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2123,
-        "message": "VOP3 interpolation modifiers are not implemented"
+        "line": 2120,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2128,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2134,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2140,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2146,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2152,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2158,
+        "message": "VOP3 source modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
         "line": 2164,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2175,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2181,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2186,
+        "message": "VOP3 source modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2199,
         "message": "VOP3 interpolation modifiers are not implemented"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2309,
+        "line": 2240,
+        "message": "VOP3 interpolation modifiers are not implemented"
+      },
+      {
+        "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
+        "line": 2391,
         "message": "VOPC SDWA modifier is not supported for opcode"
       },
       {
         "file": "RdnaDecoder/src/RdnaVectorOpDecoder.cpp",
-        "line": 2511,
+        "line": 2598,
         "message": "VOP3P integer clamp is not implemented"
       },
       {
         "file": "Recompiler.cpp",
-        "line": 88,
+        "line": 93,
         "message": "ShaderRecompiler::Recompile: unsupported shader stage"
       },
       {
         "file": "Recompiler.cpp",
-        "line": 290,
+        "line": 302,
         "message": "a merged hull program that calls a fetch subroutine is unsupported"
       },
       {
         "file": "Recompiler.cpp",
-        "line": 1406,
+        "line": 1609,
         "message": "unsupported prepared vertex format"
       },
       {
         "file": "SpirvBackend/src/SpirvBdaRead.cpp",
-        "line": 407,
+        "line": 405,
         "message": "unsupported BDA ABI version"
       },
       {
         "file": "SpirvBackend/src/SpirvBdaRead.cpp",
-        "line": 409,
+        "line": 407,
         "message": "BDA requires unsupported SPIR-V capability "
       },
       {
         "file": "SpirvBackend/src/SpirvBdaRead.cpp",
-        "line": 412,
+        "line": 410,
         "message": "BDA requires unsupported extension "
       },
       {
         "file": "SpirvBackend/src/SpirvBdaRead.cpp",
-        "line": 568,
+        "line": 566,
         "message": "unsupported anchored BDA read width"
       },
       {
         "file": "SpirvBackend/src/SpirvBdaRead.cpp",
-        "line": 569,
+        "line": 567,
         "message": "unsupported anchored BDA read dword count"
       },
       {
         "file": "SpirvBackend/src/SpirvBufferFormat.cpp",
-        "line": 107,
+        "line": 112,
         "message": "GetFormatComponentType: unsupported buffer format "
       },
       {
         "file": "SpirvBackend/src/SpirvBufferFormat.cpp",
-        "line": 217,
+        "line": 225,
         "message": "GetFormatInfo: unsupported buffer format "
       },
       {
         "file": "SpirvBackend/src/SpirvEmitter.cpp",
-        "line": 342,
+        "line": 358,
         "message": "throw SpannedWaveUnsupported(*reason);"
       },
       {
         "file": "SpirvBackend/src/SpirvMemory/SpirvSubgroup.cpp",
-        "line": 95,
+        "line": 109,
         "message": "a spanned wave shuffles only 32-bit and boolean values"
       },
       {
         "file": "SpirvBackend/src/SpirvModuleEmitter.cpp",
-        "line": 1253,
+        "line": 1302,
         "message": "unsupported tessellation domain, partitioning, or output topology"
       },
       {
         "file": "SpirvBackend/src/SpirvModuleEmitter.cpp",
-        "line": 1295,
+        "line": 1344,
         "message": "unsupported mesh output kind"
       },
       {
         "file": "SpirvBackend/src/SpirvOptimizer.cpp",
-        "line": 157,
+        "line": 162,
         "message": "SPIRV-Tools: unsupported Vulkan target"
       },
       {
         "file": "SpirvBackend/src/SpirvOptimizer.cpp",
-        "line": 160,
+        "line": 165,
         "message": "SPIRV-Tools: unsupported Vulkan/SPIR-V target"
       },
       {
         "file": "Translation/src/AttributeInstructions.cpp",
-        "line": 133,
+        "line": 111,
+        "message": "16-bit interpolation with an f32 result at pc … in FLOAT_MODE … needs f32 directed rounding, which is not implemented"
+      },
+      {
+        "file": "Translation/src/AttributeInstructions.cpp",
+        "line": 135,
         "message": "unsupported EXP target"
       },
       {
         "file": "Translation/src/DispatchInstructions.cpp",
-        "line": 23,
+        "line": 30,
         "message": "unsupported decoded instruction at pc "
       },
       {
@@ -577,38 +582,38 @@
       },
       {
         "file": "Translation/src/FloatInstructions.cpp",
-        "line": 10,
+        "line": 11,
         "message": "packed f16 at pc … in FLOAT_MODE … (f16 rounding not to nearest even) is not implemented"
       },
       {
         "file": "Translation/src/FloatInstructions.cpp",
-        "line": 281,
+        "line": 322,
         "message": "v_fma_mixlo/mixhi_f16 at pc … in FLOAT_MODE … (f16 denormals not kept) is not implemented"
       },
       {
         "file": "Translation/src/InstructionTranslator.cpp",
-        "line": 73,
+        "line": 120,
         "message": "shader translation has an unsupported stage: options.stage="
       },
       {
         "file": "Translation/src/InstructionTranslator.cpp",
-        "line": 290,
+        "line": 337,
         "message": "mesh shader translation configuration is not supported (wave …, primitives per group …, vertices per group …, threads …, ESGS item size …)"
       },
       {
         "file": "Translation/src/MemoryInstructions/ImageInstructions.cpp",
-        "line": 56,
+        "line": 58,
         "message": "64-bit … is not implemented"
       },
       {
         "file": "Translation/src/MemoryInstructions/ImageInstructions.cpp",
-        "line": 64,
+        "line": 66,
         "message": "ray tracing is not implemented"
       },
       {
         "file": "Translation/src/MemoryInstructions/ImageInstructions.cpp",
-        "line": 145,
-        "message": "MIMG PCK2/PCK4 stores are not implemented…MIMG BY2/BY4 stores are not implemented"
+        "line": 148,
+        "message": "MIMG BY2/BY4 stores are not implemented"
       },
       {
         "file": "Translation/src/MemoryInstructions/ScalarBufferInstructions.cpp",
@@ -617,27 +622,22 @@
       },
       {
         "file": "Translation/src/MemoryInstructions/SharedMemoryInstructions.cpp",
-        "line": 197,
+        "line": 204,
         "message": "GDS src2 operations are not supported"
       },
       {
         "file": "Translation/src/MemoryInstructions/SharedMemoryInstructions.cpp",
-        "line": 228,
+        "line": 235,
         "message": "64-bit floating-point GDS atomics are not supported"
       },
       {
-        "file": "Translation/src/MemoryInstructions/SharedMemoryInstructions.cpp",
-        "line": 248,
-        "message": "DS conditional exchange GDS mode is not supported"
-      },
-      {
         "file": "Translation/src/RoundingMode.cpp",
-        "line": 384,
+        "line": 389,
         "message": " at pc … changes the MODE fields of a shader without a declared FLOAT_MODE: not implemented"
       },
       {
         "file": "Translation/src/RoundingMode.cpp",
-        "line": 394,
+        "line": 414,
         "message": " reads MODE bits that differ between the paths reaching it or were written from an SGPR: not implemented"
       },
       {
@@ -652,27 +652,42 @@
       },
       {
         "file": "Translation/src/ShaderInputInfoBuilder.cpp",
-        "line": 176,
+        "line": 170,
+        "message": "unsupported single-sample alpha-to-coverage dither"
+      },
+      {
+        "file": "Translation/src/ShaderInputInfoBuilder.cpp",
+        "line": 171,
+        "message": "unsupported dithered alpha-to-coverage sample count"
+      },
+      {
+        "file": "Translation/src/ShaderInputInfoBuilder.cpp",
+        "line": 180,
         "message": "ShaderInputInfoBuilder: a color target merge into an unsupported packing"
       },
       {
         "file": "Translation/src/TranslationContext/OperandAccess.cpp",
-        "line": 252,
+        "line": 256,
         "message": "TranslationContext::readOperand requested unsupported operand type"
       },
       {
         "file": "Translation/src/TranslationContext/OperandAccess.cpp",
-        "line": 328,
+        "line": 332,
         "message": "TranslationContext::writeOperand unsupported result type"
       },
       {
         "file": "Translation/src/TranslationContext/OperandAccess.cpp",
-        "line": 358,
+        "line": 362,
         "message": "output modifier on a result whose MODE denormal bits differ between the paths reaching it or were written from an SGPR: not implemented"
       },
       {
+        "file": "Translation/src/TranslationContext/OperandAccess.cpp",
+        "line": 471,
+        "message": "f32 overflow with unknown MODE rounding bits is not implemented"
+      },
+      {
         "file": "Translation/src/VectorInstructions.cpp",
-        "line": 177,
+        "line": 185,
         "message": "f32 denormal mode … at pc … is not implemented"
       }
     ]
@@ -914,16 +929,16 @@
     {
       "value": 3,
       "name": "Format8UScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 4,
       "name": "Format8SScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 5,
@@ -956,16 +971,16 @@
     {
       "value": 9,
       "name": "Format16UScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 10,
       "name": "Format16SScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 11,
@@ -1005,16 +1020,16 @@
     {
       "value": 16,
       "name": "Format8_8UScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 17,
       "name": "Format8_8SScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 18,
@@ -1068,16 +1083,16 @@
     {
       "value": 25,
       "name": "Format16_16UScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 26,
       "name": "Format16_16SScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 27,
@@ -1257,16 +1272,16 @@
     {
       "value": 52,
       "name": "Format10_10_10_2UScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 53,
       "name": "Format10_10_10_2SScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 54,
@@ -1299,16 +1314,16 @@
     {
       "value": 58,
       "name": "Format8_8_8_8UScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 59,
       "name": "Format8_8_8_8SScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 60,
@@ -1362,16 +1377,16 @@
     {
       "value": 67,
       "name": "Format16_16_16_16UScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 68,
       "name": "Format16_16_16_16SScaled",
-      "sampled": false,
+      "sampled": true,
       "buffer": true,
-      "host": false
+      "host": true
     },
     {
       "value": 69,
@@ -1459,10 +1474,10 @@
     },
     {
       "value": 131,
-      "name": "Format10_10_10_2Float",
-      "sampled": false,
-      "buffer": false,
-      "host": false
+      "name": "Format6E4Float",
+      "sampled": true,
+      "buffer": true,
+      "host": true
     },
     {
       "value": 132,
@@ -1501,10 +1516,10 @@
     },
     {
       "value": 137,
-      "name": null,
-      "sampled": false,
-      "buffer": false,
-      "host": false
+      "name": "Format4_4UNorm",
+      "sampled": true,
+      "buffer": true,
+      "host": true
     },
     {
       "value": 138,
@@ -2994,7 +3009,7 @@
     },
     {
       "date": "2026-11-15",
-      "commit": "2f8c84369157179517f26f788e93949f29a46707",
+      "commit": "8282fa0a4854f96c86d142762266885cb55b863c",
       "instructions": {
         "total": 1460,
         "decoded": 1460,
@@ -3006,11 +3021,251 @@
       },
       "formats": {
         "total": 159,
-        "sampled": 87,
+        "sampled": 101,
         "buffer": 81,
-        "host": 74
+        "host": 88
       },
-      "throws": 125
+      "throws": 126
+    },
+    {
+      "date": "2026-11-16",
+      "commit": "258ab7b6bd492949012b892e6781e36b852ccc1f",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 102,
+        "buffer": 82,
+        "host": 89
+      },
+      "throws": 124
+    },
+    {
+      "date": "2026-11-17",
+      "commit": "378945815f6ce1f1d8e581002c7d6cc4cca214a4",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 102,
+        "buffer": 82,
+        "host": 89
+      },
+      "throws": 124
+    },
+    {
+      "date": "2026-11-18",
+      "commit": "e534139a4176bc79f1aea1ffc9823a0cecafac03",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 102,
+        "buffer": 82,
+        "host": 89
+      },
+      "throws": 124
+    },
+    {
+      "date": "2026-11-19",
+      "commit": "8e158a83d9edb4d3838c054fe380457926ea536b",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 102,
+        "buffer": 82,
+        "host": 89
+      },
+      "throws": 124
+    },
+    {
+      "date": "2026-11-20",
+      "commit": "41f9ffa32601bfc60562ef6a126701ec514a71ba",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 102,
+        "buffer": 82,
+        "host": 89
+      },
+      "throws": 124
+    },
+    {
+      "date": "2026-11-21",
+      "commit": "851212fb98fe1da701103a5acf38dfdf8a856615",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 103,
+        "buffer": 83,
+        "host": 90
+      },
+      "throws": 126
+    },
+    {
+      "date": "2026-11-22",
+      "commit": "a182406ffa631046c3aad845ee0c69a702acb3f4",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 103,
+        "buffer": 83,
+        "host": 90
+      },
+      "throws": 127
+    },
+    {
+      "date": "2026-11-23",
+      "commit": "1c6db2e79ef8bc87ac2e14405129bc94c3dcfd7d",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 103,
+        "buffer": 83,
+        "host": 90
+      },
+      "throws": 127
+    },
+    {
+      "date": "2026-11-24",
+      "commit": "fc54d18d8d107ec268840e7dcc6dff336c7f118d",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 103,
+        "buffer": 83,
+        "host": 90
+      },
+      "throws": 127
+    },
+    {
+      "date": "2026-11-25",
+      "commit": "b5ed908ae3eb0473d4d1de27f4e9d9571132711d",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 103,
+        "buffer": 83,
+        "host": 90
+      },
+      "throws": 128
+    },
+    {
+      "date": "2026-11-26",
+      "commit": "6d8fc6e47de6a2cfe8e2d03923ad89c0b01d5724",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 103,
+        "buffer": 83,
+        "host": 90
+      },
+      "throws": 127
+    },
+    {
+      "date": "2026-11-27",
+      "commit": "335fd4626fb803e03ae5049b382a3225fc2de8b0",
+      "instructions": {
+        "total": 1460,
+        "decoded": 1460,
+        "translated": 1460
+      },
+      "dpp": {
+        "total": 202,
+        "decoded": 202
+      },
+      "formats": {
+        "total": 159,
+        "sampled": 103,
+        "buffer": 83,
+        "host": 90
+      },
+      "throws": 128
     }
   ]
 }

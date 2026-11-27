@@ -64,6 +64,11 @@
     "region": "EP",
     "concept": "10000368"
   },
+  "PPSA01411": {
+    "name": "Marvel's Spider-Man: Miles Morales",
+    "region": "UP",
+    "concept": "10000649"
+  },
   "PPSA01442": {
     "name": "Devil May Cry 5 Special Edition",
     "region": "UP",
@@ -78,6 +83,11 @@
     "name": "Ratchet & Clank: Rift Apart",
     "region": "EP",
     "concept": "10000669"
+  },
+  "PPSA01487": {
+    "name": "Watch Dogs®: Legion",
+    "region": "UP",
+    "concept": "232581"
   },
   "PPSA01494": {
     "name": "Borderlands®4",
@@ -108,6 +118,11 @@
     "name": "Resident Evil Village",
     "region": "UP",
     "concept": "235235"
+  },
+  "PPSA01593": {
+    "name": "Hogwarts Legacy",
+    "region": "UP",
+    "concept": "232447"
   },
   "PPSA01619": {
     "name": "Mortal Kombat 11",
@@ -144,6 +159,11 @@
     "region": "EP",
     "concept": "235235"
   },
+  "PPSA01870": {
+    "name": "Far Cry® 6",
+    "region": "EP",
+    "concept": "233961"
+  },
   "PPSA01880": {
     "name": "Quake",
     "region": "UP",
@@ -178,6 +198,11 @@
     "name": "Trackmania",
     "region": "EP",
     "concept": "10001758"
+  },
+  "PPSA02199": {
+    "name": "STAR WARS Jedi: Fallen Order™",
+    "region": "EP",
+    "concept": "232345"
   },
   "PPSA02225": {
     "name": "Ghost of Tsushima",
@@ -414,6 +439,11 @@
     "region": "UP",
     "concept": "10002934"
   },
+  "PPSA03845": {
+    "name": "Dead Space™",
+    "region": "UP",
+    "concept": "10002958"
+  },
   "PPSA03912": {
     "name": "Diablo® II: Resurrected™",
     "region": "EP",
@@ -504,10 +534,20 @@
     "region": "UP",
     "concept": "10003267"
   },
+  "PPSA04404": {
+    "name": "RESIDENT EVIL 7 biohazard Gold Edition",
+    "region": "UP",
+    "concept": "220037"
+  },
   "PPSA04433": {
     "name": "Tourist Bus Simulator",
     "region": "EP",
     "concept": "10003309"
+  },
+  "PPSA04489": {
+    "name": "Teenage Mutant Ninja Turtles: The Cowabunga Collection",
+    "region": "UP",
+    "concept": "10003357"
   },
   "PPSA04540": {
     "name": "Rise of the Ronin",
@@ -648,6 +688,11 @@
     "name": "Cult Of The Lamb",
     "region": "EP",
     "concept": "10004484"
+  },
+  "PPSA06516": {
+    "name": "Risk of Rain 2",
+    "region": "UP",
+    "concept": "234386"
   },
   "PPSA06565": {
     "name": "Dusk Diver 2",
@@ -834,6 +879,11 @@
     "region": "UP",
     "concept": "217012"
   },
+  "PPSA08668": {
+    "name": "FINAL FANTASY VII REBIRTH",
+    "region": "EP",
+    "concept": "10003999"
+  },
   "PPSA08710": {
     "name": "SILENT HILL 2",
     "region": "UP",
@@ -869,10 +919,20 @@
     "region": "EP",
     "concept": "10005004"
   },
+  "PPSA09259": {
+    "name": "Hell Is Us",
+    "region": "EP",
+    "concept": "10005051"
+  },
   "PPSA09346": {
     "name": "The Last Faith",
     "region": "EP",
     "concept": "10005554"
+  },
+  "PPSA09351": {
+    "name": "AEW: Fight Forever",
+    "region": "UP",
+    "concept": "10005440"
   },
   "PPSA09426": {
     "name": "Bramble The Mountain King",
@@ -954,10 +1014,20 @@
     "region": "UP",
     "concept": "10006270"
   },
+  "PPSA10621": {
+    "name": "Lies of P",
+    "region": "EP",
+    "concept": "10006052"
+  },
   "PPSA10665": {
     "name": "FINAL FANTASY XVI",
     "region": "EP",
     "concept": "10002100"
+  },
+  "PPSA10720": {
+    "name": "The Beast Inside",
+    "region": "UP",
+    "concept": "10006325"
   },
   "PPSA10737": {
     "name": "Little Nightmares Enhanced Edition",
@@ -993,6 +1063,21 @@
     "name": "Hollow Knight: Silksong",
     "region": "EP",
     "concept": "10005908"
+  },
+  "PPSA13197": {
+    "name": "Stellar Blade",
+    "region": "EP",
+    "concept": "10006891"
+  },
+  "PPSA13225": {
+    "name": "Venba",
+    "region": "UP",
+    "concept": "10004312"
+  },
+  "PPSA13427": {
+    "name": "Horizon Zero Dawn™ Remastered",
+    "region": "EP",
+    "concept": "221727"
   },
   "PPSA13446": {
     "name": "Aphelion",
@@ -1129,6 +1214,11 @@
     "region": "HP",
     "concept": "10008356"
   },
+  "PPSA16608": {
+    "name": "Frostpunk 2",
+    "region": "EP",
+    "concept": "10008442"
+  },
   "PPSA16626": {
     "name": "Achilles: Legends Untold",
     "region": "EP",
@@ -1143,6 +1233,11 @@
     "name": "The 7th Guest VR",
     "region": "EP",
     "concept": "10008625"
+  },
+  "PPSA17168": {
+    "name": "Hi-Fi RUSH",
+    "region": "UP",
+    "concept": "10008685"
   },
   "PPSA17217": {
     "name": "Jurassic Park Classic Games Collection",
@@ -1364,6 +1459,11 @@
     "region": "EB",
     "concept": "10010458"
   },
+  "PPSA21704": {
+    "name": "Kingdom Come: Deliverance II",
+    "region": "EP",
+    "concept": "10006210"
+  },
   "PPSA21725": {
     "name": "RIDE 6",
     "region": "EP",
@@ -1379,10 +1479,20 @@
     "region": "UP",
     "concept": "10010627"
   },
+  "PPSA22327": {
+    "name": "Forza Horizon 5",
+    "region": "UP",
+    "concept": "10010647"
+  },
   "PPSA22408": {
     "name": "HOT WHEELS™️ Infinite Rush",
     "region": "EP",
     "concept": "10010731"
+  },
+  "PPSA22453": {
+    "name": "Tomb Raider: Legend",
+    "region": "UP",
+    "concept": "10010747"
   },
   "PPSA22520": {
     "name": "ANIMAL WELL",
@@ -1453,6 +1563,11 @@
     "name": "Dreamcore",
     "region": "UB",
     "concept": "10011875"
+  },
+  "PPSA24913": {
+    "name": "ACE COMBAT 8",
+    "region": "JP",
+    "concept": "10011942"
   },
   "PPSA24944": {
     "name": "Platform8",
@@ -1534,6 +1649,11 @@
     "region": "UP",
     "concept": "10013351"
   },
+  "PPSA27581": {
+    "name": "Hellblade: Senua’s Sacrifice",
+    "region": "UP",
+    "concept": "10013503"
+  },
   "PPSA27616": {
     "name": "Bendy and the Ink Machine",
     "region": "EP",
@@ -1579,6 +1699,11 @@
     "region": "EP",
     "concept": "10013938"
   },
+  "PPSA28183": {
+    "name": "Assassin's Creed™ Black Flag Resynced",
+    "region": "EP",
+    "concept": "10013987"
+  },
   "PPSA28311": {
     "name": "Absolum",
     "region": "EP",
@@ -1619,6 +1744,11 @@
     "region": "UP",
     "concept": "10014379"
   },
+  "PPSA28824": {
+    "name": "Valheim",
+    "region": "EP",
+    "concept": "10014397"
+  },
   "PPSA28997": {
     "name": "God of War Sons of Sparta",
     "region": "UP",
@@ -1628,6 +1758,11 @@
     "name": "Anger Foot",
     "region": "UP",
     "concept": "10013233"
+  },
+  "PPSA29340": {
+    "name": "Halloween: The Game",
+    "region": "UP",
+    "concept": "10014718"
   },
   "PPSA29413": {
     "name": "Wobbly Life",
@@ -1729,6 +1864,11 @@
     "region": "JP",
     "concept": "10016680"
   },
+  "PPSA32904": {
+    "name": "Madden NFL 27",
+    "region": "UP",
+    "concept": "10016736"
+  },
   "PPSA33655": {
     "name": "BLUE REFLECTION Quartet",
     "region": "JP",
@@ -1738,6 +1878,11 @@
     "name": "マイリトルパピー",
     "region": "UB",
     "concept": "10015164"
+  },
+  "PPSA33965": {
+    "name": "Moss: The Forgotten Relic",
+    "region": "UP",
+    "concept": "10017247"
   },
   "PPSA34008": {
     "name": "Mortal Shell II",
@@ -1851,7 +1996,7 @@
   },
   "PPSA38500": {
     "name": "Grand Theft Auto VI",
-    "region": null,
+    "region": "EP",
     "concept": "10000730"
   }
 }

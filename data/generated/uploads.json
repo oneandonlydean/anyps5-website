@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-15T03:58:32.457Z",
+  "generated": "2026-11-27T21:12:00.175Z",
   "uploads": [
     {
       "id": 2,
@@ -5855,7 +5855,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 140,
@@ -5899,7 +5899,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 141,
@@ -5943,7 +5943,7 @@
         ],
         "comparable": true
       },
-      "verifiedBy": null
+      "verifiedBy": "oneandonlydean"
     },
     {
       "id": 142,
@@ -5977,6 +5977,260 @@
         "message": "Called libSceHttp2 sceHttp2SendRequestAsync, which is not implemented."
       },
       "perf": null,
+      "verifiedBy": "oneandonlydean"
+    },
+    {
+      "id": 143,
+      "titleId": "PPSA36591",
+      "titleChosen": false,
+      "name": "STEINS;GATE RE:BOOT",
+      "stage": "Playable",
+      "stated": "Playable",
+      "login": "milescoviello",
+      "githubId": 108698522,
+      "at": "2026-11-15T08:08:34.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 4070 Ti",
+      "commit": "fbfd87889d1af4240de499f0a221c4e4d2e90264",
+      "release": null,
+      "contentVersion": "01.002.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 59.7,
+        "low1": 58.9,
+        "p99Ms": 16.98,
+        "stutters": 12,
+        "seconds": 180.075,
+        "gpuBusyPct": 21.2,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 144,
+      "titleId": "PPSA16608",
+      "titleChosen": false,
+      "name": "Frostpunk 2",
+      "stage": "Presents",
+      "stated": null,
+      "login": "birdmarty",
+      "githubId": 121899135,
+      "at": "2026-11-15T17:41:13.000Z",
+      "os": "windows",
+      "gpuVendor": "AMD",
+      "gpu": "AMD Radeon RX 6800",
+      "commit": "ee25ae607b83c0e8a0978db2a592e2f19e5530a0",
+      "release": null,
+      "contentVersion": "01.000.013",
+      "exit": "abort",
+      "recovered": false,
+      "missing": [
+        "sceHttp2SendRequestAsync"
+      ],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "missing-function",
+        "reason": "runtime-stop",
+        "message": "Called libSceHttp2 sceHttp2SendRequestAsync, which is not implemented."
+      },
+      "perf": null,
+      "verifiedBy": null
+    },
+    {
+      "id": 146,
+      "titleId": "PPSA23566",
+      "titleChosen": false,
+      "name": "EA SPORTS™ UFC® 6",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "Ascii19722",
+      "githubId": 334313134,
+      "at": "2026-11-17T14:14:45.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "commit": "3b17977ba6557fd93b1fe701646f8d3a63a45309",
+      "release": null,
+      "contentVersion": "01.005.000",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 1.5,
+        "low1": 0.8,
+        "p99Ms": 1315.17,
+        "stutters": 93,
+        "seconds": 1984.965,
+        "gpuBusyPct": 17,
+        "cap": null,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 147,
+      "titleId": "PPSA34971",
+      "titleChosen": false,
+      "name": "Hollow Knight: Voidheart Edition",
+      "stage": "Playable",
+      "stated": "Playable",
+      "login": "Ascii19722",
+      "githubId": 334313134,
+      "at": "2026-11-17T14:22:33.000Z",
+      "os": "windows",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "commit": "3b17977ba6557fd93b1fe701646f8d3a63a45309",
+      "release": null,
+      "contentVersion": "01.000.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The window was closed."
+      },
+      "perf": {
+        "fps": 119.7,
+        "low1": 113.2,
+        "p99Ms": 8.84,
+        "stutters": 3,
+        "seconds": 210.023,
+        "gpuBusyPct": 20.6,
+        "cap": 120,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 148,
+      "titleId": "PPSA34971",
+      "titleChosen": false,
+      "name": "Hollow Knight: Voidheart Edition",
+      "stage": "Ingame",
+      "stated": "Ingame",
+      "login": "riponisdead",
+      "githubId": 152953666,
+      "at": "2026-11-18T11:36:00.000Z",
+      "os": "windows",
+      "gpuVendor": "Intel",
+      "gpu": "Intel(R) Arc(TM) A750 Graphics",
+      "commit": "4caf45cf1e8a87efeb02bcdfbee20ae648f0d773",
+      "release": null,
+      "contentVersion": "01.000.002",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The run was asked to quit without its window being closed, for example by SIGTERM from a time cap, Ctrl+C or a Quit command."
+      },
+      "perf": {
+        "fps": 59.9,
+        "low1": 59,
+        "p99Ms": 16.96,
+        "stutters": 0,
+        "seconds": 150.062,
+        "gpuBusyPct": 32.8,
+        "cap": 60,
+        "resolutions": [
+          "1920x1080"
+        ],
+        "comparable": true
+      },
+      "verifiedBy": null
+    },
+    {
+      "id": 149,
+      "titleId": "PPSA33965",
+      "titleChosen": false,
+      "name": "Moss: The Forgotten Relic",
+      "stage": "Menus",
+      "stated": "Menus",
+      "login": "mewajda",
+      "githubId": 6639967,
+      "at": "2026-11-19T19:33:27.000Z",
+      "os": "linux",
+      "gpuVendor": "NVIDIA",
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "commit": "07f4f8f536203c6ae9a85f659d4c2234320b29c8",
+      "release": null,
+      "contentVersion": "01.000.007",
+      "exit": "clean",
+      "recovered": false,
+      "missing": [],
+      "unsupported": [],
+      "truncated": {
+        "functions": 0,
+        "unsupported": 0
+      },
+      "stop": {
+        "kind": "none",
+        "reason": "quit-requested",
+        "message": "The run was asked to quit without its window being closed, for example by SIGTERM from a time cap, Ctrl+C or a Quit command."
+      },
+      "perf": {
+        "fps": 19.1,
+        "low1": 8.1,
+        "p99Ms": 123.36,
+        "stutters": 68,
+        "seconds": 51.339,
+        "gpuBusyPct": 12.5,
+        "cap": null,
+        "resolutions": [
+          "3840x2160"
+        ],
+        "comparable": true
+      },
       "verifiedBy": null
     }
   ],

@@ -1,13 +1,13 @@
 {
   "latest": {
-    "date": "2026-11-15",
+    "date": "2026-11-27",
     "counts": {
-      "Playable": 6,
-      "Ingame": 92,
-      "Menus": 36,
-      "Presents": 113,
+      "Playable": 7,
+      "Ingame": 108,
+      "Menus": 48,
+      "Presents": 116,
       "First draw": 4,
-      "Starts": 27,
+      "Starts": 28,
       "Converts": 1,
       "Not converting": 2
     }
@@ -190,12 +190,38 @@
     {
       "date": "2026-11-15",
       "counts": {
-        "Playable": 6,
-        "Ingame": 92,
-        "Menus": 36,
-        "Presents": 113,
+        "Playable": 7,
+        "Ingame": 93,
+        "Menus": 39,
+        "Presents": 114,
         "First draw": 4,
         "Starts": 27,
+        "Converts": 1,
+        "Not converting": 2
+      }
+    },
+    {
+      "date": "2026-11-16",
+      "counts": {
+        "Playable": 7,
+        "Ingame": 93,
+        "Menus": 39,
+        "Presents": 115,
+        "First draw": 4,
+        "Starts": 28,
+        "Converts": 1,
+        "Not converting": 2
+      }
+    },
+    {
+      "date": "2026-11-27",
+      "counts": {
+        "Playable": 7,
+        "Ingame": 108,
+        "Menus": 48,
+        "Presents": 116,
+        "First draw": 4,
+        "Starts": 28,
         "Converts": 1,
         "Not converting": 2
       }
