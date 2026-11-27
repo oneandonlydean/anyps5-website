@@ -233,7 +233,7 @@ This step runs upstream's own `tools/progress.py`, which only reads source files
 
 The production environment in `wrangler.jsonc` is the official site with the bot. The bot keeps the old bot's Discord app and database, so linked members, merge history and the announcement position carry over, and it shares `anyps5-site` with the demo, so uploads carry over too. The old bot is the `gh-discord-roles` Worker (once called gh-worker, serving anyps5.emdd.me).
 
-The site went live first, with the bot off: production has no `TOKEN_KEY`, so it serves only the site and its API while the old Worker keeps running the bot.
+The site went live first, with the bot off: production has no `TOKEN_KEY`, so it serves only the site and its API while the old Worker keeps running the bot. Steps 1 and 7 are done. As of 2026-11-28 production has no secrets at all, so sign-in and rebuild requests on anyps5.gg wait on step 3.
 
 **The old key.** Linked members' Discord tokens are encrypted with the old Worker's `TOKEN_KEY`, and no copy of it was kept. Cloudflare never shows a secret's value, but the Worker can still use it. So at cutover a one-off Worker (`worker/rekey/`) is deployed under the old name, which keeps its secrets, and re-encrypts every member's tokens with a new key for production. That can only happen at cutover: until then the old bot keeps refreshing tokens with the old key, and Discord retires each refresh token once it's used.
 
@@ -250,7 +250,7 @@ The site went live first, with the bot off: production has no `TOKEN_KEY`, so it
    - In the bot's GitHub OAuth app, set the callback to `https://anyps5.gg/github/callback`.
    - Then [set up the server tools](#discord-bot) (intents, permissions, role order) and run `register-commands`.
 6. **Delete the old Worker** once the bot answers from anyps5.gg: `npx wrangler delete --name gh-discord-roles`. Keep the `gh-discord-roles` database; production uses it.
-7. **Workflow:** in `.github/workflows/site.yml`, change the deploy step from `npm run deploy:demo` to `npm run deploy:production`, with `SITE_URL` set.
+7. **Workflow:** `.github/workflows/site.yml` deploys production (`npm run deploy:production`, with `SITE_URL` set).
 
 ## Languages
 
